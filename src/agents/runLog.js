@@ -1,6 +1,6 @@
 /**
- * The raw transcript of every agent call in a phase: what was asked, what came back, and — the part
- * that did not exist before — what came back when the call was REJECTED.
+ * The raw transcript of every agent call in a phase: what was asked, what came back, and, the part
+ * that did not exist before, what came back when the call was REJECTED.
  *
  * ── Why this is separate from run-report.json ────────────────────────────────────────────────────
  *
@@ -10,7 +10,7 @@
  * were the same sentence pattern, because it never saw the text.
  *
  * This is the evidence half. It is never gated on and nothing branches on it; it exists so a
- * reviewer — human or the final-review agent — can read what a role actually produced instead of
+ * reviewer (human or the final-review agent) can read what a role actually produced instead of
  * inferring it from counts.
  *
  * ── The gap this closes ──────────────────────────────────────────────────────────────────────────
@@ -19,7 +19,7 @@
  * destroyed by the act of judging it: on one real chapter-9 failure the only thing that reached disk
  * was `blocks.json`, and nothing could say whether the model had dropped the gaps or answered with
  * handles that did not match. SKILL.md has carried that as a known rough edge, unfixed, because the
- * obvious fix — having each phase inject a teeing wrapper around `runClaude` — would mean a test
+ * obvious fix (having each phase inject a teeing wrapper around `runClaude`) would mean a test
  * that forgot to stub the runner spawned a real model, which is golden rule 6.
  *
  * This avoids that entirely by teeing inside `runRole` instead of at the injection site. Injection
@@ -90,7 +90,7 @@ export function appendRunLog(logDir, entry) {
 /**
  * Every transcript a unit has, oldest first.
  *
- * Returns `[]` for a unit built before logging existed, which is an absence and not a clean run —
+ * Returns `[]` for a unit built before logging existed, which is an absence and not a clean run,
  * callers that report on logs must say which of the two they are looking at.
  */
 export function readRunLogs(unitDir) {
@@ -121,7 +121,7 @@ export function hasRunLogs(unitDir) {
  *
  * Twelve agents call `runRole`, each already forwarding an injected `runClaude`. Threading a second
  * cross-cutting argument through all twelve means twelve signatures, twelve forwarding sites and
- * twelve chances to forget one — and a forgotten one is SILENT, costing exactly the evidence this
+ * twelve chances to forget one, and a forgotten one is SILENT, costing exactly the evidence this
  * module exists to keep. Logging is genuinely ambient to a phase: every call inside one run belongs
  * to one unit, and no agent has an opinion about where its transcript goes.
  *

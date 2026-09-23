@@ -17,6 +17,7 @@
 
 import { normalizeDisplayText } from "../model/scriptSpacing.js";
 import { projectCorpusItem } from "../model/index.js";
+import { CATEGORIES } from "../model/categories.js";
 import { targetKey, englishKey } from "./itemSetDiff.js";
 import { splitAlternates } from "./vocabCoverage.js";
 
@@ -96,7 +97,9 @@ export function expandAlternates(items) {
 }
 
 /**
- * Merges candidate lists into one, and returns `{ items, provenance, singletons, agreement }`.
+ * Merges candidate lists into one, and returns `{ items, provenance, singletons, agreement }`,
+ * plus `droppedFields` and `recategorized`, the two repairs it makes so a stray agent answer cannot
+ * fail the corpus write.
  *
  * `items` keeps every distinct candidate. `provenance` maps the merged item's id to the role ids
  * that produced it, which is exactly the shape `writeSnapshot` stores. `singletons` are the ids only
@@ -136,6 +139,7 @@ export function reconcile(candidateLists, { languageCode } = {}) {
   const singletons = [];
   const seenIds = new Set();
   const droppedFields = new Set();
+  const recategorized = [];
 
   for (const { item, roles } of entries) {
     const id = uniqueId(item.id, seenIds);
@@ -150,6 +154,14 @@ export function reconcile(candidateLists, { languageCode } = {}) {
     // Then drop the provenance an agent volunteered — `fromTable`, `foundIn` — which belongs in the
     // candidate artifacts and would otherwise fail the corpus schema at the write, after every paid
     // step of the phase had already run.
+    // Same reasoning for a category off the list. Every role's prompt carries the list, and on
+    // Lesson 20's extras the inventive author wrote "Daily Life" anyway; the phase finished and
+    // `prepare` then died on the schema. A category only groups cards for a reviewer, so a wrong
+    // one is worth a line in the report, not the whole build.
+    if (rest.category !== undefined && !CATEGORIES.includes(rest.category)) {
+      recategorized.push({ id: item.id, category: rest.category });
+      rest.category = "Other";
+    }
     const { item: projected, dropped } = projectCorpusItem(rest);
     for (const field of dropped) droppedFields.add(field);
     items.push({ ...projected, id });
@@ -164,6 +176,8 @@ export function reconcile(candidateLists, { languageCode } = {}) {
     // Reported, not swallowed: a field here means an agent is volunteering something the corpus has
     // no home for, which is a prompt to fix or a schema to grow rather than noise to hide.
     droppedFields: [...droppedFields].sort(),
+    // Items whose category was not on the list and became "Other", with what the agent wrote.
+    recategorized,
     senseCollisions: findSenseCollisions(items, languageCode),
     agreement: {
       total: items.length,
@@ -235,4 +249,22 @@ function countBy(values) {
 /** Normalizes for display the same way the matcher does, for a caller reporting on a merge. */
 export function displayKey(text, languageCode) {
   return normalizeDisplayText(String(text ?? "").trim(), languageCode);
+}
+
+/**
+ * The reconcile step's `reason` line: what it repaired, or null when it repaired nothing. Shared by
+ * both phases so the wording cannot drift between them.
+ */
+export function reconcileReason({ droppedFields = [], recategorized = [] }) {
+  const parts = [];
+  if (droppedFields.length)
+    parts.push(
+      `dropped ${droppedFields.length} volunteered field(s) not in the corpus schema: ${droppedFields.join(", ")}`,
+    );
+  if (recategorized.length)
+    parts.push(
+      `moved ${recategorized.length} item(s) with a category not on the list to Other: ` +
+        recategorized.map((r) => `${r.id} ("${r.category}")`).join(", "),
+    );
+  return parts.length ? parts.join("; ") : null;
 }

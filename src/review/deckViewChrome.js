@@ -236,7 +236,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .excl-btn.on{color:#fff;background:var(--accent);border-color:var(--accent)}
 .excl-btn:disabled{opacity:.5;cursor:default}
 td.excl-cell{text-align:center}
-td[data-field]{cursor:text}td[data-field][contenteditable]:focus{outline:2px solid var(--accent);outline-offset:-2px;background:var(--card)}
+.fbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 14px}.flab{font-size:12px;color:var(--muted);margin-right:2px}.fchip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:inherit;font:inherit;font-size:12px;cursor:pointer}.fchip:hover{border-color:var(--accent)}.fchip.on{background:var(--accent);border-color:var(--accent);color:#fff}.fchip .fn{font-variant-numeric:tabular-nums;opacity:.7;font-size:11px}.fchip.on .fn{opacity:.9}.fchip.fscope{border-style:dashed}.fchip.fscope.on{border-style:solid}.fcount{font-size:12px;color:var(--muted);margin-left:4px}details.lesson.empty-filtered>summary{opacity:.45}td[data-field]{cursor:text}td[data-field][contenteditable]:focus{outline:2px solid var(--accent);outline-offset:-2px;background:var(--card)}
 td.saved{background:rgba(122,59,54,.1)}`;
 
 // The @font-face rule for the target-script font. Pass { base64 } for an inlined data URI (static
@@ -261,6 +261,7 @@ export {
   STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,
   CLEAR_CLAIM_SCRIPT,
+  REVIEW_FILTER_SCRIPT,
 } from "./clientScripts.js";
 
 // The AI-suggested / Uncertain provenance badges (shown at EVERY review stage). `excluded` is not
@@ -437,11 +438,112 @@ const cardRow = (c, n, stage, ctx) => {
   const rnote = ctx.showReviewNote
     ? `\n  <td class="rnote">${exclusionProvenance(c)}${c.reviewNote ? escapeHtml(c.reviewNote) : ""}</td>`
     : "";
-  return `<tr class="row${c.excluded ? " excluded" : ""}"${attrs}>
+  const ftok = filterTokens(c, stage);
+  return `<tr class="row${c.excluded ? " excluded" : ""}"${attrs} data-f="${ftok.join(" ")}">
   <td class="num">${n}</td>
   ${spec.cells(c, ctx)}${auExcl}${rnote}
 </tr>`;
 };
+
+/**
+ * The filter tokens a row carries, as a space-separated list the client matches against.
+ *
+ * Computed here rather than in the browser so the chip COUNTS are server-side truth: a chip that
+ * says "17 excluded" and a table that shows 16 is worse than no chip, and deriving both from the
+ * same list is what stops them disagreeing.
+ *
+ * `script-excluded` is separate from `excluded` on purpose. The two are the reviewer's question,
+ * not one: a human exclusion is a decision already made, and a script's is a sweep that
+ * `excludedBy` exists to make re-checkable. Being able to see only the latter is the point.
+ */
+export function filterTokens(card, stage) {
+  const t = [];
+  // The complement of `excluded`: the cards that are, or will be, in the deck. A SCOPE rather than a
+  // flag (see `scope` on FILTERS) so it narrows the flag chips instead of adding to them.
+  if (!card.excluded) t.push("shipping");
+  if (card.excluded) {
+    t.push("excluded");
+    // "" means a human decision or a file written before provenance existed; a name means a sweep.
+    if (card.excludedBy && card.excludedBy !== "human") t.push("script-excluded");
+  }
+  if (card.uncertain) t.push("uncertain");
+  if (card.aiSuggested) t.push("ai");
+  if (card.reviewNote) t.push("rnote");
+  if (stage === "audio") {
+    if (card.audioMarkerStuck) t.push("marker");
+    // A SHIPPING card with no clip. An excluded card never gets one, the audio stage skips it so no
+    // TTS is spent on a card that may be cut, so counting those would make the chip a restatement
+    // of "Excluded" and hide the handful that actually need a recording.
+    if (!card.audio && !card.excluded) t.push("noaudio");
+  }
+  return t;
+}
+
+/**
+ * Chip definitions, in the order they are shown. `key` is the token; `label` the chip's text.
+ *
+ * `scope` chips NARROW and flag chips WIDEN, and the difference is deliberate. Flags union, because
+ * "Uncertain" plus "AI-suggested" asks for both sets. A scope intersects, because "Not excluded" plus
+ * "Uncertain" asks for the shipping cards that are uncertain, unioning it would pull every excluded
+ * uncertain card straight back in and defeat the reason for choosing it.
+ *
+ * `excludes` names the chips a scope contradicts. "Not excluded" and "Excluded" can never both match
+ * a row, so turning one on turns the other off rather than producing an empty table that reads as a
+ * broken filter.
+ */
+const FILTERS = [
+  {
+    key: "shipping",
+    label: "Not excluded",
+    scope: true,
+    excludes: ["excluded", "script-excluded"],
+  },
+  { key: "excluded", label: "Excluded" },
+  { key: "script-excluded", label: "Cut by a script" },
+  { key: "uncertain", label: "Uncertain" },
+  { key: "ai", label: "AI-suggested" },
+  { key: "rnote", label: "Has a review note" },
+  { key: "marker", label: "Marker audible" },
+  { key: "noaudio", label: "No audio" },
+];
+
+/**
+ * The filter bar, or "" when nothing on this page carries a flag worth filtering on.
+ *
+ * A chip is only rendered when at least one row matches it, so a clean unit shows no bar at all
+ * rather than a row of zeroes inviting clicks that do nothing.
+ *
+ * Chips union rather than intersect: the question being asked is "show me the flagged ones", and
+ * two chips on means both sets, not their overlap. Intersection would make most pairs empty and
+ * read as a broken filter.
+ */
+export function renderFilterBar(sections) {
+  const counts = new Map();
+  let total = 0;
+  for (const s of sections ?? []) {
+    for (const c of s.cards ?? []) {
+      total++;
+      for (const tok of filterTokens(c, s.stage || "audio")) {
+        counts.set(tok, (counts.get(tok) ?? 0) + 1);
+      }
+    }
+  }
+  // A scope that matches every row narrows nothing: on a unit with no exclusions, "Not excluded"
+  // is the whole table, and rendering it would put a do-nothing chip on a page that previously had
+  // no bar at all. A flag chip is kept at any non-zero count, since it always narrows.
+  const useful = (f) => counts.get(f.key) && !(f.scope && counts.get(f.key) === total);
+  const chips = FILTERS.filter(useful).map(
+    (f) =>
+      `<button type="button" class="fchip${f.scope ? " fscope" : ""}" data-filter="${f.key}"` +
+      `${f.scope ? ` data-scope="1"` : ""}` +
+      `${f.excludes ? ` data-excludes="${f.excludes.join(" ")}"` : ""}` +
+      `>${escapeHtml(f.label)}<span class="fn">${counts.get(f.key)}</span></button>`,
+  );
+  // A bar holding only a scope chip is still worth showing, "Not excluded" alone is a real view,
+  // so the test is simply whether anything useful survived.
+  if (!chips.length) return "";
+  return `<div class="fbar" id="fbar"><span class="flab">Show only</span>${chips.join("")}<button type="button" class="fchip fclear" id="fclear">All</button><span class="fcount" id="fcount"></span></div>`;
+}
 
 /**
  * Renders the deck's units as collapsible <details> sections (collapsed by default). Each section may

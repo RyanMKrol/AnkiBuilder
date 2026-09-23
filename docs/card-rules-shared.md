@@ -44,7 +44,11 @@ an earlier one teaches. Where topical fit and this rule disagree, this rule wins
 and above all one the source invented to populate an exercise -- teaches the learner nothing about
 the language. Card the common noun the source teaches instead (hotel, school, park), and let the
 name do its job inside a sentence, which is where the source put it. Real places a learner meets
-outside the book, countries and cities, are ordinary vocabulary and do count. _Five invented business
+outside the book, countries, cities and districts (Hiroshima, Akasaka), are ordinary vocabulary and
+do count. A named facility is not, even a real one: a station, an airport, a stadium or a venue
+(Suidobashi, Haneda Airport, Tokyo Dome) is a business-shaped name. Card the common noun it is
+built on (station, airport) and leave the name in the sentences that use it. Owner ruling, 2026-09-22,
+after the two base readers split on four such names in Lesson 20. _Five invented business
 names reached a human review as vocabulary cards before anyone noticed._
 
 **A word the source prints with an optional part is ONE entry.** Where a source writes a word with

@@ -809,3 +809,85 @@ document.querySelectorAll(".clear-claim").forEach((btn) => {
   });
 });
 `;
+
+/**
+ * The review page's row filters.
+ *
+ * Chips UNION rather than intersect: the question is "show me the flagged ones", so two chips on
+ * means both sets. Intersecting would make most pairs empty and read as a broken filter.
+ *
+ * A section whose every row is hidden is collapsed and dimmed rather than removed, because a unit
+ * vanishing from the page looks like a bug and the reviewer still needs to know it was there and
+ * had nothing matching.
+ *
+ * Nothing here writes: filtering is a view over the table, so a filtered row keeps its inline
+ * editors and its Exclude box and behaves exactly as it does unfiltered.
+ */
+export const REVIEW_FILTER_SCRIPT = `(function () {
+  var bar = document.getElementById("fbar");
+  if (!bar) return;
+  var chips = Array.prototype.slice.call(bar.querySelectorAll(".fchip[data-filter]"));
+  var clear = document.getElementById("fclear");
+  var count = document.getElementById("fcount");
+  var rows = function () { return document.querySelectorAll("tr.row[data-f]"); };
+
+  var active = function (wantScope) {
+    return chips.filter(function (c) {
+      return c.classList.contains("on") && (c.getAttribute("data-scope") === "1") === wantScope;
+    }).map(function (c) { return c.getAttribute("data-filter"); });
+  };
+
+  var apply = function () {
+    // Scopes NARROW (every one must match) and flags WIDEN (any one may). "Not excluded" plus
+    // "Uncertain" therefore means the shipping cards that are uncertain, not every uncertain card
+    // plus every shipping one.
+    var scopes = active(true), flags = active(false);
+    var on = scopes.length + flags.length;
+    var shown = 0, total = 0;
+    rows().forEach(function (tr) {
+      total++;
+      var toks = (tr.getAttribute("data-f") || "").split(" ");
+      var has = function (k) { return toks.indexOf(k) >= 0; };
+      var keep = scopes.every(has) && (flags.length === 0 || flags.some(has));
+      tr.hidden = !keep;
+      if (keep) shown++;
+    });
+    // Renumber nothing: the # column is the card's position in the unit, and a filtered view that
+    // renumbers 1..n destroys the one thing that ties a row back to the full table.
+    document.querySelectorAll("details.lesson").forEach(function (d) {
+      var any = d.querySelector("tr.row[data-f]:not([hidden])");
+      d.classList.toggle("empty-filtered", !any);
+      if (on && any) d.open = true;
+    });
+    if (clear) clear.classList.toggle("on", on === 0);
+    if (count) count.textContent = on ? shown + " of " + total + " shown" : "";
+  };
+
+  var byKey = function (k) {
+    return chips.filter(function (c) { return c.getAttribute("data-filter") === k; })[0];
+  };
+
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      var turningOn = !c.classList.contains("on");
+      c.classList.toggle("on");
+      if (turningOn) {
+        // A scope and the chips it contradicts can never both match a row, so switching one on
+        // switches the others off instead of leaving an empty table that reads as broken.
+        (c.getAttribute("data-excludes") || "").split(" ").forEach(function (k) {
+          var other = k && byKey(k); if (other) other.classList.remove("on");
+        });
+        chips.forEach(function (s) {
+          var ex = (s.getAttribute("data-excludes") || "").split(" ");
+          if (s !== c && ex.indexOf(c.getAttribute("data-filter")) >= 0) s.classList.remove("on");
+        });
+      }
+      apply();
+    });
+  });
+  if (clear) clear.addEventListener("click", function () {
+    chips.forEach(function (c) { c.classList.remove("on"); });
+    apply();
+  });
+  apply();
+})();`;

@@ -1,0 +1,460 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 43,
+    "chapterLabel": "Lesson 19: Making a Request: Please Give Her My Regards",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "made",
+      "english": "To, as far as (particle)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "target": "まで",
+      "uncertain": true
+    },
+    {
+      "id": "made-ni",
+      "english": "By [specified time]",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "までに"
+    },
+    {
+      "id": "wo-place-particle",
+      "english": "Particle marking a place or space passed through",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "target": "を",
+      "uncertain": true
+    },
+    {
+      "id": "de-means-particle",
+      "english": "Particle marking a means of communication or transportation",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "target": "で",
+      "uncertain": true
+    },
+    {
+      "id": "ni-tsuite",
+      "english": "About…",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Restored at gate 1 with the tilde stripped, on the final review's finding: the placeholder check had removed the only card for a headword the chapter glosses.",
+      "target": "について",
+      "uncertain": true
+    },
+    {
+      "id": "arigatou-gozaimashita",
+      "english": "Thank you very much (for what you did)",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "ありがとうございました",
+      "uncertain": true
+    },
+    {
+      "id": "migi",
+      "english": "Right",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "みぎ"
+    },
+    {
+      "id": "hidari",
+      "english": "Left",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "ひだり"
+    },
+    {
+      "id": "massugu",
+      "english": "Straight",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "まっすぐ"
+    },
+    {
+      "id": "saki",
+      "english": "Beyond",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "さき"
+    },
+    {
+      "id": "temae",
+      "english": "Just before",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "てまえ"
+    },
+    {
+      "id": "michi",
+      "english": "Road",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "みち"
+    },
+    {
+      "id": "kado",
+      "english": "Corner",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "かど"
+    },
+    {
+      "id": "kousaten",
+      "english": "Intersection",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "こうさてん"
+    },
+    {
+      "id": "shingou",
+      "english": "Traffic light",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "しんごう"
+    },
+    {
+      "id": "hashi",
+      "english": "Bridge",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "はし"
+    },
+    {
+      "id": "tsugi-no",
+      "english": "Next",
+      "category": "Directions",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on english) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "target": "つぎの",
+      "uncertain": true
+    },
+    {
+      "id": "me-suffix-2",
+      "english": "Suffix that attaches to a number and turns it into an ordinal number",
+      "category": "Numbers",
+      "reviewNote": "Restored by the owner, then the tilde stripped at gate 1 so it is an utterance rather than notation — the same treatment as について. め now owns the ordinal explanation.",
+      "target": "め",
+      "uncertain": true
+    },
+    {
+      "id": "futatsume",
+      "english": "Second",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ふたつめ"
+    },
+    {
+      "id": "tokyo-tower",
+      "english": "Tokyo Tower",
+      "category": "Travel & Tourism",
+      "reviewNote": "A real landmark, but proper-name-like. Reviewer decides whether it counts as ordinary vocabulary.",
+      "target": "とうきょうタワー",
+      "uncertain": true
+    },
+    {
+      "id": "ebisu-eki",
+      "english": "Ebisu Station",
+      "category": "Transport",
+      "reviewNote": "A real station name. The common noun えき is the reusable part.",
+      "target": "えびすえき",
+      "uncertain": true
+    },
+    {
+      "id": "ginza-dori",
+      "english": "Ginza Street",
+      "category": "Directions",
+      "reviewNote": "A real street name, proper-name-like. Reviewer decides.",
+      "target": "ぎんざどおり",
+      "uncertain": true
+    },
+    {
+      "id": "iimasu",
+      "english": "Say",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "いいます"
+    },
+    {
+      "id": "iimasu-te-form",
+      "english": "Say (て-form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
+      "target": "いって",
+      "uncertain": true
+    },
+    {
+      "id": "magarimasu",
+      "english": "Turn",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "まがります"
+    },
+    {
+      "id": "te-form-magatte",
+      "english": "Turn (て-form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "まがって"
+    },
+    {
+      "id": "torimasu",
+      "english": "Take",
+      "category": "Everyday Objects",
+      "reviewNote": "Kept at the owner's request. Chapter 11 already teaches とります as \"Take (a photo)\"; this card carries the general sense the chapter glosses as just \"take\". The scenes separate them on the Recognition front, but note this chapter's only concrete use (しゃしんをとります) is itself a photo, so the distinction is in the glosses rather than in the book's example.",
+      "target": "とります",
+      "uncertain": true
+    },
+    {
+      "id": "te-form-totte",
+      "english": "Take (て-form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "とって"
+    },
+    {
+      "id": "tomemasu",
+      "english": "Stop",
+      "category": "Directions",
+      "reviewNote": "Forward flag cleared at gate 1: とめます is glossed in this chapter's WORD POWER I vocabulary box and is a row of its own conjugation table. Lesson 21 reuses it rather than introducing it.",
+      "target": "とめます",
+      "uncertain": true
+    },
+    {
+      "id": "te-form-tomete",
+      "english": "Stop (て-form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Forward flag cleared at gate 1: とめます is glossed in this chapter's WORD POWER I vocabulary box and is a row of its own conjugation table. Lesson 21 reuses it rather than introducing it.",
+      "target": "とめて",
+      "uncertain": true
+    },
+    {
+      "id": "todokemasu",
+      "english": "Deliver",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "とどけます"
+    },
+    {
+      "id": "te-form-todokete",
+      "english": "Deliver (て-form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "とどけて"
+    },
+    {
+      "id": "motte-kimasu",
+      "english": "Bring",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "もってきます"
+    },
+    {
+      "id": "te-form-motte-kite",
+      "english": "Bring (て-form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "もってきて"
+    },
+    {
+      "id": "tsutaemasu",
+      "english": "Relay a message",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "つたえます"
+    },
+    {
+      "id": "houkoku-shimasu",
+      "english": "Report",
+      "category": "Work & Occupations",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on english)",
+      "target": "ほうこくします",
+      "uncertain": true
+    },
+    {
+      "id": "okurimashita",
+      "english": "Sent",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "おくりました"
+    },
+    {
+      "id": "kakimasu-l19",
+      "english": "Write",
+      "category": "Work & Occupations",
+      "reviewNote": "Kept at the owner's request with a distinct id. NOTE: chapter-17/kakimasu already ships かきます \"Write\" with its own scene and a note distinguishing it from かきます \"Draw\" (Lesson 15). This card adds no new sense — the scene below is drawn from this chapter's exercises (なまえ/じゅうしょ) rather than a real difference in meaning. Exclude it if it reads as repetition.",
+      "target": "かきます",
+      "uncertain": true
+    },
+    {
+      "id": "azukarimasu",
+      "english": "Keep, take care of",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "あずかります"
+    },
+    {
+      "id": "magatte-kudasai",
+      "english": "Please turn",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "まがってください"
+    },
+    {
+      "id": "houkoku-shite-kudasai",
+      "english": "Please report",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "ほうこくしてください"
+    },
+    {
+      "id": "yoroshiku-tsutaete-kudasai",
+      "english": "Please give him/her my regards.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "よろしくつたえてください"
+    },
+    {
+      "id": "onegai-dekimasu-ka",
+      "english": "May I ask [you to do this]?",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "おねがいできますか"
+    },
+    {
+      "id": "shouchi-shimashita",
+      "english": "Yes, certainly.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "しょうちしました"
+    },
+    {
+      "id": "takuhaibin",
+      "english": "Parcel delivery service",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "たくはいびん"
+    },
+    {
+      "id": "baikubin",
+      "english": "Motorbike courier service",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "バイクびん"
+    },
+    {
+      "id": "yuubin",
+      "english": "Mail",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "ゆうびん"
+    },
+    {
+      "id": "nimotsu",
+      "english": "Package, luggage",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "にもつ"
+    },
+    {
+      "id": "shorui",
+      "english": "Documents",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "しょるい"
+    },
+    {
+      "id": "sanpuru",
+      "english": "Sample",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "サンプル"
+    },
+    {
+      "id": "katarogu",
+      "english": "Catalog",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "カタログ"
+    },
+    {
+      "id": "menyuu",
+      "english": "Menu",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "メニュー"
+    },
+    {
+      "id": "iroiro-2",
+      "english": "Various",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "いろいろ(な)"
+    },
+    {
+      "id": "biru",
+      "english": "Building",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "ビル"
+    },
+    {
+      "id": "manshon",
+      "english": "Condominium",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "マンション"
+    },
+    {
+      "id": "moufu",
+      "english": "Blanket",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "もうふ"
+    },
+    {
+      "id": "ruumu-saabisu",
+      "english": "Room service",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "ルームサービス"
+    }
+  ]
+}

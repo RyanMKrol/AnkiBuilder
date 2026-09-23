@@ -1,0 +1,552 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 46,
+    "chapterLabel": "Lesson 20: Going Places (3): How Do You Go There? (Extras)",
+    "baseChapterLabel": "Lesson 20: Going Places (3): How Do You Go There?",
+    "phase": "extras"
+  },
+  "items": [
+    {
+      "id": "dete-te-sentence",
+      "target": "うちをでて、ちかてつにのります",
+      "english": "I leave home and take the subway.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-takes-shinkansen-tokyo-station",
+      "target": "スミスさんはとうきょうえきでしんかんせんにのります",
+      "english": "Smith-san will take the Shinkansen from Tokyo Station.",
+      "category": "Transport"
+    },
+    {
+      "id": "home-to-office-40-minutes",
+      "target": "うちからかいしゃまで40ぷんぐらいかかります",
+      "english": "It takes about 40 minutes from my home to the office.",
+      "category": "Transport"
+    },
+    {
+      "id": "how-long-hongkong-q",
+      "target": "たなかさんはどのくらいホンコンにいましたか",
+      "english": "How long did Tanaka-san stay in Hong Kong?",
+      "category": "Time",
+      "fillInBlank": true
+    },
+    {
+      "id": "what-time-arrive-at-office",
+      "target": "なんじにかいしゃにつきますか",
+      "english": "What time do you arrive at the office?",
+      "category": "Time"
+    },
+    {
+      "id": "plane-arrive-osaka",
+      "target": "ひこうきはおおさかに5じにつきました",
+      "english": "The plane arrived in Osaka at 5:00.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "how-long-to-get-here",
+      "target": "ここまでどのくらいかかりますか",
+      "english": "How long will it take you to get here?",
+      "category": "Transport"
+    },
+    {
+      "id": "how-long-will-you-be-in-new-york",
+      "target": "そうですか。どのくらいニューヨークにいますか",
+      "english": "I see. How long will you be in New York?",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "how-long-hongkong-a",
+      "target": "にしゅうかんいました",
+      "english": "I stayed for two weeks.",
+      "category": "Time",
+      "scene": "Answering a question about a stay abroad",
+      "fillInBlank": true
+    },
+    {
+      "id": "ill-be-in-first-floor-cafe",
+      "target": "そうですか。じゃ、1かいのカフェにいます",
+      "english": "I see. Then I'll be in the café on the first floor.",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "tsuite-te-sentence",
+      "target": "とうきょうえきについて、スミスさんにでんわをします",
+      "english": "I arrive at Tokyo Station and call Smith-san.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "otemachi-kaisha",
+      "target": "スミスさんはおおてまちのかいしゃにいきます",
+      "english": "Smith-san is going to a company in Otemachi.",
+      "category": "Travel & Tourism",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-arrived-office-at-8",
+      "target": "スミスさんは8じにかいしゃにつきました",
+      "english": "Smith-san arrived at the office at 8:00.",
+      "category": "Transport"
+    },
+    {
+      "id": "tsukiji-sushi",
+      "target": "つきじですしをたべました",
+      "english": "I ate sushi in Tsukiji.",
+      "category": "Travel & Tourism",
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human"
+    },
+    {
+      "id": "ekiin-ask",
+      "target": "えきいんにとうきょうドームのばしょをききました",
+      "english": "I asked the station employee where Tokyo Dome is.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "walk-fifteen-minutes",
+      "target": "うちからえきまであるいて15ふんぐらいかかります",
+      "english": "It takes about 15 minutes on foot from my home to the station.",
+      "category": "Time",
+      "aiSuggested": true
+    },
+    {
+      "id": "how-long-london-q",
+      "target": "たなかさんはどのくらいロンドンにいましたか",
+      "english": "How long did Tanaka-san stay in London?",
+      "category": "Time",
+      "fillInBlank": true
+    },
+    {
+      "id": "what-will-you-do-summer-vacation",
+      "target": "なつやすみになにをしますか",
+      "english": "What are you going to do over summer vacation?",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "what-time-leave-home-every-day",
+      "target": "まいにちなんじにうちをでますか",
+      "english": "What time do you leave home every day?",
+      "category": "Time"
+    },
+    {
+      "id": "deru-dict-mae-ni",
+      "target": "うちをでるまえに、あさごはんをたべます",
+      "english": "Before I leave home, I eat breakfast.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "how-long-in-new-york",
+      "target": "たなかさんはどのくらいニューヨークにいましたか",
+      "english": "How long did you stay in New York, Tanaka-san?",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "overslept-no-breakfast",
+      "target": "きのうねぼうしましたから、あさごはんをたべませんでした",
+      "english": "I overslept yesterday, so I didn't eat breakfast.",
+      "category": "Other",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-gets-off-shinkansen-hiroshima",
+      "target": "スミスさんはひろしまえきでしんかんせんをおります",
+      "english": "Smith-san will get off the Shinkansen at Hiroshima Station.",
+      "category": "Transport"
+    },
+    {
+      "id": "oriru-dict-mae-ni",
+      "target": "ちかてつをおりるまえに、スミスさんにメールをおくります",
+      "english": "Before I get off the subway, I send Smith-san an e-mail.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "about-30-minutes-takes",
+      "target": "30ぷんぐらいかかります",
+      "english": "It will take about 30 minutes.",
+      "category": "Transport",
+      "scene": "Asked how long it will take to get to the meeting place"
+    },
+    {
+      "id": "vacation-kyoto-how-long-a",
+      "target": "いつかいます",
+      "english": "I'll be there for five days.",
+      "category": "Time",
+      "scene": "Answering a question about the length of a trip",
+      "fillInBlank": true
+    },
+    {
+      "id": "vacation-kyoto-how-long-q",
+      "target": "どのくらいきょうとにいますか",
+      "english": "How long will you be in Kyoto?",
+      "category": "Time",
+      "fillInBlank": true
+    },
+    {
+      "id": "vacation-okinawa-how-long-a",
+      "target": "むいかいます",
+      "english": "I'll be there for six days.",
+      "category": "Time",
+      "scene": "Answering a question about the length of a trip",
+      "fillInBlank": true
+    },
+    {
+      "id": "gr4-london-3nen-imashita",
+      "target": "たなかさんはロンドンに３ねんぐらいいました",
+      "english": "Tanaka-san stayed in London for about three years.",
+      "category": "Time",
+      "note": "ぐらい after the period makes it approximate"
+    },
+    {
+      "id": "smith-in-hiroshima-one-week",
+      "target": "スミスさんはひろしまに1しゅうかんいます",
+      "english": "Smith-san will be in Hiroshima for a week.",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "nan-desu-ka-akasaka",
+      "target": "あか…なんですか",
+      "english": "Aka... what? (asking for the rest of a word you only half heard)",
+      "category": "Grammar & Function Words",
+      "note": "Say the part you caught, pause, then add なんですか. The answer would be あかさかです.",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same 'X…なんですか' request for a half-heard word as the chapter-20 '…なんですか' card, with 'aka' in the slot. Chapter-2-extras なんですか is a different question.",
+      "excluded": true,
+      "excludedBy": "human"
+    },
+    {
+      "id": "stay-friends-house-three-days",
+      "target": "ともだちのうちにみっかいました",
+      "english": "I stayed at a friend's house for three days.",
+      "category": "Time",
+      "aiSuggested": true
+    },
+    {
+      "id": "vacation-okinawa-plan",
+      "target": "おきなわにいって、ダイビングをします",
+      "english": "I'll go to Okinawa and scuba dive.",
+      "category": "Travel & Tourism",
+      "scene": "Answering a question about summer vacation plans",
+      "fillInBlank": true
+    },
+    {
+      "id": "sp-5bansen-norite-orite-kudasai",
+      "target": "５ばんせんのでんしゃにのって、すいどうばしでおりてください",
+      "english": "Take the train at Platform 5 and get off at Suidobashi.",
+      "category": "Transport",
+      "scene": "You ask a station employee how to get to your destination."
+    },
+    {
+      "id": "vacation-kyoto-plan",
+      "target": "きょうとにいって、おてらをみます",
+      "english": "I'll go to Kyoto and see temples.",
+      "category": "Travel & Tourism",
+      "scene": "Answering a question about summer vacation plans",
+      "fillInBlank": true
+    },
+    {
+      "id": "go-to-new-york-see-musical",
+      "target": "ニューヨークにいって、ミュージカルをみます",
+      "english": "I'm going to New York and will see a musical.",
+      "category": "Travel & Tourism",
+      "scene": "Asked what he will do over summer vacation"
+    },
+    {
+      "id": "how-long-sapporo-q",
+      "target": "たなかさんはどのくらいさっぽろにいましたか",
+      "english": "How long did Tanaka-san stay in Sapporo?",
+      "category": "Time",
+      "fillInBlank": true
+    },
+    {
+      "id": "dlg-nebou-uchi-o-demashita",
+      "target": "ねぼうしました。いまうちをでました",
+      "english": "I overslept. I've just now left home.",
+      "category": "Transport"
+    },
+    {
+      "id": "stay-one-week",
+      "target": "1しゅうかんいます",
+      "english": "I'll be there for a week.",
+      "category": "Travel & Tourism",
+      "scene": "Asked how long he will be in New York"
+    },
+    {
+      "id": "leave-board-get-off-chain",
+      "target": "うちをでて、ちかてつにのって、しぶやでおります",
+      "english": "I leave home, take the subway, and get off at Shibuya.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "kato-leave-tokyo-arrive-kyoto",
+      "target": "かとうさんはあさとうきょうをでました。1じごろきょうとにつきました。",
+      "english": "Kato-san left Tokyo in the morning. He arrived in Kyoto around 1:00.",
+      "category": "Transport",
+      "fillInBlank": true
+    },
+    {
+      "id": "stayed-four-days",
+      "target": "よっかいました",
+      "english": "I stayed four days.",
+      "category": "Travel & Tourism",
+      "scene": "Asked how long he stayed in New York"
+    },
+    {
+      "id": "bus-to-airport-one-hour",
+      "target": "バスでくうこうまで1じかんかかります",
+      "english": "It takes one hour to the airport by bus.",
+      "category": "Time",
+      "aiSuggested": true
+    },
+    {
+      "id": "noru-dict-mae-ni",
+      "target": "しんかんせんにのるまえに、べんとうをかいます",
+      "english": "Before I get on the Shinkansen, I buy a box lunch.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "sui-what",
+      "target": "すい…なんですか",
+      "english": "Sui…what?",
+      "category": "Transport",
+      "scene": "Only part of a station name was heard, so you ask for it again",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same partial-hearing 'X…なんですか' request as the chapter-20 card '…なんですか', with 'sui' in the slot.",
+      "excluded": true,
+      "excludedBy": "human"
+    },
+    {
+      "id": "leave-at-730",
+      "target": "7じはんにでます",
+      "english": "I leave at 7:30.",
+      "category": "Time",
+      "scene": "Asked what time he leaves home every day"
+    },
+    {
+      "id": "arrive-at-8",
+      "target": "8じにつきます",
+      "english": "I arrive at 8:00.",
+      "category": "Time",
+      "scene": "Asked what time he arrives at the office"
+    },
+    {
+      "id": "akasaka-otemachi-commute",
+      "english": "I take the subway at Akasaka Station and get off at Otemachi Station.",
+      "category": "Transport",
+      "target": "あかさかえきでちかてつにのって、おおてまちえきでおります",
+      "scene": "Asked how he gets to the office",
+      "uncertain": true,
+      "reviewNote": "Added by the operator after the chapter-mode final review: Exercise IV-A's example answer, whose question uses どうやって. The miners dropped it because the word looked untaught, having been cut from this chapter's base unit as already taught in Lesson 7."
+    },
+    {
+      "id": "train-off-bus-on",
+      "target": "でんしゃをおりて、バスにのります",
+      "english": "I get off the train and take the bus.",
+      "category": "Transport",
+      "note": "を marks the train you leave, に marks the bus you board.",
+      "aiSuggested": true
+    },
+    {
+      "id": "suidobashi-second-from-here",
+      "target": "すいどうばしです。ここからふたつめです",
+      "english": "Suidobashi. It's the second station from here.",
+      "category": "Transport"
+    },
+    {
+      "id": "how-long-sapporo-a",
+      "target": "ごかげついました",
+      "english": "I stayed for five months.",
+      "category": "Time",
+      "scene": "Answering a question about a stay in a city",
+      "fillInBlank": true
+    },
+    {
+      "id": "neboushimasu-tokidoki",
+      "target": "わたしはときどきねぼうします",
+      "english": "I sometimes oversleep.",
+      "category": "Other",
+      "aiSuggested": true
+    },
+    {
+      "id": "tsuku-dict-mae-ni",
+      "target": "かいしゃにつくまえに、コーヒーをのみます",
+      "english": "Before I arrive at the office, I drink coffee.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "how-long-tokyo-to-hiroshima",
+      "target": "とうきょうからひろしままでどのくらいかかりますか",
+      "english": "How long does it take from Tokyo to Hiroshima?",
+      "category": "Transport"
+    },
+    {
+      "id": "leave-school-walk-home",
+      "target": "がっこうをでて、あるいてうちにかえります",
+      "english": "I leave school and walk home.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "vacation-okinawa-how-long-q",
+      "target": "どのくらいおきなわにいますか",
+      "english": "How long will you be in Okinawa?",
+      "category": "Time",
+      "fillInBlank": true
+    },
+    {
+      "id": "kato-hotel-airport",
+      "english": "Kato-san left the hotel at 10:00. He arrived at the airport at 11:00.",
+      "category": "Transport",
+      "target": "かとうさんは10じにホテルをでました。11じにくうこうにつきました",
+      "uncertain": true,
+      "reviewNote": "Added by the operator after the chapter-mode final review: Exercise III item 1 (ホテル). The miners dropped it because the word looked untaught, having been cut from this chapter's base unit as already taught in Lesson 7.",
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "ホテル is taught nowhere in the deck: its only card, in Lesson 7, is excluded. Owner decision after gate 2."
+    },
+    {
+      "id": "london-year-and-half",
+      "target": "ロンドンにいちねんはんいました",
+      "english": "I stayed in London for a year and a half.",
+      "category": "Time",
+      "aiSuggested": true
+    },
+    {
+      "id": "suzuki-house-to-museum-30-minutes",
+      "target": "すずきさんのうちからはくぶつかんまで30ぷんぐらいかかります",
+      "english": "It takes about 30 minutes from Suzuki-san's house to the museum.",
+      "category": "Transport"
+    },
+    {
+      "id": "how-long-london-a",
+      "target": "さんねんいました",
+      "english": "I stayed for three years.",
+      "category": "Time",
+      "scene": "Answering a question about a long stay abroad",
+      "fillInBlank": true
+    },
+    {
+      "id": "paul-want-to-go-tokyo-dome",
+      "target": "とうきょうドームにいきたいんですが",
+      "english": "I'd like to go to Tokyo Dome.",
+      "category": "Transport",
+      "scene": "Asking a station employee for directions"
+    },
+    {
+      "id": "kato-left-home-arrived-office",
+      "target": "かとうさんは7じにうちをでました。8じにかいしゃにつきました",
+      "english": "Kato-san left home at 7:00. He arrived at the office at 8:00.",
+      "category": "Transport"
+    },
+    {
+      "id": "douyatte-kaisha-question",
+      "english": "How do you get to the office, Smith-san?",
+      "category": "Transport",
+      "target": "スミスさんはどうやってかいしゃにいきますか",
+      "uncertain": true,
+      "reviewNote": "Added by the operator after the chapter-mode final review: Exercise IV-A's example question, the chapter's title question. The miners dropped it because the word looked untaught, having been cut from this chapter's base unit as already taught in Lesson 7."
+    },
+    {
+      "id": "smith-left-home-730",
+      "target": "スミスさんは7じはんにうちをでました",
+      "english": "Smith-san left home at 7:30.",
+      "category": "Transport"
+    },
+    {
+      "id": "what-time-leave-yesterday",
+      "target": "きのうなんじにうちをでましたか",
+      "english": "What time did you leave home yesterday?",
+      "category": "Time",
+      "aiSuggested": true
+    },
+    {
+      "id": "shinkansen-about-4-hours",
+      "target": "しんかんせんで4じかんぐらいかかります",
+      "english": "It takes about four hours by Shinkansen.",
+      "category": "Transport",
+      "scene": "Asked how long it takes to get from Tokyo to Hiroshima"
+    },
+    {
+      "id": "tokyo-hiroshima-shinkansen-4-hours",
+      "target": "とうきょうからひろしままでしんかんせんで4じかんかかります",
+      "english": "It takes four hours from Tokyo to Hiroshima by Shinkansen.",
+      "category": "Transport"
+    },
+    {
+      "id": "suzuki-overslept-left-home",
+      "target": "すみません。ねぼうしました。いまうちをでました",
+      "english": "I'm sorry. I overslept. I've just left home.",
+      "category": "Travel & Tourism",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same line mined twice, one with the opening すみません; neither has a scene, so keep the one without the interjection."
+    },
+    {
+      "id": "tanaka-london-three-years",
+      "target": "たなかさんはロンドンに3ねんぐらいいました",
+      "english": "Tanaka-san stayed in London for about three years.",
+      "category": "Travel & Tourism",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence, only digit width differs; keep the one carrying the useful ぐらい note."
+    },
+    {
+      "id": "take-platform-5-get-off-suidobashi",
+      "target": "5ばんせんのでんしゃにのって、すいどうばしでおりてください",
+      "english": "Take the train at Platform 5 and get off at Suidobashi.",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence, only digit width differs; keep the one carrying the scene."
+    },
+    {
+      "id": "ks3-tokyo-hiroshima-4jikan",
+      "target": "とうきょうからひろしままでしんかんせんで４じかんかかります",
+      "english": "It takes four hours from Tokyo to Hiroshima by Shinkansen.",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence, only half-width vs full-width 4; neither has a scene, so keep the shorter id."
+    },
+    {
+      "id": "ks4-hiroshima-isshuukan",
+      "target": "スミスさんはひろしまに１しゅうかんいます",
+      "english": "Smith-san will be in Hiroshima for a week.",
+      "category": "Time",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence, only half-width vs full-width 1; neither has a scene, so keep the shorter id."
+    },
+    {
+      "id": "gr1-kaisha-ni-tsukimashita",
+      "target": "スミスさんは８じにかいしゃにつきました",
+      "english": "Smith-san arrived at the office at 8:00.",
+      "category": "Work & Occupations",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence, only half-width vs full-width 8; neither has a scene, so keep the shorter id."
+    },
+    {
+      "id": "gr2-uchi-o-demashita",
+      "target": "スミスさんは７じはんにうちをでました",
+      "english": "Smith-san left home at 7:30.",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence, only half-width vs full-width 7; neither has a scene, so keep the shorter id."
+    }
+  ]
+}

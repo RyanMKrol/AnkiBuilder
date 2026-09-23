@@ -52,7 +52,8 @@
       "audioOriginal": "3f5887e764898dee.orig.mp3",
       "audioAuto": "3f5887e764898dee.mp3",
       "audioMarked": true,
-      "audioTextHash": "3f5887e764898dee"
+      "audioTextHash": "3f5887e764898dee",
+      "hint": "the word on its own"
     },
     {
       "id": "akihabara",

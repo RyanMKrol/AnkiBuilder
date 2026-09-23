@@ -123,7 +123,12 @@ node scripts/await-review.mjs <runDir> --gate 2     # wait for Mark done AND its
 Exit codes, so you know what happened without reading the log: **0** signed off (at gate 2, and the
 collection package really did rebuild), **1** timed out with no sign-off, **2** the unit could not be
 read — a bug, this watch could never have fired, **3** gate 2 only: marked done but the package is
-missing or older than `cards.json`, so the rebuild FAILED. To run the next stage the instant the flag
+missing or older than `cards.json`, and still is after two minutes. The wait is there because Mark done
+writes the flag before it rebuilds: on Lesson 20 the watcher polled inside that six-second gap and
+reported a rebuild that had worked as failed. Missing means the rebuild failed. OLDER has two causes the check
+cannot tell apart: a failed rebuild, or a successful one followed by an edit (an exclusion or a trim
+made after Mark done). Rebuild with `deck --book-dir`: if it succeeds, it was the edit, and nothing
+was wrong. On Lesson 19 it was the edit. To run the next stage the instant the flag
 flips, chain it: `node scripts/await-review.mjs "$RUN" --gate 1 && anki-builder audio --run "$RUN"`.
 
 Use the script; do not hand-roll a poll loop. It encodes four rules, each of which was learned by
@@ -270,9 +275,12 @@ how the retired Nihongo 101 course got offered as a build target.
   index: an EPUB "chapter number" is just a content file's position, and a lesson can span several
   files. Run
   `anki-builder assemble --output-root output {--epub <path> | --book <slug>} --list-lessons --lang <lang>`
-  (or `listLessons(epubPath)` in `src/corpus/epubLessons.js`) and pass the chosen `label` (or
-  `[number]`) to `assemble --lesson`. Fall back to `--chapter-number <spine index>` only when the book
-  has no navigation document.
+  (or `listLessons(epubPath)` in `src/corpus/epubLessons.js`) and pass the chosen `label` to
+  `assemble --lesson`. Prefer the label over the `[number]`: a bare number is the nav ORDINAL, not
+  the book's lesson number, and on this book they never agree (`--lesson 20` is entry [20], Quiz 1;
+  Lesson 20 is [46]). A number that another entry's label also carries is now refused as ambiguous,
+  but the label is what you mean, so type it. Fall back to `--chapter-number <spine index>` only when
+  the book has no navigation document.
 
   **Present EVERY nav entry, with its `type` as an annotation — never as a filter.** `classifyLesson`
   is a label-only heuristic anchored on English words (`Unit …`, `Lesson …`, quiz/review/test,
@@ -725,23 +733,35 @@ survived the gap filler, which is what this step reads.
 
 ### Known rough edges at this gate
 
-Two things a reviewer of Lesson 17 asked for that are not built yet, recorded here so the next
-session does not rediscover them from scratch:
+Recorded so the next session does not rediscover them. These are real and open, left on purpose
+because neither changes what reaches the deck.
 
-- **The review table renders in BOOK order, and the deck does not.** A base unit's cards carry
-  `sourceOrder`, the character offset where the card's word first appears in the chapter, and the
-  review view sorts by it so the table can be read alongside the chapter. The STORED order stays
-  pedagogical (vocabulary before the sentences built on it) and that is what reaches the deck: two
-  different questions, two different answers. An extras unit carries no `sourceOrder` -- its
-  sentences are largely composed and appear nowhere in the book -- and renders in its stored order,
-  as does anything built before the field existed.
+- **The gap filler works without the taught index.** On Lesson 19 it proposed 34 words and 30 were
+  already taught, then correctly cut by backward dedup. Nothing ships wrong, but it spends a call
+  rediscovering old vocabulary every chapter.
+- **`drillCoverage` cannot tell homograph te-forms apart.** いって "go" and いって "say" share a
+  spelling, so the count for either includes the other. Report such a count as unresolvable rather
+  than trusting it.
 
-- **A rejected agent response is never written.** Every guard in `src/agents` parses, validates and
-  then throws, so a rejection destroys the evidence it was judging -- on one failure only
-  `blocks.json` reached disk. The fix is to persist the raw response before parsing, but production
-  leaves `runClaude` undefined and lets `runRole` supply the default, so a phase that always injects
-  a teeing wrapper risks a test that does not stub it spawning a real model. That is golden rule 6,
-  so it needs doing deliberately rather than in passing.
+Four entries that used to sit here are FIXED, kept briefly so nobody re-files them.
+
+The deduplicator "missing" すみません/じゃ variants was never the deduplicator: candidates are grouped
+in code by exact target or exact gloss, and a pair that differs by a leading interjection matches
+neither, so the judge was never shown it. A third grouping now finds them (`dedupGroups.js`,
+`same-after-interjection`) and still leaves the verdict to the judge. Run over Lesson 19's snapshot it
+found the three pairs the final review caught plus a fourth nobody did; across the other 18 extras
+units it fires twice, both はい-answer pairs where the opening word may genuinely matter.
+
+The gap author was handed the chapter as a file path headed "for context", and skipped it: its
+Lesson 19 transcript reads "I did not read the chapter file". It now receives the chapter as inline
+text, headed as the source of its sentence frames. This also explains why the Lesson 18 rule telling
+it to prefer the chapter's own grammar changed nothing: it had never seen that grammar.
+
+The other two:
+book-order sorting on the review page now works (it never had: two field allowlists dropped
+`sourceOrder` between the stamp and the page, and the sort's unit test passed because it never
+exercised what the page received), and a rejected agent response is now written, since `runRole` tees
+every call, failures included, into `<unit>/agent-logs/`.
 
 ## Step 3: Gate 1, the base corpus review
 
@@ -767,6 +787,33 @@ exclude it here (or tell me the rows and I'll edit `cards.json`). Excluding a ca
 reversible `excluded` flag: the `audio` stage skips excluded cards (no TTS spent) and the deck build
 drops them.
 
+**Filter the table rather than scrolling it.** A chip bar above the review shows only the flags this
+page actually has, with a count on each: **Not excluded**, **Excluded**, **Cut by a script**,
+**Uncertain**, **AI-suggested**, **Has a review note**, and at the audio gate **Marker audible** and
+**No audio**.
+
+**Flag chips widen; "Not excluded" narrows.** Two flags on means both sets: "Uncertain" plus
+"AI-suggested" shows either. "Not excluded" is a scope instead, so it intersects: "Not excluded" plus
+"Uncertain" is the *shipping* cards that are uncertain, which is usually the review you actually want,
+since an excluded card is not going into the deck. Unioning it would pull every excluded uncertain card
+straight back in. It is drawn with a dashed border to mark the difference, and switching it on switches
+off Excluded and Cut by a script, which it contradicts, rather than leaving an empty table.
+
+"Not excluded" only appears when something IS excluded. On a unit with no exclusions it would match
+every row and narrow nothing.
+
+Two of those are worth reaching for deliberately:
+
+- **Cut by a script** is the one the provenance badge exists for. A human exclusion is a decision
+  already made; a sweep's is one to re-check, and this is how you see only the second kind.
+- **No audio** means a SHIPPING card with no clip. Excluded cards never get one (the audio stage
+  skips them so no TTS is spent on a card that may be cut), so they are deliberately not counted;
+  otherwise the chip would just restate "Excluded".
+
+A chip renders only when at least one row matches it, so a clean unit shows no bar rather than a row
+of zeroes. Filtering is a view: a filtered row keeps its inline editors and its Exclude box, and the
+`#` column is never renumbered, because that number is what ties a row back to the full table.
+
 **Open the Card faces view too** (the "Card faces →" link in the review lede, or `/faces/...` with
 the same path). It renders every card through the deck's real templates and real CSS — both
 directions, front and back, click a header to flip. Read the two FRONTS side by side before you
@@ -779,6 +826,22 @@ any English-gloss or target collision, answer cards answerable alone, notes/hint
 card (delete these), missing `ttsText` on numerals, a verb form the chapter teaches only in an image
 or names only in its grammar prose and that never became a card, and study order (a sentence landing
 before its vocabulary).
+
+**Judge every "already taught" flag before you hand over the link.** Backward dedup never excludes
+anything. The exact-match flagger in `assemble` and the phase's judge both only set **Uncertain**
+with a review note naming the earlier card, and left alone those cards ship as duplicate card ids and
+uncued collisions, which preflight FAILs. Decide each one:
+
+- **Same word, same sense**: exclude it with `excludedBy: "backward-dedup"` and an
+  `excludedReason` of `Already taught: <unit>/<id> (same target and sense)`. If its note says
+  something the earlier card does not, move the note onto a card that survives.
+- **A sense this chapter adds** (Lesson 20's を for the place you leave, after Lesson 8's object
+  marker): keep it, give it its own id if it shares the earlier card's (an id is an Anki note guid),
+  and put a scene on both sides of the collision. The earlier side is a field edit on a done unit, so
+  follow the field-only rules in Step 4b.
+
+On Lesson 20 that was 35 flags: 30 excluded and 5 kept as new senses. Doing it by hand is the design,
+because a word re-taught in a new role is a legitimate card and only someone reading both can tell.
 
 Run `npm run preflight` before you hand over the link. Its INFO checks name what the columns cannot:
 `answerable-alone` (a reply-shaped English with no scene), `production-length` (a Production face
@@ -805,6 +868,23 @@ has no card for**: those are either a legitimate etymology aside or an invented 
 identical in a JSON row. The check produces the list and stops there on purpose; whether お + かし =
 おかし is a fact about Japanese, and no amount of code decides it. Fix or delete a note you cannot
 confirm — an unverifiable note is worth less than none, because the learner has no way to know.
+
+**Excluding a schematic target? Check what goes with it, and what is left teaching that headword.**
+`placeholder-target` is right that a `〜` form is notation rather than an utterance, but the check
+reports the card and stops; deciding what replaces it is yours, and there are two ways to get it
+wrong. On Lesson 19 both happened in one sweep:
+
+- **The note leaves with the card.** `〜め` was excluded because `ふたつめ` was carded and "demonstrates
+  the ordinal suffix", but `ふたつめ` shipped as a bare gloss, "Second", with no note, so the suffix
+  the chapter explicitly teaches was taught nowhere. A learner who meets only `ふたつめ` cannot form
+  `みっつめ`. Move the excluded card's explanation onto the instance you named as its survivor.
+- **Sometimes there is no survivor.** `〜について` was excluded the same way, and nothing else carded
+  it at all. Strip the tilde and keep the card instead: this deck already ships bare particles
+  (`を`, `で`, `まで`, `までに`) on exactly that reasoning, because the tilde marks where a noun
+  attaches and is not part of the word.
+
+The rule underneath both: before excluding, ask which card is left teaching that headword, and say
+so in the `excludedReason`. If the answer is "none", it is not a redundant card.
 
 When it looks right, click **Mark reviewed**. That sets `cards.meta.reviewed: true` and, for an
 EPUB source, saves the reviewed (excluded-filtered) corpus to the dedup library for later chapters'
@@ -886,10 +966,11 @@ rather than that something is broken.
 Mark the extras unit reviewed, then run the learning pass on it too, then go to Step 4. Build both of
 chapter N's units before starting chapter N+1.
 
-## Step 3c: The final review, before any audio is paid for
+## Step 3c: The final review, run once at each corpus gate
 
-**Run this after gate 2 and before the audio stage.** It is the one step that reads the CHAPTER
-against the built cards, which is the question none of the other loops asks.
+**Run it at gate 1 on the base unit, and again after gate 2 on the whole chapter.** It is the one
+step that reads the CHAPTER against the built cards, which is the question none of the other loops
+asks.
 
 ```sh
 node scripts/final-review.mjs <collectionDir> <chapterNumber> --lang <lang> --dry   # always first
@@ -897,8 +978,25 @@ node scripts/final-review.mjs <collectionDir> <chapterNumber> --lang <lang>
 ```
 
 `--dry` assembles everything, prints what it would send and what the deterministic side already
-knows, and calls no model. The real run spends **one Opus call**, which is why it sits here: after
-both content gates, before the stage that buys audio for every card.
+knows, and calls no model. Each real run spends **one Opus call**.
+
+**The mode is detected, not typed.** With no extras unit on disk it runs in `base` mode; once the
+extras unit exists it runs in `chapter` mode. The two ask DIFFERENT questions, because the same six
+are not worth asking twice:
+
+| | `base`, at gate 1 | `chapter`, after gate 2 |
+| --- | --- | --- |
+| What it sees | the base unit only | both units |
+| Its sharpest question | **does this card everything the chapter teaches**, including anything printed only in a table or a picture | is the dominant drill frame actually this chapter's grammar point |
+| Also asks | collisions needing a cue, premature or untaught cards | what is under-drilled, untaught vocabulary in a sentence |
+| Both ask | are the notes TRUE, and what do the transcripts explain | |
+
+**Gate 1 is the run that can still change anything.** Nothing may be added to a lesson after its
+reviewer signs off, so a word the chapter teaches and nobody carded is only fixable HERE. The
+chapter-mode run happens when both units are frozen, which is why its questions are about shape
+rather than coverage: by then a missing card costs a trip back through the gate. Running only the
+late one (which is what this did until 2026-09-20) meant the base unit was reviewed after it was
+frozen AND after the extras had been authored on top of it, two gates too late to act.
 
 **What it ties together, and why that is the point.** Three things in this repo compute something
 true and then leave it in a report: `preflight`'s INFO findings, the drill-shape measurements, and
@@ -907,8 +1005,8 @@ gathers the transcripts, and hands both to a role pinned above everything that p
 along with the chapter itself.
 
 **The division of labour is a measured result, not a preference.** Code computes the facts, because
-arithmetic over cards is exact and free. The agent supplies the one thing code cannot — what the
-chapter actually teaches — and the comparison is mechanical again. The reverse was tried first: a
+arithmetic over cards is exact and free. The agent supplies the one thing code cannot, which is what the
+chapter actually teaches, and the comparison is mechanical again. The reverse was tried first: a
 deterministic "one frame dominates this unit" threshold was calibrated against every unit already
 shipped, and it fires on the units that are RIGHT (the invitation lesson is 48% the invitation
 frame, because a chapter with one grammar point should drill it). The full calibration is in the
@@ -917,15 +1015,15 @@ header of `src/cards/drillShape.js`.
 **It reads the per-role yield too, which is the cheapest signal in the pipeline.** The learning pass
 already computes how many cards each role produced and how many survived, and until now nothing
 consumed it automatically. On Lesson 18 the gap author kept 16 of 50 while every other role in the
-same run kept nearly everything (13/13, 7/7, 10/11) — the same defect the frame analysis found by
+same run kept nearly everything (13/13, 7/7, 10/11). That is the same defect the frame analysis found by
 hand, visible for free and from a different direction. A low keep rate is not automatically a fault,
 since a role can be doing its job and being legitimately deduplicated, but it is the one number that
 points at a CAUSE rather than a symptom.
 
 **It cannot pass by saying nothing.** The standing risk with any reviewing agent is that a miss and a
-clean run look identical. So the prompt asks six fixed questions — what the chapter teaches, whether
+clean run look identical. So the prompt asks six fixed questions (what the chapter teaches, whether
 the dominant frame is one of those things, what is under-drilled, whether any sentence uses untaught
-vocabulary, whether the notes are TRUE, and what the transcripts explain — and the guard rejects a
+vocabulary, whether the notes are TRUE, and what the transcripts explain), and the guard rejects a
 response that left any of them unanswered. An empty findings list is a fine result; an unanswered
 question is a failed run.
 
@@ -1138,7 +1236,13 @@ restorable with `scripts/restore-anki-backup.mjs`. The user studies daily: prote
 re-read on-disk deck files before every edit. Full detail, including the restore procedure and the
 managed-collection rules: [deliver](references/deliver.md).
 
-A deliver can stop on one of four guards, and none of them is a reason to reach for a flag without
+**Read the dry run's summary line, not the per-card lines.** It prints one line per collection,
+`7 updated, 140 added, 2651 unchanged`, and those three sum to the package's note count, which is a
+check worth doing. The per-card listing only shows ADDS, so counting its lines reports zero updates
+even when field edits are about to be pushed. On Lesson 19 that nearly hid seven collision cues
+written onto earlier chapters' cards. An update is in place by GUID and keeps scheduling.
+
+A deliver can stop on one of four guardsA deliver can stop on one of four guards, and none of them is a reason to reach for a flag without
 reading: the parent deck was renamed (the lookup found no notes where the marker says a delivery
 happened); more than 10% of the previously-delivered cards no longer resolve; more than 200 notes
 would be ADDED at once (`--allow-bulk-add` after reading the dry run); or the pre-delivery backup did
@@ -1356,7 +1460,7 @@ behind each of those is in [The shape of the workflow](#the-shape-of-the-workflo
 
 For a one-shot answer instead of a wait — "is this unit really shipped?" — `node
 scripts/check-done.mjs <runDir>` runs the same gate-2 check once and exits 0 / 1 (not done yet) /
-3 (done, but the rebuild failed).
+3 (done, but the package is missing or older than `cards.json`; see exit 3 above for the two causes).
 
 ### Un-ship a unit (undo a Mark done)
 

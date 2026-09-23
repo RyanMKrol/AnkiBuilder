@@ -153,7 +153,8 @@
       "english": "Go (て-form of いきます)",
       "category": "Grammar & Function Words",
       "sourceOrder": 802,
-      "note": "Regular 1, and the one cell the book stars as an exception. き (ki) normally gives いて (ite), as in かいて (kaite), yet いきます (ikimasu) becomes いって (itte). It is NOT an Irregular verb — only きます (kimasu) and します (shimasu) are. Don't confuse it with いて (ite), the て-form of います (imasu)."
+      "note": "Regular 1, and the one cell the book stars as an exception. き (ki) normally gives いて (ite), as in かいて (kaite), yet いきます (ikimasu) becomes いって (itte). It is NOT an Irregular verb — only きます (kimasu) and します (shimasu) are. Don't confuse it with いて (ite), the て-form of います (imasu).",
+      "scene": "in a sentence about a journey, before the next thing done there"
     },
     {
       "id": "mite",
@@ -365,7 +366,8 @@
       "target": "レポート",
       "english": "Report",
       "category": "School & Education",
-      "sourceOrder": 1164
+      "sourceOrder": 1164,
+      "hint": "the document itself"
     },
     {
       "id": "purezen-o-shimasu",

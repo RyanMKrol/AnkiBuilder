@@ -99,7 +99,7 @@ for (const collection of scan.collections) {
       // ── The positional proof runs FIRST, and does not consult the detector ─────────────────────
       //
       // This used to sit behind `if (found) … continue`, so it was reachable only when the detector
-      // was silent — which is to say, unreachable in exactly the case it was written for. The
+      // was silent, which is to say, unreachable in exactly the case it was written for. The
       // header above already distrusts a detector NEGATIVE as "reasoning from a known-blind
       // instrument"; the same instrument's POSITIVE was then taken at face value, and that is the
       // asymmetry this fixes.

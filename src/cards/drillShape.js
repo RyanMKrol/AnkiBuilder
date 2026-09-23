@@ -8,13 +8,13 @@
  * That split is not squeamishness, it is the calibration result. On 2026-09-20 an extras unit was
  * built whose gap fills were 51% one frame, the request pattern, which is NOT what its chapter
  * teaches; ten of its nineteen taught verb forms appeared in that frame and nowhere else. The
- * obvious check — "flag a unit where one frame dominates" — was measured against every unit already
+ * obvious check ("flag a unit where one frame dominates") was measured against every unit already
  * shipped in this book before being written, and it fires on the units that are RIGHT:
  *
  *   chapter-16-extras  48% "invite" frame   its lesson IS making an invitation
  *   chapter-17         45% "past wish"      its lesson IS stating a wish
  *   chapter-12-extras  35% "there is"       its lesson IS asking what is somewhere
- *   chapter-5-extras   25%, and 11 taught items drilled in that frame alone — its lesson IS
+ *   chapter-5-extras   25%, and 11 taught items drilled in that frame alone, its lesson IS
  *                      ordering things, so the counters SHOULD only appear in it
  *
  * A dominant frame is what a well-built unit looks like when the chapter has one grammar point. The
@@ -95,16 +95,46 @@ export function frameDistribution(items, { minCount = 3 } = {}) {
  * Taught items that appear in the drill unit ONLY inside sentences ending with `frame`.
  *
  * `taughtItems` are the base unit's approved cards; `drillItems` the extras unit's. An item drilled
- * nowhere at all is not reported here — that hole is `taughtNeverUsed`'s job, and reporting it twice
+ * nowhere at all is not reported here, that hole is `taughtNeverUsed`'s job, and reporting it twice
  * under two names is how one problem becomes two numbers nobody reads.
  */
+/**
+ * The forms a taught item might actually be written as inside a sentence.
+ *
+ * A handful of headwords carry the book's optional-part notation (`いろいろ(な)`, `(お)さら`) and
+ * that literal string appears in no sentence, so a card using the word every day counted as drilled
+ * zero times. Reported by the final review on Lesson 19, where `いろいろ(な)` read as undrilled while
+ * two shipping sentences used いろいろな.
+ *
+ * This is a COUNTING aid only. `assignSourceOrder` deliberately does not do this: it matches against
+ * the chapter, where `normalizeDisplayText` already resolves the notation, and adding variants there
+ * was measured and moved a card to the wrong offset.
+ */
+function writtenForms(target) {
+  const base = String(target ?? "");
+  if (!base) return [];
+  if (!/[()（）]/.test(base)) return [base];
+  return [
+    ...new Set([base.replace(/[()（）]/g, ""), base.replace(/[(（][^)）]*[)）]/g, ""), base]),
+  ].filter(Boolean);
+}
+
+// A drill is read in both its written and its spoken text. A sentence that writes a number as a
+// digit (うちからえきまで…15ふん) spells it out only in `ttsText` (じゅうごふん), so reading the target
+// alone reported じゅうごふん, さんじゅっぷん and いちじかん as undrilled on Lesson 20 while three
+// shipping sentences drilled them.
+const drillTexts = (drill) =>
+  [drill.target, drill.ttsText].filter((t) => typeof t === "string" && t.length);
+const usesItem = (drill, itemTarget) =>
+  writtenForms(itemTarget).some((form) => drillTexts(drill).some((text) => text.includes(form)));
+
 export function itemsOnlyInFrame(taughtItems, drillItems, frame) {
   if (!frame) return [];
   const drills = drillItems.filter((item) => !item.excluded && item.target);
   return taughtItems
     .filter((item) => !item.excluded && item.target)
     .map((item) => {
-      const using = drills.filter((drill) => drill.target.includes(item.target));
+      const using = drills.filter((drill) => usesItem(drill, item.target));
       return { item, using };
     })
     .filter(({ using }) => using.length > 0 && using.every((d) => d.target.endsWith(frame)))
@@ -118,7 +148,7 @@ export function drillCoverage(taughtItems, drillItems) {
     .filter((item) => !item.excluded && item.target)
     .map((item) => ({
       item,
-      count: drills.filter((drill) => drill.target.includes(item.target)).length,
+      count: drills.filter((drill) => usesItem(drill, item.target)).length,
     }))
     .sort((a, b) => a.count - b.count);
 }

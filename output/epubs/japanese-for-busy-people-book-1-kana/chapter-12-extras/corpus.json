@@ -457,7 +457,8 @@
       "english": "Eye",
       "category": "Body & Health",
       "target": "め",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: No natural chapter; parked with Lesson 12 pending your call"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: No natural chapter; parked with Lesson 12 pending your call",
+      "scene": "a part of the body"
     },
     {
       "id": "ex12-ryokan-no-tonari-ni-nani-ga-arimasu-ka",

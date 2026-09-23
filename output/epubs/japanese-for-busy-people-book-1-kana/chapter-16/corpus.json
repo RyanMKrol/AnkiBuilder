@@ -24,7 +24,7 @@
       "english": "Next",
       "category": "Time",
       "scene": null,
-      "hint": null,
+      "hint": "the word on its own",
       "note": null,
       "reviewNote": "Vocabulary table shows 'つき、' glossed 'next' — likely an OCR misread of つぎ ('next'), the word actually used in this chapter's dialogue ('つぎの にちようびに', 'next Sunday'). Preserved verbatim as printed rather than silently corrected; つき itself would mean 'moon/month', a different word — flagging for review. | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
       "target": "つぎ",

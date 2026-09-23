@@ -9,6 +9,8 @@ import {
   parseDuration,
   readUnitCards,
   GATE_EXIT,
+  watchStep,
+  REBUILD_GRACE_MS,
 } from "../../src/review/gateState.js";
 import { deckPathForDir } from "../../src/deck/deckFileName.js";
 
@@ -71,7 +73,12 @@ test("gate 2 fails a package OLDER than cards.json, and passes a rebuilt one", (
   const runDir = unit(dir, "chapter-1", { reviewed: true, done: true });
 
   packageFile(dir, -60_000);
-  assert.equal(gateState(runDir, 2).status, "stale-package");
+  const stale = gateState(runDir, 2);
+  assert.equal(stale.status, "stale-package");
+  // It names BOTH causes rather than asserting a failure it cannot see: an edit after a successful
+  // rebuild produces exactly this state, and that is what happened on Lesson 19.
+  assert.match(stale.message, /either the rebuild failed, or/);
+  assert.match(stale.message, /edited after it ran/);
 
   packageFile(dir, 60_000);
   const fresh = gateState(runDir, 2);
@@ -106,4 +113,29 @@ test("durations default to MINUTES, because every documented wait here is in min
   assert.equal(parseDuration("2h"), 2 * 3_600_000);
   assert.throws(() => parseDuration("soon"), /cannot read/);
   assert.throws(() => parseDuration("0m"), /positive/);
+});
+
+test("watchStep waits out a stale package for the rebuild, then reports it", () => {
+  // Lesson 20: the flag landed six seconds before the package, and the watcher exited 3 between them.
+  const stale = { status: "stale-package" };
+  const first = watchStep(stale, null, 1000);
+  assert.equal(first.action, "wait");
+  assert.equal(first.staleSince, 1000);
+  assert.equal(watchStep(stale, 1000, 1000 + REBUILD_GRACE_MS - 1).action, "wait");
+  assert.deepEqual(watchStep(stale, 1000, 1000 + REBUILD_GRACE_MS), {
+    action: "exit",
+    code: GATE_EXIT.stalePackage,
+  });
+});
+
+test("watchStep: the rebuild landing inside the grace window is a sign-off", () => {
+  assert.deepEqual(watchStep({ status: "signed-off" }, 1000, 5000), {
+    action: "exit",
+    code: GATE_EXIT.signedOff,
+  });
+  assert.deepEqual(watchStep({ status: "waiting" }, 1000, 5000), {
+    action: "poll",
+    staleSince: null,
+  });
+  assert.equal(watchStep({ status: "unreadable" }, null, 0).code, GATE_EXIT.unreadable);
 });

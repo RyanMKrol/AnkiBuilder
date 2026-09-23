@@ -69,7 +69,8 @@ function assertForwardRange(lesson) {
 
 /**
  * Resolves a `--lesson` selector to exactly one lesson. A purely-numeric selector is the
- * nav-list ordinal (the `[number]` from `--list-lessons`); anything else is a
+ * nav-list ordinal (the `[number]` from `--list-lessons`), refused as ambiguous when another
+ * entry's label carries that number as its own (`Lesson 20: ...`); anything else is a
  * case-insensitive substring match against the lesson labels, which must match exactly one
  * entry. Throws a human-actionable error (pointing at --list-lessons) when the book has no
  * nav document, the ordinal is out of range, or a label match is missing/ambiguous — so a
@@ -97,6 +98,23 @@ export function resolveLesson(epubPath, selector, { log = () => {}, labelDecodin
     if (!byNumber) {
       throw new Error(
         `--lesson ${n} is out of range — this book has ${lessons.length} nav entries (see --list-lessons)`,
+      );
+    }
+    // A bare number reads just as naturally as the book's own lesson number, and the two
+    // rarely agree once a book has unit dividers and quizzes: on Japanese for Busy People,
+    // `--lesson 20` meant nav entry [20] ("Quiz 1") while the operator wanted "Lesson 20"
+    // at [46]. It started a paid build of the wrong chapter. So when some OTHER entry's
+    // label carries this number as its own ("Lesson 20: ...", "Unit 20"), refuse and make
+    // the operator say which one.
+    const namesN = new RegExp(`^[^\\s\\d]+\\s+${n}(?!\\d)`, "i");
+    const namedElsewhere = lessons.filter(
+      (lesson) => lesson !== byNumber && namesN.test(lesson.label),
+    );
+    if (namedElsewhere.length > 0) {
+      throw new Error(
+        `--lesson ${n} is ambiguous — nav entry [${n}] is "${byNumber.label}", but ` +
+          namedElsewhere.map((m) => `[${m.number}] "${m.label}"`).join(", ") +
+          ` also carries the number ${n}. Pass the label instead (e.g. --lesson "${namedElsewhere[0].label}")`,
       );
     }
     return assertForwardRange(byNumber);

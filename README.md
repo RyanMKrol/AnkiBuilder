@@ -93,7 +93,9 @@ anki-builder epub cache <hash> --clear
 anki-builder epub taught-index <hash> --lang ja
 anki-builder assemble --output-root output --epub mybook.epub --lesson "Lesson 3" --lang ja
 # --lesson takes a [number] from --list-lessons or a label substring, resolves it to the
-# right span of spine files (however many), and extracts them all as one unit.
+# right span of spine files (however many), and extracts them all as one unit. A bare number
+# is the nav ordinal, and one that another entry's label also carries ("20" when "Lesson 20"
+# sits at [46]) is refused as ambiguous rather than guessed.
 #
 # --chapter-number <N> still works as a low-level escape hatch (the Nth spine file), e.g.
 # for a book whose EPUB has no usable table of contents:
@@ -320,7 +322,7 @@ and only reading the chapter against the unit shows that.
 
 The split between code and model here is a measured result. `src/cards/drillShape.js` computes how
 concentrated a unit's drilling is and deliberately attaches no verdict, because the obvious
-deterministic version — flag a unit where one frame dominates — was calibrated against every unit in
+deterministic version (flag a unit where one frame dominates) was calibrated against every unit in
 the live book and fires on the ones that are correct: a chapter with one grammar point _should_ drill
 it heavily. What separates good concentration from bad is whether the dominant frame is the
 chapter's own point, which no arithmetic over cards can know. So code supplies the facts, the agent
@@ -329,7 +331,7 @@ supplies the grammar point, and the comparison is mechanical again.
 Two things stop it becoming another report nobody reads. It consumes the deterministic findings and
 the agent transcripts rather than duplicating them, so the INFO tier feeds something instead of
 accumulating. And it answers six fixed questions with a guard that rejects a response leaving any of
-them out — because for a reviewing agent, a miss and a clean run otherwise look identical.
+them out, because for a reviewing agent, a miss and a clean run otherwise look identical.
 
 Agent transcripts (`<unit>/agent-logs/`) are written by `runRole` for every call including failed
 ones. That closes a gap this repo carried knowingly: the guards parse, validate and throw, so a

@@ -58,10 +58,17 @@ why it breaks.
 - **Do not invent a gap.** Something you think is missing but that is not on the list belongs to a
   different pass. Say so in `notes` if it matters.
 
-## The chapter, for context
+## The chapter these gaps come from
+
+**Read this before writing anything. It is not background.** It is where your sentence frames come
+from: its Key Sentences, its dialogue and its drill patterns are the shapes this lesson teaches, and a
+gap sentence is the learner practising exactly those shapes. When the chapter already has a frame
+that carries the form a gap asks for, build from it: a drill line the book prints beats one you
+invent. Reach for an earlier chapter's pattern only when nothing here will carry the form, and say
+so in `notes` when you do.
 
 ```
-{{CHAPTER_FILE_PATH}}
+{{CHAPTER_TEXT}}
 ```
 
 ## Output Format

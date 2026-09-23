@@ -64,6 +64,10 @@ export const readinessExemptionsCheck = defineCheck({
     for (const unit of units) {
       const meta = unit.meta ?? {};
       if (!meta.done) continue;
+      // A reading unit runs none of the speaking passes by design (src/cards/readiness.js), so a
+      // missing marker is not an exemption to list. Listing it told the owner its reading chapters
+      // "were signed off before those markers existed", which was untrue.
+      if (meta.phase === "reading") continue;
       // A pass the unit was never going to run is not an exemption. Without this, every v2 unit
       // would be listed as "signed off before those markers existed", which is not true of any of
       // them: phase 2 ran the drill mining, it just did not run it HERE.

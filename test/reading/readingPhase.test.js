@@ -416,3 +416,24 @@ test("a kana form that is a kanji word's reading is the same word, and a suffix'
   assert.deepEqual(items.map((i) => i.target).sort(), ["ごろ", "スポーツ", "食べる"].sort());
   assert.match(dropped.find((d) => d.target === "たべる").reason, /食べる/);
 });
+
+test("two readings printed as one are split, the first voiced and the rest named", () => {
+  // Found on the Genki kanji lesson pilot: 七 came back with the reading "しち／なな".
+  const { items, readingConflicts } = reconcileReading(
+    [
+      [
+        {
+          target: "十歳",
+          reading: "じゅっさい／じっさい",
+          english: "Ten years old",
+          kind: "word",
+          producedBy: "t",
+        },
+      ],
+    ],
+    { targetLanguage: "ja" },
+  );
+  assert.equal(items[0].ttsText, "じゅっさい");
+  assert.deepEqual(readingConflicts, [{ target: "十歳", readings: ["じゅっさい", "じっさい"] }]);
+  assert.match(items[0].reviewNote, /じっさい/);
+});

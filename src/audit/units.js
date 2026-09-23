@@ -1,4 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "fs";
+import { collectionDeckKind } from "../model/deckKind.js";
 import { basename, join, resolve } from "path";
 import { isRetiredCollection } from "../cli/outputPaths.js";
 import { UNIT_DIR_PATTERN, isUnitDir, parseUnitDir } from "../model/unitDir.js";
@@ -194,7 +195,16 @@ export function describeCollectionDir(dir) {
 }
 
 function describeCollection(dir, kind, slug) {
-  return { dir, kind, slug, label: `${slug}`, ...unitInventory(dir, kind) };
+  // `deckKind` is what the collection is FOR (src/model/deckKind.js): the checks a reading collection
+  // runs differ from a speaking one's (src/audit/checks/index.js).
+  return {
+    dir,
+    kind,
+    slug,
+    label: `${slug}`,
+    deckKind: collectionDeckKind(dir),
+    ...unitInventory(dir, kind),
+  };
 }
 
 /**

@@ -8,6 +8,7 @@ import { assertUniqueCardIds, isPendingAddition } from "../../deck/shippableCard
 import { normalizeDisplayText, isSpaceFreeLanguage } from "../../model/scriptSpacing.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { audioTextState } from "../../audio/textHash.js";
+import { silentCardPredicate } from "../../reading/readingSchemes.js";
 import { unitChapterNumber } from "../units.js";
 
 // The checks that answer a question about ONE unit, or about one collection's units together.
@@ -239,12 +240,17 @@ export const audioFilesCheck = defineCheck({
    * Only DONE units, and only shipping cards. A unit mid-build has not reached the audio stage yet,
    * and saying so on every run is how a number becomes wallpaper.
    */
-  run({ units }) {
+  run({ units, collection }) {
     const findings = [];
     for (const unit of units) {
       if (unit.meta?.done !== true) continue;
+      // A reading deck's single kanji have no clip by design (src/reading/readingSchemes.js).
+      const isSilent = silentCardPredicate({
+        targetLanguage: unitLanguage(unit),
+        deckKind: collection?.deckKind,
+      });
       for (const item of shipped(unit)) {
-        if (isPendingAddition(item)) continue;
+        if (isPendingAddition(item) || isSilent(item)) continue;
         if (!item.audio) {
           findings.push({
             key: `${unit.name}/${item.id}`,

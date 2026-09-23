@@ -115,6 +115,20 @@ In the dashboard the owner reviews the chapter and presses **Mark reviewed**, wh
 reading collection's own dedup library. The card-faces view shows the reading card exactly as Anki
 will: one face, the written form alone.
 
+**Never hand over a gate and stop: arm a watcher with the Monitor tool when you give the link**, and
+tell the owner it is armed. When it fires, carry on by yourself (audio after gate 1). It is the same
+script and the same rules as the speaking decks (`build-anki-deck` SKILL.md, "Arm a watcher"); it
+reads a reading unit exactly as it reads a speaking one. Pass an absolute path.
+
+```sh
+RUN=$PWD/output/epubs/<slug>-reading/chapter-<n>
+node scripts/await-review.mjs "$RUN" --gate 1 && anki-builder audio --run "$RUN"   # Mark reviewed
+node scripts/await-review.mjs "$RUN" --gate 2                                     # Mark done + rebuild
+```
+
+The first Genki chapter was handed over without one. The owner pressed Mark reviewed, nothing
+happened, and they had to ask, which is the message the watcher exists to save.
+
 ## 3. Audio, then Gate 2
 
 ```sh
@@ -129,7 +143,7 @@ misreads is caught by ear here, and the reading on the card is what to check fir
 ## 4. Mark done, build, preflight, deliver
 
 When the audio gate passes, the owner presses **Mark done** in the dashboard; only done units go into
-the package.
+the package. Hand over the audio gate with the `--gate 2` watcher armed, as at gate 1.
 
 ```sh
 anki-builder deck --book-dir output/epubs/<slug>-reading

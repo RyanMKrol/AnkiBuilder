@@ -25,6 +25,11 @@ node scripts/deliver-to-anki.mjs --dry --refile         # preview a deck-name re
 node scripts/deliver-to-anki.mjs --dry --suspend-orphans # preview retiring dropped cards
 ```
 
+**`--refile` and `--suspend-orphans` are refused until their live-Anki probes are recorded**, and the
+refusal now comes first, before any sync, backup or deck is created. The dry run still previews the
+moves but says the real run would be refused. Until the probes are run, move cards between decks by
+hand in Anki's browser (select them, Change Deck), then delete the emptied deck.
+
 **Check the first line: `Anki profile: <name>`.** AnkiConnect writes to whichever profile is open,
 and a scratch profile looks exactly like a collection that lost its decks. If it is not the owner's
 own profile, stop and ask them to switch; never switch it yourself. An unknown flag (`--help` aside)

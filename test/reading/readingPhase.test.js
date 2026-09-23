@@ -326,6 +326,50 @@ test("the phase writes a valid reading unit, and a re-run pays for nothing alrea
   }
 });
 
+test("a failed romaji correction is not cached, so the next run corrects it", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "reading-romaji-retry-"));
+  try {
+    const unitDir = join(dir, "chapter-0");
+    const chapterFilePath = join(dir, "chapter.xhtml");
+    writeFileSync(chapterFilePath, "<html><body><p>おはようございます</p></body></html>");
+    const options = {
+      unitDir,
+      chapterFilePath,
+      targetLanguage: "ja",
+      unit: { epubHash: "abc", chapterNumber: 3, chapterLabel: "Chapter 02: Greetings" },
+    };
+    const failing = fakeAgents([]);
+    const inner = failing.romanizeReadingItems;
+    failing.romanizeReadingItems = async (items, opts) => ({
+      ...(await inner(items, opts)),
+      failed: true,
+      reason: "not JSON",
+    });
+    await runReadingPhase({ ...options, agents: failing });
+
+    const again = [];
+    await runReadingPhase({ ...options, agents: fakeAgents(again) });
+    assert.deepEqual(again, ["romaji"]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a kana word's optional ending in brackets becomes the full form, one card", () => {
+  // Genki's Greetings prints おやすみ(なさい) and also おやすみなさい.
+  const { items } = reconcileReading(
+    [
+      [
+        { target: "おやすみ(なさい)", english: "Good night", kind: "phrase", producedBy: "t" },
+        { target: "ごちそうさま（でした）", english: "Thanks for the meal", producedBy: "t" },
+      ],
+      [{ target: "おやすみなさい", english: "Good night", kind: "phrase", producedBy: "c" }],
+    ],
+    { targetLanguage: "ja" },
+  );
+  assert.deepEqual(items.map((i) => i.target).sort(), ["おやすみなさい", "ごちそうさまでした"]);
+});
+
 test("earlier units of the same collection count as already carded", () => {
   const dir = mkdtempSync(join(tmpdir(), "reading-earlier-"));
   try {

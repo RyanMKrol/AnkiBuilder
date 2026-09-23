@@ -167,6 +167,21 @@ export function splitAlternateForms(item) {
   }));
 }
 
+// A book prints a word's optional ending in brackets: Genki's おやすみ(なさい), おかえり(なさい),
+// ごちそうさま(でした). The card is the full form, which the book also lists and which reads the
+// short form too. Carded as printed, the front showed the brackets (preflight's reading-front FAIL)
+// and sat beside a second card for おやすみなさい. Only kana outside the brackets: after kanji, a
+// bracketed kana is that word's READING (映画(えいが)), which is the reader's business, not this.
+const OPTIONAL_PART =
+  /^([\p{Script=Hiragana}\p{Script=Katakana}ー]+)[(（]([\p{Script=Hiragana}\p{Script=Katakana}ー]+)[)）]$/u;
+
+export function expandOptionalPart(item) {
+  const match = String(item.target ?? "")
+    .trim()
+    .match(OPTIONAL_PART);
+  return match ? { ...item, target: match[1] + match[2] } : item;
+}
+
 /**
  * Merges the readers' items into one reading corpus and applies every rule the code can see.
  *
@@ -183,7 +198,7 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
   const dropped = [];
   const groups = new Map();
 
-  for (const item of sources.flat().flatMap(splitAlternateForms)) {
+  for (const item of sources.flat().flatMap(splitAlternateForms).map(expandOptionalPart)) {
     const form = key(item.target);
     if (!form) continue;
     const chars = [...form];
@@ -540,7 +555,10 @@ async function runReadingPhaseInner({
   });
   merged.items = romaji.items;
   const romajiRows = new Map(cachedRomaji.map((r) => [r.id, r]));
-  for (const row of romaji.romanized) romajiRows.set(row.id, row);
+  // A failed correction leaves the library's romaji on the cards for this run, but it is not cached:
+  // cached romaji counts as finished, so a re-run would never correct it. On Genki's Greetings the
+  // correction came back as prose and "gozai masu" was about to become permanent.
+  if (!romaji.failed) for (const row of romaji.romanized) romajiRows.set(row.id, row);
   recordStep(run, {
     step: "romanize",
     status: STEP_STATUS.OK,

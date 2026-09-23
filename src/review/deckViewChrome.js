@@ -81,6 +81,7 @@ td.pron{font-family:var(--mono);font-size:12px;color:var(--soft)}
 /* Fill the audio column but never overflow it (which would spill the player onto the Note column). */
 td.au audio{height:30px;width:100%;max-width:168px}.x{color:var(--faint)}
 td.note{font-size:12px;color:var(--soft)}
+td[data-empty]:empty::before{content:attr(data-empty);color:var(--faint);font-style:italic}
 /* Front-of-card hint (disambiguator) — italic + muted to set it apart from the back Note. */
 td.hint-col{font-size:12px;color:var(--faint);font-style:italic}
 /* Scene cue (front of BOTH directions) — slightly stronger than the hint below it. */
@@ -420,11 +421,16 @@ const readingKind = (c) => {
   }
   return "";
 };
+// An empty reading is not a missing one: a word written in kana is read as written, and a silent
+// kanji has none. Said with a CSS placeholder (`data-empty`), so the cell itself stays empty and an
+// inline edit never starts from the placeholder text.
+const isSilentKanji = (c) =>
+  !c.ttsText && [...String(c.target ?? "").trim()].length === 1 && /\p{Script=Han}/u.test(c.target);
 const readingCell = (c) =>
-  `<td class="pron" data-field="ttsText">${c.ttsText ? escapeHtml(c.ttsText) : ""}</td>`;
+  `<td class="pron" data-field="ttsText" data-empty="${isSilentKanji(c) ? "none: silent" : "as written"}">${c.ttsText ? escapeHtml(c.ttsText) : ""}</td>`;
 // The romaji is on the card's back; editable inline, as on a speaking card.
 const romajiCell = (c) =>
-  `<td class="pron" data-field="pronunciation">${escapeHtml(c.pronunciation ?? "")}</td>`;
+  `<td class="pron" data-field="pronunciation"${isSilentKanji(c) ? ` data-empty="none: silent"` : ""}>${escapeHtml(c.pronunciation ?? "")}</td>`;
 const READING_TABLES = {
   corpus: {
     cols: `<col class="c-num"><col class="c-en"><col class="c-cat"><col class="c-jp"><col class="c-pron"><col class="c-pron"><col class="c-excl">`,
@@ -622,9 +628,15 @@ export function renderLessonSections({
       // `s.reading`: the section belongs to a reading deck, which has its own columns.
       const spec = tableFor(stage, s.reading);
       const from = n + 1;
-      const rows = s.cards
-        .map((c) => cardRow(c, ++n, stage, { ...ctx, reading: s.reading }))
-        .join("");
+      // A reading chapter can rightly card nothing (Genki's hiragana lesson: a kana chart, drills and
+      // proper names, none of which the rules card), and an empty table read as a failed build.
+      const emptyReading =
+        s.reading && s.cards.length === 0
+          ? `<tr><td class="x" colspan="${(spec.cols.match(/<col /g) ?? []).length + 2}">No cards: nothing in this chapter is carded under the reading rules (single kana, proper names, exercises and sentences never are). <code>reading-report.json</code> and <code>candidates/</code> in the unit folder say what each reader found.</td></tr>`
+          : "";
+      const rows =
+        s.cards.map((c) => cardRow(c, ++n, stage, { ...ctx, reading: s.reading })).join("") +
+        emptyReading;
       const range = s.cards.length ? `${from}–${n}` : "—";
       const tools = sectionControl ? sectionControl(s) : "";
       // Editable audio review adds a trailing Exclude column; keep it off the read-only audio layout.

@@ -190,7 +190,8 @@ function corporaDir(epubHash, { libraryHomeDir, deckKind } = {}) {
   return kind === READING ? join(base, kind, "corpora") : join(base, "corpora");
 }
 
-function corpusPath(epubHash, chapterNumber, opts = {}) {
+/** Where a chapter's reviewed corpus lives in the dedup library, for a deck kind. */
+export function corpusPath(epubHash, chapterNumber, opts = {}) {
   return join(corporaDir(epubHash, opts), `${chapterNumber}.json`);
 }
 

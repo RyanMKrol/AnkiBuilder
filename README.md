@@ -633,7 +633,9 @@ What is built, newest last:
   its first chapter is built. A book can be converted for `speaking-listening`, `reading-writing` or
   `everything`, and the speaking pipeline refuses a book converted for anything but the first; the
   procedure is the `convert-book` skill and the results are in
-  `docs/designs/image-epub-remaster.md`
+  `docs/designs/image-epub-remaster.md`. A book rebuilt after its collection exists (a new
+  selection renumbers its chapters) is moved onto with `scripts/rebase-collection.mjs`, which keeps
+  the slug, card ids, audio and review state.
 - [~] Reading decks (in progress; design and build order in `docs/designs/reading-decks/`). A
   second deck kind whose card shows the written form alone on a silent front, with the English, the
   romaji and the audio on the back. Built so far: the `everything` conversion purpose, and the reading note

@@ -85,7 +85,12 @@ $TOOL decide "$BOOK" --purpose <purpose> --accept-recommendations \
   [--include <entry> ...] [--exclude <entry> ...]
 ```
 
-`decide` prints the final chapters. Nothing is transcribed while any unit is undecided. If the owner
+`decide` prints the final chapters. **Show the owner that numbered list and ask whether Chapter 01 is
+the first chapter they would actually study.** The numbers are assigned here, in page order over what
+was chosen, and every deck built from the book carries them. An introduction included for its
+content (Genki's "Japanese Writing System") becomes Chapter 01 and pushes every real chapter one
+number up: on Genki that was only noticed after the first reading chapter was delivered as
+"Chapter 02: Greetings". Nothing is transcribed while any unit is undecided. If the owner
 is unsure what a choice means, explain its consequence before asking again; for the kanji case this
 turned on what the deck pipeline is for, which is why purposes exist.
 
@@ -156,6 +161,22 @@ Then confirm the result is an ordinary book:
 $TOOL check <converted.epub>             # must say native
 node scripts/epub-probe.mjs <converted.epub>
 ```
+
+**Rebuilding a book that already has a collection.** Changing the selection later and building again
+is free (the transcripts are reused), but the rebuilt EPUB has a new hash, and a collection is found
+by its book's hash. Build to a NEW file, then move each collection onto it:
+
+```sh
+node scripts/rebase-collection.mjs output/epubs/<slug> --epub <rebuilt.epub> --dry   # the plan
+node scripts/rebase-collection.mjs output/epubs/<slug> --epub <rebuilt.epub>
+anki-builder deck --book-dir output/epubs/<slug>
+node scripts/deliver-to-anki.mjs --dry --refile     # if it was delivered: move notes to renamed decks
+```
+
+It matches each built chapter to the new book by name (the label without its number) and keeps the
+slug, the card ids, the audio and the review state, so delivered notes keep their scheduling. Never
+build from the rebuilt EPUB before rebasing: it would register a second collection with a `-2` slug.
+The old chapter decks are left empty in Anki for the owner to delete.
 
 ## 7. Hand over
 

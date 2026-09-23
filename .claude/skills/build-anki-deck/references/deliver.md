@@ -25,6 +25,11 @@ node scripts/deliver-to-anki.mjs --dry --refile         # preview a deck-name re
 node scripts/deliver-to-anki.mjs --dry --suspend-orphans # preview retiring dropped cards
 ```
 
+**Check the first line: `Anki profile: <name>`.** AnkiConnect writes to whichever profile is open,
+and a scratch profile looks exactly like a collection that lost its decks. If it is not the owner's
+own profile, stop and ask them to switch; never switch it yourself. An unknown flag (`--help` aside)
+is refused with nothing done; before 2026-09-24 it was ignored, and `--help` ran a live delivery.
+
 **Run `npm run check` before a deliver.** It is `ci && validate:decks && preflight`, the full
 deterministic gate over both the code and the on-disk deck state.
 

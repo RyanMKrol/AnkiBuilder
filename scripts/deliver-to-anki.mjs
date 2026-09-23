@@ -51,10 +51,47 @@
 // after (push) — a content-only delivery syncs with no prompt; a schema change (new field/template)
 // still needs one manual "Upload to AnkiWeb" click. --env-file is only needed if you later add audio-
 // bearing cards; the deliver itself makes no ElevenLabs calls.
+import { readFileSync } from "fs";
+import { fileURLToPath } from "url";
 import { createAnkiConnect } from "../src/anki/ankiConnect.js";
 import { deliverToAnki } from "../src/anki/deliver.js";
 
 const args = process.argv.slice(2);
+
+// An unknown flag is refused, never ignored. Every flag used to be read with args.includes(), so
+// `--help` (or a typo like `--dyr`) fell through to a LIVE delivery: an operator asking for the
+// usage synced AnkiWeb and began backing up decks before a guard happened to stop it.
+const KNOWN_FLAGS = new Set([
+  "--dry",
+  "--no-sync",
+  "--allow-model-change",
+  "--allow-template-add",
+  "--allow-bulk-add",
+  "--refile",
+  "--suspend-orphans",
+  "--suspend-delivered",
+  "--re-suspend-human-unsuspended",
+]);
+// The usage is the comment block at the top of this file, so the two cannot drift.
+const usage = () => {
+  const lines = readFileSync(fileURLToPath(import.meta.url), "utf-8")
+    .split("\n")
+    .slice(1);
+  const end = lines.findIndex((l) => !l.startsWith("//"));
+  return lines
+    .slice(0, end)
+    .map((l) => l.replace(/^\/\/ ?/, ""))
+    .join("\n");
+};
+if (args.includes("--help") || args.includes("-h")) {
+  console.log(usage());
+  process.exit(0);
+}
+const unknown = args.filter((a) => a.startsWith("-") && !KNOWN_FLAGS.has(a));
+if (unknown.length) {
+  console.error(`unknown flag(s): ${unknown.join(", ")}. Nothing was done. See --help.`);
+  process.exit(1);
+}
 const dry = args.includes("--dry");
 const sync = !args.includes("--no-sync");
 const allowModelChange = args.includes("--allow-model-change");
@@ -79,6 +116,15 @@ const selectors = selectorArgs.length
 const outputRoot = process.env.ANKI_BUILDER_OUTPUT_ROOT || "output";
 
 const client = createAnkiConnect();
+
+// Say which Anki profile this is going into, before anything else. Anki open on a scratch profile
+// looks exactly like a collection that lost its decks: on 2026-09-24 a delivery reached the backup
+// step against the "Testing" profile, and the only sign was a backup that found no deck to export.
+try {
+  console.error(`  Anki profile: ${await client.invoke("getActiveProfile")}`);
+} catch (e) {
+  console.error(`  Anki profile: unknown (${e.message})`);
+}
 
 let report;
 try {

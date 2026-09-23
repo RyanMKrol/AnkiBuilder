@@ -1,4 +1,5 @@
 import { createHash } from "crypto";
+import { READING, resolveDeckKind } from "../model/deckKind.js";
 import { readFileSync, existsSync, mkdirSync, readdirSync, rmSync, statSync } from "fs";
 import { writeFileAtomic, copyFileAtomic } from "../util/atomicWrite.js";
 import { join, sep } from "path";
@@ -38,10 +39,25 @@ export function loadBookMeta(epubHash, { libraryHomeDir } = {}) {
  * Persists the output-root-specific slug chosen for a book, preserving its
  * already-stored title. Idempotent overwrite, same as saveChapterCorpus.
  */
-export function saveBookSlug(epubHash, slug, { libraryHomeDir } = {}) {
+//
+// A book can carry one collection per deck kind (src/model/deckKind.js). `slug` stays the
+// speaking-listening collection's, exactly as every existing book.json already has it; any other kind
+// is recorded under `slugByKind`, so no existing file changes shape.
+export function saveBookSlug(epubHash, slug, { libraryHomeDir, deckKind } = {}) {
   const path = bookMetaPath(epubHash, { libraryHomeDir });
   const meta = loadBookMeta(epubHash, { libraryHomeDir }) || { title: null, slug: null };
-  writeFileAtomic(path, JSON.stringify({ ...meta, slug }, null, 2));
+  const kind = resolveDeckKind(deckKind);
+  const next =
+    kind === READING
+      ? { ...meta, slugByKind: { ...(meta.slugByKind || {}), [kind]: slug } }
+      : { ...meta, slug };
+  writeFileAtomic(path, JSON.stringify(next, null, 2));
+}
+
+/** The slug recorded for this book's collection of `deckKind`, or null. */
+export function bookSlugForKind(meta, deckKind) {
+  const kind = resolveDeckKind(deckKind);
+  return (kind === READING ? meta?.slugByKind?.[kind] : meta?.slug) ?? null;
 }
 
 /**
@@ -164,8 +180,18 @@ export function chapterRangeCachePath(epubHash, firstNumber, lastNumber, { libra
   );
 }
 
-function corpusPath(epubHash, chapterNumber, { libraryHomeDir } = {}) {
-  return join(bookDir(epubHash, { libraryHomeDir }), "corpora", `${chapterNumber}.json`);
+// The dedup corpora are COLLECTION content, not book facts, so each deck kind has its own: a reading
+// collection's live under `<hash>/reading/corpora/`, and the speaking-listening path is unchanged
+// (those files are tracked and hand-reviewed). Sharing them would make every reading card look
+// already taught by the speaking deck (docs/designs/reading-decks/01).
+function corporaDir(epubHash, { libraryHomeDir, deckKind } = {}) {
+  const kind = resolveDeckKind(deckKind);
+  const base = bookDir(epubHash, { libraryHomeDir });
+  return kind === READING ? join(base, kind, "corpora") : join(base, "corpora");
+}
+
+function corpusPath(epubHash, chapterNumber, opts = {}) {
+  return join(corporaDir(epubHash, opts), `${chapterNumber}.json`);
 }
 
 /**
@@ -173,8 +199,13 @@ function corpusPath(epubHash, chapterNumber, { libraryHomeDir } = {}) {
  * chapterNumber) — idempotent overwrite, so re-reviewing a chapter replaces
  * its entry rather than accumulating stale ones. Returns the path written.
  */
-export function saveChapterCorpus(epubHash, chapterNumber, corpus, { libraryHomeDir } = {}) {
-  const dest = corpusPath(epubHash, chapterNumber, { libraryHomeDir });
+export function saveChapterCorpus(
+  epubHash,
+  chapterNumber,
+  corpus,
+  { libraryHomeDir, deckKind } = {},
+) {
+  const dest = corpusPath(epubHash, chapterNumber, { libraryHomeDir, deckKind });
   mkdirSync(join(dest, ".."), { recursive: true });
   writeFileAtomic(dest, JSON.stringify(corpus, null, 2));
   return dest;
@@ -186,8 +217,8 @@ export function saveChapterCorpus(epubHash, chapterNumber, corpus, { libraryHome
  * was withdrawn must stop feeding later chapters' backward dedup. Idempotent; missing entry is a
  * no-op. Returns true when an entry was actually removed.
  */
-export function removeChapterCorpus(epubHash, chapterNumber, { libraryHomeDir } = {}) {
-  const path = corpusPath(epubHash, chapterNumber, { libraryHomeDir });
+export function removeChapterCorpus(epubHash, chapterNumber, { libraryHomeDir, deckKind } = {}) {
+  const path = corpusPath(epubHash, chapterNumber, { libraryHomeDir, deckKind });
   if (!existsSync(path)) return false;
   rmSync(path, { force: true });
   return true;
@@ -205,8 +236,8 @@ export function removeChapterCorpus(epubHash, chapterNumber, { libraryHomeDir } 
  * "some earlier one" or an internal spine index. Returns [] if the book has
  * no saved chapters yet (e.g. chapter 1).
  */
-export function loadPriorChapterItems(epubHash, chapterNumber, { libraryHomeDir } = {}) {
-  const dir = join(bookDir(epubHash, { libraryHomeDir }), "corpora");
+export function loadPriorChapterItems(epubHash, chapterNumber, { libraryHomeDir, deckKind } = {}) {
+  const dir = corporaDir(epubHash, { libraryHomeDir, deckKind });
   if (!existsSync(dir)) {
     return [];
   }
@@ -413,12 +444,14 @@ export function clearBookCache(
   if (kinds.includes("conventions")) targets.push(join(dir, "conventions.md"));
   if (kinds.includes("taught-index")) targets.push(join(dir, "taught-index.json"));
 
-  const corpora = join(dir, "corpora");
+  // Every deck kind's corpora: the speaking-listening `corpora/` and the per-kind folders under it
+  // (`reading/corpora/`, see corporaDir), whose loss is just as unrecoverable.
+  const protectedDirs = [join(dir, "corpora"), join(dir, READING)];
   for (const target of targets) {
     // Belt and braces: the paths above are constructed, not user-supplied, but this is the one
     // directory whose loss is unrecoverable, so the refusal is checked at the point of deletion
     // rather than assumed from how the list was built.
-    if (target === corpora || target.startsWith(corpora + sep)) {
+    if (protectedDirs.some((p) => target === p || target.startsWith(p + sep))) {
       throw new Error(
         `refusing to delete ${target}: corpora/ holds human-reviewed chapters and is never a cache`,
       );

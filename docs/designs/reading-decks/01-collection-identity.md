@@ -1,6 +1,8 @@
 # 01 Collection identity: a book plus a deck kind
 
-Depends on: nothing. Status: not built.
+Depends on: nothing. Status: built (branch `feat/collection-deck-kind`), tested in
+`test/cli/collectionDeckKind.test.js`. `validate:decks` and `preflight` are clean on the tracked
+output afterwards.
 
 ## Why
 

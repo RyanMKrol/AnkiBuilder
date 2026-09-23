@@ -638,8 +638,10 @@ What is built, newest last:
   second deck kind whose card shows the written form alone on a silent front, with the English and
   the audio on the back. Built so far: the `everything` conversion purpose, and the reading note
   type (`AnkiBuilder <lang> Reading`, one template, its own id), which the `.apkg` builder writes
-  one card per note for. Collection identity, the reading extraction, its checks and the
-  `build-reading-deck` skill are not built yet.
+  one card per note for, and collection identity: a collection is a book plus a deck kind, so one
+  book carries a speaking and a reading collection with separate folders, dedup corpora, Anki
+  parent decks and note types. The reading extraction, its checks and the `build-reading-deck`
+  skill are not built yet.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

@@ -32,6 +32,7 @@ import {
 } from "./directionSuspension.js";
 import { loadBookMeta } from "../corpus/epubLibrary.js";
 import { isRetiredCollection, loadCourseMeta } from "../cli/outputPaths.js";
+import { collectionDeckKind } from "../model/deckKind.js";
 
 const ABID = "abid:";
 const sanitizeSeg = (s) => String(s).replace(/::/g, "-");
@@ -117,7 +118,10 @@ export function resolveDecks(outputRoot, selectors, adapters) {
     }
 
     const targetLanguage = info.targetLanguage || adapter.deckLanguage(outputRoot, id);
-    const spec = noteTypeSpec(targetLanguage);
+    // The collection's kind picks its note type: a reading collection's notes use
+    // `AnkiBuilder <lang> Reading` (one card each), never the shared speaking one.
+    const deckKind = collectionDeckKind(bookDir);
+    const spec = noteTypeSpec(targetLanguage, { deckKind });
     const ankiParent = sanitizeSeg(
       resolveBookName(bookDir, epubHash, { loadBookMeta, loadCourseMeta }),
     );
@@ -137,6 +141,7 @@ export function resolveDecks(outputRoot, selectors, adapters) {
       id,
       title: info.title,
       targetLanguage,
+      deckKind,
       spec,
       ankiParent,
       units,

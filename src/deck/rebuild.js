@@ -3,6 +3,7 @@ import { join, resolve } from "path";
 import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } from "./index.js";
 import { deckIdentityForDir, deckPathForDir } from "./deckFileName.js";
 import { parseUnitDir } from "../model/unitDir.js";
+import { collectionDeckKind, isReadingKind } from "../model/deckKind.js";
 
 // Deck (re)build assembly, shared by the CLI (`deck --book-dir` / `deck --run`) and the dashboard's
 // automatic rebuild, so a rebuild triggered from the browser is byte-identical to the CLI's. The
@@ -92,7 +93,12 @@ export function resolveBookName(
   { loadBookMeta, loadCourseMeta, bookNameFallback = null } = {},
 ) {
   const bookMeta = epubHash ? loadBookMeta?.(epubHash) : loadCourseMeta?.(bookDir);
-  return bookMeta?.title || bookMeta?.name || bookNameFallback || "AnkiBuilder Book Deck";
+  const name = bookMeta?.title || bookMeta?.name || bookNameFallback || "AnkiBuilder Book Deck";
+  // A book's reading collection shares its title with the speaking one, so its Anki parent deck is
+  // named from the kind as well; otherwise both decks would file their chapters under one name
+  // (docs/designs/reading-decks/01). Decided from this collection's own marker, never by looking at
+  // the other collection.
+  return isReadingKind(collectionDeckKind(bookDir)) ? `${name} (Reading)` : name;
 }
 
 /**
@@ -145,6 +151,7 @@ export async function rebuildBookDir(
     bookName,
     now: now(),
     guidNamespace: readGuidNamespace(bookDir),
+    deckKind: collectionDeckKind(bookDir),
   });
 }
 

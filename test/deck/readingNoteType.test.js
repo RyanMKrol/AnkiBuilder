@@ -215,7 +215,7 @@ test("a reading deck's review shows the written form and its reading, not the sp
     rowControl: () => "",
   });
   assert.match(html, /Reading \(drives the audio\)/);
-  assert.match(html, /data-field="ttsText">えいが</);
+  assert.match(html, /data-field="ttsText"[^>]*>えいが</);
   assert.match(html, /kanji, silent/);
   assert.doesNotMatch(html, /<th>Hint<\/th>|<th>Pronunciation<\/th>/);
   const speaking = renderLessonSections({
@@ -223,4 +223,26 @@ test("a reading deck's review shows the written form and its reading, not the sp
     rowControl: () => "",
   }).html;
   assert.match(speaking, /<th>Pronunciation<\/th>/);
+});
+
+test("the reading review says why a reading is empty, and why a chapter has no cards", async () => {
+  const { renderLessonSections } = await import("../../src/review/deckViewChrome.js");
+  const { html } = renderLessonSections({
+    sections: [
+      {
+        leaf: "Greetings",
+        stage: "corpus",
+        reading: true,
+        cards: [
+          { id: "a", target: "おはよう", english: "Good morning", pronunciation: "ohayō" },
+          { id: "b", target: "日", english: "Day; sun", pronunciation: "" },
+        ],
+      },
+      { leaf: "Hiragana", stage: "corpus", reading: true, cards: [] },
+    ],
+    rowControl: () => "",
+  });
+  assert.match(html, /data-field="ttsText" data-empty="as written"><\/td>/);
+  assert.match(html, /data-field="ttsText" data-empty="none: silent"><\/td>/);
+  assert.match(html, /No cards: nothing in this chapter is carded/);
 });

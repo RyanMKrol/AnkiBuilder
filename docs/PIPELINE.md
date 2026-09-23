@@ -1763,6 +1763,25 @@ Findings are surfaced before the review rather than after: sentences that appear
 word, gaps left open for want of taught vocabulary, invented sentences that repeat a mined one, and
 targets carrying more than one sense.
 
+### The reading phase: a chapter to a reading unit
+
+`node scripts/build-reading.mjs --output-root output {--epub <book> | --book <slug>} --lesson <sel>
+--lang <code>` builds one chapter of a book's READING collection (docs/designs/reading-decks/06). It
+registers the collection on first use (`<slug>-reading`), caches the chapter, and walks
+`READING_PHASE_STEPS` (`src/reading/readingPhase.js`): the same raw material as phase 1, three reading
+agents (`src/reading/readingAgents.js`: tables, the whole chapter, images; each prompt carries
+`docs/card-rules-reading.md` and the language plugin's block), a deterministic merge, the snapshot,
+and a coverage adversary that never sees the corpus and whose gaps are a set difference in code.
+
+The merge (`reconcileReading`) is where the reading rules the code can see are enforced: one card per
+written form (English joined, two readings noted), the word wins over a single character, no single
+kana, a character card carries no reading, and a written form already carded earlier in the
+collection is dropped. Every drop is in `reading-report.json` with its reason. There is no `prepare`:
+the phase writes `corpus.json` and `cards.json` itself (`meta.phase: "reading"`, which the readiness
+gate accepts with no speaking passes), and the card id is `r-<sha1 of the written form>`, stable
+across rebuilds. Each agent step reuses its artifact if one is already on disk, so a stop costs only
+the step that was running. `--dry` spends nothing.
+
 ### Phase 1 as one ordered script
 
 `node scripts/build-base.mjs <unitDir> <epubHash> <n> --lang <code>` takes a chapter to a reviewable

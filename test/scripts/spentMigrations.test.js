@@ -34,6 +34,7 @@ const SPENT = [
 ];
 
 const STANDING = [
+  "build-reading.mjs",
   "remaster-epub.mjs",
   "preflight.mjs",
   "validate-decks.mjs",

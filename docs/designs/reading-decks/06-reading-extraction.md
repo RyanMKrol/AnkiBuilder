@@ -1,6 +1,11 @@
 # 06 Reading extraction
 
-Depends on: 01, 04 and 05. Status: not built.
+Depends on: 01, 04 and 05. Status: built (branch `feat/reading-extraction`): `scripts/build-reading.mjs`,
+`src/reading/readingPhase.js`, `src/reading/readingAgents.js` and the four `docs/reading-*-prompt.md`,
+tested in `test/reading/readingPhase.test.js`. Two things differ from the plan below: the phase writes
+`cards.json` itself rather than running `prepare` (the book gives the English and readings, and
+`prepare`'s passes are all speaking passes), and each agent step reuses its artifact from disk on a
+re-run, so a usage-limit stop costs only the step that was running.
 
 ## What
 

@@ -75,15 +75,18 @@ test("with one model tier, effort is what ranks a checker above what it checks",
   // producing content, so the checker should work harder) and cannot recover the other: a model
   // checking its own family's output leans toward approving it, and every role is Sonnet now.
   //
-  // Exactly one role is `high`, and it is the one whose whole value is an independent re-derivation.
+  // Only the adversaries are `high`, one per deck kind, and each is the role whose whole value is
+  // an independent re-derivation.
   const high = Object.entries(ROLES).filter(([, r]) => r.effort === "high");
   assert.deepEqual(
     high.map(([id]) => id),
-    ["coverageAdversary"],
+    ["coverageAdversary", "readingCoverageAdversary"],
     "effort is the scarce resource now, so spend it where the independence is the product",
   );
-  for (const target of ROLES.coverageAdversary.checks) {
-    assert.ok(capabilityRank(ROLES.coverageAdversary) > capabilityRank(ROLES[target]));
+  for (const adversary of ["coverageAdversary", "readingCoverageAdversary"]) {
+    for (const target of ROLES[adversary].checks) {
+      assert.ok(capabilityRank(ROLES[adversary]) > capabilityRank(ROLES[target]));
+    }
   }
 });
 

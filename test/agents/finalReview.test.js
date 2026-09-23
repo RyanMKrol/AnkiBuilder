@@ -31,7 +31,11 @@ test("the reviewer outranks every role it checks, or its verdict is the weakest 
 });
 
 test("the reviewer checks every other role, so nothing produced is unreviewed", () => {
-  const others = Object.keys(ROLES).filter((id) => id !== "finalReview");
+  // Every SPEAKING role. The reading deck's roles (phase "reading") build a different deck kind that
+  // this reviewer never sees; the reading adversary checks the reading readers instead.
+  const others = Object.keys(ROLES).filter(
+    (id) => id !== "finalReview" && ROLES[id].phase !== "reading",
+  );
   assert.deepEqual([...ROLES.finalReview.checks].sort(), others.sort());
 });
 

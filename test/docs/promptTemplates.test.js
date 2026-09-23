@@ -17,6 +17,56 @@ const DOCS = resolve(join(dirname(fileURLToPath(import.meta.url)), "..", "..", "
 // its output-format section that downstream parsing depends on. Extending a template is fine;
 // removing any of these means the corresponding pass is flying blind.
 const TEMPLATES = {
+  // The reading deck's four agents (src/reading/readingAgents.js).
+  "reading-table-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "READING_CARD_RULES",
+      "READING_LANGUAGE_RULES",
+      "CARD_FACES",
+      "BOOK_HINTS",
+      "TABLES_JSON",
+      "CATEGORY_LIST",
+    ],
+    outputContract: /"tables"[\s\S]*"items"/,
+  },
+  "reading-chapter-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "READING_CARD_RULES",
+      "READING_LANGUAGE_RULES",
+      "CARD_FACES",
+      "BOOK_HINTS",
+      "CHAPTER_FILE_PATH",
+      "SECTIONS_JSON",
+      "CATEGORY_LIST",
+    ],
+    outputContract: /"sections"[\s\S]*"items"/,
+  },
+  "reading-image-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "READING_CARD_RULES",
+      "READING_LANGUAGE_RULES",
+      "CARD_FACES",
+      "IMAGE_COUNT",
+      "IMAGE_PATHS",
+      "CATEGORY_LIST",
+    ],
+    outputContract: /"images"[\s\S]*"items"/,
+  },
+  // The adversary is never given the corpus: no placeholder could carry it.
+  "reading-coverage-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "READING_CARD_RULES",
+      "READING_LANGUAGE_RULES",
+      "CHAPTER_FILE_PATH",
+      "IMAGE_COUNT",
+      "IMAGE_PATHS",
+    ],
+    outputContract: /"items"[\s\S]*"coverage"/,
+  },
   "epub-extraction-prompt.md": {
     placeholders: [
       "TARGET_LANGUAGE",

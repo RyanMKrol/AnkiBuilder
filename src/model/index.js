@@ -56,7 +56,9 @@ const CORPUS_SCHEMA = {
         // Stamped on the corpus rather than derived from `as-generated.json`, which also records the
         // phase: that file is build scratch, untracked and deletable, and a correctness rule resting
         // on a deletable file fails silently in the direction that costs a card set.
-        phase: { type: "string", enum: ["base", "extras"] },
+        // "reading" is a READING collection's unit (src/reading/readingPhase.js): the book's words
+        // and characters, one card each, written straight to cards.json with no `prepare`.
+        phase: { type: "string", enum: ["base", "extras", "reading"] },
       },
       additionalProperties: false,
     },

@@ -64,8 +64,11 @@ The first run registers the reading collection (`<slug>-reading`). The run print
   is evidence that a reader missed something, not a suggestion. Look at each at the gate.
 
 **A usage-limit stop costs only the step that was running.** Re-run the same command: every agent
-step that finished is reused from disk (`candidates/*.json`). To build a chapter again from scratch,
-delete its unit folder first; deleting only `cards.json` makes the script start a new unit.
+step that finished is reused from disk (`candidates/*.json`).
+
+**After a change to the merge rules**, re-merge an unreviewed chapter from its saved agent output
+with `--remerge` (free: no model is called; a reviewed chapter is refused). To build a chapter again
+from scratch, including the paid agent steps, delete its unit folder first.
 
 Build chapters in book order. A written form is carded once per collection, in the chapter that first
 teaches it, and the merge only knows about chapters built before it.

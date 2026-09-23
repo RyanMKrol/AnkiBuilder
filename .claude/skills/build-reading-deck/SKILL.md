@@ -157,10 +157,10 @@ The package's parent deck is the collection's deck name (or `<book title> (Readi
 set), each chapter a deck directly beneath it, and its notes use the note type
 `AnkiBuilder <lang> Reading`, one card each. **Delivery is the owner's step**, exactly as for a
 speaking deck (`node scripts/deliver-to-anki.mjs --dry`, then without `--dry`). The first delivery
-of any reading deck creates the reading note type; the dry run says `createModel`. Whether creating a
-note type makes Anki ask for a one-way full sync has not been measured, so tell the owner before the
-first one, and import a throwaway `.apkg` into a scratch Anki profile first if they want to see the
-cards before anything touches their collection.
+of any reading deck creates the reading note type; the dry run says `created` under note type. On the
+first real one (Genki, 2026-09-24) creating it did NOT force a one-way full sync: AnkiWeb synced
+before and after with no prompt. If the owner wants to see the cards before anything touches their
+collection, import a throwaway `.apkg` into a scratch Anki profile first.
 
 ## Not in the first version
 

@@ -1783,6 +1783,11 @@ across rebuilds. Each agent step reuses its artifact if one is already on disk, 
 the step that was running. `--dry` spends nothing, and `--remerge` re-runs the merge of an unreviewed
 chapter from its saved agent output (free), which is what to do after a merge rule changes.
 
+A reading collection's Anki layout is flat, one deck per chapter directly under the parent
+(`unitDeckSegments(label, { deckKind: "reading" })`, shared by the package and delivery), and its
+parent deck is the owner's `deckName` when the marker has one (`setCollectionDeckName`, refused once
+the collection has been delivered).
+
 Preflight knows a collection's kind (`collection.deckKind`, `src/audit/units.js`). A reading
 collection runs the reading checks (`src/audit/checks/reading.js`: the front gives nothing away, one
 card per written form, no single kana, word-sized, kanji words carry a kana reading, the kanji

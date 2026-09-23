@@ -6,6 +6,7 @@
 //   node scripts/build-reading.mjs --output-root output {--epub <book.epub> | --book <slug>} --list-lessons
 //   node scripts/build-reading.mjs --output-root output {--epub <book.epub> | --book <slug>}
 //                                  --lesson <selector> --lang <code> [--dry | --remerge]
+//                                  [--deck-name "<short name>"]
 //
 // It registers the book's reading collection on first use (`<slug>-reading`, a book plus a deck kind:
 // DECISIONS.md), extracts the lesson's chapter to the free cache, and runs the reading phase: three
@@ -15,7 +16,9 @@
 //
 // `--dry` prints the steps, the paths and which paid steps would be reused from an earlier run, and
 // spends nothing. `--remerge` re-runs the merge of a built but UNREVIEWED chapter from its saved
-// agent output, for free: what to do after a rule in the merge changes. It refuses a reviewed one. A usage-limit stop loses only the step that was running: re-run the same command
+// agent output, for free: what to do after a rule in the merge changes. It refuses a reviewed one.
+// `--deck-name` sets the Anki deck the collection is filed under (a converted book's own title is
+// long); it can be given on any run until the collection is first delivered. A usage-limit stop loses only the step that was running: re-run the same command
 // and every finished agent step is reused from disk.
 
 import { existsSync, readFileSync, rmSync } from "fs";
@@ -34,6 +37,7 @@ import {
   materializeBookInOutput,
   resolveBookEpubPath,
   resolveChapterRunDir,
+  setCollectionDeckName,
 } from "../src/cli/outputPaths.js";
 import { withClaim } from "../src/cli/runClaim.js";
 import {
@@ -65,6 +69,7 @@ const lessonArg = flag("lesson");
 const lang = flag("lang");
 const dry = has("dry");
 const remerge = has("remerge");
+const deckNameArg = flag("deck-name");
 
 function usage(message) {
   if (message) console.error(message);
@@ -130,6 +135,10 @@ const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { deckKind: READING
 materializeBookInOutput(outputRoot, slug, epubPath, epubHash, lang, { deckKind: READING });
 const collectionDir = join(outputRoot, "epubs", slug);
 console.log(`collection: ${collectionDir}`);
+if (deckNameArg) {
+  const { changed, deckName } = setCollectionDeckName(collectionDir, deckNameArg);
+  console.log(`deck name:  ${deckName}${changed ? " (set)" : ""}`);
+}
 
 if (!existsSync(chapterFilePath)) {
   if (last > first) extractChapterRangeToFile(epubPath, first, last, chapterFilePath);

@@ -129,7 +129,9 @@ export function resolveDecks(outputRoot, selectors, adapters) {
     const units = chapterDecks.map((cd) => ({
       // Built from the SAME function the .apkg uses, so the package and AnkiConnect can never name
       // the same unit differently — they once did, and cards landed in a deck of the wrong name.
-      ankiDeck: [ankiParent, ...unitDeckSegments(cd.name).map(sanitizeSeg)].join("::"),
+      ankiDeck: [ankiParent, ...unitDeckSegments(cd.name, { deckKind }).map(sanitizeSeg)].join(
+        "::",
+      ),
       label: cd.name,
       audioDir: cd.audioDir,
       cards: shippableCards(cd.cards),

@@ -35,7 +35,13 @@ identified by its book and its deck kind, and the skill used decides the kind.
   corpora live in `.anki-builder/epubs/<hash>/reading/corpora/`; the speaking-listening path is
   unchanged, because those files are tracked and hand-reviewed. `taught-index.json` belongs to the
   speaking pipeline and the reading pipeline does not read it.
-- **The Anki parent deck** is named from the book and the kind: `<book title> (Reading)`.
+- **The Anki parent deck** is named from the book and the kind: `<book title> (Reading)`, unless the
+  owner gives the collection a short name (`deckName` on its marker, `--deck-name` on
+  `build-reading.mjs`), which is fixed once the collection is delivered. Added after the owner's
+  first look in Anki: a converted book's title ran to a line and a half.
+- **The chapters are flat.** Each chapter is one deck under the parent (`Chapter 02: Greetings`), with
+  no grouping level: that level exists so a speaking lesson and its extras sit together, and a
+  reading deck has no extras (`unitDeckSegments(label, { deckKind })`, `src/deck/deckPath.js`).
 - **The note type** is chosen by the kind (see 02).
 - **Each skill refuses the other kind.** `build-anki-deck` and every speaking phase script refuse a
   reading collection, and the reading scripts refuse a speaking one, each with a message naming the

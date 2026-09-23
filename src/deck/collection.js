@@ -263,7 +263,7 @@ function buildDecks(nowSeconds, deckName) {
 // studies a parent together with its children and a card-holding parent could not be studied alone.
 // `sanitizeDeckNameSegment` still runs per segment, so a label containing "::" cannot invent a level
 // of its own.
-function buildMultiDecks(nowSeconds, bookName, chapterNames) {
+function buildMultiDecks(nowSeconds, bookName, chapterNames, { deckKind } = {}) {
   const book = sanitizeDeckNameSegment(bookName);
   const decks = {
     [DEFAULT_DECK_ID]: defaultDeckRow(nowSeconds),
@@ -271,12 +271,14 @@ function buildMultiDecks(nowSeconds, bookName, chapterNames) {
   };
   chapterNames.forEach((chapterName, index) => {
     const id = chapterDeckId(index);
-    const path = unitDeckSegments(chapterName).map(sanitizeDeckNameSegment).join("::");
+    const path = unitDeckSegments(chapterName, { deckKind })
+      .map(sanitizeDeckNameSegment)
+      .join("::");
     decks[id] = deckRow(id, `${book}::${path}`, nowSeconds);
   });
   // The card-less grouping decks. Their ids sit above the per-chapter block so they can never
   // collide with chapterDeckId(index).
-  groupingSegments(chapterNames).forEach((group, i) => {
+  groupingSegments(chapterNames, { deckKind }).forEach((group, i) => {
     const id = GROUPING_DECK_ID_BASE + i;
     decks[id] = deckRow(id, `${book}::${sanitizeDeckNameSegment(group)}`, nowSeconds);
   });
@@ -579,7 +581,7 @@ export function buildMultiDeckCollection(
 ) {
   const nowSeconds = Math.floor(now / 1000);
   const chapterNames = chapterDecks.map((c) => c.name);
-  const decks = buildMultiDecks(nowSeconds, bookName, chapterNames);
+  const decks = buildMultiDecks(nowSeconds, bookName, chapterNames, { deckKind });
   const chapterGroups = chapterDecks.map((c, index) => ({
     deckId: chapterDeckId(index),
     cards: c.cards,

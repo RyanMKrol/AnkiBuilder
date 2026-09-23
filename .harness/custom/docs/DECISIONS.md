@@ -86,6 +86,25 @@ To list what is here: `grep '^## ' .harness/custom/docs/DECISIONS.md`
 - **When to revisit:** when a reading-and-writing deck pipeline is designed, or if a book's two skills
   cannot be separated by unit.
 
+## A collection is a book plus a deck kind
+
+- **What:** a collection is identified by its book AND its deck kind, `speaking-listening` or
+  `reading`, recorded as `deckKind` in the collection's `book.json` marker (absent means
+  `speaking-listening`). The same book file can have one collection of each kind. The skill decides
+  the kind: `build-anki-deck` builds speaking-listening collections, `build-reading-deck` builds
+  reading ones, and neither builds the other's. A conversion's purpose (previous entry) is only how a
+  book is ingested and is not the deck kind: Genki's reading deck is built from its speaking-listening
+  conversion. Owner ruling, 2026-09-23. Design: `docs/designs/reading-decks.md`.
+- **Why:** identified by book alone, a reading deck built from the same file would share the speaking
+  deck's folder and dedup corpora, and every reading card would look already taught. Putting the kind
+  in the identity keeps the two apart by construction, with nothing comparing them.
+- **Impact:** a reading collection gets its own output folder (`<slug>-reading`), its own dedup
+  corpora, its own Anki parent deck (`<title> (Reading)`) and its own note type. Book facts (the EPUB,
+  hints, chapter cache, conventions) stay shared. Existing collections are unchanged.
+- **Status:** decided, not built.
+- **When to revisit:** if a third deck kind is proposed, add it to the same field rather than
+  inventing a second axis.
+
 ## Scene cues on ambiguous single-word cards partially reveal the answer (by design)
 
 - **What:** the `Scene` field renders on the front of BOTH card directions. For sentence cards a

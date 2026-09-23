@@ -4,6 +4,7 @@
 import { existsSync, readFileSync } from "fs";
 import { join, resolve } from "path";
 import { withClaim } from "../runClaim.js";
+import { assertSpeakingSourceBook } from "../../remaster/speakingSource.js";
 import { validateCorpus, projectCorpusItem, isKnownProvenanceField } from "../../model/index.js";
 import { recordPass, PASS_OK, PASS_FAILED, PASS_SKIPPED } from "../../cards/passLedger.js";
 import { resolveIso639Code } from "../../model/iso639.js";
@@ -86,6 +87,8 @@ function resolveAssembleRunDir(flags, ctx) {
   }
 
   const outputRoot = resolve(flags["output-root"]);
+  // A book converted for reading or for everything never feeds a speaking deck (purpose.js).
+  assertSpeakingSourceBook(flags.epub);
   const { epubHash } = ctx.registerEpub(flags.epub);
   const slug = ctx.resolveBookSlug(outputRoot, flags.epub, epubHash);
   // Before materializeBookInOutput, which rewrites the marker this reads.
@@ -405,6 +408,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
     }
 
     const chapterNumber = Number(flags["chapter-number"]);
+    assertSpeakingSourceBook(flags.epub);
     const { epubHash } = ctx.registerEpub(flags.epub);
 
     bookConventions = ctx.loadBookConventions(epubHash);

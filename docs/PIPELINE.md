@@ -215,8 +215,10 @@ are separate subcommands so each paid one can be checked before the next:
   converted book. Every command takes `--chapter <n>` as well as `--entry <outline number>`. The
   rule and why are in `DECISIONS.md` ("Converted books number their study units as chapters").
 - `select --purpose <p>`, then `decide`: which study units are worth converting, for a purpose:
-  `speaking-listening` (the default, what the deck pipeline builds) or `reading-writing`
-  (`src/remaster/purpose.js`). The purpose swaps the agent's criteria, gets its own
+  `speaking-listening` (the default, what the speaking deck pipeline builds), `reading-writing`, or
+  `everything` (every study unit, for a reading deck) (`src/remaster/purpose.js`). The speaking entry
+  points (`assemble --epub`, `build-base.mjs`, `build-extras.mjs`) read a converted book's purpose from
+  its OPF `dc:source` and refuse anything but `speaking-listening` (`src/remaster/speakingSource.js`). The purpose swaps the agent's criteria, gets its own
   `selection-<purpose>.json`, and names the converted book; each purpose's book is its own
   collection (`DECISIONS.md`, "A conversion has a purpose…"). One Opus call
   (`docs/remaster-select-prompt.md`, pin `SELECT`) reads each unit's opening pages and recommends

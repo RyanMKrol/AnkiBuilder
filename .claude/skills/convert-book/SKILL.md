@@ -1,6 +1,6 @@
 ---
 name: convert-book
-description: Turn a book the deck pipeline cannot read (an EPUB of page images, a scan) into an ordinary EPUB it can, for one purpose (speaking and listening, or reading and writing). Checks eligibility first, has the owner review the outline and choose the chapters, converts with two readings, and verifies the result before handing over to onboard-epub.
+description: Turn a book the deck pipeline cannot read (an EPUB of page images, a scan) into an ordinary EPUB it can, for one purpose (speaking and listening, reading and writing, or everything). Checks eligibility first, has the owner review the outline and choose the chapters, converts with two readings, and verifies the result before handing over to onboard-epub.
 ---
 
 # Convert a book the pipeline cannot read
@@ -52,15 +52,20 @@ title appears. If an entry is wrong, re-run the outline (it is one call) rather 
 
 ## 3. What is this conversion for?
 
-Ask the owner with `AskUserQuestion`. Two purposes (`src/remaster/purpose.js`):
+Ask the owner with `AskUserQuestion`. Three purposes (`src/remaster/purpose.js`):
 
 - **`speaking-listening`** (the default): vocabulary, phrases and grammar with audio. This is what the
   deck pipeline builds today.
 - **`reading-writing`**: the script and its characters. No deck pipeline builds these cards yet;
   converting for it works, but say so.
+- **`everything`**: every study unit, from both halves of a book like Genki. This is the book a
+  reading deck is built from (`docs/designs/reading-decks/`), so it misses nothing the book teaches.
+  The speaking pipeline refuses it (and `reading-writing`): a speaking deck is built from the
+  `speaking-listening` conversion, because a book holding the kanji lessons makes the speaking
+  pipeline flag every kanji card as already taught.
 
-There is no "everything". Each purpose's converted book is its own collection, so the two are never
-deduplicated against each other (`DECISIONS.md`, "A conversion has a purpose, and each purpose is its
+Each purpose's converted book is its own collection, so they are never deduplicated against each
+other (`DECISIONS.md`, "A conversion has a purpose, and each purpose is its
 own collection"). Page transcripts are shared, so converting for the second purpose later only pays
 for pages the first did not cover.
 

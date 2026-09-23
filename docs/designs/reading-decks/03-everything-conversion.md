@@ -1,6 +1,6 @@
 # 03 Converting a book for everything
 
-Depends on: nothing. Status: not built.
+Depends on: nothing. Status: built (branch `feat/everything-purpose`).
 
 ## Why
 

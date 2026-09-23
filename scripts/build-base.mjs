@@ -21,6 +21,7 @@ import {
 import { BASE_PHASE_STEPS, runBasePhase } from "../src/agents/basePhase.js";
 import { loadEarlierUnitItems } from "../src/cards/earlierUnits.js";
 import { ROLES } from "../src/agents/roles.js";
+import { assertSpeakingSourceHash } from "../src/remaster/speakingSource.js";
 
 const argv = process.argv.slice(2);
 const positional = argv.filter((a) => !a.startsWith("--"));
@@ -46,6 +47,13 @@ if (!existsSync(chapterFilePath)) {
   console.error(
     `chapter not cached at ${chapterFilePath} — it is a free re-inflate of the EPUB, so extract it first`,
   );
+  process.exit(2);
+}
+
+try {
+  assertSpeakingSourceHash(epubHash);
+} catch (err) {
+  console.error(err.message);
   process.exit(2);
 }
 

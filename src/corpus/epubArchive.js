@@ -294,6 +294,17 @@ export function listChapters(epubPath) {
 // the primary title, so no further disambiguation is needed.
 const DC_TITLE_PATTERN = /<dc:title\b[^>]*>([\s\S]*?)<\/dc:title>/i;
 
+const DC_SOURCE_PATTERN = /<dc:source\b[^>]*>([\s\S]*?)<\/dc:source>/i;
+
+/**
+ * The OPF `<dc:source>` text, or `null`. A converted book records what it was converted from and
+ * for which purpose here (src/remaster/epubWriter.js); a publisher's EPUB rarely has one.
+ */
+export function getBookSource(epubPath) {
+  const match = loadEpub(epubPath).opfXml.match(DC_SOURCE_PATTERN);
+  return match ? match[1].trim() || null : null;
+}
+
 /**
  * The book's own title, read from its OPF `<dc:title>` metadata — `null` when absent
  * (never a fallback string; callers decide what to substitute).

@@ -24,7 +24,7 @@
 //
 // transcribe, settle and build work on every chosen chapter unless --chapter (or --entry, an
 // outline number) names some. Every step after `outline` takes --purpose speaking-listening (the
-// default) or reading-writing (src/remaster/purpose.js). The purpose picks which units are
+// default), reading-writing or everything (src/remaster/purpose.js). The purpose picks which units are
 // converted and names the result; page transcripts are shared, so a second purpose only pays for
 // the pages the first did not cover.
 //

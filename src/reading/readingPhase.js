@@ -1,0 +1,503 @@
+// The reading phase: one chapter of a book to a reviewable READING unit, as one ordered script
+// (docs/designs/reading-decks/06-reading-extraction.md). Built the way phase 1 is
+// (src/agents/basePhase.js), and for the same reasons:
+//
+//   - THE STEPS ARE DATA. READING_PHASE_STEPS is the order, `runReadingPhase` walks it, and a test
+//     pins it. A step in a script always runs; an agent deciding whether to do something does not.
+//   - Raw material before judgement: every agent is fed by a deterministic step.
+//   - The merge before the snapshot: the snapshot is the pre-review baseline.
+//   - The adversary last and never shown the corpus: it enumerates the chapter on its own, and the
+//     comparison is a set operation in code.
+//
+// Two things differ from phase 1, both on purpose:
+//
+//   - The rules the code can enforce are enforced HERE, in `reconcileReading`, not hoped for in a
+//     prompt: one card per written form, the word wins over a character, no single kana, a character
+//     card carries no reading, and anything already carded earlier in this collection is dropped.
+//     Every drop is listed with its reason in `reading-report.json`, never discarded silently.
+//   - There is no `prepare`. The book prints the English and the readings, so this phase writes the
+//     reviewable `cards.json` itself, and the unit goes straight to the content gate.
+//
+// RESUMABLE BY ARTIFACT. Each agent step writes its artifact as soon as it returns, and a re-run
+// reuses any artifact already on disk instead of paying for the call again. A usage-limit stop in the
+// middle of a chapter therefore costs only the step that was running.
+
+import { createHash } from "crypto";
+import { existsSync, mkdirSync, readFileSync, readdirSync } from "fs";
+import { dirname, join } from "path";
+import { writeFileAtomic } from "../util/atomicWrite.js";
+import { parseTables, annotateWithHints } from "../corpus/chapterTables.js";
+import { parseHeadings } from "../corpus/chapterOutline.js";
+import { resolveChapterImages } from "../corpus/chapterImages.js";
+import { assignSourceOrder } from "../cards/sourceOrder.js";
+import { CATEGORIES } from "../model/categories.js";
+import { validateCorpus, validateCards } from "../model/index.js";
+import { writeSnapshot, hasSnapshot } from "../agents/snapshot.js";
+import { logDirFor, withRunLogDir } from "../agents/runLog.js";
+import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "../agents/runReport.js";
+import { readingScheme } from "./readingSchemes.js";
+import {
+  ITEM_KINDS,
+  readTables,
+  readChapterForReading,
+  readImagesForReading,
+  enumerateForReading,
+} from "./readingAgents.js";
+
+export const READING_REPORT_FILE = "reading-report.json";
+export const READING_COVERAGE_FILE = "candidates/coverage.json";
+
+export const READING_PHASE_STEPS = Object.freeze([
+  { id: "tables", kind: "deterministic", artifact: "candidates/tables-raw.json" },
+  { id: "sections", kind: "deterministic", artifact: "candidates/sections.json" },
+  { id: "images", kind: "deterministic", artifact: "candidates/images-raw.json" },
+  {
+    id: "table-reader",
+    kind: "agent",
+    role: "readingTableReader",
+    artifact: "candidates/tables.json",
+  },
+  {
+    id: "chapter-reader",
+    kind: "agent",
+    role: "readingChapterReader",
+    artifact: "candidates/chapter.json",
+  },
+  {
+    id: "image-reader",
+    kind: "agent",
+    role: "readingImageReader",
+    artifact: "candidates/images.json",
+  },
+  { id: "reconcile", kind: "deterministic", artifact: READING_REPORT_FILE },
+  { id: "snapshot", kind: "deterministic", artifact: "as-generated.json" },
+  {
+    id: "coverage-adversary",
+    kind: "agent",
+    role: "readingCoverageAdversary",
+    artifact: READING_COVERAGE_FILE,
+  },
+  { id: "write-unit", kind: "deterministic", artifact: "cards.json" },
+]);
+
+export const REQUIRED_READING_STEPS = Object.freeze(READING_PHASE_STEPS.map((s) => s.id));
+
+// ---- the merge -------------------------------------------------------------------------------
+
+/** The comparison key for a written form: trimmed, NFC. Two spellings that differ only in Unicode
+ * normalisation are the same front. */
+export const targetKey = (target) =>
+  String(target ?? "")
+    .normalize("NFC")
+    .trim();
+
+/** A stable card id from the written form: the id is the Anki note's GUID, so it must not change
+ * between rebuilds, and one card per written form makes the form a unique key in the collection. */
+export const readingCardId = (target) =>
+  `r-${createHash("sha1").update(targetKey(target)).digest("hex").slice(0, 12)}`;
+
+function splitGloss(english) {
+  return String(english ?? "")
+    .split(/\s*;\s*/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
+function joinGlosses(glosses) {
+  const seen = new Set();
+  const out = [];
+  for (const gloss of glosses) {
+    const key = gloss.toLowerCase().replace(/[.!?]+$/, "");
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(gloss);
+  }
+  return out.join("; ");
+}
+
+function kindOf(item) {
+  if (ITEM_KINDS.includes(item.kind)) return item.kind;
+  return [...targetKey(item.target)].length === 1 ? "character" : "word";
+}
+
+/**
+ * Merges the readers' items into one reading corpus and applies every rule the code can see.
+ *
+ * `earlier` is what this collection already carded in earlier chapters, as `{ target, chapterLabel }`:
+ * a written form is carded once per collection, where it is first taught.
+ *
+ * Returns `{ items, provenance, dropped, readingConflicts }`. `dropped` lists every item left out
+ * and why, so a review can see it; nothing is discarded silently.
+ */
+export function reconcileReading(sources, { targetLanguage, earlier = [] } = {}) {
+  const scheme = readingScheme(targetLanguage);
+  const earlierByKey = new Map(earlier.map((e) => [targetKey(e.target), e.chapterLabel ?? null]));
+  const dropped = [];
+  const groups = new Map();
+
+  for (const item of sources.flat()) {
+    const key = targetKey(item.target);
+    if (!key) continue;
+    const chars = [...key];
+    const kind = kindOf(item);
+    const drop = (reason) => dropped.push({ target: key, producedBy: item.producedBy, reason });
+
+    if (chars.length === 1) {
+      if (scheme?.isSingleLetter?.(key) || !scheme?.characterCards) {
+        drop("a single letter or kana is never a card (card rules 5)");
+        continue;
+      }
+      if (!scheme.isCharacterTarget(key)) {
+        drop("a single character that is not one this language cards (card rules 4)");
+        continue;
+      }
+    }
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push({ ...item, kind });
+  }
+
+  const items = [];
+  const provenance = {};
+  const readingConflicts = [];
+  for (const [key, members] of groups) {
+    if (earlierByKey.has(key)) {
+      dropped.push({
+        target: key,
+        producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
+        reason: `already carded in ${earlierByKey.get(key) ?? "an earlier chapter"} of this collection`,
+      });
+      continue;
+    }
+    // The word wins over the character (card rules 4): a single character the book also teaches as
+    // a word keeps the word's reading, and is voiced.
+    const wordMembers = members.filter((m) => m.kind !== "character");
+    const kind = wordMembers.length
+      ? wordMembers.some((m) => m.kind === "phrase")
+        ? "phrase"
+        : "word"
+      : "character";
+    // A character card carries no reading: it is silent by design. A reading an agent attached to a
+    // character anyway is dropped here rather than voicing one arbitrary reading of it.
+    const readings = [
+      ...new Set(
+        (kind === "character" ? [] : wordMembers)
+          .map((m) => String(m.reading ?? "").trim())
+          .filter(Boolean),
+      ),
+    ];
+    if (readings.length > 1) readingConflicts.push({ target: key, readings });
+    const english = joinGlosses(members.flatMap((m) => splitGloss(m.english)));
+    const category = members.map((m) => m.category).find((c) => CATEGORIES.includes(c)) ?? "Other";
+    const reading = readings[0] ?? null;
+    const notes = [];
+    if (readings.length > 1) {
+      notes.push(
+        `The book gives more than one reading: ${readings.join(", ")}. Audio uses the first.`,
+      );
+    }
+    if (scheme?.requiresReading?.(key) && kind !== "character" && !reading) {
+      notes.push("No reading was found in the book for this word; it cannot be voiced reliably.");
+    }
+    const id = readingCardId(key);
+    items.push({
+      id,
+      target: key,
+      english,
+      category,
+      // The reading drives TTS and is never rendered (the `ttsText` contract, src/model/index.js).
+      // Only a word whose written form the TTS voice might misread needs one.
+      ...(reading && reading !== key ? { ttsText: reading } : {}),
+      ...(notes.length ? { reviewNote: notes.join(" ") } : {}),
+    });
+    provenance[id] = [...new Set(members.map((m) => m.producedBy))];
+  }
+  return { items, provenance, dropped, readingConflicts };
+}
+
+/**
+ * What the adversary enumerated that the unit does not have, and the reverse. A set operation on
+ * the written form. Targets the rules leave out (a single kana) and ones already carded earlier in
+ * the collection are not gaps.
+ */
+export function findReadingGaps(enumerated, items, { dropped = [] } = {}) {
+  const have = new Set(items.map((i) => targetKey(i.target)));
+  const accounted = new Set(dropped.map((d) => targetKey(d.target)));
+  const listed = new Set();
+  const gaps = [];
+  for (const item of enumerated) {
+    const key = targetKey(item.target);
+    if (!key || listed.has(key)) continue;
+    listed.add(key);
+    if (!have.has(key) && !accounted.has(key))
+      gaps.push({ target: key, english: item.english ?? null });
+  }
+  const onlyInUnit = [...have].filter((key) => !listed.has(key));
+  return {
+    gaps,
+    onlyInUnit,
+    counts: { enumerated: listed.size, unit: have.size, gaps: gaps.length },
+  };
+}
+
+// ---- the earlier chapters of this collection -------------------------------------------------
+
+/**
+ * Every written form an earlier chapter of THIS reading collection already cards: its reviewed
+ * chapters in the library (passed in) and any earlier unit built but not yet reviewed, read from the
+ * collection folder. Never another collection's (golden rule 7).
+ */
+export function earlierReadingTargets(collectionDir, chapterNumber, libraryItems = []) {
+  const out = libraryItems.map((i) => ({ target: i.target, chapterLabel: i.__chapterLabel }));
+  if (!existsSync(collectionDir)) return out;
+  for (const name of readdirSync(collectionDir)) {
+    const cardsPath = join(collectionDir, name, "cards.json");
+    if (!/^chapter-\d+$/.test(name) || !existsSync(cardsPath)) continue;
+    let cards;
+    try {
+      cards = JSON.parse(readFileSync(cardsPath, "utf-8"));
+    } catch {
+      continue;
+    }
+    if (
+      typeof cards.meta?.chapterNumber !== "number" ||
+      cards.meta.chapterNumber >= chapterNumber
+    ) {
+      continue;
+    }
+    for (const item of cards.items ?? []) {
+      if (!item.excluded) out.push({ target: item.target, chapterLabel: cards.meta.chapterLabel });
+    }
+  }
+  return out;
+}
+
+// ---- the run ---------------------------------------------------------------------------------
+
+function readArtifact(unitDir, relative) {
+  const path = join(unitDir, relative);
+  if (!existsSync(path)) return null;
+  try {
+    return JSON.parse(readFileSync(path, "utf-8"));
+  } catch {
+    return null;
+  }
+}
+
+function writeArtifact(unitDir, relative, body) {
+  const path = join(unitDir, relative);
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileAtomic(path, `${JSON.stringify(body, null, 2)}\n`);
+  return relative;
+}
+
+/**
+ * Runs the reading phase for one chapter into `unitDir`.
+ *
+ * `unit` is the identity stamped on the unit (`epubHash`, `chapterNumber`, `chapterLabel`, and
+ * `lastChapterNumber` for a multi-file lesson). `earlier` is `earlierReadingTargets`' answer. Every
+ * agent is injectable through `agents`, so the whole phase runs in a test without a model.
+ */
+function runReadingPhaseInner({
+  unitDir,
+  chapterFilePath,
+  targetLanguage,
+  unit,
+  hints = {},
+  earlier = [],
+  agents = {},
+  log = () => {},
+  now,
+}) {
+  const impl = {
+    readTables,
+    readChapterForReading,
+    readImagesForReading,
+    enumerateForReading,
+    ...agents,
+  };
+  const runClaude = agents.runClaude;
+  const meta = { hints };
+  const chapterHtml = readFileSync(chapterFilePath, "utf-8");
+  const run = startRun({ phase: "reading", unitDir, ...(now ? { now } : {}) });
+
+  // --- deterministic: raw material -----------------------------------------------------------
+  const tables = annotateWithHints(parseTables(chapterHtml), {
+    vocabularyTableClass: hints.vocabularyTableClass ?? null,
+  });
+  recordStep(run, {
+    step: "tables",
+    status: STEP_STATUS.OK,
+    counts: { out: tables.length },
+    artifact: writeArtifact(unitDir, "candidates/tables-raw.json", tables),
+  });
+  const sections = parseHeadings(chapterHtml);
+  recordStep(run, {
+    step: "sections",
+    status: STEP_STATUS.OK,
+    counts: { out: sections.length },
+    artifact: writeArtifact(unitDir, "candidates/sections.json", sections),
+  });
+  const images = resolveChapterImages(chapterFilePath, chapterHtml).filter((i) =>
+    existsSync(i.path),
+  );
+  const imagePaths = images.map((i) => i.path);
+  recordStep(run, {
+    step: "images",
+    status: STEP_STATUS.OK,
+    counts: { out: images.length },
+    artifact: writeArtifact(unitDir, "candidates/images-raw.json", images),
+  });
+
+  // --- agents, each reused from disk when an earlier run already paid for it ------------------
+  const agentStep = (step, role, relative, call, countIn) => {
+    const reused = readArtifact(unitDir, relative);
+    if (reused) {
+      log(`  ${step}: reusing ${relative} from an earlier run`);
+      recordStep(run, {
+        step,
+        role,
+        status: STEP_STATUS.OK,
+        reason: "reused from an earlier run",
+        counts: { in: countIn, out: reused.items?.length ?? 0 },
+        artifact: relative,
+      });
+      return reused;
+    }
+    log(`  ${step}: calling ${role}`);
+    const started = Date.now();
+    const value = call();
+    recordStep(run, {
+      step,
+      role,
+      status: STEP_STATUS.OK,
+      durationMs: Date.now() - started,
+      counts: { in: countIn, out: value.items?.length ?? 0 },
+      artifact: writeArtifact(unitDir, relative, value),
+    });
+    return value;
+  };
+
+  const tableResult = agentStep(
+    "table-reader",
+    "readingTableReader",
+    "candidates/tables.json",
+    () => impl.readTables({ tables, targetLanguage, meta, runClaude }),
+    tables.length,
+  );
+  const chapterResult = agentStep(
+    "chapter-reader",
+    "readingChapterReader",
+    "candidates/chapter.json",
+    () =>
+      impl.readChapterForReading({ chapterFilePath, sections, targetLanguage, meta, runClaude }),
+    sections.length,
+  );
+  const imageResult = agentStep(
+    "image-reader",
+    "readingImageReader",
+    "candidates/images.json",
+    () => impl.readImagesForReading({ imagePaths, targetLanguage, meta, runClaude }),
+    imagePaths.length,
+  );
+
+  // --- deterministic: the merge, where the rules the code can see are enforced ----------------
+  const merged = reconcileReading([tableResult.items, chapterResult.items, imageResult.items], {
+    targetLanguage,
+    earlier,
+  });
+  const positions = assignSourceOrder(merged.items, chapterHtml, { languageCode: targetLanguage });
+  for (const item of merged.items) {
+    const at = positions.get(item.id);
+    if (typeof at === "number") item.sourceOrder = at;
+  }
+  recordStep(run, {
+    step: "reconcile",
+    status: STEP_STATUS.OK,
+    counts: {
+      in: tableResult.items.length + chapterResult.items.length + imageResult.items.length,
+      out: merged.items.length,
+    },
+    artifact: writeArtifact(unitDir, READING_REPORT_FILE, {
+      items: merged.items.length,
+      dropped: merged.dropped,
+      readingConflicts: merged.readingConflicts,
+      unreadSections: chapterResult.unread ?? [],
+    }),
+  });
+
+  // --- the baseline, before anything a reviewer does ------------------------------------------
+  if (!hasSnapshot(unitDir)) {
+    writeSnapshot(unitDir, {
+      phase: "reading",
+      items: merged.items,
+      provenance: merged.provenance,
+    });
+  }
+  recordStep(run, {
+    step: "snapshot",
+    status: STEP_STATUS.OK,
+    counts: { out: merged.items.length },
+    artifact: "as-generated.json",
+  });
+
+  // --- the adversary: enumerate independently, diff in code -----------------------------------
+  const enumerated = agentStep(
+    "coverage-adversary",
+    "readingCoverageAdversary",
+    "candidates/coverage-enumeration.json",
+    () => impl.enumerateForReading({ chapterFilePath, imagePaths, targetLanguage, runClaude }),
+    0,
+  );
+  const gaps = findReadingGaps(enumerated.items ?? [], merged.items, { dropped: merged.dropped });
+  writeArtifact(unitDir, READING_COVERAGE_FILE, {
+    role: "readingCoverageAdversary",
+    counts: gaps.counts,
+    coverage: enumerated.coverage ?? null,
+    gaps: gaps.gaps,
+    onlyInUnit: gaps.onlyInUnit,
+  });
+  // The step's own record points at the diff, which is what a reviewer reads.
+  run.steps[run.steps.length - 1].artifact = READING_COVERAGE_FILE;
+
+  // --- the unit: corpus.json (identity) and cards.json (what the review and the deck read) ----
+  const unitMeta = {
+    targetLanguage,
+    sourceType: "epub",
+    reviewed: false,
+    ...unit,
+    phase: "reading",
+  };
+  const corpus = { meta: unitMeta, items: merged.items };
+  validateCorpus(corpus);
+  writeArtifact(unitDir, "corpus.json", corpus);
+  // `pronunciation` is required on a card and never rendered on a reading card: the back is the
+  // English and the audio (owner decision, 2026-09-23).
+  const cards = {
+    meta: unitMeta,
+    items: merged.items.map((item) => ({ ...item, pronunciation: "" })),
+  };
+  validateCards(cards);
+  recordStep(run, {
+    step: "write-unit",
+    status: STEP_STATUS.OK,
+    counts: { out: cards.items.length },
+    artifact: writeArtifact(unitDir, "cards.json", cards),
+  });
+
+  finishRun(run, now ? { now } : {});
+  const verdict = verifyRun(run, { unitDir, requiredSteps: REQUIRED_READING_STEPS });
+  return {
+    run,
+    verdict,
+    items: merged.items,
+    dropped: merged.dropped,
+    readingConflicts: merged.readingConflicts,
+    gaps,
+  };
+}
+
+/** The reading phase, with every agent call teeing its transcript into the unit's `agent-logs/`. */
+export function runReadingPhase(options = {}) {
+  const dir = options.unitDir ? logDirFor(options.unitDir) : null;
+  return withRunLogDir(dir, () => runReadingPhaseInner(options));
+}

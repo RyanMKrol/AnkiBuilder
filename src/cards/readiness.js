@@ -37,7 +37,7 @@ import { resolveIso639Code } from "../model/iso639.js";
  */
 export function drillPassExpected(meta = {}) {
   if (meta.sourceType === "template") return false;
-  if (meta.phase === "base" || meta.phase === "extras") return false;
+  if (meta.phase === "base" || meta.phase === "extras" || meta.phase === "reading") return false;
   return true;
 }
 
@@ -73,11 +73,15 @@ export function lessonReadiness(meta = {}, items = null) {
     return { ready: true, missing: [], reason: null, numberIssues: [], translateErrors: [] };
   }
 
+  // A reading unit runs none of the speaking passes: no drills, no cross-lesson notes. Its phase
+  // (src/reading/readingPhase.js) verifies its own run and writes cards.json whole, so what a human
+  // is asked to sign off is already the finished set.
+  const readingUnit = meta.phase === "reading";
   // A pass this unit was never going to run cannot be missing from it. The cross-lesson note pass
   // still runs on a phase unit, so it stays required either way.
-  const required = REQUIRED_PASSES.filter(
-    (pass) => pass.key !== "enriched" || drillPassExpected(meta),
-  );
+  const required = readingUnit
+    ? []
+    : REQUIRED_PASSES.filter((pass) => pass.key !== "enriched" || drillPassExpected(meta));
   const missing = required.filter((pass) => meta[pass.key] !== true);
 
   // Items that never translated (recorded by the translate stage after its retry). A reviewer

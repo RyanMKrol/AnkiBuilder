@@ -190,6 +190,46 @@ export const ROLES = Object.freeze({
     purpose: "Add roughly 20% more practice, using only vocabulary the book has already taught.",
   },
 
+  // ---- Reading decks: one chapter to a reading corpus -----------------------------------------
+  //
+  // A separate deck kind with its own rules (docs/card-rules-reading.md) and its own phase
+  // (src/reading/readingPhase.js; docs/designs/reading-decks/06). The three readers are pinned like
+  // phase 1's producers and the adversary above them, for the same reasons.
+  readingTableReader: {
+    envScope: "READING_TABLE_READER",
+    model: "claude-sonnet-5",
+    effort: "medium",
+    timeoutMs: 15 * MINUTES,
+    phase: "reading",
+    purpose: "Judge a chapter's tables and read the words and characters they teach to read.",
+  },
+  readingChapterReader: {
+    envScope: "READING_CHAPTER_READER",
+    model: "claude-sonnet-5",
+    effort: "medium",
+    timeoutMs: 25 * MINUTES,
+    phase: "reading",
+    purpose: "Find what a chapter teaches to read anywhere in it, independent of markup.",
+  },
+  readingImageReader: {
+    envScope: "READING_IMAGE_READER",
+    model: "claude-sonnet-5",
+    effort: "medium",
+    timeoutMs: 20 * MINUTES,
+    phase: "reading",
+    purpose: "Read the words and characters a chapter teaches only in pictures.",
+  },
+  readingCoverageAdversary: {
+    envScope: "READING_COVERAGE_ADVERSARY",
+    // Above the three readers it checks; enumerates independently, never shown the corpus.
+    model: "claude-sonnet-5",
+    effort: "high",
+    timeoutMs: 25 * MINUTES,
+    phase: "reading",
+    checks: ["readingTableReader", "readingChapterReader", "readingImageReader"],
+    purpose: "Enumerate what a chapter teaches to read, independently, for a code-side diff.",
+  },
+
   // ---- Review: the last look before any audio is paid for --------------------------------
   finalReview: {
     envScope: "FINAL_REVIEW",

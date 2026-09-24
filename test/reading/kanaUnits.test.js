@@ -74,3 +74,18 @@ test("a sound the whole book has too few of is reported, and the result is deter
     ["すし", "ぢ"],
   );
 });
+
+test("a word with a digit is never chosen: it is not kana, and cannot be voiced reliably", () => {
+  const { selected, unselected } = selectKanaDeck(
+    [word("10ページをみてください", 1), word("すし", 2)],
+    {
+      budgets: { hiragana: 5, katakana: 5 },
+      minPerUnit: 1,
+    },
+  );
+  assert.deepEqual(
+    selected.map((e) => e.target),
+    ["すし"],
+  );
+  assert.match(unselected[0].reason, /digit/);
+});

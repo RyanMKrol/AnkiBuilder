@@ -162,7 +162,10 @@ function clearMerge(unitDir) {
  * Builds one chapter. Returns an exit code: 0 built or already built, 2 refused or did not verify.
  * `remerge` re-runs the merge from saved agent output; a unit a person reviewed is refused.
  */
-async function buildChapter(lesson, { slug, collectionDir, remerge: redo = false, quiet = false }) {
+async function buildChapter(
+  lesson,
+  { slug, collectionDir, unitDir: knownDir = null, remerge: redo = false, quiet = false },
+) {
   const first = lesson.firstChapterNumber;
   const last = lesson.lastChapterNumber;
   const chapterFilePath = cachePathFor(lesson);
@@ -171,7 +174,10 @@ async function buildChapter(lesson, { slug, collectionDir, remerge: redo = false
     if (last > first) extractChapterRangeToFile(epubPath, first, last, chapterFilePath);
     else extractChapterToFile(epubPath, first, chapterFilePath);
   }
-  const unitDir = resolveChapterRunDir(outputRoot, slug, epubHash, first);
+  // Resolved ONCE per chapter: resolving reserves a new folder with a claim in this process's name,
+  // so a second resolve in the same run finds a live claim and refuses. The book pass resolves it
+  // first to see whether the chapter needs re-merging, and passes it in.
+  const unitDir = knownDir ?? resolveChapterRunDir(outputRoot, slug, epubHash, first);
   if (redo && existsSync(join(unitDir, "cards.json"))) {
     const cards = JSON.parse(readFileSync(join(unitDir, "cards.json"), "utf-8"));
     // A unit with no cards was marked reviewed by the phase itself (a chapter with no kanji): there
@@ -376,7 +382,13 @@ if (bookPass) {
       );
       continue;
     }
-    const code = await buildChapter(lesson, { slug, collectionDir, remerge: stale, quiet: true });
+    const code = await buildChapter(lesson, {
+      slug,
+      collectionDir,
+      unitDir,
+      remerge: stale,
+      quiet: true,
+    });
     if (code !== 0) process.exit(code);
   }
 

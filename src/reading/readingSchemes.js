@@ -39,6 +39,17 @@ const JAPANESE = Object.freeze({
   /** A word containing kanji needs its kana reading, or TTS may read it wrongly. */
   requiresReading: (target) => HAN.test(String(target ?? "")),
   isValidReading: (reading) => KANA_READING.test(String(reading ?? "").trim()),
+  /**
+   * Kana-only words are carded once per collection, in one kana deck chosen from the whole book
+   * (src/reading/kanaUnits.js; owner decisions, 2026-09-24): first so every sound unit is in at
+   * least `minPerUnit` words, then up to a budget per script. Chapters card only kanji. `label` is
+   * the kana unit's chapter label, numbered 00 so its Anki deck sorts before every chapter.
+   */
+  kanaDeck: Object.freeze({
+    budgets: Object.freeze({ hiragana: 150, katakana: 150 }),
+    minPerUnit: 3,
+    label: "Chapter 00: Kana",
+  }),
   promptBlock: `## Japanese
 
 - **Which form is the card.** When the book prints a word in kana AND in kanji (a vocabulary table

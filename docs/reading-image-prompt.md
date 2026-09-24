@@ -35,6 +35,10 @@ only in a picture reaches the deck through you or not at all.
 
 Reply with ONE JSON object and nothing after it:
 
+Your LAST message is the only one that is read, so it must be the whole, final JSON object. If you
+find a mistake after writing it (an item you missed), write the complete object again with the fix
+in it; never send a correction on its own ("add this item"), because everything before it is lost.
+
 ```json
 {
   "images": [{ "path": "/path/to/image.jpg", "verdict": "teaches", "reason": "one short line" }],

@@ -715,4 +715,9 @@ test("a heading counts as read when the reader writes its quotes and dashes plai
     ),
     [],
   );
+  // Lesson 8: the book's full stop, the reader's 。.
+  assert.deepEqual(
+    sectionsUnaccounted([{ title: "B. Ask with だれが." }], [{ title: "B. Ask with だれが。" }]),
+    [],
+  );
 });

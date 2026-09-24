@@ -98,7 +98,7 @@ test("the merge enforces the rules: no single kana, the word wins, a character i
 
 test("a single kana taught as a word is a card; one taught as a letter is not", () => {
   // Genki's Numbers: に "Two" is a word. The kana chart's に is a letter.
-  const { items, dropped } = reconcileReading(
+  const { items, kanaPool, dropped } = reconcileReading(
     [
       [
         { target: "に", english: "Two", kind: "word", producedBy: "c" },
@@ -109,8 +109,16 @@ test("a single kana taught as a word is a card; one taught as a letter is not", 
     ],
     { targetLanguage: "ja" },
   );
-  assert.deepEqual(items.map((i) => i.target).sort(), ["ご", "に"]);
-  assert.deepEqual(dropped.map((d) => d.target).sort(), ["あ", "い"]);
+  // The words are kept, for the kana deck; the letters are dropped as letters.
+  assert.deepEqual(items, []);
+  assert.deepEqual(kanaPool.map((i) => i.target).sort(), ["ご", "に"]);
+  assert.deepEqual(
+    dropped
+      .filter((d) => /letter/.test(d.reason))
+      .map((d) => d.target)
+      .sort(),
+    ["あ", "い"],
+  );
 });
 
 test("the merge drops what this collection already carded, and says where", () => {
@@ -314,10 +322,7 @@ test("the phase writes a valid reading unit, and a re-run pays for nothing alrea
     assert.doesNotThrow(() => validateCards(cards));
     assert.equal(cards.meta.phase, "reading");
     assert.equal(cards.meta.chapterLabel, "Chapter 02: Greetings");
-    assert.deepEqual(
-      cards.items.map((i) => i.target).sort(),
-      ["おはようございます", "日", "映画"].sort(),
-    );
+    assert.deepEqual(cards.items.map((i) => i.target).sort(), ["日", "映画"].sort());
     // The romaji is on every voiced card and absent from the silent kanji.
     const byTarget = Object.fromEntries(cards.items.map((i) => [i.target, i]));
     assert.equal(byTarget["映画"].pronunciation, "r:映画");
@@ -326,6 +331,12 @@ test("the phase writes a valid reading unit, and a re-run pays for nothing alrea
     assert.equal(cards.meta.kanjiTts, true);
     assert.equal(byTarget["映画"].ttsKanji, "映画");
     assert.equal(byTarget["日"].ttsKanji, undefined);
+    // The kana word is not a chapter card: it is in the report's pool, for the kana deck.
+    const report = JSON.parse(readFileSync(join(unitDir, "reading-report.json"), "utf-8"));
+    assert.deepEqual(
+      report.kanaPool.map((i) => i.target),
+      ["おはようございます"],
+    );
     assert.ok(existsSync(join(unitDir, "corpus.json")));
     assert.ok(existsSync(join(unitDir, "as-generated.json")));
     const coverage = JSON.parse(readFileSync(join(unitDir, "candidates/coverage.json"), "utf-8"));
@@ -338,7 +349,7 @@ test("the phase writes a valid reading unit, and a re-run pays for nothing alrea
     const again = [];
     const rerun = await runReadingPhase({ ...options, agents: fakeAgents(again) });
     assert.deepEqual(again, []);
-    assert.equal(rerun.items.length, 3);
+    assert.equal(rerun.items.length, 2);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
@@ -375,7 +386,7 @@ test("a failed romaji correction is not cached, so the next run corrects it", as
 
 test("a kana word's optional ending in brackets becomes the full form, one card", () => {
   // Genki's Greetings prints おやすみ(なさい) and also おやすみなさい.
-  const { items } = reconcileReading(
+  const { items: chapterItems, kanaPool } = reconcileReading(
     [
       [
         { target: "おやすみ(なさい)", english: "Good night", kind: "phrase", producedBy: "t" },
@@ -385,6 +396,8 @@ test("a kana word's optional ending in brackets becomes the full form, one card"
     ],
     { targetLanguage: "ja" },
   );
+  // Kana words go to the kana pool (the kana deck), after every rule below has applied to them.
+  const items = [...chapterItems, ...kanaPool];
   assert.deepEqual(items.map((i) => i.target).sort(), ["おやすみなさい", "ごちそうさまでした"]);
 });
 
@@ -415,7 +428,7 @@ test("earlier units of the same collection count as already carded", () => {
 test("the book's full stop and a beginners' book's spaces never make a second card", () => {
   // Found on the first live run (Genki's Greetings): the table reader copied おはよう。 and the chapter
   // reader おはよう ございます, and the merge made two cards of each phrase.
-  const { items } = reconcileReading(
+  const { items: chapterItems, kanaPool } = reconcileReading(
     [
       [
         {
@@ -438,6 +451,8 @@ test("the book's full stop and a beginners' book's spaces never make a second ca
     ],
     { targetLanguage: "ja" },
   );
+  // Kana words go to the kana pool (the kana deck), after every rule below has applied to them.
+  const items = [...chapterItems, ...kanaPool];
   const byTarget = Object.fromEntries(items.map((i) => [i.target, i]));
   assert.deepEqual(
     Object.keys(byTarget).sort(),
@@ -449,7 +464,7 @@ test("the book's full stop and a beginners' book's spaces never make a second ca
 
 test("a card's English comes from one reader, the table first, not every reader's wording", () => {
   // Found on the second live run: the three readers' paraphrases were all joined onto one back.
-  const { items } = reconcileReading(
+  const { items: chapterItems, kanaPool } = reconcileReading(
     [
       [
         {
@@ -470,6 +485,8 @@ test("a card's English comes from one reader, the table first, not every reader'
     ],
     { targetLanguage: "ja" },
   );
+  // Kana words go to the kana pool (the kana deck), after every rule below has applied to them.
+  const items = [...chapterItems, ...kanaPool];
   const byTarget = Object.fromEntries(items.map((i) => [i.target, i]));
   assert.equal(byTarget["いただきます"].english, "Thank you for the meal. (before eating)");
   assert.equal(byTarget["さようなら"].english, "Good-bye");
@@ -490,7 +507,11 @@ test("a heading with furigana counts as read when the reader reports it without 
 test("a kana form that is a kanji word's reading is the same word, and a suffix's tilde goes", () => {
   // Found on the Lesson 3 pilot: an illustration labelled verbs in kana, so たべる was carded beside
   // 食べる; and the table's 〜ごろ and the text's ごろ made two cards.
-  const { items, dropped } = reconcileReading(
+  const {
+    items: chapterItems,
+    kanaPool,
+    dropped,
+  } = reconcileReading(
     [
       [
         { target: "食べる", reading: "たべる", english: "To eat", kind: "word", producedBy: "t" },
@@ -504,6 +525,8 @@ test("a kana form that is a kanji word's reading is the same word, and a suffix'
     ],
     { targetLanguage: "ja" },
   );
+  // Kana words go to the kana pool (the kana deck), after every rule below has applied to them.
+  const items = [...chapterItems, ...kanaPool];
   assert.deepEqual(items.map((i) => i.target).sort(), ["ごろ", "スポーツ", "食べる"].sort());
   assert.match(dropped.find((d) => d.target === "たべる").reason, /食べる/);
 });
@@ -531,7 +554,7 @@ test("two readings printed as one are split, the first voiced and the rest named
 
 test("two written forms printed as one headword become two cards", () => {
   // Found on the Genki Lesson 1 pilot: なん／なに came through as one card.
-  const { items } = reconcileReading(
+  const { items: chapterItems, kanaPool } = reconcileReading(
     [
       [
         { target: "なん／なに", english: "What", kind: "word", producedBy: "t" },
@@ -545,6 +568,8 @@ test("two written forms printed as one headword become two cards", () => {
     ],
     { targetLanguage: "ja" },
   );
+  // Kana words go to the kana pool (the kana deck), after every rule below has applied to them.
+  const items = [...chapterItems, ...kanaPool];
   assert.deepEqual(items.map((i) => i.target).sort(), ["なん", "なに", "十才", "十歳"].sort());
   assert.ok(items.every((i) => i.english));
   assert.equal(items.find((i) => i.target === "十才").ttsText, "じゅっさい");
@@ -609,4 +634,31 @@ test("a coverage gap is not reported for a headword the merge split into its for
     { targetLanguage: "ja" },
   );
   assert.deepEqual(gaps, []);
+});
+
+test("a chapter with no kanji is written with no cards, and needs no review", async () => {
+  // Genki's Greetings, Numbers and Lesson 1: every word is kana, so every word goes to the kana deck.
+  const dir = mkdtempSync(join(tmpdir(), "reading-no-kanji-"));
+  try {
+    const unitDir = join(dir, "chapter-0");
+    const chapterFilePath = join(dir, "chapter.xhtml");
+    writeFileSync(chapterFilePath, "<html><body><p>おはようございます</p></body></html>");
+    const agents = fakeAgents([]);
+    agents.readTables = () => ({ items: [], tables: [] });
+    await runReadingPhase({
+      unitDir,
+      chapterFilePath,
+      targetLanguage: "ja",
+      unit: { epubHash: "abc", chapterNumber: 1, chapterLabel: "Chapter 01: Greetings" },
+      agents,
+    });
+    const cards = JSON.parse(readFileSync(join(unitDir, "cards.json"), "utf-8"));
+    assert.deepEqual(cards.items, []);
+    assert.equal(cards.meta.reviewed, true);
+    assert.equal(cards.meta.done, true);
+    // Its corpus.json is written too: it is how a re-run finds this folder and its saved readings.
+    assert.ok(existsSync(join(unitDir, "corpus.json")));
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });

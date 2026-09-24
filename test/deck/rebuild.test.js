@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, existsSync, rmSync } from "fs";
 import { join } from "path";
 import { tmpdir } from "os";
 import { Buffer } from "buffer";
-import { rebuildBookDir, rebuildRunDir } from "../../src/deck/rebuild.js";
+import { rebuildBookDir, rebuildRunDir, selectDoneChapterDecks } from "../../src/deck/rebuild.js";
 import { readApkg } from "../../src/deck/readApkg.js";
 import { deckPathForDir } from "../../src/deck/deckFileName.js";
 
@@ -313,6 +313,28 @@ test("rebuildBookDir skips an extras unit that isn't done", async () => {
     assert.deepEqual(
       received.map((c) => c.name),
       ["Lesson 1"],
+    );
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a done unit with no cards makes no deck (a reading chapter with no kanji)", () => {
+  const dir = mkdtempSync(join(tmpdir(), "rebuild-empty-"));
+  try {
+    const unit = (name, meta, items) => {
+      mkdirSync(join(dir, name), { recursive: true });
+      writeFileSync(join(dir, name, "cards.json"), JSON.stringify({ meta, items }));
+    };
+    const meta = { targetLanguage: "ja", epubHash: "h", done: true };
+    unit("chapter-0", { ...meta, chapterNumber: 1, chapterLabel: "Chapter 01: Greetings" }, []);
+    unit("chapter-1", { ...meta, chapterNumber: 2, chapterLabel: "Chapter 02: Kanji" }, [
+      { id: "a", target: "日", english: "Day", pronunciation: "", category: "Other" },
+    ]);
+    const { chapterDecks } = selectDoneChapterDecks(dir);
+    assert.deepEqual(
+      chapterDecks.map((d) => d.name),
+      ["Chapter 02: Kanji"],
     );
   } finally {
     rmSync(dir, { recursive: true, force: true });

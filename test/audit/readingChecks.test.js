@@ -211,3 +211,20 @@ test("readiness exemptions do not list a done reading chapter, which runs no spe
     cleanup();
   }
 });
+
+test("reading-kana-in-chapter: a chapter cards kanji only; the kana deck may card kana", () => {
+  expect(
+    "reading-kana-in-chapter",
+    [word("a", "すし")],
+    [word("a", "映画", { ttsText: "えいが" }), word("b", "日")],
+    /belongs in the kana deck/,
+  );
+  const { root, cleanup } = readingRoot([word("a", "すし")], {
+    meta: { chapterNumber: 0, chapterLabel: "Chapter 00: Kana" },
+  });
+  try {
+    assert.deepEqual(findingsOf(root, "reading-kana-in-chapter"), []);
+  } finally {
+    cleanup();
+  }
+});

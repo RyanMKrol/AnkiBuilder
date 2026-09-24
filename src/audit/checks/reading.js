@@ -136,6 +136,32 @@ export const readingSingleCharacterCheck = readingCheck({
   },
 });
 
+export const readingKanaInChapterCheck = readingCheck({
+  id: "reading-kana-in-chapter",
+  title: "kana words stay in the kana deck",
+  scope: "unit",
+  tier: "FAIL",
+  /**
+   * In a language whose reading scheme has a kana deck, a chapter cards kanji only; its kana words
+   * are chosen once for the whole collection in the kana deck (src/reading/kanaUnits.js; owner
+   * decisions, 2026-09-24). The kana unit itself is the one whose label is the scheme's.
+   */
+  run({ unit }) {
+    const scheme = readingScheme(unitLanguage(unit));
+    if (!scheme?.kanaDeck || unit.meta?.chapterLabel === scheme.kanaDeck.label) {
+      return { findings: [], summary: "not a chapter of a collection with a kana deck" };
+    }
+    const findings = shipped(unit)
+      .filter((item) => !scheme.requiresReading(String(item.target ?? "")))
+      .filter((item) => !isSilentReadingCard(item, scheme))
+      .map((item) => ({
+        key: item.id,
+        message: `${item.id} "${item.target}" is a kana word in a chapter; it belongs in the kana deck (re-merge the chapter)`,
+      }));
+    return { findings, summary: "every chapter card has a kanji" };
+  },
+});
+
 export const readingSingleKanaCheck = readingCheck({
   id: "reading-single-kana",
   title: "single-kana cards",
@@ -329,6 +355,7 @@ export const READING_CHECKS = [
   readingLatinCheck,
   readingSingleCharacterCheck,
   readingSingleKanaCheck,
+  readingKanaInChapterCheck,
   readingLengthCheck,
   readingReadingCheck,
   readingKanjiSpellingCheck,

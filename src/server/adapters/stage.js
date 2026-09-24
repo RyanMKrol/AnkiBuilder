@@ -150,6 +150,9 @@ export function scanNumberedUnits(deckDir, prefix, { includeCards = true } = {})
     const runDir = join(deckDir, entry.name);
     const data = loadStageData(runDir);
     if (!data) continue;
+    // A written unit with no cards (a reading chapter with no kanji words) has nothing to review or
+    // play, so it is not listed. Its folder keeps the saved readings a re-run reuses.
+    if (data.sourceFile === "cards.json" && !(data.items ?? []).length) continue;
     const meta = data.meta || {};
     const number = typeof meta.chapterNumber === "number" ? meta.chapterNumber : Number(m[1]);
     units.push({

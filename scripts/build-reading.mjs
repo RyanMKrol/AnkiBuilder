@@ -366,6 +366,7 @@ if (bookPass) {
   }
 
   const { slug, collectionDir } = registerCollection();
+  const failed = [];
   for (const lesson of lessons) {
     const unitDir = resolveChapterRunDir(outputRoot, slug, epubHash, lesson.firstChapterNumber);
     const report = readJsonOrNull(join(unitDir, "reading-report.json"));
@@ -382,14 +383,35 @@ if (bookPass) {
       );
       continue;
     }
-    const code = await buildChapter(lesson, {
-      slug,
-      collectionDir,
-      unitDir,
-      remerge: stale,
-      quiet: true,
-    });
-    if (code !== 0) process.exit(code);
+    // One chapter's failure does not stop the pass: the others are still worth reading, and a re-run
+    // retries only what is missing. A usage limit does stop it, since every chapter after it would
+    // fail the same way.
+    try {
+      const code = await buildChapter(lesson, {
+        slug,
+        collectionDir,
+        unitDir,
+        remerge: stale,
+        quiet: true,
+      });
+      if (code !== 0) failed.push(`${lesson.label}: did not verify`);
+    } catch (error) {
+      if (error.quotaExhausted) {
+        console.error(`\n${error.message}`);
+        process.exit(1);
+      }
+      console.error(`\n${lesson.label} FAILED: ${error.message}`);
+      failed.push(`${lesson.label}: ${error.message.split("\n")[0]}`);
+    }
+  }
+  // The kana deck is chosen from EVERY chapter's words. A chapter that failed has no merged pool,
+  // and choosing without it would silently leave its words out, so the choice waits for a re-run.
+  if (failed.length) {
+    console.error(
+      `\n${failed.length} chapter(s) failed, so the kana deck was not chosen. Re-run the same ` +
+        `command: finished steps are reused.\n  - ${failed.join("\n  - ")}`,
+    );
+    process.exit(2);
   }
 
   const kanaDir = resolveChapterRunDir(outputRoot, slug, epubHash, KANA_CHAPTER_NUMBER);

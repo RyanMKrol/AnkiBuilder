@@ -69,6 +69,11 @@ costs only the running step, and re-running the same command picks up where it s
 already read is reused, and one merged before the kana deck existed is re-merged for free, unless a
 person reviewed it: the dry run names those, and each needs its review withdrawn first.
 
+The pass keeps the book in step with itself: it re-merges (free) any chapter merged under older merge
+rules (`READING_MERGE_VERSION` in `src/reading/readingPhase.js`, raised with every merge-rule change)
+or merged before an earlier chapter was, as happens when a failed chapter is retried after the ones
+after it. Re-run it after any such change, and after a retry, before reviewing anything.
+
 It prints each chapter's kanji cards and how many kana words it set aside, then the kana deck: how
 many words per script, any sound under 3, and the sounds the whole book has fewer than 3 words for.
 A chapter with no kanji (Genki's first lessons) is written with no cards, marked done, and does not

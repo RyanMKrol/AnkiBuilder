@@ -48,6 +48,15 @@ import {
 } from "./readingAgents.js";
 
 export const READING_REPORT_FILE = "reading-report.json";
+
+/**
+ * The version of the merge's rules, recorded in every reading-report.json. RAISE IT whenever a rule in
+ * `reconcileReading` (or the splitting and bracket handling before it) changes what a chapter cards:
+ * `build-reading.mjs --book-pass` re-merges, for free, every chapter merged under an older version
+ * that no person has reviewed. 1: before versions. 2: kana words to the kana deck, brackets resolved,
+ * tilde-free readings (2026-09-24).
+ */
+export const READING_MERGE_VERSION = 2;
 export const READING_COVERAGE_FILE = "candidates/coverage.json";
 export const READING_ROMAJI_FILE = "candidates/romanization.json";
 
@@ -148,18 +157,30 @@ function kindOf(item) {
 // A book prints two written forms of one word as one headword: Genki's なん／なに ("what"),
 // ゼロ／れい ("zero"). Each is its own written form and its own card. When the reading splits into
 // the same number of parts, each form keeps its own; otherwise a single reading is kept for all.
+// Only a separator OUTSIDE brackets splits: Genki's （雨／雪が）降る split inside its bracket came out
+// as "（雨" and "雪が）降る", two cards of broken brackets.
 const ALTERNATE_FORM_SEPARATOR = /[／/]/u;
 
+function splitOutsideBrackets(text) {
+  const parts = [];
+  let depth = 0;
+  let current = "";
+  for (const c of String(text ?? "")) {
+    if (c === "(" || c === "（") depth++;
+    else if (c === ")" || c === "）") depth = Math.max(0, depth - 1);
+    if (depth === 0 && ALTERNATE_FORM_SEPARATOR.test(c)) {
+      parts.push(current);
+      current = "";
+    } else current += c;
+  }
+  parts.push(current);
+  return parts.map((part) => part.trim()).filter(Boolean);
+}
+
 export function splitAlternateForms(item) {
-  const forms = String(item.target ?? "")
-    .split(ALTERNATE_FORM_SEPARATOR)
-    .map((form) => form.trim())
-    .filter(Boolean);
+  const forms = splitOutsideBrackets(item.target);
   if (forms.length < 2) return [item];
-  const readings = String(item.reading ?? "")
-    .split(ALTERNATE_FORM_SEPARATOR)
-    .map((reading) => reading.trim())
-    .filter(Boolean);
+  const readings = splitOutsideBrackets(item.reading);
   return forms.map((target, index) => ({
     ...item,
     target,
@@ -167,19 +188,43 @@ export function splitAlternateForms(item) {
   }));
 }
 
-// A book prints a word's optional ending in brackets: Genki's おやすみ(なさい), おかえり(なさい),
-// ごちそうさま(でした). The card is the full form, which the book also lists and which reads the
-// short form too. Carded as printed, the front showed the brackets (preflight's reading-front FAIL)
-// and sat beside a second card for おやすみなさい. Only kana outside the brackets: after kanji, a
-// bracketed kana is that word's READING (映画(えいが)), which is the reader's business, not this.
-const OPTIONAL_PART =
-  /^([\p{Script=Hiragana}\p{Script=Katakana}ー]+)[(（]([\p{Script=Hiragana}\p{Script=Katakana}ー]+)[)）]$/u;
+// What a book puts in brackets after a word, resolved into cards whose fronts carry no brackets
+// (preflight's reading-front FAIL). Found on Genki, in the order they are handled:
+//   - a placeholder for the word it attaches to: （〜に）アレルギーがあります, (〜を)たのしみにする.
+//     Dropped, from the reading too.
+//   - an alternative written form, which holds a kanji: 眼科（目医者）, read がんか（めいしゃ). Two cards.
+//   - an optional ending: おやすみ(なさい), 残念（ですね） read ざんねん（ですね）. The full form, which
+//     the book also teaches and which reads the short form too.
+//   - after kanji, bare kana with no bracketed reading beside it is the word's READING: 映画(えいが).
+const PLACEHOLDER_BRACKET = /[(（][^()（）]*[〜~～][^()（）]*[)）]/gu;
+const TRAILING_BRACKET = /^(.+?)[(（]([^()（）]+)[)）]$/u;
+const KANA_ONLY = /^[\p{Script=Hiragana}\p{Script=Katakana}ー]+$/u;
+const HAN_CHAR = /\p{Script=Han}/u;
 
-export function expandOptionalPart(item) {
-  const match = String(item.target ?? "")
-    .trim()
-    .match(OPTIONAL_PART);
-  return match ? { ...item, target: match[1] + match[2] } : item;
+export function resolveBrackets(item) {
+  const target = String(item.target ?? "")
+    .replace(PLACEHOLDER_BRACKET, "")
+    .trim();
+  const reading =
+    item.reading == null
+      ? item.reading
+      : String(item.reading).replace(PLACEHOLDER_BRACKET, "").trim();
+  const withReading = (t, r) => ({ ...item, target: t, reading: r || undefined });
+  const m = target.match(TRAILING_BRACKET);
+  if (!m) return [withReading(target, reading)];
+  const [, base, inner] = m.map((part) => part.trim());
+  const r = reading ? reading.match(TRAILING_BRACKET) : null;
+  if (HAN_CHAR.test(inner)) {
+    return [
+      withReading(base, r ? r[1].trim() : reading),
+      withReading(inner, r ? r[2].trim() : undefined),
+    ];
+  }
+  if (!KANA_ONLY.test(inner)) return [withReading(target, reading)];
+  if (!HAN_CHAR.test(base)) return [withReading(base + inner, r ? r[1] + r[2] : reading)];
+  if (r) return [withReading(base + inner, r[1].trim() + r[2].trim())];
+  if (!reading || reading === inner) return [withReading(base, inner)];
+  return [withReading(base + inner, reading + inner)];
 }
 
 /**
@@ -199,7 +244,7 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
   const dropped = [];
   const groups = new Map();
 
-  for (const item of sources.flat().flatMap(splitAlternateForms).map(expandOptionalPart)) {
+  for (const item of sources.flat().flatMap(splitAlternateForms).flatMap(resolveBrackets)) {
     const form = key(item.target);
     if (!form) continue;
     const chars = [...form];
@@ -307,7 +352,9 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
       ...new Set(
         (kind === "character" ? [] : wordMembers)
           .flatMap((m) => String(m.reading ?? "").split(/[／/・,，、]/u))
-          .map((reading) => reading.trim())
+          // A suffix's reading carries the book's placeholder tilde too (〜じかん for 〜時間); the
+          // written form already loses it in targetKey.
+          .map((reading) => reading.trim().replace(/^[〜~～]+|[〜~～]+$/gu, ""))
           .filter(Boolean),
       ),
     ];
@@ -363,7 +410,7 @@ export function findReadingGaps(enumerated, items, { dropped = [], targetLanguag
   // The adversary's items get the same splitting the merge gives the readers': なん／なに is two
   // cards, and おやすみ(なさい) is おやすみなさい. Compared whole, Genki's Lesson 1 reported なん／なに
   // as a gap although both cards were in the unit.
-  for (const item of enumerated.flatMap(splitAlternateForms).map(expandOptionalPart)) {
+  for (const item of enumerated.flatMap(splitAlternateForms).flatMap(resolveBrackets)) {
     const form = formOf(item.target);
     if (!form || listed.has(form)) continue;
     listed.add(form);
@@ -579,6 +626,7 @@ async function runReadingPhaseInner({
       readingConflicts: merged.readingConflicts,
       unreadSections: chapterResult.unread ?? [],
       kanaPool: merged.kanaPool,
+      mergeVersion: READING_MERGE_VERSION,
     }),
   });
 

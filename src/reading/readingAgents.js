@@ -205,20 +205,40 @@ export function readImagesForReading({
   runClaude,
 } = {}) {
   if (imagePaths.length === 0) return { items: [], images: [] };
-  const prompt = renderReadingImagePrompt({ imagePaths, targetLanguage, meta });
-  const parsed = parseReply(
-    runRole("readingImageReader", prompt, runClaude ? { runClaude } : {}),
-    "the reading image reader",
-  );
-  const judged = new Set((parsed.images ?? []).map((i) => i?.path));
-  const missing = imagePaths.filter((path) => !judged.has(path));
+  // Every image must be judged, but an image the reader skipped is asked about AGAIN, on its own,
+  // rather than discarding the whole response. On Genki's Lesson 2 the reader judged every image but
+  // one, and the refusal threw away the chapter's finished image reading along with it. Only an
+  // image still unjudged after the second ask stops the chapter.
+  const read = (paths) =>
+    parseReply(
+      runRole(
+        "readingImageReader",
+        renderReadingImagePrompt({ imagePaths: paths, targetLanguage, meta }),
+        runClaude ? { runClaude } : {},
+      ),
+      "the reading image reader",
+    );
+  const unjudged = (images, paths) => {
+    const judged = new Set(images.map((i) => i?.path));
+    return paths.filter((path) => !judged.has(path));
+  };
+  const parsed = read(imagePaths);
+  let images = parsed.images ?? [];
+  let items = takeItems(parsed, "readingImageReader");
+  let missing = unjudged(images, imagePaths);
+  if (missing.length) {
+    const again = read(missing);
+    images = [...images, ...(again.images ?? [])];
+    items = [...items, ...takeItems(again, "readingImageReader")];
+    missing = unjudged(images, imagePaths);
+  }
   if (missing.length) {
     throw new Error(
-      `the reading image reader gave no verdict for ${missing.length} image(s): ` +
-        `${missing.slice(0, 3).join(", ")}`,
+      `the reading image reader gave no verdict for ${missing.length} image(s), even when asked ` +
+        `again: ${missing.slice(0, 3).join(", ")}`,
     );
   }
-  return { items: takeItems(parsed, "readingImageReader"), images: parsed.images };
+  return { items, images };
 }
 
 // ---- the adversary ---------------------------------------------------------------------------

@@ -30,7 +30,7 @@
 // before the kana deck existed and not reviewed by a person is re-merged for free. With `--dry` it
 // prints what would be read and, once every chapter is read, the kana deck it would choose.
 
-import { existsSync, readFileSync, readdirSync, rmSync } from "fs";
+import { existsSync, readFileSync, readdirSync, rmSync, statSync } from "fs";
 import { join, resolve } from "path";
 import {
   hashEpubFile,
@@ -63,6 +63,7 @@ import {
   runReadingPhase,
   earlierReadingTargets,
   laterBuiltChapters,
+  READING_MERGE_VERSION,
 } from "../src/reading/readingPhase.js";
 import { readingScheme } from "../src/reading/readingSchemes.js";
 import { buildKanaUnit, collectKanaPool, KANA_CHAPTER_NUMBER } from "../src/reading/kanaDeck.js";
@@ -327,7 +328,8 @@ if (bookPass) {
       const dir = byNumber.get(lesson.firstChapterNumber);
       const todo = agentSteps.filter((st) => !dir || !existsSync(join(dir, st.artifact))).length;
       const merged =
-        dir && Array.isArray(readJsonOrNull(join(dir, "reading-report.json"))?.kanaPool);
+        dir &&
+        readJsonOrNull(join(dir, "reading-report.json"))?.mergeVersion === READING_MERGE_VERSION;
       const cards = dir && readJsonOrNull(join(dir, "cards.json"));
       const reviewed = cards?.meta?.reviewed === true && (cards.items ?? []).length > 0;
       const state = merged
@@ -367,19 +369,27 @@ if (bookPass) {
 
   const { slug, collectionDir } = registerCollection();
   const failed = [];
+  let latestEarlierMerge = 0;
   for (const lesson of lessons) {
     const unitDir = resolveChapterRunDir(outputRoot, slug, epubHash, lesson.firstChapterNumber);
     const report = readJsonOrNull(join(unitDir, "reading-report.json"));
     const cards = readJsonOrNull(join(unitDir, "cards.json"));
-    // Merged before the kana deck existed: re-merge it (free) so its kana words reach the pool. A
-    // chapter a person reviewed is left alone and named; preflight's reading-kana-in-chapter will
-    // name any kana word it still cards.
-    const stale = cards && !Array.isArray(report?.kanaPool);
+    // Re-merged (free: no reader is called) when it was merged under older merge rules, or before an
+    // EARLIER chapter was: the merge cards a word once, in the first chapter that teaches it, so a
+    // chapter merged before an earlier one does not know that chapter's words. Both happened on the
+    // first Genki pass: a retried Lesson 4 left 69 words carded twice in the chapters after it. A
+    // chapter a person reviewed is left alone and named; preflight names what it still gets wrong.
+    const corpusTime = existsSync(join(unitDir, "corpus.json"))
+      ? statSync(join(unitDir, "corpus.json")).mtimeMs
+      : 0;
+    const stale =
+      Boolean(cards) &&
+      (report?.mergeVersion !== READING_MERGE_VERSION || corpusTime < latestEarlierMerge);
     const humanReviewed = cards?.meta?.reviewed === true && (cards.items ?? []).length > 0;
     if (stale && humanReviewed) {
       console.log(
-        `\n${lesson.label}: reviewed before the kana deck existed, so it is not re-merged; ` +
-          `withdraw its review and re-run to move its kana words to the kana deck`,
+        `\n${lesson.label}: reviewed, but merged under older rules or before an earlier chapter, ` +
+          `so it is not re-merged; withdraw its review and re-run to bring it up to date`,
       );
       continue;
     }
@@ -395,6 +405,12 @@ if (bookPass) {
         quiet: true,
       });
       if (code !== 0) failed.push(`${lesson.label}: did not verify`);
+      if (existsSync(join(unitDir, "corpus.json"))) {
+        latestEarlierMerge = Math.max(
+          latestEarlierMerge,
+          statSync(join(unitDir, "corpus.json")).mtimeMs,
+        );
+      }
     } catch (error) {
       if (error.quotaExhausted) {
         console.error(`\n${error.message}`);

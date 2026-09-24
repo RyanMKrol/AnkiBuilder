@@ -743,3 +743,42 @@ test("a banner heading counts as reached when a heading under it was reported", 
     ["カタカナ Katakana", "A. Choose", "II Reading Practice", "III Writing Practice"],
   );
 });
+
+test("what a book puts in brackets after a word becomes cards with no brackets", () => {
+  // Every shape found on the Genki pass.
+  const { items, kanaPool } = reconcileReading(
+    [
+      [
+        {
+          target: "残念（ですね）",
+          reading: "ざんねん（ですね）",
+          english: "That's too bad",
+          producedBy: "t",
+        },
+        {
+          target: "眼科（目医者）",
+          reading: "がんか（めいしゃ）",
+          english: "Eye doctor",
+          producedBy: "t",
+        },
+        { target: "映画(えいが)", english: "Movie", producedBy: "t" },
+        { target: "（〜に）アレルギーがあります", english: "To be allergic", producedBy: "t" },
+        { target: "〜時間", reading: "〜じかん", english: "Hours", producedBy: "t" },
+        { target: "（雨／雪が）降る", english: "Rain/snow falls", producedBy: "t" },
+      ],
+    ],
+    { targetLanguage: "ja" },
+  );
+  const read = Object.fromEntries(items.map((i) => [i.target, i.ttsText ?? null]));
+  assert.equal(read["残念ですね"], "ざんねんですね");
+  assert.equal(read["眼科"], "がんか");
+  assert.equal(read["目医者"], "めいしゃ");
+  assert.equal(read["映画"], "えいが");
+  assert.equal(read["時間"], "じかん");
+  // Split only outside brackets: the rain/snow form stays whole, for a person to edit.
+  assert.ok("（雨／雪が）降る" in read);
+  assert.deepEqual(
+    kanaPool.map((i) => i.target),
+    ["アレルギーがあります"],
+  );
+});

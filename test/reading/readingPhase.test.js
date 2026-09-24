@@ -21,6 +21,7 @@ import {
   assertTablesJudged,
   sectionsUnaccounted,
   sectionsToAccountFor,
+  containersNotReached,
 } from "../../src/reading/readingAgents.js";
 import { lessonReadiness } from "../../src/cards/readiness.js";
 import { validateCards } from "../../src/model/index.js";
@@ -719,5 +720,26 @@ test("a heading counts as read when the reader writes its quotes and dashes plai
   assert.deepEqual(
     sectionsUnaccounted([{ title: "B. Ask with だれが." }], [{ title: "B. Ask with だれが。" }]),
     [],
+  );
+});
+
+test("a banner heading counts as reached when a heading under it was reported", () => {
+  // Genki's Katakana lesson: 第 2 課 LESSON 2 and I Katakana Practice hold only sub-headings.
+  const sections = [
+    { level: 2, title: "第 2 課 LESSON 2" },
+    { level: 3, title: "カタカナ Katakana" },
+    { level: 2, title: "I Katakana Practice" },
+    { level: 4, title: "A. Choose" },
+    { level: 2, title: "II Reading Practice" },
+    { level: 2, title: "III Writing Practice" },
+  ];
+  const reported = [
+    { title: "カタカナ Katakana" },
+    { title: "A. Choose" },
+    { title: "II Reading Practice" },
+  ];
+  assert.deepEqual(
+    containersNotReached(sections, reported).map((s) => s.title),
+    ["カタカナ Katakana", "A. Choose", "II Reading Practice", "III Writing Practice"],
   );
 });

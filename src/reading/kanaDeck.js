@@ -9,7 +9,7 @@
 // same review, audio and done gates, and the same romaji cache and retry rules as a chapter.
 
 import { existsSync, mkdirSync, readFileSync, readdirSync } from "fs";
-import { dirname, join } from "path";
+import { dirname, join, resolve } from "path";
 import { writeFileAtomic } from "../util/atomicWrite.js";
 import { validateCorpus, validateCards } from "../model/index.js";
 import { writeSnapshot, hasSnapshot } from "../agents/snapshot.js";
@@ -36,18 +36,27 @@ function writeJson(path, body) {
 
 /**
  * Every chapter's kana words, in book order, as `{ target, english, category, position,
- * chapterLabel }`. `missing` names the chapters whose last merge predates the kana deck (a report
- * with no `kanaPool`), which must be re-merged first or their words would be absent from the choice.
+ * chapterLabel }`. `missing` names the chapters whose words are not in it: merged before the kana
+ * deck existed (a report with no `kanaPool`) or never merged at all (no corpus.json). Either must be
+ * built first, or its words would be silently absent from the choice. `exclude` is the kana unit's
+ * own folder.
  */
-export function collectKanaPool(collectionDir) {
+export function collectKanaPool(collectionDir, { exclude = null } = {}) {
   const pool = [];
   const missing = [];
   if (!existsSync(collectionDir)) return { pool, missing };
   for (const name of readdirSync(collectionDir)) {
     if (!/^chapter-\d+$/.test(name)) continue;
     const dir = join(collectionDir, name);
+    if (exclude && resolve(dir) === resolve(exclude)) continue;
     const meta = readJson(join(dir, "corpus.json"))?.meta;
-    if (typeof meta?.chapterNumber !== "number" || meta.chapterNumber === KANA_CHAPTER_NUMBER) {
+    // A folder with no corpus.json is a chapter whose build stopped before the merge: its kana words
+    // are nowhere yet, so it is named rather than skipped.
+    if (!meta) {
+      missing.push(name);
+      continue;
+    }
+    if (typeof meta.chapterNumber !== "number" || meta.chapterNumber === KANA_CHAPTER_NUMBER) {
       continue;
     }
     const report = readJson(join(dir, READING_REPORT_FILE));
@@ -89,7 +98,8 @@ export async function buildKanaUnit({
         `in the dashboard first.`,
     );
   }
-  const { pool, missing } = collectKanaPool(collectionDir);
+  // The kana unit's own folder is excluded: on the first build it is reserved but has no corpus.json.
+  const { pool, missing } = collectKanaPool(collectionDir, { exclude: unitDir });
   if (missing.length) {
     throw new Error(
       `these chapters were merged before the kana deck existed, so their kana words are not in the ` +

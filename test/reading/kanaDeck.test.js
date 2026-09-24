@@ -116,3 +116,15 @@ test("a chapter merged before the kana deck, or a reviewed kana unit, stops the 
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("a chapter folder that never merged is named, but the kana unit's own folder is not", () => {
+  const dir = collection([[1, [kana("すし")]]]);
+  try {
+    mkdirSync(join(dir, "chapter-5"), { recursive: true });
+    mkdirSync(join(dir, "chapter-6"), { recursive: true });
+    const { missing } = collectKanaPool(dir, { exclude: join(dir, "chapter-6") });
+    assert.deepEqual(missing, ["chapter-5"]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

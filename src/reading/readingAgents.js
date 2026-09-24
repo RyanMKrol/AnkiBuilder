@@ -157,6 +157,26 @@ export function sectionsToAccountFor(sections) {
   return wrapsChapter ? rest : sections;
 }
 
+/**
+ * Drops a heading the reader did not name when it DID name a heading nested under it (deeper level,
+ * before the next heading at the same level or above). Reporting the child shows the reader reached
+ * that part of the chapter. Genki's Katakana lesson has banner headings with nothing under them but
+ * sub-headings ("第 2 課 LESSON 2", "I Katakana Practice"); the reader reported every sub-heading,
+ * left the banners out, and the whole reading was refused. A word a reader misses is still caught by
+ * the coverage adversary, which is what that check is for.
+ */
+export function containersNotReached(sections, reported) {
+  const named = new Set((reported ?? []).map((s) => sectionTitleKey(s?.title)));
+  const reachedBelow = (i) => {
+    for (let j = i + 1; j < sections.length; j++) {
+      if (!(sections[j].level > sections[i].level)) return false;
+      if (named.has(sectionTitleKey(sections[j].title))) return true;
+    }
+    return false;
+  };
+  return sections.filter((s, i) => named.has(sectionTitleKey(s.title)) || !reachedBelow(i));
+}
+
 export function readChapterForReading({
   chapterFilePath,
   sections = [],
@@ -174,7 +194,10 @@ export function readChapterForReading({
     runRole("readingChapterReader", prompt, runClaude ? { runClaude } : {}),
     "the reading chapter reader",
   );
-  const missing = sectionsUnaccounted(sectionsToAccountFor(sections), parsed.sections);
+  const missing = sectionsUnaccounted(
+    containersNotReached(sectionsToAccountFor(sections), parsed.sections),
+    parsed.sections,
+  );
   if (missing.length) {
     throw new Error(
       `the reading chapter reader did not account for section(s): ${missing.join(", ")}. A section ` +

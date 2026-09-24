@@ -148,7 +148,9 @@ if (!existsSync(chapterFilePath)) {
 const unitDir = resolveChapterRunDir(outputRoot, slug, epubHash, first);
 if (remerge && existsSync(join(unitDir, "cards.json"))) {
   const cards = JSON.parse(readFileSync(join(unitDir, "cards.json"), "utf-8"));
-  if (cards.meta?.reviewed === true) {
+  // A unit with no cards was marked reviewed by the phase itself (a chapter with no kanji): there is
+  // no human review to lose, so it re-merges like an unreviewed one.
+  if (cards.meta?.reviewed === true && (cards.items ?? []).length > 0) {
     console.error(
       `${unitDir} is reviewed. Re-merging it would discard the review; withdraw the review in the ` +
         `dashboard first if the merge really has to change.`,

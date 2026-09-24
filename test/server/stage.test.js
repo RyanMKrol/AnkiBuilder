@@ -159,3 +159,22 @@ test("scanNumberedUnits keys an extras unit distinctly and sorts it after its ba
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("scanNumberedUnits does not list a written unit with no cards", async () => {
+  const { scanNumberedUnits } = await import("../../src/server/adapters/stage.js");
+  const { mkdirSync } = await import("fs");
+  const dir = mkdtempSync(join(tmpdir(), "scan-empty-"));
+  try {
+    mkdirSync(join(dir, "chapter-0"), { recursive: true });
+    writeFileSync(
+      join(dir, "chapter-0", "cards.json"),
+      JSON.stringify({
+        meta: { targetLanguage: "ja", chapterNumber: 1, reviewed: true, done: true },
+        items: [],
+      }),
+    );
+    assert.deepEqual(scanNumberedUnits(dir, "chapter"), []);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

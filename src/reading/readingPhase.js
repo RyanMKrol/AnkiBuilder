@@ -188,8 +188,9 @@ export function expandOptionalPart(item) {
  * `earlier` is what this collection already carded in earlier chapters, as `{ target, chapterLabel }`:
  * a written form is carded once per collection, where it is first taught.
  *
- * Returns `{ items, provenance, dropped, readingConflicts }`. `dropped` lists every item left out
- * and why, so a review can see it; nothing is discarded silently.
+ * Returns `{ items, provenance, dropped, readingConflicts, kanaPool }`. `dropped` lists every item
+ * left out and why, so a review can see it; nothing is discarded silently. `kanaPool` is this
+ * chapter's kana words, for the kana deck, in the order the readers found them.
  */
 export function reconcileReading(sources, { targetLanguage, earlier = [] } = {}) {
   const scheme = readingScheme(targetLanguage);
@@ -243,6 +244,7 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
   const items = [];
   const provenance = {};
   const readingConflicts = [];
+  const kanaPool = [];
   for (const [form, members] of groups) {
     const spelledAs = kanaOfKanji.get(form);
     if (spelledAs && !scheme.requiresReading(form)) {
@@ -258,6 +260,32 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
         target: form,
         producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
         reason: `already carded in ${earlierByKey.get(form) ?? "an earlier chapter"} of this collection`,
+      });
+      continue;
+    }
+    // A kana word goes to the collection's kana deck, not to this chapter, when the language has one
+    // (src/reading/kanaUnits.js; owner decisions, 2026-09-24): a chapter cards kanji only. It is still
+    // reported, as dropped with its reason and in `kanaPool`, which is what the kana deck is chosen
+    // from, so nothing a reader found is lost.
+    if (
+      scheme?.kanaDeck &&
+      !scheme.requiresReading(form) &&
+      !members.every((m) => m.kind === "character")
+    ) {
+      const first = members[0];
+      kanaPool.push({
+        target: form,
+        english: joinGlosses(
+          members
+            .filter((m) => m.producedBy === first.producedBy)
+            .flatMap((m) => splitGloss(m.english)),
+        ),
+        category: members.map((m) => m.category).find((c) => CATEGORIES.includes(c)) ?? "Other",
+      });
+      dropped.push({
+        target: form,
+        producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
+        reason: "a kana word: carded in the collection's kana deck, not in a chapter",
       });
       continue;
     }
@@ -317,7 +345,7 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
     });
     provenance[id] = [...new Set(members.map((m) => m.producedBy))];
   }
-  return { items, provenance, dropped, readingConflicts };
+  return { items, provenance, dropped, readingConflicts, kanaPool };
 }
 
 /**
@@ -549,6 +577,7 @@ async function runReadingPhaseInner({
       dropped: merged.dropped,
       readingConflicts: merged.readingConflicts,
       unreadSections: chapterResult.unread ?? [],
+      kanaPool: merged.kanaPool,
     }),
   });
 
@@ -622,10 +651,15 @@ async function runReadingPhaseInner({
   run.steps[run.steps.length - 1].artifact = READING_COVERAGE_FILE;
 
   // --- the unit: corpus.json (identity) and cards.json (what the review and the deck read) ----
+  // A chapter with no kanji (Genki's first lessons) has nothing to card once its kana words have
+  // gone to the kana deck. It is still written, because its corpus.json is how a re-run finds this
+  // folder and its saved readings again, but with no cards it has nothing to review: it is marked
+  // reviewed and done here, and the package, the delivery and the dashboard skip a unit with no cards.
+  const nothingToCard = merged.items.length === 0;
   const unitMeta = {
     targetLanguage,
     sourceType: "epub",
-    reviewed: false,
+    reviewed: nothingToCard,
     ...unit,
     phase: "reading",
   };
@@ -652,7 +686,8 @@ async function runReadingPhaseInner({
   // clipSourceText), so no field is new and no speaking deck changes.
   const conflicted = new Set(merged.readingConflicts.map((c) => c.target));
   const cards = {
-    meta: { ...unitMeta, kanjiTts: true },
+    // `done` is a cards.json field only (the corpus schema has no such field).
+    meta: { ...unitMeta, kanjiTts: true, ...(nothingToCard ? { done: true } : {}) },
     items: merged.items.map((item) => ({
       ...item,
       pronunciation: item.pronunciation ?? "",

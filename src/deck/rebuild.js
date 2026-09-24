@@ -70,6 +70,9 @@ export function selectDoneChapterDecks(bookDir) {
       continue;
     }
     if (cards.meta?.done !== true) continue;
+    // A unit with no cards at all makes no deck: a reading chapter with no kanji words once its kana
+    // words went to the kana deck. Delivery lists units through here too, so it creates none either.
+    if (!(cards.items ?? []).length) continue;
     epubHash = epubHash || cards.meta?.epubHash;
     const audioDir = join(dir, "audio");
     chapterDecks.push({

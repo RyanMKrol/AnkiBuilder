@@ -32,6 +32,10 @@ Leave out what the rules leave out (sentences, drills, proper names, a kana taug
 
 Reply with ONE JSON object and nothing after it:
 
+Your LAST message is the only one that is read, so it must be the whole, final JSON object. If you
+find a mistake after writing it (an item you missed), write the complete object again with the fix
+in it; never send a correction on its own ("add this item"), because everything before it is lost.
+
 ```json
 {
   "items": [{ "target": "映画", "kind": "word", "english": "Movie" }],

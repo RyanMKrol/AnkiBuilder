@@ -705,3 +705,14 @@ test("an image the image reader skipped is asked about again, not the whole chap
     /even when asked again/,
   );
 });
+
+test("a heading counts as read when the reader writes its quotes and dashes plainly", () => {
+  // Genki's Lesson 4: the book prints Takeshi’s, the reader wrote Takeshi's.
+  assert.deepEqual(
+    sectionsUnaccounted(
+      [{ title: "C. Look at Takeshi’s schedule" }, { title: "D. Pair Work—Write it" }],
+      [{ title: "C. Look at Takeshi's schedule" }, { title: "D. Pair Work-Write it" }],
+    ),
+    [],
+  );
+});

@@ -190,16 +190,22 @@ export function chapterOutline(html, { markers = [] } = {}) {
 }
 
 /**
- * The key two readings of one heading are compared on: NFKC, no whitespace, lower case.
+ * The key two readings of one heading are compared on: NFKC, no whitespace, lower case, and one
+ * form of each quote and dash.
  *
  * A heading with furigana parses as "単 語 Vocabulary" (the ruby markup leaves a space where each
  * reading was), and a model that read the same heading reports "単語 Vocabulary". Compared as raw
  * strings, every such heading looked unaccounted for, and on a converted Genki chapter that refused a
  * finished response. Spacing and character width are not what "did you read this section" is about.
+ * Nor is typography: the book prints "Takeshi’s" and a model writes "Takeshi's", and on Genki's
+ * Lesson 4 that alone refused a finished chapter reading.
  */
 export function sectionTitleKey(title) {
   return String(title ?? "")
     .normalize("NFKC")
+    .replace(/[‘’‚‛′`]/g, "'")
+    .replace(/[“”„‟″]/g, '"')
+    .replace(/[‐‑‒–—―−]/g, "-")
     .replace(/\s+/g, "")
     .toLowerCase();
 }

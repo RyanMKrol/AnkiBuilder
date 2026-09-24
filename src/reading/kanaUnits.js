@@ -65,9 +65,16 @@ export function kanaScript(text) {
 export function selectKanaDeck(pool, { budgets, minPerUnit }) {
   const words = [];
   const seen = new Set();
+  const unselected = [];
   for (const entry of [...pool].sort((a, b) => a.position - b.position)) {
     if (seen.has(entry.target)) continue;
     seen.add(entry.target);
+    // A digit is not kana to read, and the voice and the romaji cannot say it reliably: Genki's
+    // classroom phrase 10ページをみてください held the whole kana deck at the readiness gate.
+    if (/\p{Nd}/u.test(entry.target)) {
+      unselected.push({ target: entry.target, reason: "it contains a digit, which is not kana" });
+      continue;
+    }
     const units = [...new Set(kanaUnits(entry.target))];
     if (units.length) words.push({ entry, units, script: kanaScript(entry.target) });
   }
@@ -105,7 +112,6 @@ export function selectKanaDeck(pool, { budgets, minPerUnit }) {
     take(best);
   }
 
-  const unselected = [];
   for (const w of words) {
     if (chosen.has(w)) continue;
     if (used[w.script] < (budgets[w.script] ?? 0)) take(w);

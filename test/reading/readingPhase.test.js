@@ -16,6 +16,7 @@ import {
   renderReadingTablePrompt,
   renderReadingChapterPrompt,
   renderReadingImagePrompt,
+  readImagesForReading,
   renderReadingCoveragePrompt,
   assertTablesJudged,
   sectionsUnaccounted,
@@ -661,4 +662,46 @@ test("a chapter with no kanji is written with no cards, and needs no review", as
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test("an image the image reader skipped is asked about again, not the whole chapter thrown away", () => {
+  // Genki's Lesson 2: every image judged but one, and the refusal discarded the whole reading.
+  const prompts = [];
+  const replies = [
+    { images: [{ path: "/a.jpg", verdict: "decorative" }], items: [] },
+    {
+      images: [{ path: "/b.jpg", verdict: "vocabulary" }],
+      items: [{ target: "ぎんこう", english: "Bank", kind: "word" }],
+    },
+  ];
+  const result = readImagesForReading({
+    imagePaths: ["/a.jpg", "/b.jpg"],
+    targetLanguage: "ja",
+    runClaude: (prompt) => {
+      prompts.push(prompt);
+      return JSON.stringify(replies[prompts.length - 1]);
+    },
+  });
+  assert.equal(prompts.length, 2);
+  assert.match(prompts[1], /\/b\.jpg/);
+  assert.doesNotMatch(prompts[1], /\/a\.jpg/);
+  assert.deepEqual(
+    result.images.map((i) => i.path),
+    ["/a.jpg", "/b.jpg"],
+  );
+  assert.deepEqual(
+    result.items.map((i) => i.target),
+    ["ぎんこう"],
+  );
+
+  // Still unjudged after the second ask: the chapter stops.
+  assert.throws(
+    () =>
+      readImagesForReading({
+        imagePaths: ["/a.jpg", "/b.jpg"],
+        targetLanguage: "ja",
+        runClaude: () => JSON.stringify(replies[0]),
+      }),
+    /even when asked again/,
+  );
 });

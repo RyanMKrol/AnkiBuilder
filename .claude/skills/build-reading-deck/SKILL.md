@@ -21,6 +21,9 @@ for a single kanji word or a word the book prints with two readings, which are s
 (the review marks those "voice reads the kana"). What earns a card is in
 `docs/card-rules-reading.md`; the Japanese behaviour is `src/reading/readingSchemes.js`.
 
+**Japanese kana words are carded once per book, not per chapter**: in one kana deck chosen in a
+single pass (step 1), so the chapters card kanji only.
+
 **What is left out on purpose**: sentences, grammar, drills, kana taught as letters (the owner studies
 kana in a separate deck; a single kana the book teaches as a word, like に "Two", IS a card), proper
 names, and the whole extras phase. There are two gates per chapter, content
@@ -47,7 +50,34 @@ TOOL="node scripts/build-reading.mjs --output-root output"
 $TOOL --epub <book.epub> --list-lessons      # or --book <slug> for a book already in output/
 ```
 
-## 1. Build a chapter
+## 1. Japanese: the whole book first, in one pass
+
+For a language whose reading scheme has a kana deck (Japanese), build the whole book at once before
+reviewing anything. Kana-only words are carded ONCE per collection, in `Chapter 00: Kana`, chosen
+from every chapter: first so each kana sound (with にゃ-type and ティ-type combinations, small っ and
+ー as sounds of their own) is in at least 3 words, then up to 150 hiragana and 150 katakana words in
+book order. Chapters card kanji only. Why and the details: `docs/designs/reading-decks/09-kana-deck.md`.
+
+```sh
+$TOOL --epub <book.epub> --book-pass --lang ja --dry     # what would be read, and the paid calls
+$TOOL --epub <book.epub> --book-pass --lang ja --deck-name "Genki I (Reading)"
+```
+
+**Say the cost first**: five Sonnet calls per chapter not yet read (the dry run counts them; about
+115 for Genki's 23 unread chapters, two hours or so). Run it in the background; a usage-limit stop
+costs only the running step, and re-running the same command picks up where it stopped. A chapter
+already read is reused, and one merged before the kana deck existed is re-merged for free, unless a
+person reviewed it: the dry run names those, and each needs its review withdrawn first.
+
+It prints each chapter's kanji cards and how many kana words it set aside, then the kana deck: how
+many words per script, any sound under 3, and the sounds the whole book has fewer than 3 words for.
+A chapter with no kanji (Genki's first lessons) is written with no cards, marked done, and does not
+appear in the dashboard or in Anki. Review the kana deck first, then the chapters with kanji one at a
+time; gates 1 and 2 below are the same for both.
+
+## 1b. Build one chapter
+
+For a language with no kana deck, or to rebuild one chapter of a Japanese book after the pass.
 
 Say the cost first: **five model calls per chapter** (three readers, the romaji correction and the
 coverage adversary, all Sonnet), whatever the chapter's size. `--dry` shows the steps and spends

@@ -1787,6 +1787,15 @@ the next run tries again. `--dry` spends nothing, and `--remerge` re-runs the me
 chapter from its saved agent output, which is what to do after a merge rule changes. It calls no
 reader; the one call it can make is the romaji correction, for cards with no cached romaji.
 
+For a language whose reading scheme has a kana deck (Japanese), the merge also takes a chapter's
+kana-only words out of the chapter and keeps them in `reading-report.json` as `kanaPool`
+(docs/designs/reading-decks/09). `build-reading.mjs --book-pass` builds every chapter in book order
+(re-merging, for free, any merged before this rule), then the kana unit (`src/reading/kanaDeck.js`):
+`chapter-N/` with `meta.chapterNumber` 0 and the label `Chapter 00: Kana`, chosen from every pool by
+`selectKanaDeck` (`src/reading/kanaUnits.js`: sound-unit coverage first, then a budget per script).
+A chapter left with no cards is written marked reviewed and done, so a re-run finds its folder, and
+`selectDoneChapterDecks` and the dashboard's `scanNumberedUnits` skip a unit with no cards.
+
 A reading collection's Anki layout is flat, one deck per chapter directly under the parent
 (`unitDeckSegments(label, { deckKind: "reading" })`, shared by the package and delivery), and its
 parent deck is the owner's `deckName` when the marker has one (`setCollectionDeckName`, refused once

@@ -648,7 +648,9 @@ What is built, newest last:
   reading extraction is built (`scripts/build-reading.mjs`: three reading agents, a merge that
   enforces the rules, a coverage adversary), and so are its preflight checks
   (`src/audit/checks/reading.js`; a reading collection skips the speaking-only checks and says
-  which). The operator procedure is the `build-reading-deck` skill.
+  which). A Japanese reading collection cards its kana words once, in one kana deck chosen from the
+  whole book (`--book-pass`; sound coverage first, then 150 hiragana and 150 katakana words), and its
+  chapters card kanji only. The operator procedure is the `build-reading-deck` skill.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

@@ -613,3 +613,16 @@ per-source boolean should become an explicit per-source table.
   `strip-restatement-notes.mjs`, `split-front-hint.mjs`, `jumble-number-runs.mjs`.
 - **What would reopen it:** `scripts/` growing large enough that the two kinds are hard to tell
   apart by eye, at which point the folder split becomes worth its cost.
+
+## A Japanese reading collection cards its kana words once, in one kana deck
+
+- **What was decided (owner, 2026-09-24):** kana-only words are chosen once for the whole book, into
+  `Chapter 00: Kana`: first so every kana sound (combinations like にゃ and ティ, small っ and ー
+  counted as their own sounds) is in at least 3 words, then up to 150 hiragana-only and 150 katakana
+  words in book order. Chapters card kanji only; kanji is never limited. Phrases count like words.
+- **Why:** reading kana is a finite skill, and Genki's first three chapters were already 181 kana
+  cards. Vocabulary and phrases are the speaking deck's job; this deck only trains reading.
+- **Where it lives:** `docs/designs/reading-decks/09-kana-deck.md`; the settings are `kanaDeck` on the
+  Japanese reading scheme (`src/reading/readingSchemes.js`).
+- **What would reopen it:** the owner finding the kana deck too thin or too long in practice, which
+  is a change to the two budgets or the minimum, not to the design.

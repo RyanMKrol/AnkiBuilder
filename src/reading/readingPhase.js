@@ -255,18 +255,11 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
       });
       continue;
     }
-    if (earlierByKey.has(form)) {
-      dropped.push({
-        target: form,
-        producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
-        reason: `already carded in ${earlierByKey.get(form) ?? "an earlier chapter"} of this collection`,
-      });
-      continue;
-    }
     // A kana word goes to the collection's kana deck, not to this chapter, when the language has one
     // (src/reading/kanaUnits.js; owner decisions, 2026-09-24): a chapter cards kanji only. It is still
     // reported, as dropped with its reason and in `kanaPool`, which is what the kana deck is chosen
-    // from, so nothing a reader found is lost.
+    // from, so nothing a reader found is lost. Before the earlier-chapter check, so a chapter's pool is
+    // always whole, even when the kana deck already cards a word.
     if (
       scheme?.kanaDeck &&
       !scheme.requiresReading(form) &&
@@ -286,6 +279,14 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
         target: form,
         producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
         reason: "a kana word: carded in the collection's kana deck, not in a chapter",
+      });
+      continue;
+    }
+    if (earlierByKey.has(form)) {
+      dropped.push({
+        target: form,
+        producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
+        reason: `already carded in ${earlierByKey.get(form) ?? "an earlier chapter"} of this collection`,
       });
       continue;
     }

@@ -16,6 +16,10 @@ shows the item exactly as the book writes it and nothing else; its back shows th
 the audio. There is no English-to-target card. Grammar, sentences and drills belong to a separate
 speaking-and-listening deck and never come into this one.
 
+**List kana words as usual.** For a language with a kana deck (Japanese), the code, not you, moves a
+chapter's kana-only words into the collection's one kana deck; a word you leave out cannot be chosen
+for it.
+
 ## What earns a card
 
 1. **Card what this chapter teaches you to read: all of it, and nothing it has not reached.** A

@@ -59,3 +59,32 @@ test("a written unit is reordered in place, edits kept; a done unit is left alon
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("a unit edited after its merge is known as edited; reordering alone is not an edit", async () => {
+  const { editedSinceMerge } = await import("../../src/reading/studyOrder.js");
+  const { utimesSync } = await import("fs");
+  const dir = mkdtempSync(join(tmpdir(), "study-edited-"));
+  try {
+    const unit = join(dir, "chapter-1");
+    mkdirSync(unit, { recursive: true });
+    const write = (items) =>
+      writeFileSync(join(unit, "cards.json"), JSON.stringify({ meta: {}, items }));
+    write(cardsOf(days));
+    writeFileSync(join(unit, "reading-report.json"), "{}");
+    const merged = new Date(Date.now() - 60_000);
+    utimesSync(join(unit, "reading-report.json"), merged, merged);
+    utimesSync(join(unit, "cards.json"), merged, merged);
+    assert.equal(editedSinceMerge(unit), false);
+
+    // Reordering in place does not make it "edited".
+    assert.equal(applyStudyOrder(unit), true);
+    assert.equal(editedSinceMerge(unit), false);
+
+    // A reviewer's later write does.
+    const later = new Date(Date.now() + 60_000);
+    utimesSync(join(unit, "cards.json"), later, later);
+    assert.equal(editedSinceMerge(unit), true);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

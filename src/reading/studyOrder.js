@@ -7,7 +7,7 @@
 // card added or removed moves no other. `sourceOrder` is renumbered to the new order; the dashboard,
 // the package's new-card order and delivery all follow it.
 
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync, statSync, utimesSync } from "fs";
 import { join } from "path";
 import { createHash } from "crypto";
 import { writeFileAtomic } from "../util/atomicWrite.js";
@@ -22,6 +22,19 @@ export function readingStudyOrder(items) {
     .map((item) => ({ item, key: orderKey(item) }))
     .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
     .map(({ item }, index) => ({ ...item, sourceOrder: index }));
+}
+
+// The merge writes reading-report.json and cards.json together, so a cards.json much newer than the
+// report was changed after the merge: by a reviewer on the dashboard, or by hand.
+const REPORT = "reading-report.json";
+const EDIT_SLACK_MS = 5000;
+
+/** Whether a unit's cards were changed after its last merge (see REPORT above). */
+export function editedSinceMerge(unitDir) {
+  const cards = join(unitDir, "cards.json");
+  const report = join(unitDir, REPORT);
+  if (!existsSync(cards) || !existsSync(report)) return false;
+  return statSync(cards).mtimeMs > statSync(report).mtimeMs + EDIT_SLACK_MS;
 }
 
 /**
@@ -39,6 +52,9 @@ export function applyStudyOrder(unitDir) {
   const rank = new Map(ordered.map((item) => [item.id, item.sourceOrder]));
   const same = cards.items.every((item, i) => rank.get(item.id) === i && item.sourceOrder === i);
   if (same) return false;
+  // Reordering is not an edit: a unit nobody had edited stays "not edited" (its report is touched
+  // with it), so a later rule change can still re-merge it. An edited one stays edited.
+  const wasEdited = editedSinceMerge(unitDir);
   writeFileAtomic(cardsPath, `${JSON.stringify({ ...cards, items: ordered }, null, 2)}\n`);
   const corpusPath = join(unitDir, "corpus.json");
   if (existsSync(corpusPath)) {
@@ -47,6 +63,11 @@ export function applyStudyOrder(unitDir) {
       .sort((a, b) => (rank.get(a.id) ?? Infinity) - (rank.get(b.id) ?? Infinity))
       .map((item) => (rank.has(item.id) ? { ...item, sourceOrder: rank.get(item.id) } : item));
     writeFileAtomic(corpusPath, `${JSON.stringify({ ...corpus, items }, null, 2)}\n`);
+  }
+  const reportPath = join(unitDir, REPORT);
+  if (!wasEdited && existsSync(reportPath)) {
+    const now = new Date();
+    utimesSync(reportPath, now, now);
   }
   return true;
 }

@@ -75,9 +75,11 @@ already read is reused, and one merged before the kana deck existed is re-merged
 person reviewed it: the dry run names those, and each needs its review withdrawn first.
 
 The pass keeps the book in step with itself: it re-merges (free) any chapter merged under older merge
-rules (`READING_MERGE_VERSION` in `src/reading/readingPhase.js`, raised with every merge-rule change)
-or merged before an earlier chapter was, as happens when a failed chapter is retried after the ones
-after it. Re-run it after any such change, and after a retry, before reviewing anything.
+rules (`READING_MERGE_VERSION` in `src/reading/readingPhase.js`, raised with every merge-rule change),
+and every chapter after one it merged or re-merged in the same run, as happens when a failed chapter is
+retried after the ones that follow it. It NEVER re-merges a chapter a person has reviewed or edited
+since its merge (a re-merge rebuilds the cards from the saved readings and would discard that work);
+it names those instead. Re-run it after a merge-rule change or a retry, before reviewing anything.
 
 It prints each chapter's kanji cards and how many kana words it set aside, then the kana deck: how
 many words per script, any sound under 3, and the sounds the whole book has fewer than 3 words for.

@@ -14,8 +14,9 @@ This file is normative for the procedure.
 **What a card is.** The front is the written form exactly as the book prints it (`映画`), nothing
 else, and silent. The back is the written form, the English, the romaji and the audio, so you can
 check you read it right as well as understood it. No kana reading and no note. For Japanese, a
-kanji the book teaches as a character gets its own card with its meaning and **no romaji or audio** (a kanji
-alone has no one pronunciation), and every word containing kanji carries its kana reading, copied
+kanji the book teaches as a character gets its own card with its meaning, **no audio** (a kanji alone
+has no one pronunciation), and on the romaji line every reading the book's kanji table lists for it
+(`bun / ki` for 聞); every word containing kanji carries its kana reading, copied
 from the book, which makes the romaji and is never shown. The voice is given the written form, except
 for a single kanji word or a word the book prints with two readings, which are spoken from the kana
 (the review marks those "voice reads the kana"). What earns a card is in

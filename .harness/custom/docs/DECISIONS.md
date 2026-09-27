@@ -637,3 +637,13 @@ per-source boolean should become an explicit per-source table.
   the same on every rebuild and a card added or removed moves no other.
 - **What would reopen it:** a deck kind where order carries meaning (a grammar sequence). The
   speaking decks keep their own pedagogical sort and are not affected.
+
+## A kanji card is silent, and shows every reading the book lists
+
+- **What was decided (owner, 2026-09-27):** a single-kanji reading card has no audio, because a kanji
+  has no one authoritative reading (聞 is き in 聞く, ぶん in 新聞) and any single clip would be wrong
+  most of the time. Its romaji line shows every reading the book's kanji table lists instead
+  (`bun / ki`). The words that use the kanji carry the audio for each reading in context.
+- **Why:** the first version showed the meaning alone, which told the learner nothing about how the
+  kanji sounds; silence without the readings was the gap, not the silence.
+- **Where it lives:** the `characterReadings` hook on the Japanese reading scheme.

@@ -97,3 +97,18 @@ tools, so a word the TTS voice still says oddly is caught by ear.
 - A fixture chapter with a kanji table produces character cards with no audio and word cards with a
   reading, and the audio stage asks TTS for the word cards only (the TTS client is a fake, as every
   test's is).
+
+## Hooks added since (2026-09-24 to 2026-09-27)
+
+The generic reading pipeline knows no language. Everything Japanese reaches it through the scheme in
+`src/reading/readingSchemes.js`, and a language without a hook behaves as if the feature did not exist:
+
+- `kanaDeck` (`budgets`, `minPerUnit`, `label`, `units`, `script`): the sound deck, chosen once per
+  collection by the generic `src/reading/soundDeck.js`; Japanese supplies the kana sound units and the
+  hiragana/katakana split (`src/reading/kanaUnits.js`).
+- `characterReadings` (`fromChapter`, `line`): the romaji line of a silent kanji card, every reading
+  the book's kanji table lists (`bun / ki` for 聞), applied by the generic
+  `src/reading/characterReadings.js`; Japanese supplies the kanji-table parser
+  (`src/reading/kanjiReadings.js`). A kanji card stays silent: no one reading is right on its own.
+- `isPhonetic`: which bracketed text is kana, for the merge's bracket rules (an optional ending, or a
+  word's reading after its kanji).

@@ -38,6 +38,28 @@ export function editedSinceMerge(unitDir) {
 }
 
 /**
+ * Rewrites a unit's cards.json through `change(cards) -> cards | null` IN PLACE, keeping it "not
+ * edited" when it was not (its report is touched with it), so a later rule change can still re-merge
+ * it. A unit marked done is left alone. Returns whether it wrote.
+ */
+export function rewriteUnitInPlace(unitDir, change) {
+  const cardsPath = join(unitDir, "cards.json");
+  if (!existsSync(cardsPath)) return false;
+  const cards = JSON.parse(readFileSync(cardsPath, "utf-8"));
+  if (cards.meta?.done === true) return false;
+  const next = change(cards);
+  if (!next) return false;
+  const wasEdited = editedSinceMerge(unitDir);
+  writeFileAtomic(cardsPath, `${JSON.stringify(next, null, 2)}\n`);
+  const reportPath = join(unitDir, REPORT);
+  if (!wasEdited && existsSync(reportPath)) {
+    const now = new Date();
+    utimesSync(reportPath, now, now);
+  }
+  return true;
+}
+
+/**
  * Puts an already-written unit into study order IN PLACE: its cards.json and corpus.json are
  * reordered, and nothing else about any card changes, so a reviewer's edits are kept. A unit marked
  * done is left alone (its order is already in the package, and in Anki if delivered). Returns

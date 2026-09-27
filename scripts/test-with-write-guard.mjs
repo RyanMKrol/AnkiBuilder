@@ -126,6 +126,15 @@ if (total > 0) {
     "\n  Fix the test (inject a scratch dir, or resolve through libraryHome(), which already " +
       "redirects under the runner). Do not silence this by restoring the files by hand.",
   );
+  // The guard compares the trees before and after the suite, so it cannot tell a test's write from
+  // anything else writing there at the same time. On 2026-09-27 it fired three times in one session
+  // on the owner's dashboard (Mark reviewed, audio edits) and a running audio stage, with every test
+  // passing. Say so, so the next reader checks that before hunting for a broken test.
+  console.error(
+    "\n  Not necessarily a test: anything else writing these trees during the run trips this too " +
+      "(the dashboard's Mark reviewed or audio edits, a running build or audio stage). If the " +
+      "paths above are that, and every test passed, re-run when nothing else is writing.",
+  );
   process.exit(1);
 }
 

@@ -32,8 +32,9 @@ chapters before 聞, and 眼鏡 with no card for 眼 or 鏡 at all.
 
 For each chapter, after its merge, the book pass: drops a character card the chapter repeats from an
 earlier one; gives the book's data to an earlier generated card for each kanji the chapter's table
-teaches; then fills the chapter's own gaps. Every step works in place and keeps review edits; a
-chapter a person signed off is not given new cards. Each generated card carries a `reviewNote` saying
+teaches; then fills the chapter's own gaps. Every step works in place and keeps review edits. A
+chapter marked done is not changed. A chapter only reviewed is, and its review is withdrawn: a card
+nobody has seen is not covered by a sign-off given before it existed. Each generated card carries a `reviewNote` saying
 where its data came from, and `candidates/characters.json` records every generated character, its
 source, the reviewer's verdict and, later, the chapter whose book data replaced it.
 

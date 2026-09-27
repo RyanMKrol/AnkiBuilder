@@ -98,14 +98,31 @@ test("gaps are filled from the dictionary, the model only for what it lacks, the
   }
 });
 
-test("a signed-off unit is not changed", async () => {
-  const dir = unit([word("眼鏡", "めがね")], { reviewed: true });
+test("a done unit is not changed; a reviewed one is, and its review is withdrawn", async () => {
+  const agents = {
+    writeCharacters: async () => new Map(),
+    reviewCharacters: async () => new Map(),
+  };
+  const done = unit([word("眼鏡", "めがね")], { reviewed: true, done: true });
+  const reviewed = unit([word("眼鏡", "めがね")], { reviewed: true });
   try {
-    const result = await fillCharacterGaps(dir, { scheme: ja, cardId: readingCardId, agents: {} });
-    assert.match(result.skipped, /signed off/);
-    assert.equal(json(join(dir, "cards.json")).items.length, 1);
+    const skipped = await fillCharacterGaps(done, { scheme: ja, cardId: readingCardId, agents });
+    assert.match(skipped.skipped, /marked done/);
+    assert.equal(json(join(done, "cards.json")).items.length, 1);
+
+    const reopened = await fillCharacterGaps(reviewed, {
+      scheme: ja,
+      cardId: readingCardId,
+      agents,
+    });
+    assert.equal(reopened.reopened, true);
+    const cards = json(join(reviewed, "cards.json"));
+    assert.equal(cards.items.length, 3);
+    assert.equal(cards.meta.reviewed, false);
+    assert.equal(json(join(reviewed, "corpus.json")).meta.reviewed, false);
   } finally {
-    rmSync(dir, { recursive: true, force: true });
+    rmSync(done, { recursive: true, force: true });
+    rmSync(reviewed, { recursive: true, force: true });
   }
 });
 

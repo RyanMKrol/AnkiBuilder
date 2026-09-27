@@ -447,6 +447,7 @@ if (bookPass) {
       result.added &&
         `${result.added} character card(s) generated (${result.fromModel} by the model, ${result.corrected} corrected by review)`,
       result.skipped && result.skipped,
+      result.reopened && "its review is withdrawn: the new cards need one",
     ].filter(Boolean);
     if (said.length) console.log(`  characters: ${said.join("; ")}`);
   }

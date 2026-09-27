@@ -60,8 +60,8 @@ export function characterGaps(items, { scheme, earlier = new Set() }) {
 }
 
 /**
- * Fills a written unit's character gaps IN PLACE. Returns `{ skipped, added, fromModel, corrected }`.
- * A unit a person reviewed or marked done is not changed (its sign-off covers the cards it had).
+ * Fills a written unit's character gaps IN PLACE. Returns `{ skipped, added, fromModel, corrected,
+ * reopened }`. A unit marked done is not changed; a reviewed one is, and its review is withdrawn.
  * `agents.writeCharacters(entries)` fills what the dictionary lacks and `agents.reviewCharacters(entries)`
  * returns corrections by target; both are model calls, faked in tests.
  */
@@ -72,11 +72,16 @@ export async function fillCharacterGaps(
   const cardsPath = join(unitDir, "cards.json");
   const cards = readJson(cardsPath);
   if (!cards || !scheme?.characterSource) return { skipped: "no cards or no character source" };
-  const signedOff =
-    cards.meta?.done === true || (cards.meta?.reviewed === true && cards.items.length > 0);
   const gaps = characterGaps(cards.items, { scheme, earlier });
   if (!gaps.length) return { added: 0 };
-  if (signedOff) return { skipped: `signed off, so ${gaps.length} gap(s) left unfilled` };
+  // A unit marked done is finished (packaged, maybe delivered): it is not given new cards. A unit only
+  // REVIEWED still gets them, and its review is withdrawn, because a card nobody has seen is not
+  // covered by a sign-off given before it existed. On Genki, Chapter 05 had been reviewed and is where
+  // 44 kanji are first used; leaving it alone would have carded them chapters later, or never.
+  if (cards.meta?.done === true) {
+    return { skipped: `marked done, so ${gaps.length} gap(s) left unfilled` };
+  }
+  const reopened = cards.meta?.reviewed === true && cards.items.length > 0;
   const source = scheme.characterSource;
 
   // 1. The dictionary.
@@ -132,7 +137,8 @@ export async function fillCharacterGaps(
   const wasEdited = editedSinceMerge(unitDir);
   const isCharacter = (item) => scheme.isCharacterTarget(item.target);
   const items = readingStudyOrder([...cards.items, ...generated], { isCharacter });
-  writeJson(cardsPath, { ...cards, items });
+  const meta = reopened ? { ...cards.meta, reviewed: false } : cards.meta;
+  writeJson(cardsPath, { ...cards, meta, items });
   const corpusPath = join(unitDir, "corpus.json");
   const corpus = readJson(corpusPath);
   if (corpus) {
@@ -142,7 +148,8 @@ export async function fillCharacterGaps(
       return rest;
     });
     const corpusItems = readingStudyOrder([...corpus.items, ...withoutRomaji], { isCharacter });
-    writeJson(corpusPath, { ...corpus, items: corpusItems });
+    const corpusMeta = reopened ? { ...corpus.meta, reviewed: false } : corpus.meta;
+    writeJson(corpusPath, { ...corpus, meta: corpusMeta, items: corpusItems });
   }
   const reportPath = join(unitDir, REPORT);
   if (!wasEdited && existsSync(reportPath)) {
@@ -163,7 +170,7 @@ export async function fillCharacterGaps(
       })),
     ],
   });
-  return { added: generated.length, fromModel, corrected };
+  return { added: generated.length, fromModel, corrected, ...(reopened ? { reopened: true } : {}) };
 }
 
 /**
@@ -210,23 +217,33 @@ export function applyBookCharacters(unitDir, bookCharacters, { scheme }) {
 
 /**
  * Removes, IN PLACE, a unit's character cards for characters an earlier unit already cards (the
- * earlier card was generated there, before this chapter taught the character). A unit a person
- * signed off is left alone. Returns the characters removed.
+ * earlier card was generated there, before this chapter taught the character). A unit marked done is
+ * left alone; a reviewed one is changed and its review withdrawn. Returns the characters removed.
  */
 export function dropCharactersCardedEarlier(unitDir, earlier, { scheme }) {
   const cardsPath = join(unitDir, "cards.json");
   const cards = readJson(cardsPath);
   if (!cards) return [];
-  const signedOff =
-    cards.meta?.done === true || (cards.meta?.reviewed === true && cards.items.length > 0);
   const repeat = (item) => scheme.isCharacterTarget(item.target) && earlier.has(item.target);
   const removed = cards.items.filter(repeat).map((item) => item.target);
-  if (!removed.length || signedOff) return [];
+  // As for new cards: a unit marked done is left alone; a reviewed one changes and is reopened.
+  if (!removed.length || cards.meta?.done === true) return [];
+  const reopen = (meta) => (meta?.reviewed === true ? { ...meta, reviewed: false } : meta);
   const wasEdited = editedSinceMerge(unitDir);
-  writeJson(cardsPath, { ...cards, items: cards.items.filter((item) => !repeat(item)) });
+  writeJson(cardsPath, {
+    ...cards,
+    meta: reopen(cards.meta),
+    items: cards.items.filter((item) => !repeat(item)),
+  });
   const corpusPath = join(unitDir, "corpus.json");
   const corpus = readJson(corpusPath);
-  if (corpus) writeJson(corpusPath, { ...corpus, items: corpus.items.filter((i) => !repeat(i)) });
+  if (corpus) {
+    writeJson(corpusPath, {
+      ...corpus,
+      meta: reopen(corpus.meta),
+      items: corpus.items.filter((i) => !repeat(i)),
+    });
+  }
   const reportPath = join(unitDir, REPORT);
   if (!wasEdited && existsSync(reportPath)) {
     const now = new Date();

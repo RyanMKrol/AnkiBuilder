@@ -16,12 +16,21 @@ import { writeFileAtomic } from "../util/atomicWrite.js";
 // changing the prefix would reshuffle every unit already built.
 const orderKey = (item) => createHash("sha1").update(`kana-order:${item.id}`).digest("hex");
 
-/** `items` in study order, with `sourceOrder` renumbered 0, 1, 2… */
-export function readingStudyOrder(items) {
-  return [...items]
-    .map((item) => ({ item, key: orderKey(item) }))
-    .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
-    .map(({ item }, index) => ({ ...item, sourceOrder: index }));
+/**
+ * `items` in study order, with `sourceOrder` renumbered 0, 1, 2… When `isCharacter` is given, the
+ * character cards come first, each group shuffled on its own: a chapter teaches 聞 (its meaning and
+ * readings) before the 聞く that uses it (owner, 2026-09-28).
+ */
+export function readingStudyOrder(items, { isCharacter = () => false } = {}) {
+  const shuffled = (list) =>
+    list
+      .map((item) => ({ item, key: orderKey(item) }))
+      .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
+      .map(({ item }) => item);
+  return [
+    ...shuffled(items.filter(isCharacter)),
+    ...shuffled(items.filter((i) => !isCharacter(i))),
+  ].map((item, index) => ({ ...item, sourceOrder: index }));
 }
 
 // The merge writes reading-report.json and cards.json together, so a cards.json much newer than the
@@ -65,12 +74,12 @@ export function rewriteUnitInPlace(unitDir, change) {
  * done is left alone (its order is already in the package, and in Anki if delivered). Returns
  * whether it changed anything.
  */
-export function applyStudyOrder(unitDir) {
+export function applyStudyOrder(unitDir, { isCharacter } = {}) {
   const cardsPath = join(unitDir, "cards.json");
   if (!existsSync(cardsPath)) return false;
   const cards = JSON.parse(readFileSync(cardsPath, "utf-8"));
   if (cards.meta?.done === true || !(cards.items ?? []).length) return false;
-  const ordered = readingStudyOrder(cards.items);
+  const ordered = readingStudyOrder(cards.items, { isCharacter });
   const rank = new Map(ordered.map((item) => [item.id, item.sourceOrder]));
   const same = cards.items.every((item, i) => rank.get(item.id) === i && item.sourceOrder === i);
   if (same) return false;

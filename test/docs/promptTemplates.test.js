@@ -67,6 +67,25 @@ const TEMPLATES = {
     ],
     outputContract: /"items"[\s\S]*"coverage"/,
   },
+  // The character cards a chapter needs before the book teaches them (src/reading/characterGaps.js).
+  "reading-character-writer-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "READING_CARD_RULES",
+      "READING_LANGUAGE_RULES",
+      "CHARACTERS_JSON",
+    ],
+    outputContract: /"characters"[\s\S]*"readings"/,
+  },
+  "reading-character-review-prompt.md": {
+    placeholders: [
+      "TARGET_LANGUAGE",
+      "READING_CARD_RULES",
+      "READING_LANGUAGE_RULES",
+      "CHARACTERS_JSON",
+    ],
+    outputContract: /"cards"[\s\S]*"verdict"/,
+  },
   "epub-extraction-prompt.md": {
     placeholders: [
       "TARGET_LANGUAGE",

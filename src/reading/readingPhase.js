@@ -619,7 +619,9 @@ async function runReadingPhaseInner({
   });
   // Studied in a fixed shuffle, not book order (src/reading/studyOrder.js): in book order a run such
   // as the days of the month gives each card away.
-  merged.items = readingStudyOrder(merged.items);
+  merged.items = readingStudyOrder(merged.items, {
+    isCharacter: (item) => Boolean(readingScheme(targetLanguage)?.isCharacterTarget?.(item.target)),
+  });
   recordStep(run, {
     step: "reconcile",
     status: STEP_STATUS.OK,

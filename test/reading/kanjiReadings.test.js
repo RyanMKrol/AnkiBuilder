@@ -17,9 +17,9 @@ test("both of Genki's kanji-table layouts are parsed, readings split by kind", (
     "<p>075 聞 (to listen) ▶ぶん ▷き 聞く(きく) to listen</p>" +
     "<p>073 員 (member) ▶いん 会社員(かいしゃいん) office worker</p>";
   const readings = parseKanjiReadings(html);
-  assert.deepEqual(readings.get("一"), { on: ["いち", "いっ"], kun: ["ひと"] });
-  assert.deepEqual(readings.get("聞"), { on: ["ぶん"], kun: ["き"] });
-  assert.deepEqual(readings.get("員"), { on: ["いん"], kun: [] });
+  assert.deepEqual(readings.get("一"), { on: ["いち", "いっ"], kun: ["ひと"], meaning: "One" });
+  assert.deepEqual(readings.get("聞"), { on: ["ぶん"], kun: ["き"], meaning: "To listen" });
+  assert.deepEqual(readings.get("員"), { on: ["いん"], kun: [], meaning: "Member" });
 });
 
 test("readings are written in the house romaji, and a trailing っ as the dictionaries do", () => {

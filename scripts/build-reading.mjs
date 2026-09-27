@@ -30,7 +30,7 @@
 // before the kana deck existed and not reviewed by a person is re-merged for free. With `--dry` it
 // prints what would be read and, once every chapter is read, the kana deck it would choose.
 
-import { existsSync, readFileSync, readdirSync, rmSync, statSync } from "fs";
+import { existsSync, readFileSync, readdirSync, rmSync } from "fs";
 import { join, resolve } from "path";
 import {
   hashEpubFile,
@@ -68,7 +68,7 @@ import {
 import { readingScheme } from "../src/reading/readingSchemes.js";
 import { buildKanaUnit, collectKanaPool, KANA_CHAPTER_NUMBER } from "../src/reading/kanaDeck.js";
 import { selectKanaDeck, kanaScript } from "../src/reading/kanaUnits.js";
-import { applyStudyOrder } from "../src/reading/studyOrder.js";
+import { applyStudyOrder, editedSinceMerge } from "../src/reading/studyOrder.js";
 
 const argv = process.argv.slice(2);
 const flag = (name) => {
@@ -370,30 +370,32 @@ if (bookPass) {
 
   const { slug, collectionDir } = registerCollection();
   const failed = [];
-  let latestEarlierMerge = 0;
+  // Whether a chapter before this one was merged IN THIS RUN. Only that makes a later chapter's
+  // merge out of date for ordering (it cards a word once, in the first chapter that teaches it). It
+  // used to be read from file times, and reordering one chapter in place (study order) then made every
+  // later chapter look out of date: on 2026-09-27 that re-merged Chapters 06-26 and discarded an edit.
+  let earlierChanged = false;
   for (const lesson of lessons) {
     const unitDir = resolveChapterRunDir(outputRoot, slug, epubHash, lesson.firstChapterNumber);
     const report = readJsonOrNull(join(unitDir, "reading-report.json"));
     const cards = readJsonOrNull(join(unitDir, "cards.json"));
-    // Re-merged (free: no reader is called) when it was merged under older merge rules, or before an
-    // EARLIER chapter was: the merge cards a word once, in the first chapter that teaches it, so a
-    // chapter merged before an earlier one does not know that chapter's words. Both happened on the
-    // first Genki pass: a retried Lesson 4 left 69 words carded twice in the chapters after it. A
-    // chapter a person reviewed is left alone and named; preflight names what it still gets wrong.
-    const corpusTime = existsSync(join(unitDir, "corpus.json"))
-      ? statSync(join(unitDir, "corpus.json")).mtimeMs
-      : 0;
+    // Re-merged (free: no reader is called) when it was merged under older merge rules, or after an
+    // earlier chapter changed in this run: a retried Lesson 4 once left 69 words carded twice in the
+    // chapters after it. NEVER when a person has reviewed or edited it: a re-merge rebuilds cards.json
+    // from the saved readings, and would discard their work. Those are named instead.
     const stale =
-      Boolean(cards) &&
-      (report?.mergeVersion !== READING_MERGE_VERSION || corpusTime < latestEarlierMerge);
+      Boolean(cards) && (report?.mergeVersion !== READING_MERGE_VERSION || earlierChanged);
     const humanReviewed = cards?.meta?.reviewed === true && (cards.items ?? []).length > 0;
+    const edited = Boolean(cards) && editedSinceMerge(unitDir);
     // Every unit is studied in a fixed shuffle (src/reading/studyOrder.js). A chapter built before
     // that rule is reordered in place, keeping any review edits; a done one is left as delivered.
     if (applyStudyOrder(unitDir)) console.log(`\n${lesson.label}: put into study order (shuffled)`);
-    if (stale && humanReviewed) {
+    if (stale && (humanReviewed || edited)) {
       console.log(
-        `\n${lesson.label}: reviewed, but merged under older rules or before an earlier chapter, ` +
-          `so it is not re-merged; withdraw its review and re-run to bring it up to date`,
+        `\n${lesson.label}: out of date (older merge rules, or an earlier chapter changed), but ` +
+          `${humanReviewed ? "reviewed" : "edited since its merge"}, so it is NOT re-merged: that ` +
+          `would discard the ${humanReviewed ? "review" : "edits"}. Preflight names any repeat; ` +
+          `re-merge it by hand (--lesson ... --remerge) only if losing that is intended.`,
       );
       continue;
     }
@@ -409,12 +411,7 @@ if (bookPass) {
         quiet: true,
       });
       if (code !== 0) failed.push(`${lesson.label}: did not verify`);
-      if (existsSync(join(unitDir, "corpus.json"))) {
-        latestEarlierMerge = Math.max(
-          latestEarlierMerge,
-          statSync(join(unitDir, "corpus.json")).mtimeMs,
-        );
-      }
+      if (!cards || stale) earlierChanged = true;
     } catch (error) {
       if (error.quotaExhausted) {
         console.error(`\n${error.message}`);

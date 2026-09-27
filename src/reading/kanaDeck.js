@@ -8,6 +8,7 @@
 // unit and never collides), the scheme's label (`Chapter 00: Kana`, which sorts first in Anki), the
 // same review, audio and done gates, and the same romaji cache and retry rules as a chapter.
 
+import { createHash } from "crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { writeFileAtomic } from "../util/atomicWrite.js";
@@ -76,6 +77,21 @@ export function collectKanaPool(collectionDir, { exclude = null } = {}) {
 }
 
 /**
+ * The kana deck's study order: shuffled, so no card gives the next away. In book order the numbers
+ * ran いち, に, さん… and each answered the next (owner, 2026-09-27). The words are only there to be
+ * read, so book order teaches nothing here. The shuffle is a fixed one, keyed on each card's id: the
+ * same deck always comes out in the same order, and adding or removing a word moves no other card.
+ * Returns new items with `sourceOrder` renumbered, which the dashboard, the package and delivery all
+ * follow.
+ */
+export function kanaStudyOrder(items) {
+  const key = (item) => createHash("sha1").update(`kana-order:${item.id}`).digest("hex");
+  return [...items]
+    .sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0))
+    .map((item, index) => ({ ...item, sourceOrder: index }));
+}
+
+/**
  * Chooses and writes the kana unit into `unitDir`. Refuses (throws) when the unit already has a
  * human review, since re-choosing would discard it, and when a chapter has not been merged under the
  * kana-deck rule. `runRomanization` is the romaji correction call, faked in tests.
@@ -109,13 +125,14 @@ export async function buildKanaUnit({
 
   const { budgets, minPerUnit, label } = scheme.kanaDeck;
   const choice = selectKanaDeck(pool, { budgets, minPerUnit });
-  let items = choice.selected.map((entry, index) => ({
-    id: readingCardId(entry.target),
-    target: entry.target,
-    english: entry.english,
-    category: entry.category,
-    sourceOrder: index,
-  }));
+  let items = kanaStudyOrder(
+    choice.selected.map((entry) => ({
+      id: readingCardId(entry.target),
+      target: entry.target,
+      english: entry.english,
+      category: entry.category,
+    })),
+  );
 
   const cached = readJson(join(unitDir, READING_ROMAJI_FILE))?.items ?? [];
   const romaji = await romanize(items, {

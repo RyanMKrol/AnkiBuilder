@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
-import { buildKanaUnit, collectKanaPool } from "../../src/reading/kanaDeck.js";
+import { buildKanaUnit, collectKanaPool, kanaStudyOrder } from "../../src/reading/kanaDeck.js";
 import { validateCards } from "../../src/model/index.js";
 
 // The kana unit (src/reading/kanaDeck.js): chosen from every chapter's saved kana pool, no reader
@@ -73,12 +73,14 @@ test("the kana unit is a valid reading unit, chapter 00, with its choice reporte
     assert.equal(cards.meta.chapterLabel, "Chapter 00: Kana");
     assert.equal(cards.meta.phase, "reading");
     assert.deepEqual(
-      cards.items.map((i) => [i.target, i.english, i.pronunciation]),
+      cards.items.map((i) => [i.target, i.english, i.pronunciation]).sort(),
       [
         ["おはよう", "Good morning", "r:おはよう"],
         ["コーヒー", "Coffee", "r:コーヒー"],
-      ],
+      ].sort(),
     );
+    // The study order is the shuffle, not book order.
+    assert.deepEqual(cards.items, kanaStudyOrder(cards.items));
     assert.deepEqual(report.perScript, { hiragana: 1, katakana: 1 });
     // The unit is not itself part of the pool it was chosen from.
     assert.equal(collectKanaPool(dir).pool.length, 2);
@@ -127,4 +129,23 @@ test("a chapter folder that never merged is named, but the kana unit's own folde
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test("the kana deck is shuffled, the same way every time, and a new word moves no other card", () => {
+  const numbers = ["いち", "に", "さん", "よん", "ご", "ろく", "なな", "はち", "きゅう", "じゅう"];
+  const items = numbers.map((target) => ({ id: `r-${target}`, target }));
+  const order = kanaStudyOrder(items).map((i) => i.target);
+  assert.notDeepEqual(order, numbers);
+  assert.deepEqual(
+    kanaStudyOrder([...items].reverse()).map((i) => i.target),
+    order,
+  );
+  const withOneMore = kanaStudyOrder([...items, { id: "r-ひゃく", target: "ひゃく" }])
+    .map((i) => i.target)
+    .filter((t) => t !== "ひゃく");
+  assert.deepEqual(withOneMore, order);
+  assert.deepEqual(
+    kanaStudyOrder(items).map((i) => i.sourceOrder),
+    numbers.map((_, i) => i),
+  );
 });

@@ -25,9 +25,11 @@ export const CHARACTERS_FILE = "candidates/characters.json";
  * checked under. RAISE IT when that prompt changes what the reviewer fixes: the book pass re-reviews,
  * one call per chapter, every generated card checked under an older version (reReviewCharacters).
  * 1: the first review, which kept dictionary senses a learner never meets. 2: meanings judged against
- * the words that use the character (2026-09-28).
+ * the words that use the character. 3: at most two meanings, the words' sense first, and only jōyō
+ * readings plus any the words need; the Genki run under 2 still left 172 of 384 cards dictionary-like
+ * (若 "Young; if; perhaps", readings にゃ and くるお) (2026-09-28).
  */
-export const CHARACTER_REVIEW_VERSION = 2;
+export const CHARACTER_REVIEW_VERSION = 3;
 const REPORT = "reading-report.json";
 
 const readJson = (path, fallback = null) => {

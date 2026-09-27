@@ -18,16 +18,21 @@ Each with its source and the words in this deck that use it (with their readings
 
 ## What to check
 
-- `english` is the meaning a learner needs to recognise the character: usually ONE, at most three,
-  sentence-case, joined with "; ". Judge it against the words in this deck that use the character: 校
-  appears in 学校, so the card wants "School", not the dictionary's "Exam; school; printing"; 見 wants
-  "See; look", not "See; hopes; chances"; 鏡 wants "Mirror", not "Mirror; speculum; barrel-head". A
-  dictionary's first sense is often not the one a learner meets, and its later senses are usually noise.
-- `readings` are the ones a learner meets, in the shape the language rules describe for a character
-  card. Drop rare, archaic and name-only readings, and any that belong to a different character. Every
-  reading the listed words use must be there; add one that is missing.
-- Correct everything that falls short of that, not only what is wrong. Leave a card alone only when its
-  meaning and readings are already exactly what a learner needs; say why in a few words when you fix.
+Each card must be right on its own: the learner cannot tell a useful sense or reading from noise, and
+nobody else checks after you.
+
+- `english` is at most TWO meanings, sentence-case, joined with "; ", and the FIRST is the sense the
+  listed words use. Judge it against those words: 校 appears in 学校, so "School"; 若 in 若い, so
+  "Young" (not "Young; if; perhaps"); 見 in 見る, so "See; look" (not "See; hopes; chances"). Add a
+  second meaning only if a beginner meets it often. Three near-synonyms ("Slap; strike; hit") become one
+  ("Hit"). Never keep an obscure, technical or archaic sense.
+- `readings` are only readings in the official list of readings taught in Japanese schools (the jōyō
+  reading list), in the shape the language rules describe for a character card. Drop every other one:
+  rare (にゃ for 若), name-only, archaic (くるお for 狂) and any that belongs to a different character
+  (い for 容). Every reading the listed words use must be there, even if it is not on that list; add
+  one that is missing.
+- Fix everything that falls short of that. Leave a card alone only when it already meets every point
+  above, and say in a few words what you changed and why.
 
 ## Output
 

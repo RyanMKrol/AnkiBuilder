@@ -1796,6 +1796,11 @@ kana-only words out of the chapter and keeps them in `reading-report.json` as `k
 A chapter left with no cards is written marked reviewed and done, so a re-run finds its folder, and
 `selectDoneChapterDecks` and the dashboard's `scanNumberedUnits` skip a unit with no cards.
 
+Every reading unit's cards are written in a fixed shuffle (`readingStudyOrder`,
+`src/reading/studyOrder.js`), not book order, and `sourceOrder` is renumbered to it, so the dashboard,
+the package's new-card order and delivery all follow. `applyStudyOrder` reorders a unit written before
+the rule in place (the book pass does this), leaving a done unit alone.
+
 A reading collection's Anki layout is flat, one deck per chapter directly under the parent
 (`unitDeckSegments(label, { deckKind: "reading" })`, shared by the package and delivery), and its
 parent deck is the owner's `deckName` when the marker has one (`setCollectionDeckName`, refused once

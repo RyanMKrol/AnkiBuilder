@@ -26,7 +26,7 @@ after a few hundred kana words another one teaches nothing new.
 - Its unit is `Chapter 00: Kana` (chapter number 0), so its Anki deck sorts before every chapter.
 - Its cards are studied in a fixed shuffle, not book order (owner, 2026-09-27): in book order the
   numbers ran いち, に, さん and each gave the next away. The shuffle is keyed on each card's id, so it
-  is the same on every rebuild and a word added or removed moves no other card (`kanaStudyOrder`).
+  is the same on every rebuild and a word added or removed moves no other card (`src/reading/studyOrder.js`; since extended to every reading unit).
 
 ## How it fits
 

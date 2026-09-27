@@ -29,7 +29,6 @@ import { writeFileAtomic } from "../util/atomicWrite.js";
 import { parseTables, annotateWithHints } from "../corpus/chapterTables.js";
 import { parseHeadings } from "../corpus/chapterOutline.js";
 import { resolveChapterImages } from "../corpus/chapterImages.js";
-import { assignSourceOrder } from "../cards/sourceOrder.js";
 import { CATEGORIES } from "../model/categories.js";
 import { resolveIso639Code } from "../model/iso639.js";
 import { normalizeDisplayText } from "../model/scriptSpacing.js";
@@ -39,6 +38,7 @@ import { logDirFor, withRunLogDir } from "../agents/runLog.js";
 import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "../agents/runReport.js";
 import { readingScheme, silentCardPredicate } from "./readingSchemes.js";
 import { romanizeReadingItems } from "./readingRomaji.js";
+import { readingStudyOrder } from "./studyOrder.js";
 import {
   ITEM_KINDS,
   readTables,
@@ -611,11 +611,9 @@ async function runReadingPhaseInner({
     targetLanguage,
     earlier,
   });
-  const positions = assignSourceOrder(merged.items, chapterHtml, { languageCode: targetLanguage });
-  for (const item of merged.items) {
-    const at = positions.get(item.id);
-    if (typeof at === "number") item.sourceOrder = at;
-  }
+  // Studied in a fixed shuffle, not book order (src/reading/studyOrder.js): in book order a run such
+  // as the days of the month gives each card away.
+  merged.items = readingStudyOrder(merged.items);
   recordStep(run, {
     step: "reconcile",
     status: STEP_STATUS.OK,

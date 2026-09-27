@@ -626,3 +626,14 @@ per-source boolean should become an explicit per-source table.
   Japanese reading scheme (`src/reading/readingSchemes.js`).
 - **What would reopen it:** the owner finding the kana deck too thin or too long in practice, which
   is a change to the two budgets or the minimum, not to the design.
+
+## Reading cards are studied in a fixed shuffle, not book order
+
+- **What was decided (owner, 2026-09-27):** every reading unit, the kana deck and each chapter, is
+  studied in a shuffled order. For reading and basic vocabulary the order the book taught the words
+  in does not matter, and keeping it lets a run (いち, に, さん; the days of the month) give each card
+  away, which trains pattern recognition instead of reading.
+- **Where it lives:** `src/reading/studyOrder.js`. The shuffle is keyed on each card's id, so it is
+  the same on every rebuild and a card added or removed moves no other.
+- **What would reopen it:** a deck kind where order carries meaning (a grammar sequence). The
+  speaking decks keep their own pedagogical sort and are not affected.

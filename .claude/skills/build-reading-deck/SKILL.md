@@ -21,6 +21,11 @@ for a single kanji word or a word the book prints with two readings, which are s
 (the review marks those "voice reads the kana"). What earns a card is in
 `docs/card-rules-reading.md`; the Japanese behaviour is `src/reading/readingSchemes.js`.
 
+**Every reading unit is studied in a fixed shuffle, never book order** (`src/reading/studyOrder.js`):
+in book order a run such as the days of the month or いち, に, さん gives each card away. The shuffle
+is keyed on each card's id, so it is the same on every rebuild; the book pass puts a chapter built
+before this rule into order in place, keeping any review edits.
+
 **Japanese kana words are carded once per book, not per chapter**: in one kana deck chosen in a
 single pass (step 1), so the chapters card kanji only.
 
@@ -56,8 +61,7 @@ For a language whose reading scheme has a kana deck (Japanese), build the whole 
 reviewing anything. Kana-only words are carded ONCE per collection, in `Chapter 00: Kana`, chosen
 from every chapter: first so each kana sound (with にゃ-type and ティ-type combinations, small っ and
 ー as sounds of their own) is in at least 3 words, then up to 150 hiragana and 150 katakana words in
-book order. Its cards are studied in a fixed shuffle, so a run like いち, に, さん never gives the next
-card away. Chapters card kanji only. Why and the details: `docs/designs/reading-decks/09-kana-deck.md`.
+book order. Chapters card kanji only. Why and the details: `docs/designs/reading-decks/09-kana-deck.md`.
 
 ```sh
 $TOOL --epub <book.epub> --book-pass --lang ja --dry     # what would be read, and the paid calls

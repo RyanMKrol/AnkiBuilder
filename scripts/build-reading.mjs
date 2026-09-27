@@ -68,6 +68,7 @@ import {
 import { readingScheme } from "../src/reading/readingSchemes.js";
 import { buildKanaUnit, collectKanaPool, KANA_CHAPTER_NUMBER } from "../src/reading/kanaDeck.js";
 import { selectKanaDeck, kanaScript } from "../src/reading/kanaUnits.js";
+import { applyStudyOrder } from "../src/reading/studyOrder.js";
 
 const argv = process.argv.slice(2);
 const flag = (name) => {
@@ -386,6 +387,9 @@ if (bookPass) {
       Boolean(cards) &&
       (report?.mergeVersion !== READING_MERGE_VERSION || corpusTime < latestEarlierMerge);
     const humanReviewed = cards?.meta?.reviewed === true && (cards.items ?? []).length > 0;
+    // Every unit is studied in a fixed shuffle (src/reading/studyOrder.js). A chapter built before
+    // that rule is reordered in place, keeping any review edits; a done one is left as delivered.
+    if (applyStudyOrder(unitDir)) console.log(`\n${lesson.label}: put into study order (shuffled)`);
     if (stale && humanReviewed) {
       console.log(
         `\n${lesson.label}: reviewed, but merged under older rules or before an earlier chapter, ` +

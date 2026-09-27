@@ -8,7 +8,6 @@
 // unit and never collides), the scheme's label (`Chapter 00: Kana`, which sorts first in Anki), the
 // same review, audio and done gates, and the same romaji cache and retry rules as a chapter.
 
-import { createHash } from "crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { writeFileAtomic } from "../util/atomicWrite.js";
@@ -17,6 +16,7 @@ import { writeSnapshot, hasSnapshot } from "../agents/snapshot.js";
 import { readingScheme, silentCardPredicate } from "./readingSchemes.js";
 import { romanizeReadingItems } from "./readingRomaji.js";
 import { selectKanaDeck, kanaScript } from "./kanaUnits.js";
+import { readingStudyOrder } from "./studyOrder.js";
 import { READING_REPORT_FILE, READING_ROMAJI_FILE, readingCardId } from "./readingPhase.js";
 
 export const KANA_CHAPTER_NUMBER = 0;
@@ -76,20 +76,8 @@ export function collectKanaPool(collectionDir, { exclude = null } = {}) {
   return { pool: pool.sort((a, b) => a.position - b.position), missing };
 }
 
-/**
- * The kana deck's study order: shuffled, so no card gives the next away. In book order the numbers
- * ran いち, に, さん… and each answered the next (owner, 2026-09-27). The words are only there to be
- * read, so book order teaches nothing here. The shuffle is a fixed one, keyed on each card's id: the
- * same deck always comes out in the same order, and adding or removing a word moves no other card.
- * Returns new items with `sourceOrder` renumbered, which the dashboard, the package and delivery all
- * follow.
- */
-export function kanaStudyOrder(items) {
-  const key = (item) => createHash("sha1").update(`kana-order:${item.id}`).digest("hex");
-  return [...items]
-    .sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0))
-    .map((item, index) => ({ ...item, sourceOrder: index }));
-}
+/** The kana deck's study order: the fixed shuffle every reading unit uses (studyOrder.js). */
+export const kanaStudyOrder = readingStudyOrder;
 
 /**
  * Chooses and writes the kana unit into `unitDir`. Refuses (throws) when the unit already has a

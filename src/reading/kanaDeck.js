@@ -15,7 +15,7 @@ import { validateCorpus, validateCards } from "../model/index.js";
 import { writeSnapshot, hasSnapshot } from "../agents/snapshot.js";
 import { readingScheme, silentCardPredicate } from "./readingSchemes.js";
 import { romanizeReadingItems } from "./readingRomaji.js";
-import { selectKanaDeck, kanaScript } from "./kanaUnits.js";
+import { selectSoundDeck } from "./soundDeck.js";
 import { readingStudyOrder } from "./studyOrder.js";
 import { READING_REPORT_FILE, READING_ROMAJI_FILE, readingCardId } from "./readingPhase.js";
 
@@ -111,8 +111,8 @@ export async function buildKanaUnit({
     );
   }
 
-  const { budgets, minPerUnit, label } = scheme.kanaDeck;
-  const choice = selectKanaDeck(pool, { budgets, minPerUnit });
+  const { budgets, minPerUnit, label, units, script } = scheme.kanaDeck;
+  const choice = selectSoundDeck(pool, { budgets, minPerUnit, units, script });
   let items = kanaStudyOrder(
     choice.selected.map((entry) => ({
       id: readingCardId(entry.target),
@@ -167,8 +167,8 @@ export async function buildKanaUnit({
   validateCards(cards);
   writeJson(join(unitDir, "cards.json"), cards);
 
-  const perScript = { hiragana: 0, katakana: 0 };
-  for (const item of items) perScript[kanaScript(item.target)]++;
+  const perScript = Object.fromEntries(Object.keys(budgets).map((name) => [name, 0]));
+  for (const item of items) perScript[script(item.target)]++;
   const report = {
     pool: pool.length,
     selected: items.length,

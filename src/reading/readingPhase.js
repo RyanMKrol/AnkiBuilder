@@ -39,6 +39,7 @@ import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "../agen
 import { readingScheme, silentCardPredicate } from "./readingSchemes.js";
 import { romanizeReadingItems } from "./readingRomaji.js";
 import { readingStudyOrder } from "./studyOrder.js";
+import { characterReadingsIn, withCharacterReadings } from "./characterReadings.js";
 import {
   ITEM_KINDS,
   readTables,
@@ -198,10 +199,10 @@ export function splitAlternateForms(item) {
 //   - after kanji, bare kana with no bracketed reading beside it is the word's READING: 映画(えいが).
 const PLACEHOLDER_BRACKET = /[(（][^()（）]*[〜~～][^()（）]*[)）]/gu;
 const TRAILING_BRACKET = /^(.+?)[(（]([^()（）]+)[)）]$/u;
-const KANA_ONLY = /^[\p{Script=Hiragana}\p{Script=Katakana}ー]+$/u;
-const HAN_CHAR = /\p{Script=Han}/u;
 
-export function resolveBrackets(item) {
+// Which bracketed text is phonetic and which needs a reading is the language plugin's call
+// (`isPhonetic`, `requiresReading`); a language without them only loses its placeholders.
+export function resolveBrackets(item, scheme = null) {
   const target = String(item.target ?? "")
     .replace(PLACEHOLDER_BRACKET, "")
     .trim();
@@ -211,17 +212,17 @@ export function resolveBrackets(item) {
       : String(item.reading).replace(PLACEHOLDER_BRACKET, "").trim();
   const withReading = (t, r) => ({ ...item, target: t, reading: r || undefined });
   const m = target.match(TRAILING_BRACKET);
-  if (!m) return [withReading(target, reading)];
+  if (!m || !scheme?.isPhonetic || !scheme.requiresReading) return [withReading(target, reading)];
   const [, base, inner] = m.map((part) => part.trim());
   const r = reading ? reading.match(TRAILING_BRACKET) : null;
-  if (HAN_CHAR.test(inner)) {
+  if (scheme.requiresReading(inner)) {
     return [
       withReading(base, r ? r[1].trim() : reading),
       withReading(inner, r ? r[2].trim() : undefined),
     ];
   }
-  if (!KANA_ONLY.test(inner)) return [withReading(target, reading)];
-  if (!HAN_CHAR.test(base)) return [withReading(base + inner, r ? r[1] + r[2] : reading)];
+  if (!scheme.isPhonetic(inner)) return [withReading(target, reading)];
+  if (!scheme.requiresReading(base)) return [withReading(base + inner, r ? r[1] + r[2] : reading)];
   if (r) return [withReading(base + inner, r[1].trim() + r[2].trim())];
   if (!reading || reading === inner) return [withReading(base, inner)];
   return [withReading(base + inner, reading + inner)];
@@ -244,7 +245,10 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
   const dropped = [];
   const groups = new Map();
 
-  for (const item of sources.flat().flatMap(splitAlternateForms).flatMap(resolveBrackets)) {
+  for (const item of sources
+    .flat()
+    .flatMap(splitAlternateForms)
+    .flatMap((i) => resolveBrackets(i, scheme))) {
     const form = key(item.target);
     if (!form) continue;
     const chars = [...form];
@@ -410,7 +414,9 @@ export function findReadingGaps(enumerated, items, { dropped = [], targetLanguag
   // The adversary's items get the same splitting the merge gives the readers': なん／なに is two
   // cards, and おやすみ(なさい) is おやすみなさい. Compared whole, Genki's Lesson 1 reported なん／なに
   // as a gap although both cards were in the unit.
-  for (const item of enumerated.flatMap(splitAlternateForms).flatMap(resolveBrackets)) {
+  for (const item of enumerated
+    .flatMap(splitAlternateForms)
+    .flatMap((i) => resolveBrackets(i, readingScheme(targetLanguage)))) {
     const form = formOf(item.target);
     if (!form || listed.has(form)) continue;
     listed.add(form);
@@ -643,6 +649,14 @@ async function runReadingPhaseInner({
     log,
   });
   merged.items = romaji.items;
+  // A character card is silent (no one pronunciation), so the romaji step gives it none; its romaji
+  // line is instead the readings the language plugin finds for it (src/reading/characterReadings.js).
+  const scheme = readingScheme(targetLanguage);
+  merged.items = withCharacterReadings(
+    merged.items,
+    characterReadingsIn(chapterHtml, scheme),
+    scheme,
+  ).items;
   const romajiRows = new Map(cachedRomaji.map((r) => [r.id, r]));
   // A failed correction leaves the library's romaji on the cards for this run, but it is not cached:
   // cached romaji counts as finished, so a re-run would never correct it. On Genki's Greetings the

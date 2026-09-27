@@ -1,5 +1,7 @@
 import { resolveIso639Code } from "../model/iso639.js";
 import { isReadingKind } from "../model/deckKind.js";
+import { kanaUnits, kanaScript } from "./kanaUnits.js";
+import { parseKanjiReadings, kanjiReadingsLine } from "./kanjiReadings.js";
 
 // Per-language behaviour of the READING deck (docs/designs/reading-decks/05-japanese-plugin.md),
 // keyed by ISO 639-1 like every other language registry here (src/cards/inflectionSchemes.js is the
@@ -49,7 +51,18 @@ const JAPANESE = Object.freeze({
     budgets: Object.freeze({ hiragana: 150, katakana: 150 }),
     minPerUnit: 3,
     label: "Chapter 00: Kana",
+    // A kana word's sound units (にゃ and ティ are one each; small っ and ー are their own) and
+    // which budget it counts against (src/reading/kanaUnits.js).
+    units: kanaUnits,
+    script: kanaScript,
   }),
+  /**
+   * A silent kanji card's romaji line: every reading the book's kanji table lists for it
+   * (src/reading/kanjiReadings.js; owner decision, 2026-09-27).
+   */
+  characterReadings: Object.freeze({ fromChapter: parseKanjiReadings, line: kanjiReadingsLine }),
+  /** Written in kana alone: an optional ending in brackets, or a word's reading after its kanji. */
+  isPhonetic: (text) => /^[\p{Script=Hiragana}\p{Script=Katakana}ー]+$/u.test(String(text ?? "")),
   promptBlock: `## Japanese
 
 - **Which form is the card.** When the book prints a word in kana AND in kanji (a vocabulary table

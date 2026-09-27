@@ -67,8 +67,13 @@ import {
 } from "../src/reading/readingPhase.js";
 import { readingScheme } from "../src/reading/readingSchemes.js";
 import { buildKanaUnit, collectKanaPool, KANA_CHAPTER_NUMBER } from "../src/reading/kanaDeck.js";
-import { selectKanaDeck, kanaScript } from "../src/reading/kanaUnits.js";
-import { applyStudyOrder, editedSinceMerge } from "../src/reading/studyOrder.js";
+import { selectSoundDeck } from "../src/reading/soundDeck.js";
+import {
+  applyStudyOrder,
+  editedSinceMerge,
+  rewriteUnitInPlace,
+} from "../src/reading/studyOrder.js";
+import { characterReadingsIn, withCharacterReadings } from "../src/reading/characterReadings.js";
 
 const argv = process.argv.slice(2);
 const flag = (name) => {
@@ -291,8 +296,11 @@ function describeKanaChoice({
   unselected,
 }) {
   console.log(
-    `kana deck: ${selected} word(s): ${perScript.hiragana} hiragana (budget ${budgets.hiragana}), ` +
-      `${perScript.katakana} with katakana (budget ${budgets.katakana}); ${unselected.length} left out`,
+    `kana deck: ${selected} word(s): ` +
+      Object.keys(budgets)
+        .map((name) => `${perScript[name]} ${name} (budget ${budgets[name]})`)
+        .join(", ") +
+      `; ${unselected.length} left out`,
   );
   const under = Object.entries(coverage).filter(([u, n]) => n < minPerUnit && !short.includes(u));
   if (under.length) {
@@ -347,10 +355,10 @@ if (bookPass) {
     if (collectionDir) {
       const { pool, missing } = collectKanaPool(collectionDir);
       if (pool.length) {
-        const { budgets, minPerUnit } = scheme.kanaDeck;
-        const choice = selectKanaDeck(pool, { budgets, minPerUnit });
-        const perScript = { hiragana: 0, katakana: 0 };
-        for (const e of choice.selected) perScript[kanaScript(e.target)]++;
+        const { budgets, minPerUnit, units, script } = scheme.kanaDeck;
+        const choice = selectSoundDeck(pool, { budgets, minPerUnit, units, script });
+        const perScript = Object.fromEntries(Object.keys(budgets).map((name) => [name, 0]));
+        for (const e of choice.selected) perScript[script(e.target)]++;
         console.log(
           `\nfrom the ${pool.length} kana word(s) merged so far` +
             (missing.length ? ` (${missing.length} chapter(s) not yet merged)` : "") +
@@ -375,6 +383,16 @@ if (bookPass) {
   // used to be read from file times, and reordering one chapter in place (study order) then made every
   // later chapter look out of date: on 2026-09-27 that re-merged Chapters 06-26 and discarded an edit.
   let earlierChanged = false;
+  // Every character's readings the language plugin finds in the book, so a character card gets them
+  // whichever chapter lists them (src/reading/characterReadings.js).
+  const bookCharacters = new Map();
+  for (const lesson of lessons) {
+    const path = cachePathFor(lesson);
+    if (!existsSync(path)) continue;
+    for (const [character, readings] of characterReadingsIn(readFileSync(path, "utf-8"), scheme)) {
+      if (!bookCharacters.has(character)) bookCharacters.set(character, readings);
+    }
+  }
   for (const lesson of lessons) {
     const unitDir = resolveChapterRunDir(outputRoot, slug, epubHash, lesson.firstChapterNumber);
     const report = readJsonOrNull(join(unitDir, "reading-report.json"));
@@ -390,6 +408,13 @@ if (bookPass) {
     // Every unit is studied in a fixed shuffle (src/reading/studyOrder.js). A chapter built before
     // that rule is reordered in place, keeping any review edits; a done one is left as delivered.
     if (applyStudyOrder(unitDir)) console.log(`\n${lesson.label}: put into study order (shuffled)`);
+    let filled = 0;
+    rewriteUnitInPlace(unitDir, (unitCards) => {
+      const result = withCharacterReadings(unitCards.items ?? [], bookCharacters, scheme);
+      filled = result.filled;
+      return filled ? { ...unitCards, items: result.items } : null;
+    });
+    if (filled) console.log(`\n${lesson.label}: readings added to ${filled} character card(s)`);
     if (stale && (humanReviewed || edited)) {
       console.log(
         `\n${lesson.label}: out of date (older merge rules, or an earlier chapter changed), but ` +

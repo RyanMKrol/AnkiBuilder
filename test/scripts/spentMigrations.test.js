@@ -37,6 +37,7 @@ const STANDING = [
   "build-reading.mjs",
   "remaster-epub.mjs",
   "rebase-collection.mjs",
+  "build-kanji-dictionary.mjs",
   "preflight.mjs",
   "validate-decks.mjs",
   "deliver-to-anki.mjs",

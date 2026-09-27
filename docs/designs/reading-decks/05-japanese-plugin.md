@@ -112,3 +112,6 @@ The generic reading pipeline knows no language. Everything Japanese reaches it t
   (`src/reading/kanjiReadings.js`). A kanji card stays silent: no one reading is right on its own.
 - `isPhonetic`: which bracketed text is kana, for the merge's bracket rules (an optional ending, or a
   word's reading after its kanji).
+- `characterSource` (`name`, `charactersIn`, `lookup`, `line`): the kanji a word is made of and a
+  dictionary lookup for each (KANJIDIC2, `src/reading/kanjiDictionary.js`), for the character cards a
+  chapter needs before the book teaches them (`docs/designs/reading-decks/10-character-cards.md`).

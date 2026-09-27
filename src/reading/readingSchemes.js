@@ -2,6 +2,7 @@ import { resolveIso639Code } from "../model/iso639.js";
 import { isReadingKind } from "../model/deckKind.js";
 import { kanaUnits, kanaScript } from "./kanaUnits.js";
 import { parseKanjiReadings, kanjiReadingsLine } from "./kanjiReadings.js";
+import { lookupKanji, kanjiDictionarySource } from "./kanjiDictionary.js";
 
 // Per-language behaviour of the READING deck (docs/designs/reading-decks/05-japanese-plugin.md),
 // keyed by ISO 639-1 like every other language registry here (src/cards/inflectionSchemes.js is the
@@ -61,6 +62,20 @@ const JAPANESE = Object.freeze({
    * (src/reading/kanjiReadings.js; owner decision, 2026-09-27).
    */
   characterReadings: Object.freeze({ fromChapter: parseKanjiReadings, line: kanjiReadingsLine }),
+  /**
+   * A kanji a word uses before the book teaches it gets a card of its own (src/reading/characterGaps.js;
+   * owner decisions, 2026-09-28): meaning and readings from KANJIDIC2 (src/reading/kanjiDictionary.js),
+   * written as the book's kanji tables write them.
+   */
+  characterSource: Object.freeze({
+    get name() {
+      return kanjiDictionarySource();
+    },
+    charactersIn: (text) =>
+      [...String(text ?? "")].filter((c) => /\p{Script=Han}/u.test(c) && c !== "々"),
+    lookup: lookupKanji,
+    line: kanjiReadingsLine,
+  }),
   /** Written in kana alone: an optional ending in brackets, or a word's reading after its kanji. */
   isPhonetic: (text) => /^[\p{Script=Hiragana}\p{Script=Katakana}ー]+$/u.test(String(text ?? "")),
   promptBlock: `## Japanese
@@ -84,7 +99,10 @@ const JAPANESE = Object.freeze({
 - **A single kanji the book also teaches as a word in its own right** (日 read ひ, "day") is ONE
   item: the word, with its \`reading\`, and it has audio.
 - **A single hiragana or katakana is a card only when the book teaches it as a word** with its own
-  meaning (に "Two", ご "Five"), as \`kind: "word"\`. Never a kana taught as a letter of the syllabary.`,
+  meaning (に "Two", ご "Five"), as \`kind: "word"\`. Never a kana taught as a letter of the syllabary.
+- **A character card's \`readings\`** (when you are asked for them) are an object with two lists, in
+  hiragana: \`on\`, the Chinese-derived readings (ぶん), and \`kun\`, the native ones, each only the part
+  the kanji itself is read as (き for 聞く, not きく): \`{ "on": ["ぶん"], "kun": ["き"] }\`.`,
 });
 
 const SCHEMES = Object.freeze({ ja: JAPANESE });

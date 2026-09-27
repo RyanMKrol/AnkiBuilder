@@ -36,6 +36,7 @@ export function parseKanjiReadings(html) {
     // The meaning in brackets may come before or after the readings: drop it, then read marker
     // groups until the first word that is not bare kana (the entry's example words begin there).
     let rest = text.slice(m.index + m[0].length, m.index + m[0].length + 120);
+    const meaning = rest.match(/\(([^)]*[A-Za-z][^)]*)\)/)?.[1]?.trim() ?? null;
     rest = rest.replace(/\([^)]*[A-Za-z][^)]*\)/, " ");
     const readings = { on: [], kun: [] };
     let group = null;
@@ -55,7 +56,15 @@ export function parseKanjiReadings(html) {
         break;
       }
     }
-    if ((readings.on.length || readings.kun.length) && !out.has(kanji)) out.set(kanji, readings);
+    if ((readings.on.length || readings.kun.length) && !out.has(kanji)) {
+      // The book's meaning rides along (sentence-cased, "To listen"), for a card generated before
+      // the book taught this kanji (src/reading/characterGaps.js). Enumerable only on purpose: the
+      // readings line reads `on` and `kun` alone.
+      out.set(kanji, {
+        ...readings,
+        meaning: meaning ? meaning.charAt(0).toUpperCase() + meaning.slice(1) : null,
+      });
+    }
   }
   return out;
 }

@@ -23,3 +23,6 @@ anki-state-backup-*.json
 # that only a human is allowed to change.
 output
 .anki-builder
+
+# Generated data (scripts/build-kanji-dictionary.mjs): one line on purpose, 300 KB.
+src/reading/data/kanjidic2-compact.json

@@ -650,7 +650,10 @@ What is built, newest last:
   (`src/audit/checks/reading.js`; a reading collection skips the speaking-only checks and says
   which). A Japanese reading collection cards its kana words once, in one kana deck chosen from the
   whole book (`--book-pass`; sound coverage first, then 150 hiragana and 150 katakana words), and its
-  chapters card kanji only. The operator procedure is the `build-reading-deck` skill.
+  chapters card kanji only. Every kanji a word uses gets its own silent card with its readings on the
+  romaji line, generated in the first chapter that uses it from a kanji dictionary
+  (`scripts/build-kanji-dictionary.mjs`, KANJIDIC2) and checked by a review agent, until the book's own
+  kanji table replaces the data. The operator procedure is the `build-reading-deck` skill.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

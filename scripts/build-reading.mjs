@@ -64,6 +64,7 @@ import {
   earlierReadingTargets,
   laterBuiltChapters,
   READING_MERGE_VERSION,
+  readingCardId,
 } from "../src/reading/readingPhase.js";
 import { readingScheme } from "../src/reading/readingSchemes.js";
 import { buildKanaUnit, collectKanaPool, KANA_CHAPTER_NUMBER } from "../src/reading/kanaDeck.js";
@@ -74,6 +75,14 @@ import {
   rewriteUnitInPlace,
 } from "../src/reading/studyOrder.js";
 import { characterReadingsIn, withCharacterReadings } from "../src/reading/characterReadings.js";
+import {
+  CHARACTERS_FILE,
+  fillCharacterGaps,
+  applyBookCharacters,
+  dropCharactersCardedEarlier,
+} from "../src/reading/characterGaps.js";
+import { writeCharacters, reviewCharacters } from "../src/reading/readingAgents.js";
+import { logDirFor, withRunLogDir } from "../src/agents/runLog.js";
 
 const argv = process.argv.slice(2);
 const flag = (name) => {
@@ -383,6 +392,64 @@ if (bookPass) {
   // used to be read from file times, and reordering one chapter in place (study order) then made every
   // later chapter look out of date: on 2026-09-27 that re-merged Chapters 06-26 and discarded an edit.
   let earlierChanged = false;
+  const isCharacter = (item) => Boolean(scheme.isCharacterTarget?.(item.target));
+  // Characters carded by the chapters so far, and which chapter generated each generated one
+  // (src/reading/characterGaps.js).
+  const earlierCharacters = new Set();
+  const generatedIn = new Map();
+  const characterAgents = (unitDir) => ({
+    writeCharacters: (entries) =>
+      withRunLogDir(logDirFor(unitDir), () => writeCharacters({ entries, targetLanguage: lang })),
+    reviewCharacters: (entries) => {
+      const { corrections, unreviewed } = withRunLogDir(logDirFor(unitDir), () =>
+        reviewCharacters({ entries, targetLanguage: lang }),
+      );
+      if (unreviewed.length)
+        console.log(`  not reviewed (no verdict given): ${unreviewed.join(" ")}`);
+      return corrections;
+    },
+  });
+  // A chapter's characters, after its merge: a character it teaches that an earlier chapter already
+  // carded loses this chapter's repeat card, and the book's meaning and readings go to the earlier
+  // card if it was generated; then every character its words use with no card yet gets one.
+  async function completeCharacters(lesson, unitDir) {
+    if (!scheme.characterSource) return;
+    const chapterPath = cachePathFor(lesson);
+    const taught = existsSync(chapterPath)
+      ? characterReadingsIn(readFileSync(chapterPath, "utf-8"), scheme)
+      : new Map();
+    const dropped = dropCharactersCardedEarlier(unitDir, earlierCharacters, { scheme });
+    const corrected = [];
+    for (const [character, entry] of taught) {
+      const earlierDir = generatedIn.get(character);
+      if (!earlierDir) continue;
+      const book = { meaning: entry.meaning, readings: entry, chapterLabel: lesson.label };
+      corrected.push(...applyBookCharacters(earlierDir, new Map([[character, book]]), { scheme }));
+      generatedIn.delete(character);
+    }
+    const result = await fillCharacterGaps(unitDir, {
+      scheme,
+      earlier: earlierCharacters,
+      cardId: readingCardId,
+      agents: characterAgents(unitDir),
+      log: (line) => console.log(`  ${line}`),
+    });
+    const now = readJsonOrNull(join(unitDir, "cards.json"));
+    for (const item of now?.items ?? []) {
+      if (!item.excluded && isCharacter(item)) earlierCharacters.add(item.target);
+    }
+    for (const entry of readJsonOrNull(join(unitDir, CHARACTERS_FILE))?.generated ?? []) {
+      if (!entry.replacedByBook) generatedIn.set(entry.target, unitDir);
+    }
+    const said = [
+      dropped.length && `${dropped.length} repeat character card(s) dropped (carded earlier)`,
+      corrected.length && `the book's data given to ${corrected.length} earlier generated card(s)`,
+      result.added &&
+        `${result.added} character card(s) generated (${result.fromModel} by the model, ${result.corrected} corrected by review)`,
+      result.skipped && result.skipped,
+    ].filter(Boolean);
+    if (said.length) console.log(`  characters: ${said.join("; ")}`);
+  }
   // Every character's readings the language plugin finds in the book, so a character card gets them
   // whichever chapter lists them (src/reading/characterReadings.js).
   const bookCharacters = new Map();
@@ -407,7 +474,9 @@ if (bookPass) {
     const edited = Boolean(cards) && editedSinceMerge(unitDir);
     // Every unit is studied in a fixed shuffle (src/reading/studyOrder.js). A chapter built before
     // that rule is reordered in place, keeping any review edits; a done one is left as delivered.
-    if (applyStudyOrder(unitDir)) console.log(`\n${lesson.label}: put into study order (shuffled)`);
+    if (applyStudyOrder(unitDir, { isCharacter })) {
+      console.log(`\n${lesson.label}: put into study order (shuffled, characters first)`);
+    }
     let filled = 0;
     rewriteUnitInPlace(unitDir, (unitCards) => {
       const result = withCharacterReadings(unitCards.items ?? [], bookCharacters, scheme);
@@ -422,6 +491,9 @@ if (bookPass) {
           `would discard the ${humanReviewed ? "review" : "edits"}. Preflight names any repeat; ` +
           `re-merge it by hand (--lesson ... --remerge) only if losing that is intended.`,
       );
+      // Its characters still count as carded for the chapters after it, and an edited chapter's
+      // gaps are filled in place like any other's (only a re-merge would lose the edits).
+      await completeCharacters(lesson, unitDir);
       continue;
     }
     // One chapter's failure does not stop the pass: the others are still worth reading, and a re-run
@@ -437,6 +509,7 @@ if (bookPass) {
       });
       if (code !== 0) failed.push(`${lesson.label}: did not verify`);
       if (!cards || stale) earlierChanged = true;
+      await completeCharacters(lesson, unitDir);
     } catch (error) {
       if (error.quotaExhausted) {
         console.error(`\n${error.message}`);

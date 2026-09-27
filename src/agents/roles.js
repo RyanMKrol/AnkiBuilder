@@ -230,6 +230,29 @@ export const ROLES = Object.freeze({
     purpose: "Enumerate what a chapter teaches to read, independently, for a code-side diff.",
   },
 
+  // Character cards a chapter needs before the book teaches them (src/reading/characterGaps.js).
+  // The dictionary comes first; the writer only fills what it lacks, and the reviewer, one call per
+  // chapter, checks everything generated (owner decisions, 2026-09-28).
+  readingCharacterWriter: {
+    envScope: "READING_CHARACTER_WRITER",
+    model: "claude-sonnet-5",
+    effort: "medium",
+    timeoutMs: 10 * MINUTES,
+    phase: "reading",
+    purpose: "Write the meaning and readings of characters the reading dictionary lacks.",
+  },
+  readingCharacterReviewer: {
+    envScope: "READING_CHARACTER_REVIEWER",
+    // Medium, not high: high effort is kept for the two coverage adversaries (roles.test.js). It
+    // claims no `checks` either: its main job is trimming a dictionary's output, and at equal model
+    // and effort it cannot claim to outrank the writer.
+    model: "claude-sonnet-5",
+    effort: "medium",
+    timeoutMs: 15 * MINUTES,
+    phase: "reading",
+    purpose: "Check the character cards generated for a chapter, trimming a dictionary's excess.",
+  },
+
   // ---- Review: the last look before any audio is paid for --------------------------------
   finalReview: {
     envScope: "FINAL_REVIEW",

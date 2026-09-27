@@ -23,6 +23,8 @@ export const READING_PROMPTS = Object.freeze({
   chapter: join(DOCS, "reading-chapter-prompt.md"),
   image: join(DOCS, "reading-image-prompt.md"),
   coverage: join(DOCS, "reading-coverage-prompt.md"),
+  characterWriter: join(DOCS, "reading-character-writer-prompt.md"),
+  characterReview: join(DOCS, "reading-character-review-prompt.md"),
 });
 
 export const ITEM_KINDS = Object.freeze(["word", "phrase", "character"]);
@@ -299,5 +301,95 @@ export function enumerateForReading({
   return {
     items: takeItems(parsed, "readingCoverageAdversary"),
     coverage: parsed.coverage ?? null,
+  };
+}
+
+// ---- characters a chapter needs before the book teaches them (src/reading/characterGaps.js) ---
+
+const charactersJson = (entries) =>
+  JSON.stringify(
+    entries.map((e) => ({
+      target: e.target,
+      ...(e.english !== undefined
+        ? { english: e.english, readings: e.readings, source: e.source }
+        : {}),
+      usedIn: e.usedIn,
+    })),
+    null,
+    2,
+  );
+
+export function renderCharacterWriterPrompt({ entries, targetLanguage }) {
+  return renderPromptTemplate(READING_PROMPTS.characterWriter, {
+    TARGET_LANGUAGE: targetLanguage,
+    READING_LANGUAGE_RULES: readingLanguageBlock(targetLanguage),
+    CHARACTERS_JSON: charactersJson(entries.map(({ target, usedIn }) => ({ target, usedIn }))),
+  });
+}
+
+export function renderCharacterReviewPrompt({ entries, targetLanguage }) {
+  return renderPromptTemplate(READING_PROMPTS.characterReview, {
+    TARGET_LANGUAGE: targetLanguage,
+    READING_LANGUAGE_RULES: readingLanguageBlock(targetLanguage),
+    CHARACTERS_JSON: charactersJson(entries),
+  });
+}
+
+/** Meaning and readings for characters the dictionary lacks: `Map<target, { english, readings }>`. */
+export function writeCharacters({ entries, targetLanguage, runClaude } = {}) {
+  if (!entries.length) return new Map();
+  const parsed = parseReply(
+    runRole("readingCharacterWriter", renderCharacterWriterPrompt({ entries, targetLanguage }), {
+      ...(runClaude ? { runClaude } : {}),
+    }),
+    "the reading character writer",
+  );
+  const asked = new Set(entries.map((e) => e.target));
+  return new Map(
+    (parsed.characters ?? [])
+      .filter((c) => c && asked.has(c.target) && c.english && c.readings)
+      .map((c) => [c.target, { english: c.english, readings: c.readings }]),
+  );
+}
+
+/**
+ * The reviewer's corrections, `Map<target, { english?, readings?, reason }>`, for the cards it said to
+ * fix. Every card must get a verdict: one it skipped is asked about again, on its own, once; one still
+ * unjudged is left as generated and named in `unreviewed`.
+ */
+export function reviewCharacters({ entries, targetLanguage, runClaude } = {}) {
+  const corrections = new Map();
+  if (!entries.length) return { corrections, unreviewed: [] };
+  const ask = (batch) =>
+    parseReply(
+      runRole(
+        "readingCharacterReviewer",
+        renderCharacterReviewPrompt({ entries: batch, targetLanguage }),
+        {
+          ...(runClaude ? { runClaude } : {}),
+        },
+      ),
+      "the reading character reviewer",
+    ).cards ?? [];
+  const judged = new Set();
+  const take = (cards) => {
+    for (const card of cards) {
+      if (!card?.target || judged.has(card.target)) continue;
+      judged.add(card.target);
+      if (card.verdict === "fix") {
+        corrections.set(card.target, {
+          ...(card.english ? { english: card.english } : {}),
+          ...(card.readings ? { readings: card.readings } : {}),
+          reason: card.reason ?? "corrected",
+        });
+      }
+    }
+  };
+  take(ask(entries));
+  const skipped = entries.filter((e) => !judged.has(e.target));
+  if (skipped.length) take(ask(skipped));
+  return {
+    corrections,
+    unreviewed: entries.filter((e) => !judged.has(e.target)).map((e) => e.target),
   };
 }

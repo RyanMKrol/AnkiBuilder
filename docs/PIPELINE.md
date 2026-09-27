@@ -1801,6 +1801,13 @@ Every reading unit's cards are written in a fixed shuffle (`readingStudyOrder`,
 the package's new-card order and delivery all follow. `applyStudyOrder` reorders a unit written before
 the rule in place (the book pass does this), leaving a done unit alone.
 
+The book pass then completes each chapter's characters (`src/reading/characterGaps.js`, gated on the
+language plugin's `characterSource`): it drops a character card the chapter repeats from an earlier
+one, gives the book's meaning and readings to an earlier generated card for each character the
+chapter's table teaches (`applyBookCharacters`), and fills the chapter's gaps, every character its
+words use with no card yet, from the dictionary, then the `readingCharacterWriter` role, then one
+`readingCharacterReviewer` call. All in place; `candidates/characters.json` records what was generated.
+
 A reading collection's Anki layout is flat, one deck per chapter directly under the parent
 (`unitDeckSegments(label, { deckKind: "reading" })`, shared by the package and delivery), and its
 parent deck is the owner's `deckName` when the marker has one (`setCollectionDeckName`, refused once

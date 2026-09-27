@@ -647,3 +647,14 @@ per-source boolean should become an explicit per-source table.
 - **Why:** the first version showed the meaning alone, which told the learner nothing about how the
   kanji sounds; silence without the readings was the gap, not the silence.
 - **Where it lives:** the `characterReadings` hook on the Japanese reading scheme.
+
+## Every kanji a word uses gets a card, generated if the book has not taught it yet
+
+- **What was decided (owner, 2026-09-28):** a reading chapter gives every kanji its words use a card
+  of its own, in the first chapter that uses it, before its words. Data from a kanji dictionary
+  (KANJIDIC2), a model for any it lacks, and one review agent per chapter; the book's own data
+  replaces it when the book teaches the kanji. Generated cards are marked as such.
+- **Why:** the deck cards words as the book prints them, in kanji Genki teaches late or never, so a
+  learner met words long before their kanji. Hoisting the book's kanji cards forward was rejected
+  because a chapter-by-chapter build cannot know what a later chapter teaches.
+- **Where it lives:** `docs/designs/reading-decks/10-character-cards.md`.

@@ -9,6 +9,7 @@ import {
   applyBookCharacters,
   dropCharactersCardedEarlier,
   CHARACTERS_FILE,
+  reReviewCharacters,
 } from "../../src/reading/characterGaps.js";
 import { readingScheme } from "../../src/reading/readingSchemes.js";
 import { readingCardId } from "../../src/reading/readingPhase.js";
@@ -156,5 +157,51 @@ test("when the book teaches a generated character, its data replaces the card's,
   } finally {
     rmSync(early, { recursive: true, force: true });
     rmSync(late, { recursive: true, force: true });
+  }
+});
+
+test("cards reviewed under an older review version are reviewed again, once", async () => {
+  const dir = unit([word("学校", "がっこう")]);
+  try {
+    const first = {
+      writeCharacters: async () => new Map(),
+      reviewCharacters: async () => new Map(),
+    };
+    await fillCharacterGaps(dir, { scheme: ja, cardId: readingCardId, agents: first });
+    // Pretend the review ran under the first prompt.
+    const path = join(dir, CHARACTERS_FILE);
+    const record = json(path);
+    writeFileSync(
+      path,
+      JSON.stringify({ generated: record.generated.map((g) => ({ ...g, reviewVersion: 1 })) }),
+    );
+    const seen = [];
+    const stricter = {
+      reviewCharacters: async (entries) => {
+        seen.push(entries.map((e) => [e.target, e.usedIn.map((u) => u.target)]));
+        return new Map([["校", { english: "School", reason: "the sense 学校 uses" }]]);
+      },
+    };
+    assert.deepEqual(await reReviewCharacters(dir, { scheme: ja, agents: stricter }), {
+      reviewed: 2,
+      corrected: 1,
+    });
+    assert.deepEqual(seen, [
+      [
+        ["学", ["学校"]],
+        ["校", ["学校"]],
+      ],
+    ]);
+    assert.equal(
+      json(join(dir, "cards.json")).items.find((i) => i.target === "校").english,
+      "School",
+    );
+    // Done: nothing is stale any more.
+    assert.deepEqual(await reReviewCharacters(dir, { scheme: ja, agents: stricter }), {
+      reviewed: 0,
+      corrected: 0,
+    });
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
   }
 });

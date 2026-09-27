@@ -38,6 +38,12 @@ nobody has seen is not covered by a sign-off given before it existed. Each gener
 where its data came from, and `candidates/characters.json` records every generated character, its
 source, the reviewer's verdict and, later, the chapter whose book data replaced it.
 
+Each generated card records the version of the review it was checked under (`CHARACTER_REVIEW_VERSION`
+in `src/reading/characterGaps.js`). Raise it whenever the review prompt changes what the reviewer
+fixes: the book pass then re-reviews every generated card checked under an older version, one call per
+chapter. The first Genki run needed it: its review kept dictionary senses a learner never meets (校
+"Exam; school; printing").
+
 ## The dictionary
 
 `src/reading/data/kanjidic2-compact.json` holds KANJIDIC2's 2,974 graded kanji (jōyō and jinmeiyō)

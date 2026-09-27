@@ -80,6 +80,7 @@ import {
   fillCharacterGaps,
   applyBookCharacters,
   dropCharactersCardedEarlier,
+  reReviewCharacters,
 } from "../src/reading/characterGaps.js";
 import { writeCharacters, reviewCharacters } from "../src/reading/readingAgents.js";
 import { logDirFor, withRunLogDir } from "../src/agents/runLog.js";
@@ -426,6 +427,13 @@ if (bookPass) {
       const book = { meaning: entry.meaning, readings: entry, chapterLabel: lesson.label };
       corrected.push(...applyBookCharacters(earlierDir, new Map([[character, book]]), { scheme }));
       generatedIn.delete(character);
+    }
+    // Cards generated before the review prompt last changed are checked again (one call).
+    const again = await reReviewCharacters(unitDir, { scheme, agents: characterAgents(unitDir) });
+    if (again.reviewed) {
+      console.log(
+        `  characters: ${again.reviewed} generated card(s) re-reviewed, ${again.corrected} corrected`,
+      );
     }
     const result = await fillCharacterGaps(unitDir, {
       scheme,

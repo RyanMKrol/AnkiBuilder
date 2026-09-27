@@ -19,6 +19,15 @@ import { writeFileAtomic } from "../util/atomicWrite.js";
 import { editedSinceMerge, readingStudyOrder } from "./studyOrder.js";
 
 export const CHARACTERS_FILE = "candidates/characters.json";
+
+/**
+ * The version of the character review (docs/reading-character-review-prompt.md) a generated card was
+ * checked under. RAISE IT when that prompt changes what the reviewer fixes: the book pass re-reviews,
+ * one call per chapter, every generated card checked under an older version (reReviewCharacters).
+ * 1: the first review, which kept dictionary senses a learner never meets. 2: meanings judged against
+ * the words that use the character (2026-09-28).
+ */
+export const CHARACTER_REVIEW_VERSION = 2;
 const REPORT = "reading-report.json";
 
 const readJson = (path, fallback = null) => {
@@ -167,6 +176,7 @@ export async function fillCharacterGaps(
         source: from,
         usedIn: usedIn.map((u) => u.target),
         review,
+        reviewVersion: CHARACTER_REVIEW_VERSION,
       })),
     ],
   });
@@ -250,4 +260,81 @@ export function dropCharactersCardedEarlier(unitDir, earlier, { scheme }) {
     utimesSync(reportPath, now, now);
   }
   return removed;
+}
+
+/**
+ * Re-reviews, IN PLACE, a unit's generated character cards checked under an older review version
+ * (CHARACTER_REVIEW_VERSION), in one call, and applies the reviewer's corrections to the cards. A card
+ * the book has since replaced is not reviewed again; a unit marked done is left alone; a reviewed unit
+ * whose cards change is reopened. Returns `{ reviewed, corrected }`.
+ */
+export async function reReviewCharacters(unitDir, { scheme, agents }) {
+  const record = readJson(join(unitDir, CHARACTERS_FILE));
+  const cardsPath = join(unitDir, "cards.json");
+  const cards = readJson(cardsPath);
+  if (!record?.generated?.length || !cards || cards.meta?.done === true) {
+    return { reviewed: 0, corrected: 0 };
+  }
+  const stale = record.generated.filter(
+    (entry) => !entry.replacedByBook && (entry.reviewVersion ?? 1) < CHARACTER_REVIEW_VERSION,
+  );
+  if (!stale.length) return { reviewed: 0, corrected: 0 };
+  const byTarget = new Map(cards.items.map((item) => [item.target, item]));
+  const words = cards.items.filter((item) => !scheme.isCharacterTarget(item.target));
+  const entries = stale.map((entry) => ({
+    ...entry,
+    english: byTarget.get(entry.target)?.english ?? entry.english,
+    usedIn: words
+      .filter((w) => String(w.target).includes(entry.target))
+      .map((w) => ({ target: w.target, reading: w.ttsText ?? null })),
+  }));
+  const corrections = await agents.reviewCharacters(entries);
+  const fixed = new Map();
+  const generated = record.generated.map((entry) => {
+    if (!stale.includes(entry)) return entry;
+    const fix = corrections.get(entry.target);
+    if (fix) fixed.set(entry.target, fix);
+    return {
+      ...entry,
+      ...(fix?.english ? { english: fix.english } : {}),
+      ...(fix?.readings ? { readings: fix.readings } : {}),
+      review: fix ? (fix.reason ?? "corrected") : "ok",
+      reviewVersion: CHARACTER_REVIEW_VERSION,
+    };
+  });
+  if (fixed.size) {
+    const reopened = cards.meta?.reviewed === true;
+    const wasEdited = editedSinceMerge(unitDir);
+    const items = cards.items.map((item) => {
+      const fix = fixed.get(item.target);
+      if (!fix) return item;
+      return {
+        ...item,
+        ...(fix.english ? { english: fix.english } : {}),
+        ...(fix.readings ? { pronunciation: scheme.characterSource.line(fix.readings) } : {}),
+      };
+    });
+    writeJson(cardsPath, {
+      ...cards,
+      meta: reopened ? { ...cards.meta, reviewed: false } : cards.meta,
+      items,
+    });
+    const corpusPath = join(unitDir, "corpus.json");
+    const corpus = readJson(corpusPath);
+    if (corpus) {
+      const corpusItems = corpus.items.map((item) => {
+        const fix = fixed.get(item.target);
+        return fix?.english ? { ...item, english: fix.english } : item;
+      });
+      const corpusMeta = reopened ? { ...corpus.meta, reviewed: false } : corpus.meta;
+      writeJson(corpusPath, { ...corpus, meta: corpusMeta, items: corpusItems });
+    }
+    const reportPath = join(unitDir, REPORT);
+    if (!wasEdited && existsSync(reportPath)) {
+      const now = new Date();
+      utimesSync(reportPath, now, now);
+    }
+  }
+  writeJson(join(unitDir, CHARACTERS_FILE), { ...record, generated });
+  return { reviewed: stale.length, corrected: fixed.size };
 }

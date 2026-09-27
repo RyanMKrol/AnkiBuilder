@@ -56,7 +56,8 @@ For a language whose reading scheme has a kana deck (Japanese), build the whole 
 reviewing anything. Kana-only words are carded ONCE per collection, in `Chapter 00: Kana`, chosen
 from every chapter: first so each kana sound (with にゃ-type and ティ-type combinations, small っ and
 ー as sounds of their own) is in at least 3 words, then up to 150 hiragana and 150 katakana words in
-book order. Chapters card kanji only. Why and the details: `docs/designs/reading-decks/09-kana-deck.md`.
+book order. Its cards are studied in a fixed shuffle, so a run like いち, に, さん never gives the next
+card away. Chapters card kanji only. Why and the details: `docs/designs/reading-decks/09-kana-deck.md`.
 
 ```sh
 $TOOL --epub <book.epub> --book-pass --lang ja --dry     # what would be read, and the paid calls

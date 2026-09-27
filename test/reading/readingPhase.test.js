@@ -615,6 +615,11 @@ test("the voice gets the written form, except a single kanji word or a word with
   assert.equal(spoken({ target: "今日", ttsText: "きょう" }), false);
   assert.equal(spoken({ target: "おはよう" }), false);
   assert.equal(spoken({ target: "日" }), false);
+  // A digit is spoken from the kana, where a person spelled the number out.
+  assert.equal(
+    spoken({ target: "10ページを開いてください", ttsText: "じゅっページをひらいてください" }),
+    false,
+  );
 });
 
 test("a chapter's own title heading need not be reported, but a lone heading must", () => {

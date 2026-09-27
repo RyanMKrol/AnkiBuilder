@@ -439,6 +439,9 @@ export function findReadingGaps(enumerated, items, { dropped = [], targetLanguag
 export function spokenFromWrittenForm(item, { scheme, conflicted = new Set() } = {}) {
   if (!scheme?.requiresReading?.(item.target) || !item.ttsText) return false;
   if ([...String(item.target)].length === 1) return false;
+  // A written form with a digit is spoken from its kana, where a person spells the number out: the
+  // voice cannot read a digit reliably. Genki's 10ページを開いてください was sent to the voice as written.
+  if (/\p{Nd}/u.test(String(item.target))) return false;
   return !conflicted.has(item.target);
 }
 

@@ -18,13 +18,16 @@ Each with its source and the words in this deck that use it (with their readings
 
 ## What to check
 
-- `english` is the character's core meaning, what a learner needs to recognise it: one to three
-  meanings, sentence-case, joined with "; ". Drop obscure and technical senses. A dictionary gives 鏡
-  "Mirror; speculum; barrel-head"; the card wants "Mirror".
+- `english` is the meaning a learner needs to recognise the character: usually ONE, at most three,
+  sentence-case, joined with "; ". Judge it against the words in this deck that use the character: 校
+  appears in 学校, so the card wants "School", not the dictionary's "Exam; school; printing"; 見 wants
+  "See; look", not "See; hopes; chances"; 鏡 wants "Mirror", not "Mirror; speculum; barrel-head". A
+  dictionary's first sense is often not the one a learner meets, and its later senses are usually noise.
 - `readings` are the ones a learner meets, in the shape the language rules describe for a character
-  card. Drop rare, archaic and name-only readings. Every reading the listed words use must be there;
-  add one that is missing.
-- A card that is right is left alone. Change only what is wrong, and say why in a few words.
+  card. Drop rare, archaic and name-only readings, and any that belong to a different character. Every
+  reading the listed words use must be there; add one that is missing.
+- Correct everything that falls short of that, not only what is wrong. Leave a card alone only when its
+  meaning and readings are already exactly what a learner needs; say why in a few words when you fix.
 
 ## Output
 

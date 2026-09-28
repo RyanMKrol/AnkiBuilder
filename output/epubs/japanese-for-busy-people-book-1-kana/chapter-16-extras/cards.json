@@ -40,11 +40,6 @@
       "note": "から on a past-tense clause: the reason is something that has already happened.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence やすみます appears in; also から after a ました clause).",
       "aiSuggested": true,
-      "audio": "c7077fb46455a138.mp3",
-      "audioOriginal": "c7077fb46455a138.orig.mp3",
-      "audioAuto": "c7077fb46455a138.mp3",
-      "audioMarked": true,
-      "audioTextHash": "c7077fb46455a138",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented near-duplicate of a book sentence that ships."
@@ -118,12 +113,6 @@
       "note": "に because you GO there. あきはばらでイベントがあります takes で, because that is where the event HAPPENS. Same place, two particles, decided by the verb.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against the Target Dialogue's あきはばらでイベントがあります).",
       "aiSuggested": true,
-      "audioOriginal": "09edde39827fe28c-genkanji-1abec0e8.orig.mp3",
-      "audioAuto": "09edde39827fe28c-genkanji-1abec0e8.mp3",
-      "audioMarked": true,
-      "audioTextHash": "09edde39827fe28c",
-      "audioFilter": "standard",
-      "audio": "09edde39827fe28c-genkanji-1abec0e8.mp3",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented near-duplicate of a book sentence that ships."
@@ -153,11 +142,6 @@
       "note": "〜はどうですか proposes an alternative. Contrast どうですか on its own, which asks what someone thinks or wants.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: the only sentence はどうですか appears in — the chapter teaches it and Lesson 17 teaches it again).",
       "aiSuggested": true,
-      "audio": "c3bc0651892df630.mp3",
-      "audioOriginal": "c3bc0651892df630.orig.mp3",
-      "audioAuto": "c3bc0651892df630.mp3",
-      "audioMarked": true,
-      "audioTextHash": "c3bc0651892df630",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented; replaced by the book's own じゃ、にちようびはどうですか (EXERCISES IV)."
@@ -171,11 +155,6 @@
       "note": "でぐち is the general word for an exit; ひがしぐち names which one. The chapter's four 〜ぐち are all built the same way, on にし・ひがし・きた・みなみ.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence でぐち appears in, and the only one あいませんか appears in).",
       "aiSuggested": true,
-      "audio": "4f052a5c59978df0.mp3",
-      "audioOriginal": "4f052a5c59978df0.orig.mp3",
-      "audioAuto": "4f052a5c59978df0.mp3",
-      "audioMarked": true,
-      "audioTextHash": "4f052a5c59978df0",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Unnatural (\"the east exit's exit\"); えきのでぐちであいましょう replaces it."
@@ -190,11 +169,6 @@
       "note": "GRAMMAR 2 lists ええ／はい、ぜひ as interchangeable here; the deck already has the ええ version.",
       "reviewNote": "Extras wave 2 (from the book: GRAMMAR 2's list of ways to accept; job: the はい variant, which the book gives and the deck lacked).",
       "aiSuggested": true,
-      "audio": "7cd3d252a3077993.mp3",
-      "audioOriginal": "7cd3d252a3077993.orig.mp3",
-      "audioAuto": "7cd3d252a3077993.mp3",
-      "audioMarked": true,
-      "audioTextHash": "7cd3d252a3077993",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Trivial はい/ええ variant; the ええ card ships and its note says はい works too."
@@ -252,11 +226,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "404b1c43134fbc22.mp3",
-      "audioOriginal": "404b1c43134fbc22.orig.mp3",
-      "audioAuto": "404b1c43134fbc22.mp3",
-      "audioMarked": true,
-      "audioTextHash": "404b1c43134fbc22",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Unnatural (\"the east exit's exit\"); えきのでぐちであいましょう replaces it."
@@ -270,11 +239,6 @@
       "scene": "agreeing to a suggestion someone has just made",
       "reviewNote": "Extras wave 2 (from the book: GRAMMAR 2's list of ways to accept; job: the はい variant of ええ、そうしましょう).",
       "aiSuggested": true,
-      "audio": "3120e4eae157439c.mp3",
-      "audioOriginal": "3120e4eae157439c.orig.mp3",
-      "audioAuto": "3120e4eae157439c.mp3",
-      "audioMarked": true,
-      "audioTextHash": "3120e4eae157439c",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Trivial はい/ええ variant; the ええ card ships and its note says はい works too."
@@ -319,11 +283,6 @@
       "note": "The chapter's three physical-condition phrases (おなかがすきました, のどがかわきました, つかれました) all work as reasons in front of から.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the reason+invitation frame on a second condition, so the pattern is visible rather than a single instance).",
       "aiSuggested": true,
-      "audio": "271f7578e773b51c.mp3",
-      "audioOriginal": "271f7578e773b51c.orig.mp3",
-      "audioAuto": "271f7578e773b51c.mp3",
-      "audioMarked": true,
-      "audioTextHash": "271f7578e773b51c",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented near-duplicate of a book sentence that ships."
@@ -337,11 +296,6 @@
       "note": "ましょう assumes agreement and moves to the action. The same sentence with ませんか would still be asking.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the ましょう half of the pair; the grammar states this difference and no card showed it).",
       "aiSuggested": true,
-      "audio": "ff67c95e9d33a074.mp3",
-      "audioOriginal": "ff67c95e9d33a074.orig.mp3",
-      "audioAuto": "ff67c95e9d33a074.mp3",
-      "audioMarked": true,
-      "audioTextHash": "ff67c95e9d33a074",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented near-duplicate of a book sentence that ships."
@@ -383,11 +337,6 @@
       "pronunciation": "Shibuya de konsāto ga arimasu. issho ni ikimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1 — the whole exercise was missed on my first read).",
       "aiSuggested": true,
-      "audio": "e2d357384e14533c.mp3",
-      "audioOriginal": "e2d357384e14533c.orig.mp3",
-      "audioAuto": "e2d357384e14533c.mp3",
-      "audioMarked": true,
-      "audioTextHash": "e2d357384e14533c",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
@@ -401,11 +350,6 @@
       "note": "ませんか ASKS, and leaves the other person free to decline. Compare こうえんでひるごはんをたべましょう, which assumes the answer is yes.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the ませんか half of a fixed-frame minimal pair, so only the ending varies).",
       "aiSuggested": true,
-      "audio": "979dca2a2aa0840f.mp3",
-      "audioOriginal": "979dca2a2aa0840f.orig.mp3",
-      "audioAuto": "979dca2a2aa0840f.mp3",
-      "audioMarked": true,
-      "audioTextHash": "979dca2a2aa0840f",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Already inside Key Sentence 4, which ships."
@@ -544,11 +488,6 @@
       "note": "ね here checks a detail back rather than seeking agreement — the standard way to confirm arrangements.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1, closing turn).",
       "aiSuggested": true,
-      "audio": "6c3db6d2f31d2067.mp3",
-      "audioOriginal": "6c3db6d2f31d2067.orig.mp3",
-      "audioAuto": "6c3db6d2f31d2067.mp3",
-      "audioMarked": true,
-      "audioTextHash": "6c3db6d2f31d2067",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Another \"...right? Got it\"; the book's example ships."
@@ -563,11 +502,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "c000af95bba30527.mp3",
-      "audioOriginal": "c000af95bba30527.orig.mp3",
-      "audioAuto": "c000af95bba30527.mp3",
-      "audioMarked": true,
-      "audioTextHash": "c000af95bba30527",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Another \"X, so shall we...?\"; the book's three EXERCISES V answers ship."
@@ -644,11 +578,6 @@
       "note": "も replaces は on the topic to mean \"me too\" — it never sits alongside it.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — も had only two examples across the pair, below the three the pass aims for).",
       "aiSuggested": true,
-      "audio": "d58740a48f7ad9cc.mp3",
-      "audioOriginal": "d58740a48f7ad9cc.orig.mp3",
-      "audioAuto": "d58740a48f7ad9cc.mp3",
-      "audioMarked": true,
-      "audioTextHash": "d58740a48f7ad9cc",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Uses も with a destination in a way this lesson does not teach."
@@ -675,11 +604,6 @@
       "pronunciation": "Shinjuku de omatsuri ga arimasu. issho ni ikimasen ka",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2 — missed on my first read; job: the only sentence しんじゅく appears in).",
       "aiSuggested": true,
-      "audio": "c4c68a3feced2b2a.mp3",
-      "audioOriginal": "c4c68a3feced2b2a.orig.mp3",
-      "audioAuto": "c4c68a3feced2b2a.mp3",
-      "audioMarked": true,
-      "audioTextHash": "c4c68a3feced2b2a",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
@@ -692,11 +616,6 @@
       "pronunciation": "issho ni eiga o mimashō",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence みましょう appears in; it was the paradigm cell added by hand at gate 1).",
       "aiSuggested": true,
-      "audio": "00856f303ef688f1.mp3",
-      "audioOriginal": "00856f303ef688f1.orig.mp3",
-      "audioAuto": "00856f303ef688f1.mp3",
-      "audioMarked": true,
-      "audioTextHash": "00856f303ef688f1",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented near-duplicate of a book sentence that ships."
@@ -711,11 +630,6 @@
       "scene": "repeating back a meeting time and place to confirm it",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2, closing turn).",
       "aiSuggested": true,
-      "audio": "2810801be9a59d2a.mp3",
-      "audioOriginal": "2810801be9a59d2a.orig.mp3",
-      "audioAuto": "2810801be9a59d2a.mp3",
-      "audioMarked": true,
-      "audioTextHash": "2810801be9a59d2a",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Another \"...right? Got it\"; the book's example ships."
@@ -747,11 +661,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "39dfa8be583201eb.mp3",
-      "audioOriginal": "39dfa8be583201eb.orig.mp3",
-      "audioAuto": "39dfa8be583201eb.mp3",
-      "audioMarked": true,
-      "audioTextHash": "39dfa8be583201eb",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Another \"X, so shall we...?\"; the book's three EXERCISES V answers ship."
@@ -764,12 +673,6 @@
       "pronunciation": "doyōbi ni Shibuya de furīmāketto ga arimasu",
       "reviewNote": "Extras wave 1/2 (from the book: EXERCISES IV substitution 2; job: another で-marked event, on vocabulary from Lesson 8).",
       "aiSuggested": true,
-      "audioOriginal": "d18c23c02c77085e-genkanji-97696982.orig.mp3",
-      "audioAuto": "d18c23c02c77085e-genkanji-97696982.mp3",
-      "audioMarked": true,
-      "audioTextHash": "d18c23c02c77085e",
-      "audioFilter": "standard",
-      "audio": "d18c23c02c77085e-genkanji-97696982.mp3",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
@@ -812,11 +715,6 @@
       "pronunciation": "shūmatsu ni Kamakura de omatsuri ga arimasu. issho ni ikimasen ka",
       "reviewNote": "Extras wave 1/2 (from the book: EXERCISES IV substitution 1; job: the full two-sentence invitation the exercise builds).",
       "aiSuggested": true,
-      "audio": "dfa43f8358b19ffd.mp3",
-      "audioOriginal": "dfa43f8358b19ffd.orig.mp3",
-      "audioAuto": "dfa43f8358b19ffd.mp3",
-      "audioMarked": true,
-      "audioTextHash": "dfa43f8358b19ffd",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
@@ -886,7 +784,13 @@
       "target": "どようびにあさくさでおまつりがあります",
       "pronunciation": "doyōbi ni Asakusa de omatsuri ga arimasu",
       "note": "Demonstrates place + で + event + が + あります, 'an event takes place somewhere' (GRAMMAR 1).",
-      "addition": "v2-retrofit-l16-2026-09-28"
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionReviewed": true,
+      "audio": "cde3b98eaa0af198.mp3",
+      "audioOriginal": "cde3b98eaa0af198.orig.mp3",
+      "audioAuto": "cde3b98eaa0af198.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cde3b98eaa0af198"
     },
     {
       "id": "ks2-eiga",
@@ -903,7 +807,8 @@
       "audioMarked": true,
       "audioTextHash": "54fe9f70f4e592dd",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ks3-ikimashou",
@@ -920,7 +825,8 @@
       "audioMarked": true,
       "audioTextHash": "660d32310ca03148",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ks4-tenki-kara",
@@ -935,7 +841,8 @@
       "audioMarked": true,
       "audioTextHash": "be291b34c5a05e99",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "decline-anime",
@@ -951,7 +858,8 @@
       "audioMarked": true,
       "audioTextHash": "3a078afcb586da93",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "decline-doyoubi",
@@ -968,7 +876,8 @@
       "audioMarked": true,
       "audioTextHash": "e6157848593000de",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "nichiyoubi-jikan",
@@ -986,7 +895,8 @@
       "audioFilter": "standard",
       "audio": "d95767020f1d1411-genkanji-c68fec3f.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex7-yokohama-invite",
@@ -1001,7 +911,8 @@
       "audioFilter": "standard",
       "audio": "05b7a346cbf298f7-genkanji-fa98221f.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex7-nanji-kara",
@@ -1016,7 +927,8 @@
       "audioMarked": true,
       "audioTextHash": "7d9dbf27576ee657",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex7-shichiji-kara",
@@ -1033,7 +945,8 @@
       "audioFilter": "standard",
       "audio": "69fb094f2321c85c-genkanji-161fd9c9.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex7-wakarimashita",
@@ -1051,7 +964,8 @@
       "audioFilter": "standard",
       "audio": "b29f11a08c1d2a45-genkanji-5359aa33.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "sp1-party-invite",
@@ -1069,7 +983,8 @@
       "audioMarked": true,
       "audioTextHash": "5601d1806affc507",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "fib-nodo-nanika-nomimasenka",
@@ -1087,7 +1002,8 @@
       "audioFilter": "standard",
       "audio": "9103f7a052949a1b-genkanji-b3511448.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "fib-tsukare-sukoshi-yasumimasenka",
@@ -1104,7 +1020,8 @@
       "audioMarked": true,
       "audioTextHash": "dfff80a7edd0c335",
       "addition": "v2-retrofit-l16-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "x16r-ja-nichiyoubi-dou-desu-ka",
@@ -1115,7 +1032,13 @@
       "scene": "proposing a different day after the first was turned down",
       "reviewNote": "Retrofit 2026-09-28: the book's EXERCISES IV example, third turn; replaces the invented どようびはどうですか.",
       "aiSuggested": true,
-      "addition": "v2-retrofit-l16-2026-09-28"
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionReviewed": true,
+      "audio": "850c33804117be84.mp3",
+      "audioOriginal": "850c33804117be84.orig.mp3",
+      "audioAuto": "850c33804117be84.mp3",
+      "audioMarked": true,
+      "audioTextHash": "850c33804117be84"
     },
     {
       "id": "x16r-sp2-tenisu-shimasenka",
@@ -1126,7 +1049,13 @@
       "scene": "inviting someone to join something already planned",
       "reviewNote": "Retrofit 2026-09-28: the book's SPEAKING PRACTICE 2 invitation, never carded.",
       "aiSuggested": true,
-      "addition": "v2-retrofit-l16-2026-09-28"
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionReviewed": true,
+      "audio": "da3bd8bcac13d103.mp3",
+      "audioOriginal": "da3bd8bcac13d103.orig.mp3",
+      "audioAuto": "da3bd8bcac13d103.mp3",
+      "audioMarked": true,
+      "audioTextHash": "da3bd8bcac13d103"
     },
     {
       "id": "x16r-eki-deguchi-aimashou",
@@ -1136,7 +1065,13 @@
       "pronunciation": "eki no deguchi de aimashō",
       "reviewNote": "Retrofit 2026-09-28: from the v2 gap author (Lesson 16 shadow run); gives でぐち a natural sentence, replacing ひがしぐちのでぐち.",
       "aiSuggested": true,
-      "addition": "v2-retrofit-l16-2026-09-28"
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionReviewed": true,
+      "audio": "68cc29b45bbdfa81.mp3",
+      "audioOriginal": "68cc29b45bbdfa81.orig.mp3",
+      "audioAuto": "68cc29b45bbdfa81.mp3",
+      "audioMarked": true,
+      "audioTextHash": "68cc29b45bbdfa81"
     }
   ]
 }

@@ -188,11 +188,6 @@
       "note": "Suffix — attaches after a noun or topic to ask 'how about ___?', e.g. にちようびは どうですか, 'How about Sunday?'",
       "reviewNote": "Written 〜はどうですか in the source; wave dash stripped since this entry is the particle/suffix itself. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english) | Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (the 〜はどうですか construction is explicitly taught as its own WORD POWER vocabulary entry, glossed \"how about…\")",
       "hint": "proposing an alternative after a refusal",
-      "audio": "99f46fbf7ea8a93c.mp3",
-      "audioOriginal": "99f46fbf7ea8a93c.orig.mp3",
-      "audioAuto": "99f46fbf7ea8a93c.mp3",
-      "audioMarked": true,
-      "audioTextHash": "99f46fbf7ea8a93c",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "A fragment starting with a particle (a slot with the noun missing); どうですか is the entry, and the book's concrete じゃ、にちようびはどうですか ships in extras."
@@ -926,16 +921,6 @@
       "scene": "answering an invitation to rest a bit because you're tired",
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "fib-tsukare-sou-shimashou-manual-e4a98276.mp3",
-      "audioOriginal": "6b10214a750efa0e.orig.mp3",
-      "audioAuto": "6b10214a750efa0e.mp3",
-      "audioMarked": true,
-      "audioTextHash": "6b10214a750efa0e",
-      "audioManual": "fib-tsukare-sou-shimashou-manual-e4a98276.mp3",
-      "audioTrim": {
-        "start": 0,
-        "end": 2.0122645547945206
-      },
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Same target as fib-nodo-sou-shimashou, which ships; only the scene differed."
@@ -949,7 +934,13 @@
       "note": "Used when inviting someone to your own home or to an event you are hosting; いきませんか is for going somewhere together.",
       "reviewNote": "Retrofit 2026-09-28: taught in the SPEAKING PRACTICE notes as its own invitation form; previously carded only inside sp1-party-invite.",
       "aiSuggested": true,
-      "addition": "v2-retrofit-l16-2026-09-28"
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionReviewed": true,
+      "audio": "d4fb2b5104d027d1.mp3",
+      "audioOriginal": "d4fb2b5104d027d1.orig.mp3",
+      "audioAuto": "d4fb2b5104d027d1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d4fb2b5104d027d1"
     }
   ]
 }

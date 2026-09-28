@@ -46,7 +46,9 @@ git worktree add ../anki-builder-v1 v1
 
 **The v1 extraction pass is still in the code and still selectable** (`assemble --extraction v1`), so
 comparing a chapter against how it would have been built does not need the worktree. Chapters 0-16
-were built that way and are deliberately not rewritten.
+were built that way and are deliberately not rewritten, with one owner exception: Lessons 15 and 16,
+unstudied at the time, were retrofitted to the v2 split on 2026-09-28 (see "Retrofitting a v1 lesson"
+in `.claude/skills/build-anki-deck/references/augment-pathway.md`).
 
 **`output/` and `.anki-builder/` belong to no generation.** They are the product, and any rewrite
 inherits them rather than replacing them. Two consequences worth knowing before touching either:

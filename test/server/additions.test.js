@@ -436,3 +436,39 @@ test("a read-only server refuses to approve", async () => {
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("every button on the page has a handler in the page's own scripts", async () => {
+  // An "Approve all" button outlived its handler and shipped dead: clicking it did nothing, and
+  // nothing on the page said so. Every button class rendered here must be one a script looks up.
+  const { root, book } = fixture();
+  try {
+    const cards = JSON.parse(readFileSync(join(book, "chapter-0", "cards.json"), "utf-8"));
+    // One card at each gate, so both the content and the audio controls render: new-pending stays
+    // at the content gate, and new-approved is moved back to the audio gate with a carried clip.
+    const c = cards.items.find((i) => i.id === "new-approved");
+    delete c.additionDone;
+    c.audio = "a.mp3";
+    c.additionAudioInherited = true;
+    writeFileSync(join(book, "chapter-0", "cards.json"), JSON.stringify(cards));
+    await withServer(root, async (url) => {
+      for (const path of ["/additions/book/mybook"]) {
+        const html = await (await fetch(`${url}${path}`)).text();
+        const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
+          .map((m) => m[1])
+          .join("\n");
+        // A button can carry a styling class too (`trim-close primary`), so one of its classes
+        // being looked up is enough.
+        const buttons = [...html.matchAll(/<button[^>]*class="([^"]+)"/g)].map((m) => m[1]);
+        assert.ok(buttons.length > 0, "the fixture renders buttons");
+        for (const cls of buttons) {
+          assert.ok(
+            cls.split(/\s+/).some((c) => scripts.includes(`.${c}`)),
+            `button class "${cls}" has no handler in the page`,
+          );
+        }
+      }
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

@@ -147,3 +147,33 @@ Unchanged, with one addition specific to this work: if cards are moving between 
 Anki notes have to be moved into the destination deck tree BEFORE delivering, or the deliver cannot
 see them and adds them fresh with no review history. That is a migration, not a flag, and
 [deliver.md](deliver.md) describes its shape.
+
+## Retrofitting a v1 lesson to the v2 split
+
+The same machinery re-shapes a lesson built before the base/extras split (Lessons 0 to 16 of Busy
+People). Lessons 15 and 16 were done this way on 2026-09-28, at the owner's request, because neither
+had been studied yet. The order that worked:
+
+1. **Shadow-run v2 on the lesson** (`node scripts/shadow-run.mjs chapter-N --extras --keep`). It
+   writes nowhere near the deck, and reading its base and extras output against the lesson is what
+   tells you whether anything is actually missing. For both lessons it found almost no missing
+   vocabulary and would have made the lesson bigger, so treat it as evidence, not as the answer.
+2. **Judge every card against the book**, then show the owner a proposal before touching anything.
+3. **Check Anki before cutting a delivered card.** Read each candidate's `reps`, `lapses` and `type`
+   over AnkiConnect. A card with review history is not cut: deleting its note takes the history
+   with it, and "it duplicates another card" is not worth that. The Lesson 15 retrofit cut a Nihongo
+   card with intervals of 23 and 51 days and had to restore it before the cleanup.
+4. **Apply on disk:** cut with `excluded` and a written reason; move cards between the base and
+   extras units with their ids, clips and `additionAudioInherited: true`; stamp moved and new cards
+   with the `addition` batch; refresh the base's dedup-library entry (the same projection Mark
+   reviewed writes). Neither unit loses its sign-off.
+5. **Additions review, audio, additions audio gate, deliver**, as above.
+6. **Then finish in Anki what delivery never does.** Delivery leaves moved notes in their old deck
+   and reports cut ones as orphans. Back up the deck with scheduling (fail-closed), `changeDeck` each
+   moved note after snapshotting its scheduling and abort if anything differs afterwards, and delete
+   only cut notes none of whose cards has ever been reviewed, checked again immediately before the
+   delete. A second deliver should then report nothing updated, added or orphaned.
+
+A retrofitted lesson is still not phase-built, so preflight's `base unit sentences` check keeps
+listing it among the exempt legacy units. The split was judged by hand at step 2; do not stamp
+`meta.phase` to get it checked, because that field says how the unit was built.

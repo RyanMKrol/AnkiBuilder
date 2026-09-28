@@ -64,3 +64,10 @@ the full list, "one reading" means one, not one taught so far. Every other kanji
 `candidates/characters.json` keeps a `cards` entry per character card, so a voiced kanji card is never
 mistaken for the word card of a single-kanji word (日 read ひ). Generic code only calls the plugin's
 `characterSource.complete` and `soleReading`.
+
+## How a kanji card is graded (owner, 2026-09-28)
+
+The audio is the signal; the card layout is not changed. A silent kanji card (明, several readings) is
+graded on its meaning alone: its readings line is a reference, and the readings are learned in the word
+cards that use them (明日, 明るい), which chapters place after their kanji. A voiced kanji card (曜, one
+reading) is graded on its meaning and its one reading. A word card is graded on reading and meaning.

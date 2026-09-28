@@ -44,7 +44,10 @@
       "audioOriginal": "c7077fb46455a138.orig.mp3",
       "audioAuto": "c7077fb46455a138.mp3",
       "audioMarked": true,
-      "audioTextHash": "c7077fb46455a138"
+      "audioTextHash": "c7077fb46455a138",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "x16a-sou-desu-ka-mata-kondo",
@@ -120,7 +123,10 @@
       "audioMarked": true,
       "audioTextHash": "09edde39827fe28c",
       "audioFilter": "standard",
-      "audio": "09edde39827fe28c-genkanji-1abec0e8.mp3"
+      "audio": "09edde39827fe28c-genkanji-1abec0e8.mp3",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "x16a-pooru-suzuki-event-ikimasu",
@@ -151,7 +157,10 @@
       "audioOriginal": "c3bc0651892df630.orig.mp3",
       "audioAuto": "c3bc0651892df630.mp3",
       "audioMarked": true,
-      "audioTextHash": "c3bc0651892df630"
+      "audioTextHash": "c3bc0651892df630",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented; replaced by the book's own じゃ、にちようびはどうですか (EXERCISES IV)."
     },
     {
       "id": "x16b-higashiguchi-deguchi",
@@ -166,7 +175,10 @@
       "audioOriginal": "4f052a5c59978df0.orig.mp3",
       "audioAuto": "4f052a5c59978df0.mp3",
       "audioMarked": true,
-      "audioTextHash": "4f052a5c59978df0"
+      "audioTextHash": "4f052a5c59978df0",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Unnatural (\"the east exit's exit\"); えきのでぐちであいましょう replaces it."
     },
     {
       "id": "x16b-hai-zehi",
@@ -182,7 +194,10 @@
       "audioOriginal": "7cd3d252a3077993.orig.mp3",
       "audioAuto": "7cd3d252a3077993.mp3",
       "audioMarked": true,
-      "audioTextHash": "7cd3d252a3077993"
+      "audioTextHash": "7cd3d252a3077993",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Trivial はい/ええ variant; the ええ card ships and its note says はい works too."
     },
     {
       "id": "fib-zannen-nichiyoubi-chotto",
@@ -241,7 +256,10 @@
       "audioOriginal": "404b1c43134fbc22.orig.mp3",
       "audioAuto": "404b1c43134fbc22.mp3",
       "audioMarked": true,
-      "audioTextHash": "404b1c43134fbc22"
+      "audioTextHash": "404b1c43134fbc22",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Unnatural (\"the east exit's exit\"); えきのでぐちであいましょう replaces it."
     },
     {
       "id": "x16b-hai-sou-shimashou",
@@ -256,7 +274,10 @@
       "audioOriginal": "3120e4eae157439c.orig.mp3",
       "audioAuto": "3120e4eae157439c.mp3",
       "audioMarked": true,
-      "audioTextHash": "3120e4eae157439c"
+      "audioTextHash": "3120e4eae157439c",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Trivial はい/ええ variant; the ええ card ships and its note says はい works too."
     },
     {
       "id": "x16a-tsugi-akihabara-event",
@@ -302,7 +323,10 @@
       "audioOriginal": "271f7578e773b51c.orig.mp3",
       "audioAuto": "271f7578e773b51c.mp3",
       "audioMarked": true,
-      "audioTextHash": "271f7578e773b51c"
+      "audioTextHash": "271f7578e773b51c",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "x16b-koen-tabemashou",
@@ -317,7 +341,10 @@
       "audioOriginal": "ff67c95e9d33a074.orig.mp3",
       "audioAuto": "ff67c95e9d33a074.mp3",
       "audioMarked": true,
-      "audioTextHash": "ff67c95e9d33a074"
+      "audioTextHash": "ff67c95e9d33a074",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "fib-issho-ni-soccer-mimashou",
@@ -360,7 +387,10 @@
       "audioOriginal": "e2d357384e14533c.orig.mp3",
       "audioAuto": "e2d357384e14533c.mp3",
       "audioMarked": true,
-      "audioTextHash": "e2d357384e14533c"
+      "audioTextHash": "e2d357384e14533c",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
     },
     {
       "id": "x16b-koen-tabemasenka",
@@ -375,7 +405,10 @@
       "audioOriginal": "979dca2a2aa0840f.orig.mp3",
       "audioAuto": "979dca2a2aa0840f.mp3",
       "audioMarked": true,
-      "audioTextHash": "979dca2a2aa0840f"
+      "audioTextHash": "979dca2a2aa0840f",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Already inside Key Sentence 4, which ships."
     },
     {
       "id": "x16a-omoshiroi-kara-ikimasenka",
@@ -515,7 +548,10 @@
       "audioOriginal": "6c3db6d2f31d2067.orig.mp3",
       "audioAuto": "6c3db6d2f31d2067.mp3",
       "audioMarked": true,
-      "audioTextHash": "6c3db6d2f31d2067"
+      "audioTextHash": "6c3db6d2f31d2067",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"...right? Got it\"; the book's example ships."
     },
     {
       "id": "fib-doyoubi-tanaka-tanjoubi-party",
@@ -531,7 +567,10 @@
       "audioOriginal": "c000af95bba30527.orig.mp3",
       "audioAuto": "c000af95bba30527.mp3",
       "audioMarked": true,
-      "audioTextHash": "c000af95bba30527"
+      "audioTextHash": "c000af95bba30527",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"X, so shall we...?\"; the book's three EXERCISES V answers ship."
     },
     {
       "id": "x16c-rokuji-han-higashiguchi",
@@ -609,7 +648,10 @@
       "audioOriginal": "d58740a48f7ad9cc.orig.mp3",
       "audioAuto": "d58740a48f7ad9cc.mp3",
       "audioMarked": true,
-      "audioTextHash": "d58740a48f7ad9cc"
+      "audioTextHash": "d58740a48f7ad9cc",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Uses も with a destination in a way this lesson does not teach."
     },
     {
       "id": "x16a-raigetsu-nikko-ikimasenka",
@@ -637,7 +679,10 @@
       "audioOriginal": "c4c68a3feced2b2a.orig.mp3",
       "audioAuto": "c4c68a3feced2b2a.mp3",
       "audioMarked": true,
-      "audioTextHash": "c4c68a3feced2b2a"
+      "audioTextHash": "c4c68a3feced2b2a",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
     },
     {
       "id": "x16b-eiga-mimashou",
@@ -651,7 +696,10 @@
       "audioOriginal": "00856f303ef688f1.orig.mp3",
       "audioAuto": "00856f303ef688f1.mp3",
       "audioMarked": true,
-      "audioTextHash": "00856f303ef688f1"
+      "audioTextHash": "00856f303ef688f1",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "x16c-kuji-minamiguchi-wakarimashita",
@@ -667,7 +715,10 @@
       "audioOriginal": "2810801be9a59d2a.orig.mp3",
       "audioAuto": "2810801be9a59d2a.mp3",
       "audioMarked": true,
-      "audioTextHash": "2810801be9a59d2a"
+      "audioTextHash": "2810801be9a59d2a",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"...right? Got it\"; the book's example ships."
     },
     {
       "id": "x16c-juuji-minamiguchi",
@@ -700,7 +751,10 @@
       "audioOriginal": "39dfa8be583201eb.orig.mp3",
       "audioAuto": "39dfa8be583201eb.mp3",
       "audioMarked": true,
-      "audioTextHash": "39dfa8be583201eb"
+      "audioTextHash": "39dfa8be583201eb",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"X, so shall we...?\"; the book's three EXERCISES V answers ship."
     },
     {
       "id": "x16b-shibuya-furiimaaketto",
@@ -715,7 +769,10 @@
       "audioMarked": true,
       "audioTextHash": "d18c23c02c77085e",
       "audioFilter": "standard",
-      "audio": "d18c23c02c77085e-genkanji-97696982.mp3"
+      "audio": "d18c23c02c77085e-genkanji-97696982.mp3",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
     },
     {
       "id": "fib-nichiyoubi-yokohama-concert",
@@ -759,7 +816,10 @@
       "audioOriginal": "dfa43f8358b19ffd.orig.mp3",
       "audioAuto": "dfa43f8358b19ffd.mp3",
       "audioMarked": true,
-      "audioTextHash": "dfa43f8358b19ffd"
+      "audioTextHash": "dfa43f8358b19ffd",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
     },
     {
       "id": "x16a-raishuu-sakkaa-mimasenka",
@@ -818,6 +878,265 @@
       "audioAuto": "d6744fcc091bd7e1.mp3",
       "audioMarked": true,
       "audioTextHash": "d6744fcc091bd7e1"
+    },
+    {
+      "id": "ks1-omatsuri",
+      "english": "There is a festival in Asakusa on Saturday.",
+      "category": "Grammar & Function Words",
+      "target": "どようびにあさくさでおまつりがあります",
+      "pronunciation": "doyōbi ni Asakusa de omatsuri ga arimasu",
+      "note": "Demonstrates place + で + event + が + あります, 'an event takes place somewhere' (GRAMMAR 1).",
+      "addition": "v2-retrofit-l16-2026-09-28"
+    },
+    {
+      "id": "ks2-eiga",
+      "english": "Shall we see a movie together on the weekend?",
+      "category": "Grammar & Function Words",
+      "target": "しゅうまつにいっしょにえいがをみませんか",
+      "pronunciation": "shūmatsu ni issho ni eiga o mimasen ka",
+      "note": "Demonstrates verb[ます-stem]+ませんか, used to invite someone to do something (GRAMMAR 2).",
+      "uncertain": true,
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "54fe9f70f4e592dd.mp3",
+      "audioOriginal": "54fe9f70f4e592dd.orig.mp3",
+      "audioAuto": "54fe9f70f4e592dd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "54fe9f70f4e592dd",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "ks3-ikimashou",
+      "english": "Let's go together.",
+      "category": "Grammar & Function Words",
+      "target": "いっしょにいきましょう",
+      "pronunciation": "issho ni ikimashō",
+      "note": "Demonstrates verb[ます-stem]+ましょう, used when inviting the listener to do something together (GRAMMAR 3).",
+      "uncertain": true,
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "audio": "660d32310ca03148.mp3",
+      "audioOriginal": "660d32310ca03148.orig.mp3",
+      "audioAuto": "660d32310ca03148.mp3",
+      "audioMarked": true,
+      "audioTextHash": "660d32310ca03148",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "ks4-tenki-kara",
+      "english": "The weather is nice, so shall we have lunch in the park?",
+      "category": "Grammar & Function Words",
+      "target": "いいてんきですから、こうえんでひるごはんをたべませんか",
+      "pronunciation": "ii tenki desu kara, kōen de hirugohan o tabemasen ka",
+      "note": "Demonstrates clause1から、clause2 (reason) combined with an invitation (GRAMMAR 4).",
+      "audio": "be291b34c5a05e99.mp3",
+      "audioOriginal": "be291b34c5a05e99.orig.mp3",
+      "audioAuto": "be291b34c5a05e99.mp3",
+      "audioMarked": true,
+      "audioTextHash": "be291b34c5a05e99",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "decline-anime",
+      "english": "I'm sorry, but anime is not really my thing.",
+      "category": "Grammar & Function Words",
+      "target": "すみません。アニメはちょっと",
+      "pronunciation": "sumimasen. anime wa chotto",
+      "scene": "declining an invitation",
+      "reviewNote": "Source GRAMMAR table gives the pattern 'すみません。 noun は ちょっと…。'; filled with アニメ (anime), reusing this chapter's dialogue topic. The trailing ellipsis was resolved into a closed sentence since a placeholder can't be spoken.",
+      "audio": "3a078afcb586da93.mp3",
+      "audioOriginal": "3a078afcb586da93.orig.mp3",
+      "audioAuto": "3a078afcb586da93.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3a078afcb586da93",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "decline-doyoubi",
+      "english": "Unfortunately, Saturday doesn't really work for me.",
+      "category": "Grammar & Function Words",
+      "target": "ざんねんですが、どようびはちょっと",
+      "pronunciation": "zannen desu ga, doyōbi wa chotto",
+      "scene": "declining an invitation",
+      "note": "ざんねんですが (unfortunately) softens the refusal more than すみません — used especially for a scheduling conflict rather than a taste mismatch.",
+      "reviewNote": "Source GRAMMAR table gives the pattern 'ざんねんですが、 noun は ちょっと…。'; filled with どようび (Saturday) for variety from the previous card. The trailing ellipsis was resolved into a closed sentence.",
+      "audio": "e6157848593000de.mp3",
+      "audioOriginal": "e6157848593000de.orig.mp3",
+      "audioAuto": "e6157848593000de.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e6157848593000de",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "nichiyoubi-jikan",
+      "english": "I have time on Sunday.",
+      "category": "Time",
+      "target": "にちようびはじかんがあります",
+      "pronunciation": "nichiyōbi wa jikan ga arimasu",
+      "uncertain": true,
+      "note": "じかんが あります literally means 'there is time' — a common way to say you are free or available.",
+      "reviewNote": "Possibly premature — uses は directly on a day-of-week time expression in place of the expected に (にちようびに), which looks like an early instance of the contrastive-は pattern (は replacing another particle) that isn't formally taught until later — flagging for the reviewer to judge since this is a borderline call",
+      "audioOriginal": "d95767020f1d1411-genkanji-c68fec3f.orig.mp3",
+      "audioAuto": "d95767020f1d1411-genkanji-c68fec3f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d95767020f1d1411",
+      "audioFilter": "standard",
+      "audio": "d95767020f1d1411-genkanji-c68fec3f.mp3",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "ex7-yokohama-invite",
+      "english": "There's a fireworks festival in Yokohama on Sunday. Shall we go together?",
+      "category": "Travel & Tourism",
+      "target": "にちようびによこはまではなびたいかいがあります。いっしょにいきませんか",
+      "pronunciation": "nichiyōbi ni Yokohama de hanabi taikai ga arimasu. issho ni ikimasen ka",
+      "audioOriginal": "05b7a346cbf298f7-genkanji-fa98221f.orig.mp3",
+      "audioAuto": "05b7a346cbf298f7-genkanji-fa98221f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "05b7a346cbf298f7",
+      "audioFilter": "standard",
+      "audio": "05b7a346cbf298f7-genkanji-fa98221f.mp3",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "ex7-nanji-kara",
+      "english": "What time does the fireworks festival start?",
+      "category": "Time",
+      "target": "はなびたいかいはなんじからですか",
+      "pronunciation": "hanabi taikai wa nanji kara desu ka",
+      "scene": "asking what time an event starts",
+      "audio": "7d9dbf27576ee657.mp3",
+      "audioOriginal": "7d9dbf27576ee657.orig.mp3",
+      "audioAuto": "7d9dbf27576ee657.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7d9dbf27576ee657",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "ex7-shichiji-kara",
+      "english": "It starts at 7:00. Let's meet at 6:00 at the west exit of Yokohama Station.",
+      "category": "Time",
+      "target": "7じからです。6じによこはまえきのにしぐちであいましょう",
+      "ttsText": "しちじからです。ろくじによこはまえきのにしぐちであいましょう",
+      "pronunciation": "shichi-ji kara desu. roku-ji ni Yokohama-eki no nishiguchi de aimashō",
+      "scene": "arranging where to meet before an event",
+      "audioOriginal": "69fb094f2321c85c-genkanji-161fd9c9.orig.mp3",
+      "audioAuto": "69fb094f2321c85c-genkanji-161fd9c9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "69fb094f2321c85c",
+      "audioFilter": "standard",
+      "audio": "69fb094f2321c85c-genkanji-161fd9c9.mp3",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "ex7-wakarimashita",
+      "english": "6:00 at the west exit of Yokohama Station, right? Got it.",
+      "category": "Grammar & Function Words",
+      "target": "6じによこはまえきのにしぐちですね。わかりました",
+      "ttsText": "ろくじによこはまえきのにしぐちですね。わかりました",
+      "pronunciation": "roku-ji ni Yokohama-eki no nishiguchi desu ne. wakarimashita",
+      "scene": "confirming a meeting time and place",
+      "note": "わかりました (wakarimashita) means 'understood, got it' — used to confirm you've understood a plan or instruction.",
+      "audioOriginal": "b29f11a08c1d2a45-genkanji-5359aa33.orig.mp3",
+      "audioAuto": "b29f11a08c1d2a45-genkanji-5359aa33.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b29f11a08c1d2a45",
+      "audioFilter": "standard",
+      "audio": "b29f11a08c1d2a45-genkanji-5359aa33.mp3",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "sp1-party-invite",
+      "english": "Smith-san, I am having a party at my home on Sunday, the 15th. Would you like to come?",
+      "category": "Grammar & Function Words",
+      "target": "スミスさん、15にちのにちようびにうちでパーティーをします。きませんか",
+      "ttsText": "スミスさん、じゅうごにちのにちようびにうちでパーティーをします。きませんか",
+      "pronunciation": "Sumisu-san, jūgo-nichi no nichiyōbi ni uchi de pātī o shimasu. kimasen ka",
+      "scene": "inviting someone to a party at one's own home",
+      "note": "きませんか (not いきませんか) is used specifically when inviting someone to your own home or an event you yourself are hosting.",
+      "reviewNote": "Chapter's only sentence demonstrating きませんか used for an invitation to the speaker's own home/event, a nuance highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception since the pattern appears nowhere else in the chapter.",
+      "audio": "5601d1806affc507.mp3",
+      "audioOriginal": "5601d1806affc507.orig.mp3",
+      "audioAuto": "5601d1806affc507.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5601d1806affc507",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "fib-nodo-nanika-nomimasenka",
+      "english": "You're thirsty, aren't you? Shall we drink something?",
+      "category": "Grammar & Function Words",
+      "target": "のどがかわきましたね。なにかのみませんか",
+      "pronunciation": "nodo ga kawakimashita ne. nanika nomimasen ka",
+      "note": "なにか (something) plus ませんか invites without naming the drink.",
+      "scene": null,
+      "aiSuggested": true,
+      "audioOriginal": "9103f7a052949a1b-genkanji-b3511448.orig.mp3",
+      "audioAuto": "9103f7a052949a1b-genkanji-b3511448.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9103f7a052949a1b",
+      "audioFilter": "standard",
+      "audio": "9103f7a052949a1b-genkanji-b3511448.mp3",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "fib-tsukare-sukoshi-yasumimasenka",
+      "english": "You're tired, aren't you? Shall we rest a bit?",
+      "category": "Body & Health",
+      "target": "つかれましたね。すこしやすみませんか",
+      "pronunciation": "tsukaremashita ne. sukoshi yasumimasen ka",
+      "note": "すこし (a bit) softens the suggestion to rest.",
+      "scene": null,
+      "aiSuggested": true,
+      "audio": "dfff80a7edd0c335.mp3",
+      "audioOriginal": "dfff80a7edd0c335.orig.mp3",
+      "audioAuto": "dfff80a7edd0c335.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dfff80a7edd0c335",
+      "addition": "v2-retrofit-l16-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "x16r-ja-nichiyoubi-dou-desu-ka",
+      "english": "Well then, how about Sunday?",
+      "category": "Time",
+      "target": "じゃ、にちようびはどうですか",
+      "pronunciation": "ja, nichiyōbi wa dō desu ka",
+      "scene": "proposing a different day after the first was turned down",
+      "reviewNote": "Retrofit 2026-09-28: the book's EXERCISES IV example, third turn; replaces the invented どようびはどうですか.",
+      "aiSuggested": true,
+      "addition": "v2-retrofit-l16-2026-09-28"
+    },
+    {
+      "id": "x16r-sp2-tenisu-shimasenka",
+      "english": "On Saturday I'm playing tennis with Smith-san. Would you like to join us, Emma-san?",
+      "category": "Sports & Hobbies",
+      "target": "どようびにスミスさんとテニスをします。エマさんもいっしょにしませんか",
+      "pronunciation": "doyōbi ni Sumisu-san to tenisu o shimasu. Ema-san mo issho ni shimasen ka",
+      "scene": "inviting someone to join something already planned",
+      "reviewNote": "Retrofit 2026-09-28: the book's SPEAKING PRACTICE 2 invitation, never carded.",
+      "aiSuggested": true,
+      "addition": "v2-retrofit-l16-2026-09-28"
+    },
+    {
+      "id": "x16r-eki-deguchi-aimashou",
+      "english": "Let's meet at the station exit.",
+      "category": "Transport",
+      "target": "えきのでぐちであいましょう",
+      "pronunciation": "eki no deguchi de aimashō",
+      "reviewNote": "Retrofit 2026-09-28: from the v2 gap author (Lesson 16 shadow run); gives でぐち a natural sentence, replacing ひがしぐちのでぐち.",
+      "aiSuggested": true,
+      "addition": "v2-retrofit-l16-2026-09-28"
     }
   ]
 }

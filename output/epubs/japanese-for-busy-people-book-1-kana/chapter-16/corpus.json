@@ -133,7 +133,10 @@
       "note": "Suffix — attaches after a noun or topic to ask 'how about ___?', e.g. にちようびは どうですか, 'How about Sunday?'",
       "reviewNote": "Written 〜はどうですか in the source; wave dash stripped since this entry is the particle/suffix itself. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on english) | Possibly premature — explicitly taught later in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (the 〜はどうですか construction is explicitly taught as its own WORD POWER vocabulary entry, glossed \"how about…\")",
       "target": "はどうですか",
-      "uncertain": true
+      "uncertain": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "A fragment starting with a particle (a slot with the noun missing); どうですか is the entry, and the book's concrete じゃ、にちようびはどうですか ships in extras."
     },
     {
       "id": "chotto-decline",
@@ -187,48 +190,6 @@
       "target": "たべませんか"
     },
     {
-      "id": "ks1-omatsuri",
-      "english": "There is a festival in Asakusa on Saturday.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Demonstrates place + で + event + が + あります, 'an event takes place somewhere' (GRAMMAR 1).",
-      "reviewNote": null,
-      "target": "どようびにあさくさでおまつリがあります"
-    },
-    {
-      "id": "ks2-eiga",
-      "english": "Shall we see a movie together on the weekend?",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Demonstrates verb[ます-stem]+ませんか, used to invite someone to do something (GRAMMAR 2).",
-      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
-      "target": "しゅうまつにいっしょにえいがをみませんか",
-      "uncertain": true
-    },
-    {
-      "id": "ks3-ikimashou",
-      "english": "Let's go together.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Demonstrates verb[ます-stem]+ましょう, used when inviting the listener to do something together (GRAMMAR 3).",
-      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
-      "target": "いっしょにいきましょう",
-      "uncertain": true
-    },
-    {
-      "id": "ks4-tenki-kara",
-      "english": "The weather is nice, so shall we have lunch in the park?",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Demonstrates clause1から、clause2 (reason) combined with an invitation (GRAMMAR 4).",
-      "reviewNote": null,
-      "target": "いいてんきですから、こうえんでひるごはんをたべませんか"
-    },
-    {
       "id": "ee-zehi",
       "english": "Yes, I'd love to.",
       "category": "Grammar & Function Words",
@@ -249,16 +210,6 @@
       "target": "いいですね。ぜひ"
     },
     {
-      "id": "decline-anime",
-      "english": "I'm sorry, but anime is not really my thing.",
-      "category": "Grammar & Function Words",
-      "scene": "declining an invitation",
-      "hint": null,
-      "note": null,
-      "reviewNote": "Source GRAMMAR table gives the pattern 'すみません。 noun は ちょっと…。'; filled with アニメ (anime), reusing this chapter's dialogue topic. The trailing ellipsis was resolved into a closed sentence since a placeholder can't be spoken.",
-      "target": "すみません。アニメはちょっと"
-    },
-    {
       "id": "zannen-desu",
       "english": "It is unfortunate.",
       "category": "Emotions & Feelings",
@@ -267,16 +218,6 @@
       "note": null,
       "reviewNote": null,
       "target": "ざんねんです"
-    },
-    {
-      "id": "decline-doyoubi",
-      "english": "Unfortunately, Saturday doesn't really work for me.",
-      "category": "Grammar & Function Words",
-      "scene": "declining an invitation",
-      "hint": null,
-      "note": "ざんねんですが (unfortunately) softens the refusal more than すみません — used especially for a scheduling conflict rather than a taste mismatch.",
-      "reviewNote": "Source GRAMMAR table gives the pattern 'ざんねんですが、 noun は ちょっと…。'; filled with どようび (Saturday) for variety from the previous card. The trailing ellipsis was resolved into a closed sentence.",
-      "target": "ざんねんですが、どようびはちょっと"
     },
     {
       "id": "shiai",
@@ -637,17 +578,6 @@
       "target": "またこんど"
     },
     {
-      "id": "nichiyoubi-jikan",
-      "english": "I have time on Sunday.",
-      "category": "Time",
-      "scene": null,
-      "hint": null,
-      "note": "じかんが あります literally means 'there is time' — a common way to say you are free or available.",
-      "reviewNote": "Possibly premature — uses は directly on a day-of-week time expression in place of the expected に (にちようびに), which looks like an early instance of the contrastive-は pattern (は replacing another particle) that isn't formally taught until later — flagging for the reviewer to judge since this is a borderline call",
-      "target": "にちようびはじかんがあります",
-      "uncertain": true
-    },
-    {
       "id": "chikaku",
       "english": "Nearby",
       "category": "Directions",
@@ -796,59 +726,6 @@
       "target": "やすみます"
     },
     {
-      "id": "ex7-yokohama-invite",
-      "english": "There's a fireworks festival in Yokohama on Sunday. Shall we go together?",
-      "category": "Travel & Tourism",
-      "scene": null,
-      "hint": null,
-      "note": null,
-      "reviewNote": null,
-      "target": "にちようびによこはまではなびたいかいがあります。いっしょにいきませんか"
-    },
-    {
-      "id": "ex7-nanji-kara",
-      "english": "What time does the fireworks festival start?",
-      "category": "Time",
-      "scene": "asking what time an event starts",
-      "hint": null,
-      "note": null,
-      "reviewNote": null,
-      "target": "はなびたいかいはなんじからですか"
-    },
-    {
-      "id": "ex7-shichiji-kara",
-      "english": "It starts at 7:00. Let's meet at 6:00 at the west exit of Yokohama Station.",
-      "category": "Time",
-      "scene": "arranging where to meet before an event",
-      "hint": null,
-      "note": null,
-      "reviewNote": null,
-      "target": "7じからです。6じによこはまえきのにしぐちであいましょう",
-      "ttsText": "しちじからです。ろくじによこはまえきのにしぐちであいましょう"
-    },
-    {
-      "id": "ex7-wakarimashita",
-      "english": "6:00 at the west exit of Yokohama Station, right? Got it.",
-      "category": "Grammar & Function Words",
-      "scene": "confirming a meeting time and place",
-      "hint": null,
-      "note": "わかりました (wakarimashita) means 'understood, got it' — used to confirm you've understood a plan or instruction.",
-      "reviewNote": null,
-      "target": "6じによこはまえきのにしぐちですね。わかりました",
-      "ttsText": "ろくじによこはまえきのにしぐちですね。わかりました"
-    },
-    {
-      "id": "sp1-party-invite",
-      "english": "Smith-san, I am having a party at my home on Sunday, the 15th. Would you like to come?",
-      "category": "Grammar & Function Words",
-      "scene": "inviting someone to a party at one's own home",
-      "hint": null,
-      "note": "きませんか (not いきませんか) is used specifically when inviting someone to your own home or an event you yourself are hosting.",
-      "reviewNote": "Chapter's only sentence demonstrating きませんか used for an invitation to the speaker's own home/event, a nuance highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception since the pattern appears nowhere else in the chapter.",
-      "target": "スミスさん、15にちのにちようびにうちでパーティーをします。きませんか",
-      "ttsText": "スミスさん、じゅうごにちのにちようびにうちでパーティーをします。きませんか"
-    },
-    {
       "id": "sp1-arigatou-zehi",
       "english": "Thank you. I'd love to.",
       "category": "Grammar & Function Words",
@@ -857,6 +734,15 @@
       "note": "Contrasts with ええ、ぜひ or いいですね。ぜひ — ありがとうございます。ぜひ is used specifically when accepting an invitation to the speaker's home, a planned event, or something already decided.",
       "reviewNote": "Chapter's only sentence demonstrating this accepting-register nuance, highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception.",
       "target": "ありがとうございます。ぜひ"
+    },
+    {
+      "id": "x16r-kimasenka",
+      "english": "Won't you come?",
+      "category": "Grammar & Function Words",
+      "target": "きませんか",
+      "note": "Used when inviting someone to your own home or to an event you are hosting; いきませんか is for going somewhere together.",
+      "reviewNote": "Retrofit 2026-09-28: taught in the SPEAKING PRACTICE notes as its own invitation form; previously carded only inside sp1-party-invite.",
+      "aiSuggested": true
     }
   ]
 }

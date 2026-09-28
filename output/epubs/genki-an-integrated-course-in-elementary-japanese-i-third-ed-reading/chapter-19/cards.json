@@ -7,7 +7,8 @@
     "chapterNumber": 20,
     "chapterLabel": "Chapter 20: Reading and Writing 6: My Favorite Restaurant",
     "phase": "reading",
-    "kanjiTts": true
+    "kanjiTts": true,
+    "done": true
   },
   "items": [
     {
@@ -184,12 +185,16 @@
       "sourceOrder": 11,
       "pronunciation": "sasetsu",
       "ttsKanji": "左折",
-      "audio": "e13ae46e9a5667c5.mp3",
+      "audio": "r-bf56da1bcfda-manual-ac170260.mp3",
       "audioOriginal": "e13ae46e9a5667c5.orig.mp3",
       "audioAuto": "e13ae46e9a5667c5.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "e13ae46e9a5667c5"
+      "audioTextHash": "e13ae46e9a5667c5",
+      "audioManual": "r-bf56da1bcfda-manual-ac170260.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.8752936643835617
+      }
     },
     {
       "id": "r-7c6b99c21f22",

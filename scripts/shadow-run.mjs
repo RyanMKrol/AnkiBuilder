@@ -134,9 +134,15 @@ console.log(`scratch:  ${scratchUnit}\n`);
 
 let result;
 if (reuseFrom) {
-  const corpus = join(reuseFrom, "corpus.json");
-  if (!existsSync(corpus)) {
-    console.error(`no corpus.json at ${corpus} — --from wants a phase-1 unit directory`);
+  // Phase 1 writes phase-corpus.json (corpus.json has one writer, `prepare`); a unit that has been
+  // through prepare has corpus.json too, and either is phase 1's item set.
+  const corpus = ["phase-corpus.json", "corpus.json"]
+    .map((name) => join(reuseFrom, name))
+    .find((path) => existsSync(path));
+  if (!corpus) {
+    console.error(
+      `no phase-corpus.json or corpus.json in ${reuseFrom} — --from wants a phase-1 unit directory`,
+    );
     process.exit(2);
   }
   const loaded = JSON.parse(readFileSync(corpus, "utf-8"));

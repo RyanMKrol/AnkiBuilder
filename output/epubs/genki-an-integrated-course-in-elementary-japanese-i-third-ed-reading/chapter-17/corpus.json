@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 18,
+    "chapterLabel": "Chapter 18: Reading and Writing 4: Mary's Weekend",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-300c9caa9cf8",
+      "target": "粘",
+      "english": "Sticky",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-2bff6583b69a",
+      "target": "半",
+      "english": "Half",
+      "category": "Numbers",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-e6f8cf1c2c7e",
+      "target": "額",
+      "english": "Amount; sum",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-57b7065539d3",
+      "target": "中学",
+      "english": "Junior high school",
+      "category": "School & Education",
+      "ttsText": "ちゅうがく",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-a6986d6965af",
+      "target": "半分",
+      "english": "Half",
+      "category": "Numbers",
+      "ttsText": "はんぶん",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-5c0289e91766",
+      "target": "母の日",
+      "english": "Mother's Day",
+      "category": "Family & People",
+      "ttsText": "ははのひ",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-82da0ea22676",
+      "target": "三時半",
+      "english": "Half past three",
+      "category": "Time",
+      "ttsText": "さんじはん",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-2a863cf8329c",
+      "target": "日記",
+      "english": "Diary",
+      "category": "Everyday Objects",
+      "ttsText": "にっき",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-67cd316207a7",
+      "target": "水泳",
+      "english": "Swimming",
+      "category": "Sports & Hobbies",
+      "ttsText": "すいえい",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-d84accc4d4cc",
+      "target": "半額",
+      "english": "Half price",
+      "category": "Money",
+      "ttsText": "はんがく",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-9a399c2d44ce",
+      "target": "料金",
+      "english": "Charge; fee",
+      "category": "Money",
+      "ttsText": "りょうきん",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-f8da62321db4",
+      "target": "粘土",
+      "english": "Clay",
+      "category": "Everyday Objects",
+      "ttsText": "ねんど",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-01d06413bb6c",
+      "target": "下手な",
+      "english": "Poor at",
+      "category": "Descriptions & Qualities",
+      "ttsText": "へたな",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-010108fbb92b",
+      "target": "土地",
+      "english": "Land",
+      "category": "Weather & Nature",
+      "ttsText": "とち",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-62ac794272dd",
+      "target": "水着",
+      "english": "Bathing suit",
+      "category": "Clothing",
+      "ttsText": "みずぎ",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-234df0a0cf39",
+      "target": "曜日",
+      "english": "Day of the week",
+      "category": "Time",
+      "ttsText": "ようび",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-0b8360d04a9f",
+      "target": "花火",
+      "english": "Fireworks",
+      "category": "Other",
+      "ttsText": "はなび",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-c12140a0ffb4",
+      "target": "日本語",
+      "english": "Japanese language",
+      "category": "Nationalities & Countries",
+      "ttsText": "にほんご",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-7978de3ee7d0",
+      "target": "水道",
+      "english": "Water supply",
+      "category": "Home & Household",
+      "ttsText": "すいどう",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-af4f0dfffedf",
+      "target": "下さい",
+      "english": "Please give/do...",
+      "category": "Grammar & Function Words",
+      "ttsText": "ください",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-57a5238d6381",
+      "target": "上る",
+      "english": "To go up",
+      "category": "Directions",
+      "ttsText": "のぼる",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-622f94723b62",
+      "target": "一年中",
+      "english": "All year around",
+      "category": "Time",
+      "ttsText": "いちねんじゅう",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-9ad630825cc8",
+      "target": "この人",
+      "english": "This person",
+      "category": "Family & People",
+      "ttsText": "このひと",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-498a60e1125d",
+      "target": "日本人",
+      "english": "Japanese people",
+      "category": "Nationalities & Countries",
+      "ttsText": "にほんじん",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-482dccb7367c",
+      "target": "三日",
+      "english": "Three days",
+      "category": "Time",
+      "ttsText": "みっか",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-a2090e26b758",
+      "target": "屋上",
+      "english": "Rooftop",
+      "category": "Home & Household",
+      "ttsText": "おくじょう",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-d8f18f59023d",
+      "target": "一か月",
+      "english": "One month",
+      "category": "Time",
+      "ttsText": "いっかげつ",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-b4b8a1a29dfc",
+      "target": "上手な",
+      "english": "Good at",
+      "category": "Descriptions & Qualities",
+      "ttsText": "じょうずな",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-c18a3754bb5f",
+      "target": "火山",
+      "english": "Volcano",
+      "category": "Weather & Nature",
+      "ttsText": "かざん",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-1ebc6f417104",
+      "target": "半年",
+      "english": "Half a year",
+      "category": "Time",
+      "ttsText": "はんとし",
+      "sourceOrder": 29
+    }
+  ]
+}

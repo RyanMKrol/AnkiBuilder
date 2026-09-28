@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 24,
+    "chapterLabel": "Chapter 24: Reading and Writing 10: The Folktale Kasajizo",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-43a2881b467b",
+      "english": "Door",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "戸",
+      "ttsText": "と"
+    },
+    {
+      "id": "r-7e4d6c40d01d",
+      "english": "Voice",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "声",
+      "ttsText": "こえ"
+    },
+    {
+      "id": "r-c59a75dc9cf3",
+      "english": "Move",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "移"
+    },
+    {
+      "id": "r-d2feb31d47eb",
+      "english": "Solve; answer",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "解"
+    },
+    {
+      "id": "r-2ea8aba2d5fc",
+      "english": "Sell",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "販",
+      "ttsText": "はん"
+    },
+    {
+      "id": "r-6771993f14db",
+      "english": "Tonight",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "今夜",
+      "ttsText": "こんや"
+    },
+    {
+      "id": "r-8e67e6a00e7b",
+      "english": "Automobile",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "自動車",
+      "ttsText": "じどうしゃ"
+    },
+    {
+      "id": "r-ce2dfb7e9795",
+      "english": "Vending machine",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "自動販売機",
+      "ttsText": "じどうはんばいき"
+    },
+    {
+      "id": "r-5fdee48cde98",
+      "english": "Dawn",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "夜明け",
+      "ttsText": "よあけ"
+    },
+    {
+      "id": "r-2cf138fd79f3",
+      "english": "Middle of night",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "夜中",
+      "ttsText": "よなか"
+    },
+    {
+      "id": "r-5c99dc42f8af",
+      "english": "Correct answer",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "正解",
+      "ttsText": "せいかい"
+    },
+    {
+      "id": "r-e0b029e882ea",
+      "english": "Snowman",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "雪だるま",
+      "ttsText": "ゆきだるま"
+    },
+    {
+      "id": "r-c9d7cc66c00a",
+      "english": "Belongings",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "所持品",
+      "ttsText": "しょじひん"
+    },
+    {
+      "id": "r-288738699dc6",
+      "english": "National university",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "国立大学",
+      "ttsText": "こくりつだいがく"
+    },
+    {
+      "id": "r-4c974ea89d43",
+      "english": "Freedom",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "自由",
+      "ttsText": "じゆう"
+    },
+    {
+      "id": "r-bc299feb4e33",
+      "english": "Private high school",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "私立高校",
+      "ttsText": "しりつこうこう"
+    },
+    {
+      "id": "r-ffb400348758",
+      "english": "Right; correct",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "正しい",
+      "ttsText": "ただしい"
+    },
+    {
+      "id": "r-e2952d33ea3a",
+      "english": "To sell",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "売る",
+      "ttsText": "うる"
+    },
+    {
+      "id": "r-316693e2899a",
+      "english": "Every morning",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "毎朝",
+      "ttsText": "まいあさ"
+    },
+    {
+      "id": "r-c13fa8970c50",
+      "english": "Mayor of a town",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "町長",
+      "ttsText": "ちょうちょう"
+    },
+    {
+      "id": "r-0606133b3759",
+      "english": "Mountain road",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "山道",
+      "ttsText": "やまみち"
+    },
+    {
+      "id": "r-c9fdf4e791bf",
+      "english": "The eldest son",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "長男",
+      "ttsText": "ちょうなん"
+    },
+    {
+      "id": "r-fb69b1ae94ab",
+      "english": "Address",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "住所",
+      "ttsText": "じゅうしょ"
+    },
+    {
+      "id": "r-a79c69dbe6c0",
+      "english": "Selling and buying",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "売買",
+      "ttsText": "ばいばい"
+    },
+    {
+      "id": "r-5ad8d88db860",
+      "english": "To immigrate",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "移住する",
+      "ttsText": "いじゅうする"
+    },
+    {
+      "id": "r-a5bc23a3779a",
+      "english": "New snow",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "新雪",
+      "ttsText": "しんせつ"
+    }
+  ]
+}

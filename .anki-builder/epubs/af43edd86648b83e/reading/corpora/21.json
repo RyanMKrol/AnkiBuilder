@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 21,
+    "chapterLabel": "Chapter 21: Reading and Writing 7: Mary's Letter",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-dfa685b3855d",
+      "english": "Most; utmost",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "最"
+    },
+    {
+      "id": "r-8e3089407539",
+      "english": "Home; residence",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "宅",
+      "ttsText": "たく"
+    },
+    {
+      "id": "r-1361c93411ea",
+      "english": "Discussion; deliberation",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "議",
+      "ttsText": "ぎ"
+    },
+    {
+      "id": "r-c7acd3b00e99",
+      "english": "England; English",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "英",
+      "ttsText": "えい"
+    },
+    {
+      "id": "r-812aba4f006d",
+      "english": "Capital",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "京"
+    },
+    {
+      "id": "r-cd8a5479e9ff",
+      "english": "To put something in",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "入れる",
+      "ttsText": "いれる"
+    },
+    {
+      "id": "r-55ee3cafb21f",
+      "english": "Returning home",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "帰宅",
+      "ttsText": "きたく"
+    },
+    {
+      "id": "r-ea5b3a8abe26",
+      "english": "Female student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "女子学生",
+      "ttsText": "じょしがくせい"
+    },
+    {
+      "id": "r-7edf9ae269de",
+      "english": "Society",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "社会",
+      "ttsText": "しゃかい"
+    },
+    {
+      "id": "r-675c2298deae",
+      "english": "High school student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "高校生",
+      "ttsText": "こうこうせい"
+    },
+    {
+      "id": "r-b78237178873",
+      "english": "Entry to a company",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "入社",
+      "ttsText": "にゅうしゃ"
+    },
+    {
+      "id": "r-7a559daaf670",
+      "english": "Elementary school student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "小学生",
+      "ttsText": "しょうがくせい"
+    },
+    {
+      "id": "r-2cd489b0a572",
+      "english": "The best",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "最高",
+      "ttsText": "さいこう"
+    },
+    {
+      "id": "r-13225bf8e392",
+      "english": "Honorific expressions",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "敬語",
+      "ttsText": "けいご"
+    },
+    {
+      "id": "r-56083666cb77",
+      "english": "Going home",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "帰国",
+      "ttsText": "きこく"
+    },
+    {
+      "id": "r-7957f0414249",
+      "english": "Child",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "子ども",
+      "ttsText": "こども"
+    },
+    {
+      "id": "r-9e84046cc13f",
+      "english": "English language",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "英語",
+      "ttsText": "えいご"
+    },
+    {
+      "id": "r-8df2765defa9",
+      "english": "Church",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "教会",
+      "ttsText": "きょうかい"
+    },
+    {
+      "id": "r-e9d57f21b007",
+      "english": "Expensive; high",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "高い",
+      "ttsText": "たかい"
+    },
+    {
+      "id": "r-9bbc85b6e0f5",
+      "english": "Mother tongue",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "母語",
+      "ttsText": "ぼご"
+    },
+    {
+      "id": "r-b8f7009a7bb8",
+      "english": "Import",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "輸入",
+      "ttsText": "ゆにゅう"
+    },
+    {
+      "id": "r-f4d3dab8e0c2",
+      "english": "Letter; character",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "文字",
+      "ttsText": "もじ"
+    },
+    {
+      "id": "r-6e82f8a42083",
+      "english": "Culture",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "文化",
+      "ttsText": "ぶんか"
+    },
+    {
+      "id": "r-1fcc3dd3c573",
+      "english": "Meeting",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "会議",
+      "ttsText": "かいぎ"
+    },
+    {
+      "id": "r-547f0abd83b7",
+      "english": "To go to the capital",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "上京する",
+      "ttsText": "じょうきょうする"
+    },
+    {
+      "id": "r-8066f371e59e",
+      "english": "Return",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "帰り",
+      "ttsText": "かえり"
+    },
+    {
+      "id": "r-4d564a3bda7f",
+      "english": "Every year",
+      "category": "Time",
+      "reviewNote": "The book gives more than one reading: まいねん, まいとし. Audio uses the first.",
+      "target": "毎年",
+      "ttsText": "まいねん"
+    },
+    {
+      "id": "r-8c68af3c9dd4",
+      "english": "To take care of oneself",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "からだに気をつける",
+      "ttsText": "からだにきをつける"
+    },
+    {
+      "id": "r-4590bfff3e78",
+      "english": "Father and mother",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "父母",
+      "ttsText": "ふぼ"
+    },
+    {
+      "id": "r-de5ec30b74f8",
+      "english": "Literature",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "文学",
+      "ttsText": "ぶんがく"
+    }
+  ]
+}

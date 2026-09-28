@@ -1,0 +1,773 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 11,
+    "chapterLabel": "Chapter 11: Lesson 9: Kabuki",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-339782a43238",
+      "target": "終",
+      "english": "End; finish",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-1391f4a4c627",
+      "target": "色",
+      "english": "Color",
+      "category": "Colors",
+      "ttsText": "いろ",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-40c839def7c3",
+      "target": "紺",
+      "english": "Dark blue; navy",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-2c80764518ce",
+      "target": "黒",
+      "english": "Black",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-542d34678c0a",
+      "target": "覚",
+      "english": "Remember; learn",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-a4a3bc709046",
+      "target": "悪",
+      "english": "Bad; evil",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-7720f8ea0aba",
+      "target": "黄",
+      "english": "Yellow",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-9ca80a2fcb5f",
+      "target": "伎",
+      "english": "Skill",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-487b949c90fd",
+      "target": "撲",
+      "english": "Hit",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-845d1da87f89",
+      "target": "青",
+      "english": "Blue; green",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-30160a21b92a",
+      "target": "是",
+      "english": "Right; just",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-38ddc2551552",
+      "target": "歩",
+      "english": "Walk; counter for steps",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-327336c2d8f7",
+      "target": "狂",
+      "english": "Crazy",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-3ccd1c6ae119",
+      "target": "箏",
+      "english": "Traditional string instrument",
+      "category": "Other",
+      "ttsText": "こと",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-8c4d004095d5",
+      "target": "落",
+      "english": "Fall; drop",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-c12a2fd19822",
+      "target": "弁",
+      "english": "Speech; valve",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-9d197986e049",
+      "target": "意",
+      "english": "Idea; mind",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-c98fb0141cc4",
+      "target": "薬",
+      "english": "Medicine",
+      "category": "Body & Health",
+      "ttsText": "くすり",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-b7f5f9032c7e",
+      "target": "華",
+      "english": "Flower; splendor",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-7321380d3c7e",
+      "target": "能",
+      "english": "Masked musical",
+      "category": "Other",
+      "ttsText": "のう",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-748eed1c9629",
+      "target": "非",
+      "english": "Wrong; un-",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-619113f21dd1",
+      "target": "踊",
+      "english": "Dance",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-633e345c5b56",
+      "target": "弾",
+      "english": "Pluck; bullet",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-8dc76cebb06b",
+      "target": "若",
+      "english": "Young",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-ede5b1e64059",
+      "target": "地",
+      "english": "Ground",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-c899fb51e356",
+      "target": "紙",
+      "english": "Paper",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-c010838dd8fa",
+      "target": "灰",
+      "english": "Ashes",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-f22758bf8fa6",
+      "target": "緑",
+      "english": "Green",
+      "category": "Colors",
+      "ttsText": "みどり",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-bddc2bcde445",
+      "target": "動",
+      "english": "Move; change",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-786eca6cd710",
+      "target": "柔",
+      "english": "Gentle; soft",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-23943c27a5e2",
+      "target": "語",
+      "english": "Word; speech; language",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-01caea5810ee",
+      "target": "紫",
+      "english": "Purple",
+      "category": "Colors",
+      "ttsText": "むらさき",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-253ebd09a45a",
+      "target": "単",
+      "english": "Simple; single",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-8cc4957ea1c0",
+      "target": "剣",
+      "english": "Sword",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-cb7d6aec8f7e",
+      "target": "験",
+      "english": "Test",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-873c53142889",
+      "target": "舞",
+      "english": "Dance",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-9edef340823b",
+      "target": "寂",
+      "english": "Lonely; quiet",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-a43c1a92e8d9",
+      "target": "試",
+      "english": "Test; try",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-ad9efd1c35ca",
+      "target": "相",
+      "english": "Mutual; together",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-bcaae47837aa",
+      "target": "散",
+      "english": "Scatter; spend",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-72776ab68f81",
+      "target": "赤",
+      "english": "Red",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-d0dc22224c0b",
+      "target": "茶色い",
+      "english": "Brown",
+      "category": "Colors",
+      "ttsText": "ちゃいろい",
+      "sourceOrder": 41
+    },
+    {
+      "id": "r-d2dddf0d4414",
+      "target": "水色",
+      "english": "Light blue",
+      "category": "Colors",
+      "ttsText": "みずいろ",
+      "sourceOrder": 42
+    },
+    {
+      "id": "r-7312703cd07f",
+      "target": "いい子",
+      "english": "Good child",
+      "category": "Family & People",
+      "ttsText": "いいこ",
+      "sourceOrder": 43
+    },
+    {
+      "id": "r-c54e6deec071",
+      "target": "人気がある",
+      "english": "To be popular",
+      "category": "Emotions & Feelings",
+      "ttsText": "にんきがある",
+      "sourceOrder": 44
+    },
+    {
+      "id": "r-f9fe70b5c2d8",
+      "target": "手紙",
+      "english": "Letter",
+      "category": "Technology & Communication",
+      "ttsText": "てがみ",
+      "sourceOrder": 45
+    },
+    {
+      "id": "r-fbd943278ab9",
+      "target": "白黒",
+      "english": "Black and white",
+      "category": "Colors",
+      "ttsText": "しろくろ",
+      "sourceOrder": 46
+    },
+    {
+      "id": "r-60e42c1a2a9b",
+      "target": "茶道",
+      "english": "Tea ceremony",
+      "category": "Other",
+      "ttsText": "さどう",
+      "sourceOrder": 47
+    },
+    {
+      "id": "r-0634ffc8add8",
+      "target": "今度",
+      "english": "Near future",
+      "category": "Time",
+      "ttsText": "こんど",
+      "sourceOrder": 48
+    },
+    {
+      "id": "r-c664873dbc35",
+      "target": "五つ",
+      "english": "Five",
+      "category": "Numbers",
+      "ttsText": "いつつ",
+      "sourceOrder": 49
+    },
+    {
+      "id": "r-a86d6df82827",
+      "target": "試験",
+      "english": "Exam",
+      "category": "School & Education",
+      "ttsText": "しけん",
+      "sourceOrder": 50
+    },
+    {
+      "id": "r-be483fa90da3",
+      "target": "作文",
+      "english": "Essay; composition",
+      "category": "School & Education",
+      "ttsText": "さくぶん",
+      "sourceOrder": 51
+    },
+    {
+      "id": "r-5d609c232ec2",
+      "target": "落語",
+      "english": "Humorous storytelling",
+      "category": "Other",
+      "ttsText": "らくご",
+      "sourceOrder": 52
+    },
+    {
+      "id": "r-c321b9bd7ee2",
+      "target": "お弁当",
+      "english": "Boxed lunch",
+      "category": "Food",
+      "ttsText": "おべんとう",
+      "sourceOrder": 53
+    },
+    {
+      "id": "r-8c23d9f9cd4b",
+      "target": "書道",
+      "english": "Calligraphy",
+      "category": "Other",
+      "ttsText": "しょどう",
+      "sourceOrder": 54
+    },
+    {
+      "id": "r-07e1aa84c08b",
+      "target": "剣道",
+      "english": "Japanese fencing",
+      "category": "Sports & Hobbies",
+      "ttsText": "けんどう",
+      "sourceOrder": 55
+    },
+    {
+      "id": "r-ae5d54c4c826",
+      "target": "華道",
+      "english": "Flower arrangement",
+      "category": "Other",
+      "ttsText": "かどう",
+      "sourceOrder": 56
+    },
+    {
+      "id": "r-b1e19acde2a9",
+      "target": "散歩する",
+      "english": "To take a walk",
+      "category": "Sports & Hobbies",
+      "ttsText": "さんぽする",
+      "sourceOrder": 57
+    },
+    {
+      "id": "r-ed644386b2e6",
+      "target": "紺色",
+      "english": "Navy blue",
+      "category": "Colors",
+      "ttsText": "こんいろ",
+      "sourceOrder": 58
+    },
+    {
+      "id": "r-270ee44ce823",
+      "target": "単語",
+      "english": "Word; vocabulary",
+      "category": "School & Education",
+      "ttsText": "たんご",
+      "sourceOrder": 59
+    },
+    {
+      "id": "r-b9a0bbca64df",
+      "target": "終わる",
+      "english": "To end",
+      "category": "Other",
+      "ttsText": "おわる",
+      "sourceOrder": 60
+    },
+    {
+      "id": "r-8136f8d8bcd9",
+      "target": "是非",
+      "english": "By all means",
+      "category": "Grammar & Function Words",
+      "ttsText": "ぜひ",
+      "sourceOrder": 61
+    },
+    {
+      "id": "r-4d585a3497f0",
+      "target": "意地悪",
+      "english": "Mean-spirited",
+      "category": "Descriptions & Qualities",
+      "ttsText": "いじわる",
+      "sourceOrder": 62
+    },
+    {
+      "id": "r-5fcadade2558",
+      "target": "二つ",
+      "english": "Two",
+      "category": "Numbers",
+      "ttsText": "ふたつ",
+      "sourceOrder": 63
+    },
+    {
+      "id": "r-8d2549b3b312",
+      "target": "八つ",
+      "english": "Eight",
+      "category": "Numbers",
+      "ttsText": "やっつ",
+      "sourceOrder": 64
+    },
+    {
+      "id": "r-751140ea5b18",
+      "target": "黒い",
+      "english": "Black",
+      "category": "Colors",
+      "ttsText": "くろい",
+      "sourceOrder": 65
+    },
+    {
+      "id": "r-9fd003a72958",
+      "target": "病気",
+      "english": "Illness; sickness",
+      "category": "Body & Health",
+      "ttsText": "びょうき",
+      "sourceOrder": 66
+    },
+    {
+      "id": "r-56a0698cb900",
+      "target": "四つ",
+      "english": "Four",
+      "category": "Numbers",
+      "ttsText": "よっつ",
+      "sourceOrder": 67
+    },
+    {
+      "id": "r-2696ed649a2a",
+      "target": "寂しい",
+      "english": "Lonely",
+      "category": "Emotions & Feelings",
+      "ttsText": "さびしい",
+      "sourceOrder": 68
+    },
+    {
+      "id": "r-04fc5849f29e",
+      "target": "弾く",
+      "english": "To play (a string instrument or piano)",
+      "category": "Sports & Hobbies",
+      "ttsText": "ひく",
+      "sourceOrder": 69
+    },
+    {
+      "id": "r-12b00051b9b1",
+      "target": "九つ",
+      "english": "Nine",
+      "category": "Numbers",
+      "ttsText": "ここのつ",
+      "sourceOrder": 70
+    },
+    {
+      "id": "r-7994961948c6",
+      "target": "薬を飲む",
+      "english": "To take medicine",
+      "category": "Body & Health",
+      "ttsText": "くすりをのむ",
+      "sourceOrder": 71
+    },
+    {
+      "id": "r-d0a7b02e2cd6",
+      "target": "運動する",
+      "english": "To exercise",
+      "category": "Sports & Hobbies",
+      "ttsText": "うんどうする",
+      "sourceOrder": 72
+    },
+    {
+      "id": "r-5996c71fae9f",
+      "target": "灰色",
+      "english": "Gray",
+      "category": "Colors",
+      "ttsText": "はいいろ",
+      "sourceOrder": 73
+    },
+    {
+      "id": "r-d2c9160c7cf0",
+      "target": "文楽",
+      "english": "Puppet theater",
+      "category": "Other",
+      "ttsText": "ぶんらく",
+      "sourceOrder": 74
+    },
+    {
+      "id": "r-40ef63fb3ef1",
+      "target": "覚える",
+      "english": "To memorize",
+      "category": "School & Education",
+      "ttsText": "おぼえる",
+      "sourceOrder": 75
+    },
+    {
+      "id": "r-2b0bc6a7f5c8",
+      "target": "相撲",
+      "english": "Sumo wrestling",
+      "category": "Sports & Hobbies",
+      "ttsText": "すもう",
+      "sourceOrder": 76
+    },
+    {
+      "id": "r-7171cf423e66",
+      "target": "三つ",
+      "english": "Three",
+      "category": "Numbers",
+      "ttsText": "みっつ",
+      "sourceOrder": 77
+    },
+    {
+      "id": "r-812529a34f6c",
+      "target": "六つ",
+      "english": "Six",
+      "category": "Numbers",
+      "ttsText": "むっつ",
+      "sourceOrder": 78
+    },
+    {
+      "id": "r-0f00cd9cdf63",
+      "target": "七つ",
+      "english": "Seven",
+      "category": "Numbers",
+      "ttsText": "ななつ",
+      "sourceOrder": 79
+    },
+    {
+      "id": "r-d28d96c108f3",
+      "target": "一つ",
+      "english": "One",
+      "category": "Numbers",
+      "ttsText": "ひとつ",
+      "sourceOrder": 80
+    },
+    {
+      "id": "r-9e8802daf9aa",
+      "target": "始まる",
+      "english": "To begin",
+      "category": "Other",
+      "ttsText": "はじまる",
+      "sourceOrder": 81
+    },
+    {
+      "id": "r-f3b717b13d8e",
+      "target": "若い",
+      "english": "Young",
+      "category": "Descriptions & Qualities",
+      "ttsText": "わかい",
+      "sourceOrder": 82
+    },
+    {
+      "id": "r-ca9d06b5d2c6",
+      "target": "狂言",
+      "english": "Traditional comic theater",
+      "category": "Other",
+      "ttsText": "きょうげん",
+      "sourceOrder": 83
+    },
+    {
+      "id": "r-b9e5f9eea82a",
+      "target": "赤い",
+      "english": "Red",
+      "category": "Colors",
+      "ttsText": "あかい",
+      "sourceOrder": 84
+    },
+    {
+      "id": "r-de70f1032dba",
+      "target": "踊る",
+      "english": "To dance",
+      "category": "Sports & Hobbies",
+      "ttsText": "おどる",
+      "sourceOrder": 85
+    },
+    {
+      "id": "r-ce25b07bd53a",
+      "target": "歌舞伎",
+      "english": "Kabuki; traditional Japanese theatrical art",
+      "category": "Other",
+      "ttsText": "かぶき",
+      "sourceOrder": 86
+    },
+    {
+      "id": "r-729ea6ac0458",
+      "target": "黄色い",
+      "english": "Yellow",
+      "category": "Colors",
+      "ttsText": "きいろい",
+      "sourceOrder": 87
+    },
+    {
+      "id": "r-a2d1c9501874",
+      "target": "銀色",
+      "english": "Silver",
+      "category": "Colors",
+      "ttsText": "ぎんいろ",
+      "sourceOrder": 88
+    },
+    {
+      "id": "r-244232298a54",
+      "target": "青信号",
+      "english": "Green light",
+      "category": "Colors",
+      "ttsText": "あおしんごう",
+      "sourceOrder": 89
+    },
+    {
+      "id": "r-f95fd9a2c73a",
+      "target": "出る",
+      "english": "To appear; to attend; to exit",
+      "category": "Other",
+      "ttsText": "でる",
+      "sourceOrder": 90
+    },
+    {
+      "id": "r-c6ae5797b9b3",
+      "target": "青い",
+      "english": "Blue",
+      "category": "Colors",
+      "ttsText": "あおい",
+      "sourceOrder": 91
+    },
+    {
+      "id": "r-c2cd3188883f",
+      "target": "金色",
+      "english": "Gold",
+      "category": "Colors",
+      "ttsText": "きんいろ",
+      "sourceOrder": 92
+    },
+    {
+      "id": "r-1514db944029",
+      "target": "柔道",
+      "english": "Judo",
+      "category": "Sports & Hobbies",
+      "ttsText": "じゅうどう",
+      "sourceOrder": 93
+    },
+    {
+      "id": "r-65edac1ca41f",
+      "target": "白い",
+      "english": "White",
+      "category": "Colors",
+      "ttsText": "しろい",
+      "sourceOrder": 94
+    }
+  ]
+}

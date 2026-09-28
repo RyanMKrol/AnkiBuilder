@@ -1,0 +1,383 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 23,
+    "chapterLabel": "Chapter 23: Reading and Writing 9: Sora's Diary",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-97cd3b2ec4e3",
+      "english": "Business card; stab",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "刺"
+    },
+    {
+      "id": "r-fa495b65bd80",
+      "english": "Little",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "少"
+    },
+    {
+      "id": "r-1251ad2f57ee",
+      "english": "Word; resign",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "辞"
+    },
+    {
+      "id": "r-66571b614d99",
+      "english": "Noon",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "午",
+      "ttsText": "ご"
+    },
+    {
+      "id": "r-1b09cd3da091",
+      "english": "Feelings; emotion",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "情"
+    },
+    {
+      "id": "r-093a6f6e57d0",
+      "english": "Plum",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "梅"
+    },
+    {
+      "id": "r-6cca7a3ec067",
+      "english": "Friend",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "友"
+    },
+    {
+      "id": "r-716ea3c57cbd",
+      "english": "Bird",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "鳥"
+    },
+    {
+      "id": "r-68f92a275c74",
+      "english": "Rainy season",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "雨期",
+      "ttsText": "うき"
+    },
+    {
+      "id": "r-2ce4462c0a3e",
+      "english": "In the morning",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "午前中",
+      "ttsText": "ごぜんちゅう"
+    },
+    {
+      "id": "r-69f6c5368a89",
+      "english": "To come",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "来ます",
+      "ttsText": "きます"
+    },
+    {
+      "id": "r-364bd1bf0580",
+      "english": "Family name",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "名字",
+      "ttsText": "みょうじ"
+    },
+    {
+      "id": "r-6a6f78c2e4c8",
+      "english": "Friend",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "友だち",
+      "ttsText": "ともだち"
+    },
+    {
+      "id": "r-91d48bf33ccc",
+      "english": "Two hours",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "二時間",
+      "ttsText": "にじかん"
+    },
+    {
+      "id": "r-4dfe8f5f2b38",
+      "english": "Friend",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "友人",
+      "ttsText": "ゆうじん"
+    },
+    {
+      "id": "r-9a77de9566fb",
+      "english": "A.M.",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "午前",
+      "ttsText": "ごぜん"
+    },
+    {
+      "id": "r-7256b05608dc",
+      "english": "Famous",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "有名な",
+      "ttsText": "ゆうめいな"
+    },
+    {
+      "id": "r-ad513f099162",
+      "english": "Visit to Japan",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "来日",
+      "ttsText": "らいにち"
+    },
+    {
+      "id": "r-e239286b4fa5",
+      "english": "To have a talk",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "話をする",
+      "ttsText": "はなしをする"
+    },
+    {
+      "id": "r-83f0f64b4403",
+      "english": "Few",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "少ない",
+      "ttsText": "すくない"
+    },
+    {
+      "id": "r-a21911e56f33",
+      "english": "Conversation",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "会話",
+      "ttsText": "かいわ"
+    },
+    {
+      "id": "r-697b80373ae8",
+      "english": "Noon",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "正午",
+      "ttsText": "しょうご"
+    },
+    {
+      "id": "r-23059237d307",
+      "english": "Blank sheet",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "白紙",
+      "ttsText": "はくし"
+    },
+    {
+      "id": "r-3ad626b47ca9",
+      "english": "P.M; in the afternoon",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "午後",
+      "ttsText": "ごご"
+    },
+    {
+      "id": "r-91c0c6b70368",
+      "english": "Swan",
+      "category": "Animals",
+      "reviewNote": null,
+      "target": "白鳥",
+      "ttsText": "はくちょう"
+    },
+    {
+      "id": "r-89359e4ac0ab",
+      "english": "Heavy rain",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "大雨",
+      "ttsText": "おおあめ"
+    },
+    {
+      "id": "r-22d9b9afb945",
+      "english": "Girl",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "少女",
+      "ttsText": "しょうじょ"
+    },
+    {
+      "id": "r-47a064ca0dda",
+      "english": "Acquaintance",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "知り合い",
+      "ttsText": "しりあい"
+    },
+    {
+      "id": "r-faca978c950c",
+      "english": "Acquaintance",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "知人",
+      "ttsText": "ちじん"
+    },
+    {
+      "id": "r-5addc4e4387a",
+      "english": "Boy",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "少年",
+      "ttsText": "しょうねん"
+    },
+    {
+      "id": "r-37001b0335ec",
+      "english": "Friendship",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "友情",
+      "ttsText": "ゆうじょう"
+    },
+    {
+      "id": "r-86132a6fab4d",
+      "english": "Human being",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "人間",
+      "ttsText": "にんげん"
+    },
+    {
+      "id": "r-37b4565f51d1",
+      "english": "Little",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "少し",
+      "ttsText": "すこし"
+    },
+    {
+      "id": "r-52ace889cb80",
+      "english": "Not to come",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "来ない",
+      "ttsText": "こない"
+    },
+    {
+      "id": "r-7d72598db4ca",
+      "english": "Rainy season",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "梅雨",
+      "ttsText": "つゆ"
+    },
+    {
+      "id": "r-6106ca1d1492",
+      "english": "Name card",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "名刺",
+      "ttsText": "めいし"
+    },
+    {
+      "id": "r-cc6aec5a74fc",
+      "english": "Advance sale",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "前売り",
+      "ttsText": "まえうり"
+    },
+    {
+      "id": "r-2fddf0dcafab",
+      "english": "Full name",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "氏名",
+      "ttsText": "しめい"
+    },
+    {
+      "id": "r-4d61084af352",
+      "english": "One week",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "一週間",
+      "ttsText": "いっしゅうかん"
+    },
+    {
+      "id": "r-4df0cc2a69c5",
+      "english": "Best friend",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "親友",
+      "ttsText": "しんゆう"
+    },
+    {
+      "id": "r-16d2096988e8",
+      "english": "Kimono; Japanese traditional dress",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "着物",
+      "ttsText": "きもの"
+    },
+    {
+      "id": "r-38995e8c4d66",
+      "english": "After ...",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "の後",
+      "ttsText": "のあと"
+    },
+    {
+      "id": "r-45e061500a82",
+      "english": "Dictionary",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "辞書",
+      "ttsText": "じしょ"
+    },
+    {
+      "id": "r-ca08b72817d9",
+      "english": "Secondhand",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "中古",
+      "ttsText": "ちゅうこ"
+    },
+    {
+      "id": "r-2a70053c7b48",
+      "english": "Ancient times",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "古代",
+      "ttsText": "こだい"
+    },
+    {
+      "id": "r-d54d12f95c41",
+      "english": "Name",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "名前",
+      "ttsText": "なまえ"
+    },
+    {
+      "id": "r-523ba26a829c",
+      "english": "A little",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "少々",
+      "ttsText": "しょうしょう"
+    }
+  ]
+}

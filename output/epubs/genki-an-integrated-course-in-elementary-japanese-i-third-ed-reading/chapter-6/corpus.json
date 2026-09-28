@@ -1,0 +1,541 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 7,
+    "chapterLabel": "Chapter 07: Lesson 5: A Trip to Okinawa",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-7b59b16db1db",
+      "target": "嫌",
+      "english": "Dislike",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-b74eb414e6ea",
+      "target": "枚",
+      "english": "[Counter for flat objects]",
+      "category": "Grammar & Function Words",
+      "ttsText": "まい",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-4a1ae3cda4be",
+      "target": "白",
+      "english": "White",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-e94720352f3c",
+      "target": "泳",
+      "english": "Swim",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-d9b58894b25e",
+      "target": "僕",
+      "english": "I (used by men)",
+      "category": "Grammar & Function Words",
+      "ttsText": "ぼく",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-223fae378009",
+      "target": "旅",
+      "english": "Trip; travel",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-1022fd3f2c7d",
+      "target": "宿",
+      "english": "Lodging; inn",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-69e859b290b2",
+      "target": "出",
+      "english": "Exit; leave; go out",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-a7c7729d6449",
+      "target": "気",
+      "english": "Spirit; mind; air",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-7b8a6bebd307",
+      "target": "新",
+      "english": "New",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-397188df754b",
+      "target": "丈",
+      "english": "Length; height",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-0afbe7b539e1",
+      "target": "休",
+      "english": "Rest; day off",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-79b38a8ca7b9",
+      "target": "夫",
+      "english": "Husband; man",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-ec5dc229294b",
+      "target": "乗",
+      "english": "Ride",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-ec7f1ae42b7a",
+      "target": "暇",
+      "english": "Not busy; free (time)",
+      "category": "Time",
+      "ttsText": "ひま",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-3dfa9ea3c4ee",
+      "target": "安",
+      "english": "Cheap; safe",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-521e28c1cbe0",
+      "target": "怖",
+      "english": "Frightening",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-4dfa006d756d",
+      "target": "面",
+      "english": "Face; surface",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-2d4f5882b000",
+      "target": "寒",
+      "english": "Cold",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-f75fe10cbcea",
+      "target": "静",
+      "english": "Quiet",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-89321831fa91",
+      "target": "古",
+      "english": "Old",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-04b3e1394c8a",
+      "target": "緒",
+      "english": "String; beginning",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-dffabaa810c5",
+      "target": "熱",
+      "english": "Heat; fever",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-d97fa93cc7eb",
+      "target": "難",
+      "english": "Difficult; trouble",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-39ec5783e2f6",
+      "target": "題",
+      "english": "Topic; subject",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-cc5c537e83ac",
+      "target": "忙",
+      "english": "Busy",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-42de54393017",
+      "target": "部",
+      "english": "Section; department",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-922517cc7363",
+      "target": "小",
+      "english": "Little; small",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-d62c08d357e1",
+      "target": "果",
+      "english": "Fruit",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-27e4fe4c3fe2",
+      "target": "好",
+      "english": "Like; fond of",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-f5a408ddfe5b",
+      "target": "暑",
+      "english": "Hot",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-08d57eaeb725",
+      "target": "産",
+      "english": "Products; give birth",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-721bbf9ab070",
+      "target": "宿題",
+      "english": "Homework",
+      "category": "School & Education",
+      "ttsText": "しゅくだい",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-b981696f046b",
+      "target": "誕生日",
+      "english": "Birthday",
+      "category": "Other",
+      "ttsText": "たんじょうび",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-7905abb96ea3",
+      "target": "新しい",
+      "english": "New",
+      "category": "Descriptions & Qualities",
+      "ttsText": "あたらしい",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-c5d04a497156",
+      "target": "果物",
+      "english": "Fruit",
+      "category": "Food",
+      "ttsText": "くだもの",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-991f96a8ce57",
+      "target": "好き",
+      "english": "Fond of; to like",
+      "category": "Emotions & Feelings",
+      "ttsText": "すき",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-ba1a3a1305a2",
+      "target": "元気",
+      "english": "Healthy; energetic",
+      "category": "Body & Health",
+      "ttsText": "げんき",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-c9bef118f612",
+      "target": "静か",
+      "english": "Quiet",
+      "category": "Descriptions & Qualities",
+      "ttsText": "しずか",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-40b84dfc2a6b",
+      "target": "泳ぐ",
+      "english": "To swim",
+      "category": "Sports & Hobbies",
+      "ttsText": "およぐ",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-caf1f189d706",
+      "target": "食べ物",
+      "english": "Food",
+      "category": "Food",
+      "ttsText": "たべもの",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-03f65015f9e6",
+      "target": "忙しい",
+      "english": "Busy (people/days)",
+      "category": "Descriptions & Qualities",
+      "ttsText": "いそがしい",
+      "sourceOrder": 41
+    },
+    {
+      "id": "r-6a203ee3f94f",
+      "target": "面白い",
+      "english": "Interesting; funny",
+      "category": "Descriptions & Qualities",
+      "ttsText": "おもしろい",
+      "sourceOrder": 42
+    },
+    {
+      "id": "r-c62dc9de7834",
+      "target": "小さい",
+      "english": "Small",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ちいさい",
+      "sourceOrder": 43
+    },
+    {
+      "id": "r-381ff49c08cb",
+      "target": "一緒に",
+      "english": "Together",
+      "category": "Grammar & Function Words",
+      "ttsText": "いっしょに",
+      "sourceOrder": 44
+    },
+    {
+      "id": "r-33cd91ff2688",
+      "target": "安い",
+      "english": "Inexpensive; cheap (thing)",
+      "category": "Shopping",
+      "ttsText": "やすい",
+      "sourceOrder": 45
+    },
+    {
+      "id": "r-2f7806f919a5",
+      "target": "暑い",
+      "english": "Hot (weather)",
+      "category": "Weather & Nature",
+      "ttsText": "あつい",
+      "sourceOrder": 46
+    },
+    {
+      "id": "r-2c5583944c56",
+      "target": "難しい",
+      "english": "Difficult",
+      "category": "Descriptions & Qualities",
+      "ttsText": "むずかしい",
+      "sourceOrder": 47
+    },
+    {
+      "id": "r-adb7c9ef10fd",
+      "target": "嫌い",
+      "english": "Disgusted with; to dislike",
+      "category": "Emotions & Feelings",
+      "ttsText": "きらい",
+      "sourceOrder": 48
+    },
+    {
+      "id": "r-4630a7dd90bb",
+      "target": "飲み物",
+      "english": "Drink",
+      "category": "Food",
+      "ttsText": "のみもの",
+      "sourceOrder": 49
+    },
+    {
+      "id": "r-86e4853a99b6",
+      "target": "乗る",
+      "english": "To ride; to board",
+      "category": "Transport",
+      "ttsText": "のる",
+      "sourceOrder": 50
+    },
+    {
+      "id": "r-b4e6d4a5c89e",
+      "target": "大丈夫",
+      "english": "It's okay; not to worry; everything is under control",
+      "category": "Other",
+      "ttsText": "だいじょうぶ",
+      "sourceOrder": 51
+    },
+    {
+      "id": "r-3e35dbae3da7",
+      "target": "お土産",
+      "english": "Souvenir",
+      "category": "Travel & Tourism",
+      "ttsText": "おみやげ",
+      "sourceOrder": 52
+    },
+    {
+      "id": "r-ae8f14fe0b81",
+      "target": "古い",
+      "english": "Old (thing, not used for people)",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ふるい",
+      "sourceOrder": 53
+    },
+    {
+      "id": "r-21bb71d48c26",
+      "target": "大好き",
+      "english": "Very fond of; to love",
+      "category": "Emotions & Feelings",
+      "ttsText": "だいすき",
+      "sourceOrder": 54
+    },
+    {
+      "id": "r-51bcc9d34833",
+      "target": "熱い",
+      "english": "Hot (thing)",
+      "category": "Descriptions & Qualities",
+      "ttsText": "あつい",
+      "sourceOrder": 55
+    },
+    {
+      "id": "r-fe1ff2462cd9",
+      "target": "出かける",
+      "english": "To go out",
+      "category": "Other",
+      "ttsText": "でかける",
+      "sourceOrder": 56
+    },
+    {
+      "id": "r-92c1b6c8fd3f",
+      "target": "旅行",
+      "english": "Travel",
+      "category": "Travel & Tourism",
+      "ttsText": "りょこう",
+      "sourceOrder": 57
+    },
+    {
+      "id": "r-7fe72c99cef5",
+      "target": "怖い",
+      "english": "Frightening",
+      "category": "Descriptions & Qualities",
+      "ttsText": "こわい",
+      "sourceOrder": 58
+    },
+    {
+      "id": "r-77f5c58130a9",
+      "target": "天気",
+      "english": "Weather",
+      "category": "Weather & Nature",
+      "ttsText": "てんき",
+      "sourceOrder": 59
+    },
+    {
+      "id": "r-4bfcc646bf26",
+      "target": "楽しい",
+      "english": "Fun",
+      "category": "Descriptions & Qualities",
+      "ttsText": "たのしい",
+      "sourceOrder": 60
+    },
+    {
+      "id": "r-ed9d672c6023",
+      "target": "大嫌い",
+      "english": "To hate",
+      "category": "Emotions & Feelings",
+      "ttsText": "だいきらい",
+      "sourceOrder": 61
+    },
+    {
+      "id": "r-bc0d3ddc48ec",
+      "target": "寒い",
+      "english": "Cold (weather, not used for things)",
+      "category": "Weather & Nature",
+      "ttsText": "さむい",
+      "sourceOrder": 62
+    },
+    {
+      "id": "r-d6ca110fffb9",
+      "target": "休み",
+      "english": "Holiday; day off; absence",
+      "category": "Time",
+      "ttsText": "やすみ",
+      "sourceOrder": 63
+    },
+    {
+      "id": "r-e1ee009241f5",
+      "target": "大きい",
+      "english": "Large",
+      "category": "Descriptions & Qualities",
+      "ttsText": "おおきい",
+      "sourceOrder": 64
+    },
+    {
+      "id": "r-9d5363f136a0",
+      "target": "部屋",
+      "english": "Room",
+      "category": "Home & Household",
+      "ttsText": "へや",
+      "sourceOrder": 65
+    }
+  ]
+}

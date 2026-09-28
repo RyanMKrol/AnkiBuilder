@@ -1,0 +1,694 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 10,
+    "chapterLabel": "Chapter 10: Lesson 8: Barbecue",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-7f10671bd5ae",
+      "english": "Dry",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "乾"
+    },
+    {
+      "id": "r-562c1c1da71e",
+      "english": "Warm",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "温"
+    },
+    {
+      "id": "r-49b8a2368c45",
+      "english": "Exclude; remove",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "除"
+    },
+    {
+      "id": "r-b6b64a431723",
+      "english": "Remain; leftover",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "残"
+    },
+    {
+      "id": "r-d40ec0965ea8",
+      "english": "Cloudy weather",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "曇"
+    },
+    {
+      "id": "r-cc98544dbc8a",
+      "english": "Bag",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "袋"
+    },
+    {
+      "id": "r-7c155bc560d0",
+      "english": "Report; news",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "報"
+    },
+    {
+      "id": "r-d5ca75a91f1a",
+      "english": "Winter",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "冬",
+      "ttsText": "ふゆ"
+    },
+    {
+      "id": "r-4b149d7f035c",
+      "english": "Carry",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "運"
+    },
+    {
+      "id": "r-0604876a6817",
+      "english": "Chicken",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "鶏"
+    },
+    {
+      "id": "r-bf9b3e9c32c4",
+      "english": "Cow",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 26: Reading and Writing 12: Tanabata Festival).",
+      "target": "牛"
+    },
+    {
+      "id": "r-81d4aecdad11",
+      "english": "Name",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 23: Reading and Writing 9: Sora's Diary).",
+      "target": "名"
+    },
+    {
+      "id": "r-fbd5b75066a6",
+      "english": "To exist",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 25: Reading and Writing 11: Looking for Friends/Members).",
+      "target": "有"
+    },
+    {
+      "id": "r-6759709d6002",
+      "english": "Meat",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "肉",
+      "ttsText": "にく"
+    },
+    {
+      "id": "r-ce0a21de8541",
+      "english": "Summer",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "夏",
+      "ttsText": "なつ"
+    },
+    {
+      "id": "r-faf279e73f14",
+      "english": "To think",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 22: Reading and Writing 8: Japanese Office Workers).",
+      "target": "思"
+    },
+    {
+      "id": "r-adbaff5fee5c",
+      "english": "Place",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "所",
+      "ttsText": "ところ"
+    },
+    {
+      "id": "r-2081bbe07115",
+      "english": "Ball; jewel",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "玉"
+    },
+    {
+      "id": "r-49efc042ad44",
+      "english": "Materials",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "料",
+      "ttsText": "りょう"
+    },
+    {
+      "id": "r-3aa2dc6b657b",
+      "english": "Revolve; turn around",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "転"
+    },
+    {
+      "id": "r-5e908af12088",
+      "english": "To serve",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 22: Reading and Writing 8: Japanese Office Workers).",
+      "target": "仕"
+    },
+    {
+      "id": "r-aae488416289",
+      "english": "Thing",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 22: Reading and Writing 8: Japanese Office Workers).",
+      "target": "事"
+    },
+    {
+      "id": "r-81d3c496f5dc",
+      "english": "Begin",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "始"
+    },
+    {
+      "id": "r-451dd77f8850",
+      "english": "Grill; bake",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "焼"
+    },
+    {
+      "id": "r-304fce687a69",
+      "english": "Degrees (temperature)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "度",
+      "ttsText": "ど"
+    },
+    {
+      "id": "r-aa04cb353ca3",
+      "english": "Sweep",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "掃"
+    },
+    {
+      "id": "r-e6249fade7db",
+      "english": "Discard",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "捨"
+    },
+    {
+      "id": "r-f796090d0179",
+      "english": "To say",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 22: Reading and Writing 8: Japanese Office Workers).",
+      "target": "言"
+    },
+    {
+      "id": "r-0d05046a439f",
+      "english": "Clear up",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "晴"
+    },
+    {
+      "id": "r-7d742a7f9f36",
+      "english": "Snow",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "雪",
+      "ttsText": "ゆき"
+    },
+    {
+      "id": "r-f076a9b8ddf3",
+      "english": "Slow; late",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "遅"
+    },
+    {
+      "id": "r-3c9b952ccd79",
+      "english": "Beforehand",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "予"
+    },
+    {
+      "id": "r-cef2673e6282",
+      "english": "Wash",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "洗"
+    },
+    {
+      "id": "r-e8555020c4b3",
+      "english": "To make",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 22: Reading and Writing 8: Japanese Office Workers).",
+      "target": "作"
+    },
+    {
+      "id": "r-33b5ba8938cd",
+      "english": "Pork; pig",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "豚"
+    },
+    {
+      "id": "r-1162f253d44c",
+      "english": "Logic; reason",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "理",
+      "ttsText": "り"
+    },
+    {
+      "id": "r-faebf1b99699",
+      "english": "Member",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 22: Reading and Writing 8: Japanese Office Workers).",
+      "target": "員",
+      "ttsText": "いん"
+    },
+    {
+      "id": "r-c5004f91cd03",
+      "english": "Soup",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "汁"
+    },
+    {
+      "id": "r-2535fb0654f7",
+      "english": "Counter for cupfuls; cup",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "杯"
+    },
+    {
+      "id": "r-8e2ac506d37e",
+      "english": "Bowl",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "丼"
+    },
+    {
+      "id": "r-8995b8979971",
+      "english": "Rain",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "雨",
+      "ttsText": "あめ"
+    },
+    {
+      "id": "r-ddc6d9325f49",
+      "english": "Wash",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "濯",
+      "ttsText": "たく"
+    },
+    {
+      "id": "r-95a244ed2714",
+      "english": "Request; wish",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "願"
+    },
+    {
+      "id": "r-4af73d5eb3c6",
+      "english": "Every week",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "毎週",
+      "ttsText": "まいしゅう"
+    },
+    {
+      "id": "r-cf8190cb3dfa",
+      "english": "To be late",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "遅くなる",
+      "ttsText": "おそくなる"
+    },
+    {
+      "id": "r-195cb8caaeed",
+      "english": "To clean",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "掃除する",
+      "ttsText": "そうじする"
+    },
+    {
+      "id": "r-0ede079ba7d4",
+      "english": "That's too bad.",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "残念ですね",
+      "ttsText": "ざんねんですね"
+    },
+    {
+      "id": "r-422694d6b7a1",
+      "english": "Office worker",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "会社員",
+      "ttsText": "かいしゃいん"
+    },
+    {
+      "id": "r-3177ccc0660e",
+      "english": "To take (a thing)",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "持っていく",
+      "ttsText": "もっていく"
+    },
+    {
+      "id": "r-becf1c4a15db",
+      "english": "Onion",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "玉ねぎ",
+      "ttsText": "たまねぎ"
+    },
+    {
+      "id": "r-eb27f636d2c3",
+      "english": "To make",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "作る",
+      "ttsText": "つくる"
+    },
+    {
+      "id": "r-6233213a50d5",
+      "english": "Late (doing something)",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "遅く",
+      "ttsText": "おそく"
+    },
+    {
+      "id": "r-283112eb7d8b",
+      "english": "Cloudy weather",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "曇り",
+      "ttsText": "くもり"
+    },
+    {
+      "id": "r-664daafc9401",
+      "english": "Broiled fish",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "焼き魚",
+      "ttsText": "やきざかな"
+    },
+    {
+      "id": "r-df2144b4987d",
+      "english": "Cooking; cuisine",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "料理",
+      "ttsText": "りょうり"
+    },
+    {
+      "id": "r-66901a639dd6",
+      "english": "To begin",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "始める",
+      "ttsText": "はじめる"
+    },
+    {
+      "id": "r-0324f8ecbb96",
+      "english": "Sunny weather",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "晴れ",
+      "ttsText": "はれ"
+    },
+    {
+      "id": "r-0070242dc8bf",
+      "english": "Clumsy; poor at",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "下手",
+      "ttsText": "へた"
+    },
+    {
+      "id": "r-20e5ac902f21",
+      "english": "To wash",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "洗う",
+      "ttsText": "あらう"
+    },
+    {
+      "id": "r-8d16fa3b675f",
+      "english": "Savory pancake",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "お好み焼き",
+      "ttsText": "おこのみやき"
+    },
+    {
+      "id": "r-7d12bce4b691",
+      "english": "Skillful; good at",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "上手",
+      "ttsText": "じょうず"
+    },
+    {
+      "id": "r-2a27c8e6ccfd",
+      "english": "Miso soup",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "みそ汁",
+      "ttsText": "みそしる"
+    },
+    {
+      "id": "r-af8377b844c6",
+      "english": "That's too bad; regrettable",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "残念",
+      "ttsText": "ざんねん"
+    },
+    {
+      "id": "r-f0b1b8bb6bdd",
+      "english": "Beef",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "牛肉",
+      "ttsText": "ぎゅうにく"
+    },
+    {
+      "id": "r-5abfcbebeed7",
+      "english": "To fall (rain/snow)",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "降る",
+      "ttsText": "ふる"
+    },
+    {
+      "id": "r-a5c6e9ec8432",
+      "english": "Cheers! (a toast)",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "乾杯",
+      "ttsText": "かんぱい"
+    },
+    {
+      "id": "r-6002bcf43981",
+      "english": "It snows",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "雪が降る",
+      "ttsText": "ゆきがふる"
+    },
+    {
+      "id": "r-b9f34ab24617",
+      "english": "To do laundry",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "洗濯する",
+      "ttsText": "せんたくする"
+    },
+    {
+      "id": "r-7aeef663f3d7",
+      "english": "Temperature",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "気温",
+      "ttsText": "きおん"
+    },
+    {
+      "id": "r-526e60e1cbcd",
+      "english": "Is there alcohol in this?",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "この中にお酒が入っていますか",
+      "ttsText": "このなかにおさけがはいっていますか"
+    },
+    {
+      "id": "r-cb11335d9a39",
+      "english": "To drive",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "運転する",
+      "ttsText": "うんてんする"
+    },
+    {
+      "id": "r-4b97e5b867e3",
+      "english": "Late",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "遅い",
+      "ttsText": "おそい"
+    },
+    {
+      "id": "r-a709b05c384a",
+      "english": "Study",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "勉強",
+      "ttsText": "べんきょう"
+    },
+    {
+      "id": "r-9974e63cfa89",
+      "english": "Beef rice bowl",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "牛丼",
+      "ttsText": "ぎゅうどん"
+    },
+    {
+      "id": "r-0123d226af98",
+      "english": "It rains",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "雨が降る",
+      "ttsText": "あめがふる"
+    },
+    {
+      "id": "r-a128579869e4",
+      "english": "To take a bath",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "お風呂に入る",
+      "ttsText": "おふろにはいる"
+    },
+    {
+      "id": "r-9f359fc57904",
+      "english": "To cook",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "料理する",
+      "ttsText": "りょうりする"
+    },
+    {
+      "id": "r-c5ea074db5ec",
+      "english": "To think",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "思う",
+      "ttsText": "おもう"
+    },
+    {
+      "id": "r-e2329c277f51",
+      "english": "To say",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "言う",
+      "ttsText": "いう"
+    },
+    {
+      "id": "r-5dc4a4fa474f",
+      "english": "Job; work; occupation",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "仕事",
+      "ttsText": "しごと"
+    },
+    {
+      "id": "r-101ade837073",
+      "english": "This morning",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "今朝",
+      "ttsText": "けさ"
+    },
+    {
+      "id": "r-06cd7186b922",
+      "english": "Famous",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "有名",
+      "ttsText": "ゆうめい"
+    },
+    {
+      "id": "r-c3c8e08c555f",
+      "english": "Chicken",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "鶏肉",
+      "ttsText": "とりにく"
+    },
+    {
+      "id": "r-7ca67446a09f",
+      "english": "To throw away",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "捨てる",
+      "ttsText": "すてる"
+    },
+    {
+      "id": "r-b375332a2082",
+      "english": "To cut",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "切る",
+      "ttsText": "きる"
+    },
+    {
+      "id": "r-54a97b56becf",
+      "english": "Something",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "何か",
+      "ttsText": "なにか"
+    },
+    {
+      "id": "r-27d59e1426e0",
+      "english": "Can I have a bag?",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "袋をお願いします",
+      "ttsText": "ふくろをおねがいします"
+    },
+    {
+      "id": "r-97d2e2825721",
+      "english": "Weather forecast",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "天気予報",
+      "ttsText": "てんきよほう"
+    },
+    {
+      "id": "r-a886af71a417",
+      "english": "Pork",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "豚肉",
+      "ttsText": "ぶたにく"
+    }
+  ]
+}

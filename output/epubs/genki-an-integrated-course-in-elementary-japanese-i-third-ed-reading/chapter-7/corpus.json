@@ -1,0 +1,821 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 8,
+    "chapterLabel": "Chapter 08: Lesson 6: A Day in Robert's Life",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-f6901ca318d1",
+      "target": "使",
+      "english": "Use",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-9e034c51de73",
+      "target": "稚",
+      "english": "Immature; young",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-48c146223173",
+      "target": "北",
+      "english": "North",
+      "category": "Directions",
+      "ttsText": "きた",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-2853730c1c17",
+      "target": "窓",
+      "english": "Window",
+      "category": "Home & Household",
+      "ttsText": "まど",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-198631ac546e",
+      "target": "角",
+      "english": "Angle; corner",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-5edea29b72cf",
+      "target": "降",
+      "english": "Descend; get off",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-3a9756bb4428",
+      "target": "保",
+      "english": "Protect; keep",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-9a0fe9c816a8",
+      "target": "返",
+      "english": "Return; answer",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-5f413d72c0b1",
+      "target": "短",
+      "english": "Short",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-bef3cf7e8d7b",
+      "target": "結",
+      "english": "Tie; bind",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-ebaca4be57c2",
+      "target": "東",
+      "english": "East",
+      "category": "Directions",
+      "ttsText": "ひがし",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-178747962b40",
+      "target": "忘",
+      "english": "Forget",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-17b40d6d30ec",
+      "target": "伝",
+      "english": "Convey",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-4a8d065902d2",
+      "target": "入",
+      "english": "Enter; insert",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-b502f0a8ad22",
+      "target": "閉",
+      "english": "Closed; shut",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-582c50066c2c",
+      "target": "字",
+      "english": "Character; letter",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-2c2a46075fa0",
+      "target": "死",
+      "english": "Death; die",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-f8fd8f4a6306",
+      "target": "立",
+      "english": "Stand up; rise; set up",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-06f94b7c9ee9",
+      "target": "消",
+      "english": "Extinguish; turn off",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-e6ac67fb746a",
+      "target": "南",
+      "english": "South",
+      "category": "Directions",
+      "ttsText": "みなみ",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-e192c56647d2",
+      "target": "幼",
+      "english": "Infancy; childhood",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-2d8f0e9d136d",
+      "target": "夜",
+      "english": "Night",
+      "category": "Time",
+      "ttsText": "よる",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-fc73601f2012",
+      "target": "期",
+      "english": "Period; date",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-be04bcfb3389",
+      "target": "荷",
+      "english": "Baggage; load",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-4f9f9d6e9875",
+      "target": "漢",
+      "english": "Sino-; China",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-c08a56997a21",
+      "target": "手",
+      "english": "Hand",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-869fd80b7f2f",
+      "target": "吸",
+      "english": "Inhale",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-5e5b8169eee6",
+      "target": "次",
+      "english": "Next",
+      "category": "Descriptions & Qualities",
+      "ttsText": "つぎ",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-d9bf8247a0c9",
+      "target": "側",
+      "english": "Side",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-650cb8f11766",
+      "target": "変",
+      "english": "Strange; change",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-dcedab2c4ff0",
+      "target": "科",
+      "english": "Course; department",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-7f5716be5cd6",
+      "target": "号",
+      "english": "Number; item",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-bc69f7c1f5d9",
+      "target": "遊",
+      "english": "Play",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-e351e1519573",
+      "target": "電",
+      "english": "Electricity",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-b7f53ad6395a",
+      "target": "連",
+      "english": "Take along; accompany",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-ab440c8ee491",
+      "target": "当",
+      "english": "Right; hit",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-83f88c8f0e30",
+      "target": "借",
+      "english": "Borrow; rent",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-2f64b5a67e10",
+      "target": "西",
+      "english": "West",
+      "category": "Directions",
+      "ttsText": "にし",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-0a82dc79f717",
+      "target": "曲",
+      "english": "Bend",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-aa03e08180f2",
+      "target": "教",
+      "english": "Teach",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-8ae4844630a6",
+      "target": "浴",
+      "english": "Bathe",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-8386bb2637b5",
+      "target": "育",
+      "english": "Raise",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 41
+    },
+    {
+      "id": "r-47782cc9bccb",
+      "target": "車",
+      "english": "Car",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 42
+    },
+    {
+      "id": "r-3a0ea34a22f0",
+      "target": "目",
+      "english": "Eye",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 43
+    },
+    {
+      "id": "r-99529c90aed3",
+      "target": "開",
+      "english": "Open",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 44
+    },
+    {
+      "id": "r-2176b4faeddc",
+      "target": "座",
+      "english": "Sit; seat",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 45
+    },
+    {
+      "id": "r-26f3f4e9a1b4",
+      "target": "構",
+      "english": "Stance; appearance",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 46
+    },
+    {
+      "id": "r-3d3e17a162e7",
+      "target": "等",
+      "english": "Grade; etc.",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 47
+    },
+    {
+      "id": "r-a33670427c5d",
+      "target": "道",
+      "english": "Road; street",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 48
+    },
+    {
+      "id": "r-6c71e31e2aad",
+      "target": "信",
+      "english": "Faith; trust",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 49
+    },
+    {
+      "id": "r-eec997cbbb9c",
+      "target": "急",
+      "english": "Hurry; sudden",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 50
+    },
+    {
+      "id": "r-3e438bd6cb70",
+      "target": "渡",
+      "english": "Cross",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 51
+    },
+    {
+      "id": "r-e81dbd2acbb1",
+      "target": "持",
+      "english": "Hold; have",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 52
+    },
+    {
+      "id": "r-c7cca58e0298",
+      "target": "道の右側",
+      "english": "Right side of the street",
+      "category": "Directions",
+      "ttsText": "みちのみぎがわ",
+      "sourceOrder": 53
+    },
+    {
+      "id": "r-bbd9c5c83d29",
+      "target": "一つ目の信号を右に曲がる",
+      "english": "Turn right at the first traffic light",
+      "category": "Directions",
+      "ttsText": "ひとつめのしんごうをみぎにまがる",
+      "sourceOrder": 54
+    },
+    {
+      "id": "r-b0d9ce76f796",
+      "target": "たばこを吸う",
+      "english": "To smoke",
+      "category": "Body & Health",
+      "ttsText": "たばこをすう",
+      "sourceOrder": 55
+    },
+    {
+      "id": "r-4da7571d829d",
+      "target": "忘れる",
+      "english": "To forget; to leave behind",
+      "category": "Other",
+      "ttsText": "わすれる",
+      "sourceOrder": 56
+    },
+    {
+      "id": "r-e74e618b5343",
+      "target": "持つ",
+      "english": "To carry; to hold",
+      "category": "Other",
+      "ttsText": "もつ",
+      "sourceOrder": 57
+    },
+    {
+      "id": "r-cc735c87c790",
+      "target": "消す",
+      "english": "To turn off; to erase",
+      "category": "Home & Household",
+      "ttsText": "けす",
+      "sourceOrder": 58
+    },
+    {
+      "id": "r-b6ccfe6e3c18",
+      "target": "右に曲がる",
+      "english": "Turn right",
+      "category": "Directions",
+      "ttsText": "みぎにまがる",
+      "sourceOrder": 59
+    },
+    {
+      "id": "r-882bcf144d7e",
+      "target": "道を渡る",
+      "english": "Cross the street",
+      "category": "Directions",
+      "ttsText": "みちをわたる",
+      "sourceOrder": 60
+    },
+    {
+      "id": "r-8d2086f34297",
+      "target": "開ける",
+      "english": "To open (something)",
+      "category": "Other",
+      "ttsText": "あける",
+      "sourceOrder": 61
+    },
+    {
+      "id": "r-66edc6705ac4",
+      "target": "二つ目の角を左に曲がる",
+      "english": "Turn left at the second corner",
+      "category": "Directions",
+      "ttsText": "ふたつめのかどをひだりにまがる",
+      "sourceOrder": 62
+    },
+    {
+      "id": "r-132fa45a7a57",
+      "target": "幼稚園",
+      "english": "Kindergarten",
+      "category": "School & Education",
+      "ttsText": "ようちえん",
+      "sourceOrder": 63
+    },
+    {
+      "id": "r-327cdf816423",
+      "target": "小学校",
+      "english": "Elementary school",
+      "category": "School & Education",
+      "ttsText": "しょうがっこう",
+      "sourceOrder": 64
+    },
+    {
+      "id": "r-ecf05d7f7207",
+      "target": "本当ですか",
+      "english": "Really?",
+      "category": "Greetings",
+      "ttsText": "ほんとうですか",
+      "sourceOrder": 65
+    },
+    {
+      "id": "r-50b94ed0ecb3",
+      "target": "シャワーを浴びる",
+      "english": "To take a shower",
+      "category": "Body & Health",
+      "ttsText": "シャワーをあびる",
+      "sourceOrder": 66
+    },
+    {
+      "id": "r-7e3f4f6bfc58",
+      "target": "教える",
+      "english": "To teach; to instruct",
+      "category": "School & Education",
+      "ttsText": "おしえる",
+      "sourceOrder": 67
+    },
+    {
+      "id": "r-e9e6d98e6760",
+      "target": "休む",
+      "english": "To be absent; to rest",
+      "category": "Other",
+      "ttsText": "やすむ",
+      "sourceOrder": 68
+    },
+    {
+      "id": "r-3612bbc4ba23",
+      "target": "結構です",
+      "english": "That would be fine; That wouldn't be necessary",
+      "category": "Greetings",
+      "ttsText": "けっこうです",
+      "sourceOrder": 69
+    },
+    {
+      "id": "r-2dbcf362984d",
+      "target": "立つ",
+      "english": "To stand up",
+      "category": "Other",
+      "ttsText": "たつ",
+      "sourceOrder": 70
+    },
+    {
+      "id": "r-dbb430ebde58",
+      "target": "死ぬ",
+      "english": "To die",
+      "category": "Body & Health",
+      "ttsText": "しぬ",
+      "sourceOrder": 71
+    },
+    {
+      "id": "r-b8bc3f4af5d0",
+      "target": "後で",
+      "english": "Later on",
+      "category": "Time",
+      "ttsText": "あとで",
+      "sourceOrder": 72
+    },
+    {
+      "id": "r-2e5fecd2cc7f",
+      "target": "中学校",
+      "english": "Junior high school",
+      "category": "School & Education",
+      "ttsText": "ちゅうがっこう",
+      "sourceOrder": 73
+    },
+    {
+      "id": "r-a621473e79e6",
+      "target": "使う",
+      "english": "To use",
+      "category": "Everyday Objects",
+      "ttsText": "つかう",
+      "sourceOrder": 74
+    },
+    {
+      "id": "r-58dd46a85038",
+      "target": "道の左側",
+      "english": "Left side of the street",
+      "category": "Directions",
+      "ttsText": "みちのひだりがわ",
+      "sourceOrder": 75
+    },
+    {
+      "id": "r-808268623287",
+      "target": "まっすぐ行く",
+      "english": "Go straight",
+      "category": "Directions",
+      "ttsText": "まっすぐいく",
+      "sourceOrder": 76
+    },
+    {
+      "id": "r-fe8e50ef842a",
+      "target": "電話する",
+      "english": "To call",
+      "category": "Technology & Communication",
+      "ttsText": "でんわする",
+      "sourceOrder": 77
+    },
+    {
+      "id": "r-16ae24721e14",
+      "target": "閉める",
+      "english": "To close (something)",
+      "category": "Other",
+      "ttsText": "しめる",
+      "sourceOrder": 78
+    },
+    {
+      "id": "r-612852d66a9a",
+      "target": "電気",
+      "english": "Electricity; light",
+      "category": "Home & Household",
+      "ttsText": "でんき",
+      "sourceOrder": 79
+    },
+    {
+      "id": "r-82f9b87241f1",
+      "target": "座る",
+      "english": "To sit down",
+      "category": "Other",
+      "ttsText": "すわる",
+      "sourceOrder": 80
+    },
+    {
+      "id": "r-80d4796f9c8f",
+      "target": "お金",
+      "english": "Money",
+      "category": "Money",
+      "ttsText": "おかね",
+      "sourceOrder": 81
+    },
+    {
+      "id": "r-b8b422368bdc",
+      "target": "大変",
+      "english": "Tough (situation)",
+      "category": "Descriptions & Qualities",
+      "ttsText": "たいへん",
+      "sourceOrder": 82
+    },
+    {
+      "id": "r-ff9f892a080a",
+      "target": "保育園",
+      "english": "Nursery school",
+      "category": "School & Education",
+      "ttsText": "ほいくえん",
+      "sourceOrder": 83
+    },
+    {
+      "id": "r-24696d3f7ba3",
+      "target": "荷物",
+      "english": "Baggage",
+      "category": "Travel & Tourism",
+      "ttsText": "にもつ",
+      "sourceOrder": 84
+    },
+    {
+      "id": "r-31de7e1fb2bf",
+      "target": "入る",
+      "english": "To enter",
+      "category": "Other",
+      "ttsText": "はいる",
+      "sourceOrder": 85
+    },
+    {
+      "id": "r-6293f3d771e4",
+      "target": "大学院",
+      "english": "Graduate school",
+      "category": "School & Education",
+      "ttsText": "だいがくいん",
+      "sourceOrder": 86
+    },
+    {
+      "id": "r-682cb461a082",
+      "target": "降りる",
+      "english": "To get off",
+      "category": "Transport",
+      "ttsText": "おりる",
+      "sourceOrder": 87
+    },
+    {
+      "id": "r-365a0d35af38",
+      "target": "短期大学",
+      "english": "Junior college",
+      "category": "School & Education",
+      "ttsText": "たんきだいがく",
+      "sourceOrder": 88
+    },
+    {
+      "id": "r-eeed6ab0a916",
+      "target": "手伝う",
+      "english": "To help",
+      "category": "Other",
+      "ttsText": "てつだう",
+      "sourceOrder": 89
+    },
+    {
+      "id": "r-5ba9a2f65988",
+      "target": "借りる",
+      "english": "To borrow",
+      "category": "Other",
+      "ttsText": "かりる",
+      "sourceOrder": 90
+    },
+    {
+      "id": "r-b8b45b0fe728",
+      "target": "連れてくる",
+      "english": "To bring (a person)",
+      "category": "Other",
+      "ttsText": "つれてくる",
+      "sourceOrder": 91
+    },
+    {
+      "id": "r-957f4d80719b",
+      "target": "教科書",
+      "english": "Textbook",
+      "category": "School & Education",
+      "ttsText": "きょうかしょ",
+      "sourceOrder": 92
+    },
+    {
+      "id": "r-2f01ad346d69",
+      "target": "持ってくる",
+      "english": "To bring (a thing)",
+      "category": "Other",
+      "ttsText": "もってくる",
+      "sourceOrder": 93
+    },
+    {
+      "id": "r-e50d3be02687",
+      "target": "急ぐ",
+      "english": "To hurry",
+      "category": "Other",
+      "ttsText": "いそぐ",
+      "sourceOrder": 94
+    },
+    {
+      "id": "r-5e0d3614f354",
+      "target": "左に曲がる",
+      "english": "Turn left",
+      "category": "Directions",
+      "ttsText": "ひだりにまがる",
+      "sourceOrder": 95
+    },
+    {
+      "id": "r-a76072644bf6",
+      "target": "返す",
+      "english": "To return (a thing)",
+      "category": "Other",
+      "ttsText": "かえす",
+      "sourceOrder": 96
+    },
+    {
+      "id": "r-4d2e8f09ab66",
+      "target": "高等学校",
+      "english": "High school",
+      "category": "School & Education",
+      "ttsText": "こうとうがっこう",
+      "sourceOrder": 97
+    },
+    {
+      "id": "r-50008262c762",
+      "target": "漢字",
+      "english": "Kanji; Chinese character",
+      "category": "School & Education",
+      "ttsText": "かんじ",
+      "sourceOrder": 98
+    },
+    {
+      "id": "r-4e0d1a774877",
+      "target": "遊ぶ",
+      "english": "To play; to spend time pleasantly",
+      "category": "Sports & Hobbies",
+      "ttsText": "あそぶ",
+      "sourceOrder": 99
+    },
+    {
+      "id": "r-bcbb5cf07fb9",
+      "target": "電車",
+      "english": "Train",
+      "category": "Transport",
+      "ttsText": "でんしゃ",
+      "sourceOrder": 100
+    }
+  ]
+}

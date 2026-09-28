@@ -1,0 +1,428 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 26,
+    "chapterLabel": "Chapter 26: Reading and Writing 12: Tanabata Festival",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-a1efc48cb3c0",
+      "target": "娘",
+      "english": "Daughter",
+      "category": "Family & People",
+      "ttsText": "むすめ",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-cccfb185278a",
+      "target": "昔",
+      "english": "Old times",
+      "category": "Time",
+      "ttsText": "むかし",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-6dbcceb7f006",
+      "target": "向",
+      "english": "Beyond; facing",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-f4f980e1e9fa",
+      "target": "景",
+      "english": "Scenery; view",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-8e7e80c677fe",
+      "target": "態",
+      "english": "Attitude; condition",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-60d16652a7b9",
+      "target": "織",
+      "english": "Weave; fabric",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-d6ac08cefcea",
+      "target": "泣",
+      "english": "Cry",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-ca49e01ddf43",
+      "target": "差",
+      "english": "Difference",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-2af09592503a",
+      "target": "々",
+      "english": "Symbol of repetition of a kanji",
+      "category": "Other",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-88468ea430b0",
+      "target": "怒",
+      "english": "Angry",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-82ca4a6ba635",
+      "target": "空",
+      "english": "Sky; empty",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-5b075b86f466",
+      "target": "畑",
+      "english": "Farm",
+      "category": "Other",
+      "ttsText": "はたけ",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-653a43522182",
+      "target": "景色",
+      "english": "Scenery",
+      "category": "Weather & Nature",
+      "ttsText": "けしき",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-7b3422742022",
+      "target": "赤道",
+      "english": "The equator",
+      "category": "Weather & Nature",
+      "ttsText": "せきどう",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-d7674c8ff598",
+      "target": "色々な",
+      "english": "Various",
+      "category": "Descriptions & Qualities",
+      "ttsText": "いろいろな",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-239faedd8c7b",
+      "target": "大使",
+      "english": "Ambassador",
+      "category": "Work & Occupations",
+      "ttsText": "たいし",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-9784828eb92f",
+      "target": "昔話",
+      "english": "Old tale",
+      "category": "Other",
+      "ttsText": "むかしばなし",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-5c3e056053c9",
+      "target": "再起動",
+      "english": "Reboot",
+      "category": "Technology & Communication",
+      "ttsText": "さいきどう",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-f62e9e3f9753",
+      "target": "天の川",
+      "english": "The Milky Way",
+      "category": "Weather & Nature",
+      "ttsText": "あまのがわ",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-c7ad1f0a7895",
+      "target": "神さま",
+      "english": "God",
+      "category": "Other",
+      "ttsText": "かみさま",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-603aad33a652",
+      "target": "起こす",
+      "english": "To wake someone up",
+      "category": "Other",
+      "ttsText": "おこす",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-205051be6f37",
+      "target": "態度",
+      "english": "Attitude",
+      "category": "Emotions & Feelings",
+      "ttsText": "たいど",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-671b3dbbdaee",
+      "target": "特別な",
+      "english": "Special",
+      "category": "Descriptions & Qualities",
+      "ttsText": "とくべつな",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-af3ccea76359",
+      "target": "労働",
+      "english": "Labor",
+      "category": "Work & Occupations",
+      "ttsText": "ろうどう",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-f2c7831a92e7",
+      "target": "早朝",
+      "english": "Early morning",
+      "category": "Time",
+      "ttsText": "そうちょう",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-a0c5fa2d9f7c",
+      "target": "青年",
+      "english": "Youth",
+      "category": "Family & People",
+      "ttsText": "せいねん",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-15c7f70486fb",
+      "target": "子牛",
+      "english": "Calf; veal",
+      "category": "Animals",
+      "ttsText": "こうし",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-1a0c52be17a9",
+      "target": "はたを織る",
+      "english": "To weave",
+      "category": "Work & Occupations",
+      "ttsText": "はたをおる",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-0e4f2a55b516",
+      "target": "大昔",
+      "english": "Ancient times",
+      "category": "Time",
+      "ttsText": "おおむかし",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-7251bec2dc36",
+      "target": "泣く",
+      "english": "To cry",
+      "category": "Emotions & Feelings",
+      "ttsText": "なく",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-92d91c857b8c",
+      "target": "別々に",
+      "english": "Separately",
+      "category": "Descriptions & Qualities",
+      "ttsText": "べつべつに",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-406b64817ca2",
+      "target": "私たち",
+      "english": "We",
+      "category": "Grammar & Function Words",
+      "ttsText": "わたしたち",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-dfd996fa9ce2",
+      "target": "早起きする",
+      "english": "To get up early",
+      "category": "Time",
+      "ttsText": "はやおきする",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-d3bea9efb1b9",
+      "target": "温度",
+      "english": "Temperature",
+      "category": "Weather & Nature",
+      "ttsText": "おんど",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-63df13f449d2",
+      "target": "神道",
+      "english": "Shinto",
+      "category": "Other",
+      "ttsText": "しんとう",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-44180d9e2486",
+      "target": "怒る",
+      "english": "To get angry",
+      "category": "Emotions & Feelings",
+      "ttsText": "おこる",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-e0ecf98e9055",
+      "target": "三十度",
+      "english": "30 degrees",
+      "category": "Weather & Nature",
+      "ttsText": "さんじゅうど",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-0e0a3ab3a9b1",
+      "target": "昔々",
+      "english": "Once upon a time",
+      "category": "Time",
+      "ttsText": "むかしむかし",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-f632d79e0126",
+      "target": "人々",
+      "english": "People",
+      "category": "Family & People",
+      "ttsText": "ひとびと",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-e89554985b62",
+      "target": "願い",
+      "english": "Wish",
+      "category": "Emotions & Feelings",
+      "ttsText": "ねがい",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-a54d2115d141",
+      "target": "差別",
+      "english": "Discrimination",
+      "category": "Other",
+      "ttsText": "さべつ",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-38078099eea6",
+      "target": "青空",
+      "english": "Blue sky",
+      "category": "Weather & Nature",
+      "ttsText": "あおぞら",
+      "sourceOrder": 41
+    },
+    {
+      "id": "r-e6aa2cbd7b42",
+      "target": "使用中",
+      "english": "Occupied",
+      "category": "Other",
+      "ttsText": "しようちゅう",
+      "sourceOrder": 42
+    },
+    {
+      "id": "r-d948019761d3",
+      "target": "向こう",
+      "english": "The other side; over there",
+      "category": "Directions",
+      "ttsText": "むこう",
+      "sourceOrder": 43
+    },
+    {
+      "id": "r-e61f1774d091",
+      "target": "連れて帰る",
+      "english": "To bring (a person) back",
+      "category": "Other",
+      "ttsText": "つれてかえる",
+      "sourceOrder": 44
+    },
+    {
+      "id": "r-1c6e8fd7f4ed",
+      "target": "連休",
+      "english": "Consecutive holidays",
+      "category": "Time",
+      "ttsText": "れんきゅう",
+      "sourceOrder": 45
+    },
+    {
+      "id": "r-179aba0d5dad",
+      "target": "見つける",
+      "english": "To find",
+      "category": "Other",
+      "ttsText": "みつける",
+      "sourceOrder": 46
+    },
+    {
+      "id": "r-52bbef08d548",
+      "target": "お使い",
+      "english": "Errand",
+      "category": "Other",
+      "ttsText": "おつかい",
+      "sourceOrder": 47
+    },
+    {
+      "id": "r-b8f146c7578d",
+      "target": "赤ちゃん",
+      "english": "Baby",
+      "category": "Family & People",
+      "ttsText": "あかちゃん",
+      "sourceOrder": 48
+    },
+    {
+      "id": "r-82131cf30f2a",
+      "target": "共働き",
+      "english": "Both husband and wife working",
+      "category": "Work & Occupations",
+      "ttsText": "ともばたらき",
+      "sourceOrder": 49
+    },
+    {
+      "id": "r-8613c21a071a",
+      "target": "特色",
+      "english": "Characteristic",
+      "category": "Descriptions & Qualities",
+      "ttsText": "とくしょく",
+      "sourceOrder": 50
+    },
+    {
+      "id": "r-f0b0be3c7a04",
+      "target": "一度",
+      "english": "Once",
+      "category": "Time",
+      "ttsText": "いちど",
+      "sourceOrder": 51
+    }
+  ]
+}

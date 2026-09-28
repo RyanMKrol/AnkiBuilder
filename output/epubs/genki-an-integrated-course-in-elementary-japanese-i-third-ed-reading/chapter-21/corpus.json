@@ -1,0 +1,349 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 22,
+    "chapterLabel": "Chapter 22: Reading and Writing 8: Japanese Office Workers",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-5b722ab4152c",
+      "target": "回",
+      "english": "Times; turn",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-457d1ab014d8",
+      "target": "葉",
+      "english": "Leaf",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-8a8d66c36e9f",
+      "target": "鮮",
+      "english": "Fresh; vivid",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-8fa7401e9077",
+      "target": "不",
+      "english": "Negative; non-",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-3d38533298bd",
+      "target": "品",
+      "english": "Article; goods",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-33dda9d445d7",
+      "target": "池",
+      "english": "Pond; pool",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-7cf079ed8635",
+      "target": "駐",
+      "english": "Stop; park",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-1eeaeed6b681",
+      "target": "最後に",
+      "english": "Lastly",
+      "category": "Time",
+      "ttsText": "さいごに",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-34b3a73d2e06",
+      "target": "不思議な",
+      "english": "Mysterious",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ふしぎな",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-9fe842efdc6a",
+      "target": "電池",
+      "english": "Battery",
+      "category": "Technology & Communication",
+      "ttsText": "でんち",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-f394cdc91dd8",
+      "target": "作品",
+      "english": "Artistic piece",
+      "category": "Other",
+      "ttsText": "さくひん",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-23ba579d4dda",
+      "target": "答える",
+      "english": "To answer",
+      "category": "School & Education",
+      "ttsText": "こたえる",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-5ee148f66176",
+      "target": "仕返し",
+      "english": "Revenge",
+      "category": "Other",
+      "ttsText": "しかえし",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-d5bebe606b21",
+      "target": "火事",
+      "english": "Fire",
+      "category": "Emergencies",
+      "ttsText": "かじ",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-d526e8b0833c",
+      "target": "この間",
+      "english": "The other day",
+      "category": "Time",
+      "ttsText": "このあいだ",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-ae0cac151225",
+      "target": "何人",
+      "english": "How many people",
+      "category": "Grammar & Function Words",
+      "ttsText": "なんにん",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-fdaff61a3b22",
+      "target": "会員",
+      "english": "Member",
+      "category": "Work & Occupations",
+      "ttsText": "かいいん",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-698bea51247b",
+      "target": "作者",
+      "english": "Author",
+      "category": "Work & Occupations",
+      "ttsText": "さくしゃ",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-1e685b43b4c4",
+      "target": "新聞",
+      "english": "Newspaper",
+      "category": "Technology & Communication",
+      "ttsText": "しんぶん",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-6b1eeb27b1c2",
+      "target": "目次",
+      "english": "Table of contents",
+      "category": "School & Education",
+      "ttsText": "もくじ",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-90cf609714b0",
+      "target": "言語学",
+      "english": "Linguistics",
+      "category": "School & Education",
+      "ttsText": "げんごがく",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-7662d3fcac62",
+      "target": "仕える",
+      "english": "To serve; to work under",
+      "category": "Work & Occupations",
+      "ttsText": "つかえる",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-f0b650352aa7",
+      "target": "車いす",
+      "english": "Wheelchair",
+      "category": "Transport",
+      "ttsText": "くるまいす",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-1cf274625f21",
+      "target": "電子レンジ",
+      "english": "Microwave oven",
+      "category": "Home & Household",
+      "ttsText": "でんしレンジ",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-6d4e6e09f0c3",
+      "target": "疲れている",
+      "english": "To be tired",
+      "category": "Body & Health",
+      "ttsText": "つかれている",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-ef416d2e9b03",
+      "target": "自転車",
+      "english": "Bicycle",
+      "category": "Transport",
+      "ttsText": "じてんしゃ",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-ec906ead1df8",
+      "target": "読み物",
+      "english": "Reading matter",
+      "category": "School & Education",
+      "ttsText": "よみもの",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-013dd9aa0c97",
+      "target": "駅員",
+      "english": "Station attendant",
+      "category": "Work & Occupations",
+      "ttsText": "えきいん",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-85b7df7c6919",
+      "target": "休日",
+      "english": "Holiday",
+      "category": "Other",
+      "ttsText": "きゅうじつ",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-5b46105fd111",
+      "target": "新鮮な",
+      "english": "Fresh",
+      "category": "Descriptions & Qualities",
+      "ttsText": "しんせんな",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-57737bc0fa9a",
+      "target": "次回",
+      "english": "Next time",
+      "category": "Time",
+      "ttsText": "じかい",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-011f1720ec0f",
+      "target": "残業",
+      "english": "Overtime work",
+      "category": "Work & Occupations",
+      "ttsText": "ざんぎょう",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-b9b178067a5c",
+      "target": "読書",
+      "english": "Reading books",
+      "category": "School & Education",
+      "ttsText": "どくしょ",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-2bdda4801b0b",
+      "target": "思い出す",
+      "english": "To recall; to remember",
+      "category": "Other",
+      "ttsText": "おもいだす",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-2c20aade2d85",
+      "target": "言葉",
+      "english": "Word; language",
+      "category": "Other",
+      "ttsText": "ことば",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-7086d2bc78d2",
+      "target": "返事",
+      "english": "Reply",
+      "category": "Other",
+      "ttsText": "へんじ",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-7177787c6e84",
+      "target": "電話",
+      "english": "Telephone",
+      "category": "Technology & Communication",
+      "ttsText": "でんわ",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-afd029cc4d02",
+      "target": "店員",
+      "english": "Store clerk",
+      "category": "Work & Occupations",
+      "ttsText": "てんいん",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-76c0aabc1119",
+      "target": "次女",
+      "english": "Second daughter",
+      "category": "Family & People",
+      "ttsText": "じじょ",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-d50309a25593",
+      "target": "聞こえる",
+      "english": "Can be heard",
+      "category": "Other",
+      "ttsText": "きこえる",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-fce2c4b63bca",
+      "target": "何時",
+      "english": "What time",
+      "category": "Time",
+      "ttsText": "なんじ",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-53ba1f65fb7b",
+      "target": "駐車場",
+      "english": "Parking lot",
+      "category": "Transport",
+      "ttsText": "ちゅうしゃじょう",
+      "sourceOrder": 41
+    }
+  ]
+}

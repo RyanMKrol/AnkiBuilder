@@ -1,0 +1,856 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 9,
+    "chapterLabel": "Chapter 09: Lesson 7: Family Picture",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-1b60f62fba6e",
+      "target": "兄",
+      "english": "(My) older brother",
+      "category": "Family & People",
+      "ttsText": "あに",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-8481effa10a7",
+      "target": "耳",
+      "english": "Ear",
+      "category": "Body & Health",
+      "ttsText": "みみ",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-b0b243542b6b",
+      "target": "祖",
+      "english": "Ancestor",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-c52468204805",
+      "target": "知",
+      "english": "Know",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-2995b69f5a42",
+      "target": "親",
+      "english": "Intimate; parent",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-c0cb98246cdd",
+      "target": "歯",
+      "english": "Tooth",
+      "category": "Body & Health",
+      "ttsText": "は",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-1775aeb5c171",
+      "target": "速",
+      "english": "Fast",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-b1a3afebdb30",
+      "target": "姉",
+      "english": "(My) older sister",
+      "category": "Family & People",
+      "ttsText": "あね",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-6191d800ec61",
+      "target": "眼",
+      "english": "Eye",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-fbf71355e95c",
+      "target": "主",
+      "english": "Master; lord",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-7196e253e239",
+      "target": "堂",
+      "english": "Hall",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-b9ee259b7f6c",
+      "target": "低",
+      "english": "Low; short",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-5c358c5241a6",
+      "target": "族",
+      "english": "Family; tribe",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-89254e5b9f84",
+      "target": "眉",
+      "english": "Eyebrow",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-2f6a82693328",
+      "target": "働",
+      "english": "Work",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-3a3857bfa3f6",
+      "target": "歌",
+      "english": "Song",
+      "category": "Sports & Hobbies",
+      "ttsText": "うた",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-fe7df3634ec6",
+      "target": "首",
+      "english": "Neck",
+      "category": "Body & Health",
+      "ttsText": "くび",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-7464addaba67",
+      "target": "婚",
+      "english": "Marriage",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-16fdcc7e7746",
+      "target": "足",
+      "english": "Leg; foot",
+      "category": "Body & Health",
+      "ttsText": "あし",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-8940dd82b056",
+      "target": "鼻",
+      "english": "Nose",
+      "category": "Body & Health",
+      "ttsText": "はな",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-78ce0b021c44",
+      "target": "母",
+      "english": "(My) mother",
+      "category": "Family & People",
+      "ttsText": "はは",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-f45938c905d5",
+      "target": "髪",
+      "english": "Hair",
+      "category": "Body & Health",
+      "ttsText": "かみ",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-4a9efaa77fc2",
+      "target": "何",
+      "english": "What",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-ab420126abcb",
+      "target": "別",
+      "english": "Separate",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-276330ed9702",
+      "target": "弟",
+      "english": "Younger brother",
+      "category": "Family & People",
+      "ttsText": "おとうと",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-0b27d61a0761",
+      "target": "父",
+      "english": "(My) father",
+      "category": "Family & People",
+      "ttsText": "ちち",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-a675a8e931ad",
+      "target": "鏡",
+      "english": "Mirror",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-a615e2a99a6f",
+      "target": "妻",
+      "english": "Wife",
+      "category": "Family & People",
+      "ttsText": "つま",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-26bc84961cad",
+      "target": "女",
+      "english": "Woman; female",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-e072ffdd2a79",
+      "target": "背",
+      "english": "Back; height",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-5cfe8a357a6b",
+      "target": "奥",
+      "english": "Interior",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-28f894973975",
+      "target": "妹",
+      "english": "Younger sister",
+      "category": "Family & People",
+      "ttsText": "いもうと",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-dd0ea605ead0",
+      "target": "肩",
+      "english": "Shoulder",
+      "category": "Body & Health",
+      "ttsText": "かた",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-edb815ad6b99",
+      "target": "切",
+      "english": "Cut",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-f749203bd901",
+      "target": "毛",
+      "english": "Hair; fur",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-1da263320b97",
+      "target": "嫁",
+      "english": "Bride",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-d2ff8f7020f4",
+      "target": "太",
+      "english": "Fat; thick",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-cceb350d8ed5",
+      "target": "着",
+      "english": "Wear; arrive",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-51625d909cf3",
+      "target": "男",
+      "english": "Male",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-55f45903e8c3",
+      "target": "内",
+      "english": "Inside; within",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-e349ae133850",
+      "target": "頭",
+      "english": "Head",
+      "category": "Body & Health",
+      "ttsText": "あたま",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-1e7b07e7149d",
+      "target": "口",
+      "english": "Mouth",
+      "category": "Body & Health",
+      "ttsText": "くち",
+      "sourceOrder": 41
+    },
+    {
+      "id": "r-80b84acecf51",
+      "target": "住",
+      "english": "Dwell; reside; live",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 42
+    },
+    {
+      "id": "r-367e94cdaa01",
+      "target": "顔",
+      "english": "Face",
+      "category": "Body & Health",
+      "ttsText": "かお",
+      "sourceOrder": 43
+    },
+    {
+      "id": "r-1a1001e5f30a",
+      "target": "利",
+      "english": "Benefit; advantage",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 44
+    },
+    {
+      "id": "r-a2a6c87168ef",
+      "target": "指",
+      "english": "Finger",
+      "category": "Body & Health",
+      "ttsText": "ゆび",
+      "sourceOrder": 45
+    },
+    {
+      "id": "r-a6577e51aa03",
+      "target": "胸",
+      "english": "Chest",
+      "category": "Body & Health",
+      "ttsText": "むね",
+      "sourceOrder": 46
+    },
+    {
+      "id": "r-2324576c4116",
+      "target": "お兄さん",
+      "english": "Older brother",
+      "category": "Family & People",
+      "ttsText": "おにいさん",
+      "sourceOrder": 47
+    },
+    {
+      "id": "r-f27a36c8d505",
+      "target": "背が高い",
+      "english": "Tall (stature)",
+      "category": "Body & Health",
+      "ttsText": "せがたかい",
+      "sourceOrder": 48
+    },
+    {
+      "id": "r-d57207655b68",
+      "target": "眼鏡",
+      "english": "Glasses",
+      "category": "Clothing",
+      "ttsText": "めがね",
+      "sourceOrder": 49
+    },
+    {
+      "id": "r-9b887cd5f508",
+      "target": "お兄ちゃん",
+      "english": "Older brother (affectionate)",
+      "category": "Family & People",
+      "ttsText": "おにいちゃん",
+      "sourceOrder": 50
+    },
+    {
+      "id": "r-12a20b1ddc54",
+      "target": "太る",
+      "english": "To gain weight",
+      "category": "Body & Health",
+      "ttsText": "ふとる",
+      "sourceOrder": 51
+    },
+    {
+      "id": "r-a396c638a8dc",
+      "target": "短い",
+      "english": "Short (length)",
+      "category": "Descriptions & Qualities",
+      "ttsText": "みじかい",
+      "sourceOrder": 52
+    },
+    {
+      "id": "r-8dfa494661bc",
+      "target": "奥さん",
+      "english": "Someone else's wife",
+      "category": "Family & People",
+      "ttsText": "おくさん",
+      "sourceOrder": 53
+    },
+    {
+      "id": "r-ce7a642f061b",
+      "target": "長い",
+      "english": "Long",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ながい",
+      "sourceOrder": 54
+    },
+    {
+      "id": "r-f4eb2ac566a7",
+      "target": "お母さん",
+      "english": "Mother",
+      "category": "Family & People",
+      "ttsText": "おかあさん",
+      "sourceOrder": 55
+    },
+    {
+      "id": "r-9832b0190026",
+      "target": "背中",
+      "english": "Back",
+      "category": "Body & Health",
+      "ttsText": "せなか",
+      "sourceOrder": 56
+    },
+    {
+      "id": "r-e16fad51fbde",
+      "target": "元気な",
+      "english": "Energetic; lively",
+      "category": "Descriptions & Qualities",
+      "ttsText": "げんきな",
+      "sourceOrder": 57
+    },
+    {
+      "id": "r-339883a9e19c",
+      "target": "お子さん",
+      "english": "Someone else's child",
+      "category": "Family & People",
+      "ttsText": "おこさん",
+      "sourceOrder": 58
+    },
+    {
+      "id": "r-3f9f4a086bc1",
+      "target": "何も",
+      "english": "Not…anything (with a negative)",
+      "category": "Grammar & Function Words",
+      "ttsText": "なにも",
+      "sourceOrder": 59
+    },
+    {
+      "id": "r-f1916d4c675e",
+      "target": "兄弟",
+      "english": "Brothers and sisters",
+      "category": "Family & People",
+      "ttsText": "きょうだい",
+      "sourceOrder": 60
+    },
+    {
+      "id": "r-4e56d4020313",
+      "target": "結婚する",
+      "english": "To get married",
+      "category": "Family & People",
+      "ttsText": "けっこんする",
+      "sourceOrder": 61
+    },
+    {
+      "id": "r-e9f535383b0d",
+      "target": "お姉ちゃん",
+      "english": "Older sister (affectionate)",
+      "category": "Family & People",
+      "ttsText": "おねえちゃん",
+      "sourceOrder": 62
+    },
+    {
+      "id": "r-d3868c229859",
+      "target": "五人",
+      "english": "Five people",
+      "category": "Numbers",
+      "ttsText": "ごにん",
+      "sourceOrder": 63
+    },
+    {
+      "id": "r-cd29568063bd",
+      "target": "弟さん",
+      "english": "Someone else's younger brother",
+      "category": "Family & People",
+      "ttsText": "おとうとさん",
+      "sourceOrder": 64
+    },
+    {
+      "id": "r-ffb5060bdee1",
+      "target": "うちの人",
+      "english": "Husband (informal)",
+      "category": "Family & People",
+      "ttsText": "うちのひと",
+      "sourceOrder": 65
+    },
+    {
+      "id": "r-f7c743bbd4c0",
+      "target": "家内",
+      "english": "My wife (formal)",
+      "category": "Family & People",
+      "ttsText": "かない",
+      "sourceOrder": 66
+    },
+    {
+      "id": "r-a203225b0390",
+      "target": "食堂",
+      "english": "Cafeteria; dining commons",
+      "category": "Food",
+      "ttsText": "しょくどう",
+      "sourceOrder": 67
+    },
+    {
+      "id": "r-9d89b6001b4c",
+      "target": "一人",
+      "english": "One person",
+      "category": "Numbers",
+      "ttsText": "ひとり",
+      "sourceOrder": 68
+    },
+    {
+      "id": "r-25e914fe05f6",
+      "target": "うちの子",
+      "english": "My child (informal)",
+      "category": "Family & People",
+      "ttsText": "うちのこ",
+      "sourceOrder": 69
+    },
+    {
+      "id": "r-1e4792083f53",
+      "target": "知る",
+      "english": "To get to know",
+      "category": "Other",
+      "ttsText": "しる",
+      "sourceOrder": 70
+    },
+    {
+      "id": "r-e9d3dae7d71d",
+      "target": "七人",
+      "english": "Seven people",
+      "category": "Numbers",
+      "ttsText": "しちにん",
+      "reviewNote": "The book gives more than one reading: しちにん, ななにん. Audio uses the first.",
+      "sourceOrder": 71
+    },
+    {
+      "id": "r-f6a47ce25e49",
+      "target": "八人",
+      "english": "Eight people",
+      "category": "Numbers",
+      "ttsText": "はちにん",
+      "sourceOrder": 72
+    },
+    {
+      "id": "r-d98d70afea35",
+      "target": "二人",
+      "english": "Two people",
+      "category": "Numbers",
+      "ttsText": "ふたり",
+      "sourceOrder": 73
+    },
+    {
+      "id": "r-b58641e8cb48",
+      "target": "知っています",
+      "english": "I know",
+      "category": "Other",
+      "ttsText": "しっています",
+      "sourceOrder": 74
+    },
+    {
+      "id": "r-d7e621055f5c",
+      "target": "親切",
+      "english": "Kind",
+      "category": "Descriptions & Qualities",
+      "ttsText": "しんせつ",
+      "sourceOrder": 75
+    },
+    {
+      "id": "r-715a30074c48",
+      "target": "別に",
+      "english": "Nothing in particular",
+      "category": "Grammar & Function Words",
+      "ttsText": "べつに",
+      "sourceOrder": 76
+    },
+    {
+      "id": "r-235f0f7e939c",
+      "target": "働く",
+      "english": "To work",
+      "category": "Work & Occupations",
+      "ttsText": "はたらく",
+      "sourceOrder": 77
+    },
+    {
+      "id": "r-96bbe7e67370",
+      "target": "会社",
+      "english": "Company",
+      "category": "Work & Occupations",
+      "ttsText": "かいしゃ",
+      "sourceOrder": 78
+    },
+    {
+      "id": "r-3da316390f78",
+      "target": "頭がいい",
+      "english": "Bright; smart; clever",
+      "category": "Descriptions & Qualities",
+      "ttsText": "あたまがいい",
+      "sourceOrder": 79
+    },
+    {
+      "id": "r-d900c8df601a",
+      "target": "男の人",
+      "english": "Man",
+      "category": "Family & People",
+      "ttsText": "おとこのひと",
+      "reviewNote": "The book gives more than one reading: おとこのひと, おとこひと. Audio uses the first.",
+      "sourceOrder": 80
+    },
+    {
+      "id": "r-007ef2817354",
+      "target": "便利",
+      "english": "Convenient",
+      "category": "Descriptions & Qualities",
+      "ttsText": "べんり",
+      "sourceOrder": 81
+    },
+    {
+      "id": "r-ec5ce7442ea8",
+      "target": "お姉さん",
+      "english": "Older sister",
+      "category": "Family & People",
+      "ttsText": "おねえさん",
+      "sourceOrder": 82
+    },
+    {
+      "id": "r-18bc71b152cb",
+      "target": "太っています",
+      "english": "To be on the heavy side; overweight",
+      "category": "Body & Health",
+      "ttsText": "ふとっています",
+      "sourceOrder": 83
+    },
+    {
+      "id": "r-242e8e5c3fbc",
+      "target": "家族",
+      "english": "Family",
+      "category": "Family & People",
+      "ttsText": "かぞく",
+      "sourceOrder": 84
+    },
+    {
+      "id": "r-e75310c78c04",
+      "target": "十人",
+      "english": "Ten people",
+      "category": "Numbers",
+      "ttsText": "じゅうにん",
+      "sourceOrder": 85
+    },
+    {
+      "id": "r-6f8cf67d2c33",
+      "target": "三人",
+      "english": "Three people",
+      "category": "Numbers",
+      "ttsText": "さんにん",
+      "sourceOrder": 86
+    },
+    {
+      "id": "r-5c77079d7e63",
+      "target": "眉毛",
+      "english": "Eyebrow",
+      "category": "Body & Health",
+      "ttsText": "まゆげ",
+      "sourceOrder": 87
+    },
+    {
+      "id": "r-90cc45d59ba9",
+      "target": "嫁さん",
+      "english": "Wife (informal)",
+      "category": "Family & People",
+      "ttsText": "よめさん",
+      "sourceOrder": 88
+    },
+    {
+      "id": "r-7ee90a22ff3a",
+      "target": "歌う",
+      "english": "To sing",
+      "category": "Sports & Hobbies",
+      "ttsText": "うたう",
+      "sourceOrder": 89
+    },
+    {
+      "id": "r-e9d97f866d43",
+      "target": "六人",
+      "english": "Six people",
+      "category": "Numbers",
+      "ttsText": "ろくにん",
+      "sourceOrder": 90
+    },
+    {
+      "id": "r-a9976079705d",
+      "target": "妹さん",
+      "english": "Someone else's younger sister",
+      "category": "Family & People",
+      "ttsText": "いもうとさん",
+      "sourceOrder": 91
+    },
+    {
+      "id": "r-346413644cb8",
+      "target": "ご主人",
+      "english": "Someone else's husband",
+      "category": "Family & People",
+      "ttsText": "ごしゅじん",
+      "sourceOrder": 92
+    },
+    {
+      "id": "r-636e7702bc4b",
+      "target": "主人",
+      "english": "My husband (formal)",
+      "category": "Family & People",
+      "ttsText": "しゅじん",
+      "sourceOrder": 93
+    },
+    {
+      "id": "r-bb0883fddfc0",
+      "target": "祖父",
+      "english": "My grandfather (formal)",
+      "category": "Family & People",
+      "ttsText": "そふ",
+      "sourceOrder": 94
+    },
+    {
+      "id": "r-e1110589655f",
+      "target": "お父さん",
+      "english": "Father",
+      "category": "Family & People",
+      "ttsText": "おとうさん",
+      "sourceOrder": 95
+    },
+    {
+      "id": "r-2fdb1b3a1002",
+      "target": "祖母",
+      "english": "My grandmother (formal)",
+      "category": "Family & People",
+      "ttsText": "そぼ",
+      "sourceOrder": 96
+    },
+    {
+      "id": "r-94959c02dce1",
+      "target": "着る",
+      "english": "To put on (clothes above your waist)",
+      "category": "Clothing",
+      "ttsText": "きる",
+      "sourceOrder": 97
+    },
+    {
+      "id": "r-f74b021bab61",
+      "target": "背が低い",
+      "english": "Short (stature)",
+      "category": "Body & Health",
+      "ttsText": "せがひくい",
+      "sourceOrder": 98
+    },
+    {
+      "id": "r-8586dc33c850",
+      "target": "速い",
+      "english": "Fast",
+      "category": "Descriptions & Qualities",
+      "ttsText": "はやい",
+      "sourceOrder": 99
+    },
+    {
+      "id": "r-3e26395d9d56",
+      "target": "女の人",
+      "english": "Woman",
+      "category": "Family & People",
+      "ttsText": "おんなのひと",
+      "reviewNote": "The book gives more than one reading: おんなのひと, おんなひと. Audio uses the first.",
+      "sourceOrder": 100
+    },
+    {
+      "id": "r-5aee66146dbf",
+      "target": "九人",
+      "english": "Nine people",
+      "category": "Numbers",
+      "ttsText": "きゅうにん",
+      "sourceOrder": 101
+    },
+    {
+      "id": "r-e674d94e7541",
+      "target": "四人",
+      "english": "Four people",
+      "category": "Numbers",
+      "ttsText": "よにん",
+      "sourceOrder": 102
+    },
+    {
+      "id": "r-4f40e0596a9b",
+      "target": "住む",
+      "english": "To live",
+      "category": "Home & Household",
+      "ttsText": "すむ",
+      "sourceOrder": 103
+    },
+    {
+      "id": "r-fd5e817c05d4",
+      "target": "知りません",
+      "english": "I do not know",
+      "category": "Other",
+      "ttsText": "しりません",
+      "sourceOrder": 104
+    }
+  ]
+}

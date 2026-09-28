@@ -1,0 +1,2071 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 0,
+    "chapterLabel": "Chapter 00: Kana",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-cbca1ae8529b",
+      "english": "Fourteen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうよん"
+    },
+    {
+      "id": "r-ceb4a54e2de4",
+      "english": "Four",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "よん"
+    },
+    {
+      "id": "r-caaf2acdb25e",
+      "english": "Pink",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "ピンク"
+    },
+    {
+      "id": "r-ac94e112183c",
+      "english": "Nine",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "く"
+    },
+    {
+      "id": "r-88f91799ac4c",
+      "english": "Tomato",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "トマト"
+    },
+    {
+      "id": "r-954e9478efc1",
+      "english": "Energetic; healthy",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "げんきな"
+    },
+    {
+      "id": "r-7e7a20b2280c",
+      "english": "First-year student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "いちねんせい"
+    },
+    {
+      "id": "r-23a32f106a4e",
+      "english": "Now",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いま"
+    },
+    {
+      "id": "r-304ca93218af",
+      "english": "College student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "だいがくせい"
+    },
+    {
+      "id": "r-69ca793b2bbc",
+      "english": "Toast",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "トースト"
+    },
+    {
+      "id": "r-e1b97f478a62",
+      "english": "Black tea",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "こうちゃ"
+    },
+    {
+      "id": "r-24afcca10e22",
+      "english": "Thank you (polite)",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "ありがとうございます"
+    },
+    {
+      "id": "r-c4559ddb7a5b",
+      "english": "Karaoke",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "カラオケ"
+    },
+    {
+      "id": "r-6cd7fb86722e",
+      "english": "The 6th (day of the month)",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "むいか"
+    },
+    {
+      "id": "r-38f1d4aa56b6",
+      "english": "I burned myself.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "やけどをしました"
+    },
+    {
+      "id": "r-ae0748603257",
+      "english": "Tour",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "ツアー"
+    },
+    {
+      "id": "r-53f2d6a079d3",
+      "english": "Air conditioner",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "エアコン"
+    },
+    {
+      "id": "r-cef4fee4bd6d",
+      "english": "Husband",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "しゅじん"
+    },
+    {
+      "id": "r-99c2dc3bd7f1",
+      "english": "Yogurt",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ヨーグルト"
+    },
+    {
+      "id": "r-5a3c5f71eeac",
+      "english": "Good morning (polite)",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "おはようございます"
+    },
+    {
+      "id": "r-a8b67298a312",
+      "english": "Nine minutes",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "きゅうふん"
+    },
+    {
+      "id": "r-b7a529b374aa",
+      "english": "Ramadan",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "ラマダン"
+    },
+    {
+      "id": "r-27a87259d93f",
+      "english": "Five",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ご"
+    },
+    {
+      "id": "r-491a7d4bf425",
+      "english": "Cola",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "コーラ"
+    },
+    {
+      "id": "r-2f875c3fd3fc",
+      "english": "400",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "よんひゃく"
+    },
+    {
+      "id": "r-2ff4b9df6ffb",
+      "english": "Valentine's Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "バレンタインデー"
+    },
+    {
+      "id": "r-755dc62b24a5",
+      "english": "Concert",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "コンサート"
+    },
+    {
+      "id": "r-266341094f59",
+      "english": "Hat; cap",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "ぼうし"
+    },
+    {
+      "id": "r-78b47ae41b4f",
+      "english": "Telephone",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "でんわ"
+    },
+    {
+      "id": "r-8ea2b1a28df9",
+      "english": "Bank",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "ぎんこう"
+    },
+    {
+      "id": "r-0742d4ed3a53",
+      "english": "Nice to meet you",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "よろしくおねがいします"
+    },
+    {
+      "id": "r-562296554811",
+      "english": "Soup",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "スープ"
+    },
+    {
+      "id": "r-2ab3cbee6f57",
+      "english": "Free; idle",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "ひまな"
+    },
+    {
+      "id": "r-c82df96d3357",
+      "english": "One minute",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いっぷん"
+    },
+    {
+      "id": "r-ac3e6d2e7121",
+      "english": "Notebook",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "ノート"
+    },
+    {
+      "id": "r-73fcb20b121c",
+      "english": "Double burger",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ダブルバーガー"
+    },
+    {
+      "id": "r-6c29d6fd0a2c",
+      "english": "Spain",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "スペイン"
+    },
+    {
+      "id": "r-f855de492fe0",
+      "english": "Please wait for a while.",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ちょっとまってください"
+    },
+    {
+      "id": "r-4d0161accded",
+      "english": "Seventy",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ななじゅう"
+    },
+    {
+      "id": "r-d13a0fc29c11",
+      "english": "Japanese people",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "にほんじん"
+    },
+    {
+      "id": "r-a3a6f9c774ae",
+      "english": "Congratulations on ...",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "おめでとうございます"
+    },
+    {
+      "id": "r-b8347e7bdcbf",
+      "english": "Literature",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ぶんがく"
+    },
+    {
+      "id": "r-fa04cb341f01",
+      "english": "Friend",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "ともだち"
+    },
+    {
+      "id": "r-a2533f08d5a9",
+      "english": "Do you have avocado?",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "アボカドはありますか"
+    },
+    {
+      "id": "r-50b943d01fa9",
+      "english": "Door",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ドア"
+    },
+    {
+      "id": "r-0b8cb703ffc6",
+      "english": "I have an allergy to peanuts.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "ピーナッツアレルギーがあります"
+    },
+    {
+      "id": "r-831166ef4b1b",
+      "english": "Orange",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "オレンジ"
+    },
+    {
+      "id": "r-f1281d45e2c3",
+      "english": "Pizza",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ピザ"
+    },
+    {
+      "id": "r-a4e764301cf7",
+      "english": "Restaurant",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "レストラン"
+    },
+    {
+      "id": "r-1119c7bdbd3b",
+      "english": "Hundred",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ひゃく"
+    },
+    {
+      "id": "r-45ebd44e6411",
+      "english": "Cheeseburger",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "チーズバーガー"
+    },
+    {
+      "id": "r-4018296bb921",
+      "english": "Bus",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "バス"
+    },
+    {
+      "id": "r-a24e9414b3ee",
+      "english": "Eighty",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "はちじゅう"
+    },
+    {
+      "id": "r-73b78f70663c",
+      "english": "Hot tea",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ホットティー"
+    },
+    {
+      "id": "r-eba95ba0c666",
+      "english": "Direct object marker",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "を"
+    },
+    {
+      "id": "r-30515e1a4a4e",
+      "english": "Homestay; living with a local family",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "ホームステイ"
+    },
+    {
+      "id": "r-f5f54874f47a",
+      "english": "Egypt",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "エジプト"
+    },
+    {
+      "id": "r-b637fd75f5de",
+      "english": "Computer",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "コンピューター"
+    },
+    {
+      "id": "r-5c7866a75081",
+      "english": "Soccer",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "サッカー"
+    },
+    {
+      "id": "r-90060ade1f81",
+      "english": "Sneeze",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "くしゃみ"
+    },
+    {
+      "id": "r-9dadb366aba9",
+      "english": "Ramen",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ラーメン"
+    },
+    {
+      "id": "r-fcf78769cda5",
+      "english": "Forty",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "よんじゅう"
+    },
+    {
+      "id": "r-735e070a1dc7",
+      "english": "Sandwich",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "サンドイッチ"
+    },
+    {
+      "id": "r-73c3d99c8ce8",
+      "english": "Shower",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "シャワー"
+    },
+    {
+      "id": "r-6dc0f603699b",
+      "english": "Convenience store",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "コンビニ"
+    },
+    {
+      "id": "r-85deb3d5621f",
+      "english": "Major",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "せんこう"
+    },
+    {
+      "id": "r-9b376ff9b07f",
+      "english": "Fourteen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうし"
+    },
+    {
+      "id": "r-5378733ecf96",
+      "english": "Gray",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "グレー"
+    },
+    {
+      "id": "r-02a136c09688",
+      "english": "Sixty",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ろくじゅう"
+    },
+    {
+      "id": "r-ad3aa4bf97f2",
+      "english": "Milk",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ミルク"
+    },
+    {
+      "id": "r-4f9270ec69d5",
+      "english": "Size M",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "Mサイズ"
+    },
+    {
+      "id": "r-1f55e646d370",
+      "english": "Philippines",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "フィリピン"
+    },
+    {
+      "id": "r-e9e3725e760c",
+      "english": "Nineteen minutes",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じゅうきゅうふん"
+    },
+    {
+      "id": "r-c3c54579ea2a",
+      "english": "Ten",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅう"
+    },
+    {
+      "id": "r-717944e2c2c0",
+      "english": "Gold",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "ゴールド"
+    },
+    {
+      "id": "r-176987c87c65",
+      "english": "Wine",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ワイン"
+    },
+    {
+      "id": "r-605d69f80886",
+      "english": "Teriyaki burger",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "テリヤキバーガー"
+    },
+    {
+      "id": "r-582d5b6bdcc4",
+      "english": "To tell a lie",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "うそをつく"
+    },
+    {
+      "id": "r-e0ef1ee214c0",
+      "english": "One",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "いち"
+    },
+    {
+      "id": "r-3bf7520a31e9",
+      "english": "Chicken burger",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "チキンバーガー"
+    },
+    {
+      "id": "r-24cfb32ae9df",
+      "english": "Please go and come back",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "いってらっしゃい"
+    },
+    {
+      "id": "r-f48493eefc82",
+      "english": "Orange juice",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "オレンジジュース"
+    },
+    {
+      "id": "r-03fe368dee59",
+      "english": "Dumplings",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ぎょうざ"
+    },
+    {
+      "id": "r-1dec9772cd49",
+      "english": "Horror",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "ホラー"
+    },
+    {
+      "id": "r-21f680fe544a",
+      "english": "T-shirt",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "Tシャツ"
+    },
+    {
+      "id": "r-4c341ae8e8e9",
+      "english": "Beer",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ビール"
+    },
+    {
+      "id": "r-13cf97ad248a",
+      "english": "Cereal",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "シリアル"
+    },
+    {
+      "id": "r-f3f0cb853f33",
+      "english": "Influenza",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "インフルエンザ"
+    },
+    {
+      "id": "r-04d5f579ed3d",
+      "english": "College; university",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "だいがく"
+    },
+    {
+      "id": "r-ae83794b6e28",
+      "english": "One o'clock",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "いちじ"
+    },
+    {
+      "id": "r-11c8fca7e223",
+      "english": "Thank you for the meal (after eating)",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "ごちそうさまでした"
+    },
+    {
+      "id": "r-de3d1ecc94b2",
+      "english": "Two",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "に"
+    },
+    {
+      "id": "r-18390b3b9cd8",
+      "english": "For example",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "たとえば"
+    },
+    {
+      "id": "r-32ed60ff9f0c",
+      "english": "E-mail",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "メール"
+    },
+    {
+      "id": "r-f23f878f91a8",
+      "english": "Size XL",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "LLサイズ"
+    },
+    {
+      "id": "r-755637fedf14",
+      "english": "Size L",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "Lサイズ"
+    },
+    {
+      "id": "r-291e4d540757",
+      "english": "Eleven",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅういち"
+    },
+    {
+      "id": "r-f808342f7cae",
+      "english": "Please say it slowly.",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ゆっくりいってください"
+    },
+    {
+      "id": "r-78b86e4e9b50",
+      "english": "I'll go and come back",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "いってきます"
+    },
+    {
+      "id": "r-da4bd02b3d7f",
+      "english": "Sixteen minutes",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じゅうろっぷん"
+    },
+    {
+      "id": "r-b7e02fc879dc",
+      "english": "India",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "インド"
+    },
+    {
+      "id": "r-5c9b0ec779a6",
+      "english": "Is this halal?",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "これはハラルフードですか"
+    },
+    {
+      "id": "r-1e0b17cf5100",
+      "english": "Seven",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "なな"
+    },
+    {
+      "id": "r-f31040750b56",
+      "english": "Japanese language",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "にほんご"
+    },
+    {
+      "id": "r-c14314827041",
+      "english": "Curry",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "カレー"
+    },
+    {
+      "id": "r-ba58293b91a5",
+      "english": "Once upon a time",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "むかしむかし"
+    },
+    {
+      "id": "r-f76f81e7a0e6",
+      "english": "Happy Birthday",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "たんじょうびおめでとう"
+    },
+    {
+      "id": "r-ad6d8a2774b1",
+      "english": "Japanese curry roux",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "カレールー"
+    },
+    {
+      "id": "r-b490cb4da84b",
+      "english": "Club activity",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "サークル"
+    },
+    {
+      "id": "r-e0fe8f456d1a",
+      "english": "I'm home",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "ただいま"
+    },
+    {
+      "id": "r-eee137f58589",
+      "english": "Happy New Year!",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "あけましておめでとうございます"
+    },
+    {
+      "id": "r-b0438f2de901",
+      "english": "Iced coffee",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "アイスコーヒー"
+    },
+    {
+      "id": "r-08ca274e947b",
+      "english": "Tough",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "たいへんな"
+    },
+    {
+      "id": "r-5a5f08df9472",
+      "english": "Present",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "プレゼント"
+    },
+    {
+      "id": "r-320a5f3ab98b",
+      "english": "Oral medicine",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "のみぐすり"
+    },
+    {
+      "id": "r-97666def0ea0",
+      "english": "Dictionary",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "じしょ"
+    },
+    {
+      "id": "r-456646675181",
+      "english": "Thirty",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "さんじゅう"
+    },
+    {
+      "id": "r-b872b71da215",
+      "english": "Eighteen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうはち"
+    },
+    {
+      "id": "r-94040c19e00e",
+      "english": "Australia",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "オーストラリア"
+    },
+    {
+      "id": "r-1e91a7525d73",
+      "english": "Dormitory",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "りょう"
+    },
+    {
+      "id": "r-ed28cf13bde2",
+      "english": "Platform",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "ホーム"
+    },
+    {
+      "id": "r-a9b65c1993ae",
+      "english": "800",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "はっぴゃく"
+    },
+    {
+      "id": "r-7949dda4169f",
+      "english": "Do you understand?",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "わかりましたか"
+    },
+    {
+      "id": "r-260f5044cc51",
+      "english": "Sixteen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうろく"
+    },
+    {
+      "id": "r-71911cd8dbd2",
+      "english": "Date (romantic, not calendar)",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "デート"
+    },
+    {
+      "id": "r-944e6069ad0a",
+      "english": "Very soon; in a few moments/days",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "もうすぐ"
+    },
+    {
+      "id": "r-66fde06ecdf5",
+      "english": "China",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "ちゅうごく"
+    },
+    {
+      "id": "r-72c746d609d4",
+      "english": "Goal-of-movement marker",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "へ"
+    },
+    {
+      "id": "r-27ed98f4d9b0",
+      "english": "Guardian deity of children",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "じぞう"
+    },
+    {
+      "id": "r-d3a4ab7b3e1d",
+      "english": "Zero",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ゼロ"
+    },
+    {
+      "id": "r-c53c9bc9de35",
+      "english": "High school",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "こうこう"
+    },
+    {
+      "id": "r-debbb7109b40",
+      "english": "To go on a diet",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "ダイエットする"
+    },
+    {
+      "id": "r-056302b76fe8",
+      "english": "Stress",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "ストレス"
+    },
+    {
+      "id": "r-a63458c6e63c",
+      "english": "Set meal",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ていしょく"
+    },
+    {
+      "id": "r-88fd965aead3",
+      "english": "Steak",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ステーキ"
+    },
+    {
+      "id": "r-73266ed7c3d5",
+      "english": "Canada",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "カナダ"
+    },
+    {
+      "id": "r-63df18eea480",
+      "english": "Barbecue",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "バーベキュー"
+    },
+    {
+      "id": "r-67c73f17c865",
+      "english": "Britain",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "イギリス"
+    },
+    {
+      "id": "r-36cbc6b98422",
+      "english": "Golden Week",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "ゴールデンウィーク"
+    },
+    {
+      "id": "r-18784f29397b",
+      "english": "3,000",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "さんぜん"
+    },
+    {
+      "id": "r-ab82e387c3e3",
+      "english": "History",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "れきし"
+    },
+    {
+      "id": "r-683ec7b1db7b",
+      "english": "Host family",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "ホストファミリー"
+    },
+    {
+      "id": "r-0bec65a9c2ba",
+      "english": "Curry with rice",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "カレーライス"
+    },
+    {
+      "id": "r-2902983661d6",
+      "english": "Apple pie",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "アップルパイ"
+    },
+    {
+      "id": "r-7325fb0118b0",
+      "english": "Housewife",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "しゅふ"
+    },
+    {
+      "id": "r-762d0e5aecc8",
+      "english": "Outdoor activities",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "アウトドア"
+    },
+    {
+      "id": "r-8de76f0a3c71",
+      "english": "Cafe",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "カフェ"
+    },
+    {
+      "id": "r-0754a262e6a3",
+      "english": "Zero",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "れい"
+    },
+    {
+      "id": "r-4168d783193c",
+      "english": "Twelve",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうに"
+    },
+    {
+      "id": "r-2b8c515b4475",
+      "english": "Beautiful; clean",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "きれい"
+    },
+    {
+      "id": "r-b37ef4affd8a",
+      "english": "Twenty",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "にじゅう"
+    },
+    {
+      "id": "r-cc9e7f10c472",
+      "english": "Beige",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "ベージュ"
+    },
+    {
+      "id": "r-fa5e8912c738",
+      "english": "Sports",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "スポーツ"
+    },
+    {
+      "id": "r-ea67c234af27",
+      "english": "Six",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ろく"
+    },
+    {
+      "id": "r-8d91280aeecd",
+      "english": "Party",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "パーティー"
+    },
+    {
+      "id": "r-42d0969029e9",
+      "english": "Thank you",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "ありがとう"
+    },
+    {
+      "id": "r-a221639ae81f",
+      "english": "Smartphone; mobile",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "スマホ"
+    },
+    {
+      "id": "r-7a8b100b9517",
+      "english": "Biology",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "せいぶつがく"
+    },
+    {
+      "id": "r-eeec149389be",
+      "english": "How much; how long",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "どのぐらい"
+    },
+    {
+      "id": "r-3549da88529b",
+      "english": "Ticket",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "チケット"
+    },
+    {
+      "id": "r-0639aa3cee03",
+      "english": "Cabbage",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "キャベツ"
+    },
+    {
+      "id": "r-289ac590a40f",
+      "english": "Allergy",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "アレルギー"
+    },
+    {
+      "id": "r-8082c61fad55",
+      "english": "Personal computer",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "パソコン"
+    },
+    {
+      "id": "r-cc64850fe97d",
+      "english": "Half",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "はん"
+    },
+    {
+      "id": "r-fc3eeb14fada",
+      "english": "Volunteer",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "ボランティア"
+    },
+    {
+      "id": "r-5b070f57a617",
+      "english": "Business",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ビジネス"
+    },
+    {
+      "id": "r-031e9b20e80b",
+      "english": "Green",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "グリーン"
+    },
+    {
+      "id": "r-88b9442e2d9d",
+      "english": "Salad",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "サラダ"
+    },
+    {
+      "id": "r-cbf0cb2ae688",
+      "english": "Dad",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "パパ"
+    },
+    {
+      "id": "r-462bd1618e91",
+      "english": "Lively",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "にぎやか"
+    },
+    {
+      "id": "r-2ed995113163",
+      "english": "Thirteen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうさん"
+    },
+    {
+      "id": "r-41f11fe610d4",
+      "english": "O'clock",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じ"
+    },
+    {
+      "id": "r-6f46f7d4a286",
+      "english": "Four",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "よ"
+    },
+    {
+      "id": "r-58f16b7e1247",
+      "english": "Student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "がくせい"
+    },
+    {
+      "id": "r-64c024120119",
+      "english": "Piano",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ピアノ"
+    },
+    {
+      "id": "r-a4b398302dca",
+      "english": "Grandmother (affectionate)",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "おばあちゃん"
+    },
+    {
+      "id": "r-a646289ad73a",
+      "english": "Christmas",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "クリスマス"
+    },
+    {
+      "id": "r-5f420bb5eb79",
+      "english": "Tennis",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "テニス"
+    },
+    {
+      "id": "r-c973e21d6d52",
+      "english": "Cake",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ケーキ"
+    },
+    {
+      "id": "r-cba9cd9ee9e3",
+      "english": "Hamburger",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ハンバーガー"
+    },
+    {
+      "id": "r-9a78c480d6b9",
+      "english": "Ninety",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "きゅうじゅう"
+    },
+    {
+      "id": "r-4c1993fed88c",
+      "english": "Newspaper",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "しんぶん"
+    },
+    {
+      "id": "r-6e3a0c9aedb9",
+      "english": "Jeans",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "ジーンズ"
+    },
+    {
+      "id": "r-17b912b634f3",
+      "english": "Good night",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "おやすみなさい"
+    },
+    {
+      "id": "r-e0db2b108c65",
+      "english": "Curtain",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "カーテン"
+    },
+    {
+      "id": "r-b8cec02c0d06",
+      "english": "Iced tea",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "アイスティー"
+    },
+    {
+      "id": "r-800001ba2441",
+      "english": "Good-bye",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "さようなら"
+    },
+    {
+      "id": "r-8338e52c2a4e",
+      "english": "P.M.",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごご"
+    },
+    {
+      "id": "r-339e9af6a0d7",
+      "english": "Fourteen minutes",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "じゅうよんぷん"
+    },
+    {
+      "id": "r-ec37cad14855",
+      "english": "Silver",
+      "category": "Colors",
+      "reviewNote": null,
+      "target": "シルバー"
+    },
+    {
+      "id": "r-a49044820316",
+      "english": "Roommate",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "ルームメイト"
+    },
+    {
+      "id": "r-39c9d3da59ba",
+      "english": "Supermarket",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "スーパー"
+    },
+    {
+      "id": "r-ba46c84a5750",
+      "english": "Department store",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "デパート"
+    },
+    {
+      "id": "r-172aebba3ba3",
+      "english": "A.M.",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ごぜん"
+    },
+    {
+      "id": "r-f8e520e3076d",
+      "english": "Toy",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "おもちゃ"
+    },
+    {
+      "id": "r-fb6e4872b720",
+      "english": "Camera",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "カメラ"
+    },
+    {
+      "id": "r-220d17802909",
+      "english": "Pasta",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "パスタ"
+    },
+    {
+      "id": "r-cd6d8ce02deb",
+      "english": "Lawyer",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "べんごし"
+    },
+    {
+      "id": "r-4e5ca0c42c4b",
+      "english": "Mexico",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "メキシコ"
+    },
+    {
+      "id": "r-980277415f89",
+      "english": "Seventeen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうしち"
+    },
+    {
+      "id": "r-7cdeb763e9d4",
+      "english": "Chocolate parfait",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "チョコレートパフェ"
+    },
+    {
+      "id": "r-eabdada4abd0",
+      "english": "Good evening",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "こんばんは"
+    },
+    {
+      "id": "r-850ea8378a58",
+      "english": "Nine",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "きゅう"
+    },
+    {
+      "id": "r-a6f2cd3984e4",
+      "english": "...people (nationality)",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "じん"
+    },
+    {
+      "id": "r-63b560db8849",
+      "english": "Test",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "テスト"
+    },
+    {
+      "id": "r-3081d7739206",
+      "english": "Game",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ゲーム"
+    },
+    {
+      "id": "r-ea12219d0ec1",
+      "english": "Classical music",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "クラシック"
+    },
+    {
+      "id": "r-17728bef111e",
+      "english": "Eight",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "はち"
+    },
+    {
+      "id": "r-3568c388ef30",
+      "english": "Asian studies",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "アジアけんきゅう"
+    },
+    {
+      "id": "r-4a7eccc4223c",
+      "english": "...year student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ねんせい"
+    },
+    {
+      "id": "r-1b1282bd4bad",
+      "english": "Slowly; leisurely; unhurriedly",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "ゆっくり"
+    },
+    {
+      "id": "r-b8020da03ae5",
+      "english": "I",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "わたし"
+    },
+    {
+      "id": "r-703e87ed9fe6",
+      "english": "X-ray",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "レントゲン"
+    },
+    {
+      "id": "r-697277055850",
+      "english": "Journalist",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "ジャーナリスト"
+    },
+    {
+      "id": "r-25567f8581d3",
+      "english": "Thank you for the meal (before eating)",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "いただきます"
+    },
+    {
+      "id": "r-20427a708c3f",
+      "english": "Good afternoon",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "こんにちは"
+    },
+    {
+      "id": "r-4bdd080a827c",
+      "english": "Toilet; restroom",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "トイレ"
+    },
+    {
+      "id": "r-23df0e16d21c",
+      "english": "French fries",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "フライドポテト"
+    },
+    {
+      "id": "r-022b7bdd1855",
+      "english": "Post office",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "ゆうびんきょく"
+    },
+    {
+      "id": "r-24fed11d05c3",
+      "english": "Surfing",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "サーフィン"
+    },
+    {
+      "id": "r-ec6a3b86b350",
+      "english": "Hot coffee",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ホットコーヒー"
+    },
+    {
+      "id": "r-e2ce6e0700cc",
+      "english": "Potato",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "じゃがいも"
+    },
+    {
+      "id": "r-f7b0201b3f0e",
+      "english": "A little",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "ちょっと"
+    },
+    {
+      "id": "r-01b64b5814b8",
+      "english": "Japan",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "にほん"
+    },
+    {
+      "id": "r-e82d3232bb99",
+      "english": "Homesickness",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "ホームシック"
+    },
+    {
+      "id": "r-8cf44fafbf93",
+      "english": "Older sister",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "おねえさん"
+    },
+    {
+      "id": "r-3e5da20ffe59",
+      "english": "Spanish (language)",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "スペインご"
+    },
+    {
+      "id": "r-a8dfbccdaa13",
+      "english": "See you (informal goodbye between friends expecting to meet again soon)",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "じゃあ、また"
+    },
+    {
+      "id": "r-dfc3bb392e50",
+      "english": "Excuse me (formal goodbye, e.g. leaving a professor's office)",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "しつれいします"
+    },
+    {
+      "id": "r-f043c656b4ea",
+      "english": "Italy",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "イタリア"
+    },
+    {
+      "id": "r-d3d3e4e3d160",
+      "english": "Pencil",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "えんぴつ"
+    },
+    {
+      "id": "r-9e970d844f5d",
+      "english": "Ice cream",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "アイスクリーム"
+    },
+    {
+      "id": "r-180971530c6c",
+      "english": "Prisoner",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "しゅうじん"
+    },
+    {
+      "id": "r-be3092b13e9a",
+      "english": "Eraser",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "けしゴム"
+    },
+    {
+      "id": "r-e99a023f2402",
+      "english": "Seventeen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうなな"
+    },
+    {
+      "id": "r-891f9ce8cdd9",
+      "english": "Side dish(es) served with rice",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "おかず"
+    },
+    {
+      "id": "r-0a7352a2fd5f",
+      "english": "900",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "きゅうひゃく"
+    },
+    {
+      "id": "r-aea7b4707315",
+      "english": "Soba noodles",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "そば"
+    },
+    {
+      "id": "r-2d6e22246673",
+      "english": "Good morning",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "おはよう"
+    },
+    {
+      "id": "r-93943573d27f",
+      "english": "Pen",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "ペン"
+    },
+    {
+      "id": "r-0c5589abf72d",
+      "english": "Please; Here it is",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "どうぞ"
+    },
+    {
+      "id": "r-09614a66bafb",
+      "english": "Size XL",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "XLサイズ"
+    },
+    {
+      "id": "r-cab9ec7ba27d",
+      "english": "Coffee",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "コーヒー"
+    },
+    {
+      "id": "r-7fc267f6fbea",
+      "english": "Bread",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "パン"
+    },
+    {
+      "id": "r-75f97f586024",
+      "english": "How do you do?",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "はじめまして"
+    },
+    {
+      "id": "r-2dcbf2a36cf1",
+      "english": "U.S.A.",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "アメリカ"
+    },
+    {
+      "id": "r-3aa6571a5e9f",
+      "english": "Drive",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ドライブ"
+    },
+    {
+      "id": "r-779de660ce88",
+      "english": "Shake",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "シェイク"
+    },
+    {
+      "id": "r-3a16d72e8088",
+      "english": "Chef",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "シェフ"
+    },
+    {
+      "id": "r-08a070c801ee",
+      "english": "Juice",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ジュース"
+    },
+    {
+      "id": "r-ee911c21ce92",
+      "english": "Nineteen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうく"
+    },
+    {
+      "id": "r-4ca0d0546bc2",
+      "english": "Teacher; Professor",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "せんせい"
+    },
+    {
+      "id": "r-032c8901930a",
+      "english": "Seven",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "しち"
+    },
+    {
+      "id": "r-98cfea626046",
+      "english": "To cut (classes)",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "サボる"
+    },
+    {
+      "id": "r-4c4a995e96a3",
+      "english": "Ski",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "スキー"
+    },
+    {
+      "id": "r-b1e54ac54e42",
+      "english": "Fifteen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうご"
+    },
+    {
+      "id": "r-4102b1489314",
+      "english": "Chanukkah",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "ハヌカー"
+    },
+    {
+      "id": "r-0d0fd2531ac7",
+      "english": "Three",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "さん"
+    },
+    {
+      "id": "r-b7e74bb4b1f4",
+      "english": "That's right; Let me see",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "そうですね"
+    },
+    {
+      "id": "r-8f99b5f7c588",
+      "english": "Menu",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "メニュー"
+    },
+    {
+      "id": "r-9d73266cbc88",
+      "english": "Camp",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "キャンプ"
+    },
+    {
+      "id": "r-c12a86f615df",
+      "english": "To be surprised",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "びっくりする"
+    },
+    {
+      "id": "r-b4f80c74188e",
+      "english": "Page",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "ページ"
+    },
+    {
+      "id": "r-aeaca5480c72",
+      "english": "First of all",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "まず"
+    },
+    {
+      "id": "r-88fea27db064",
+      "english": "Questionnaire",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "アンケート"
+    },
+    {
+      "id": "r-d1eed17fc7f0",
+      "english": "I have an allergy to . . .",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "アレルギーがあります"
+    },
+    {
+      "id": "r-c098491c166e",
+      "english": "Band",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "バンド"
+    },
+    {
+      "id": "r-d146b38f5839",
+      "english": "Hamburger steak",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ハンバーグ"
+    },
+    {
+      "id": "r-1896d42b18de",
+      "english": "Part-time job",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "アルバイト"
+    },
+    {
+      "id": "r-298de825d787",
+      "english": "Fifty",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ごじゅう"
+    },
+    {
+      "id": "r-066590d5f75d",
+      "english": "Guardian deity of children",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "おじぞうさん"
+    },
+    {
+      "id": "r-e437be4fbe8f",
+      "english": "Cooking; dish",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "りょうり"
+    },
+    {
+      "id": "r-2079531f2239",
+      "english": "Size S",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "Sサイズ"
+    },
+    {
+      "id": "r-14f1f19e41b4",
+      "english": "Mom",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "ママ"
+    },
+    {
+      "id": "r-a3406f8e7887",
+      "english": "(Term) paper",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "レポート"
+    },
+    {
+      "id": "r-36f9f83211c1",
+      "english": "Library",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "としょかん"
+    },
+    {
+      "id": "r-6138493a08df",
+      "english": "To look forward (to)",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "たのしみにする"
+    },
+    {
+      "id": "r-39349b07de1e",
+      "english": "Quiet",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "しずかな"
+    },
+    {
+      "id": "r-c424b9b709c2",
+      "english": "International student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "りゅうがくせい"
+    },
+    {
+      "id": "r-4041ff247b2c",
+      "english": "Nineteen",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "じゅうきゅう"
+    },
+    {
+      "id": "r-62a35da52be8",
+      "english": "300",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "さんびゃく"
+    },
+    {
+      "id": "r-66abca6738d5",
+      "english": "Welcome home",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "おかえりなさい"
+    },
+    {
+      "id": "r-8b27332ee07f",
+      "english": "Class",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "クラス"
+    },
+    {
+      "id": "r-812f45bfcf7e",
+      "english": "Four",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "し"
+    },
+    {
+      "id": "r-0cfb0ce96c37",
+      "english": "Then . . ; if that is the case, . . ",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "じゃあ"
+    },
+    {
+      "id": "r-2cd2d6cdf1f0",
+      "english": "Halloween",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "ハロウィーン"
+    },
+    {
+      "id": "r-3e5b741313bc",
+      "english": "TV",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "テレビ"
+    },
+    {
+      "id": "r-a3f054dbff8c",
+      "english": "Lively; bustling",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "にぎやかな"
+    },
+    {
+      "id": "r-cce1862bcbd9",
+      "english": "Excuse me; I'm sorry",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "すみません"
+    },
+    {
+      "id": "r-6f0b069faec6",
+      "english": "Hotel",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "ホテル"
+    },
+    {
+      "id": "r-0f768bb16127",
+      "english": "600",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "ろっぴゃく"
+    },
+    {
+      "id": "r-f901585367d6",
+      "english": "No; Not at all",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いいえ"
+    },
+    {
+      "id": "r-97bed54b1a17",
+      "english": "Welcome (to our store).",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "いらっしゃいませ"
+    },
+    {
+      "id": "r-b072d58a68ef",
+      "english": "Guitar",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ギター"
+    }
+  ]
+}

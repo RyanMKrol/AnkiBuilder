@@ -1,0 +1,459 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 25,
+    "chapterLabel": "Chapter 25: Reading and Writing 11: Looking for Friends/Members",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-1bd6856faf78",
+      "english": "Recruit; gather",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "募"
+    },
+    {
+      "id": "r-a81c2ab80e37",
+      "english": "Power; strength",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "力"
+    },
+    {
+      "id": "r-dda4f85fa0dc",
+      "english": "Platform; counter for vehicles and machines",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "台"
+    },
+    {
+      "id": "r-c3e4e0f1ed02",
+      "english": "Duty; role",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "役"
+    },
+    {
+      "id": "r-6a954390e365",
+      "english": "Surface; table",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "表"
+    },
+    {
+      "id": "r-effdb4ba2286",
+      "english": "Explanation; theory",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "説"
+    },
+    {
+      "id": "r-7c130d80b872",
+      "english": "City",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "市"
+    },
+    {
+      "id": "r-00b6cd9d86ef",
+      "english": "Steal; thief",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "盗"
+    },
+    {
+      "id": "r-2e5f0bf2c0a7",
+      "english": "Gather; collect",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "集"
+    },
+    {
+      "id": "r-3c9abaf959cc",
+      "english": "Flat; ordinary",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "平"
+    },
+    {
+      "id": "r-3be8888544d5",
+      "english": "Heavy; important",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "重"
+    },
+    {
+      "id": "r-77a0c88d4eac",
+      "english": "Lyrics; words",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "詞",
+      "ttsText": "し"
+    },
+    {
+      "id": "r-4479972b323b",
+      "english": "Talented",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "有能な",
+      "ttsText": "ゆうのうな"
+    },
+    {
+      "id": "r-cfa298cca1c7",
+      "english": "Kitchen",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "台所",
+      "ttsText": "だいどころ"
+    },
+    {
+      "id": "r-e5752ab6e0ad",
+      "english": "Powerful",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "強力な",
+      "ttsText": "きょうりょくな"
+    },
+    {
+      "id": "r-357510f9ae8e",
+      "english": "Obstinate",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "強情な",
+      "ttsText": "ごうじょうな"
+    },
+    {
+      "id": "r-126b28a8a496",
+      "english": "The Middle and Near East",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "中近東",
+      "ttsText": "ちゅうきんとう"
+    },
+    {
+      "id": "r-1321ad107778",
+      "english": "Origami",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "折り紙",
+      "ttsText": "おりがみ"
+    },
+    {
+      "id": "r-7b24795e07de",
+      "english": "Japanese inn",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "旅館",
+      "ttsText": "りょかん"
+    },
+    {
+      "id": "r-8c73d90eca7a",
+      "english": "Recently",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "最近",
+      "ttsText": "さいきん"
+    },
+    {
+      "id": "r-156efeaf0de7",
+      "english": "To exist",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "有る",
+      "ttsText": "ある"
+    },
+    {
+      "id": "r-6ba1103a4d96",
+      "english": "Diligent",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "勤勉な",
+      "ttsText": "きんべんな"
+    },
+    {
+      "id": "r-86cedb580d42",
+      "english": "Serious illness",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "重病",
+      "ttsText": "じゅうびょう"
+    },
+    {
+      "id": "r-fad1cf991e96",
+      "english": "Liking; taste",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "好み",
+      "ttsText": "このみ"
+    },
+    {
+      "id": "r-3047de7cf468",
+      "english": "Sign language",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "手話",
+      "ttsText": "しゅわ"
+    },
+    {
+      "id": "r-b847fad44608",
+      "english": "Mayor",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "市長",
+      "ttsText": "しちょう"
+    },
+    {
+      "id": "r-3be8223c6e7e",
+      "english": "To be reflected",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "映る",
+      "ttsText": "うつる"
+    },
+    {
+      "id": "r-787d9ce94632",
+      "english": "Cover page",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "表紙",
+      "ttsText": "ひょうし"
+    },
+    {
+      "id": "r-7d4d0e9f2526",
+      "english": "Passport",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "旅券",
+      "ttsText": "りょけん"
+    },
+    {
+      "id": "r-1d695378fc6d",
+      "english": "Painter",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "画家",
+      "ttsText": "がか"
+    },
+    {
+      "id": "r-06e5dd7fdccc",
+      "english": "Traveling alone",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "一人旅",
+      "ttsText": "ひとりたび"
+    },
+    {
+      "id": "r-70ee6ceb8dfd",
+      "english": "Movie theater",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "映画館",
+      "ttsText": "えいがかん"
+    },
+    {
+      "id": "r-0cd3b762fd7f",
+      "english": "Japanese paper",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "和紙",
+      "ttsText": "わし"
+    },
+    {
+      "id": "r-97ae3bbb12d4",
+      "english": "Favorite food",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "好物",
+      "ttsText": "こうぶつ"
+    },
+    {
+      "id": "r-e0400e9328ef",
+      "english": "Weekday",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "平日",
+      "ttsText": "へいじつ"
+    },
+    {
+      "id": "r-6225cb1c6348",
+      "english": "To try hard",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "勉める",
+      "ttsText": "つとめる"
+    },
+    {
+      "id": "r-302a420e86ca",
+      "english": "Looking for . . .",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "募集",
+      "ttsText": "ぼしゅう"
+    },
+    {
+      "id": "r-6a0b30d36103",
+      "english": "Comic",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "漫画",
+      "ttsText": "まんが"
+    },
+    {
+      "id": "r-452a5f73629e",
+      "english": "Goodwill",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "好意",
+      "ttsText": "こうい"
+    },
+    {
+      "id": "r-b26ab813edca",
+      "english": "Market",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "市場",
+      "ttsText": "いちば"
+    },
+    {
+      "id": "r-6738aea79c67",
+      "english": "Neighborhood",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "近所",
+      "ttsText": "きんじょ"
+    },
+    {
+      "id": "r-c7f7a9b8af7b",
+      "english": "Robbery",
+      "category": "Emergencies",
+      "reviewNote": null,
+      "target": "強盗",
+      "ttsText": "ごうとう"
+    },
+    {
+      "id": "r-6ef064b3bbf1",
+      "english": "Plan",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "計画",
+      "ttsText": "けいかく"
+    },
+    {
+      "id": "r-ecd446b0965c",
+      "english": "Civilization",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "文明",
+      "ttsText": "ぶんめい"
+    },
+    {
+      "id": "r-fb865ee8d381",
+      "english": "Reply",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "お返事",
+      "ttsText": "おへんじ"
+    },
+    {
+      "id": "r-e23be5a37aa0",
+      "english": "Toll; fee",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "有料",
+      "ttsText": "ゆうりょう"
+    },
+    {
+      "id": "r-d3ef43dfd5a8",
+      "english": "Invention",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "発明",
+      "ttsText": "はつめい"
+    },
+    {
+      "id": "r-fcbb1f211c11",
+      "english": "Cheerful; bright",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "明るい",
+      "ttsText": "あかるい"
+    },
+    {
+      "id": "r-f600f0e04be7",
+      "english": "Sudden illness",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "急病",
+      "ttsText": "きゅうびょう"
+    },
+    {
+      "id": "r-f6c2c8d0f462",
+      "english": "Explanation",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "説明",
+      "ttsText": "せつめい"
+    },
+    {
+      "id": "r-24d858fc7044",
+      "english": "National anthem",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "国歌",
+      "ttsText": "こっか"
+    },
+    {
+      "id": "r-d8ef02dcebae",
+      "english": "To love",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "大好きな",
+      "ttsText": "だいすきな"
+    },
+    {
+      "id": "r-2ea817c7720e",
+      "english": "Lyrics",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "歌詞",
+      "ttsText": "かし"
+    },
+    {
+      "id": "r-0e4843f20639",
+      "english": "To like",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "好きな",
+      "ttsText": "すきな"
+    },
+    {
+      "id": "r-fca47080a97d",
+      "english": "City hall",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "市役所",
+      "ttsText": "しやくしょ"
+    },
+    {
+      "id": "r-3f61fbeca740",
+      "english": "Various places",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "いろいろな所",
+      "ttsText": "いろいろなところ"
+    },
+    {
+      "id": "r-ca169f1b09d7",
+      "english": "Strong",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "強い",
+      "ttsText": "つよい"
+    }
+  ]
+}

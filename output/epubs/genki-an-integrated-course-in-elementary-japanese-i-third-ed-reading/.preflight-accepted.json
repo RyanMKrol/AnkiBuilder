@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "accepted": {
+    "reading-latin": {
+      "chapter-11/r-e07e75baa71b": {
+        "at": "2026-09-24T16:20:23.110Z",
+        "message": "r-e07e75baa71b \"交通系ICカード\" has Latin letters"
+      },
+      "chapter-26/r-09614a66bafb": {
+        "at": "2026-09-24T16:20:23.110Z",
+        "message": "r-09614a66bafb \"XLサイズ\" has Latin letters"
+      },
+      "chapter-26/r-2079531f2239": {
+        "at": "2026-09-24T16:20:23.110Z",
+        "message": "r-2079531f2239 \"Sサイズ\" has Latin letters"
+      },
+      "chapter-26/r-21f680fe544a": {
+        "at": "2026-09-24T16:20:23.110Z",
+        "message": "r-21f680fe544a \"Tシャツ\" has Latin letters"
+      },
+      "chapter-26/r-4f9270ec69d5": {
+        "at": "2026-09-24T16:20:23.110Z",
+        "message": "r-4f9270ec69d5 \"Mサイズ\" has Latin letters"
+      },
+      "chapter-26/r-755637fedf14": {
+        "at": "2026-09-24T16:20:23.110Z",
+        "message": "r-755637fedf14 \"Lサイズ\" has Latin letters"
+      },
+      "chapter-26/r-f23f878f91a8": {
+        "at": "2026-09-24T16:20:23.110Z",
+        "message": "r-f23f878f91a8 \"LLサイズ\" has Latin letters"
+      }
+    },
+    "reading-single-kana": {
+      "chapter-1/r-27a87259d93f": {
+        "at": "2026-09-23T23:18:41.997Z",
+        "message": "r-27a87259d93f \"ご\" (Five) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-1/r-6f46f7d4a286": {
+        "at": "2026-09-23T23:18:41.997Z",
+        "message": "r-6f46f7d4a286 \"よ\" (Four) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-1/r-812f45bfcf7e": {
+        "at": "2026-09-23T23:18:41.997Z",
+        "message": "r-812f45bfcf7e \"し\" (Four) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-1/r-ac94e112183c": {
+        "at": "2026-09-23T23:18:41.997Z",
+        "message": "r-ac94e112183c \"く\" (Nine) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-1/r-de3d1ecc94b2": {
+        "at": "2026-09-23T23:18:41.997Z",
+        "message": "r-de3d1ecc94b2 \"に\" (Two) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-2/r-41f11fe610d4": {
+        "at": "2026-09-23T23:40:17.945Z",
+        "message": "r-41f11fe610d4 \"じ\" (O'clock) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-26/r-27a87259d93f": {
+        "at": "2026-09-24T16:20:23.057Z",
+        "message": "r-27a87259d93f \"ご\" (Five) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-26/r-41f11fe610d4": {
+        "at": "2026-09-24T16:20:23.057Z",
+        "message": "r-41f11fe610d4 \"じ\" (O'clock) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-26/r-6f46f7d4a286": {
+        "at": "2026-09-24T16:20:23.057Z",
+        "message": "r-6f46f7d4a286 \"よ\" (Four) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-26/r-72c746d609d4": {
+        "at": "2026-09-24T16:20:23.057Z",
+        "message": "r-72c746d609d4 \"へ\" (Goal-of-movement marker) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-26/r-812f45bfcf7e": {
+        "at": "2026-09-24T16:20:23.057Z",
+        "message": "r-812f45bfcf7e \"し\" (Four) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-26/r-ac94e112183c": {
+        "at": "2026-09-24T16:20:23.057Z",
+        "message": "r-ac94e112183c \"く\" (Nine) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-26/r-de3d1ecc94b2": {
+        "at": "2026-09-24T16:20:23.057Z",
+        "message": "r-de3d1ecc94b2 \"に\" (Two) is a single kana: right as a word, wrong as a letter"
+      },
+      "chapter-26/r-eba95ba0c666": {
+        "at": "2026-09-27T21:31:08.865Z",
+        "message": "r-eba95ba0c666 \"を\" (Direct object marker) is a single kana: right as a word, wrong as a letter"
+      }
+    }
+  }
+}

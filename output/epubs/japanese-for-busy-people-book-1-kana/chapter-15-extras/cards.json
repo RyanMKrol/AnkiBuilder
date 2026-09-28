@@ -83,11 +83,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — fixed frame for the な-adjective grid, present affirmative).",
       "aiSuggested": true,
       "pronunciation": "Pōru-san wa yakyū ga suki desu",
-      "audio": "8508df288241818e.mp3",
-      "audioOriginal": "8508df288241818e.orig.mp3",
-      "audioAuto": "8508df288241818e.mp3",
-      "audioMarked": true,
-      "audioTextHash": "8508df288241818e",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented; replaced by the book's own EXERCISES II picture answers, which carry the same vocabulary."
@@ -101,11 +96,6 @@
       "note": "かきます here, かく in えをかくのがすきですか. Same verb, two forms: ます to state the action, dictionary form to feed のが.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — かきます appeared in no sentence).",
       "aiSuggested": true,
-      "audio": "8cc75deb4599f9e7.mp3",
-      "audioOriginal": "8cc75deb4599f9e7.orig.mp3",
-      "audioAuto": "8cc75deb4599f9e7.mp3",
-      "audioMarked": true,
-      "audioTextHash": "8cc75deb4599f9e7",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the よく〜ます frame; エマさんはよくおよぎます is kept."
@@ -182,11 +172,6 @@
       "note": "Regular 1: はしります → はしる. Compare はしるのがじょうずです, which needs the dictionary form.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — はしります appeared in no sentence).",
       "aiSuggested": true,
-      "audio": "97b70c0a02f86b80.mp3",
-      "audioOriginal": "97b70c0a02f86b80.orig.mp3",
-      "audioAuto": "97b70c0a02f86b80.mp3",
-      "audioMarked": true,
-      "audioTextHash": "97b70c0a02f86b80",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the よく〜ます frame; エマさんはよくおよぎます is kept."
@@ -219,11 +204,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "f453328b45bf56d4.mp3",
-      "audioOriginal": "f453328b45bf56d4.orig.mp3",
-      "audioAuto": "f453328b45bf56d4.mp3",
-      "audioMarked": true,
-      "audioTextHash": "f453328b45bf56d4",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Contradicts the book: GRAMMAR 1's note says people rarely ask じょうずですか."
@@ -288,11 +268,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against わたしはにほんのアニメがすきです, the possessive の).",
       "aiSuggested": true,
       "pronunciation": "anime o miru no ga suki desu",
-      "audio": "e9f907aa82e82016.mp3",
-      "audioOriginal": "e9f907aa82e82016.orig.mp3",
-      "audioAuto": "e9f907aa82e82016.mp3",
-      "audioMarked": true,
-      "audioTextHash": "e9f907aa82e82016",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the 〜のがすきです frame, which the book's own sentences and the kept constructions already drill."
@@ -337,11 +312,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — fixed frame for the な-adjective grid, present negative).",
       "aiSuggested": true,
       "pronunciation": "Pōru-san wa yakyū ga suki ja arimasen",
-      "audio": "efb2c74ebf531247.mp3",
-      "audioOriginal": "efb2c74ebf531247.orig.mp3",
-      "audioAuto": "efb2c74ebf531247.mp3",
-      "audioMarked": true,
-      "audioTextHash": "efb2c74ebf531247",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented; replaced by the book's own EXERCISES II picture answers, which carry the same vocabulary."
@@ -356,11 +326,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "5d0125422bb1486f.mp3",
-      "audioOriginal": "5d0125422bb1486f.orig.mp3",
-      "audioAuto": "5d0125422bb1486f.mp3",
-      "audioMarked": true,
-      "audioTextHash": "5d0125422bb1486f",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the どんな〜がすきですか / 〜がすきです frame, which the book's own sentences already drill."
@@ -406,11 +371,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence スキー appears in).",
       "aiSuggested": true,
       "pronunciation": "Nakamura-san wa sukī ga jōzu desu",
-      "audio": "932e4b7f1218a3c9.mp3",
-      "audioOriginal": "932e4b7f1218a3c9.orig.mp3",
-      "audioAuto": "932e4b7f1218a3c9.mp3",
-      "audioMarked": true,
-      "audioTextHash": "932e4b7f1218a3c9",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented; replaced by the book's own EXERCISES II picture answers, which carry the same vocabulary."
@@ -421,12 +381,6 @@
       "category": "Emotions & Feelings",
       "target": "すごい",
       "pronunciation": "sugoi",
-      "audio": "a1b3243842db1789.mp3",
-      "audioOriginal": "a1b3243842db1789.orig.mp3",
-      "audioAuto": "a1b3243842db1789.mp3",
-      "audioFilter": "standard",
-      "audioMarked": true,
-      "audioTextHash": "a1b3243842db1789",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
@@ -444,11 +398,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence ウイスキー appears in).",
       "aiSuggested": true,
       "pronunciation": "Buraun-san wa uisukī ga suki ja arimasen",
-      "audio": "b0292ccde3f48c92.mp3",
-      "audioOriginal": "b0292ccde3f48c92.orig.mp3",
-      "audioAuto": "b0292ccde3f48c92.mp3",
-      "audioMarked": true,
-      "audioTextHash": "b0292ccde3f48c92",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented; replaced by the book's own EXERCISES II picture answers, which carry the same vocabulary."
@@ -538,11 +487,6 @@
       "reviewNote": "Extras wave 1 (from the book: EXERCISES III substitution 2 answer; job: the only sentence ピザ appears in).",
       "aiSuggested": true,
       "pronunciation": "piza ga suki desu",
-      "audio": "3f27aee29c340537.mp3",
-      "audioOriginal": "3f27aee29c340537.orig.mp3",
-      "audioAuto": "3f27aee29c340537.mp3",
-      "audioMarked": true,
-      "audioTextHash": "3f27aee29c340537",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the どんな〜がすきですか / 〜がすきです frame, which the book's own sentences already drill."
@@ -590,11 +534,6 @@
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue, Paul's answer; job: the answer half of どんな〜がすきですか).",
       "aiSuggested": true,
       "pronunciation": "robotto no anime ga suki desu",
-      "audio": "45a82ddec46227d2.mp3",
-      "audioOriginal": "45a82ddec46227d2.orig.mp3",
-      "audioAuto": "45a82ddec46227d2.mp3",
-      "audioMarked": true,
-      "audioTextHash": "45a82ddec46227d2",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the どんな〜がすきですか / 〜がすきです frame, which the book's own sentences already drill."
@@ -626,11 +565,6 @@
       "note": "No object, so のが attaches straight to the dictionary form. あるきます → あるく is the other form EXERCISES V asks for.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — あるく was carded bare only, and this is the のが pattern at its simplest).",
       "aiSuggested": true,
-      "audio": "e0d3aeedd233bbb3.mp3",
-      "audioOriginal": "e0d3aeedd233bbb3.orig.mp3",
-      "audioAuto": "e0d3aeedd233bbb3.mp3",
-      "audioMarked": true,
-      "audioTextHash": "e0d3aeedd233bbb3",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the 〜のがすきです frame, which the book's own sentences and the kept constructions already drill."
@@ -643,11 +577,6 @@
       "reviewNote": "Extras wave 1 (from the book: EXERCISES III substitution 3; job: the どんな turn on おんがく).",
       "aiSuggested": true,
       "pronunciation": "donna ongaku ga suki desu ka",
-      "audio": "f9b60efc9496cb6e.mp3",
-      "audioOriginal": "f9b60efc9496cb6e.orig.mp3",
-      "audioAuto": "f9b60efc9496cb6e.mp3",
-      "audioMarked": true,
-      "audioTextHash": "f9b60efc9496cb6e",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the どんな〜がすきですか / 〜がすきです frame, which the book's own sentences already drill."
@@ -661,11 +590,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence うた appears in, plus the noun/verb contrast).",
       "aiSuggested": true,
       "pronunciation": "Katō-san wa uta ga jōzu desu",
-      "audio": "911027b6c542f0a2.mp3",
-      "audioOriginal": "911027b6c542f0a2.orig.mp3",
-      "audioAuto": "911027b6c542f0a2.mp3",
-      "audioMarked": true,
-      "audioTextHash": "911027b6c542f0a2",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented; replaced by the book's own EXERCISES II picture answers, which carry the same vocabulary."
@@ -698,11 +622,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "4a906cf0d1fb2f85.mp3",
-      "audioOriginal": "4a906cf0d1fb2f85.orig.mp3",
-      "audioAuto": "4a906cf0d1fb2f85.mp3",
-      "audioMarked": true,
-      "audioTextHash": "4a906cf0d1fb2f85",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the 〜のがすきです frame, which the book's own sentences and the kept constructions already drill."
@@ -736,11 +655,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — に surviving inside a のが clause, in question form).",
       "aiSuggested": true,
       "pronunciation": "Ema-san wa bijutsukan ni iku no ga suki desu ka",
-      "audio": "68be40dfa7ce1680.mp3",
-      "audioOriginal": "68be40dfa7ce1680.orig.mp3",
-      "audioAuto": "68be40dfa7ce1680.mp3",
-      "audioMarked": true,
-      "audioTextHash": "68be40dfa7ce1680",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the 〜のがすきです frame, which the book's own sentences and the kept constructions already drill."
@@ -754,11 +668,6 @@
       "note": "The ます-form as the sentence's own verb. Its dictionary form うたう is what のが needs: うたうのがすきです, \"likes singing\".",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — うたいます appeared in no sentence, only as a bare vocabulary card, while its dictionary form was already used in one).",
       "aiSuggested": true,
-      "audio": "3b6ad281c09c014f.mp3",
-      "audioOriginal": "3b6ad281c09c014f.orig.mp3",
-      "audioAuto": "3b6ad281c09c014f.mp3",
-      "audioMarked": true,
-      "audioTextHash": "3b6ad281c09c014f",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the よく〜ます frame; エマさんはよくおよぎます is kept."
@@ -817,11 +726,6 @@
       "reviewNote": "Extras wave 1 (from the book: EXERCISES III substitution 2; job: the first turn of the substitution dialogue).",
       "aiSuggested": true,
       "pronunciation": "Suzuki-san wa Itaria ryōri ga suki desu ka",
-      "audio": "893c747f514f1abe.mp3",
-      "audioOriginal": "893c747f514f1abe.orig.mp3",
-      "audioAuto": "893c747f514f1abe.mp3",
-      "audioMarked": true,
-      "audioTextHash": "893c747f514f1abe",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the どんな〜がすきですか / 〜がすきです frame, which the book's own sentences already drill."
@@ -836,11 +740,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "f2b67a370cd7b5f9.mp3",
-      "audioOriginal": "f2b67a370cd7b5f9.orig.mp3",
-      "audioAuto": "f2b67a370cd7b5f9.mp3",
-      "audioMarked": true,
-      "audioTextHash": "f2b67a370cd7b5f9",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the 〜のがすきです frame, which the book's own sentences and the kept constructions already drill."
@@ -899,11 +798,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — fixed frame for the じょうず grid, present affirmative; also the only sentence ダンス appears in).",
       "aiSuggested": true,
       "pronunciation": "Suzuki-san wa dansu ga jōzu desu",
-      "audio": "a2cbaf3863b63867.mp3",
-      "audioOriginal": "a2cbaf3863b63867.orig.mp3",
-      "audioAuto": "a2cbaf3863b63867.mp3",
-      "audioMarked": true,
-      "audioTextHash": "a2cbaf3863b63867",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented; replaced by the book's own EXERCISES II picture answers, which carry the same vocabulary."
@@ -949,11 +843,6 @@
       "reviewNote": "Extras wave 1 (from the book: EXERCISES III substitution 2; job: the どんな turn).",
       "aiSuggested": true,
       "pronunciation": "donna Itaria ryōri ga suki desu ka",
-      "audio": "6d3cc912b301d2e4.mp3",
-      "audioOriginal": "6d3cc912b301d2e4.orig.mp3",
-      "audioAuto": "6d3cc912b301d2e4.mp3",
-      "audioMarked": true,
-      "audioTextHash": "6d3cc912b301d2e4",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the どんな〜がすきですか / 〜がすきです frame, which the book's own sentences already drill."
@@ -982,11 +871,6 @@
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII substitution 1; job: the second half of the substitution, uncarded).",
       "aiSuggested": true,
       "pronunciation": "watashi mo suki desu. oyogu no mo suki desu",
-      "audio": "ba301a6fa5a8c0c6.mp3",
-      "audioOriginal": "ba301a6fa5a8c0c6.orig.mp3",
-      "audioAuto": "ba301a6fa5a8c0c6.mp3",
-      "audioMarked": true,
-      "audioTextHash": "ba301a6fa5a8c0c6",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the 〜のがすきです frame, which the book's own sentences and the kept constructions already drill."
@@ -1001,11 +885,6 @@
       "scene": "answering what kind of pictures you like drawing",
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "c40747fbc23e5c56.mp3",
-      "audioOriginal": "c40747fbc23e5c56.orig.mp3",
-      "audioAuto": "c40747fbc23e5c56.mp3",
-      "audioMarked": true,
-      "audioTextHash": "c40747fbc23e5c56",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the 〜のがすきです frame, which the book's own sentences and the kept constructions already drill."
@@ -1018,11 +897,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — fixed frame for the じょうず grid, present negative).",
       "aiSuggested": true,
       "pronunciation": "Suzuki-san wa dansu ga jōzu ja arimasen",
-      "audio": "f3cd8fb8822ce287.mp3",
-      "audioOriginal": "f3cd8fb8822ce287.orig.mp3",
-      "audioAuto": "f3cd8fb8822ce287.mp3",
-      "audioMarked": true,
-      "audioTextHash": "f3cd8fb8822ce287",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Invented; replaced by the book's own EXERCISES II picture answers, which carry the same vocabulary."
@@ -1068,11 +942,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "872f6d0b5fe14698.mp3",
-      "audioOriginal": "872f6d0b5fe14698.orig.mp3",
-      "audioAuto": "872f6d0b5fe14698.mp3",
-      "audioMarked": true,
-      "audioTextHash": "872f6d0b5fe14698",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of すずきさんはスポーツがすきですか (EXERCISES III example), which ships."
@@ -1105,11 +974,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "94c3562dc1b2e13f.mp3",
-      "audioOriginal": "94c3562dc1b2e13f.orig.mp3",
-      "audioAuto": "94c3562dc1b2e13f.mp3",
-      "audioMarked": true,
-      "audioTextHash": "94c3562dc1b2e13f",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Near-duplicate of the 〜のがすきです frame, which the book's own sentences and the kept constructions already drill."
@@ -1123,11 +987,6 @@
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against the base lesson's サッカーをみるのがすきです).",
       "aiSuggested": true,
       "pronunciation": "sakkā ga suki desu",
-      "audio": "7fd0712a10494137.mp3",
-      "audioOriginal": "7fd0712a10494137.orig.mp3",
-      "audioAuto": "7fd0712a10494137.mp3",
-      "audioMarked": true,
-      "audioTextHash": "7fd0712a10494137",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Already inside サッカーがすきです。でも、じょうずじゃありません, which ships."
@@ -1145,7 +1004,8 @@
       "audioMarked": true,
       "audioTextHash": "28b7211c5e0d46c3",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ks1-chan-wine-suki",
@@ -1160,7 +1020,8 @@
       "audioMarked": true,
       "audioTextHash": "283f35fe4a9ad580",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ks2-chan-nihongo-jouzu",
@@ -1175,7 +1036,8 @@
       "audioMarked": true,
       "audioTextHash": "bff66b88bd2dd935",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ks3-smith-soccer-miru-suki",
@@ -1190,7 +1052,8 @@
       "audioMarked": true,
       "audioTextHash": "a8ea59d389120ac0",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex2-eg-a-kato-sake-golf",
@@ -1205,7 +1068,8 @@
       "audioFilter": "standard",
       "audio": "ex2-eg-a-kato-sake-golf-user-528c5657.mp3",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex2-eg-b-kato-coffee-tennis",
@@ -1220,7 +1084,8 @@
       "audioMarked": true,
       "audioTextHash": "43c9ef4b403e8c84",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex3-eg-suzuki-sports-question",
@@ -1235,7 +1100,8 @@
       "audioMarked": true,
       "audioTextHash": "73720ddad4273414",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex7-eg-green-music-question",
@@ -1250,7 +1116,8 @@
       "audioMarked": true,
       "audioTextHash": "8ccdb2837f413a00",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex7-eg-green-reply-what-about-you",
@@ -1266,7 +1133,8 @@
       "audioMarked": true,
       "audioTextHash": "76e4a99d3299edc3",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "ex7-eg-kato-me-too-sing",
@@ -1282,7 +1150,8 @@
       "audioMarked": true,
       "audioTextHash": "d06f32a5f2283372",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "fib-bijutsukan-iku-mo-suki",
@@ -1299,7 +1168,8 @@
       "audioMarked": true,
       "audioTextHash": "72432113ee010714",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "demo-but-speaking-practice",
@@ -1314,7 +1184,8 @@
       "audioMarked": true,
       "audioTextHash": "022b68bfbdbf2e02",
       "addition": "v2-retrofit-l15-2026-09-28",
-      "additionAudioInherited": true
+      "additionAudioInherited": true,
+      "additionReviewed": true
     },
     {
       "id": "x15r-chan-coffee-dansu",
@@ -1324,7 +1195,13 @@
       "pronunciation": "Chan-san wa kōhī ga suki desu. dansu ga jōzu desu",
       "reviewNote": "Retrofit 2026-09-28: the book's EXERCISES II answer for picture 2, part A (Page_146_Image_0004: coffee liked, dancing a skill).",
       "aiSuggested": true,
-      "addition": "v2-retrofit-l15-2026-09-28"
+      "addition": "v2-retrofit-l15-2026-09-28",
+      "additionReviewed": true,
+      "audio": "3c94757509b42052.mp3",
+      "audioOriginal": "3c94757509b42052.orig.mp3",
+      "audioAuto": "3c94757509b42052.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3c94757509b42052"
     },
     {
       "id": "x15r-chan-beer-uta",
@@ -1334,7 +1211,13 @@
       "pronunciation": "Chan-san wa bīru ga suki ja arimasen. uta ga jōzu ja arimasen",
       "reviewNote": "Retrofit 2026-09-28: the book's EXERCISES II answer for picture 2, part B (Page_146_Image_0004: beer disliked, うた crossed out).",
       "aiSuggested": true,
-      "addition": "v2-retrofit-l15-2026-09-28"
+      "addition": "v2-retrofit-l15-2026-09-28",
+      "additionReviewed": true,
+      "audio": "b0b49658e842c691.mp3",
+      "audioOriginal": "b0b49658e842c691.orig.mp3",
+      "audioAuto": "b0b49658e842c691.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b0b49658e842c691"
     },
     {
       "id": "x15r-sasaki-wine-sukii",
@@ -1344,7 +1227,13 @@
       "pronunciation": "Sasaki-san wa wain ga suki desu. sukī ga jōzu desu",
       "reviewNote": "Retrofit 2026-09-28: the book's EXERCISES II answer for picture 3, part A (Page_146_Image_0005: wine liked, skiing a skill).",
       "aiSuggested": true,
-      "addition": "v2-retrofit-l15-2026-09-28"
+      "addition": "v2-retrofit-l15-2026-09-28",
+      "additionReviewed": true,
+      "audio": "ef5553e21b3f21fb.mp3",
+      "audioOriginal": "ef5553e21b3f21fb.orig.mp3",
+      "audioAuto": "ef5553e21b3f21fb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ef5553e21b3f21fb"
     },
     {
       "id": "x15r-sasaki-whiskey-golf",
@@ -1354,7 +1243,13 @@
       "pronunciation": "Sasaki-san wa uisukī ga suki ja arimasen. gorufu ga jōzu ja arimasen",
       "reviewNote": "Retrofit 2026-09-28: the book's EXERCISES II answer for picture 3, part B (Page_146_Image_0005: ウイスキー disliked, ゴルフ crossed out).",
       "aiSuggested": true,
-      "addition": "v2-retrofit-l15-2026-09-28"
+      "addition": "v2-retrofit-l15-2026-09-28",
+      "additionReviewed": true,
+      "audio": "9a6d85c843b75c7e.mp3",
+      "audioOriginal": "9a6d85c843b75c7e.orig.mp3",
+      "audioAuto": "9a6d85c843b75c7e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9a6d85c843b75c7e"
     },
     {
       "id": "x15r-ryokou-shashin-toru",
@@ -1365,7 +1260,13 @@
       "note": "とります → とる is Regular 1, even though it ends in る like a Regular 2 verb.",
       "reviewNote": "Retrofit 2026-09-28: from the v2 gap author (Lesson 15 shadow run); gives the chart's とる a sentence. りょこう is Lesson 7, しゃしん Lesson 11.",
       "aiSuggested": true,
-      "addition": "v2-retrofit-l15-2026-09-28"
+      "addition": "v2-retrofit-l15-2026-09-28",
+      "additionReviewed": true,
+      "audio": "83348d364623e1bc.mp3",
+      "audioOriginal": "83348d364623e1bc.orig.mp3",
+      "audioAuto": "83348d364623e1bc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "83348d364623e1bc"
     }
   ]
 }

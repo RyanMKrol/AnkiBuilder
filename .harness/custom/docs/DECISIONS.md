@@ -658,3 +658,12 @@ per-source boolean should become an explicit per-source table.
   learner met words long before their kanji. Hoisting the book's kanji cards forward was rejected
   because a chapter-by-chapter build cannot know what a later chapter teaches.
 - **Where it lives:** `docs/designs/reading-decks/10-character-cards.md`.
+
+## Kanji cards show the full school reading list; one reading means audio
+
+- **What was decided (owner, 2026-09-28):** every kanji card lists the official school readings
+  (常用漢字表), the book's own first, and a kanji with exactly one official reading is voiced. The
+  reading list is kept by the Japanese plugin as a reference for any future book.
+- **Why:** a book teaches a subset of readings as it goes (Genki: complete for 45 of 144 kanji), so
+  "one reading" on a book card only meant "one taught so far"; completing first makes voicing safe.
+- **Where it lives:** `docs/designs/reading-decks/10-character-cards.md`, `src/reading/joyoReadings.js`.

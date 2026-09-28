@@ -49,3 +49,18 @@ chapter. The first Genki run needed it: its review kept dictionary senses a lear
 `src/reading/data/kanjidic2-compact.json` holds KANJIDIC2's 2,974 graded kanji (jōyō and jinmeiyō)
 with meanings, readings, grade and frequency, built by `scripts/build-kanji-dictionary.mjs` from the
 jmdict-simplified JSON edition. `src/reading/data/NOTICE.md` carries the CC BY-SA 4.0 attribution.
+
+## Complete readings, and voicing a kanji with only one (owner decisions, 2026-09-28)
+
+A book teaches a kanji's readings as it needs them: Genki lists every official reading for only 45 of
+its 144 kanji (明 gets めい and あか, not みょう, あ or あき). Every kanji card is now completed to the
+official school reading list, the 常用漢字表, which the Japanese plugin keeps as a reference for any
+book (`src/reading/joyoReadings.js`, built by `scripts/build-joyo-readings.mjs`): the book's readings
+first (or a reviewed generated card's), then each official one it lacks. Special and narrow-use
+readings, bracketed in the official table, are left out.
+
+A kanji card is then voiced exactly when its completed list has one reading (曜 よう, 週 しゅう): with
+the full list, "one reading" means one, not one taught so far. Every other kanji card stays silent.
+`candidates/characters.json` keeps a `cards` entry per character card, so a voiced kanji card is never
+mistaken for the word card of a single-kanji word (日 read ひ). Generic code only calls the plugin's
+`characterSource.complete` and `soleReading`.

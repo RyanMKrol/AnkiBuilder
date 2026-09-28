@@ -3,6 +3,7 @@ import { isReadingKind } from "../model/deckKind.js";
 import { kanaUnits, kanaScript } from "./kanaUnits.js";
 import { parseKanjiReadings, kanjiReadingsLine } from "./kanjiReadings.js";
 import { lookupKanji, kanjiDictionarySource } from "./kanjiDictionary.js";
+import { completeKanjiReadings, soleKanjiReading } from "./joyoReadings.js";
 
 // Per-language behaviour of the READING deck (docs/designs/reading-decks/05-japanese-plugin.md),
 // keyed by ISO 639-1 like every other language registry here (src/cards/inflectionSchemes.js is the
@@ -75,6 +76,11 @@ const JAPANESE = Object.freeze({
       [...String(text ?? "")].filter((c) => /\p{Script=Han}/u.test(c) && c !== "々"),
     lookup: lookupKanji,
     line: kanjiReadingsLine,
+    // Every kanji card's readings are completed to the official school list (常用漢字表), the book's
+    // own first; a kanji with exactly one official reading is voiced with it, since nothing about it
+    // is ambiguous (src/reading/joyoReadings.js; owner decisions, 2026-09-28).
+    complete: completeKanjiReadings,
+    soleReading: soleKanjiReading,
   }),
   /** Written in kana alone: an optional ending in brackets, or a word's reading after its kanji. */
   isPhonetic: (text) => /^[\p{Script=Hiragana}\p{Script=Katakana}ー]+$/u.test(String(text ?? "")),

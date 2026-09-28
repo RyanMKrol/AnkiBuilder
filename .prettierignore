@@ -26,3 +26,4 @@ output
 
 # Generated data (scripts/build-kanji-dictionary.mjs): one line on purpose, 300 KB.
 src/reading/data/kanjidic2-compact.json
+src/reading/data/joyo-readings.json

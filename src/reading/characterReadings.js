@@ -25,3 +25,37 @@ export function withCharacterReadings(items, readings, scheme) {
   });
   return { items: out, filled };
 }
+
+/**
+ * Every character card of a unit completed through the language plugin (`characterSource.complete`
+ * and `soleReading`): its readings line becomes the full reference list, the book's (or the reviewed
+ * generated card's) readings first, and a character with exactly one reading is voiced with it
+ * (`ttsText`), while one with several stays silent. `base` is `Map<character, readings>`; `record`
+ * is the unit's candidates/characters.json, whose `cards` says which cards are character cards, so a
+ * voiced one is never mistaken for a word card of a single-character word (日 read ひ). Returns
+ * `{ items, record, changed }`.
+ */
+export function completeCharacterCards(items, { scheme, base, record }) {
+  const source = scheme?.characterSource;
+  if (!source?.complete) return { items, record, changed: 0 };
+  const cards = { ...(record?.cards ?? {}) };
+  let changed = 0;
+  const out = items.map((item) => {
+    const isCharacterCard =
+      scheme.isCharacterTarget(item.target) && (!item.ttsText || cards[item.target]);
+    if (!isCharacterCard) return item;
+    const readings = source.complete(base.get(item.target) ?? null, item.target);
+    if (!readings) return item;
+    const sole = source.soleReading(readings);
+    cards[item.target] = { readings, voiced: Boolean(sole) };
+    const next = { ...item, pronunciation: source.line(readings) };
+    if (sole) next.ttsText = sole;
+    else delete next.ttsText;
+    const same =
+      next.pronunciation === item.pronunciation &&
+      (next.ttsText ?? null) === (item.ttsText ?? null);
+    if (!same) changed++;
+    return same ? item : next;
+  });
+  return { items: out, record: { ...(record ?? { generated: [] }), cards }, changed };
+}

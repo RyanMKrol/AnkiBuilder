@@ -55,6 +55,13 @@ why it breaks.
   when the chapter's own grammar cannot carry the form, but it should be the exception rather than
   the shape of the whole set. Gap fills that nearly all reach for one earlier chapter's frame drill
   that chapter rather than this one.
+- **A natural sentence or none.** Every sentence must be one a native speaker would plausibly say.
+  If the taught vocabulary only lets you fill a gap with something forced (being "good at" coming to
+  school, liking that a friend exists nearby), put the gap in `unfillable` with the reason "no
+  natural sentence with taught vocabulary". A forced sentence teaches a usage that does not exist,
+  which is worse than the hole it fills.
+- **Use the form the gap names.** A gap for a dictionary form is filled by a sentence that uses the
+  dictionary form, not the polite form of the same verb.
 - **Do not invent a gap.** Something you think is missing but that is not on the list belongs to a
   different pass. Say so in `notes` if it matters.
 

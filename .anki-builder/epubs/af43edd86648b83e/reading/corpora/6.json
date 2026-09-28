@@ -1,0 +1,1263 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 6,
+    "chapterLabel": "Chapter 06: Lesson 4: The First Date",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-42342f7af1a6",
+      "english": "Ill; sick",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 25: Reading and Writing 11: Looking for Friends/Members).",
+      "target": "病"
+    },
+    {
+      "id": "r-51eeda9a2166",
+      "english": "Shining; bright",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "昭",
+      "ttsText": "しょう"
+    },
+    {
+      "id": "r-9a3eb340971f",
+      "english": "Harmony; Japanese style",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "和"
+    },
+    {
+      "id": "r-89b107264807",
+      "english": "Wait",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "待"
+    },
+    {
+      "id": "r-ead69987e392",
+      "english": "Institution",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 25: Reading and Writing 11: Looking for Friends/Members).",
+      "target": "院",
+      "ttsText": "いん"
+    },
+    {
+      "id": "r-4d2263f11266",
+      "english": "Long",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 24: Reading and Writing 10: The Folktale Kasajizo).",
+      "target": "長"
+    },
+    {
+      "id": "r-e10bd9f09bf8",
+      "english": "Cat",
+      "category": "Animals",
+      "reviewNote": null,
+      "target": "猫",
+      "ttsText": "ねこ"
+    },
+    {
+      "id": "r-efb2620838c4",
+      "english": "Fire",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 18: Reading and Writing 4: Mary's Weekend).",
+      "target": "火"
+    },
+    {
+      "id": "r-8f0005d18f7e",
+      "english": "Previous; last",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "昨",
+      "ttsText": "さく"
+    },
+    {
+      "id": "r-d274eee8a175",
+      "english": "One",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "一"
+    },
+    {
+      "id": "r-577cfff2988c",
+      "english": "To meet",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 21: Reading and Writing 7: Mary's Letter).",
+      "target": "会"
+    },
+    {
+      "id": "r-bb3578629d93",
+      "english": "Become; turn into",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "成"
+    },
+    {
+      "id": "r-a4a97dbdaea1",
+      "english": "To buy",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 24: Reading and Writing 10: The Folktale Kasajizo).",
+      "target": "買"
+    },
+    {
+      "id": "r-622f3c5acb0e",
+      "english": "Origin",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 19: Reading and Writing 5: Travel).",
+      "target": "元"
+    },
+    {
+      "id": "r-d9b59879f3b8",
+      "english": "Moon; month",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 18: Reading and Writing 4: Mary's Weekend).",
+      "target": "月"
+    },
+    {
+      "id": "r-6f14c2641c25",
+      "english": "Year",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 24: Reading and Writing 10: The Folktale Kasajizo).",
+      "target": "年"
+    },
+    {
+      "id": "r-144d2cba1181",
+      "english": "Copy; photograph",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "写"
+    },
+    {
+      "id": "r-8294db3a2006",
+      "english": "Tree",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 18: Reading and Writing 4: Mary's Weekend).",
+      "target": "木"
+    },
+    {
+      "id": "r-0d73d884a9f3",
+      "english": "Desk",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "机",
+      "ttsText": "つくえ"
+    },
+    {
+      "id": "r-033fd274f014",
+      "english": "Past; leave",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "去"
+    },
+    {
+      "id": "r-d8c84172acf3",
+      "english": "Near",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 25: Reading and Writing 11: Looking for Friends/Members).",
+      "target": "近"
+    },
+    {
+      "id": "r-0d7416e2e222",
+      "english": "Minute; to divide",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 20: Reading and Writing 6: My Favorite Restaurant).",
+      "target": "分"
+    },
+    {
+      "id": "r-022dd77d5cf1",
+      "english": "Dog",
+      "category": "Animals",
+      "reviewNote": null,
+      "target": "犬",
+      "ttsText": "いぬ"
+    },
+    {
+      "id": "r-9be4611e164b",
+      "english": "Flower",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "花",
+      "ttsText": "はな"
+    },
+    {
+      "id": "r-b188c5e30da5",
+      "english": "Sea",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "海"
+    },
+    {
+      "id": "r-bea55d0635be",
+      "english": "Thing",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "物"
+    },
+    {
+      "id": "r-073d8528405e",
+      "english": "Front",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "前",
+      "ttsText": "まえ"
+    },
+    {
+      "id": "r-0e248e5603d3",
+      "english": "Mountain",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 19: Reading and Writing 5: Travel).",
+      "target": "山"
+    },
+    {
+      "id": "r-ba9358753016",
+      "english": "Silver",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "銀",
+      "ttsText": "ぎん"
+    },
+    {
+      "id": "r-a0e5fbb6dccf",
+      "english": "Take pictures; snapshot",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "撮"
+    },
+    {
+      "id": "r-3d72c724e03b",
+      "english": "Six",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "六"
+    },
+    {
+      "id": "r-f4bba5643a36",
+      "english": "Country",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 20: Reading and Writing 6: My Favorite Restaurant).",
+      "target": "国"
+    },
+    {
+      "id": "r-7f2c11c7950a",
+      "english": "Companion; attendant",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "供"
+    },
+    {
+      "id": "r-62ead9a577f3",
+      "english": "Constitution; law",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "憲",
+      "ttsText": "けん"
+    },
+    {
+      "id": "r-3eb31f888c66",
+      "english": "Birth",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 20: Reading and Writing 6: My Favorite Restaurant).",
+      "target": "生"
+    },
+    {
+      "id": "r-43bd88ad5a0e",
+      "english": "Park; garden",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "園"
+    },
+    {
+      "id": "r-8c7c1d2840c7",
+      "english": "Change; influence",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "化"
+    },
+    {
+      "id": "r-b59df8c44a27",
+      "english": "Gold; money",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 18: Reading and Writing 4: Mary's Weekend).",
+      "target": "金"
+    },
+    {
+      "id": "r-82d45ef2106f",
+      "english": "Ahead",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 20: Reading and Writing 6: My Favorite Restaurant).",
+      "target": "先"
+    },
+    {
+      "id": "r-4af68ed9506a",
+      "english": "Buddhist temple",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "寺"
+    },
+    {
+      "id": "r-182a7e30ae8f",
+      "english": "Labor; toil",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "労",
+      "ttsText": "ろう"
+    },
+    {
+      "id": "r-295ae1324b02",
+      "english": "Build",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "建"
+    },
+    {
+      "id": "r-df3ee667608c",
+      "english": "Left",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "左",
+      "ttsText": "ひだり"
+    },
+    {
+      "id": "r-a6caf2effb1c",
+      "english": "Under",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "下",
+      "ttsText": "した"
+    },
+    {
+      "id": "r-a29f6f0625dc",
+      "english": "To write",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 23: Reading and Writing 9: Sora's Diary).",
+      "target": "書"
+    },
+    {
+      "id": "r-dc675fde7854",
+      "english": "Shop; house",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "屋"
+    },
+    {
+      "id": "r-1d5639f716b6",
+      "english": "Two",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "二"
+    },
+    {
+      "id": "r-c9bd4c71a44e",
+      "english": "Halt; stopping",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "停",
+      "ttsText": "てい"
+    },
+    {
+      "id": "r-27a2b9f17bea",
+      "english": "Nine",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "九"
+    },
+    {
+      "id": "r-3aca6391ccb2",
+      "english": "Drawing; map",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "図"
+    },
+    {
+      "id": "r-e756c6ef2a8e",
+      "english": "True; reality",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "真"
+    },
+    {
+      "id": "r-95fd8be0d991",
+      "english": "Again; twice",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "再"
+    },
+    {
+      "id": "r-851cdd609190",
+      "english": "Right",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "右",
+      "ttsText": "みぎ"
+    },
+    {
+      "id": "r-b967ce841ad5",
+      "english": "On",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "上",
+      "ttsText": "うえ"
+    },
+    {
+      "id": "r-4cd6e57d6f91",
+      "english": "Mail",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "郵",
+      "ttsText": "ゆう"
+    },
+    {
+      "id": "r-aa107f05b677",
+      "english": "Ten",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "十"
+    },
+    {
+      "id": "r-d3528545a173",
+      "english": "Thank; apologize",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "謝"
+    },
+    {
+      "id": "r-29d1ec4c5e0a",
+      "english": "Mail; convenience",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "便"
+    },
+    {
+      "id": "r-b096b3f5acd6",
+      "english": "High",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 21: Reading and Writing 7: Mary's Letter).",
+      "target": "高"
+    },
+    {
+      "id": "r-4912771a4216",
+      "english": "Person",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "人",
+      "ttsText": "ひと"
+    },
+    {
+      "id": "r-b0f7ac698c6a",
+      "english": "Office",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "局",
+      "ttsText": "きょく"
+    },
+    {
+      "id": "r-bb9589dafab6",
+      "english": "Emperor",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "皇"
+    },
+    {
+      "id": "r-8857ed6880cc",
+      "english": "Respect",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "敬"
+    },
+    {
+      "id": "r-3756d168052f",
+      "english": "Birth",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "誕",
+      "ttsText": "たん"
+    },
+    {
+      "id": "r-1d56b27a5e87",
+      "english": "Sentence",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 21: Reading and Writing 7: Mary's Letter).",
+      "target": "文"
+    },
+    {
+      "id": "r-5ed8c6157373",
+      "english": "Record",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "記"
+    },
+    {
+      "id": "r-7db1eeb5c374",
+      "english": "Seven",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "七"
+    },
+    {
+      "id": "r-3e450648252d",
+      "english": "Spring",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "春"
+    },
+    {
+      "id": "r-13d060362fff",
+      "english": "Thought; wish",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "念",
+      "ttsText": "ねん"
+    },
+    {
+      "id": "r-b72d6f67e831",
+      "english": "Town; city",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "町",
+      "ttsText": "まち"
+    },
+    {
+      "id": "r-189e4cb14073",
+      "english": "Feeling",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "感",
+      "ttsText": "かん"
+    },
+    {
+      "id": "r-2142fb62fd47",
+      "english": "Eight",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "八"
+    },
+    {
+      "id": "r-835872d37309",
+      "english": "Between",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "間",
+      "ttsText": "あいだ"
+    },
+    {
+      "id": "r-4b6e3ccb72b2",
+      "english": "Old age; grow old",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "老"
+    },
+    {
+      "id": "r-32cac33e2772",
+      "english": "Fish",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "魚",
+      "ttsText": "さかな"
+    },
+    {
+      "id": "r-67be11d8f056",
+      "english": "Law; method",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "法"
+    },
+    {
+      "id": "r-a1a8cfd1dec3",
+      "english": "After",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 23: Reading and Writing 9: Sora's Diary).",
+      "target": "後"
+    },
+    {
+      "id": "r-4f88740b3480",
+      "english": "Four",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "四"
+    },
+    {
+      "id": "r-93c323048753",
+      "english": "Next (to)",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "隣",
+      "ttsText": "となり"
+    },
+    {
+      "id": "r-3c1feb03c276",
+      "english": "Diligence; work",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "勤"
+    },
+    {
+      "id": "r-acb46ae1f7a6",
+      "english": "Building; mansion",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "館"
+    },
+    {
+      "id": "r-2eb8ebf6c33c",
+      "english": "Public; official",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "公"
+    },
+    {
+      "id": "r-c3304d1e49e3",
+      "english": "Heaven",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 19: Reading and Writing 5: Travel).",
+      "target": "天"
+    },
+    {
+      "id": "r-8f07f53d63e1",
+      "english": "Five",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "五"
+    },
+    {
+      "id": "r-0889c349726f",
+      "english": "Big",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 20: Reading and Writing 6: My Favorite Restaurant).",
+      "target": "大"
+    },
+    {
+      "id": "r-49ddb069d5b8",
+      "english": "Three",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
+      "target": "三"
+    },
+    {
+      "id": "r-8d8f4aeca850",
+      "english": "Autumn",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "秋"
+    },
+    {
+      "id": "r-1cf3b2f84e7f",
+      "english": "Company",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 21: Reading and Writing 7: Mary's Letter).",
+      "target": "社"
+    },
+    {
+      "id": "r-d3cc0cab9c63",
+      "english": "Book; basis",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 18: Reading and Writing 4: Mary's Weekend).",
+      "target": "本"
+    },
+    {
+      "id": "r-0869071c92c0",
+      "english": "Inside",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "中",
+      "ttsText": "なか"
+    },
+    {
+      "id": "r-234974a6f082",
+      "english": "Emperor's Birthday",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "天皇誕生日",
+      "ttsText": "てんのうたんじょうび"
+    },
+    {
+      "id": "r-9084c9644ea3",
+      "english": "Next year",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "来年",
+      "ttsText": "らいねん"
+    },
+    {
+      "id": "r-1108ea53f7ab",
+      "english": "Monday",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "月曜日",
+      "ttsText": "げつようび"
+    },
+    {
+      "id": "r-14aba5f426df",
+      "english": "March",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "三月",
+      "ttsText": "さんがつ"
+    },
+    {
+      "id": "r-2f65b7990cb3",
+      "english": "National Foundation Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "建国記念の日",
+      "ttsText": "けんこくきねんのひ"
+    },
+    {
+      "id": "r-9544988aaeed",
+      "english": "Tuesday",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "火曜日",
+      "ttsText": "かようび"
+    },
+    {
+      "id": "r-1fd586b4aaaa",
+      "english": "Last year",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "去年",
+      "ttsText": "きょねん"
+    },
+    {
+      "id": "r-6cc6046ae8ce",
+      "english": "Post office",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "郵便局",
+      "ttsText": "ゆうびんきょく"
+    },
+    {
+      "id": "r-dfd42b9c455a",
+      "english": "July",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "七月",
+      "ttsText": "しちがつ"
+    },
+    {
+      "id": "r-6a4d15efeb22",
+      "english": "This week",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "今週",
+      "ttsText": "こんしゅう"
+    },
+    {
+      "id": "r-cd2a4bdc0cd8",
+      "english": "February",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "二月",
+      "ttsText": "にがつ"
+    },
+    {
+      "id": "r-449a6d0bff1e",
+      "english": "Autumnal Equinox Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "秋分の日",
+      "ttsText": "しゅうぶんのひ"
+    },
+    {
+      "id": "r-a5c45c777df3",
+      "english": "This month",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "今月",
+      "ttsText": "こんげつ"
+    },
+    {
+      "id": "r-126ab88b70d3",
+      "english": "New Year's Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "元日",
+      "ttsText": "がんじつ"
+    },
+    {
+      "id": "r-dbc8c3de0ea5",
+      "english": "Library",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "図書館",
+      "ttsText": "としょかん"
+    },
+    {
+      "id": "r-2f2861a3faf4",
+      "english": "Rice; meal",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ご飯",
+      "ttsText": "ごはん"
+    },
+    {
+      "id": "r-e958b3d03f99",
+      "english": "Near; nearby",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "近く",
+      "ttsText": "ちかく"
+    },
+    {
+      "id": "r-80ef857bb384",
+      "english": "The year after next",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "再来年",
+      "ttsText": "さらいねん"
+    },
+    {
+      "id": "r-64df5a06852b",
+      "english": "To wait",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "待つ",
+      "ttsText": "まつ"
+    },
+    {
+      "id": "r-eb14185de29f",
+      "english": "Two weeks ago",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "二週間前",
+      "ttsText": "にしゅうかんまえ"
+    },
+    {
+      "id": "r-a6e9f6d97089",
+      "english": "Teacher",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "先生",
+      "ttsText": "せんせい"
+    },
+    {
+      "id": "r-03ce1d5613e8",
+      "english": "April",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "四月",
+      "ttsText": "しがつ"
+    },
+    {
+      "id": "r-a7fc025fa5fd",
+      "english": "Constitution Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "憲法記念日",
+      "ttsText": "けんぽうきねんび"
+    },
+    {
+      "id": "r-90236f3e4722",
+      "english": "Labor Thanksgiving Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "勤労感謝の日",
+      "ttsText": "きんろうかんしゃのひ"
+    },
+    {
+      "id": "r-0eae6c9a0cef",
+      "english": "Last month",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "先月",
+      "ttsText": "せんげつ"
+    },
+    {
+      "id": "r-8d75edae77c9",
+      "english": "Friday",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "金曜日",
+      "ttsText": "きんようび"
+    },
+    {
+      "id": "r-d978cbdef868",
+      "english": "Alone",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "一人で",
+      "ttsText": "ひとりで"
+    },
+    {
+      "id": "r-d48124a59f99",
+      "english": "Shopping",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "買い物",
+      "ttsText": "かいもの"
+    },
+    {
+      "id": "r-ae40cbb1165b",
+      "english": "Showa Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "昭和の日",
+      "ttsText": "しょうわのひ"
+    },
+    {
+      "id": "r-688b3553318a",
+      "english": "Two months ago",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "二か月前",
+      "ttsText": "にかげつまえ"
+    },
+    {
+      "id": "r-fb5b775c2d04",
+      "english": "Back",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "後ろ",
+      "ttsText": "うしろ"
+    },
+    {
+      "id": "r-291477e39388",
+      "english": "Bank",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "銀行",
+      "ttsText": "ぎんこう"
+    },
+    {
+      "id": "r-4ca073ac1d46",
+      "english": "Temple",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "お寺",
+      "ttsText": "おてら"
+    },
+    {
+      "id": "r-cc5da6b472aa",
+      "english": "Vernal Equinox Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "春分の日",
+      "ttsText": "しゅんぶんのひ"
+    },
+    {
+      "id": "r-d5712c61aadb",
+      "english": "September",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "九月",
+      "ttsText": "くがつ"
+    },
+    {
+      "id": "r-313fd5bb330e",
+      "english": "January",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "一月",
+      "ttsText": "いちがつ"
+    },
+    {
+      "id": "r-848921dea97e",
+      "english": "To meet; to see (a person)",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "会う",
+      "ttsText": "あう"
+    },
+    {
+      "id": "r-81f999071307",
+      "english": "Mountain Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "山の日",
+      "ttsText": "やまのひ"
+    },
+    {
+      "id": "r-11fb5d289abc",
+      "english": "Child",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "子供",
+      "ttsText": "こども"
+    },
+    {
+      "id": "r-9e2a449e4ede",
+      "english": "Next week",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "来週",
+      "ttsText": "らいしゅう"
+    },
+    {
+      "id": "r-8f3cddd57d47",
+      "english": "June",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "六月",
+      "ttsText": "ろくがつ"
+    },
+    {
+      "id": "r-5b17a0615359",
+      "english": "October",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "十月",
+      "ttsText": "じゅうがつ"
+    },
+    {
+      "id": "r-b69400c9c697",
+      "english": "Respect-for-the-Aged Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "敬老の日",
+      "ttsText": "けいろうのひ"
+    },
+    {
+      "id": "r-b43054fed828",
+      "english": "Yesterday",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "昨日",
+      "ttsText": "きのう"
+    },
+    {
+      "id": "r-66a936beb454",
+      "english": "Last week",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "先週",
+      "ttsText": "せんしゅう"
+    },
+    {
+      "id": "r-09558b2cc685",
+      "english": "...Hours (duration counter)",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "時間",
+      "ttsText": "じかん"
+    },
+    {
+      "id": "r-067256eb27a4",
+      "english": "Coming-of-Age Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "成人の日",
+      "ttsText": "せいじんのひ"
+    },
+    {
+      "id": "r-88048f03b55c",
+      "english": "President (of a company)",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "社長",
+      "ttsText": "しゃちょう"
+    },
+    {
+      "id": "r-10a2b84f0b48",
+      "english": "Bus stop",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "バス停",
+      "ttsText": "バスてい"
+    },
+    {
+      "id": "r-93e2b9f9f280",
+      "english": "May",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "五月",
+      "ttsText": "ごがつ"
+    },
+    {
+      "id": "r-384f3abedb37",
+      "english": "August",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "八月",
+      "ttsText": "はちがつ"
+    },
+    {
+      "id": "r-fe9ea3f07077",
+      "english": "This year",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "今年",
+      "ttsText": "ことし"
+    },
+    {
+      "id": "r-1c7fff2e2e56",
+      "english": "Park",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "公園",
+      "ttsText": "こうえん"
+    },
+    {
+      "id": "r-ef27a7ae8099",
+      "english": "High school",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "高校",
+      "ttsText": "こうこう"
+    },
+    {
+      "id": "r-5ae29a233ea9",
+      "english": "To write",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "書く",
+      "ttsText": "かく"
+    },
+    {
+      "id": "r-ced201920179",
+      "english": "Culture Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "文化の日",
+      "ttsText": "ぶんかのひ"
+    },
+    {
+      "id": "r-0513a0e7f2dc",
+      "english": "Hospital",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "病院",
+      "ttsText": "びょういん"
+    },
+    {
+      "id": "r-ab390a2f19d7",
+      "english": "Next month",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "来月",
+      "ttsText": "らいげつ"
+    },
+    {
+      "id": "r-dfef764f339a",
+      "english": "November",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "十一月",
+      "ttsText": "じゅういちがつ"
+    },
+    {
+      "id": "r-40ebd4ed4e1a",
+      "english": "Health and Sports Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "スポーツの日",
+      "ttsText": "スポーツのひ"
+    },
+    {
+      "id": "r-e24b6cefe131",
+      "english": "Marine Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "海の日",
+      "ttsText": "うみのひ"
+    },
+    {
+      "id": "r-47fd994684ae",
+      "english": "Wednesday",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "水曜日",
+      "ttsText": "すいようび"
+    },
+    {
+      "id": "r-3dcc92b12e28",
+      "english": "To buy",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "買う",
+      "ttsText": "かう"
+    },
+    {
+      "id": "r-1f4ae9397ec4",
+      "english": "Picture; photograph",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "写真",
+      "ttsText": "しゃしん"
+    },
+    {
+      "id": "r-cb9dbd281696",
+      "english": "The week after next",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "再来週",
+      "ttsText": "さらいしゅう"
+    },
+    {
+      "id": "r-d807e193c517",
+      "english": "Thursday",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "木曜日",
+      "ttsText": "もくようび"
+    },
+    {
+      "id": "r-0ce8b690e987",
+      "english": "One hour",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "一時間",
+      "ttsText": "いちじかん"
+    },
+    {
+      "id": "r-d4309788b65d",
+      "english": "Children's Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "こどもの日",
+      "ttsText": "こどものひ"
+    },
+    {
+      "id": "r-6e4b9d96022f",
+      "english": "Bookstore",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "本屋",
+      "ttsText": "ほんや"
+    },
+    {
+      "id": "r-47815236b797",
+      "english": "To take (a picture)",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "撮る",
+      "ttsText": "とる"
+    },
+    {
+      "id": "r-20f92467ec5e",
+      "english": "The month after next",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "再来月",
+      "ttsText": "さらいげつ"
+    },
+    {
+      "id": "r-858bb23650b9",
+      "english": "University; college",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "大学",
+      "ttsText": "だいがく"
+    },
+    {
+      "id": "r-e34f686d7b14",
+      "english": "Greenery Day",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "みどりの日",
+      "ttsText": "みどりのひ"
+    },
+    {
+      "id": "r-37b5ae5f0edd",
+      "english": "December",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "十二月",
+      "ttsText": "じゅうにがつ"
+    }
+  ]
+}

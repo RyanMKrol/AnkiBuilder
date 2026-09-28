@@ -1,0 +1,828 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 14,
+    "chapterLabel": "Chapter 14: Lesson 12: Feeling Sick",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-597f864e0cfe",
+      "english": "Element; plain",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "素"
+    },
+    {
+      "id": "r-54f657f4b094",
+      "english": "Sweet; pamper",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "甘"
+    },
+    {
+      "id": "r-e566be729dc0",
+      "english": "Pour; note",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "注"
+    },
+    {
+      "id": "r-f4a705a3076e",
+      "english": "Drip",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "滴"
+    },
+    {
+      "id": "r-7909db1e5702",
+      "english": "Shoot",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "射"
+    },
+    {
+      "id": "r-a7e7db18f410",
+      "english": "Woman; wife",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "婦",
+      "ttsText": "ふ"
+    },
+    {
+      "id": "r-847cd0556db7",
+      "english": "Thirst; dry up",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "渇"
+    },
+    {
+      "id": "r-b0af5773fc2c",
+      "english": "Enemy; opponent",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "敵"
+    },
+    {
+      "id": "r-b4f7dfceada1",
+      "english": "Govern; heal",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "治"
+    },
+    {
+      "id": "r-445ba2f95952",
+      "english": "Skin",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "皮"
+    },
+    {
+      "id": "r-b5a9258cf7d9",
+      "english": "Charge; fee",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "代",
+      "ttsText": "だい"
+    },
+    {
+      "id": "r-3048f1b030e7",
+      "english": "Symptoms; illness",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "症",
+      "ttsText": "しょう"
+    },
+    {
+      "id": "r-2a46684e2db2",
+      "english": "Skin",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "膚"
+    },
+    {
+      "id": "r-6be2ed78df56",
+      "english": "Arrange; tune",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "整"
+    },
+    {
+      "id": "r-08cc91b97f41",
+      "english": "Shape; style",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "形"
+    },
+    {
+      "id": "r-f9405a1d1ddb",
+      "english": "Achievement",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "績",
+      "ttsText": "せき"
+    },
+    {
+      "id": "r-5edd0b7ceac3",
+      "english": "He; boyfriend",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "彼",
+      "ttsText": "かれ"
+    },
+    {
+      "id": "r-6dcb656fb70d",
+      "english": "Stretch; tension",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "張"
+    },
+    {
+      "id": "r-01e3994b131c",
+      "english": "Insect",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "虫"
+    },
+    {
+      "id": "r-e040c580099d",
+      "english": "Egg",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "卵",
+      "ttsText": "たまご"
+    },
+    {
+      "id": "r-3a87592f0458",
+      "english": "Rash",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from a model, checked by a reviewer.",
+      "target": "疹",
+      "ttsText": "しん"
+    },
+    {
+      "id": "r-e90f0717e056",
+      "english": "Tense; urgent",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "緊",
+      "ttsText": "きん"
+    },
+    {
+      "id": "r-8dd8650eb135",
+      "english": "Resist; confront",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "抗",
+      "ttsText": "こう"
+    },
+    {
+      "id": "r-c937af97a948",
+      "english": "Politics; government",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "政"
+    },
+    {
+      "id": "r-2b9f47e8b9ac",
+      "english": "Vomit; spit",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "吐"
+    },
+    {
+      "id": "r-99e01cb784c0",
+      "english": "Wide; broad",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "広"
+    },
+    {
+      "id": "r-481e547b1aa5",
+      "english": "Heart; mind",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "心"
+    },
+    {
+      "id": "r-d37fc6a5eb9e",
+      "english": "Body; substance",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "体"
+    },
+    {
+      "id": "r-3c21c3743742",
+      "english": "Drunk; feel sick",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "酔"
+    },
+    {
+      "id": "r-9b1bab382ae1",
+      "english": "Secret; conceal",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "秘"
+    },
+    {
+      "id": "r-082c8103d522",
+      "english": "Diarrhea",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "痢",
+      "ttsText": "り"
+    },
+    {
+      "id": "r-71c41593121e",
+      "english": "Measure; plan",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "計"
+    },
+    {
+      "id": "r-1cb63f35c878",
+      "english": "Fit; join",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "合"
+    },
+    {
+      "id": "r-e1b0a6d60dce",
+      "english": "Narrow; cramped",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "狭"
+    },
+    {
+      "id": "r-b5140a9fc3b0",
+      "english": "Clothes",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "服",
+      "ttsText": "ふく"
+    },
+    {
+      "id": "r-cb34b4c7e2cf",
+      "english": "Bone; skeleton",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "骨"
+    },
+    {
+      "id": "r-febcf8875837",
+      "english": "Powder; flour",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "粉"
+    },
+    {
+      "id": "r-44ec158cf595",
+      "english": "Wicked; evil",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "邪",
+      "ttsText": "じゃ"
+    },
+    {
+      "id": "r-bf088e299c52",
+      "english": "Distribute; assign",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "配"
+    },
+    {
+      "id": "r-6d7aac9afc3e",
+      "english": "Break; fold",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "折"
+    },
+    {
+      "id": "r-009580fec7cc",
+      "english": "Pay; clear out",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "払"
+    },
+    {
+      "id": "r-61410653c6e9",
+      "english": "Use; business",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "用"
+    },
+    {
+      "id": "r-a195f1c0f6eb",
+      "english": "Family name; clan",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "氏"
+    },
+    {
+      "id": "r-335a309cd881",
+      "english": "Pain",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "痛"
+    },
+    {
+      "id": "r-451b1366afa6",
+      "english": "Many; much",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "多"
+    },
+    {
+      "id": "r-af8f4bc8e480",
+      "english": "Interest; excitement",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "興"
+    },
+    {
+      "id": "r-ce5036a003f8",
+      "english": "Probably; maybe",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "多分",
+      "ttsText": "たぶん"
+    },
+    {
+      "id": "r-59d1c0b26bc3",
+      "english": "Sweet",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "甘い",
+      "ttsText": "あまい"
+    },
+    {
+      "id": "r-f724cbe47c13",
+      "english": "Dermatologist",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "皮膚科",
+      "ttsText": "ひふか"
+    },
+    {
+      "id": "r-dcb12839608e",
+      "english": "To get nervous",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "緊張する",
+      "ttsText": "きんちょうする"
+    },
+    {
+      "id": "r-15efd4163ae0",
+      "english": "To become thirsty",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "のどが渇く",
+      "ttsText": "のどがかわく"
+    },
+    {
+      "id": "r-2a5b14d2199e",
+      "english": "Get well soon.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "お大事に",
+      "ttsText": "おだいじに"
+    },
+    {
+      "id": "r-3ad98be897c2",
+      "english": "Same",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "同じ",
+      "ttsText": "おなじ"
+    },
+    {
+      "id": "r-2f264cb99929",
+      "english": "I have a runny nose.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "鼻水が出ます",
+      "ttsText": "はなみずがでます"
+    },
+    {
+      "id": "r-8e8439de7b78",
+      "english": "Otorhinolaryngologist; ENT doctor",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "耳鼻科",
+      "ttsText": "じびか"
+    },
+    {
+      "id": "r-3cd79a71d7cc",
+      "english": "For two to three days",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "二三日",
+      "ttsText": "にさんにち"
+    },
+    {
+      "id": "r-c30fdab2a31b",
+      "english": "I have a bad tooth.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "虫歯があります",
+      "ttsText": "むしばがあります"
+    },
+    {
+      "id": "r-24fb3048655a",
+      "english": "To worry",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "心配する",
+      "ttsText": "しんぱいする"
+    },
+    {
+      "id": "r-6658327ea10c",
+      "english": "To pay",
+      "category": "Money",
+      "reviewNote": null,
+      "target": "払う",
+      "ttsText": "はらう"
+    },
+    {
+      "id": "r-81a4cd3110dd",
+      "english": "Hangover",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "二日酔い",
+      "ttsText": "ふつかよい"
+    },
+    {
+      "id": "r-73e6684ff80e",
+      "english": "Restroom",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "お手洗い",
+      "ttsText": "おてあらい"
+    },
+    {
+      "id": "r-3ff7e473d6ad",
+      "english": "I have hay fever.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "花粉症です",
+      "ttsText": "かふんしょうです"
+    },
+    {
+      "id": "r-6c36eb6f1079",
+      "english": "Narrow; not spacious",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "狭い",
+      "ttsText": "せまい"
+    },
+    {
+      "id": "r-4325ce7f3fa1",
+      "english": "She; girlfriend",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "彼女",
+      "ttsText": "かのじょ"
+    },
+    {
+      "id": "r-1f5337f35438",
+      "english": "Antibiotic",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "抗生物質",
+      "ttsText": "こうせいぶっしつ"
+    },
+    {
+      "id": "r-cac95c7e2427",
+      "english": "Ophthalmologist",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "目医者",
+      "ttsText": "めいしゃ"
+    },
+    {
+      "id": "r-8452479220e2",
+      "english": "To catch a cold",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "風邪をひく",
+      "ttsText": "かぜをひく"
+    },
+    {
+      "id": "r-ed6245923454",
+      "english": "I have rashes.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "発疹があります",
+      "ttsText": "はっしんがあります"
+    },
+    {
+      "id": "r-e9e796e9cb60",
+      "english": "Boyfriend",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "彼氏",
+      "ttsText": "かれし"
+    },
+    {
+      "id": "r-995e71c55ea8",
+      "english": "I have diarrhea.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "下痢です",
+      "ttsText": "げりです"
+    },
+    {
+      "id": "r-7e63ca48451d",
+      "english": "Cold",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "風邪",
+      "ttsText": "かぜ"
+    },
+    {
+      "id": "r-2af61ce13f3b",
+      "english": "I broke my leg.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "足を骨折しました",
+      "ttsText": "あしをこっせつしました"
+    },
+    {
+      "id": "r-4c3076304aa5",
+      "english": "Train ticket",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "切符",
+      "ttsText": "きっぷ"
+    },
+    {
+      "id": "r-35ada1cd7e4a",
+      "english": "Bad",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "悪い",
+      "ttsText": "わるい"
+    },
+    {
+      "id": "r-d16365206263",
+      "english": "To have a fever",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "熱がある",
+      "ttsText": "ねつがある"
+    },
+    {
+      "id": "r-14a64db61704",
+      "english": "Wide; spacious",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "広い",
+      "ttsText": "ひろい"
+    },
+    {
+      "id": "r-42292b86f2bd",
+      "english": "My back itches.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "背中がかゆいです",
+      "ttsText": "せなかがかゆいです"
+    },
+    {
+      "id": "r-7878d7a46305",
+      "english": "Dentist",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "歯科",
+      "ttsText": "しか"
+    },
+    {
+      "id": "r-ece95cb02633",
+      "english": "Surgeon",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "外科",
+      "ttsText": "げか"
+    },
+    {
+      "id": "r-d201c2674781",
+      "english": "I am not feeling well.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "気分が悪いです",
+      "ttsText": "きぶんがわるいです"
+    },
+    {
+      "id": "r-c6512529b527",
+      "english": "Ophthalmologist",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "眼科",
+      "ttsText": "がんか"
+    },
+    {
+      "id": "r-0ab9b459d777",
+      "english": "Dentist",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "歯医者",
+      "ttsText": "はいしゃ"
+    },
+    {
+      "id": "r-794e66405c00",
+      "english": "Injection",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "注射",
+      "ttsText": "ちゅうしゃ"
+    },
+    {
+      "id": "r-552df3d1c1e6",
+      "english": "Thermometer",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "体温計",
+      "ttsText": "たいおんけい"
+    },
+    {
+      "id": "r-d3df969e0182",
+      "english": "Orthopedic surgeon",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "整形外科",
+      "ttsText": "せいけいげか"
+    },
+    {
+      "id": "r-b65af422f02e",
+      "english": "Grade (on a test, etc.)",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "成績",
+      "ttsText": "せいせき"
+    },
+    {
+      "id": "r-2d7d31a9ab4e",
+      "english": "Hurt; painful",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "痛い",
+      "ttsText": "いたい"
+    },
+    {
+      "id": "r-c66adf2f3e42",
+      "english": "Don't look well",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "元気がない",
+      "ttsText": "げんきがない"
+    },
+    {
+      "id": "r-43c9111e5850",
+      "english": "I have my period.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "生理です",
+      "ttsText": "せいりです"
+    },
+    {
+      "id": "r-c37db7770bf4",
+      "english": "I sneeze.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "くしゃみが出ます",
+      "ttsText": "くしゃみがでます"
+    },
+    {
+      "id": "r-b39534ea66b8",
+      "english": "I am constipated.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "便秘です",
+      "ttsText": "べんぴです"
+    },
+    {
+      "id": "r-dd99adc12245",
+      "english": "There are many . . .",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "多い",
+      "ttsText": "おおい"
+    },
+    {
+      "id": "r-868fe3661f86",
+      "english": "To break up; to separate",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "別れる",
+      "ttsText": "わかれる"
+    },
+    {
+      "id": "r-745c0fb47b71",
+      "english": "Politics",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "政治",
+      "ttsText": "せいじ"
+    },
+    {
+      "id": "r-661cf28cf5e9",
+      "english": "To walk",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "歩く",
+      "ttsText": "あるく"
+    },
+    {
+      "id": "r-4c7ca63dd754",
+      "english": "Obstetrician and gynecologist",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "産婦人科",
+      "ttsText": "さんふじんか"
+    },
+    {
+      "id": "r-fda91aa10957",
+      "english": "I threw up.",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "吐きました",
+      "ttsText": "はきました"
+    },
+    {
+      "id": "r-003253e63d95",
+      "english": "Physician",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "内科",
+      "ttsText": "ないか"
+    },
+    {
+      "id": "r-073a2e416053",
+      "english": "Nice",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "素敵",
+      "ttsText": "すてき"
+    },
+    {
+      "id": "r-5b63db252c32",
+      "english": "For the first time",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "初めて",
+      "ttsText": "はじめて"
+    },
+    {
+      "id": "r-5b1bee013d17",
+      "english": "Intravenous feeding",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "点滴",
+      "ttsText": "てんてき"
+    },
+    {
+      "id": "r-abd2848ba629",
+      "english": "Operation",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "手術",
+      "ttsText": "しゅじゅつ"
+    },
+    {
+      "id": "r-617bc4260422",
+      "english": "To be interested (in . . .)",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "興味がある",
+      "ttsText": "きょうみがある"
+    },
+    {
+      "id": "r-3573405f6923",
+      "english": "Match; game",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "試合",
+      "ttsText": "しあい"
+    },
+    {
+      "id": "r-869d838f4f7a",
+      "english": "Business to take care of",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "用事",
+      "ttsText": "ようじ"
+    },
+    {
+      "id": "r-c1ecf95a1931",
+      "english": "To cough",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "せきが出る",
+      "ttsText": "せきがでる"
+    }
+  ]
+}

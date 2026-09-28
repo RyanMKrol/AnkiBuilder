@@ -1,0 +1,884 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 12,
+    "chapterLabel": "Chapter 12: Lesson 10: Winter Vacation Plans",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-8f603fb51d3b",
+      "english": "One-sided; piece",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "片"
+    },
+    {
+      "id": "r-67426806bc74",
+      "english": "Doctor; medicine",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "医",
+      "ttsText": "い"
+    },
+    {
+      "id": "r-9caa20ceec2a",
+      "english": "Ticket",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "券",
+      "ttsText": "けん"
+    },
+    {
+      "id": "r-dc81f782a7d3",
+      "english": "To sell",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 24: Reading and Writing 10: The Folktale Kasajizo).",
+      "target": "売"
+    },
+    {
+      "id": "r-e2fc60d070bd",
+      "english": "Cold",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "冷"
+    },
+    {
+      "id": "r-4c1b53c00598",
+      "english": "Tag; paper money",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "札"
+    },
+    {
+      "id": "r-d788044e1425",
+      "english": "Warm",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "暖"
+    },
+    {
+      "id": "r-f3915f740341",
+      "english": "Line; track",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "線",
+      "ttsText": "せん"
+    },
+    {
+      "id": "r-5b8938b72f28",
+      "english": "World; generation",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "世"
+    },
+    {
+      "id": "r-19aab030c498",
+      "english": "Tree trunk; main part",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "幹"
+    },
+    {
+      "id": "r-f2af96b8678b",
+      "english": "Ball; sphere",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "球"
+    },
+    {
+      "id": "r-6c2f88bb192a",
+      "english": "General",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "普",
+      "ttsText": "ふ"
+    },
+    {
+      "id": "r-968a0d2546fb",
+      "english": "Exchange",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "換"
+    },
+    {
+      "id": "r-6b4995b2f0e5",
+      "english": "Refreshing; nice and cool",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "涼"
+    },
+    {
+      "id": "r-2e9c5afd29ff",
+      "english": "Direction; person",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "方"
+    },
+    {
+      "id": "r-09744c790dd7",
+      "english": "Lineage; system",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "系",
+      "ttsText": "けい"
+    },
+    {
+      "id": "r-5a492160842b",
+      "english": "World; boundary",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "界",
+      "ttsText": "かい"
+    },
+    {
+      "id": "r-b02e272d6419",
+      "english": "Simplicity",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "簡",
+      "ttsText": "かん"
+    },
+    {
+      "id": "r-51aaecf8f717",
+      "english": "Iron",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "鉄",
+      "ttsText": "てつ"
+    },
+    {
+      "id": "r-7e8316a30537",
+      "english": "Looks; form",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "容",
+      "ttsText": "よう"
+    },
+    {
+      "id": "r-3efe154f716d",
+      "english": "Storey; stairs",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "階",
+      "ttsText": "かい"
+    },
+    {
+      "id": "r-ec5f480140ae",
+      "english": "Stay overnight",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "泊"
+    },
+    {
+      "id": "r-bef21932fe01",
+      "english": "Pass through; traffic",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "通"
+    },
+    {
+      "id": "r-88583a5ba07c",
+      "english": "Beauty; beautiful",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "美"
+    },
+    {
+      "id": "r-cf03c2f52bc7",
+      "english": "Go; journey",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "往",
+      "ttsText": "おう"
+    },
+    {
+      "id": "r-c3af606ceb70",
+      "english": "Milk",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "乳"
+    },
+    {
+      "id": "r-2714e3424639",
+      "english": "Machine; mechanism",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "機"
+    },
+    {
+      "id": "r-c8c0555ddcbb",
+      "english": "Self",
+      "category": "Other",
+      "reviewNote": "Meaning and readings from the book (Chapter 24: Reading and Writing 10: The Folktale Kasajizo).",
+      "target": "自"
+    },
+    {
+      "id": "r-72eccbb49952",
+      "english": "Token",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "符",
+      "ttsText": "ふ"
+    },
+    {
+      "id": "r-cec011ae2e9a",
+      "english": "Promise; approximately",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "約",
+      "ttsText": "やく"
+    },
+    {
+      "id": "r-5c0dfdc8ee1d",
+      "english": "Seat",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "席",
+      "ttsText": "せき"
+    },
+    {
+      "id": "r-edb84a4b9c87",
+      "english": "Place",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "場"
+    },
+    {
+      "id": "r-1ac45e90829b",
+      "english": "Season; period",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "節"
+    },
+    {
+      "id": "r-f3a8bf38bbe3",
+      "english": "Sleepy; sleep",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "眠"
+    },
+    {
+      "id": "r-f3e7a5b215b1",
+      "english": "Life; living",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "活"
+    },
+    {
+      "id": "r-7b40fc240cbe",
+      "english": "Return; restore",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "復",
+      "ttsText": "ふく"
+    },
+    {
+      "id": "r-798f95db5d31",
+      "english": "Reform; change",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "改"
+    },
+    {
+      "id": "r-20d7a24045bb",
+      "english": "Special",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "特",
+      "ttsText": "とく"
+    },
+    {
+      "id": "r-a9539ed7e679",
+      "english": "Person",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "者"
+    },
+    {
+      "id": "r-eb184a32b2d0",
+      "english": "Field; plains",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "野"
+    },
+    {
+      "id": "r-02723b20065d",
+      "english": "Proportion; divide",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "割"
+    },
+    {
+      "id": "r-22df192e24c1",
+      "english": "Shop",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "店"
+    },
+    {
+      "id": "r-2b86dd4507bc",
+      "english": "Reason",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "由"
+    },
+    {
+      "id": "r-9cedb8bebca1",
+      "english": "Fly",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "飛"
+    },
+    {
+      "id": "r-f2bdc852b966",
+      "english": "Seasons",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "季",
+      "ttsText": "き"
+    },
+    {
+      "id": "r-2eaf3458232b",
+      "english": "Ship; boat",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "船",
+      "ttsText": "ふね"
+    },
+    {
+      "id": "r-91e7dd6558a6",
+      "english": "Learn",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "習"
+    },
+    {
+      "id": "r-3f917904f97a",
+      "english": "Determine; fix",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "定"
+    },
+    {
+      "id": "r-47b57ae549dc",
+      "english": "Turn; number in a series",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "番",
+      "ttsText": "ばん"
+    },
+    {
+      "id": "r-c865b5b0bc00",
+      "english": "Steps; grade",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "段",
+      "ttsText": "だん"
+    },
+    {
+      "id": "r-3a1cf3c3de1e",
+      "english": "Decide; fix",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "決"
+    },
+    {
+      "id": "r-e409f96ac106",
+      "english": "Practice; train",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "練"
+    },
+    {
+      "id": "r-a884a1e1e6b1",
+      "english": "Departure; publish",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "発"
+    },
+    {
+      "id": "r-422e637005cc",
+      "english": "Mingle; association",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "交"
+    },
+    {
+      "id": "r-e70b5299d05d",
+      "english": "Station",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "駅",
+      "ttsText": "えき"
+    },
+    {
+      "id": "r-8e1145478aed",
+      "english": "Life; living",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "生活",
+      "ttsText": "せいかつ"
+    },
+    {
+      "id": "r-3ad78db16e5a",
+      "english": "Gloves",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "手袋",
+      "ttsText": "てぶくろ"
+    },
+    {
+      "id": "r-801d88a9ebfa",
+      "english": "Stairs",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "階段",
+      "ttsText": "かいだん"
+    },
+    {
+      "id": "r-c344910a8f57",
+      "english": "Car No. 1",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "一号車",
+      "ttsText": "いちごうしゃ"
+    },
+    {
+      "id": "r-b98148951f3d",
+      "english": "To decide",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "決める",
+      "ttsText": "きめる"
+    },
+    {
+      "id": "r-7525e358b791",
+      "english": "(Boarding) ticket",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "乗車券",
+      "ttsText": "じょうしゃけん"
+    },
+    {
+      "id": "r-5183903f3825",
+      "english": "(Do something) early; fast",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "早く",
+      "ttsText": "はやく"
+    },
+    {
+      "id": "r-e183430c05b6",
+      "english": "Reservation",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "予約",
+      "ttsText": "よやく"
+    },
+    {
+      "id": "r-8af73add8ab5",
+      "english": "Beauty parlor",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "美容院",
+      "ttsText": "びよういん"
+    },
+    {
+      "id": "r-7cda072d452b",
+      "english": "Local",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "普通",
+      "ttsText": "ふつう"
+    },
+    {
+      "id": "r-5bc2516ad13b",
+      "english": "Best",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "一番",
+      "ttsText": "いちばん"
+    },
+    {
+      "id": "r-7b72e1d41a0c",
+      "english": "Subway",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "地下鉄",
+      "ttsText": "ちかてつ"
+    },
+    {
+      "id": "r-08c75256e151",
+      "english": "Easy; simple",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "簡単",
+      "ttsText": "かんたん"
+    },
+    {
+      "id": "r-ffea659b17ae",
+      "english": "Commuter's pass",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "定期券",
+      "ttsText": "ていきけん"
+    },
+    {
+      "id": "r-1e75a5247f10",
+      "english": "To stay (at a hotel, etc.)",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "泊まる",
+      "ttsText": "とまる"
+    },
+    {
+      "id": "r-185303b1d9f2",
+      "english": "To practice",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "練習する",
+      "ttsText": "れんしゅうする"
+    },
+    {
+      "id": "r-954df4424486",
+      "english": "Express",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "急行",
+      "ttsText": "きゅうこう"
+    },
+    {
+      "id": "r-cb365f543bc8",
+      "english": "Shop; stand",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "売店",
+      "ttsText": "ばいてん"
+    },
+    {
+      "id": "r-05589a4f72fb",
+      "english": "Baseball",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "野球",
+      "ttsText": "やきゅう"
+    },
+    {
+      "id": "r-b6632397faca",
+      "english": "Reserved seat",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "指定席",
+      "ttsText": "していせき"
+    },
+    {
+      "id": "r-e31c661ec472",
+      "english": "Student discount",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "学割",
+      "ttsText": "がくわり"
+    },
+    {
+      "id": "r-c64f974fa90b",
+      "english": "Serving . . . areas",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "方面",
+      "ttsText": "ほうめん"
+    },
+    {
+      "id": "r-52b0708545e4",
+      "english": "General admission seat",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "自由席",
+      "ttsText": "じゆうせき"
+    },
+    {
+      "id": "r-c3424b7dff7c",
+      "english": "Last train",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "終電",
+      "ttsText": "しゅうでん"
+    },
+    {
+      "id": "r-c27f2bb41a12",
+      "english": "Shinkansen; \"Bullet Train\"",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "新幹線",
+      "ttsText": "しんかんせん"
+    },
+    {
+      "id": "r-19b9994d115e",
+      "english": "Cool (weather)",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "涼しい",
+      "ttsText": "すずしい"
+    },
+    {
+      "id": "r-76c5d9145145",
+      "english": "Next (stop), . . .",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "次は",
+      "ttsText": "つぎは"
+    },
+    {
+      "id": "r-e389584bbdad",
+      "english": "(Do something) early; fast",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "速く",
+      "ttsText": "はやく"
+    },
+    {
+      "id": "r-27bf621d4b71",
+      "english": "Airplane",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "飛行機",
+      "ttsText": "ひこうき"
+    },
+    {
+      "id": "r-e07e75baa71b",
+      "english": "Rechargeable card such as Suica, Icoca, Pasmo, etc.",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "交通系ICカード",
+      "ttsText": "こうつうけいアイシーカード"
+    },
+    {
+      "id": "r-a63df47d88c3",
+      "english": "Gate",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "改札",
+      "ttsText": "かいさつ"
+    },
+    {
+      "id": "r-eec9a060f61c",
+      "english": "Departing second",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "次発",
+      "ttsText": "じはつ"
+    },
+    {
+      "id": "r-f2d556c645f7",
+      "english": "Rich person",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "お金持ち",
+      "ttsText": "おかねもち"
+    },
+    {
+      "id": "r-455ec8daabaa",
+      "english": "Transfer",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "乗り換え",
+      "ttsText": "のりかえ"
+    },
+    {
+      "id": "r-efa430d2ee11",
+      "english": "Departing first",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "先発",
+      "ttsText": "せんぱつ"
+    },
+    {
+      "id": "r-7ca448e7caf2",
+      "english": "Tempura",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "天ぷら",
+      "ttsText": "てんぷら"
+    },
+    {
+      "id": "r-3729c4603ebb",
+      "english": "One way",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "片道",
+      "ttsText": "かたみち"
+    },
+    {
+      "id": "r-856d5830b52b",
+      "english": "Track number . . .",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "番線",
+      "ttsText": "ばんせん"
+    },
+    {
+      "id": "r-ae5d2000edcb",
+      "english": "For ... weeks",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "週間",
+      "ttsText": "しゅうかん"
+    },
+    {
+      "id": "r-dd877ebcea7c",
+      "english": "Exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "出口",
+      "ttsText": "でぐち"
+    },
+    {
+      "id": "r-e546e7d633e6",
+      "english": "Cold (things; people)",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "冷たい",
+      "ttsText": "つめたい"
+    },
+    {
+      "id": "r-cf1656101ed5",
+      "english": "World",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "世界",
+      "ttsText": "せかい"
+    },
+    {
+      "id": "r-f1e99579ea18",
+      "english": "Zoo",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "動物園",
+      "ttsText": "どうぶつえん"
+    },
+    {
+      "id": "r-cd91af5d05a4",
+      "english": "Bound for . . .",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "行き",
+      "ttsText": "いき"
+    },
+    {
+      "id": "r-889cde6bf4a6",
+      "english": "To travel",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "旅行する",
+      "ttsText": "りょこうする"
+    },
+    {
+      "id": "r-a1c9474ff9d2",
+      "english": "Round trip",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "往復",
+      "ttsText": "おうふく"
+    },
+    {
+      "id": "r-b5636efa5513",
+      "english": "Season",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "季節",
+      "ttsText": "きせつ"
+    },
+    {
+      "id": "r-41ee2cdcc1a8",
+      "english": "Celebrity",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "有名人",
+      "ttsText": "ゆうめいじん"
+    },
+    {
+      "id": "r-48748de4ab55",
+      "english": "On foot",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "歩いて",
+      "ttsText": "あるいて"
+    },
+    {
+      "id": "r-c141850f9e8a",
+      "english": "Warm",
+      "category": "Weather & Nature",
+      "reviewNote": null,
+      "target": "暖かい",
+      "ttsText": "あたたかい"
+    },
+    {
+      "id": "r-4c80d67f1adb",
+      "english": "Super express",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "特急",
+      "ttsText": "とっきゅう"
+    },
+    {
+      "id": "r-14b95d6b2df0",
+      "english": "Ticket vending area",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "切符売り場",
+      "ttsText": "きっぷうりば"
+    },
+    {
+      "id": "r-cfb25a13c72a",
+      "english": "Doctor",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "医者",
+      "ttsText": "いしゃ"
+    },
+    {
+      "id": "r-9c0ce029cd58",
+      "english": "Sleepy",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "眠い",
+      "ttsText": "ねむい"
+    },
+    {
+      "id": "r-5c8d7a349fdf",
+      "english": "Someone older",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "年上",
+      "ttsText": "としうえ"
+    },
+    {
+      "id": "r-370f0655dc10",
+      "english": "For ... months",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "か月",
+      "ttsText": "かげつ"
+    },
+    {
+      "id": "r-ce72cd6b4eb0",
+      "english": "Milk",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "牛乳",
+      "ttsText": "ぎゅうにゅう"
+    },
+    {
+      "id": "r-38e9cd1ffb95",
+      "english": "Entrance",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "入口",
+      "ttsText": "いりぐち"
+    }
+  ]
+}

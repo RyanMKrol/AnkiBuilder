@@ -1,0 +1,300 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 19,
+    "chapterLabel": "Chapter 19: Reading and Writing 5: Travel",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-6dc93688a090",
+      "target": "性",
+      "english": "Sex; gender",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-b27790d8cdf7",
+      "target": "才",
+      "english": "Genius; years old",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-4bbe59fd177f",
+      "target": "私",
+      "english": "I",
+      "category": "Grammar & Function Words",
+      "ttsText": "わたし",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-2380e6711d81",
+      "target": "田",
+      "english": "Rice field",
+      "category": "Other",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-c636cb0ec37e",
+      "target": "朝食",
+      "english": "Breakfast",
+      "category": "Food",
+      "ttsText": "ちょうしょく",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-3661936c6a0e",
+      "target": "天皇",
+      "english": "The Japanese emperor",
+      "category": "Other",
+      "ttsText": "てんのう",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-31825d8efb50",
+      "target": "では、お元気で",
+      "english": "Take care.",
+      "category": "Greetings",
+      "sourceOrder": 6,
+      "ttsText": "では、おげんきで"
+    },
+    {
+      "id": "r-cbabb6f53e1c",
+      "target": "四日",
+      "english": "The 4th (day of the month)",
+      "category": "Time",
+      "ttsText": "よっか",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-e36f6e40c271",
+      "target": "八日",
+      "english": "The 8th (day of the month)",
+      "category": "Time",
+      "ttsText": "ようか",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-74cb49a695f9",
+      "target": "二日",
+      "english": "The 2nd (day of the month)",
+      "category": "Time",
+      "ttsText": "ふつか",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-cc0e264cde77",
+      "target": "二十日",
+      "english": "The 20th (day of the month)",
+      "category": "Time",
+      "ttsText": "はつか",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-e6a89109e8de",
+      "target": "私立大学",
+      "english": "Private university",
+      "category": "School & Education",
+      "ttsText": "しりつだいがく",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-badb68839336",
+      "target": "飲酒運転",
+      "english": "Drunken driving",
+      "category": "Transport",
+      "ttsText": "いんしゅうんてん",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-af3d8055a60d",
+      "target": "長女",
+      "english": "The eldest daughter",
+      "category": "Family & People",
+      "ttsText": "ちょうじょ",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-54fcfd2d8342",
+      "target": "花見",
+      "english": "Flower viewing",
+      "category": "Travel & Tourism",
+      "ttsText": "はなみ",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-9d42d77d2761",
+      "target": "十日",
+      "english": "The 10th (day of the month)",
+      "category": "Time",
+      "ttsText": "とおか",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-8f97fb7a6fdd",
+      "target": "九日",
+      "english": "The 9th (day of the month)",
+      "category": "Time",
+      "ttsText": "ここのか",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-7f81accd1768",
+      "target": "地元",
+      "english": "Local",
+      "category": "Other",
+      "ttsText": "じもと",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-2fa75ea7bb73",
+      "target": "七日",
+      "english": "The 7th (day of the month)",
+      "category": "Time",
+      "ttsText": "なのか",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-c2a9c36ead2b",
+      "target": "六日",
+      "english": "The 6th (day of the month)",
+      "category": "Time",
+      "ttsText": "むいか",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-d193f69c03f5",
+      "target": "一日",
+      "english": "The 1st (day of the month)",
+      "category": "Time",
+      "ttsText": "ついたち",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-cdf4fcfd03ee",
+      "target": "気持ち",
+      "english": "Feeling",
+      "category": "Emotions & Feelings",
+      "ttsText": "きもち",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-54c6b07d9925",
+      "target": "見物",
+      "english": "Sightseeing",
+      "category": "Travel & Tourism",
+      "ttsText": "けんぶつ",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-f0ddd1ecf81f",
+      "target": "食事",
+      "english": "Meal",
+      "category": "Food",
+      "ttsText": "しょくじ",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-5641878c4e47",
+      "target": "男の子",
+      "english": "Boy",
+      "category": "Family & People",
+      "ttsText": "おとこのこ",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-c66e98ce0735",
+      "target": "男性",
+      "english": "Man",
+      "category": "Family & People",
+      "ttsText": "だんせい",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-98ef09539013",
+      "target": "女性",
+      "english": "Woman",
+      "category": "Family & People",
+      "ttsText": "じょせい",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-0941526f94fe",
+      "target": "田んぼ",
+      "english": "Rice field",
+      "category": "Other",
+      "ttsText": "たんぼ",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-aae0a78fb060",
+      "target": "天才",
+      "english": "Genius",
+      "category": "Descriptions & Qualities",
+      "ttsText": "てんさい",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-a18d39bb05c6",
+      "target": "意見",
+      "english": "Opinion",
+      "category": "Other",
+      "ttsText": "いけん",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-88219c1f683d",
+      "target": "一行目",
+      "english": "First line",
+      "category": "Other",
+      "ttsText": "いちぎょうめ",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-8c824404672f",
+      "target": "人気",
+      "english": "Popularity",
+      "category": "Descriptions & Qualities",
+      "ttsText": "にんき",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-e7df6ab36b66",
+      "target": "天国",
+      "english": "Heaven; paradise",
+      "category": "Other",
+      "ttsText": "てんごく",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-4d8bd4638922",
+      "target": "男子学生",
+      "english": "Male student",
+      "category": "School & Education",
+      "ttsText": "だんしがくせい",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-64c62dc21287",
+      "target": "女の子",
+      "english": "Girl",
+      "category": "Family & People",
+      "ttsText": "おんなのこ",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-bfd90f8265e5",
+      "target": "五日",
+      "english": "The 5th (day of the month)",
+      "category": "Time",
+      "ttsText": "いつか",
+      "sourceOrder": 35
+    }
+  ]
+}

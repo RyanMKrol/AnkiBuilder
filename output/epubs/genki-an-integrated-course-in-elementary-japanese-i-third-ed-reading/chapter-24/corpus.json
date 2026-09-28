@@ -1,0 +1,468 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 25,
+    "chapterLabel": "Chapter 25: Reading and Writing 11: Looking for Friends/Members",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-1bd6856faf78",
+      "target": "募",
+      "english": "Recruit; gather",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-a81c2ab80e37",
+      "target": "力",
+      "english": "Power; strength",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-dda4f85fa0dc",
+      "target": "台",
+      "english": "Platform; counter for vehicles and machines",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-c3e4e0f1ed02",
+      "target": "役",
+      "english": "Duty; role",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-6a954390e365",
+      "target": "表",
+      "english": "Surface; table",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-effdb4ba2286",
+      "target": "説",
+      "english": "Explanation; theory",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-7c130d80b872",
+      "target": "市",
+      "english": "City",
+      "category": "Directions",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-00b6cd9d86ef",
+      "target": "盗",
+      "english": "Steal; thief",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-2e5f0bf2c0a7",
+      "target": "集",
+      "english": "Gather; collect",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-3c9abaf959cc",
+      "target": "平",
+      "english": "Flat; ordinary",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-3be8888544d5",
+      "target": "重",
+      "english": "Heavy; important",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-77a0c88d4eac",
+      "target": "詞",
+      "english": "Lyrics; words",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-4479972b323b",
+      "target": "有能な",
+      "english": "Talented",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ゆうのうな",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-cfa298cca1c7",
+      "target": "台所",
+      "english": "Kitchen",
+      "category": "Home & Household",
+      "ttsText": "だいどころ",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-e5752ab6e0ad",
+      "target": "強力な",
+      "english": "Powerful",
+      "category": "Descriptions & Qualities",
+      "ttsText": "きょうりょくな",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-357510f9ae8e",
+      "target": "強情な",
+      "english": "Obstinate",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ごうじょうな",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-126b28a8a496",
+      "target": "中近東",
+      "english": "The Middle and Near East",
+      "category": "Nationalities & Countries",
+      "ttsText": "ちゅうきんとう",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-1321ad107778",
+      "target": "折り紙",
+      "english": "Origami",
+      "category": "Sports & Hobbies",
+      "ttsText": "おりがみ",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-7b24795e07de",
+      "target": "旅館",
+      "english": "Japanese inn",
+      "category": "Travel & Tourism",
+      "ttsText": "りょかん",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-8c73d90eca7a",
+      "target": "最近",
+      "english": "Recently",
+      "category": "Time",
+      "ttsText": "さいきん",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-156efeaf0de7",
+      "target": "有る",
+      "english": "To exist",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ある",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-6ba1103a4d96",
+      "target": "勤勉な",
+      "english": "Diligent",
+      "category": "Descriptions & Qualities",
+      "ttsText": "きんべんな",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-86cedb580d42",
+      "target": "重病",
+      "english": "Serious illness",
+      "category": "Body & Health",
+      "ttsText": "じゅうびょう",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-fad1cf991e96",
+      "target": "好み",
+      "english": "Liking; taste",
+      "category": "Emotions & Feelings",
+      "ttsText": "このみ",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-3047de7cf468",
+      "target": "手話",
+      "english": "Sign language",
+      "category": "Technology & Communication",
+      "ttsText": "しゅわ",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-b847fad44608",
+      "target": "市長",
+      "english": "Mayor",
+      "category": "Work & Occupations",
+      "ttsText": "しちょう",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-3be8223c6e7e",
+      "target": "映る",
+      "english": "To be reflected",
+      "category": "Descriptions & Qualities",
+      "ttsText": "うつる",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-787d9ce94632",
+      "target": "表紙",
+      "english": "Cover page",
+      "category": "Everyday Objects",
+      "ttsText": "ひょうし",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-7d4d0e9f2526",
+      "target": "旅券",
+      "english": "Passport",
+      "category": "Travel & Tourism",
+      "ttsText": "りょけん",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-1d695378fc6d",
+      "target": "画家",
+      "english": "Painter",
+      "category": "Work & Occupations",
+      "ttsText": "がか",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-06e5dd7fdccc",
+      "target": "一人旅",
+      "english": "Traveling alone",
+      "category": "Travel & Tourism",
+      "ttsText": "ひとりたび",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-70ee6ceb8dfd",
+      "target": "映画館",
+      "english": "Movie theater",
+      "category": "Sports & Hobbies",
+      "ttsText": "えいがかん",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-0cd3b762fd7f",
+      "target": "和紙",
+      "english": "Japanese paper",
+      "category": "Everyday Objects",
+      "ttsText": "わし",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-97ae3bbb12d4",
+      "target": "好物",
+      "english": "Favorite food",
+      "category": "Food",
+      "ttsText": "こうぶつ",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-e0400e9328ef",
+      "target": "平日",
+      "english": "Weekday",
+      "category": "Time",
+      "ttsText": "へいじつ",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-6225cb1c6348",
+      "target": "勉める",
+      "english": "To try hard",
+      "category": "Descriptions & Qualities",
+      "ttsText": "つとめる",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-302a420e86ca",
+      "target": "募集",
+      "english": "Looking for . . .",
+      "category": "Work & Occupations",
+      "ttsText": "ぼしゅう",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-6a0b30d36103",
+      "target": "漫画",
+      "english": "Comic",
+      "category": "Sports & Hobbies",
+      "ttsText": "まんが",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-452a5f73629e",
+      "target": "好意",
+      "english": "Goodwill",
+      "category": "Emotions & Feelings",
+      "ttsText": "こうい",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-b26ab813edca",
+      "target": "市場",
+      "english": "Market",
+      "category": "Shopping",
+      "ttsText": "いちば",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-6738aea79c67",
+      "target": "近所",
+      "english": "Neighborhood",
+      "category": "Home & Household",
+      "ttsText": "きんじょ",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-c7f7a9b8af7b",
+      "target": "強盗",
+      "english": "Robbery",
+      "category": "Emergencies",
+      "ttsText": "ごうとう",
+      "sourceOrder": 41
+    },
+    {
+      "id": "r-6ef064b3bbf1",
+      "target": "計画",
+      "english": "Plan",
+      "category": "Other",
+      "ttsText": "けいかく",
+      "sourceOrder": 42
+    },
+    {
+      "id": "r-ecd446b0965c",
+      "target": "文明",
+      "english": "Civilization",
+      "category": "Other",
+      "ttsText": "ぶんめい",
+      "sourceOrder": 43
+    },
+    {
+      "id": "r-fb865ee8d381",
+      "target": "お返事",
+      "english": "Reply",
+      "category": "Technology & Communication",
+      "ttsText": "おへんじ",
+      "sourceOrder": 44
+    },
+    {
+      "id": "r-e23be5a37aa0",
+      "target": "有料",
+      "english": "Toll; fee",
+      "category": "Money",
+      "ttsText": "ゆうりょう",
+      "sourceOrder": 45
+    },
+    {
+      "id": "r-d3ef43dfd5a8",
+      "target": "発明",
+      "english": "Invention",
+      "category": "Technology & Communication",
+      "ttsText": "はつめい",
+      "sourceOrder": 46
+    },
+    {
+      "id": "r-fcbb1f211c11",
+      "target": "明るい",
+      "english": "Cheerful; bright",
+      "category": "Emotions & Feelings",
+      "ttsText": "あかるい",
+      "sourceOrder": 47
+    },
+    {
+      "id": "r-f600f0e04be7",
+      "target": "急病",
+      "english": "Sudden illness",
+      "category": "Body & Health",
+      "ttsText": "きゅうびょう",
+      "sourceOrder": 48
+    },
+    {
+      "id": "r-f6c2c8d0f462",
+      "target": "説明",
+      "english": "Explanation",
+      "category": "Other",
+      "ttsText": "せつめい",
+      "sourceOrder": 49
+    },
+    {
+      "id": "r-24d858fc7044",
+      "target": "国歌",
+      "english": "National anthem",
+      "category": "Other",
+      "ttsText": "こっか",
+      "sourceOrder": 50
+    },
+    {
+      "id": "r-d8ef02dcebae",
+      "target": "大好きな",
+      "english": "To love",
+      "category": "Emotions & Feelings",
+      "ttsText": "だいすきな",
+      "sourceOrder": 51
+    },
+    {
+      "id": "r-2ea817c7720e",
+      "target": "歌詞",
+      "english": "Lyrics",
+      "category": "Sports & Hobbies",
+      "ttsText": "かし",
+      "sourceOrder": 52
+    },
+    {
+      "id": "r-0e4843f20639",
+      "target": "好きな",
+      "english": "To like",
+      "category": "Emotions & Feelings",
+      "ttsText": "すきな",
+      "sourceOrder": 53
+    },
+    {
+      "id": "r-fca47080a97d",
+      "target": "市役所",
+      "english": "City hall",
+      "category": "Directions",
+      "ttsText": "しやくしょ",
+      "sourceOrder": 54
+    },
+    {
+      "id": "r-3f61fbeca740",
+      "target": "いろいろな所",
+      "english": "Various places",
+      "category": "Descriptions & Qualities",
+      "ttsText": "いろいろなところ",
+      "sourceOrder": 55
+    },
+    {
+      "id": "r-ca169f1b09d7",
+      "target": "強い",
+      "english": "Strong",
+      "category": "Descriptions & Qualities",
+      "ttsText": "つよい",
+      "sourceOrder": 56
+    }
+  ]
+}

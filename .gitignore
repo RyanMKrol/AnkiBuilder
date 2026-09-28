@@ -56,6 +56,9 @@
 /.anki-builder/**
 !/.anki-builder/**/
 !/.anki-builder/epubs/*/corpora/**
+# A reading collection keeps its own dedup corpora beside the speaking ones (corporaDir in
+# src/corpus/epubLibrary.js). Without this line they matched nothing above and were never tracked.
+!/.anki-builder/epubs/*/reading/corpora/**
 !/.anki-builder/epubs/*/conventions.md
 !/.anki-builder/epubs/*/taught-index.json
 !/.anki-builder/epubs/*/book.json
@@ -63,6 +66,7 @@
 # without this line every writeUnitJson backup lands in git. The tracked file's own history is the
 # restore point now, which is what makes the .bak disposable.
 /.anki-builder/epubs/*/corpora/*.bak
+/.anki-builder/epubs/*/reading/corpora/*.bak
 
 # Environment / local
 .env

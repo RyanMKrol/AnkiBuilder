@@ -1,0 +1,1029 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 13,
+    "chapterLabel": "Chapter 13: Lesson 11: After the Vacation",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-41298ef20332",
+      "target": "菓",
+      "english": "Sweets; cakes",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-01a24f61d814",
+      "target": "俳",
+      "english": "Actor; haiku",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-9badb0882237",
+      "target": "優",
+      "english": "Actor; gentle",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-c5e6ce2ebea0",
+      "target": "詣",
+      "english": "Visit a temple; arrive",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-5e69d2627be4",
+      "target": "統",
+      "english": "Govern; unify",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-0f6a7e280c00",
+      "target": "川",
+      "english": "River",
+      "category": "Weather & Nature",
+      "ttsText": "かわ",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-dfef4b53104a",
+      "target": "賀",
+      "english": "Congratulations; joy",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-2ad574bdbfa2",
+      "target": "例",
+      "english": "Example",
+      "category": "School & Education",
+      "ttsText": "れい",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-3955785dea35",
+      "target": "士",
+      "english": "Profession; expert",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-4ca906d84b5f",
+      "target": "初",
+      "english": "First time; beginning",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-0b8b919983f5",
+      "target": "同",
+      "english": "Same; equal",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-da1f520c6f54",
+      "target": "数",
+      "english": "Number",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-d5eef9ab602b",
+      "target": "漫",
+      "english": "Cartoon",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-3b6ef811b85a",
+      "target": "共",
+      "english": "Together; both",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-1d59ea7cbbee",
+      "target": "点",
+      "english": ". . . points",
+      "category": "Numbers",
+      "ttsText": "てん",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-13a04753b828",
+      "target": "飼",
+      "english": "Raise; keep",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-ea6faabf56bd",
+      "target": "夢",
+      "english": "Dream",
+      "category": "Emotions & Feelings",
+      "ttsText": "ゆめ",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-5c2e7a60896d",
+      "target": "問",
+      "english": "Question; problem",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-d31d0b280f7f",
+      "target": "祭",
+      "english": "Festival; celebrate",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-966c12621f7d",
+      "target": "官",
+      "english": "Official; the government",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-16286d2ab6ed",
+      "target": "登",
+      "english": "Climb",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-dec8b2e70c7f",
+      "target": "察",
+      "english": "Inspect; guess",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-192afa9dc52b",
+      "target": "越",
+      "english": "Cross over; surpass",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-5f386ebdbb5c",
+      "target": "看",
+      "english": "Watch over",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-815b1752f99c",
+      "target": "介",
+      "english": "Mediate; help",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-f23e150ee3be",
+      "target": "違",
+      "english": "Differ; be wrong",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-cce50af7893a",
+      "target": "警",
+      "english": "Police; warn",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-0d3b2e60ad25",
+      "target": "泉",
+      "english": "Spring",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-1832f9e9d247",
+      "target": "宇",
+      "english": "Universe",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-d2e4839a3345",
+      "target": "研",
+      "english": "Study; polish",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-0990e460add3",
+      "target": "留",
+      "english": "Stay; remain",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-b48e9d30fb4e",
+      "target": "師",
+      "english": "Teacher; expert",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-8bc965a1ed9e",
+      "target": "答",
+      "english": "Answer",
+      "category": "School & Education",
+      "ttsText": "こたえ",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-58c2d9447ca6",
+      "target": "湖",
+      "english": "Lake",
+      "category": "Weather & Nature",
+      "ttsText": "みずうみ",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-391841be99dc",
+      "target": "煮",
+      "english": "Boil; cook",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-734208cda945",
+      "target": "領",
+      "english": "Territory",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-0851681d6802",
+      "target": "走",
+      "english": "Run",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-ad6e5604e963",
+      "target": "授",
+      "english": "Teach; grant",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-b5cab3e88f1f",
+      "target": "紹",
+      "english": "Introduce",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-44a60d99966c",
+      "target": "身",
+      "english": "Body; oneself",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-3b99b57025c2",
+      "target": "刻",
+      "english": "Time; carve",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-b71b26a524e8",
+      "target": "宙",
+      "english": "Space; mid-air",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 41
+    },
+    {
+      "id": "r-87a94db45b3b",
+      "target": "神",
+      "english": "Gods; mind; soul",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 42
+    },
+    {
+      "id": "r-c5b2dc72a358",
+      "target": "晦",
+      "english": "Last day of the month",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 43
+    },
+    {
+      "id": "r-df96a6e9ec65",
+      "target": "味",
+      "english": "Meaning; taste",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 44
+    },
+    {
+      "id": "r-b54b871d5bf0",
+      "target": "護",
+      "english": "Protect",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 45
+    },
+    {
+      "id": "r-846b2c68221a",
+      "target": "選",
+      "english": "Select; elect",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 46
+    },
+    {
+      "id": "r-6853d84d154b",
+      "target": "疲",
+      "english": "Tired; exhausted",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 47
+    },
+    {
+      "id": "r-beac7b3157b0",
+      "target": "業",
+      "english": "Business; vocation",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 48
+    },
+    {
+      "id": "r-811f90874adb",
+      "target": "究",
+      "english": "Research; study",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 49
+    },
+    {
+      "id": "r-d0818889a288",
+      "target": "豆",
+      "english": "Beans; pea",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 50
+    },
+    {
+      "id": "r-3f251878e7ca",
+      "target": "術",
+      "english": "Art; technique",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 51
+    },
+    {
+      "id": "r-a0d91b62adb5",
+      "target": "質",
+      "english": "Question; substance",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 52
+    },
+    {
+      "id": "r-c8c7fac5c76d",
+      "target": "状",
+      "english": "Letter; condition",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 53
+    },
+    {
+      "id": "r-fbee8d20cb2e",
+      "target": "防",
+      "english": "Prevent; defend",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 54
+    },
+    {
+      "id": "r-4170cd50639e",
+      "target": "将",
+      "english": "Future",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 55
+    },
+    {
+      "id": "r-b67ca1194c0f",
+      "target": "正",
+      "english": "Correct; justice; righteous",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 56
+    },
+    {
+      "id": "r-2afe6ed6c3a2",
+      "target": "久",
+      "english": "Long time",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 57
+    },
+    {
+      "id": "r-91a521227176",
+      "target": "取",
+      "english": "Take",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 58
+    },
+    {
+      "id": "r-0e0faa1d8332",
+      "target": "外",
+      "english": "Outside",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 59
+    },
+    {
+      "id": "r-2353efbc3e76",
+      "target": "意味",
+      "english": "Meaning",
+      "category": "School & Education",
+      "ttsText": "いみ",
+      "sourceOrder": 60
+    },
+    {
+      "id": "r-336119d86c09",
+      "target": "ちょっと違います",
+      "english": "A little different",
+      "category": "School & Education",
+      "ttsText": "ちょっとちがいます",
+      "sourceOrder": 61
+    },
+    {
+      "id": "r-8be6bd467548",
+      "target": "二人ずつ",
+      "english": "Two people each",
+      "category": "School & Education",
+      "ttsText": "ふたりずつ",
+      "sourceOrder": 62
+    },
+    {
+      "id": "r-f5ff67acd4bc",
+      "target": "同じです",
+      "english": "Same thing",
+      "category": "School & Education",
+      "ttsText": "おなじです",
+      "sourceOrder": 63
+    },
+    {
+      "id": "r-3a9e882a5a3b",
+      "target": "共通語",
+      "english": "Common language",
+      "category": "School & Education",
+      "ttsText": "きょうつうご",
+      "sourceOrder": 64
+    },
+    {
+      "id": "r-4e8f63807ef0",
+      "target": "行目",
+      "english": "Line number . . .",
+      "category": "School & Education",
+      "ttsText": "ぎょうめ",
+      "sourceOrder": 65
+    },
+    {
+      "id": "r-8a9d94ba2aa4",
+      "target": "作家",
+      "english": "Writer",
+      "category": "Work & Occupations",
+      "ttsText": "さっか",
+      "sourceOrder": 66
+    },
+    {
+      "id": "r-6f9c2ceaf323",
+      "target": "将来",
+      "english": "Future",
+      "category": "Other",
+      "ttsText": "しょうらい",
+      "sourceOrder": 67
+    },
+    {
+      "id": "r-811d3252e903",
+      "target": "大晦日",
+      "english": "New Year's Eve",
+      "category": "Other",
+      "ttsText": "おおみそか",
+      "sourceOrder": 68
+    },
+    {
+      "id": "r-6bd26d73e7e5",
+      "target": "年越しそば",
+      "english": "New Year's Eve buckwheat noodles",
+      "category": "Food",
+      "ttsText": "としこしそば",
+      "sourceOrder": 69
+    },
+    {
+      "id": "r-658cf1d085ca",
+      "target": "来学期",
+      "english": "Next semester",
+      "category": "School & Education",
+      "ttsText": "らいがっき",
+      "sourceOrder": 70
+    },
+    {
+      "id": "r-f62e782179d5",
+      "target": "読んできてください",
+      "english": "Read it before coming to class",
+      "category": "School & Education",
+      "ttsText": "よんできてください",
+      "sourceOrder": 71
+    },
+    {
+      "id": "r-244b0ce365f3",
+      "target": "取る",
+      "english": "To take (a class); to get (a grade)",
+      "category": "School & Education",
+      "ttsText": "とる",
+      "sourceOrder": 72
+    },
+    {
+      "id": "r-fff6c336068e",
+      "target": "となりの人に聞いてください",
+      "english": "Ask the person sitting next to you",
+      "category": "School & Education",
+      "ttsText": "となりのひとにきいてください",
+      "sourceOrder": 73
+    },
+    {
+      "id": "r-f86e76ae2c37",
+      "target": "10ページを開いてください",
+      "english": "Open the book to page 10",
+      "category": "School & Education",
+      "ttsText": "じゅっページをひらいてください",
+      "sourceOrder": 74
+    },
+    {
+      "id": "r-58495b457de5",
+      "target": "文法",
+      "english": "Grammar",
+      "category": "School & Education",
+      "ttsText": "ぶんぽう",
+      "sourceOrder": 75
+    },
+    {
+      "id": "r-8259b1bcb805",
+      "target": "授業",
+      "english": "Class",
+      "category": "School & Education",
+      "ttsText": "じゅぎょう",
+      "sourceOrder": 76
+    },
+    {
+      "id": "r-00034f2a3b00",
+      "target": "教師",
+      "english": "Schoolteacher",
+      "category": "Work & Occupations",
+      "ttsText": "きょうし",
+      "sourceOrder": 77
+    },
+    {
+      "id": "r-0446ec213452",
+      "target": "数の子",
+      "english": "Herring roe",
+      "category": "Food",
+      "ttsText": "かずのこ",
+      "sourceOrder": 78
+    },
+    {
+      "id": "r-a1ac22eb89a9",
+      "target": "疲れる",
+      "english": "To get tired",
+      "category": "Body & Health",
+      "ttsText": "つかれる",
+      "sourceOrder": 79
+    },
+    {
+      "id": "r-5c334491092c",
+      "target": "美術館",
+      "english": "Art museum",
+      "category": "Travel & Tourism",
+      "ttsText": "びじゅつかん",
+      "sourceOrder": 80
+    },
+    {
+      "id": "r-70575e13036b",
+      "target": "警察官",
+      "english": "Police officer",
+      "category": "Work & Occupations",
+      "ttsText": "けいさつかん",
+      "sourceOrder": 81
+    },
+    {
+      "id": "r-d70213b2f305",
+      "target": "くだけた言い方",
+      "english": "Colloquial expression",
+      "category": "School & Education",
+      "ttsText": "くだけたいいかた",
+      "sourceOrder": 82
+    },
+    {
+      "id": "r-c1dbc93b636f",
+      "target": "使えません",
+      "english": "Can't use it",
+      "category": "School & Education",
+      "ttsText": "つかえません",
+      "sourceOrder": 83
+    },
+    {
+      "id": "r-440682eae91b",
+      "target": "飼う",
+      "english": "To own (a pet)",
+      "category": "Animals",
+      "ttsText": "かう",
+      "sourceOrder": 84
+    },
+    {
+      "id": "r-3297271c496f",
+      "target": "教科書を閉じてください",
+      "english": "Close the textbook",
+      "category": "School & Education",
+      "ttsText": "きょうかしょをとじてください",
+      "sourceOrder": 85
+    },
+    {
+      "id": "r-4b1414b4a1f2",
+      "target": "初詣",
+      "english": "First shrine visit of the New Year",
+      "category": "Other",
+      "ttsText": "はつもうで",
+      "sourceOrder": 86
+    },
+    {
+      "id": "r-89a79aa20af0",
+      "target": "今学期",
+      "english": "This semester",
+      "category": "School & Education",
+      "ttsText": "こんがっき",
+      "sourceOrder": 87
+    },
+    {
+      "id": "r-cbb59a082245",
+      "target": "研究者",
+      "english": "Researcher",
+      "category": "Work & Occupations",
+      "ttsText": "けんきゅうしゃ",
+      "sourceOrder": 88
+    },
+    {
+      "id": "r-ee5e003d5e65",
+      "target": "消防士",
+      "english": "Firefighter",
+      "category": "Work & Occupations",
+      "ttsText": "しょうぼうし",
+      "sourceOrder": 89
+    },
+    {
+      "id": "r-55020caca8bf",
+      "target": "黒豆",
+      "english": "Black beans",
+      "category": "Food",
+      "ttsText": "くろまめ",
+      "sourceOrder": 90
+    },
+    {
+      "id": "r-035c5a256297",
+      "target": "年賀状",
+      "english": "New Year's greeting card",
+      "category": "Other",
+      "ttsText": "ねんがじょう",
+      "sourceOrder": 91
+    },
+    {
+      "id": "r-c4483a7062f9",
+      "target": "俳優",
+      "english": "Actor; actress",
+      "category": "Work & Occupations",
+      "ttsText": "はいゆう",
+      "sourceOrder": 92
+    },
+    {
+      "id": "r-bbf72a1513be",
+      "target": "温泉",
+      "english": "Spa; hot spring",
+      "category": "Travel & Tourism",
+      "ttsText": "おんせん",
+      "sourceOrder": 93
+    },
+    {
+      "id": "r-336b5ee220bf",
+      "target": "お年玉",
+      "english": "New Year's gift money",
+      "category": "Other",
+      "ttsText": "おとしだま",
+      "sourceOrder": 94
+    },
+    {
+      "id": "r-18049f69f35a",
+      "target": "スポーツ選手",
+      "english": "Athlete",
+      "category": "Work & Occupations",
+      "ttsText": "スポーツせんしゅ",
+      "sourceOrder": 95
+    },
+    {
+      "id": "r-95822d1e6106",
+      "target": "お祭り",
+      "english": "Festival",
+      "category": "Other",
+      "ttsText": "おまつり",
+      "sourceOrder": 96
+    },
+    {
+      "id": "r-9261fa649681",
+      "target": "方言",
+      "english": "Dialect",
+      "category": "School & Education",
+      "ttsText": "ほうげん",
+      "sourceOrder": 97
+    },
+    {
+      "id": "r-9122ad8cb590",
+      "target": "大統領",
+      "english": "President of a country",
+      "category": "Work & Occupations",
+      "ttsText": "だいとうりょう",
+      "sourceOrder": 98
+    },
+    {
+      "id": "r-9fead93de383",
+      "target": "ていねいな言い方",
+      "english": "Polite expression",
+      "category": "School & Education",
+      "ttsText": "ていねいないいかた",
+      "sourceOrder": 99
+    },
+    {
+      "id": "r-cd41014c34e1",
+      "target": "出身",
+      "english": "Coming from",
+      "category": "Nationalities & Countries",
+      "ttsText": "しゅっしん",
+      "sourceOrder": 100
+    },
+    {
+      "id": "r-3c0adc266c6f",
+      "target": "歌手",
+      "english": "Singer",
+      "category": "Work & Occupations",
+      "ttsText": "かしゅ",
+      "sourceOrder": 101
+    },
+    {
+      "id": "r-7f2efa3c73e3",
+      "target": "発音",
+      "english": "Pronunciation",
+      "category": "School & Education",
+      "ttsText": "はつおん",
+      "sourceOrder": 102
+    },
+    {
+      "id": "r-f723b3255ebf",
+      "target": "紹介する",
+      "english": "To introduce",
+      "category": "Family & People",
+      "ttsText": "しょうかいする",
+      "sourceOrder": 103
+    },
+    {
+      "id": "r-0cbe0a6baf4f",
+      "target": "だいたい同じです",
+      "english": "More or less the same",
+      "category": "School & Education",
+      "ttsText": "だいたいおなじです",
+      "sourceOrder": 104
+    },
+    {
+      "id": "r-f879e978add7",
+      "target": "久しぶり",
+      "english": "It has been a long time",
+      "category": "Greetings",
+      "ttsText": "ひさしぶり",
+      "sourceOrder": 105
+    },
+    {
+      "id": "r-d8b32a6fe7fa",
+      "target": "走る",
+      "english": "To run",
+      "category": "Sports & Hobbies",
+      "ttsText": "はしる",
+      "sourceOrder": 106
+    },
+    {
+      "id": "r-fbc429d9e41a",
+      "target": "留学する",
+      "english": "To study abroad",
+      "category": "School & Education",
+      "ttsText": "りゅうがくする",
+      "sourceOrder": 107
+    },
+    {
+      "id": "r-eed92408a07c",
+      "target": "登る",
+      "english": "To climb",
+      "category": "Sports & Hobbies",
+      "ttsText": "のぼる",
+      "sourceOrder": 108
+    },
+    {
+      "id": "r-ce0a2e4feca0",
+      "target": "外国",
+      "english": "Foreign country",
+      "category": "Travel & Tourism",
+      "ttsText": "がいこく",
+      "sourceOrder": 109
+    },
+    {
+      "id": "r-b9f3a8b7a647",
+      "target": "かたい言い方",
+      "english": "Bookish expression",
+      "category": "School & Education",
+      "ttsText": "かたいいいかた",
+      "sourceOrder": 110
+    },
+    {
+      "id": "r-e8c9c93cc70e",
+      "target": "雑煮",
+      "english": "New Year's soup",
+      "category": "Food",
+      "ttsText": "ぞうに",
+      "sourceOrder": 111
+    },
+    {
+      "id": "r-d3fcfdb7efbd",
+      "target": "お節料理",
+      "english": "New Year's dishes",
+      "category": "Food",
+      "ttsText": "おせちりょうり",
+      "sourceOrder": 112
+    },
+    {
+      "id": "r-4ea3086794c2",
+      "target": "神社",
+      "english": "Shrine",
+      "category": "Travel & Tourism",
+      "ttsText": "じんじゃ",
+      "sourceOrder": 113
+    },
+    {
+      "id": "r-d2dfcf8f4efa",
+      "target": "よいお年を",
+      "english": "Have a happy New Year!",
+      "category": "Greetings",
+      "ttsText": "よいおとしを",
+      "sourceOrder": 114
+    },
+    {
+      "id": "r-0412545cefa6",
+      "target": "遅刻する",
+      "english": "To be late (for an appointment)",
+      "category": "Time",
+      "ttsText": "ちこくする",
+      "sourceOrder": 115
+    },
+    {
+      "id": "r-a9f82405ba71",
+      "target": "習う",
+      "english": "To learn",
+      "category": "School & Education",
+      "ttsText": "ならう",
+      "sourceOrder": 116
+    },
+    {
+      "id": "r-128c3f22523a",
+      "target": "お正月",
+      "english": "New Year's",
+      "category": "Other",
+      "ttsText": "おしょうがつ",
+      "sourceOrder": 117
+    },
+    {
+      "id": "r-3497bd56e37e",
+      "target": "宿題を出してください",
+      "english": "Hand in the homework",
+      "category": "School & Education",
+      "ttsText": "しゅくだいをだしてください",
+      "sourceOrder": 118
+    },
+    {
+      "id": "r-1d4ebd368cf4",
+      "target": "看護師",
+      "english": "Nurse",
+      "category": "Work & Occupations",
+      "ttsText": "かんごし",
+      "sourceOrder": 119
+    },
+    {
+      "id": "r-8baf85e00cb0",
+      "target": "宇宙飛行士",
+      "english": "Astronaut",
+      "category": "Work & Occupations",
+      "ttsText": "うちゅうひこうし",
+      "sourceOrder": 120
+    },
+    {
+      "id": "r-923692cf473d",
+      "target": "漫画家",
+      "english": "Cartoonist",
+      "category": "Work & Occupations",
+      "ttsText": "まんがか",
+      "sourceOrder": 121
+    },
+    {
+      "id": "r-ed9a2e6b831b",
+      "target": "お菓子",
+      "english": "Snack; sweets",
+      "category": "Food",
+      "ttsText": "おかし",
+      "sourceOrder": 122
+    },
+    {
+      "id": "r-84f5c611fb7f",
+      "target": "手をあげてください",
+      "english": "Raise your hand",
+      "category": "School & Education",
+      "ttsText": "てをあげてください",
+      "sourceOrder": 123
+    },
+    {
+      "id": "r-a9733c6c0a41",
+      "target": "今日はこれで終わります",
+      "english": "That's it for today",
+      "category": "School & Education",
+      "ttsText": "きょうはこれでおわります",
+      "sourceOrder": 124
+    },
+    {
+      "id": "r-5dcc8d49b6fa",
+      "target": "質問",
+      "english": "Question",
+      "category": "School & Education",
+      "ttsText": "しつもん",
+      "sourceOrder": 125
+    },
+    {
+      "id": "r-2ff4a6f70b6b",
+      "target": "練習",
+      "english": "Exercise",
+      "category": "School & Education",
+      "ttsText": "れんしゅう",
+      "sourceOrder": 126
+    }
+  ]
+}

@@ -1,0 +1,677 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 5,
+    "chapterLabel": "Chapter 05: Lesson 3: Making a Date",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-fca811d4f027",
+      "target": "明",
+      "english": "Bright; light",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-1d9218a9bc95",
+      "target": "曜",
+      "english": "Weekday",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-8001d4cacb7b",
+      "target": "帰",
+      "english": "Return; go home",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-c7803dadcdd4",
+      "target": "週",
+      "english": "Week",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-dfa83bd538f4",
+      "target": "末",
+      "english": "End; tip",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-d2130d70a08e",
+      "target": "今",
+      "english": "Now",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-8ffbf192934a",
+      "target": "水",
+      "english": "Water",
+      "category": "Food",
+      "ttsText": "みず",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-23cf98660d91",
+      "target": "玄",
+      "english": "Mysterious; profound",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-e670768c71d4",
+      "target": "寝",
+      "english": "Sleep; rest",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-7c7a06f0ea59",
+      "target": "学",
+      "english": "Study; learning; science",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-97f240e47493",
+      "target": "誌",
+      "english": "Document; records",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-d5ac2f996349",
+      "target": "畳",
+      "english": "Straw mat",
+      "category": "Home & Household",
+      "ttsText": "たたみ",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-15917f3b3261",
+      "target": "日",
+      "english": "Day; sun; Japan",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-00619b09692c",
+      "target": "飯",
+      "english": "Meal; boiled rice",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-4e4ea6363b51",
+      "target": "然",
+      "english": "So; thus",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-c979198bed96",
+      "target": "酒",
+      "english": "Sake; alcohol",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-2a2b777ae485",
+      "target": "行",
+      "english": "Going; journey; carry out",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-4aa51c7d4a62",
+      "target": "障",
+      "english": "Hinder; obstruct",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-56c5ea57375b",
+      "target": "昼",
+      "english": "Daytime; noon",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-370fea522051",
+      "target": "毎",
+      "english": "Every",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-0b703039737f",
+      "target": "風",
+      "english": "Wind; style",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-d46696735b6a",
+      "target": "食",
+      "english": "Eat; food",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-d4ff44b74b72",
+      "target": "聞",
+      "english": "Hear; ask; listen",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-3fb8220f655d",
+      "target": "晩",
+      "english": "Nightfall; night",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-32a6d731e2c5",
+      "target": "全",
+      "english": "Whole; entire",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-2f78e3a989f0",
+      "target": "話",
+      "english": "Tale; talk",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-ea9fad1aad62",
+      "target": "楽",
+      "english": "Music; comfort",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-bac299bce17a",
+      "target": "強",
+      "english": "Strong",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-4b1d6193e498",
+      "target": "来",
+      "english": "Come; due; next",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-b7ec392a5d19",
+      "target": "音",
+      "english": "Sound; noise",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-219e08c96026",
+      "target": "子",
+      "english": "Child",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-5cd375af492e",
+      "target": "飲",
+      "english": "Drink; smoke; take",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-b84ac7987cf0",
+      "target": "関",
+      "english": "Barrier; gateway",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-695aad811ab9",
+      "target": "朝",
+      "english": "Morning",
+      "category": "Time",
+      "ttsText": "あさ",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-de6090bd17b6",
+      "target": "雑",
+      "english": "Miscellaneous",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-cff2b01d7efc",
+      "target": "映",
+      "english": "Reflect; reflection; projection",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-7de8177ce74b",
+      "target": "家",
+      "english": "Home; house",
+      "category": "Home & Household",
+      "ttsText": "いえ",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-9e7879e6200f",
+      "target": "画",
+      "english": "Picture; stroke",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-2fdc2b012a91",
+      "target": "時",
+      "english": "Time; hour",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-90fbc9b1ac2e",
+      "target": "土",
+      "english": "Soil; earth; ground",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-7ac94c1ab970",
+      "target": "見",
+      "english": "See; hopes; chances",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-cda7049e4cc1",
+      "target": "勉",
+      "english": "Exertion; endeavour; encourage",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 41
+    },
+    {
+      "id": "r-5118ad88e3db",
+      "target": "校",
+      "english": "Exam; school; printing",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 42
+    },
+    {
+      "id": "r-97a08c17dc8f",
+      "target": "茶",
+      "english": "Tea",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 43
+    },
+    {
+      "id": "r-13a8589339d9",
+      "target": "早",
+      "english": "Early; fast",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 44
+    },
+    {
+      "id": "r-9bcae380442f",
+      "target": "呂",
+      "english": "Spine; backbone",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 45
+    },
+    {
+      "id": "r-479a48d2c047",
+      "target": "読",
+      "english": "Read",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 46
+    },
+    {
+      "id": "r-29195326fd13",
+      "target": "起",
+      "english": "Rouse; wake up; get up",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 47
+    },
+    {
+      "id": "r-4c620ecb9469",
+      "target": "お酒",
+      "english": "Sake; alcoholic drink",
+      "category": "Food",
+      "ttsText": "おさけ",
+      "sourceOrder": 48
+    },
+    {
+      "id": "r-c3da86d447f2",
+      "target": "お茶",
+      "english": "Green tea",
+      "category": "Food",
+      "ttsText": "おちゃ",
+      "sourceOrder": 49
+    },
+    {
+      "id": "r-4a2f5c2aed74",
+      "target": "全然",
+      "english": "Not at all",
+      "category": "Grammar & Function Words",
+      "ttsText": "ぜんぜん",
+      "sourceOrder": 50
+    },
+    {
+      "id": "r-aeb26253096f",
+      "target": "早い",
+      "english": "Early",
+      "category": "Descriptions & Qualities",
+      "ttsText": "はやい",
+      "sourceOrder": 51
+    },
+    {
+      "id": "r-d63043a38863",
+      "target": "毎日",
+      "english": "Every day",
+      "category": "Time",
+      "ttsText": "まいにち",
+      "sourceOrder": 52
+    },
+    {
+      "id": "r-9b004af92def",
+      "target": "障子",
+      "english": "Sliding door",
+      "category": "Home & Household",
+      "ttsText": "しょうじ",
+      "sourceOrder": 53
+    },
+    {
+      "id": "r-3a9f9a5edc18",
+      "target": "帰る",
+      "english": "To go back; to return",
+      "category": "Travel & Tourism",
+      "ttsText": "かえる",
+      "sourceOrder": 54
+    },
+    {
+      "id": "r-a0dede70ceb2",
+      "target": "晩ご飯",
+      "english": "Dinner",
+      "category": "Food",
+      "ttsText": "ばんごはん",
+      "sourceOrder": 55
+    },
+    {
+      "id": "r-7fc9b181f57e",
+      "target": "読む",
+      "english": "To read",
+      "category": "School & Education",
+      "ttsText": "よむ",
+      "sourceOrder": 56
+    },
+    {
+      "id": "r-abb639bc774f",
+      "target": "聞く",
+      "english": "To listen; to hear",
+      "category": "Other",
+      "ttsText": "きく",
+      "sourceOrder": 57
+    },
+    {
+      "id": "r-5f1ce3d353de",
+      "target": "起きる",
+      "english": "To get up",
+      "category": "Body & Health",
+      "ttsText": "おきる",
+      "sourceOrder": 58
+    },
+    {
+      "id": "r-8f10296a8d0a",
+      "target": "毎晩",
+      "english": "Every night",
+      "category": "Time",
+      "ttsText": "まいばん",
+      "sourceOrder": 59
+    },
+    {
+      "id": "r-49f334cb28a3",
+      "target": "昼ご飯",
+      "english": "Lunch",
+      "category": "Food",
+      "ttsText": "ひるごはん",
+      "sourceOrder": 60
+    },
+    {
+      "id": "r-eae85310dc8e",
+      "target": "土曜日",
+      "english": "Saturday",
+      "category": "Time",
+      "ttsText": "どようび",
+      "sourceOrder": 61
+    },
+    {
+      "id": "r-71400c113af9",
+      "target": "来る",
+      "english": "To come",
+      "category": "Other",
+      "ttsText": "くる",
+      "sourceOrder": 62
+    },
+    {
+      "id": "r-c88ba17eb422",
+      "target": "見る",
+      "english": "To see; to look at; to watch",
+      "category": "Other",
+      "ttsText": "みる",
+      "sourceOrder": 63
+    },
+    {
+      "id": "r-08610a85a1b5",
+      "target": "学校",
+      "english": "School",
+      "category": "School & Education",
+      "ttsText": "がっこう",
+      "sourceOrder": 64
+    },
+    {
+      "id": "r-b5ef4b947061",
+      "target": "週末",
+      "english": "Weekend",
+      "category": "Time",
+      "ttsText": "しゅうまつ",
+      "sourceOrder": 65
+    },
+    {
+      "id": "r-21dac0842106",
+      "target": "食べる",
+      "english": "To eat",
+      "category": "Food",
+      "ttsText": "たべる",
+      "sourceOrder": 66
+    },
+    {
+      "id": "r-04fd047918fb",
+      "target": "朝ご飯",
+      "english": "Breakfast",
+      "category": "Food",
+      "ttsText": "あさごはん",
+      "sourceOrder": 67
+    },
+    {
+      "id": "r-b75b20ed5dc4",
+      "target": "お風呂",
+      "english": "Bathroom",
+      "category": "Home & Household",
+      "ttsText": "おふろ",
+      "sourceOrder": 68
+    },
+    {
+      "id": "r-ed448a8b8e4d",
+      "target": "日曜日",
+      "english": "Sunday",
+      "category": "Time",
+      "ttsText": "にちようび",
+      "sourceOrder": 69
+    },
+    {
+      "id": "r-26df93526766",
+      "target": "話す",
+      "english": "To speak; to talk",
+      "category": "Other",
+      "ttsText": "はなす",
+      "sourceOrder": 70
+    },
+    {
+      "id": "r-6376c974631e",
+      "target": "音楽",
+      "english": "Music",
+      "category": "Sports & Hobbies",
+      "ttsText": "おんがく",
+      "sourceOrder": 71
+    },
+    {
+      "id": "r-675d287d3ed0",
+      "target": "映画",
+      "english": "Movie",
+      "category": "Sports & Hobbies",
+      "ttsText": "えいが",
+      "sourceOrder": 72
+    },
+    {
+      "id": "r-a1ac40e3c709",
+      "target": "飲む",
+      "english": "To drink",
+      "category": "Food",
+      "ttsText": "のむ",
+      "sourceOrder": 73
+    },
+    {
+      "id": "r-493879fafdb2",
+      "target": "雑誌",
+      "english": "Magazine",
+      "category": "Everyday Objects",
+      "ttsText": "ざっし",
+      "sourceOrder": 74
+    },
+    {
+      "id": "r-bba9fee5bef0",
+      "target": "寝る",
+      "english": "To sleep; to go to sleep",
+      "category": "Body & Health",
+      "ttsText": "ねる",
+      "sourceOrder": 75
+    },
+    {
+      "id": "r-1666a3e3247d",
+      "target": "今晩",
+      "english": "Tonight",
+      "category": "Time",
+      "ttsText": "こんばん",
+      "sourceOrder": 76
+    },
+    {
+      "id": "r-44bf896f470f",
+      "target": "時々",
+      "english": "Sometimes",
+      "category": "Grammar & Function Words",
+      "ttsText": "ときどき",
+      "sourceOrder": 77
+    },
+    {
+      "id": "r-8cf41de96032",
+      "target": "勉強する",
+      "english": "To study",
+      "category": "School & Education",
+      "ttsText": "べんきょうする",
+      "sourceOrder": 78
+    },
+    {
+      "id": "r-574cd4fb795b",
+      "target": "今日",
+      "english": "Today",
+      "category": "Time",
+      "ttsText": "きょう",
+      "sourceOrder": 79
+    },
+    {
+      "id": "r-762ffcba27ad",
+      "target": "明日",
+      "english": "Tomorrow",
+      "category": "Time",
+      "ttsText": "あした",
+      "sourceOrder": 80
+    },
+    {
+      "id": "r-bcded40b3472",
+      "target": "玄関",
+      "english": "Entryway",
+      "category": "Home & Household",
+      "ttsText": "げんかん",
+      "sourceOrder": 81
+    },
+    {
+      "id": "r-638c386a4d8a",
+      "target": "行く",
+      "english": "To go",
+      "category": "Travel & Tourism",
+      "ttsText": "いく",
+      "sourceOrder": 82
+    }
+  ]
+}

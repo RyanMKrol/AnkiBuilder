@@ -1,0 +1,333 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 17,
+    "chapterLabel": "Chapter 17: Reading and Writing 3: Daily Life",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-7cac092958d0",
+      "target": "歳",
+      "english": "Age; years old",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-0d3bc6b0dd4e",
+      "target": "万",
+      "english": "Ten thousand",
+      "category": "Numbers",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-501367f95368",
+      "target": "百",
+      "english": "Hundred",
+      "category": "Numbers",
+      "ttsText": "ひゃく",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-c257210e5fc3",
+      "target": "円",
+      "english": "Circle",
+      "category": "Descriptions & Qualities",
+      "ttsText": "えん",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-b9bcd0ac15cd",
+      "target": "千",
+      "english": "Thousand",
+      "category": "Numbers",
+      "ttsText": "せん",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-38b256bcf87d",
+      "target": "三年生",
+      "english": "Third-year student",
+      "category": "School & Education",
+      "ttsText": "さんねんせい",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-29cd7f918667",
+      "target": "六百",
+      "english": "Six hundred",
+      "category": "Numbers",
+      "ttsText": "ろっぴゃく",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-c95956a5c8b5",
+      "target": "円い",
+      "english": "Round",
+      "category": "Descriptions & Qualities",
+      "ttsText": "まるい",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-1a15a7ab6c24",
+      "target": "二日間",
+      "english": "Two days",
+      "category": "Time",
+      "ttsText": "ふつかかん",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-d8d358c7b278",
+      "target": "一万",
+      "english": "Ten thousand",
+      "category": "Numbers",
+      "ttsText": "いちまん",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-130ba6790b0a",
+      "target": "九時",
+      "english": "Nine o'clock",
+      "category": "Time",
+      "ttsText": "くじ",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-4c0e79bba148",
+      "target": "五時",
+      "english": "Five o'clock",
+      "category": "Time",
+      "ttsText": "ごじ",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-dd134499531a",
+      "target": "百円",
+      "english": "One hundred yen",
+      "category": "Money",
+      "ttsText": "ひゃくえん",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-4de670e24a05",
+      "target": "十万",
+      "english": "One hundred thousand",
+      "category": "Numbers",
+      "ttsText": "じゅうまん",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-7e129f9063f3",
+      "target": "六時",
+      "english": "Six o'clock",
+      "category": "Time",
+      "ttsText": "ろくじ",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-03caa4ee72e1",
+      "target": "五歳",
+      "english": "Five years old",
+      "category": "Numbers",
+      "ttsText": "ごさい",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-5ef435a60e7f",
+      "target": "子どもの時",
+      "english": "In one's childhood",
+      "category": "Time",
+      "ttsText": "こどものとき",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-9853d6b13a8e",
+      "target": "七時",
+      "english": "Seven o'clock",
+      "category": "Time",
+      "ttsText": "しちじ",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-410b13450256",
+      "target": "十時",
+      "english": "Ten o'clock",
+      "category": "Time",
+      "ttsText": "じゅうじ",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-6fd47d1cbe79",
+      "target": "四時",
+      "english": "Four o'clock",
+      "category": "Time",
+      "ttsText": "よじ",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-773b86593c95",
+      "target": "十歳",
+      "english": "Ten years old",
+      "category": "Numbers",
+      "ttsText": "じゅっさい",
+      "reviewNote": "The book gives more than one reading: じゅっさい, じっさい. Audio uses the first.",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-cc269a3d345b",
+      "target": "八時",
+      "english": "Eight o'clock",
+      "category": "Time",
+      "ttsText": "はちじ",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-ba5f63b12e2a",
+      "target": "一分",
+      "english": "One minute",
+      "category": "Time",
+      "ttsText": "いっぷん",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-13c822131f65",
+      "target": "八百",
+      "english": "Eight hundred",
+      "category": "Numbers",
+      "ttsText": "はっぴゃく",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-258a202e69dc",
+      "target": "四年生",
+      "english": "Fourth-year student",
+      "category": "School & Education",
+      "ttsText": "よねんせい",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-b20ce68653e0",
+      "target": "時計",
+      "english": "Watch; clock",
+      "category": "Everyday Objects",
+      "ttsText": "とけい",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-aa903558cc32",
+      "target": "九歳",
+      "english": "Nine years old",
+      "category": "Numbers",
+      "ttsText": "きゅうさい",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-82566fcea2c2",
+      "target": "三百",
+      "english": "Three hundred",
+      "category": "Numbers",
+      "ttsText": "さんびゃく",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-3c929b62f1a5",
+      "target": "三千",
+      "english": "Three thousand",
+      "category": "Numbers",
+      "ttsText": "さんぜん",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-93312a29c055",
+      "target": "円高",
+      "english": "Strong yen",
+      "category": "Money",
+      "ttsText": "えんだか",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-6dc0109470de",
+      "target": "八千",
+      "english": "Eight thousand",
+      "category": "Numbers",
+      "ttsText": "はっせん",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-dd703f84d803",
+      "target": "一時",
+      "english": "One o'clock",
+      "category": "Time",
+      "ttsText": "いちじ",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-2275936218d4",
+      "target": "一年生",
+      "english": "First-year student",
+      "category": "School & Education",
+      "ttsText": "いちねんせい",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-22b136467c95",
+      "target": "百万",
+      "english": "One million",
+      "category": "Numbers",
+      "ttsText": "ひゃくまん",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-a40121fe4c59",
+      "target": "八歳",
+      "english": "Eight years old",
+      "category": "Numbers",
+      "ttsText": "はっさい",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-1ae8cde53509",
+      "target": "千円",
+      "english": "One thousand yen",
+      "category": "Money",
+      "ttsText": "せんえん",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-ac36b226c034",
+      "target": "六分",
+      "english": "Six minutes",
+      "category": "Time",
+      "ttsText": "ろっぷん",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-f0c2d9cc8578",
+      "target": "三時",
+      "english": "Three o'clock",
+      "category": "Time",
+      "ttsText": "さんじ",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-392e721f68ee",
+      "target": "二年生",
+      "english": "Second-year student",
+      "category": "School & Education",
+      "ttsText": "にねんせい",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-f98e88132b78",
+      "target": "二時",
+      "english": "Two o'clock",
+      "category": "Time",
+      "ttsText": "にじ",
+      "sourceOrder": 39
+    }
+  ]
+}

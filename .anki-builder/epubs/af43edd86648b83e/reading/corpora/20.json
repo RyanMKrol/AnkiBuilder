@@ -1,0 +1,342 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 20,
+    "chapterLabel": "Chapter 20: Reading and Writing 6: My Favorite Restaurant",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-527e0b8019a8",
+      "english": "Fellow; comrade",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "輩",
+      "ttsText": "はい"
+    },
+    {
+      "id": "r-68c08b9800bf",
+      "english": "Transport; send",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "輸",
+      "ttsText": "ゆ"
+    },
+    {
+      "id": "r-2e750a2f58d7",
+      "english": "Ocean; Western",
+      "category": "Other",
+      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "target": "洋",
+      "ttsText": "よう"
+    },
+    {
+      "id": "r-a1b4e92d7376",
+      "english": "Entrance",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "入り口",
+      "ttsText": "いりぐち"
+    },
+    {
+      "id": "r-268d6b3096cb",
+      "english": "South exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "南口",
+      "ttsText": "みなみぐち"
+    },
+    {
+      "id": "r-46696e251f51",
+      "english": "Adult",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "大人",
+      "ttsText": "おとな"
+    },
+    {
+      "id": "r-7d1d517da176",
+      "english": "Right and left",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "左右",
+      "ttsText": "さゆう"
+    },
+    {
+      "id": "r-a00bc7617b9f",
+      "english": "Overseas",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "海外",
+      "ttsText": "かいがい"
+    },
+    {
+      "id": "r-20fad2003400",
+      "english": "Foreigner",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "外国人",
+      "ttsText": "がいこくじん"
+    },
+    {
+      "id": "r-679cb7928d1a",
+      "english": "Left hand",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "左手",
+      "ttsText": "ひだりて"
+    },
+    {
+      "id": "r-8090dd787fc2",
+      "english": "Five minutes",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "五分",
+      "ttsText": "ごふん"
+    },
+    {
+      "id": "r-bf56da1bcfda",
+      "english": "Left turn",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "左折",
+      "ttsText": "させつ"
+    },
+    {
+      "id": "r-7c6b99c21f22",
+      "english": "Senior member",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "先輩",
+      "ttsText": "せんぱい"
+    },
+    {
+      "id": "r-9dcb6ec62c8e",
+      "english": "Ten minutes",
+      "category": "Time",
+      "reviewNote": "The book gives more than one reading: じゅっぷん, じっぷん. Audio uses the first.",
+      "target": "十分",
+      "ttsText": "じゅっぷん"
+    },
+    {
+      "id": "r-94c7b5d5e878",
+      "english": "To take something out",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "出す",
+      "ttsText": "だす"
+    },
+    {
+      "id": "r-63f645b1b9be",
+      "english": "Embassy",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "大使館",
+      "ttsText": "たいしかん"
+    },
+    {
+      "id": "r-913ad76b07ff",
+      "english": "The East",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "東洋",
+      "ttsText": "とうよう"
+    },
+    {
+      "id": "r-c29637a429e6",
+      "english": "Southeast",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "南東",
+      "ttsText": "なんとう"
+    },
+    {
+      "id": "r-faae562d7f8a",
+      "english": "The Diet",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "国会",
+      "ttsText": "こっかい"
+    },
+    {
+      "id": "r-7450d4087166",
+      "english": "To be born",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "生まれる",
+      "ttsText": "うまれる"
+    },
+    {
+      "id": "r-e846f75dd0d4",
+      "english": "To divide",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "分ける",
+      "ttsText": "わける"
+    },
+    {
+      "id": "r-50d163822896",
+      "english": "Left-handed",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "左利き",
+      "ttsText": "ひだりきき"
+    },
+    {
+      "id": "r-b76783d38c00",
+      "english": "Student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "学生",
+      "ttsText": "がくせい"
+    },
+    {
+      "id": "r-258f526ba9ab",
+      "english": "Population",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "人口",
+      "ttsText": "じんこう"
+    },
+    {
+      "id": "r-45b4e8f59314",
+      "english": "Northwest",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "北西",
+      "ttsText": "ほくせい"
+    },
+    {
+      "id": "r-0ca8d1308488",
+      "english": "Department; faculty",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "学部",
+      "ttsText": "がくぶ"
+    },
+    {
+      "id": "r-ed9d988c2f60",
+      "english": "Right side",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "右側",
+      "ttsText": "みぎがわ"
+    },
+    {
+      "id": "r-01a67595ac5b",
+      "english": "Right hand",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "右手",
+      "ttsText": "みぎて"
+    },
+    {
+      "id": "r-9e0b645acb8c",
+      "english": "North exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "北口",
+      "ttsText": "きたぐち"
+    },
+    {
+      "id": "r-7eba1db06494",
+      "english": "Right turn",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "右折",
+      "ttsText": "うせつ"
+    },
+    {
+      "id": "r-883518371afb",
+      "english": "West exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "西口",
+      "ttsText": "にしぐち"
+    },
+    {
+      "id": "r-53dcb0fe0927",
+      "english": "East exit",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "東口",
+      "ttsText": "ひがしぐち"
+    },
+    {
+      "id": "r-f5746ff6acb8",
+      "english": "Tough",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "大変な",
+      "ttsText": "たいへんな"
+    },
+    {
+      "id": "r-c1baff916470",
+      "english": "Once in a lifetime",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "一生に一度",
+      "ttsText": "いっしょうにいちど"
+    },
+    {
+      "id": "r-b43484cfb9ad",
+      "english": "To study",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "学ぶ",
+      "ttsText": "まなぶ"
+    },
+    {
+      "id": "r-ca15ac410e66",
+      "english": "Ahead",
+      "category": "Directions",
+      "reviewNote": null,
+      "target": "先に",
+      "ttsText": "さきに"
+    },
+    {
+      "id": "r-310ecfe988f8",
+      "english": "Export",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "輸出",
+      "ttsText": "ゆしゅつ"
+    },
+    {
+      "id": "r-72df49d791de",
+      "english": "College student",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "大学生",
+      "ttsText": "だいがくせい"
+    },
+    {
+      "id": "r-081253ee3b6a",
+      "english": "The West",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "西洋",
+      "ttsText": "せいよう"
+    },
+    {
+      "id": "r-55e9a3f996fc",
+      "english": "Oneself",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "自分",
+      "ttsText": "じぶん"
+    },
+    {
+      "id": "r-77383070c507",
+      "english": "Attendance",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "出席",
+      "ttsText": "しゅっせき"
+    }
+  ]
+}

@@ -86,6 +86,12 @@ only the change teaches one word; naming the class teaches the learner to inflec
 alone. Use the source's own class names, and never promote a form the source marks as an exception
 into a class of its own.
 
+**Never write what the source says speakers avoid.** When the source notes that a form is rarely
+said, sounds boastful or rude, or is used only about other people, a card that says it anyway teaches
+the one thing the source warned against. Write the usage the note describes instead, or nothing.
+_A lesson whose note said people rarely ask a listener "are you good at...?" reached review with four
+cards asking exactly that._
+
 **A note must never restate the card.** A note that repeats the gloss or the target teaches nothing
 and costs the learner a line to read. If there is nothing to add, add nothing.
 

@@ -532,8 +532,8 @@ if (bookPass) {
   // and choosing without it would silently leave its words out, so the choice waits for a re-run.
   if (failed.length) {
     console.error(
-      `\n${failed.length} chapter(s) failed, so the kana deck was not chosen. Re-run the same ` +
-        `command: finished steps are reused.\n  - ${failed.join("\n  - ")}`,
+      `\n${failed.length} chapter(s) failed, so the pass stopped before the kana deck. Re-run the ` +
+        `same command: finished steps are reused.\n  - ${failed.join("\n  - ")}`,
     );
     process.exit(2);
   }

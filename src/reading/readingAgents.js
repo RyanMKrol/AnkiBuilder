@@ -306,6 +306,19 @@ export function enumerateForReading({
 
 // ---- characters a chapter needs before the book teaches them (src/reading/characterGaps.js) ---
 
+// One more ask when a character role replies with prose instead of its JSON: on Genki's Reading and
+// Writing 6 the reviewer, with nothing to fix, answered "All three cards are correct…", and the
+// chapter failed. The reply is cheap to ask for again; a chapter is not.
+function askJson(role, prompt, who, runClaude) {
+  const run = () => runRole(role, prompt, runClaude ? { runClaude } : {});
+  try {
+    return parseReply(run(), who);
+  } catch (error) {
+    if (!/did not reply with a JSON object/.test(error.message)) throw error;
+    return parseReply(run(), who);
+  }
+}
+
 const charactersJson = (entries) =>
   JSON.stringify(
     entries.map((e) => ({
@@ -338,11 +351,11 @@ export function renderCharacterReviewPrompt({ entries, targetLanguage }) {
 /** Meaning and readings for characters the dictionary lacks: `Map<target, { english, readings }>`. */
 export function writeCharacters({ entries, targetLanguage, runClaude } = {}) {
   if (!entries.length) return new Map();
-  const parsed = parseReply(
-    runRole("readingCharacterWriter", renderCharacterWriterPrompt({ entries, targetLanguage }), {
-      ...(runClaude ? { runClaude } : {}),
-    }),
+  const parsed = askJson(
+    "readingCharacterWriter",
+    renderCharacterWriterPrompt({ entries, targetLanguage }),
     "the reading character writer",
+    runClaude,
   );
   const asked = new Set(entries.map((e) => e.target));
   return new Map(
@@ -361,15 +374,11 @@ export function reviewCharacters({ entries, targetLanguage, runClaude } = {}) {
   const corrections = new Map();
   if (!entries.length) return { corrections, unreviewed: [] };
   const ask = (batch) =>
-    parseReply(
-      runRole(
-        "readingCharacterReviewer",
-        renderCharacterReviewPrompt({ entries: batch, targetLanguage }),
-        {
-          ...(runClaude ? { runClaude } : {}),
-        },
-      ),
+    askJson(
+      "readingCharacterReviewer",
+      renderCharacterReviewPrompt({ entries: batch, targetLanguage }),
       "the reading character reviewer",
+      runClaude,
     ).cards ?? [];
   const judged = new Set();
   const take = (cards) => {

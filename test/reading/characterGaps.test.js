@@ -205,3 +205,22 @@ test("cards reviewed under an older review version are reviewed again, once", as
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("a character reviewer that answers in prose is asked once more", async () => {
+  const { reviewCharacters } = await import("../../src/reading/readingAgents.js");
+  const replies = [
+    "All three cards are correct as they stand.",
+    JSON.stringify({ cards: [{ target: "聞", verdict: "ok" }] }),
+  ];
+  let calls = 0;
+  const { corrections, unreviewed } = reviewCharacters({
+    entries: [
+      { target: "聞", english: "Hear", readings: { on: ["ぶん"], kun: ["き"] }, usedIn: [] },
+    ],
+    targetLanguage: "ja",
+    runClaude: () => replies[calls++],
+  });
+  assert.equal(calls, 2);
+  assert.equal(corrections.size, 0);
+  assert.deepEqual(unreviewed, []);
+});

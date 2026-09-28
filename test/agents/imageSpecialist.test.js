@@ -42,7 +42,32 @@ test("items are stamped with the role", () => {
   assert.equal(items[0].producedBy, ROLE_ID);
 });
 
-test("skipping an image is rejected, including a decorative one", () => {
+test("a skipped image is asked about again, on its own, and the first answer is kept", () => {
+  const prompts = [];
+  const replies = [
+    {
+      items: [{ id: "rei", target: "れい", english: "Zero", category: "Numbers" }],
+      verdicts: [bothJudged[0]],
+    },
+    { items: [], verdicts: [bothJudged[1]] },
+  ];
+  const { items, verdicts } = judgeImages({
+    images: IMAGES,
+    targetLanguage: "ja",
+    runClaude: (prompt) => {
+      prompts.push(prompt);
+      return JSON.stringify(replies.shift());
+    },
+  });
+  assert.equal(prompts.length, 2);
+  // The image list, not the prompt's own example (which happens to name p016.jpg).
+  assert.match(prompts[1], /"path": "\/tmp\/x\/images\/p017\.jpg"/);
+  assert.doesNotMatch(prompts[1], /"path": "\/tmp\/x\/images\/p016\.jpg"/);
+  assert.equal(items.length, 1);
+  assert.equal(verdicts.length, 2);
+});
+
+test("an image still unjudged after the second ask is rejected, including a decorative one", () => {
   // The dull verdicts are the point: what makes a skipped chart invisible is an image with NO entry.
   assert.throws(
     () =>

@@ -7,7 +7,8 @@
     "chapterNumber": 9,
     "chapterLabel": "Chapter 09: Lesson 7: Family Picture",
     "phase": "reading",
-    "kanjiTts": true
+    "kanjiTts": true,
+    "done": true
   },
   "items": [
     {
@@ -761,12 +762,16 @@
       "sourceOrder": 60,
       "pronunciation": "kyōdai",
       "ttsKanji": "兄弟",
-      "audio": "604f5822ca13e2f9.mp3",
+      "audio": "r-f1916d4c675e-manual-daa8fd43.mp3",
       "audioOriginal": "604f5822ca13e2f9.orig.mp3",
       "audioAuto": "604f5822ca13e2f9.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "604f5822ca13e2f9"
+      "audioTextHash": "604f5822ca13e2f9",
+      "audioManual": "r-f1916d4c675e-manual-daa8fd43.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.7905714897260274
+      }
     },
     {
       "id": "r-4e56d4020313",
@@ -1257,12 +1262,16 @@
       "sourceOrder": 93,
       "pronunciation": "shujin",
       "ttsKanji": "主人",
-      "audio": "70df6922d4d5eeec.mp3",
+      "audio": "r-636e7702bc4b-manual-3114a504.mp3",
       "audioOriginal": "70df6922d4d5eeec.orig.mp3",
       "audioAuto": "70df6922d4d5eeec.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "70df6922d4d5eeec"
+      "audioTextHash": "70df6922d4d5eeec",
+      "audioManual": "r-636e7702bc4b-manual-3114a504.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.8298745719178082
+      }
     },
     {
       "id": "r-bb0883fddfc0",

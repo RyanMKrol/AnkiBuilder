@@ -7,7 +7,8 @@
     "chapterNumber": 12,
     "chapterLabel": "Chapter 12: Lesson 10: Winter Vacation Plans",
     "phase": "reading",
-    "kanjiTts": true
+    "kanjiTts": true,
+    "done": true
   },
   "items": [
     {
@@ -1358,12 +1359,17 @@
       "sourceOrder": 103,
       "pronunciation": "aruite",
       "ttsKanji": "歩いて",
-      "audio": "95c1c4706edbe18a.mp3",
+      "audio": "r-48748de4ab55-manual-877554c3.mp3",
       "audioOriginal": "95c1c4706edbe18a.orig.mp3",
-      "audioAuto": "95c1c4706edbe18a.mp3",
+      "audioAuto": "95c1c4706edbe18a.aggressive.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "95c1c4706edbe18a"
+      "audioTextHash": "95c1c4706edbe18a",
+      "audioManual": "r-48748de4ab55-manual-877554c3.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.1591202910958904
+      },
+      "audioFilter": "aggressive"
     },
     {
       "id": "r-c141850f9e8a",

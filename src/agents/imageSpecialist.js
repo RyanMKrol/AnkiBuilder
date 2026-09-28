@@ -89,12 +89,38 @@ export function judgeImages({ images, targetLanguage, meta = null, runClaude } =
   if (!Array.isArray(images) || images.length === 0) {
     return { items: [], verdicts: [] };
   }
-  const prompt = renderImageSpecialistPrompt({ images, targetLanguage, meta });
-  const raw = runRole(ROLE_ID, prompt, runClaude ? { runClaude } : {});
-  const parsed = JSON.parse(extractJsonObjectText(raw));
+  const ask = (batch) =>
+    JSON.parse(
+      extractJsonObjectText(
+        runRole(
+          ROLE_ID,
+          renderImageSpecialistPrompt({ images: batch, targetLanguage, meta }),
+          runClaude ? { runClaude } : {},
+        ),
+      ),
+    );
+  const list = (value) => (Array.isArray(value) ? value : []);
+
+  // An image the role skipped is asked about AGAIN, on its own, rather than discarding the whole
+  // response. On Busy People Lesson 15 the role judged every image but two decorative ones, and the
+  // refusal threw away the chapter's finished image reading along with the phase queued behind it.
+  // Only an image still unjudged after the second ask stops the chapter (the reading pipeline's
+  // image reader does the same, src/reading/readingAgents.js).
+  const first = ask(images);
+  let rawVerdicts = list(first.verdicts);
+  let rawItems = list(first.items);
+  const skipped = unaccountedImages(
+    images.map((image) => image.src),
+    { entries: rawVerdicts },
+  );
+  if (skipped.length) {
+    const again = ask(images.filter((image) => skipped.includes(image.src)));
+    rawVerdicts = [...rawVerdicts, ...list(again.verdicts)];
+    rawItems = [...rawItems, ...list(again.items)];
+  }
 
   const missingOnDisk = new Set(images.filter((i) => !i.exists).map((i) => i.src));
-  const verdicts = (Array.isArray(parsed.verdicts) ? parsed.verdicts : []).map((entry) =>
+  const verdicts = rawVerdicts.map((entry) =>
     missingOnDisk.has(entry.src)
       ? {
           ...entry,
@@ -105,9 +131,6 @@ export function judgeImages({ images, targetLanguage, meta = null, runClaude } =
   );
   assertImagesAccountedFor(images, verdicts);
 
-  const items = (Array.isArray(parsed.items) ? parsed.items : []).map((item) => ({
-    ...item,
-    producedBy: ROLE_ID,
-  }));
+  const items = rawItems.map((item) => ({ ...item, producedBy: ROLE_ID }));
   return { items, verdicts };
 }

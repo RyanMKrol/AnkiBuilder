@@ -2072,9 +2072,11 @@ pass in this pipeline is blind to a chart that was drawn rather than marked up, 
 `alt` is usually empty even when the picture is the whole lesson.
 
 The failure being closed is not "the model judged an image wrongly", it is "nobody looked and the
-output says nothing about it". So `assertImagesAccountedFor` rejects a response that omits any image
-it was given, decorative ones included, reusing `unaccountedImages` from the storage module so the
-check and the artifact cannot drift apart on what "accounted for" means.
+output says nothing about it". So every image it was given must carry a verdict, decorative ones
+included. An image the first response skipped is asked about again, on its own, and the first
+response is kept; only an image still unjudged after that second ask makes
+`assertImagesAccountedFor` stop the chapter. It reuses `unaccountedImages` from the storage module so
+the check and the artifact cannot drift apart on what "accounted for" means.
 
 Two guards worth knowing:
 

@@ -386,9 +386,12 @@
       "additionReviewed": true,
       "additionAudioInherited": true,
       "additionDone": true,
-      "excluded": true,
-      "excludedBy": "v2-retrofit-2026-09-28",
-      "excludedReason": "Duplicate of the base card すごい!."
+      "audio": "a1b3243842db1789.mp3",
+      "audioOriginal": "a1b3243842db1789.orig.mp3",
+      "audioAuto": "a1b3243842db1789.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a1b3243842db1789",
+      "audioFilter": "standard"
     },
     {
       "id": "x15b-uisukii-suki-ja-arimasen",

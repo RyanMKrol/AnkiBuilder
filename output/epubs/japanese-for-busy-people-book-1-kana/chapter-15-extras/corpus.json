@@ -206,10 +206,7 @@
       "english": "Amazing!",
       "category": "Emotions & Feelings",
       "target": "すごい",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu",
-      "excluded": true,
-      "excludedBy": "v2-retrofit-2026-09-28",
-      "excludedReason": "Duplicate of the base card すごい!."
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu"
     },
     {
       "id": "x15b-uisukii-suki-ja-arimasen",

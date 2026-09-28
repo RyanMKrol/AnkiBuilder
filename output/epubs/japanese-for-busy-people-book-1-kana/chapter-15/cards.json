@@ -921,7 +921,8 @@
       "audioTextHash": "576663d392d0bd94",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "x15a-yomu-dict",
@@ -939,7 +940,8 @@
       "audioTextHash": "6126bd05500c71b6",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     }
   ]
 }

@@ -1005,7 +1005,8 @@
       "audioTextHash": "28b7211c5e0d46c3",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ks1-chan-wine-suki",
@@ -1021,7 +1022,8 @@
       "audioTextHash": "283f35fe4a9ad580",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ks2-chan-nihongo-jouzu",
@@ -1037,7 +1039,8 @@
       "audioTextHash": "bff66b88bd2dd935",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ks3-smith-soccer-miru-suki",
@@ -1053,7 +1056,8 @@
       "audioTextHash": "a8ea59d389120ac0",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex2-eg-a-kato-sake-golf",
@@ -1069,7 +1073,8 @@
       "audio": "ex2-eg-a-kato-sake-golf-user-528c5657.mp3",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex2-eg-b-kato-coffee-tennis",
@@ -1085,7 +1090,8 @@
       "audioTextHash": "43c9ef4b403e8c84",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex3-eg-suzuki-sports-question",
@@ -1101,7 +1107,8 @@
       "audioTextHash": "73720ddad4273414",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex7-eg-green-music-question",
@@ -1117,7 +1124,8 @@
       "audioTextHash": "8ccdb2837f413a00",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex7-eg-green-reply-what-about-you",
@@ -1134,7 +1142,8 @@
       "audioTextHash": "76e4a99d3299edc3",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex7-eg-kato-me-too-sing",
@@ -1151,7 +1160,8 @@
       "audioTextHash": "d06f32a5f2283372",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "fib-bijutsukan-iku-mo-suki",
@@ -1169,7 +1179,8 @@
       "audioTextHash": "72432113ee010714",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "demo-but-speaking-practice",
@@ -1185,7 +1196,8 @@
       "audioTextHash": "022b68bfbdbf2e02",
       "addition": "v2-retrofit-l15-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "x15r-chan-coffee-dansu",
@@ -1201,7 +1213,8 @@
       "audioOriginal": "3c94757509b42052.orig.mp3",
       "audioAuto": "3c94757509b42052.mp3",
       "audioMarked": true,
-      "audioTextHash": "3c94757509b42052"
+      "audioTextHash": "3c94757509b42052",
+      "additionDone": true
     },
     {
       "id": "x15r-chan-beer-uta",
@@ -1217,7 +1230,8 @@
       "audioOriginal": "b0b49658e842c691.orig.mp3",
       "audioAuto": "b0b49658e842c691.mp3",
       "audioMarked": true,
-      "audioTextHash": "b0b49658e842c691"
+      "audioTextHash": "b0b49658e842c691",
+      "additionDone": true
     },
     {
       "id": "x15r-sasaki-wine-sukii",
@@ -1233,7 +1247,8 @@
       "audioOriginal": "ef5553e21b3f21fb.orig.mp3",
       "audioAuto": "ef5553e21b3f21fb.mp3",
       "audioMarked": true,
-      "audioTextHash": "ef5553e21b3f21fb"
+      "audioTextHash": "ef5553e21b3f21fb",
+      "additionDone": true
     },
     {
       "id": "x15r-sasaki-whiskey-golf",
@@ -1249,7 +1264,8 @@
       "audioOriginal": "9a6d85c843b75c7e.orig.mp3",
       "audioAuto": "9a6d85c843b75c7e.mp3",
       "audioMarked": true,
-      "audioTextHash": "9a6d85c843b75c7e"
+      "audioTextHash": "9a6d85c843b75c7e",
+      "additionDone": true
     },
     {
       "id": "x15r-ryokou-shashin-toru",
@@ -1266,7 +1282,8 @@
       "audioOriginal": "83348d364623e1bc.orig.mp3",
       "audioAuto": "83348d364623e1bc.mp3",
       "audioMarked": true,
-      "audioTextHash": "83348d364623e1bc"
+      "audioTextHash": "83348d364623e1bc",
+      "additionDone": true
     }
   ]
 }

@@ -940,7 +940,8 @@
       "audioOriginal": "d4fb2b5104d027d1.orig.mp3",
       "audioAuto": "d4fb2b5104d027d1.mp3",
       "audioMarked": true,
-      "audioTextHash": "d4fb2b5104d027d1"
+      "audioTextHash": "d4fb2b5104d027d1",
+      "additionDone": true
     }
   ]
 }

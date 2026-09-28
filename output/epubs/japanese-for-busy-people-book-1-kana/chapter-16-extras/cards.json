@@ -790,7 +790,8 @@
       "audioOriginal": "cde3b98eaa0af198.orig.mp3",
       "audioAuto": "cde3b98eaa0af198.mp3",
       "audioMarked": true,
-      "audioTextHash": "cde3b98eaa0af198"
+      "audioTextHash": "cde3b98eaa0af198",
+      "additionDone": true
     },
     {
       "id": "ks2-eiga",
@@ -808,7 +809,8 @@
       "audioTextHash": "54fe9f70f4e592dd",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ks3-ikimashou",
@@ -826,7 +828,8 @@
       "audioTextHash": "660d32310ca03148",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ks4-tenki-kara",
@@ -842,7 +845,8 @@
       "audioTextHash": "be291b34c5a05e99",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "decline-anime",
@@ -859,7 +863,8 @@
       "audioTextHash": "3a078afcb586da93",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "decline-doyoubi",
@@ -877,7 +882,8 @@
       "audioTextHash": "e6157848593000de",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "nichiyoubi-jikan",
@@ -896,7 +902,8 @@
       "audio": "d95767020f1d1411-genkanji-c68fec3f.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex7-yokohama-invite",
@@ -912,7 +919,8 @@
       "audio": "05b7a346cbf298f7-genkanji-fa98221f.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex7-nanji-kara",
@@ -928,7 +936,8 @@
       "audioTextHash": "7d9dbf27576ee657",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex7-shichiji-kara",
@@ -946,7 +955,8 @@
       "audio": "69fb094f2321c85c-genkanji-161fd9c9.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "ex7-wakarimashita",
@@ -965,7 +975,8 @@
       "audio": "b29f11a08c1d2a45-genkanji-5359aa33.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "sp1-party-invite",
@@ -984,7 +995,8 @@
       "audioTextHash": "5601d1806affc507",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "fib-nodo-nanika-nomimasenka",
@@ -1003,7 +1015,8 @@
       "audio": "9103f7a052949a1b-genkanji-b3511448.mp3",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "fib-tsukare-sukoshi-yasumimasenka",
@@ -1021,7 +1034,8 @@
       "audioTextHash": "dfff80a7edd0c335",
       "addition": "v2-retrofit-l16-2026-09-28",
       "additionAudioInherited": true,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "x16r-ja-nichiyoubi-dou-desu-ka",
@@ -1038,7 +1052,8 @@
       "audioOriginal": "850c33804117be84.orig.mp3",
       "audioAuto": "850c33804117be84.mp3",
       "audioMarked": true,
-      "audioTextHash": "850c33804117be84"
+      "audioTextHash": "850c33804117be84",
+      "additionDone": true
     },
     {
       "id": "x16r-sp2-tenisu-shimasenka",
@@ -1055,7 +1070,8 @@
       "audioOriginal": "da3bd8bcac13d103.orig.mp3",
       "audioAuto": "da3bd8bcac13d103.mp3",
       "audioMarked": true,
-      "audioTextHash": "da3bd8bcac13d103"
+      "audioTextHash": "da3bd8bcac13d103",
+      "additionDone": true
     },
     {
       "id": "x16r-eki-deguchi-aimashou",
@@ -1071,7 +1087,8 @@
       "audioOriginal": "68cc29b45bbdfa81.orig.mp3",
       "audioAuto": "68cc29b45bbdfa81.mp3",
       "audioMarked": true,
-      "audioTextHash": "68cc29b45bbdfa81"
+      "audioTextHash": "68cc29b45bbdfa81",
+      "additionDone": true
     }
   ]
 }

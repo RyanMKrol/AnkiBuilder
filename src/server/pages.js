@@ -791,13 +791,9 @@ ${sectionHtml}
         `what is missing, so it costs exactly these cards.</p>`
       : "";
 
-    const contentTools = canEdit
-      ? `<div class="add-tools">` +
-        (atContent.length
-          ? `<button type="button" class="approve-all">Approve all ${atContent.length} on content</button><span class="approve-all-msg"></span>`
-          : "") +
-        `</div>`
-      : "";
+    // The content sign-off is each section's Mark reviewed, as on the corpus review. A page-level
+    // "Approve all" button outlived its handler here (removed in 426eaff) and did nothing when clicked.
+    const contentTools = "";
 
     const audioTools = canEdit
       ? `<div class="add-tools">` +

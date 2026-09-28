@@ -73,6 +73,14 @@ test("a resolved sentence passes the slot check", () => {
   assert.doesNotThrow(() => assertNoUnresolvedSlots([{ id: "a", target: "これはペンです" }]));
 });
 
+test("an ellipsis that ends the sentence is speech trailing off, not a blank", () => {
+  // Lesson 16 teaches declining by leaving the sentence unfinished.
+  for (const ok of ["ざんねんですが、にちようびは ちょっと…。", "ちょっと…", "ちょっと..."]) {
+    assert.doesNotThrow(() => assertNoUnresolvedSlots([{ id: "a", target: ok }]), ok);
+  }
+  assert.throws(() => assertNoUnresolvedSlots([{ id: "b", target: "…はちょっと…" }]), /unresolved/);
+});
+
 test("frame yield makes the gap between offered and kept visible rather than implied", () => {
   assert.deepEqual(
     frameYield([{ frame: "これは〜です", fillers: 6, produced: 3, note: "capped" }]),

@@ -1993,7 +1993,9 @@ Everything else in this pipeline reports and lets a human decide, because most j
 genuinely close. This one is not. A target still holding `___`, an empty full-width paren or a bare
 `〜` cannot be studied by anyone in any context, so there is nothing for a reviewer to weigh, and
 `assertNoUnresolvedSlots` throws at parse time rather than adding a card whose only future is
-deletion.
+deletion. An ellipsis is a slot only with words after it: one that ends the sentence is speech
+trailing off, which Busy People Lesson 16 teaches as the polite way to decline
+(`にちようびは ちょっと…`).
 
 `frameYield` records what each frame offered against what it kept, so "this chapter was thin" and
 "this role capped hard" are told apart by reading rather than guessing.

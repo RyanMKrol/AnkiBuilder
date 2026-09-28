@@ -667,3 +667,14 @@ per-source boolean should become an explicit per-source table.
 - **Why:** a book teaches a subset of readings as it goes (Genki: complete for 45 of 144 kanji), so
   "one reading" on a book card only meant "one taught so far"; completing first makes voicing safe.
 - **Where it lives:** `docs/designs/reading-decks/10-character-cards.md`, `src/reading/joyoReadings.js`.
+
+## A reading collection's reviewed JSON is tracked in git, like a speaking collection's
+
+- **What was decided (owner, 2026-09-28):** the Genki reading collection's `cards.json`,
+  `corpus.json`, `book.json`, delivery marker and dedup corpora are committed to this public
+  repository, exactly as Busy People's speaking collection always has been. The book file and the
+  audio stay out, as `.gitignore` already keeps them.
+- **Why:** git is the only backup of hand-reviewed deck JSON. An earlier note had kept the Genki
+  output uncommitted because the repository is public; the owner looked at what that exposes (card
+  text, no book file, no audio) and chose the backup.
+- **Where it lives:** `.gitignore` (including the `reading/corpora` re-include).

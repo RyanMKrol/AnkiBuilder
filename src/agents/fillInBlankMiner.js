@@ -34,6 +34,15 @@ export const ROLE_ID = "fillInBlankMiner";
 /** What an unresolved slot looks like, in every notation this pipeline has met. */
 export const UNRESOLVED = /[_＿]{2,}|[（(]\s*[）)]|〜|～|[…⋯]|\.{3}/;
 
+// An ellipsis that ENDS the sentence is speech trailing off, not a blank: Busy People Lesson 16
+// teaches declining by leaving the sentence unfinished (ざんねんですが、にちようびは ちょっと…), and
+// refusing that line threw away the chapter's whole extras phase. Only an ellipsis with words after
+// it marks a slot.
+const TRAILING_OFF = /(?:[…⋯]+|\.{3,})[。．.！!？?]*\s*$/;
+
+/** Whether a produced target still holds a slot. */
+export const hasUnresolvedSlot = (target) => UNRESOLVED.test(target.replace(TRAILING_OFF, ""));
+
 const NO_EARLIER = "(this is the book's first lesson — there is no earlier vocabulary)";
 
 export function renderFillInBlankMinerPrompt({
@@ -64,7 +73,7 @@ export function renderFillInBlankMinerPrompt({
  */
 export function assertNoUnresolvedSlots(items) {
   const offenders = (items ?? []).filter(
-    (item) => typeof item?.target === "string" && UNRESOLVED.test(item.target),
+    (item) => typeof item?.target === "string" && hasUnresolvedSlot(item.target),
   );
   if (offenders.length) {
     throw new Error(

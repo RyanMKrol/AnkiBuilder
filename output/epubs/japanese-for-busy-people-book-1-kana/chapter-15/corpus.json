@@ -110,44 +110,14 @@
       "target": "じょうず"
     },
     {
-      "id": "donna-anime-ga-suki",
-      "english": "What kind of anime do you like?",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "どんな + noun + が すきですか asks what someone likes from within a specific category (here, which kind of anime).",
-      "reviewNote": null,
-      "target": "どんなアニメがすきですか"
-    },
-    {
       "id": "watashi-mo-desu",
-      "english": "I am too. / Me too.",
+      "english": "Me too. / Me neither.",
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
       "note": "Short for わたしも ロボットの アニメが すきです (\"I like mecha anime too\"). わたしもです is used to say \"I am the same as the previous speaker,\" whether the original statement was affirmative or negative.",
       "reviewNote": null,
       "target": "わたしもです"
-    },
-    {
-      "id": "ks1-chan-wine-suki",
-      "english": "Chan-san likes wine.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Demonstrates person は noun が すきです (\"X likes Y\").",
-      "reviewNote": null,
-      "target": "チャンさんはワインがすきです"
-    },
-    {
-      "id": "ks2-chan-nihongo-jouzu",
-      "english": "Chan-san is good at Japanese.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Demonstrates person は noun が じょうずです (\"X is good at Y\"). じょうずです is normally used only to describe other people, not yourself.",
-      "reviewNote": null,
-      "target": "チャンさんはにほんごがじょうずです"
     },
     {
       "id": "soccer-vocab",
@@ -168,16 +138,6 @@
       "note": "Dictionary form of みます (mimasu, \"see\", Lesson 8) — the verb already known for watching TV or movies now appears bare, as this lesson does for all Regular 2 verbs.",
       "reviewNote": null,
       "target": "みる"
-    },
-    {
-      "id": "ks3-smith-soccer-miru-suki",
-      "english": "Smith-san likes watching soccer matches.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Demonstrates person は verb [dictionary form] のが すきです (\"X likes doing Y\"); の turns the dictionary-form verb みる into a noun-equivalent so it can take が すきです.",
-      "reviewNote": null,
-      "target": "スミスさんはサッカーをみるのがすきです"
     },
     {
       "id": "skiing",
@@ -329,7 +289,10 @@
       "note": null,
       "reviewNote": "Exercise I's conjugation chart (Page_146_Image_0001.jpg) teaches the past-tense forms でした / じゃありませんでした for すきです / じょうずです, but no sentence anywhere in the chapter's text actually uses them. This reuses チャンさん and にほんご from Key Sentence 2 to demonstrate じょうずでした in context.",
       "target": "チャンさんはにほんごがじょうずでした",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "AI-suggested sentence; the past forms have their own cards and the extras carry them in sentences."
     },
     {
       "id": "golf-vocab",
@@ -349,7 +312,10 @@
       "note": "Used throughout this lesson's exercises as a skill: テニスが じょうずじゃありません (\"not good at tennis\").",
       "uncertain": true,
       "aiSuggested": true,
-      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's."
+      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Printed only inside pictures and example sentences; already known from テニスをします (Lesson 8)."
     },
     {
       "id": "sake-rice-wine",
@@ -359,7 +325,10 @@
       "note": "Appears in the EXERCISES II like/dislike drills alongside ビール, ワイン and ウイスキー.",
       "uncertain": true,
       "aiSuggested": true,
-      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's."
+      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Not printed in the book: inferred from a picture of a sake bottle, whose word in this chapter is にほんしゅ (Lesson 8)."
     },
     {
       "id": "dance-vocab",
@@ -393,26 +362,6 @@
       "target": "ウイスキー"
     },
     {
-      "id": "ex2-eg-a-kato-sake-golf",
-      "english": "Kato-san likes Japanese sake. He is good at golf.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Exercise II's worked example for stating what someone likes and is skilled at, combining grammar points 1's two patterns in one exchange.",
-      "reviewNote": "にほんしゅ (nihonshu, \"Japanese sake\") is not glossed in any VOCABULARY box in this chapter; it appears only as part of this exercise's own worked example.",
-      "target": "かとうさんはにほんしゅがすきです。ゴルフがじょうずです"
-    },
-    {
-      "id": "ex2-eg-b-kato-coffee-tennis",
-      "english": "Kato-san doesn't like coffee. He is not good at tennis.",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Exercise II's worked example for stating what someone dislikes and is unskilled at.",
-      "reviewNote": null,
-      "target": "かとうさんはコーヒーがすきじゃありません。テニスがじょうずじゃありません"
-    },
-    {
       "id": "sports-vocab",
       "english": "Sports",
       "category": "Sports & Hobbies",
@@ -421,16 +370,6 @@
       "note": null,
       "reviewNote": null,
       "target": "スポーツ"
-    },
-    {
-      "id": "ex3-eg-suzuki-sports-question",
-      "english": "Do you like sports, Suzuki-san?",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Exercise III's worked example for asking someone whether they like something.",
-      "reviewNote": null,
-      "target": "すずきさんはスポーツがすきですか"
     },
     {
       "id": "fruits-vocab",
@@ -632,36 +571,6 @@
       "target": "ジャズ"
     },
     {
-      "id": "ex7-eg-green-music-question",
-      "english": "Do you like listening to music, Green-san?",
-      "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": "Exercise VII's worked example for talking about what you like to do.",
-      "reviewNote": null,
-      "target": "グリーンさんはおんがくをきくのがすきですか"
-    },
-    {
-      "id": "ex7-eg-green-reply-what-about-you",
-      "english": "Yes, I do. What about you, Kato-san?",
-      "category": "Grammar & Function Words",
-      "scene": "replying to whether he likes listening to music, then turning the question back to the other speaker",
-      "hint": null,
-      "note": "「Xさんは?」on its own is a common way to turn a question back on someone: \"What about X?\"",
-      "reviewNote": null,
-      "target": "ええ、すきです。かとうさんは?"
-    },
-    {
-      "id": "ex7-eg-kato-me-too-sing",
-      "english": "I like it too. I also like singing.",
-      "category": "Grammar & Function Words",
-      "scene": "replying that he also likes listening to music",
-      "hint": null,
-      "note": "うたうのも すきです extends the person は verb[dictionary form] のが すきです pattern with も (\"also, too\") in place of が.",
-      "reviewNote": null,
-      "target": "わたしもすきです。うたうのもすきです"
-    },
-    {
       "id": "sou-desu-ka",
       "english": "I see. / Is that so?",
       "category": "Grammar & Function Words",
@@ -710,14 +619,22 @@
       "target": "でも"
     },
     {
-      "id": "demo-but-speaking-practice",
-      "english": "I like soccer. But I'm not good at it.",
+      "id": "x15a-aruku-dict",
+      "english": "Walk (dictionary form)",
       "category": "Grammar & Function Words",
-      "scene": null,
-      "hint": null,
-      "note": null,
-      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else.",
-      "target": "サッカーがすきです。でも、じょうずじゃありません"
+      "note": "Regular 1: あるきます → あるく. The き before ます becomes く.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V item 9, which asks for this form; job: a dictionary form the exercise names and no card carried).",
+      "target": "あるく",
+      "aiSuggested": true
+    },
+    {
+      "id": "x15a-yomu-dict",
+      "english": "Read (dictionary form)",
+      "category": "Grammar & Function Words",
+      "note": "Regular 1: よみます → よむ. The み before ます becomes む.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V item 10, which asks for this form; job: a dictionary form the exercise names and no card carried).",
+      "target": "よむ",
+      "aiSuggested": true
     }
   ]
 }

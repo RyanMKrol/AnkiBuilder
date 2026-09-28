@@ -14,7 +14,10 @@
       "note": "から on a past-tense clause: the reason is something that has already happened.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence やすみます appears in; also から after a ました clause).",
       "target": "つかれましたから、すこしやすみませんか",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "x16a-sou-desu-ka-mata-kondo",
@@ -57,7 +60,10 @@
       "note": "に because you GO there. あきはばらでイベントがあります takes で, because that is where the event HAPPENS. Same place, two particles, decided by the verb.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — minimal pair against the Target Dialogue's あきはばらでイベントがあります).",
       "target": "いっしょにあきはばらにいきませんか",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "x16a-pooru-suzuki-event-ikimasu",
@@ -76,7 +82,10 @@
       "note": "〜はどうですか proposes an alternative. Contrast どうですか on its own, which asks what someone thinks or wants.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: the only sentence はどうですか appears in — the chapter teaches it and Lesson 17 teaches it again).",
       "target": "どようびはどうですか",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented; replaced by the book's own じゃ、にちようびはどうですか (EXERCISES IV)."
     },
     {
       "id": "x16b-higashiguchi-deguchi",
@@ -85,7 +94,10 @@
       "note": "でぐち is the general word for an exit; ひがしぐち names which one. The chapter's four 〜ぐち are all built the same way, on にし・ひがし・きた・みなみ.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence でぐち appears in, and the only one あいませんか appears in).",
       "target": "ひがしぐちのでぐちであいませんか",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Unnatural (\"the east exit's exit\"); えきのでぐちであいましょう replaces it."
     },
     {
       "id": "x16b-hai-zehi",
@@ -95,7 +107,10 @@
       "note": "GRAMMAR 2 lists ええ／はい、ぜひ as interchangeable here; the deck already has the ええ version.",
       "reviewNote": "Extras wave 2 (from the book: GRAMMAR 2's list of ways to accept; job: the はい variant, which the book gives and the deck lacked).",
       "target": "はい、ぜひ",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Trivial はい/ええ variant; the ええ card ships and its note says はい works too."
     },
     {
       "id": "x16a-ichiji-kara",
@@ -116,7 +131,10 @@
       "scene": "agreeing to a suggestion someone has just made",
       "reviewNote": "Extras wave 2 (from the book: GRAMMAR 2's list of ways to accept; job: the はい variant of ええ、そうしましょう).",
       "target": "はい、そうしましょう",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Trivial はい/ええ variant; the ええ card ships and its note says はい works too."
     },
     {
       "id": "x16a-tsugi-akihabara-event",
@@ -143,7 +161,10 @@
       "note": "The chapter's three physical-condition phrases (おなかがすきました, のどがかわきました, つかれました) all work as reasons in front of から.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the reason+invitation frame on a second condition, so the pattern is visible rather than a single instance).",
       "target": "おなかがすきましたから、なにかたべませんか",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "x16b-koen-tabemashou",
@@ -152,7 +173,10 @@
       "note": "ましょう assumes agreement and moves to the action. The same sentence with ませんか would still be asking.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the ましょう half of the pair; the grammar states this difference and no card showed it).",
       "target": "こうえんでひるごはんをたべましょう",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "x16c-shibuya-konsaato",
@@ -160,7 +184,10 @@
       "category": "Sports & Hobbies",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1 — the whole exercise was missed on my first read).",
       "target": "しぶやでコンサートがあります。いっしょにいきませんか",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
     },
     {
       "id": "x16b-koen-tabemasenka",
@@ -169,7 +196,10 @@
       "note": "ませんか ASKS, and leaves the other person free to decline. Compare こうえんでひるごはんをたべましょう, which assumes the answer is yes.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — the ませんか half of a fixed-frame minimal pair, so only the ending varies).",
       "target": "こうえんでひるごはんをたべませんか",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Already inside Key Sentence 4, which ships."
     },
     {
       "id": "x16a-omoshiroi-kara-ikimasenka",
@@ -253,7 +283,10 @@
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1, closing turn).",
       "target": "5じはんにしぶやえきのひがしぐちですね。わかりました",
       "ttsText": "ごじはんにしぶやえきのひがしぐちですね。わかりました",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"...right? Got it\"; the book's example ships."
     },
     {
       "id": "x16c-rokuji-han-higashiguchi",
@@ -290,7 +323,10 @@
       "note": "も replaces は on the topic to mean \"me too\" — it never sits alongside it.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particles — も had only two examples across the pair, below the three the pass aims for).",
       "target": "わたしもおまつりにいきます",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Uses も with a destination in a way this lesson does not teach."
     },
     {
       "id": "x16a-raigetsu-nikko-ikimasenka",
@@ -306,7 +342,10 @@
       "category": "Travel & Tourism",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2 — missed on my first read; job: the only sentence しんじゅく appears in).",
       "target": "しんじゅくでおまつりがあります。いっしょにいきませんか",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
     },
     {
       "id": "x16b-eiga-mimashou",
@@ -314,7 +353,10 @@
       "category": "Sports & Hobbies",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence みましょう appears in; it was the paradigm cell added by hand at gate 1).",
       "target": "いっしょにえいがをみましょう",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Invented near-duplicate of a book sentence that ships."
     },
     {
       "id": "x16c-kuji-minamiguchi-wakarimashita",
@@ -324,7 +366,10 @@
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2, closing turn).",
       "target": "9じにしんじゅくえきのみなみぐちですね。わかりました",
       "ttsText": "くじにしんじゅくえきのみなみぐちですね。わかりました",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"...right? Got it\"; the book's example ships."
     },
     {
       "id": "x16c-juuji-minamiguchi",
@@ -342,7 +387,10 @@
       "category": "Shopping",
       "reviewNote": "Extras wave 1/2 (from the book: EXERCISES IV substitution 2; job: another で-marked event, on vocabulary from Lesson 8).",
       "target": "どようびにしぶやでフリーマーケットがあります",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
     },
     {
       "id": "x16c-kitaguchi-aimasenka",
@@ -359,7 +407,10 @@
       "category": "Travel & Tourism",
       "reviewNote": "Extras wave 1/2 (from the book: EXERCISES IV substitution 1; job: the full two-sentence invitation the exercise builds).",
       "target": "しゅうまつにかまくらでおまつりがあります。いっしょにいきませんか",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Another \"there's an event at X. Shall we go together?\"; five of that frame still ship."
     },
     {
       "id": "x16a-raishuu-sakkaa-mimasenka",
@@ -392,6 +443,176 @@
       "category": "Sports & Hobbies",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES II-B, cue 2 — picture cue).",
       "target": "きんようびにかぶきをみませんか",
+      "aiSuggested": true
+    },
+    {
+      "id": "ks1-omatsuri",
+      "english": "There is a festival in Asakusa on Saturday.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Demonstrates place + で + event + が + あります, 'an event takes place somewhere' (GRAMMAR 1).",
+      "reviewNote": null,
+      "target": "どようびにあさくさでおまつりがあります"
+    },
+    {
+      "id": "ks2-eiga",
+      "english": "Shall we see a movie together on the weekend?",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Demonstrates verb[ます-stem]+ませんか, used to invite someone to do something (GRAMMAR 2).",
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "しゅうまつにいっしょにえいがをみませんか",
+      "uncertain": true
+    },
+    {
+      "id": "ks3-ikimashou",
+      "english": "Let's go together.",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Demonstrates verb[ます-stem]+ましょう, used when inviting the listener to do something together (GRAMMAR 3).",
+      "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
+      "target": "いっしょにいきましょう",
+      "uncertain": true
+    },
+    {
+      "id": "ks4-tenki-kara",
+      "english": "The weather is nice, so shall we have lunch in the park?",
+      "category": "Grammar & Function Words",
+      "scene": null,
+      "hint": null,
+      "note": "Demonstrates clause1から、clause2 (reason) combined with an invitation (GRAMMAR 4).",
+      "reviewNote": null,
+      "target": "いいてんきですから、こうえんでひるごはんをたべませんか"
+    },
+    {
+      "id": "decline-anime",
+      "english": "I'm sorry, but anime is not really my thing.",
+      "category": "Grammar & Function Words",
+      "scene": "declining an invitation",
+      "hint": null,
+      "note": null,
+      "reviewNote": "Source GRAMMAR table gives the pattern 'すみません。 noun は ちょっと…。'; filled with アニメ (anime), reusing this chapter's dialogue topic. The trailing ellipsis was resolved into a closed sentence since a placeholder can't be spoken.",
+      "target": "すみません。アニメはちょっと"
+    },
+    {
+      "id": "decline-doyoubi",
+      "english": "Unfortunately, Saturday doesn't really work for me.",
+      "category": "Grammar & Function Words",
+      "scene": "declining an invitation",
+      "hint": null,
+      "note": "ざんねんですが (unfortunately) softens the refusal more than すみません — used especially for a scheduling conflict rather than a taste mismatch.",
+      "reviewNote": "Source GRAMMAR table gives the pattern 'ざんねんですが、 noun は ちょっと…。'; filled with どようび (Saturday) for variety from the previous card. The trailing ellipsis was resolved into a closed sentence.",
+      "target": "ざんねんですが、どようびはちょっと"
+    },
+    {
+      "id": "nichiyoubi-jikan",
+      "english": "I have time on Sunday.",
+      "category": "Time",
+      "scene": null,
+      "hint": null,
+      "note": "じかんが あります literally means 'there is time' — a common way to say you are free or available.",
+      "reviewNote": "Possibly premature — uses は directly on a day-of-week time expression in place of the expected に (にちようびに), which looks like an early instance of the contrastive-は pattern (は replacing another particle) that isn't formally taught until later — flagging for the reviewer to judge since this is a borderline call",
+      "target": "にちようびはじかんがあります",
+      "uncertain": true
+    },
+    {
+      "id": "ex7-yokohama-invite",
+      "english": "There's a fireworks festival in Yokohama on Sunday. Shall we go together?",
+      "category": "Travel & Tourism",
+      "scene": null,
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "にちようびによこはまではなびたいかいがあります。いっしょにいきませんか"
+    },
+    {
+      "id": "ex7-nanji-kara",
+      "english": "What time does the fireworks festival start?",
+      "category": "Time",
+      "scene": "asking what time an event starts",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "はなびたいかいはなんじからですか"
+    },
+    {
+      "id": "ex7-shichiji-kara",
+      "english": "It starts at 7:00. Let's meet at 6:00 at the west exit of Yokohama Station.",
+      "category": "Time",
+      "scene": "arranging where to meet before an event",
+      "hint": null,
+      "note": null,
+      "reviewNote": null,
+      "target": "7じからです。6じによこはまえきのにしぐちであいましょう",
+      "ttsText": "しちじからです。ろくじによこはまえきのにしぐちであいましょう"
+    },
+    {
+      "id": "ex7-wakarimashita",
+      "english": "6:00 at the west exit of Yokohama Station, right? Got it.",
+      "category": "Grammar & Function Words",
+      "scene": "confirming a meeting time and place",
+      "hint": null,
+      "note": "わかりました (wakarimashita) means 'understood, got it' — used to confirm you've understood a plan or instruction.",
+      "reviewNote": null,
+      "target": "6じによこはまえきのにしぐちですね。わかりました",
+      "ttsText": "ろくじによこはまえきのにしぐちですね。わかりました"
+    },
+    {
+      "id": "sp1-party-invite",
+      "english": "Smith-san, I am having a party at my home on Sunday, the 15th. Would you like to come?",
+      "category": "Grammar & Function Words",
+      "scene": "inviting someone to a party at one's own home",
+      "hint": null,
+      "note": "きませんか (not いきませんか) is used specifically when inviting someone to your own home or an event you yourself are hosting.",
+      "reviewNote": "Chapter's only sentence demonstrating きませんか used for an invitation to the speaker's own home/event, a nuance highlighted in this chapter's NOTES; extracted from the SPEAKING PRACTICE dialogue under the function-word exception since the pattern appears nowhere else in the chapter.",
+      "target": "スミスさん、15にちのにちようびにうちでパーティーをします。きませんか",
+      "ttsText": "スミスさん、じゅうごにちのにちようびにうちでパーティーをします。きませんか"
+    },
+    {
+      "id": "fib-nodo-nanika-nomimasenka",
+      "english": "You're thirsty, aren't you? Shall we drink something?",
+      "category": "Grammar & Function Words",
+      "target": "のどがかわきましたね。なにかのみませんか",
+      "note": "なにか (something) plus ませんか invites without naming the drink.",
+      "scene": null,
+      "aiSuggested": true
+    },
+    {
+      "id": "fib-tsukare-sukoshi-yasumimasenka",
+      "english": "You're tired, aren't you? Shall we rest a bit?",
+      "category": "Body & Health",
+      "target": "つかれましたね。すこしやすみませんか",
+      "note": "すこし (a bit) softens the suggestion to rest.",
+      "scene": null,
+      "aiSuggested": true
+    },
+    {
+      "id": "x16r-ja-nichiyoubi-dou-desu-ka",
+      "english": "Well then, how about Sunday?",
+      "category": "Time",
+      "target": "じゃ、にちようびはどうですか",
+      "scene": "proposing a different day after the first was turned down",
+      "reviewNote": "Retrofit 2026-09-28: the book's EXERCISES IV example, third turn; replaces the invented どようびはどうですか.",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16r-sp2-tenisu-shimasenka",
+      "english": "On Saturday I'm playing tennis with Smith-san. Would you like to join us, Emma-san?",
+      "category": "Sports & Hobbies",
+      "target": "どようびにスミスさんとテニスをします。エマさんもいっしょにしませんか",
+      "scene": "inviting someone to join something already planned",
+      "reviewNote": "Retrofit 2026-09-28: the book's SPEAKING PRACTICE 2 invitation, never carded.",
+      "aiSuggested": true
+    },
+    {
+      "id": "x16r-eki-deguchi-aimashou",
+      "english": "Let's meet at the station exit.",
+      "category": "Transport",
+      "target": "えきのでぐちであいましょう",
+      "reviewNote": "Retrofit 2026-09-28: from the v2 gap author (Lesson 16 shadow run); gives でぐち a natural sentence, replacing ひがしぐちのでぐち.",
       "aiSuggested": true
     }
   ]

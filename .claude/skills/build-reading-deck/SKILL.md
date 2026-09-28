@@ -32,6 +32,9 @@ chapter's words: the book pass generates it from a kanji dictionary (a model for
 lacks), one review agent per chapter checks what was generated, and when the book later teaches the
 kanji its own meaning and readings replace the generated ones on the same card
 (`docs/designs/reading-decks/10-character-cards.md`). A generated card says so in its review note.
+Every kanji card's readings are completed to the official school list (the book's first), and a
+kanji with exactly one official reading (曜, 週) is voiced; the rest stay silent. After a new
+chapter's merge, the book pass does this in place.
 After a change to the character review prompt, raise `CHARACTER_REVIEW_VERSION` and re-run the pass:
 it re-reviews every generated card checked under the older prompt, one call per chapter.
 

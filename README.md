@@ -653,7 +653,9 @@ What is built, newest last:
   chapters card kanji only. Every kanji a word uses gets its own silent card with its readings on the
   romaji line, generated in the first chapter that uses it from a kanji dictionary
   (`scripts/build-kanji-dictionary.mjs`, KANJIDIC2) and checked by a review agent, until the book's own
-  kanji table replaces the data. The operator procedure is the `build-reading-deck` skill.
+  kanji table replaces the data. Every kanji card's readings are completed to the official school
+  list (常用漢字表, `scripts/build-joyo-readings.mjs`), and a kanji with exactly one reading is voiced.
+  The operator procedure is the `build-reading-deck` skill.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 
 There is no limitations log: a correction goes where the thing is enforced, which is a prompt, a

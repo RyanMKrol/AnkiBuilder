@@ -30,7 +30,7 @@
 // before the kana deck existed and not reviewed by a person is re-merged for free. With `--dry` it
 // prints what would be read and, once every chapter is read, the kana deck it would choose.
 
-import { existsSync, readFileSync, readdirSync, rmSync } from "fs";
+import { existsSync, readFileSync, readdirSync, rmSync, writeFileSync } from "fs";
 import { join, resolve } from "path";
 import {
   hashEpubFile,
@@ -74,7 +74,11 @@ import {
   editedSinceMerge,
   rewriteUnitInPlace,
 } from "../src/reading/studyOrder.js";
-import { characterReadingsIn, withCharacterReadings } from "../src/reading/characterReadings.js";
+import {
+  characterReadingsIn,
+  withCharacterReadings,
+  completeCharacterCards,
+} from "../src/reading/characterReadings.js";
 import {
   CHARACTERS_FILE,
   fillCharacterGaps,
@@ -449,7 +453,26 @@ if (bookPass) {
     for (const entry of readJsonOrNull(join(unitDir, CHARACTERS_FILE))?.generated ?? []) {
       if (!entry.replacedByBook) generatedIn.set(entry.target, unitDir);
     }
+    // Last, every character card's readings completed to the language's reference list (the book's
+    // first), and a character with exactly one reading voiced (src/reading/characterReadings.js).
+    const record = readJsonOrNull(join(unitDir, CHARACTERS_FILE));
+    const base = new Map(
+      (record?.generated ?? []).filter((g) => !g.replacedByBook).map((g) => [g.target, g.readings]),
+    );
+    for (const [character, entry] of bookCharacters) base.set(character, entry);
+    let completed = 0;
+    let nextRecord = null;
+    rewriteUnitInPlace(unitDir, (unitCards) => {
+      const result = completeCharacterCards(unitCards.items ?? [], { scheme, base, record });
+      completed = result.changed;
+      nextRecord = result.record;
+      return result.changed ? { ...unitCards, items: result.items } : null;
+    });
+    if (nextRecord && JSON.stringify(nextRecord) !== JSON.stringify(record)) {
+      writeFileSync(join(unitDir, CHARACTERS_FILE), `${JSON.stringify(nextRecord, null, 2)}\n`);
+    }
     const said = [
+      completed && `${completed} character card(s) completed to the reference readings`,
       dropped.length && `${dropped.length} repeat character card(s) dropped (carded earlier)`,
       corrected.length && `the book's data given to ${corrected.length} earlier generated card(s)`,
       result.added &&

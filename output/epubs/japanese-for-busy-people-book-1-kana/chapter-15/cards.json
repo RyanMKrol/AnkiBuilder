@@ -144,21 +144,8 @@
       "audioTextHash": "5783f7c26d7e0ab7"
     },
     {
-      "id": "donna-anime-ga-suki",
-      "english": "What kind of anime do you like?",
-      "category": "Grammar & Function Words",
-      "target": "どんなアニメがすきですか",
-      "pronunciation": "donna anime ga suki desu ka",
-      "note": "どんな + noun + が すきですか asks what someone likes from within a specific category (here, which kind of anime).",
-      "audio": "28b7211c5e0d46c3.mp3",
-      "audioOriginal": "28b7211c5e0d46c3.orig.mp3",
-      "audioAuto": "28b7211c5e0d46c3.mp3",
-      "audioMarked": true,
-      "audioTextHash": "28b7211c5e0d46c3"
-    },
-    {
       "id": "watashi-mo-desu",
-      "english": "I am too. / Me too.",
+      "english": "Me too. / Me neither.",
       "category": "Grammar & Function Words",
       "target": "わたしもです",
       "pronunciation": "watashi mo desu",
@@ -168,32 +155,6 @@
       "audioAuto": "21190d5930d4abdb.mp3",
       "audioMarked": true,
       "audioTextHash": "21190d5930d4abdb"
-    },
-    {
-      "id": "ks1-chan-wine-suki",
-      "english": "Chan-san likes wine.",
-      "category": "Grammar & Function Words",
-      "target": "チャンさんはワインがすきです",
-      "pronunciation": "Chan-san wa wain ga suki desu",
-      "note": "Demonstrates person は noun が すきです (\"X likes Y\").",
-      "audio": "283f35fe4a9ad580.mp3",
-      "audioOriginal": "283f35fe4a9ad580.orig.mp3",
-      "audioAuto": "283f35fe4a9ad580.mp3",
-      "audioMarked": true,
-      "audioTextHash": "283f35fe4a9ad580"
-    },
-    {
-      "id": "ks2-chan-nihongo-jouzu",
-      "english": "Chan-san is good at Japanese.",
-      "category": "Grammar & Function Words",
-      "target": "チャンさんはにほんごがじょうずです",
-      "pronunciation": "Chan-san wa nihongo ga jōzu desu",
-      "note": "Demonstrates person は noun が じょうずです (\"X is good at Y\"). じょうずです is normally used only to describe other people, not yourself.",
-      "audio": "bff66b88bd2dd935.mp3",
-      "audioOriginal": "bff66b88bd2dd935.orig.mp3",
-      "audioAuto": "bff66b88bd2dd935.mp3",
-      "audioMarked": true,
-      "audioTextHash": "bff66b88bd2dd935"
     },
     {
       "id": "soccer-vocab",
@@ -219,19 +180,6 @@
       "audioAuto": "955635c7a6529193.mp3",
       "audioMarked": true,
       "audioTextHash": "955635c7a6529193"
-    },
-    {
-      "id": "ks3-smith-soccer-miru-suki",
-      "english": "Smith-san likes watching soccer matches.",
-      "category": "Grammar & Function Words",
-      "target": "スミスさんはサッカーをみるのがすきです",
-      "pronunciation": "Sumisu-san wa sakkā o miru no ga suki desu",
-      "note": "Demonstrates person は verb [dictionary form] のが すきです (\"X likes doing Y\"); の turns the dictionary-form verb みる into a noun-equivalent so it can take が すきです.",
-      "audio": "a8ea59d389120ac0.mp3",
-      "audioOriginal": "a8ea59d389120ac0.orig.mp3",
-      "audioAuto": "a8ea59d389120ac0.mp3",
-      "audioMarked": true,
-      "audioTextHash": "a8ea59d389120ac0"
     },
     {
       "id": "skiing",
@@ -422,7 +370,10 @@
       "audioOriginal": "3b1f02a79d0d2059.orig.mp3",
       "audioAuto": "3b1f02a79d0d2059.mp3",
       "audioMarked": true,
-      "audioTextHash": "3b1f02a79d0d2059"
+      "audioTextHash": "3b1f02a79d0d2059",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "AI-suggested sentence; the past forms have their own cards and the extras carry them in sentences."
     },
     {
       "id": "golf-vocab",
@@ -450,7 +401,10 @@
       "audioOriginal": "cc41fb9a720a3248.orig.mp3",
       "audioAuto": "cc41fb9a720a3248.mp3",
       "audioMarked": true,
-      "audioTextHash": "cc41fb9a720a3248"
+      "audioTextHash": "cc41fb9a720a3248",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Printed only inside pictures and example sentences; already known from テニスをします (Lesson 8)."
     },
     {
       "id": "sake-rice-wine",
@@ -466,7 +420,10 @@
       "audioOriginal": "66bb10942db6fe92.orig.mp3",
       "audioAuto": "66bb10942db6fe92.mp3",
       "audioMarked": true,
-      "audioTextHash": "66bb10942db6fe92"
+      "audioTextHash": "66bb10942db6fe92",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Not printed in the book: inferred from a picture of a sake bottle, whose word in this chapter is にほんしゅ (Lesson 8)."
     },
     {
       "id": "dance-vocab",
@@ -508,32 +465,6 @@
       "audioTextHash": "c616edfd6651fbb4"
     },
     {
-      "id": "ex2-eg-a-kato-sake-golf",
-      "english": "Kato-san likes Japanese sake. He is good at golf.",
-      "category": "Grammar & Function Words",
-      "target": "かとうさんはにほんしゅがすきです。ゴルフがじょうずです",
-      "pronunciation": "Katō-san wa nihonshu ga suki desu. gorufu ga jōzu desu",
-      "note": "Exercise II's worked example for stating what someone likes and is skilled at, combining grammar points 1's two patterns in one exchange.",
-      "reviewNote": "にほんしゅ (nihonshu, \"Japanese sake\") is not glossed in any VOCABULARY box in this chapter; it appears only as part of this exercise's own worked example.",
-      "audioOriginal": "ex2-eg-a-kato-sake-golf-user-528c5657.orig.mp3",
-      "audioAuto": "ex2-eg-a-kato-sake-golf-user-528c5657.mp3",
-      "audioFilter": "standard",
-      "audio": "ex2-eg-a-kato-sake-golf-user-528c5657.mp3"
-    },
-    {
-      "id": "ex2-eg-b-kato-coffee-tennis",
-      "english": "Kato-san doesn't like coffee. He is not good at tennis.",
-      "category": "Grammar & Function Words",
-      "target": "かとうさんはコーヒーがすきじゃありません。テニスがじょうずじゃありません",
-      "pronunciation": "Katō-san wa kōhī ga suki ja arimasen. tenisu ga jōzu ja arimasen",
-      "note": "Exercise II's worked example for stating what someone dislikes and is unskilled at.",
-      "audio": "43c9ef4b403e8c84.mp3",
-      "audioOriginal": "43c9ef4b403e8c84.orig.mp3",
-      "audioAuto": "43c9ef4b403e8c84.mp3",
-      "audioMarked": true,
-      "audioTextHash": "43c9ef4b403e8c84"
-    },
-    {
       "id": "sports-vocab",
       "english": "Sports",
       "category": "Sports & Hobbies",
@@ -544,19 +475,6 @@
       "audioAuto": "b67f5109e035045d.mp3",
       "audioMarked": true,
       "audioTextHash": "b67f5109e035045d"
-    },
-    {
-      "id": "ex3-eg-suzuki-sports-question",
-      "english": "Do you like sports, Suzuki-san?",
-      "category": "Grammar & Function Words",
-      "target": "すずきさんはスポーツがすきですか",
-      "pronunciation": "Suzuki-san wa supōtsu ga suki desu ka",
-      "note": "Exercise III's worked example for asking someone whether they like something.",
-      "audio": "73720ddad4273414.mp3",
-      "audioOriginal": "73720ddad4273414.orig.mp3",
-      "audioAuto": "73720ddad4273414.mp3",
-      "audioMarked": true,
-      "audioTextHash": "73720ddad4273414"
     },
     {
       "id": "fruits-vocab",
@@ -856,47 +774,6 @@
       "audioTextHash": "3a624f132370ea1a"
     },
     {
-      "id": "ex7-eg-green-music-question",
-      "english": "Do you like listening to music, Green-san?",
-      "category": "Grammar & Function Words",
-      "target": "グリーンさんはおんがくをきくのがすきですか",
-      "pronunciation": "Gurīn-san wa ongaku o kiku no ga suki desu ka",
-      "note": "Exercise VII's worked example for talking about what you like to do.",
-      "audio": "8ccdb2837f413a00.mp3",
-      "audioOriginal": "8ccdb2837f413a00.orig.mp3",
-      "audioAuto": "8ccdb2837f413a00.mp3",
-      "audioMarked": true,
-      "audioTextHash": "8ccdb2837f413a00"
-    },
-    {
-      "id": "ex7-eg-green-reply-what-about-you",
-      "english": "Yes, I do. What about you, Kato-san?",
-      "category": "Grammar & Function Words",
-      "target": "ええ、すきです。かとうさんは?",
-      "pronunciation": "ē, suki desu. Katō-san wa",
-      "scene": "replying to whether he likes listening to music, then turning the question back to the other speaker",
-      "note": "「Xさんは?」on its own is a common way to turn a question back on someone: \"What about X?\"",
-      "audio": "76e4a99d3299edc3.mp3",
-      "audioOriginal": "76e4a99d3299edc3.orig.mp3",
-      "audioAuto": "76e4a99d3299edc3.mp3",
-      "audioMarked": true,
-      "audioTextHash": "76e4a99d3299edc3"
-    },
-    {
-      "id": "ex7-eg-kato-me-too-sing",
-      "english": "I like it too. I also like singing.",
-      "category": "Grammar & Function Words",
-      "target": "わたしもすきです。うたうのもすきです",
-      "pronunciation": "watashi mo suki desu. utau no mo suki desu",
-      "scene": "replying that he also likes listening to music",
-      "note": "うたうのも すきです extends the person は verb[dictionary form] のが すきです pattern with も (\"also, too\") in place of が.",
-      "audio": "d06f32a5f2283372.mp3",
-      "audioOriginal": "d06f32a5f2283372.orig.mp3",
-      "audioAuto": "d06f32a5f2283372.mp3",
-      "audioMarked": true,
-      "audioTextHash": "d06f32a5f2283372"
-    },
-    {
       "id": "sou-desu-ka",
       "english": "I see. / Is that so?",
       "category": "Grammar & Function Words",
@@ -946,19 +823,6 @@
       "audioTextHash": "e2f53945699cc732"
     },
     {
-      "id": "demo-but-speaking-practice",
-      "english": "I like soccer. But I'm not good at it.",
-      "category": "Grammar & Function Words",
-      "target": "サッカーがすきです。でも、じょうずじゃありません",
-      "pronunciation": "sakkā ga suki desu. demo, jōzu ja arimasen",
-      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else.",
-      "audio": "022b68bfbdbf2e02.mp3",
-      "audioOriginal": "022b68bfbdbf2e02.orig.mp3",
-      "audioAuto": "022b68bfbdbf2e02.mp3",
-      "audioMarked": true,
-      "audioTextHash": "022b68bfbdbf2e02"
-    },
-    {
       "id": "fib-suzuki-kudamono-suki-q",
       "english": "Do you like fruits, Suzuki-san?",
       "category": "Grammar & Function Words",
@@ -1002,7 +866,10 @@
       "audioOriginal": "fcacf2d09109a9ce.orig.mp3",
       "audioAuto": "fcacf2d09109a9ce.mp3",
       "audioMarked": true,
-      "audioTextHash": "fcacf2d09109a9ce"
+      "audioTextHash": "fcacf2d09109a9ce",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Same どんな〜がすきですか frame as the Target Dialogue and EXERCISES III example, which ship."
     },
     {
       "id": "fib-ringo-suki-a",
@@ -1018,7 +885,10 @@
       "audioOriginal": "327608f4e212db34.orig.mp3",
       "audioAuto": "327608f4e212db34.mp3",
       "audioMarked": true,
-      "audioTextHash": "327608f4e212db34"
+      "audioTextHash": "327608f4e212db34",
+      "excluded": true,
+      "excludedBy": "v2-retrofit-2026-09-28",
+      "excludedReason": "Same 〜がすきです answer frame as やきゅうがすきです (EXERCISES III example), which ships; りんご is Lesson 5 vocabulary."
     },
     {
       "id": "fib-green-hashiru-suki-q",
@@ -1036,20 +906,38 @@
       "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [person]は[verb-dict]のがすきですか. Near-duplicate of ex7-eg-green-music-question — same person (Green-san) and same question frame, only the verb is swapped; the source also already teaches this frame in statement form via ks3-smith-soccer-miru-suki."
     },
     {
-      "id": "fib-bijutsukan-iku-mo-suki",
-      "english": "I like it too. I also like going to art museums.",
+      "id": "x15a-aruku-dict",
+      "english": "Walk (dictionary form)",
       "category": "Grammar & Function Words",
-      "target": "わたしもすきです。びじゅつかんにいくのもすきです",
-      "pronunciation": "watashi mo suki desu. bijutsukan ni iku no mo suki desu",
-      "note": null,
-      "scene": null,
-      "fillInBlank": true,
+      "target": "あるく",
+      "note": "Regular 1: あるきます → あるく. The き before ます becomes く.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V item 9, which asks for this form; job: a dictionary form the exercise names and no card carried).",
       "aiSuggested": true,
-      "audio": "72432113ee010714.mp3",
-      "audioOriginal": "72432113ee010714.orig.mp3",
-      "audioAuto": "72432113ee010714.mp3",
+      "pronunciation": "aruku",
+      "audio": "576663d392d0bd94.mp3",
+      "audioOriginal": "576663d392d0bd94.orig.mp3",
+      "audioAuto": "576663d392d0bd94.mp3",
       "audioMarked": true,
-      "audioTextHash": "72432113ee010714"
+      "audioTextHash": "576663d392d0bd94",
+      "addition": "v2-retrofit-l15-2026-09-28",
+      "additionAudioInherited": true
+    },
+    {
+      "id": "x15a-yomu-dict",
+      "english": "Read (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "よむ",
+      "note": "Regular 1: よみます → よむ. The み before ます becomes む.",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V item 10, which asks for this form; job: a dictionary form the exercise names and no card carried).",
+      "aiSuggested": true,
+      "pronunciation": "yomu",
+      "audio": "6126bd05500c71b6.mp3",
+      "audioOriginal": "6126bd05500c71b6.orig.mp3",
+      "audioAuto": "6126bd05500c71b6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6126bd05500c71b6",
+      "addition": "v2-retrofit-l15-2026-09-28",
+      "additionAudioInherited": true
     }
   ]
 }

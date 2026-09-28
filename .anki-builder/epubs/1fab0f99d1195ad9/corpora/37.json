@@ -7,7 +7,8 @@
     "chapterNumber": 37,
     "chapterLabel": "Lesson 15: Talking about Preferences: I Like Japanese Anime",
     "enriched": true,
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -82,32 +83,11 @@
       "target": "じょうず"
     },
     {
-      "id": "donna-anime-ga-suki",
-      "english": "What kind of anime do you like?",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "どんなアニメがすきですか"
-    },
-    {
       "id": "watashi-mo-desu",
-      "english": "I am too. / Me too.",
+      "english": "Me too. / Me neither.",
       "category": "Grammar & Function Words",
       "reviewNote": null,
       "target": "わたしもです"
-    },
-    {
-      "id": "ks1-chan-wine-suki",
-      "english": "Chan-san likes wine.",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "チャンさんはワインがすきです"
-    },
-    {
-      "id": "ks2-chan-nihongo-jouzu",
-      "english": "Chan-san is good at Japanese.",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "チャンさんはにほんごがじょうずです"
     },
     {
       "id": "soccer-vocab",
@@ -122,13 +102,6 @@
       "category": "Sports & Hobbies",
       "reviewNote": null,
       "target": "みる"
-    },
-    {
-      "id": "ks3-smith-soccer-miru-suki",
-      "english": "Smith-san likes watching soccer matches.",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "スミスさんはサッカーをみるのがすきです"
     },
     {
       "id": "skiing",
@@ -230,37 +203,11 @@
       "target": "じょうずじゃありませんでした"
     },
     {
-      "id": "chan-nihongo-jouzu-deshita-suggestion",
-      "english": "Chan-san was good at Japanese.",
-      "category": "Grammar & Function Words",
-      "reviewNote": "Exercise I's conjugation chart (Page_146_Image_0001.jpg) teaches the past-tense forms でした / じゃありませんでした for すきです / じょうずです, but no sentence anywhere in the chapter's text actually uses them. This reuses チャンさん and にほんご from Key Sentence 2 to demonstrate じょうずでした in context.",
-      "target": "チャンさんはにほんごがじょうずでした",
-      "aiSuggested": true
-    },
-    {
       "id": "golf-vocab",
       "english": "Golf",
       "category": "Sports & Hobbies",
       "reviewNote": null,
       "target": "ゴルフ"
-    },
-    {
-      "id": "tenisu-tennis",
-      "english": "Tennis",
-      "category": "Sports & Hobbies",
-      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
-      "target": "テニス",
-      "uncertain": true,
-      "aiSuggested": true
-    },
-    {
-      "id": "sake-rice-wine",
-      "english": "Sake, rice wine",
-      "category": "Food",
-      "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
-      "target": "さけ",
-      "uncertain": true,
-      "aiSuggested": true
     },
     {
       "id": "dance-vocab",
@@ -285,32 +232,11 @@
       "target": "ウイスキー"
     },
     {
-      "id": "ex2-eg-a-kato-sake-golf",
-      "english": "Kato-san likes Japanese sake. He is good at golf.",
-      "category": "Grammar & Function Words",
-      "reviewNote": "にほんしゅ (nihonshu, \"Japanese sake\") is not glossed in any VOCABULARY box in this chapter; it appears only as part of this exercise's own worked example.",
-      "target": "かとうさんはにほんしゅがすきです。ゴルフがじょうずです"
-    },
-    {
-      "id": "ex2-eg-b-kato-coffee-tennis",
-      "english": "Kato-san doesn't like coffee. He is not good at tennis.",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "かとうさんはコーヒーがすきじゃありません。テニスがじょうずじゃありません"
-    },
-    {
       "id": "sports-vocab",
       "english": "Sports",
       "category": "Sports & Hobbies",
       "reviewNote": null,
       "target": "スポーツ"
-    },
-    {
-      "id": "ex3-eg-suzuki-sports-question",
-      "english": "Do you like sports, Suzuki-san?",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "すずきさんはスポーツがすきですか"
     },
     {
       "id": "fruits-vocab",
@@ -471,27 +397,6 @@
       "target": "ジャズ"
     },
     {
-      "id": "ex7-eg-green-music-question",
-      "english": "Do you like listening to music, Green-san?",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "グリーンさんはおんがくをきくのがすきですか"
-    },
-    {
-      "id": "ex7-eg-green-reply-what-about-you",
-      "english": "Yes, I do. What about you, Kato-san?",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "ええ、すきです。かとうさんは?"
-    },
-    {
-      "id": "ex7-eg-kato-me-too-sing",
-      "english": "I like it too. I also like singing.",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "わたしもすきです。うたうのもすきです"
-    },
-    {
       "id": "art-museum",
       "english": "Art museum",
       "category": "Travel & Tourism",
@@ -506,34 +411,19 @@
       "target": "でも"
     },
     {
-      "id": "demo-but-speaking-practice",
-      "english": "I like soccer. But I'm not good at it.",
+      "id": "x15a-aruku-dict",
+      "english": "Walk (dictionary form)",
       "category": "Grammar & Function Words",
-      "reviewNote": "The only sentence in the chapter using でも (\"but\"); extracted from the SPEAKING PRACTICE dialogue under the dialogue exception, since でも is glossed as chapter vocabulary but demonstrated nowhere else.",
-      "target": "サッカーがすきです。でも、じょうずじゃありません"
-    },
-    {
-      "id": "fib-donna-kudamono-suki-q",
-      "english": "What kind of fruit do you like?",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "どんなくだものがすきですか",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V item 9, which asks for this form; job: a dictionary form the exercise names and no card carried).",
+      "target": "あるく",
       "aiSuggested": true
     },
     {
-      "id": "fib-ringo-suki-a",
-      "english": "I like apples.",
+      "id": "x15a-yomu-dict",
+      "english": "Read (dictionary form)",
       "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "りんごがすきです",
-      "aiSuggested": true
-    },
-    {
-      "id": "fib-bijutsukan-iku-mo-suki",
-      "english": "I like it too. I also like going to art museums.",
-      "category": "Grammar & Function Words",
-      "reviewNote": null,
-      "target": "わたしもすきです。びじゅつかんにいくのもすきです",
+      "reviewNote": "Extras wave 1 (from the book: EXERCISES V item 10, which asks for this form; job: a dictionary form the exercise names and no card carried).",
+      "target": "よむ",
       "aiSuggested": true
     }
   ]

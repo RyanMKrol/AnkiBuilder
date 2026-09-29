@@ -683,7 +683,7 @@
       "pronunciation": "kore wa takai desu",
       "note": null,
       "aiSuggested": true,
-      "audio": "cfaccb9c96654982.mp3",
+      "audio": "fib-kore-wa-takai-desu-manual-e78e9f7d.mp3",
       "audioOriginal": "cfaccb9c96654982.orig.mp3",
       "audioAuto": "cfaccb9c96654982.mp3",
       "audioMarked": true,
@@ -693,7 +693,12 @@
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
       "additionAudioInherited": true,
-      "additionDone": true
+      "additionDone": true,
+      "audioManual": "fib-kore-wa-takai-desu-manual-e78e9f7d.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.6513625856164382
+      }
     },
     {
       "id": "f10-mise-atarashikunai",

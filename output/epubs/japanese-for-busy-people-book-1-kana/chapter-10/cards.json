@@ -865,7 +865,7 @@
     },
     {
       "id": "ojama-shimasu",
-      "english": "May I come in?",
+      "english": "Sorry to intrude.",
       "category": "Greetings",
       "hint": "said by a guest stepping into someone's home, never when walking into a shop or restaurant",
       "target": "おじゃまします",

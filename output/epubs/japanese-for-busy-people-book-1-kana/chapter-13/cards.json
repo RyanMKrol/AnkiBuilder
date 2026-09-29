@@ -171,11 +171,12 @@
       "target": "かいぎしつにいすが６つあります",
       "ttsText": "かいぎしつにいすがむっつあります",
       "pronunciation": "kaigishitsu ni isu ga muttsu arimasu",
-      "audio": "f80b8f9ee8e79602.mp3",
-      "audioOriginal": "f80b8f9ee8e79602.orig.mp3",
-      "audioAuto": "f80b8f9ee8e79602.mp3",
+      "audioOriginal": "fdcd220aae61e95e-genkanji-e02382b0.orig.mp3",
+      "audioAuto": "fdcd220aae61e95e-genkanji-e02382b0.mp3",
       "audioMarked": true,
-      "audioTextHash": "f80b8f9ee8e79602"
+      "audioTextHash": "fdcd220aae61e95e",
+      "audioFilter": "standard",
+      "audio": "fdcd220aae61e95e-genkanji-e02382b0.mp3"
     },
     {
       "id": "ks2-guests",
@@ -209,11 +210,12 @@
       "target": "スミスさんは２かいにいます",
       "ttsText": "スミスさんはにかいにいます",
       "pronunciation": "sumisu-san wa nikai ni imasu",
-      "audio": "a860284e2a53eb23.mp3",
-      "audioOriginal": "a860284e2a53eb23.orig.mp3",
-      "audioAuto": "a860284e2a53eb23.mp3",
+      "audioOriginal": "49c4face4eae3464-genkanji-200c133e.orig.mp3",
+      "audioAuto": "49c4face4eae3464-genkanji-200c133e.mp3",
       "audioMarked": true,
-      "audioTextHash": "a860284e2a53eb23"
+      "audioTextHash": "49c4face4eae3464",
+      "audioFilter": "standard",
+      "audio": "49c4face4eae3464-genkanji-200c133e.mp3"
     },
     {
       "id": "ks5-house-near",

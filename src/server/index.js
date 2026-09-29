@@ -48,6 +48,7 @@ import { sendHtml, sendJson, notFound, forbidden } from "./respond.js";
 import { createPageRenderers } from "./pages.js";
 import { createMediaRoutes } from "./mediaRoutes.js";
 import { rebuildGroupQuiet } from "./rebuildSignal.js";
+import { describeRefusal, deliveryCommitMessage } from "./dashboardGit.js";
 
 // Local deck-dashboard server. Lists every built deck (via the format adapters) and renders per-deck
 // collapsible lesson views in the same editorial style as the deck-view artifact — but serving audio
@@ -112,8 +113,17 @@ export function createDeckServer({
   // deliberately THROWS on failure, because a hand-placed edit that silently did nothing would tell
   // the reviewer their cut landed when the card still holds the untrimmed clip.
   trimToRange = defaultTrimToRange,
+  // The dashboard's git (./dashboardGit.js), or null. When set, every write is attributed to the
+  // dashboard, and Deliver commits and pushes what it shipped, refusing if anything else is dirty.
+  // Null (the default, and every test that does not pass one) delivers without committing.
+  git = null,
+  // The deliverer and its AnkiConnect client, injectable so a test can drive the Deliver route
+  // without an Anki.
+  deliver = deliverToAnki,
+  createClient = createAnkiConnect,
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
+  let delivering = false;
 
   // Resolve a path (deck file / run dir) and return its realpath only if it stays inside outputRoot
   // (blocks traversal and symlink escapes); null otherwise or if it doesn't exist.
@@ -478,15 +488,44 @@ export function createDeckServer({
   // Deliver every managed deck's on-disk state to the live Anki collection via AnkiConnect. `?dry=1`
   // previews the plan (read-only, no backup, no writes); otherwise it backs up, syncs the note type,
   // and pushes note fields in place (scheduling preserved). Returns the structured report as JSON.
+  //
+  // With `git` set, both the preview and the real run first check the checkout (./dashboardGit.js):
+  // anything dirty the dashboard did not write refuses the delivery before Anki is touched. After a
+  // real delivery the files the dashboard wrote are committed and pushed, and `report.git` says how
+  // that went. A delivery that succeeded is never reported as failed because the push did not.
   async function handleDeliver(req, res) {
     const dry = new URL(req.url, "http://localhost").searchParams.get("dry") === "1";
+    if (git) {
+      const gate = await git.assess();
+      if (!gate.ok) throw httpError(409, describeRefusal(gate));
+    }
     let report;
+    const before = git && !dry ? await git.snapshot() : null;
     try {
-      report = await deliverToAnki(outputRoot, "all", { client: createAnkiConnect(), dry });
+      report = await deliver(outputRoot, "all", { client: createClient(), dry });
     } catch (e) {
       throw httpError(502, e.message);
+    } finally {
+      // The deliverer writes too (the delivered marker), and those writes are the dashboard's.
+      if (before) await git.record(before);
     }
+    if (git) report.git = dry ? await git.assess() : await commitDelivery();
     sendJson(res, report);
+  }
+
+  async function commitDelivery() {
+    const gate = await git.assess();
+    if (!gate.ok) {
+      // Something else changed the tree while Anki was being written. Anki has the delivery; git
+      // does not, and a person has to decide what the other change was.
+      return { committed: false, error: describeRefusal(gate).replace(/^Not delivered, and /, "") };
+    }
+    if (!gate.commitPaths.length) return { committed: false, nothingToCommit: true };
+    try {
+      return await git.commitAndPush(gate.commitPaths, deliveryCommitMessage(gate.commitPaths));
+    } catch (e) {
+      return { committed: false, error: e.message };
+    }
   }
 
   // Mark done refreshes the group package; a REAL rebuild failure rides back on the response so the
@@ -641,7 +680,28 @@ export function createDeckServer({
         // state-changing route closes that hole.
         if (!isLocalHostHeader(req.headers.host))
           return forbidden(res, "writes are only accepted from localhost");
-        if (await routePost(req, res, seg)) return;
+        const isDeliver = seg[0] === "api" && seg[1] === "anki" && seg[2] === "deliver";
+        // One delivery at a time, and no edits while one is committing: an edit landing between
+        // the check and the commit would be committed unchecked, and one landing during the push
+        // trips the pre-push hook's guard on output/.
+        if (delivering) {
+          throw httpError(409, "a delivery is running (committing and pushing); try again shortly");
+        }
+        if (isDeliver) {
+          delivering = true;
+          try {
+            if (await routePost(req, res, seg)) return;
+          } finally {
+            delivering = false;
+          }
+          return notFound(res);
+        }
+        const before = git ? await git.snapshot() : null;
+        try {
+          if (await routePost(req, res, seg)) return;
+        } finally {
+          if (before) await git.record(before);
+        }
         return notFound(res);
       }
       res.writeHead(405, { Allow: "GET, POST" });

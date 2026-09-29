@@ -1236,7 +1236,9 @@ re-import.** `node scripts/deliver-to-anki.mjs --dry` to preview, then without `
 backs up every managed deck (with scheduling), syncs the note type, updates note fields in place by
 GUID (scheduling preserved), adds new cards, reports orphans, syncs AnkiWeb, and exits non-zero if
 any cards were skipped as ambiguous. Backups are pruned (newest 10 plus one per older week) and
-restorable with `scripts/restore-anki-backup.mjs`. The user studies daily: protect scheduling, and
+restorable with `scripts/restore-anki-backup.mjs`. The dashboard's Deliver button also commits and pushes the
+files the dashboard wrote, and refuses while the checkout holds any other uncommitted tracked change,
+so never leave a session edit uncommitted in the checkout the dashboard runs from. The user studies daily: protect scheduling, and
 re-read on-disk deck files before every edit. Full detail, including the restore procedure and the
 managed-collection rules: [deliver](references/deliver.md).
 

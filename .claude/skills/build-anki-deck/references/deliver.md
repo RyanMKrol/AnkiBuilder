@@ -68,6 +68,15 @@ established whether that write also clears the direction suspensions it lands on
 Or click **Deliver to Anki** on the dashboard home page (previews, confirms, then delivers). Anki must be
 open with the AnkiConnect add-on. It's safe to re-run — a second run is a no-op.
 
+**The button commits and pushes what it shipped; the CLI does not.** After a successful delivery the
+dashboard commits the files it wrote itself and pushes them. It refuses the whole delivery, before
+Anki is touched, when the checkout holds any tracked change it did not make, is not on `main`, or has
+unpushed commits, and the refusal names what is in the way. For an agent working in the same
+checkout this means: **commit or discard your edits before the owner delivers.** A session edit left
+sitting uncommitted blocks the owner's Deliver button, and a dashboard edit to a file you have also
+edited is refused as mixed rather than committed with yours folded in. Deliver from the CLI and you
+commit your own work, as always (stage explicit paths).
+
 The button passes no flags, so anything that needs consent — a template/CSS change, a first delivery
 of more than 200 cards, `--refile` — has to go through the CLI. That is deliberate: a consent flag
 you can click without reading is not consent. The button reports the refusal and its reason.

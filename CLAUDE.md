@@ -263,6 +263,11 @@ worktree on its own branch. `main` moves under you. If your fast-forward is reje
 4. **Be discoverable.** A clear commit message saying what changed and why, so the next agent
    reading `git log` can tell.
 
+**The dashboard commits too.** Its Deliver to Anki button commits and pushes the files the dashboard
+wrote, and refuses while the checkout holds any other uncommitted tracked change (see
+`src/server/dashboardGit.js`). So an edit you leave uncommitted in the main checkout blocks the
+owner's delivery. Golden rule 4a already says to commit as you go; this is one more reason.
+
 ## Tooling notes
 
 - **Stack: Node.** The Definition-of-Done commands (authoritative copy lives in

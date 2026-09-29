@@ -161,7 +161,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .deliver-anki{font:inherit;font-size:13px;font-weight:600;color:#fff;background:var(--accent);border:1px solid var(--accent);border-radius:100px;padding:6px 16px;cursor:pointer}
 .deliver-anki:hover{filter:brightness(1.06)}
 .deliver-anki:disabled{opacity:.55;cursor:default}
-.deliver-status{font-size:12.5px;color:var(--faint)}
+.deliver-status{font-size:12.5px;color:var(--faint);white-space:pre-line}
 /* The slim pinned bar: fixed at the top, hidden until STICKY_HEADER_SCRIPT reveals it once the full
    header scrolls out. z-index above the stretched-link rows (1), below the modals (20). */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;gap:14px;padding:9px 4vw;background:var(--paper);border-bottom:1px solid var(--rule2);transform:translateY(-100%);transition:transform .15s ease}

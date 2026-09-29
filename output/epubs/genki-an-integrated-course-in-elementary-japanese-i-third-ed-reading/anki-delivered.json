@@ -1,7 +1,7 @@
 {
   "note": "This deck is delivered to Anki via AnkiConnect (scripts/deliver-to-anki.mjs). Do NOT re-import the .apkg into that collection — deliver updates instead; a re-import creates duplicate notes.",
   "ankiParent": "Genki I (Reading)",
-  "lastDeliveredAt": "2026-09-28T22:05:42.933Z",
+  "lastDeliveredAt": "2026-09-29T20:28:15.692Z",
   "deliveredCardIds": [
     "r-00034f2a3b00",
     "r-003253e63d95",

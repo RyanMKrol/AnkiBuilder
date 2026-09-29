@@ -92,6 +92,15 @@ the one thing the source warned against. Write the usage the note describes inst
 _A lesson whose note said people rarely ask a listener "are you good at...?" reached review with four
 cards asking exactly that._
 
+**When one English shape maps to two target-language structures, the hint names the structure.**
+"X is near Y" and "there is X near Y" read alike in English, but Japanese says the first with an
+adjective ending in "desu" and the second with a noun taking "ni arimasu". A learner on
+the English side cannot tell which is wanted, so the hint says which: an adjective describing the
+place, or a "there is" sentence. Write it without giving away the answer's words. The same goes for a
+set phrase whose English hides who says it or where (a guest entering a home, staff greeting a
+customer): the hint says so. _The owner asked why a card wanted "tōi desu" and not "ni arimasu", and a
+card glossed "May I come in?" gave no sign it was only for a private home._
+
 **A note must never restate the card.** A note that repeats the gloss or the target teaches nothing
 and costs the learner a line to read. If there is nothing to add, add nothing.
 

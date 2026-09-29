@@ -78,7 +78,7 @@
       "english": "Near, close",
       "category": "Directions",
       "scene": null,
-      "hint": null,
+      "hint": "the adjective: something IS near, so a sentence with it ends in です (desu)",
       "note": "い-adjective meaning \"near.\" Opposite of とおい (far, this lesson). Contrast the noun ちかく (vicinity, Lesson 12) — ちかい describes something as being close, while ちかく names the surrounding area.",
       "reviewNote": null,
       "target": "ちかい"
@@ -88,7 +88,7 @@
       "english": "Far",
       "category": "Directions",
       "scene": null,
-      "hint": null,
+      "hint": "the adjective: something IS far, so a sentence with it ends in です (desu), not にあります (ni arimasu)",
       "note": "Opposite of ちかい (near, this lesson).",
       "reviewNote": null,
       "target": "とおい"
@@ -98,8 +98,8 @@
       "english": "The airport is far from the station.",
       "category": "Directions",
       "scene": null,
-      "hint": null,
-      "note": null,
+      "hint": "\"far\" is an adjective here, describing the place, so it ends in です (desu), not にあります (ni arimasu)",
+      "note": "とおい (tōi, \"far\") is an い-adjective, so it describes the airport directly and the sentence ends in です (desu), like くうこうはおおきいです (kūkō wa ōkii desu, \"the airport is big\"). にあります (ni arimasu) is for saying where something IS: えきのちかくにゆうびんきょくがあります (eki no chikaku ni yūbinkyoku ga arimasu, \"there is a post office near the station\"), where ちかく (chikaku, \"the area near\") is a noun.",
       "reviewNote": "とおい otherwise appears only inside the off-limits TARGET DIALOGUE; this mirrors the ちかい pattern (place1は place2から ちかい／とおいです, GRAMMAR 3) with the opposite adjective.",
       "target": "くうこうはえきからとおいです",
       "aiSuggested": true
@@ -172,7 +172,7 @@
       "english": "Smith-san's house is near the station.",
       "category": "Directions",
       "scene": null,
-      "hint": null,
+      "hint": "\"near\" is an adjective here, describing the place, so it ends in です (desu), not にあります (ni arimasu)",
       "note": "Pattern: place1 は place2 から ちかい／とおいです — the point being compared from takes から, the same \"from\" particle used for direction (Lesson 6) and time (Lesson 3). This sentence is the model other cards, like としょかんはえきからちかいです, follow.",
       "reviewNote": null,
       "target": "スミスさんのうちはえきからちかいです"
@@ -522,7 +522,7 @@
       "english": "The library is near the station.",
       "category": "Directions",
       "scene": null,
-      "hint": null,
+      "hint": "\"near\" is an adjective here, describing the place, so it ends in です (desu), not にあります (ni arimasu)",
       "note": "Same pattern as \"Smith-san's house is near the station\" (place1は place2から ちかい／とおいです, GRAMMAR 3) applied to a different noun.",
       "reviewNote": null,
       "target": "としょかんはえきからちかいです"

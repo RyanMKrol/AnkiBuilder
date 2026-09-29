@@ -98,7 +98,7 @@
       "id": "itterasshai",
       "english": "Have a good trip., Have a good day.",
       "category": "Greetings",
-      "hint": null,
+      "hint": "said to someone heading out who will come back later, like family leaving home in the morning",
       "note": null,
       "reviewNote": null,
       "target": "いってらっしゃい"
@@ -867,7 +867,7 @@
       "id": "okake-kudasai",
       "english": "Please have a seat.",
       "category": "Greetings",
-      "hint": null,
+      "hint": "what a host or interviewer says to a guest",
       "note": "Uses お (o) + verb stem + ください (kudasai), a more formal request pattern than the て-form + ください seen in みせてください (misete kudasai) or ちょっとまってください (chotto matte kudasai) from earlier lessons.",
       "reviewNote": null,
       "target": "おかけください"

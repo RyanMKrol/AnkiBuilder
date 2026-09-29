@@ -12,6 +12,7 @@
       "id": "irasshaimase",
       "english": "May I help you?, Welcome.",
       "category": "Greetings",
+      "hint": "what shop and restaurant staff call out when you walk in; customers never say it",
       "target": "いらっしゃいませ",
       "note": "Used in shops etc. to welcome customers; literally means \"Please come in.\""
     },

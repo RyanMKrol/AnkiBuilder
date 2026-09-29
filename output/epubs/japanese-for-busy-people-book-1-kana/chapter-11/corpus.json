@@ -574,7 +574,7 @@
       "english": "I need to be going in a little while.",
       "category": "Greetings",
       "scene": null,
-      "hint": null,
+      "hint": "said as a guest when you start to leave someone's home or office",
       "note": "Set phrase used when the time has come to leave a place you are visiting.",
       "reviewNote": null,
       "target": "そろそろしつれいします"
@@ -594,7 +594,7 @@
       "english": "You're welcome.",
       "category": "Greetings",
       "scene": null,
-      "hint": null,
+      "hint": "a little stiff; in everyday talk people usually just brush the thanks aside",
       "note": null,
       "reviewNote": null,
       "target": "どういたしまして"
@@ -635,7 +635,7 @@
       "english": "Please come again.",
       "category": "Greetings",
       "scene": null,
-      "hint": null,
+      "hint": "said by a host or shop staff to someone who is leaving",
       "note": null,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (uses て-form + ください (polite imperative request), a construction not formally taught until later — the て-form itself is introduced in ch. 42 and this exact 〜てください pattern is a dedicated grammar point in ch. 43)",
       "target": "またきてください",

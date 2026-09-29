@@ -13,6 +13,7 @@
       "id": "irasshaimase",
       "english": "May I help you?, Welcome.",
       "category": "Greetings",
+      "hint": "what shop and restaurant staff call out when you walk in; customers never say it",
       "target": "いらっしゃいませ",
       "pronunciation": "irasshaimase.",
       "altAudio": "6001f93c73acdb78.mp3",

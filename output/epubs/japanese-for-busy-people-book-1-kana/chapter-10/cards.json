@@ -867,6 +867,7 @@
       "id": "ojama-shimasu",
       "english": "May I come in?",
       "category": "Greetings",
+      "hint": "said by a guest stepping into someone's home, never when walking into a shop or restaurant",
       "target": "おじゃまします",
       "pronunciation": "ojama shimasu",
       "note": "Customary expression used when entering someone's home or private space as a guest.",

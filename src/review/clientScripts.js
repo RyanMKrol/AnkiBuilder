@@ -773,24 +773,42 @@ export const DELIVER_SCRIPT = `(function () {
     }).join("; ");
     return upd + " fields updated, " + add + " cards added" + (amb ? (", " + amb + " ambiguous (skipped)") : "") + ". Note type — " + struct + ".";
   }
+  // The commit half (src/server/dashboardGit.js). Absent when the dashboard is not in a git
+  // checkout, in which case nothing is said about git at all.
+  function gitPlan(g) {
+    if (!g) return "";
+    var n = g.commitPaths.length;
+    return n
+      ? "\\n\\nThen commits and pushes " + n + " file" + (n === 1 ? "" : "s") + " the dashboard changed."
+      : "\\n\\nNo dashboard changes to commit.";
+  }
+  function gitOutcome(g) {
+    if (!g) return "";
+    if (g.nothingToCommit) return " Nothing to commit.";
+    if (!g.committed) return " NOT committed: " + g.error;
+    if (g.pushed) return " Committed " + g.sha + " and pushed.";
+    return " Committed " + g.sha + " locally, but the push FAILED: " + g.pushError;
+  }
   btns.forEach(function (btn) {
     btn.addEventListener("click", async function () {
       lock(true);
       try {
         set("Previewing\\u2026");
         var plan = await post(true);
-        if (!window.confirm("Deliver to Anki?\\n\\n" + summarize(plan) + "\\n\\nEvery managed deck is backed up (with scheduling) first. Proceed?")) {
+        if (!window.confirm("Deliver to Anki?\\n\\n" + summarize(plan) + gitPlan(plan.git) + "\\n\\nEvery managed deck is backed up (with scheduling) first. Proceed?")) {
           set("Cancelled."); lock(false); return;
         }
-        set("Delivering\\u2026");
+        set(plan.git && plan.git.commitPaths.length ? "Delivering, then committing and pushing (the push runs CI, so this takes a minute)\\u2026" : "Delivering\\u2026");
         var done = await post(false);
         var msg2 = "Delivered. " + summarize(done);
         if (done.syncedAfter === true) msg2 += " Synced with AnkiWeb.";
         else if (done.syncedAfter === false) msg2 += " Sync FAILED (" + (done.syncError || "") + ") \\u2014 sync manually.";
         if (done.schemaChanged) msg2 += " A field or card template was added: Anki will ask for one 'Upload to AnkiWeb' to finish the full sync.";
-        set(msg2 + " Backup: " + done.backupDir);
+        set(msg2 + gitOutcome(done.git) + " Backup: " + done.backupDir);
       } catch (e) {
         set("Failed: " + e.message);
+        // A refusal lists the files blocking it, which the one-line topbar would cut off.
+        if (e.message.indexOf("\\n") >= 0) window.alert(e.message);
       }
       lock(false);
     });

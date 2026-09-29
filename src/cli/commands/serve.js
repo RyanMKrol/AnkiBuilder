@@ -12,16 +12,27 @@ export async function runServe(flags, ctx) {
     throw new Error(`--port must be a valid port number (got ${JSON.stringify(flags.port)})`);
   }
   const editable = !flags["read-only"];
+  // Deliver commits and pushes what it shipped (src/server/dashboardGit.js). Only an editable
+  // server delivers, and only a checkout that is a git work tree can commit.
+  const git = editable ? await ctx.openDashboardGit(outputRoot) : null;
   const { url } = await ctx.startDeckServer({
     port,
     outputRoot,
     editable,
     voice: flags.voice || null,
+    git,
   });
   // Keep the URL as the LAST, most prominent thing printed — it's the one thing you need.
   ctx.log(
     `Serving decks from ${outputRoot}${editable ? "" : " (read-only)"}. Press Ctrl+C to stop.`,
   );
+  if (editable) {
+    ctx.log(
+      git
+        ? `Deliver to Anki commits and pushes the files the dashboard wrote (repo: ${git.repoRoot}).`
+        : "Not a git checkout: Deliver to Anki will not commit anything.",
+    );
+  }
   const line = `  Dashboard  →  ${url}  `;
   const bar = "─".repeat(line.length);
   ctx.log("");

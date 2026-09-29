@@ -163,6 +163,19 @@ each note's fields in place by GUID — deterministic, idempotent, scheduling pr
 AnkiWeb before and after (default; `--no-sync` to skip). Preview with
 `node scripts/deliver-to-anki.mjs --dry`.
 
+**The button also commits.** Clicking Deliver to Anki is taken as the decision to keep what the
+dashboard changed, so after a successful delivery the dashboard commits the files it wrote (the
+`cards.json` pointer to a replaced clip, an inline gloss fix, the delivered marker) and pushes them.
+It commits only files it can prove it wrote: the server records every file each dashboard request
+changed, with the content it left behind. If anything else in the checkout is dirty (an agent
+session's half-finished edit, or a file the dashboard wrote that something else has since changed),
+the delivery is refused before Anki is touched, and the refusal names the files. It also refuses
+when the checkout is not on `main`, or `main` has commits nobody pushed. Untracked files are left
+alone and never block. The push runs the pre-push CI hook, so it takes a minute, and the dashboard
+refuses edits until it finishes. A failed push leaves the commit local and says so. The CLI
+(`scripts/deliver-to-anki.mjs`) does not commit; a session that delivers from the CLI commits its
+own work.
+
 The button delivers **every** collection, so a collection whose Anki deck has been deliberately
 deleted (its material absorbed elsewhere, or the deck abandoned) needs `"retired": true` in its own
 `book.json` / `course.json`. Deliver then skips it. Without that flag the "delivered before but no
@@ -563,6 +576,9 @@ What is built, newest last:
       review (every lesson's cards on one page, editable in place) for whole-book spot checks.
       Pluggable per-format adapters (`src/server/adapters/`); `--read-only`
       disables all editing
+- [x] Deliver commits what it shipped: the dashboard's Deliver to Anki commits and pushes the files
+      the dashboard wrote, and refuses (before touching Anki) when the checkout holds changes it did
+      not make, is off `main`, or has unpushed commits (`src/server/dashboardGit.js`)
 - [x] `prepare` — translate → fill-in-the-blank enrichment → semantic de-dup → cross-lesson notes as
       ONE stage, chained automatically from `assemble` (`--no-prepare` opts out), so a lesson has no
       resting state between "assembled" and "reviewable". Idempotent and fail-open per step; keeps its

@@ -76,6 +76,7 @@ import { restyleApkgBuffer as defaultRestyleApkgBuffer } from "../deck/restyleFo
 import { renderDeckViewPage as defaultRenderDeckViewPage } from "../review/renderDeckViewPage.js";
 import { readApkg as defaultReadApkg } from "../deck/readApkg.js";
 import { startDeckServer as defaultStartDeckServer } from "../server/index.js";
+import { openDashboardGit as defaultOpenDashboardGit } from "../server/dashboardGit.js";
 import { runAssemble } from "./commands/assemble.js";
 import { runPrepare } from "./commands/prepare.js";
 import { runResume } from "./commands/resume.js";
@@ -204,6 +205,7 @@ export async function runCli(argv, deps = {}) {
     renderDeckViewPage = defaultRenderDeckViewPage,
     readApkg = defaultReadApkg,
     startDeckServer = defaultStartDeckServer,
+    openDashboardGit = defaultOpenDashboardGit,
     log = console.log,
   } = deps;
 
@@ -282,6 +284,7 @@ export async function runCli(argv, deps = {}) {
     renderDeckViewPage,
     readApkg,
     startDeckServer,
+    openDashboardGit,
     log,
   };
 

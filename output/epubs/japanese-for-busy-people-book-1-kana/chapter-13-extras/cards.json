@@ -740,11 +740,12 @@
       "aiSuggested": true,
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
       "pronunciation": "Kumano-jinja wa taki kara tōi desu",
-      "audio": "6239de47f0843bbe.mp3",
-      "audioOriginal": "6239de47f0843bbe.orig.mp3",
-      "audioAuto": "6239de47f0843bbe.mp3",
+      "audioOriginal": "f295f0194d00dd6f-genkanji-726d21dc.orig.mp3",
+      "audioAuto": "f295f0194d00dd6f-genkanji-726d21dc.mp3",
       "audioMarked": true,
-      "audioTextHash": "6239de47f0843bbe"
+      "audioTextHash": "f295f0194d00dd6f",
+      "audioFilter": "standard",
+      "audio": "f295f0194d00dd6f-genkanji-726d21dc.mp3"
     },
     {
       "id": "ga-takushii-basu-noriba",

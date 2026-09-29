@@ -682,7 +682,7 @@
       "english": "May I come in?",
       "category": "Greetings",
       "scene": null,
-      "hint": null,
+      "hint": "said by a guest stepping into someone's home, never when walking into a shop or restaurant",
       "note": "Customary expression used when entering someone's home or private space as a guest.",
       "reviewNote": null,
       "target": "おじゃまします"

@@ -215,7 +215,8 @@
       "category": "Greetings",
       "target": "スミスさん、きのうはおみやげをありがとうございました",
       "aiSuggested": true,
-      "reviewNote": "Speaking Practice 3, Nakamura's opening line, and the worked example for NOTES 2 on past-tense thanks. The deck has bare どうもありがとうございました but no sentence showing what you are thanking someone for."
+      "reviewNote": "Speaking Practice 3, Nakamura's opening line, and the worked example for NOTES 2 on past-tense thanks. The deck has bare どうもありがとうございました but no sentence showing what you are thanking someone for.",
+      "note": "きのうは (kinō wa) makes \"yesterday\" the topic: \"about yesterday, thank you for the souvenir.\" Naming the occasion as the topic, then thanking with the past ありがとうございました (arigatō gozaimashita), is the usual way to thank someone for something already done, as in きのうはありがとうございました (kinō wa arigatō gozaimashita, \"thanks for yesterday\"). きのうのおみやげ (kinō no omiyage, \"yesterday's souvenir\") is grammatical, but it labels the gift by its day, as if picking it out from other souvenirs."
     },
     {
       "id": "f11-shutchou-wa-taihen-desu",

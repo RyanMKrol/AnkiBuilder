@@ -246,12 +246,12 @@
       "target": "なかむらさんはスミスさんにはなをもらいました",
       "pronunciation": "nakamura san wa sumisu san ni hana o moraimashita",
       "note": "Compare with the previous card: あげました (agemashita) and もらいました (moraimashita) describe the same event from the giver's and receiver's side — the に (ni) marks the receiver with あげます but the giver with もらいます.",
-      "audioOriginal": "e70329286d465f43-genkanji-fe394472.orig.mp3",
-      "audioAuto": "e70329286d465f43-genkanji-fe394472.mp3",
+      "audioOriginal": "e70329286d465f43-genkanji-7997bd28.orig.mp3",
+      "audioAuto": "e70329286d465f43-genkanji-7997bd28.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audio": "e70329286d465f43-genkanji-fe394472.mp3",
-      "audioTextHash": "e70329286d465f43"
+      "audioTextHash": "e70329286d465f43",
+      "audio": "e70329286d465f43-genkanji-7997bd28.mp3"
     },
     {
       "id": "ks3-kaigi-arimasu",
@@ -292,11 +292,12 @@
       "pronunciation": "tomodachi ga watashi ni sukāfu o kuremashita",
       "aiSuggested": true,
       "reviewNote": "The chapter names くれます as the required exception when the receiver is the speaker but never demonstrates it in a sentence — added a worked example reusing スカーフ and ともだち from this chapter.",
-      "audio": "57d86e870faba592.mp3",
-      "audioOriginal": "57d86e870faba592.orig.mp3",
-      "audioAuto": "57d86e870faba592.mp3",
+      "audioOriginal": "98f3c795e6b8f7c8-genkanji-e7977e8c.orig.mp3",
+      "audioAuto": "98f3c795e6b8f7c8-genkanji-e7977e8c.mp3",
       "audioMarked": true,
-      "audioTextHash": "57d86e870faba592"
+      "audioTextHash": "98f3c795e6b8f7c8",
+      "audioFilter": "standard",
+      "audio": "98f3c795e6b8f7c8-genkanji-e7977e8c.mp3"
     },
     {
       "id": "kaigi-futatsu-arimasu",

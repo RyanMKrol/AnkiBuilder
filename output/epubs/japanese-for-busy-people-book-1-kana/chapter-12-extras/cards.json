@@ -64,6 +64,7 @@
       "id": "fib-resutoran-ni-mo-mizu-ga-arimasu",
       "english": "There is also water at the restaurant.",
       "category": "Food",
+      "hint": "the restaurant is the \"also\" (as well as somewhere else), not the water",
       "target": "レストランにもみずがあります",
       "pronunciation": "resutoran ni mo mizu ga arimasu",
       "note": null,

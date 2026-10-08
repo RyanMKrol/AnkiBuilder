@@ -112,10 +112,10 @@
     },
     {
       "id": "x14b-haha-seetaa-moraimasu",
-      "english": "I get a sweater from my mother for my birthday.",
+      "english": "I'll get a sweater from my mother for my birthday.",
       "category": "Clothing",
       "target": "わたしはたんじょうびにははにセーターをもらいます",
-      "note": "Present-tense もらいます for a regular, repeated event. The に after はは still marks the giver, exactly as it does in the past tense.",
+      "note": "もらいます (moraimasu) is non-past, so it covers both \"I'll get\" and a regular \"I get (every year)\". The に (ni) after はは (haha, my mother) still marks the giver, exactly as it does in the past tense.",
       "aiSuggested": true,
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm).",
       "pronunciation": "watashi wa tanjōbi ni haha ni sētā o moraimasu",

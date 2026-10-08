@@ -673,7 +673,8 @@
       "category": "Sports & Hobbies",
       "target": "チャンさんはビールがすきじゃありません。うたがじょうずじゃありません",
       "reviewNote": "Retrofit 2026-09-28: the book's EXERCISES II answer for picture 2, part B (Page_146_Image_0004: beer disliked, うた crossed out).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "うた (uta) is the noun \"song\", so Japanese says \"songs are skilful\" where English says \"good at singing\". The verb version means the same: うたうのがじょうずです (utau no ga jōzu desu), with うたう (utau) as the dictionary form of \"to sing\"."
     },
     {
       "id": "x15r-sasaki-wine-sukii",

@@ -682,7 +682,8 @@
       "category": "Sports & Hobbies",
       "target": "ささきさんはワインがすきです。スキーがじょうずです",
       "reviewNote": "Retrofit 2026-09-28: the book's EXERCISES II answer for picture 3, part A (Page_146_Image_0005: wine liked, skiing a skill).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "スキー (sukī) is the noun \"skiing\", the name of the sport, so Japanese says \"skiing is skilful\" where English says \"good at skiing\". The verb version means the same: スキーをするのがじょうずです (sukī o suru no ga jōzu desu)."
     },
     {
       "id": "x15r-sasaki-whiskey-golf",

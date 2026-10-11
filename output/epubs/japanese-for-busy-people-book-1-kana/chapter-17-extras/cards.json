@@ -642,11 +642,12 @@
       "target": "ともだちにてがみをかきます",
       "pronunciation": "tomodachi ni tegami o kakimasu",
       "aiSuggested": true,
-      "audio": "9aab42d81e532426.mp3",
-      "audioOriginal": "9aab42d81e532426.orig.mp3",
-      "audioAuto": "9aab42d81e532426.mp3",
+      "audioOriginal": "f6d063805dc652a6-genkanji-80e7c50a.orig.mp3",
+      "audioAuto": "f6d063805dc652a6-genkanji-80e7c50a.mp3",
       "audioMarked": true,
-      "audioTextHash": "9aab42d81e532426"
+      "audioTextHash": "f6d063805dc652a6",
+      "audioFilter": "standard",
+      "audio": "f6d063805dc652a6-genkanji-80e7c50a.mp3"
     },
     {
       "id": "ikitakunakatta-3",
@@ -724,11 +725,12 @@
       "target": "アンティークのとけいはたかいです",
       "pronunciation": "antīku no tokei wa takai desu",
       "aiSuggested": true,
-      "audio": "4cce07e312fe3cfa.mp3",
-      "audioOriginal": "4cce07e312fe3cfa.orig.mp3",
-      "audioAuto": "4cce07e312fe3cfa.mp3",
+      "audioOriginal": "9f7bba5faeeea6ed-genkanji-09f7ef77.orig.mp3",
+      "audioAuto": "9f7bba5faeeea6ed-genkanji-09f7ef77.mp3",
       "audioMarked": true,
-      "audioTextHash": "4cce07e312fe3cfa"
+      "audioTextHash": "9f7bba5faeeea6ed",
+      "audioFilter": "standard",
+      "audio": "9f7bba5faeeea6ed-genkanji-09f7ef77.mp3"
     },
     {
       "id": "future-buy-house",
@@ -827,11 +829,12 @@
       "category": "Food",
       "target": "おすしをたべたくないです",
       "pronunciation": "osushi o tabetakunai desu",
-      "audio": "c73b5a6a141ceef4.mp3",
-      "audioOriginal": "c73b5a6a141ceef4.orig.mp3",
-      "audioAuto": "c73b5a6a141ceef4.mp3",
+      "audioOriginal": "1bb00cd00a696a34-genkanji-3ca5264c.orig.mp3",
+      "audioAuto": "1bb00cd00a696a34-genkanji-3ca5264c.mp3",
       "audioMarked": true,
-      "audioTextHash": "c73b5a6a141ceef4"
+      "audioTextHash": "1bb00cd00a696a34",
+      "audioFilter": "standard",
+      "audio": "1bb00cd00a696a34-genkanji-3ca5264c.mp3"
     },
     {
       "id": "ikitakatta-2",
@@ -993,11 +996,12 @@
       "target": "つまらないえいがはみたくないです",
       "pronunciation": "tsumaranai eiga wa mitakunai desu",
       "aiSuggested": true,
-      "audio": "eea8d8a1a09467fc.mp3",
-      "audioOriginal": "eea8d8a1a09467fc.orig.mp3",
-      "audioAuto": "eea8d8a1a09467fc.mp3",
+      "audioOriginal": "c906fddef7c0b71f-genkanji-af42bd35.orig.mp3",
+      "audioAuto": "c906fddef7c0b71f-genkanji-af42bd35.mp3",
       "audioMarked": true,
-      "audioTextHash": "eea8d8a1a09467fc"
+      "audioTextHash": "c906fddef7c0b71f",
+      "audioFilter": "standard",
+      "audio": "c906fddef7c0b71f-genkanji-af42bd35.mp3"
     },
     {
       "id": "mitakunakatta-2",

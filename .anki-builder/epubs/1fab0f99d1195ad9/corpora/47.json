@@ -1,0 +1,392 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 47,
+    "chapterLabel": "Lesson 21: Asking Permission: May I Have It?",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
+      },
+      "numberReadings": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "mukashi",
+      "english": "A long time ago",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "むかし"
+    },
+    {
+      "id": "panfuretto",
+      "english": "Pamphlet",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "パンフレット"
+    },
+    {
+      "id": "moratte-mo-iidesu-ka",
+      "english": "May I have it?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "もらってもいいですか"
+    },
+    {
+      "id": "ni-particle-put-place",
+      "english": "On, in (particle marking where something is put, written or parked)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "target": "に",
+      "uncertain": true
+    },
+    {
+      "id": "suwarimasu",
+      "english": "Sit down",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "すわります"
+    },
+    {
+      "id": "suwatte-sit-down-te-form",
+      "english": "Sit down (て-form)",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "すわって"
+    },
+    {
+      "id": "suwattemo-iidesu-ka",
+      "english": "May I sit [here]?",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "すわってもいいですか"
+    },
+    {
+      "id": "shashin-wo-tottemo-iidesu-ka",
+      "english": "May I take photos?",
+      "category": "Grammar & Function Words",
+      "reviewNote": "The book prints the object in brackets as an optional insertion; kept as one entry rather than split.",
+      "target": "しゃしんをとってもいいですか"
+    },
+    {
+      "id": "ashi",
+      "english": "Foot, leg",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "あし"
+    },
+    {
+      "id": "itai-hurts",
+      "english": "Hurt, sore, painful",
+      "category": "Body & Health",
+      "reviewNote": "Possibly already taught — いたい! in chapter-14 is the same adjective いたい used as an exclamation, not a different word. | Kept: chapter-14/itai is the exclamation いたい! (\"Ouch!\"); this is the adjective used in からだの ところが いたいです. New id, since itai is chapter 14's note guid.",
+      "target": "いたい"
+    },
+    {
+      "id": "atama",
+      "english": "Head",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "あたま"
+    },
+    {
+      "id": "ha-tooth",
+      "english": "Tooth",
+      "category": "Body & Health",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target) | Kept: a different word from the topic particle は (chapter-1/wa-particle), which it shares a spelling with.",
+      "target": "は"
+    },
+    {
+      "id": "nodo",
+      "english": "Throat",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "のど"
+    },
+    {
+      "id": "onaka",
+      "english": "Stomach, belly",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "おなか"
+    },
+    {
+      "id": "kata",
+      "english": "Shoulder",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "かた"
+    },
+    {
+      "id": "senaka",
+      "english": "Back",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "せなか"
+    },
+    {
+      "id": "koshi",
+      "english": "Lower back",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "こし"
+    },
+    {
+      "id": "kibun",
+      "english": "Feeling",
+      "category": "Emotions & Feelings",
+      "reviewNote": "Sub-row under きぶんが わるい.",
+      "target": "きぶん"
+    },
+    {
+      "id": "kibun-ga-warui",
+      "english": "Feel sick, unwell",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "きぶんがわるい"
+    },
+    {
+      "id": "netsu",
+      "english": "Fever",
+      "category": "Body & Health",
+      "reviewNote": "Sub-row under ねつが あります.",
+      "target": "ねつ"
+    },
+    {
+      "id": "netsu-ga-arimasu",
+      "english": "Have a fever",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "ねつがあります"
+    },
+    {
+      "id": "tsukaimasu",
+      "english": "Use",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "つかいます"
+    },
+    {
+      "id": "tsukatte-use-te-form",
+      "english": "Use (て-form)",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "つかって"
+    },
+    {
+      "id": "hairimasu",
+      "english": "Enter",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "はいります"
+    },
+    {
+      "id": "haitte-enter-te-form",
+      "english": "Enter (て-form)",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "はいって"
+    },
+    {
+      "id": "okimasu",
+      "english": "Put, place",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "おきます"
+    },
+    {
+      "id": "oite-put-place-te-form",
+      "english": "Put, place (て-form)",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "おいて"
+    },
+    {
+      "id": "akemasu",
+      "english": "Open",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "あけます"
+    },
+    {
+      "id": "akete-open-te-form",
+      "english": "Open (て-form)",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "あけて"
+    },
+    {
+      "id": "shimemasu",
+      "english": "Close",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "しめます"
+    },
+    {
+      "id": "shimete-close-te-form",
+      "english": "Close (て-form)",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "しめて"
+    },
+    {
+      "id": "tsukemasu",
+      "english": "Turn on",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "つけます"
+    },
+    {
+      "id": "tsukete-turn-on-te-form",
+      "english": "Turn on (て-form)",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "つけて"
+    },
+    {
+      "id": "keshimasu",
+      "english": "Turn off",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "けします"
+    },
+    {
+      "id": "keshite-turn-off-te-form",
+      "english": "Turn off (て-form)",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "けして"
+    },
+    {
+      "id": "mado",
+      "english": "Window",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "まど"
+    },
+    {
+      "id": "kaaten",
+      "english": "Curtain",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "カーテン"
+    },
+    {
+      "id": "yasumimasu-day-off",
+      "english": "Take a day off",
+      "category": "Work & Occupations",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target) | Kept as a sense this chapter adds: chapter-16/yasumimasu teaches \"Rest\". New id, since yasumimasu is chapter 16's note guid.",
+      "target": "やすみます"
+    },
+    {
+      "id": "kopii-shimasu",
+      "english": "Make a copy",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "コピーします"
+    },
+    {
+      "id": "juuden-shimasu",
+      "english": "Recharge",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "じゅうでんします"
+    },
+    {
+      "id": "niwa",
+      "english": "Garden, yard",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "にわ"
+    },
+    {
+      "id": "do-counter",
+      "english": "...degree(s).",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "〜ど"
+    },
+    {
+      "id": "dou-shimashitaka",
+      "english": "What seems to be the problem?",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "どうしましたか"
+    },
+    {
+      "id": "atama-ga-itaidesu",
+      "english": "I have a headache.",
+      "category": "Body & Health",
+      "reviewNote": "KEY SENTENCES item 3 renders as the corrupted fragment 「たまが たいです」 in the source markup, but its translation ('I have a headache') and the WORD POWER Symptoms list both confirm this full phrase.",
+      "target": "あたまがいたいです"
+    },
+    {
+      "id": "denki-2",
+      "english": "Lights (electricity)",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "でんき"
+    },
+    {
+      "id": "tomemasu-park",
+      "english": "Park (a car)",
+      "category": "Transport",
+      "reviewNote": "Possibly already taught — とめます already taught in chapter-19 as 'stop'; 'park (a car)' is the same verb/meaning (to bring to a stop), not a distinct sense worth its own card. | Kept as a sense this chapter adds: chapter-19/tomemasu teaches \"Stop\" (telling a driver where to stop). Target had the book's (R2) verb-class tag, removed.",
+      "target": "とめます"
+    },
+    {
+      "id": "l21-sanjuuhachi-do",
+      "english": "38 degrees",
+      "category": "Body & Health",
+      "reviewNote": "Only Japanese text on this symptoms-illustration page; page range (207) sits past this lesson's main spread (199-206) so it may belong to an adjacent lesson on describing symptoms rather than Lesson 21's asking-permission content — confirm which lesson owns this page before carding. | Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ). | Checked: さんじゅうはちど (sanjūhachi-do) is the right reading. The extraction note doubting this page is wrong: page 207 is Lesson 21's Exercise IX, whose vocabulary box lists 38ど.",
+      "target": "38ど",
+      "ttsText": "さんじゅうはちど"
+    },
+    {
+      "id": "hai-douzo-permission",
+      "english": "Yes, go ahead.",
+      "category": "Greetings",
+      "reviewNote": "Added by the operator at gate 1: GRAMMAR 1 gives はい、どうぞ as the affirmative answer to a permission request, and no card taught that sense (chapter-4-extras/hai-douzo is \"Here you go\").",
+      "target": "はい、どうぞ",
+      "uncertain": true
+    },
+    {
+      "id": "sumimasenga-chotto-polite-refusal",
+      "english": "Sorry, but... (used to turn down a request politely)",
+      "category": "Greetings",
+      "reviewNote": "Possibly premature — explicitly taught later in Casual Style 2 (uncertain: the trailing-off ちょっと… soft-refusal pattern is given its own formal teaching treatment (in its casual form えー、ちょっと…) in the Casual Style 2 supplement, so the reviewer may prefer the card there) | Kept: GRAMMAR 1 of this chapter teaches it as the refusal to 〜てもいいですか. Casual Style 2 only adds the casual えー、ちょっと….",
+      "target": "すみませんが、ちょっと…"
+    }
+  ]
+}

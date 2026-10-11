@@ -626,7 +626,8 @@
       "audioOriginal": "1b5869c89deed973.orig.mp3",
       "audioAuto": "1b5869c89deed973.mp3",
       "audioMarked": true,
-      "audioTextHash": "1b5869c89deed973"
+      "audioTextHash": "1b5869c89deed973",
+      "scene": "telling a driver where to stop"
     },
     {
       "id": "te-form-tomete",

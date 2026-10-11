@@ -90,7 +90,8 @@
       "english": "topic marker particle",
       "category": "Grammar & Function Words",
       "target": "は",
-      "note": "Follows noun 1, marking it as the sentence topic; similar to 'as for' in English. Example: スミスさんは (sumisu-san wa) アメリカじんです (amerika jin desu)。 — 'As for Smith-san, (he) is American.' (i.e. 'Smith-san is American.')"
+      "note": "Follows noun 1, marking it as the sentence topic; similar to 'as for' in English. Example: スミスさんは (sumisu-san wa) アメリカじんです (amerika jin desu)。 — 'As for Smith-san, (he) is American.' (i.e. 'Smith-san is American.')",
+      "scene": "the particle after the topic of a sentence"
     },
     {
       "id": "kochira",

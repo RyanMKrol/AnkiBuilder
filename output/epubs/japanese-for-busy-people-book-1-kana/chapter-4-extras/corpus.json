@@ -599,7 +599,8 @@
       "hint": null,
       "note": "Said while handing something over. The はい (hai) here is closer to \"here\" or \"certainly\" than to \"yes\" — it is not answering a question.",
       "reviewNote": "From the TARGET DIALOGUE (the salesperson's reply to それをみせてください). It is the natural response to the card above and the deck has no card for it; どうぞ (dōzo) exists only as a standalone expression from the Frequently Used Expressions list.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "scene": "handing something to someone"
     },
     {
       "id": "to-koucha-choko-keki",

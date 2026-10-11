@@ -1,0 +1,862 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 47,
+    "chapterLabel": "Lesson 21: Asking Permission: May I Have It?",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "mukashi",
+      "target": "むかし",
+      "english": "A long time ago",
+      "category": "Time",
+      "sourceOrder": 121
+    },
+    {
+      "id": "eigo",
+      "target": "えいご",
+      "english": "English.",
+      "category": "Nationalities & Countries",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same word; 'English (the language)' is the fuller, clearer gloss.",
+      "sourceOrder": 149
+    },
+    {
+      "id": "panfuretto",
+      "target": "パンフレット",
+      "english": "Pamphlet",
+      "category": "Everyday Objects",
+      "sourceOrder": 153
+    },
+    {
+      "id": "moraimasu-receive-get",
+      "target": "もらいます",
+      "english": "Receive, get.",
+      "category": "Other",
+      "note": "The receiving half of あげます (agemasu, give) and くれます (kuremasu, give to me) from Lesson 14 — もらいます puts the receiver as the subject, as in なかむらさんにもらいました (Nakamura-san ni moraimashita), \"received from Nakamura-san.\"",
+      "sourceOrder": 2370,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 14: Giving and Receiving: I Received It from My Friend (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-14/moraimasu (same target and sense)"
+    },
+    {
+      "id": "moratte-mo-iidesu-ka",
+      "target": "もらってもいいですか",
+      "english": "May I have it?",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 217,
+      "note": "もらいます (moraimasu, receive) in its て-form plus もいいですか — the same permission pattern as すわってもいいですか and (しゃしんを)とってもいいですか in this lesson, here asking to receive something."
+    },
+    {
+      "id": "ni-particle-put-place",
+      "target": "に",
+      "english": "On, in (particle marking where something is put, written or parked)",
+      "category": "Grammar & Function Words",
+      "note": "Marks the place or thing an action leaves its result on: ここに なまえを かきます (koko ni namae o kakimasu, write your name here), いすに すわります (isu ni suwarimasu, sit on a chair). The verbs this chapter names with it are かきます, すわります, おきます and とめます. Lesson 12's に is different: it marks where something simply is, with あります or います.",
+      "sourceOrder": 148,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "scene": "marking where you put, write or park something"
+    },
+    {
+      "id": "suwarimasu",
+      "target": "すわります",
+      "english": "Sit down",
+      "category": "Home & Household",
+      "sourceOrder": 916
+    },
+    {
+      "id": "suwatte-sit-down-te-form",
+      "target": "すわって",
+      "english": "Sit down (て-form)",
+      "category": "Other",
+      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "sourceOrder": 892
+    },
+    {
+      "id": "suwattemo-iidesu-ka",
+      "target": "すわってもいいですか",
+      "english": "May I sit [here]?",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 378
+    },
+    {
+      "id": "shashin-wo-tottemo-iidesu-ka",
+      "target": "しゃしんをとってもいいですか",
+      "english": "May I take photos?",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 1691,
+      "reviewNote": "The book prints the object in brackets as an optional insertion; kept as one entry rather than split."
+    },
+    {
+      "id": "ashi",
+      "target": "あし",
+      "english": "Foot, leg",
+      "category": "Body & Health",
+      "sourceOrder": 304
+    },
+    {
+      "id": "itai-hurts",
+      "target": "いたい",
+      "english": "Hurt, sore, painful",
+      "category": "Body & Health",
+      "uncertain": false,
+      "reviewNote": "Possibly already taught — いたい! in chapter-14 is the same adjective いたい used as an exclamation, not a different word. | Kept: chapter-14/itai is the exclamation いたい! (\"Ouch!\"); this is the adjective used in からだの ところが いたいです. New id, since itai is chapter 14's note guid.",
+      "sourceOrder": 307
+    },
+    {
+      "id": "atama",
+      "target": "あたま",
+      "english": "Head",
+      "category": "Body & Health",
+      "sourceOrder": 1724
+    },
+    {
+      "id": "me",
+      "target": "め",
+      "english": "Eye.",
+      "category": "Body & Health",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — め (eye) is the identical word already taught in chapter-12-extras. | Possibly already taught — already introduced in Lesson 19: Making a Request: Please Give Her My Regards (matched on target)",
+      "sourceOrder": 1809,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12-extras/eye (same target and sense)"
+    },
+    {
+      "id": "ha-tooth",
+      "target": "は",
+      "english": "Tooth",
+      "category": "Body & Health",
+      "sourceOrder": 120,
+      "uncertain": false,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target) | Kept: a different word from the topic particle は (chapter-1/wa-particle), which it shares a spelling with.",
+      "note": "は (ha) is the noun for \"tooth\". It is written the same as the topic particle は from Lesson 1, which is read wa.",
+      "scene": "a part of the body"
+    },
+    {
+      "id": "nodo",
+      "target": "のど",
+      "english": "Throat",
+      "category": "Body & Health",
+      "sourceOrder": 1813
+    },
+    {
+      "id": "onaka",
+      "target": "おなか",
+      "english": "Stomach, belly",
+      "category": "Body & Health",
+      "sourceOrder": 1816
+    },
+    {
+      "id": "kata",
+      "target": "かた",
+      "english": "Shoulder",
+      "category": "Body & Health",
+      "sourceOrder": 1820
+    },
+    {
+      "id": "senaka",
+      "target": "せなか",
+      "english": "Back",
+      "category": "Body & Health",
+      "sourceOrder": 1823
+    },
+    {
+      "id": "koshi",
+      "target": "こし",
+      "english": "Lower back",
+      "category": "Body & Health",
+      "sourceOrder": 1827
+    },
+    {
+      "id": "kibun",
+      "target": "きぶん",
+      "english": "Feeling",
+      "category": "Emotions & Feelings",
+      "sourceOrder": 2027,
+      "reviewNote": "Sub-row under きぶんが わるい."
+    },
+    {
+      "id": "kibun-ga-warui",
+      "target": "きぶんがわるい",
+      "english": "Feel sick, unwell",
+      "category": "Body & Health",
+      "sourceOrder": 1855
+    },
+    {
+      "id": "netsu",
+      "target": "ねつ",
+      "english": "Fever",
+      "category": "Body & Health",
+      "sourceOrder": 2059,
+      "reviewNote": "Sub-row under ねつが あります."
+    },
+    {
+      "id": "netsu-ga-arimasu",
+      "target": "ねつがあります",
+      "english": "Have a fever",
+      "category": "Body & Health",
+      "sourceOrder": 1866
+    },
+    {
+      "id": "tsukaimasu",
+      "target": "つかいます",
+      "english": "Use",
+      "category": "Home & Household",
+      "sourceOrder": 1747
+    },
+    {
+      "id": "tsukatte-use-te-form",
+      "target": "つかって",
+      "english": "Use (て-form)",
+      "category": "Other",
+      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "sourceOrder": 2182
+    },
+    {
+      "id": "hairimasu",
+      "target": "はいります",
+      "english": "Enter",
+      "category": "Home & Household",
+      "sourceOrder": 1759
+    },
+    {
+      "id": "haitte-enter-te-form",
+      "target": "はいって",
+      "english": "Enter (て-form)",
+      "category": "Other",
+      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "sourceOrder": 2212
+    },
+    {
+      "id": "okimasu",
+      "target": "おきます",
+      "english": "Put, place",
+      "category": "Other",
+      "note": "Also named in GRAMMAR 2's prose as an example of an action taking place/thing + に.",
+      "sourceOrder": 1291
+    },
+    {
+      "id": "oite-put-place-te-form",
+      "target": "おいて",
+      "english": "Put, place (て-form)",
+      "category": "Other",
+      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "sourceOrder": 2229
+    },
+    {
+      "id": "akemasu",
+      "target": "あけます",
+      "english": "Open",
+      "category": "Home & Household",
+      "note": "Marked (R2) in the book: a ru-verb (Regular II).",
+      "sourceOrder": 1770
+    },
+    {
+      "id": "akete-open-te-form",
+      "target": "あけて",
+      "english": "Open (て-form)",
+      "category": "Home & Household",
+      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "sourceOrder": 2240
+    },
+    {
+      "id": "shimemasu",
+      "target": "しめます",
+      "english": "Close",
+      "category": "Home & Household",
+      "note": "Marked (R2) in the book: a ru-verb (Regular II).",
+      "sourceOrder": 1775
+    },
+    {
+      "id": "shimete-close-te-form",
+      "target": "しめて",
+      "english": "Close (て-form)",
+      "category": "Home & Household",
+      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "sourceOrder": 2252
+    },
+    {
+      "id": "tsukemasu",
+      "target": "つけます",
+      "english": "Turn on",
+      "category": "Home & Household",
+      "note": "Marked (R2) in the book: a ru-verb (Regular II).",
+      "sourceOrder": 1780
+    },
+    {
+      "id": "tsukete-turn-on-te-form",
+      "target": "つけて",
+      "english": "Turn on (て-form)",
+      "category": "Home & Household",
+      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "sourceOrder": 2265
+    },
+    {
+      "id": "keshimasu",
+      "target": "けします",
+      "english": "Turn off",
+      "category": "Home & Household",
+      "sourceOrder": 1785,
+      "note": "R1 verb (ends in す, conjugates like はなします), unlike あけます/しめます/つけます above which are R2."
+    },
+    {
+      "id": "keshite-turn-off-te-form",
+      "target": "けして",
+      "english": "Turn off (て-form)",
+      "category": "Home & Household",
+      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "sourceOrder": 2279
+    },
+    {
+      "id": "mado",
+      "target": "まど",
+      "english": "Window",
+      "category": "Home & Household",
+      "sourceOrder": 2401
+    },
+    {
+      "id": "kaaten",
+      "target": "カーテン",
+      "english": "Curtain",
+      "category": "Home & Household",
+      "sourceOrder": 2414
+    },
+    {
+      "id": "denki",
+      "target": "でんき",
+      "english": "Lights.",
+      "category": "Home & Household",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same word; 'Lights (electricity)' is the clearer gloss, matching the intended sense.",
+      "sourceOrder": 2429
+    },
+    {
+      "id": "yasumimasu-day-off",
+      "target": "やすみます",
+      "english": "Take a day off",
+      "category": "Work & Occupations",
+      "sourceOrder": 2446,
+      "uncertain": false,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target) | Kept as a sense this chapter adds: chapter-16/yasumimasu teaches \"Rest\". New id, since yasumimasu is chapter 16's note guid.",
+      "scene": "missing a day of work or school"
+    },
+    {
+      "id": "kopii-shimasu",
+      "target": "コピーします",
+      "english": "Make a copy",
+      "category": "Technology & Communication",
+      "sourceOrder": 2774
+    },
+    {
+      "id": "juuden-shimasu",
+      "target": "じゅうでんします",
+      "english": "Recharge",
+      "category": "Technology & Communication",
+      "sourceOrder": 2789
+    },
+    {
+      "id": "niwa",
+      "target": "にわ",
+      "english": "Garden, yard",
+      "category": "Home & Household",
+      "sourceOrder": 961
+    },
+    {
+      "id": "tomemasu",
+      "target": "とめます",
+      "english": "Park.",
+      "category": "Transport",
+      "note": "Marked (R2) in the book: a ru-verb (Regular II).",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; tomemasu-2 keeps the R2 note plus the extra grammar-2 cross-reference note.",
+      "sourceOrder": 1305,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 19: Making a Request: Please Give Her My Regards (matched on target)"
+    },
+    {
+      "id": "do-counter",
+      "target": "ど",
+      "english": "Degrees (counter)",
+      "category": "Numbers",
+      "note": "Counts degrees of temperature: 38ど (sanjūhachi-do) is 38 degrees.",
+      "sourceOrder": 4268
+    },
+    {
+      "id": "sanjuuhachi-do",
+      "target": "38ど",
+      "english": "38 degrees.",
+      "category": "Body & Health",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same number phrase; the fuller gloss naming the fever context teaches better.",
+      "sourceOrder": 4256
+    },
+    {
+      "id": "isha",
+      "target": "いしゃ",
+      "english": "Medical doctor.",
+      "category": "Work & Occupations",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — いしゃ (doctor) is the identical word already taught in chapter-1-extras.",
+      "sourceOrder": 4036,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-1-extras/irl-l1-33 (same target and sense)"
+    },
+    {
+      "id": "dou-shimashitaka",
+      "target": "どうしましたか",
+      "english": "What seems to be the problem?",
+      "category": "Body & Health",
+      "note": "Said by a doctor to a patient (see Notes 2, p. 208).",
+      "sourceOrder": 4040
+    },
+    {
+      "id": "roomaji",
+      "target": "ローマじ",
+      "english": "Romaji, romanized Japanese",
+      "category": "School & Education",
+      "sourceOrder": 4455,
+      "excluded": true,
+      "excludedBy": "human"
+    },
+    {
+      "id": "eigo-2",
+      "target": "えいご",
+      "english": "English (the language).",
+      "category": "Nationalities & Countries",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — えいご (English) is the identical word already taught in chapter-9-extras.",
+      "sourceOrder": 419,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-9-extras/p102-eigo (same target and sense)"
+    },
+    {
+      "id": "ni-particle-place",
+      "target": "に",
+      "english": "On (particle marking the place/thing a result-bearing action is directed at).",
+      "category": "Grammar & Function Words",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same particle sense; ni-particle has a useful grammar note and shorter id.",
+      "sourceOrder": 377,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)"
+    },
+    {
+      "id": "akemasu-2",
+      "target": "あけます(R2)",
+      "english": "Open.",
+      "category": "Other",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; akemasu has the right category and the (R2) class note, so the (R2) belongs in the note, not duplicated into the target string.",
+      "sourceOrder": 1915
+    },
+    {
+      "id": "shimemasu-2",
+      "target": "しめます(R2)",
+      "english": "Close.",
+      "category": "Other",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; shimemasu has the right category and class note instead of a target-string tag.",
+      "sourceOrder": 1927
+    },
+    {
+      "id": "tsukemasu-2",
+      "target": "つけます(R2)",
+      "english": "Turn on.",
+      "category": "Other",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; tsukemasu has the right category and class note instead of a target-string tag.",
+      "sourceOrder": 1940
+    },
+    {
+      "id": "te-hand",
+      "target": "て",
+      "english": "Hand.",
+      "category": "Body & Health",
+      "note": "Same て (te) \"hand\" met in Lesson 17 — this diagram just repeats a word already taught.",
+      "sourceOrder": 814,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 17: Stating a Wish: I Want to Buy a Souvenir (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-17/te (same target and sense)"
+    },
+    {
+      "id": "atama-ga-itaidesu",
+      "target": "あたまがいたいです",
+      "english": "I have a headache.",
+      "category": "Body & Health",
+      "sourceOrder": 1844,
+      "reviewNote": "KEY SENTENCES item 3 renders as the corrupted fragment 「たまが たいです」 in the source markup, but its translation ('I have a headache') and the WORD POWER Symptoms list both confirm this full phrase."
+    },
+    {
+      "id": "denki-2",
+      "target": "でんき",
+      "english": "Lights (electricity)",
+      "category": "Home & Household",
+      "sourceOrder": 2515
+    },
+    {
+      "id": "tomemasu-park",
+      "target": "とめます",
+      "english": "Park (a car)",
+      "category": "Transport",
+      "note": "Same とめます (tomemasu) as \"Stop\" from Lesson 19, here meaning \"park\" a vehicle rather than bring one to a halt — the place parked in takes に.",
+      "uncertain": false,
+      "reviewNote": "Possibly already taught — とめます already taught in chapter-19 as 'stop'; 'park (a car)' is the same verb/meaning (to bring to a stop), not a distinct sense worth its own card. | Kept as a sense this chapter adds: chapter-19/tomemasu teaches \"Stop\" (telling a driver where to stop). Target had the book's (R2) verb-class tag, removed.",
+      "sourceOrder": 3619,
+      "scene": "leaving a car in a parking space"
+    },
+    {
+      "id": "kakimasu",
+      "target": "かきます",
+      "english": "Write, draw.",
+      "category": "Other",
+      "note": "Same かきます (kakimasu) as \"Draw\" from Lesson 15 — here it also covers \"write\" characters, as in ローマじで かいても いいですか (romaji de kaite mo ii desu ka).",
+      "sourceOrder": 1255,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-17/kakimasu (write), chapter-19/kakimasu-l19 (same target and sense)"
+    },
+    {
+      "id": "de-particle-means",
+      "target": "で",
+      "english": "By, in (particle marking the means of writing or speaking — characters or language).",
+      "category": "Grammar & Function Words",
+      "note": "Not the で marking a vehicle (Lesson 7) or a place of action (Lesson 8) — here で marks the means of writing or speaking, as in ローマじで かいても いいですか (romaji de kaite mo ii desu ka), \"may I write in romaji?\"",
+      "sourceOrder": 128,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-19/de-means-particle (same particle, same sense: the means of communication; a language or script is one such means)"
+    },
+    {
+      "id": "okane",
+      "target": "おかね",
+      "english": "Money (here rendered 'coins' in the book's translation).",
+      "category": "Money",
+      "uncertain": true,
+      "reviewNote": "Appears once in スミス's opening line (これは むかしの おかねですか), translated contextually as 'coins'; never glossed anywhere in this chapter. | Possibly already taught — already introduced in Lesson 14: Giving and Receiving: I Received It from My Friend (matched on target)",
+      "sourceOrder": 125,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-14/okane (same target and sense)"
+    },
+    {
+      "id": "hakubutsukan",
+      "target": "はくぶつかん",
+      "english": "Museum.",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "Used repeatedly (はくぶつかんの ひと 'museum staff', and the closing summary sentence はくぶつかんで...もらいました) but never glossed in any VOCABULARY box in this chapter; may already be taught in an earlier lesson. | Possibly already taught — already introduced in Lesson 20: Going Places (3): How Do You Go There? (matched on target)",
+      "sourceOrder": 228,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-20/hakubutsukan (same target and sense)"
+    },
+    {
+      "id": "tsukaremashita",
+      "target": "つかれました",
+      "english": "Got tired, is tiring.",
+      "category": "Emotions & Feelings",
+      "uncertain": true,
+      "reviewNote": "Suzuki says つかれましたね ('It's tiring, isn't it?'); never glossed in this chapter's vocabulary boxes. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "sourceOrder": 286,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-16/tsukaremashita (same target and sense)"
+    },
+    {
+      "id": "moraimashita",
+      "target": "もらいました",
+      "english": "Received, got.",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Polite past of もらいます, used in スミスさんは...パンフレットを もらいました; the chapter's vocabulary box only gives the て-form in もらっても いいですか, not this base verb or its past form. | Possibly already taught — already introduced in Lesson 14: Giving and Receiving: I Received It from My Friend (matched on target)",
+      "sourceOrder": 430,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-14/moraimashita (same target and sense)"
+    },
+    {
+      "id": "namae",
+      "target": "なまえ",
+      "english": "Name.",
+      "category": "Everyday Objects",
+      "uncertain": true,
+      "reviewNote": "Appears in the GRAMMAR 2 example (ここに なまえを かいてください) and again as おなまえ in Speaking Practice 1, but is never glossed in this chapter; likely taught in an earlier lesson. | Possibly already taught — おなまえ in chapter-8 is なまえ with the polite お- prefix, the same word as this card. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "sourceOrder": 1448,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-2/namae (same target and sense)"
+    },
+    {
+      "id": "shokuji",
+      "target": "しょくじ",
+      "english": "Meal (しょくじを します — to have a meal).",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "Appears only once, in the Exercise IV example (ここで しょくじを してもいいですか), never glossed in this chapter. | Possibly already taught — しょくじ's meaning is already fully conveyed by the identical set phrase しょくじを します taught twice (chapter-16 and chapter-17) with the same gloss.",
+      "sourceOrder": 2932,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-16/shokuji-shimasu and chapter-17/shokuji-o-shimasu carry the noun inside the phrase this chapter uses it in"
+    },
+    {
+      "id": "otera",
+      "target": "おてら",
+      "english": "Temple.",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "Appears as おてらの ひと ('temple staff') throughout Exercise IV but is never glossed. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 2946,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/otera-temple (same target and sense)"
+    },
+    {
+      "id": "kaigishitsu",
+      "target": "かいぎしつ",
+      "english": "Meeting room.",
+      "category": "Work & Occupations",
+      "uncertain": true,
+      "reviewNote": "Appears only in the Exercise V example (かいぎしつで べんきょうしても いいですか), never glossed. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 3153,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/kaigishitsu-meeting-room (same target and sense)"
+    },
+    {
+      "id": "uketsuke",
+      "target": "うけつけ",
+      "english": "Reception (desk), front desk.",
+      "category": "Work & Occupations",
+      "uncertain": true,
+      "reviewNote": "Appears repeatedly as うけつけの ひと ('receptionist') throughout Exercise V but is never glossed. | Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
+      "sourceOrder": 3173,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-1/uketsuke (same target and sense)"
+    },
+    {
+      "id": "teeburu",
+      "target": "テーブル",
+      "english": "Table.",
+      "category": "Home & Household",
+      "uncertain": true,
+      "reviewNote": "Appears in the Exercise VI example (テーブルの うえに にもつを おいてください), never glossed. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 3537,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/table-noun (same target and sense)"
+    },
+    {
+      "id": "ue",
+      "target": "うえ",
+      "english": "On top of, above.",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Appears in the same Exercise VI example sentence as テーブル; never glossed in this chapter. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 3542,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/ue-on-above (same target and sense)"
+    },
+    {
+      "id": "nimotsu",
+      "target": "にもつ",
+      "english": "Luggage, baggage.",
+      "category": "Travel & Tourism",
+      "uncertain": true,
+      "reviewNote": "Appears in the Exercise VI example sentence; never glossed in this chapter. | Possibly already taught — already introduced in Lesson 19: Making a Request: Please Give Her My Regards (matched on target)",
+      "sourceOrder": 2476,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-19/nimotsu (same target and sense)"
+    },
+    {
+      "id": "isu",
+      "target": "いす",
+      "english": "Chair.",
+      "category": "Home & Household",
+      "uncertain": true,
+      "reviewNote": "Appears in Exercise VI item 2's parenthetical cue (その いす、すわります); never glossed. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 3577,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/isu-chair (same target and sense)"
+    },
+    {
+      "id": "chuushajou",
+      "target": "ちゅうしゃじょう",
+      "english": "Parking lot.",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "Appears in Exercise VI item 3's parenthetical cue (あの ちゅうしゃじょう、くるまを とめます); never glossed. | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on target)",
+      "sourceOrder": 3591,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-12/chuushajou-parking-lot (same target and sense)"
+    },
+    {
+      "id": "kuruma",
+      "target": "くるま",
+      "english": "Car.",
+      "category": "Transport",
+      "uncertain": true,
+      "reviewNote": "Appears in the same Exercise VI item 3 cue as ちゅうしゃじょう; never glossed. | Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
+      "sourceOrder": 3600,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-7/kuruma (same target and sense)"
+    },
+    {
+      "id": "terebi",
+      "target": "テレビ",
+      "english": "TV.",
+      "category": "Technology & Communication",
+      "uncertain": true,
+      "reviewNote": "Appears in Green's line (この テレビを とどけてください); never glossed in this chapter. | Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target)",
+      "sourceOrder": 4405,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-4/terebi (same target and sense)"
+    },
+    {
+      "id": "todokemasu",
+      "target": "とどけます",
+      "english": "Deliver.",
+      "category": "Other",
+      "uncertain": true,
+      "reviewNote": "Appears as とどけてください in the same line as テレビ; never glossed. | Possibly already taught — already introduced in Lesson 19: Making a Request: Please Give Her My Regards (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-19/todokemasu (same target and sense)"
+    },
+    {
+      "id": "juusho",
+      "target": "じゅうしょ",
+      "english": "Address.",
+      "category": "Everyday Objects",
+      "uncertain": true,
+      "reviewNote": "Appears as ごじゅうしょ (polite form) in the salesperson's line; never glossed in this chapter. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
+      "sourceOrder": 4431,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-2/juusho (same target and sense)"
+    },
+    {
+      "id": "hanashimasu",
+      "target": "はなします",
+      "english": "Speak, talk.",
+      "category": "Other",
+      "uncertain": true,
+      "reviewNote": "Appears in Green's line えいごで はなしても いいですか; never glossed in this chapter. | Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-15/hanashimasu-talk (same target and sense)"
+    },
+    {
+      "id": "l21-niwa-garden",
+      "target": "にわ",
+      "english": "Garden; yard",
+      "category": "Home & Household",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same word, same gloss punctuation variant only; shorter id.",
+      "sourceOrder": 3344
+    },
+    {
+      "id": "l21-copy-shimasu",
+      "target": "コピーします",
+      "english": "To copy (something)",
+      "category": "Technology & Communication",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; shorter id, equivalent gloss.",
+      "sourceOrder": 2774
+    },
+    {
+      "id": "l21-tsukaimasu",
+      "target": "つかいます",
+      "english": "To use",
+      "category": "Other",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb/sense; shorter id, equally fine gloss.",
+      "sourceOrder": 1884
+    },
+    {
+      "id": "l21-juuden-shimasu",
+      "target": "じゅうでんします",
+      "english": "To charge (a battery)",
+      "category": "Technology & Communication",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same verb; shorter id, equivalent gloss.",
+      "sourceOrder": 2789
+    },
+    {
+      "id": "l21-sanjuuhachi-do",
+      "target": "38ど",
+      "english": "38 degrees",
+      "category": "Body & Health",
+      "uncertain": false,
+      "reviewNote": "Only Japanese text on this symptoms-illustration page; page range (207) sits past this lesson's main spread (199-206) so it may belong to an adjacent lesson on describing symptoms rather than Lesson 21's asking-permission content — confirm which lesson owns this page before carding. | Checked: さんじゅうはちど (sanjūhachi-do) is the right reading. The extraction note doubting this page is wrong: page 207 is Lesson 21's Exercise IX, whose vocabulary box lists 38ど.",
+      "sourceOrder": 4256,
+      "note": "ど (do) counts degrees of temperature: the number, then ど. 38ど is a fever."
+    },
+    {
+      "id": "hai-douzo-permission",
+      "english": "Yes, go ahead.",
+      "category": "Greetings",
+      "target": "はい、どうぞ",
+      "scene": "granting someone permission",
+      "note": "The standard yes to a 〜てもいいですか (te mo ii desu ka, \"may I…?\") request.",
+      "uncertain": true,
+      "reviewNote": "Added by the operator at gate 1: GRAMMAR 1 gives はい、どうぞ as the affirmative answer to a permission request, and no card taught that sense (chapter-4-extras/hai-douzo is \"Here you go\").",
+      "sourceOrder": 1209
+    },
+    {
+      "id": "sumimasenga-chotto-polite-refusal",
+      "target": "すみませんが、ちょっと…",
+      "english": "Sorry, but... (used to turn down a request politely)",
+      "category": "Greetings",
+      "note": "Combines すみません with the trailing-off ちょっと (chotto) from Lesson 16, which politely declines without saying what's wrong — the standard polite refusal to a てもいいですか request.",
+      "sourceOrder": 1210,
+      "uncertain": false,
+      "reviewNote": "Possibly premature — explicitly taught later in Casual Style 2 (uncertain: the trailing-off ちょっと… soft-refusal pattern is given its own formal teaching treatment (in its casual form えー、ちょっと…) in the Casual Style 2 supplement, so the reviewer may prefer the card there) | Kept: GRAMMAR 1 of this chapter teaches it as the refusal to 〜てもいいですか. Casual Style 2 only adds the casual えー、ちょっと…."
+    }
+  ]
+}

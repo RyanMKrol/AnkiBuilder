@@ -86,6 +86,31 @@
         "at": "2026-09-21T21:28:48.144Z",
         "message": "chapter-20: \"でます\" (To leave) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "でます is a verb headword from the vocabulary box, and ダイビングをします is glossed there as one unit (scuba dive). Both are lexical entries, not sentences."
+      },
+      "chapter-21/atama-ga-itaidesu": {
+        "at": "2026-10-11T11:49:21.688Z",
+        "message": "chapter-21: \"あたまがいたいです\" (I have a headache.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "L21 gate 1: all five are the book's own vocabulary entries (しゃしんを とっても いいですか, ねつが あります and あたまが いたいです are glossed as single units in VOCABULARY/WORD POWER); はいります and じゅうでんします are plain verbs the check misreads as sentences"
+      },
+      "chapter-21/hairimasu": {
+        "at": "2026-10-11T11:49:21.688Z",
+        "message": "chapter-21: \"はいります\" (Enter) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "L21 gate 1: all five are the book's own vocabulary entries (しゃしんを とっても いいですか, ねつが あります and あたまが いたいです are glossed as single units in VOCABULARY/WORD POWER); はいります and じゅうでんします are plain verbs the check misreads as sentences"
+      },
+      "chapter-21/juuden-shimasu": {
+        "at": "2026-10-11T11:49:21.688Z",
+        "message": "chapter-21: \"じゅうでんします\" (Recharge) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "L21 gate 1: all five are the book's own vocabulary entries (しゃしんを とっても いいですか, ねつが あります and あたまが いたいです are glossed as single units in VOCABULARY/WORD POWER); はいります and じゅうでんします are plain verbs the check misreads as sentences"
+      },
+      "chapter-21/netsu-ga-arimasu": {
+        "at": "2026-10-11T11:49:21.688Z",
+        "message": "chapter-21: \"ねつがあります\" (Have a fever) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "L21 gate 1: all five are the book's own vocabulary entries (しゃしんを とっても いいですか, ねつが あります and あたまが いたいです are glossed as single units in VOCABULARY/WORD POWER); はいります and じゅうでんします are plain verbs the check misreads as sentences"
+      },
+      "chapter-21/shashin-wo-tottemo-iidesu-ka": {
+        "at": "2026-10-11T11:49:21.688Z",
+        "message": "chapter-21: \"しゃしんをとってもいいですか\" (May I take photos?) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "L21 gate 1: all five are the book's own vocabulary entries (しゃしんを とっても いいですか, ねつが あります and あたまが いたいです are glossed as single units in VOCABULARY/WORD POWER); はいります and じゅうでんします are plain verbs the check misreads as sentences"
       }
     }
   }

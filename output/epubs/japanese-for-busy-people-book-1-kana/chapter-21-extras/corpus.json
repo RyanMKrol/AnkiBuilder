@@ -105,7 +105,10 @@
       "target": "ローマじでかいてもいいですか。",
       "english": "May I write it in romaji?",
       "category": "Shopping",
-      "scene": "Asking while filling out an address-and-name form at a store"
+      "scene": "Asking while filling out an address-and-name form at a store",
+      "excluded": true,
+      "excludedBy": "final-review",
+      "excludedReason": "Needs ローマじ, which the owner cut from the base unit (chapter-21/roomaji), so nothing teaches it"
     },
     {
       "id": "ask-use-until-130",
@@ -144,7 +147,7 @@
       "id": "lesson21-speak-english-permission",
       "target": "すみません。えいごではなしてもいいですか。",
       "english": "Excuse me, may I speak in English?",
-      "category": "Body & Health",
+      "category": "Technology & Communication",
       "scene": "Said by a patient to a doctor"
     },
     {
@@ -182,7 +185,7 @@
     {
       "id": "lesson21-copy-material-permission",
       "target": "しりょうをコピーしてもいいですか。",
-      "english": "May I make a copy of this material?",
+      "english": "May I make a copy of the materials?",
       "category": "Work & Occupations"
     },
     {

@@ -1694,6 +1694,8 @@ code in the repo and the most expensive to get wrong.
 
 `GET /chapter/<type>/<id>/<n>` renders a chapter's base unit and its `-extras` sibling on one page,
 and `POST /api/deck/<type>/<id>/chapter/<n>/done` signs both off at once.
+Both take `<n>` as the lesson number from the unit folder name (`chapter-21`, `chapter-21-extras`),
+never `meta.chapterNumber`, which for a book is the EPUB file index and does not match.
 
 It is a **scope on the existing renderer**, not a new page. `renderReviewPage` already rendered N
 units together (that is how the deck-level view works), so the chapter view is a filter on

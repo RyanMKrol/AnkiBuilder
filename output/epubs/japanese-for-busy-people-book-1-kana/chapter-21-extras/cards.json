@@ -30,7 +30,8 @@
         "reason": "phase 2 dedups its own miners' output"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -500,12 +501,16 @@
       "target": "テレビをけします",
       "pronunciation": "terebi o keshimasu",
       "aiSuggested": true,
-      "audio": "178683e44cc00964.mp3",
+      "audio": "terebi-keshimasu-manual-bafa4ff6.mp3",
       "audioOriginal": "178683e44cc00964.orig.mp3",
       "audioAuto": "178683e44cc00964.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "178683e44cc00964"
+      "audioTextHash": "178683e44cc00964",
+      "audioManual": "terebi-keshimasu-manual-bafa4ff6.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.5691887842465753
+      }
     },
     {
       "id": "ks-sit-permission",

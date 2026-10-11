@@ -87,7 +87,7 @@
     },
     {
       "id": "invite-come-home-lunch",
-      "english": "Shall we have lunch at my place? (Come over and eat lunch.)",
+      "english": "Won't you come over to my place and have lunch?",
       "category": "Food",
       "target": "うちにきて、ひるごはんをたべませんか",
       "pronunciation": "uchi ni kite, hirugohan o tabemasen ka",
@@ -1048,11 +1048,12 @@
       "target": "あしたうちにきて、いっしょにえいがをみましょう",
       "pronunciation": "ashita uchi ni kite, issho ni eiga o mimashō",
       "aiSuggested": true,
-      "audio": "27e7bc660c094f25.mp3",
-      "audioOriginal": "27e7bc660c094f25.orig.mp3",
-      "audioAuto": "27e7bc660c094f25.mp3",
+      "audioOriginal": "38d96c9dcab78473-genkanji-3bc3f477.orig.mp3",
+      "audioAuto": "38d96c9dcab78473-genkanji-3bc3f477.mp3",
       "audioMarked": true,
-      "audioTextHash": "27e7bc660c094f25"
+      "audioTextHash": "38d96c9dcab78473",
+      "audioFilter": "standard",
+      "audio": "38d96c9dcab78473-genkanji-3bc3f477.mp3"
     },
     {
       "id": "before-after-pair",

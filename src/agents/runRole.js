@@ -10,10 +10,27 @@
 // a real chapter a separate and deliberate act.
 
 import { runClaudeWithPrompt } from "../util/runClaude.js";
+import { extractJsonObjectText } from "../util/promptTemplate.js";
 import { ROLES } from "./roles.js";
 import { appendRunLog, currentRunLogDir } from "./runLog.js";
 
 const MAX_BUFFER = 20 * 1024 * 1024;
+
+// Every role answers with one JSON object, and every caller parses it with extractJsonObjectText.
+// A reply that does not parse is asked for once more before the caller sees it. On Lesson 21's
+// extras build the inventive author answered a 139k-character prompt with one line of chat ("Tool's
+// loaded and ready whenever you need it") and the JSON.parse at its call site threw, which threw
+// away the five agent steps that had already finished. One retry costs one call, and only when the
+// reply was unusable anyway. A second bad reply is returned as is, so the caller fails exactly as
+// it did before, with both replies in the run log.
+const parsesAsJsonObject = (text) => {
+  try {
+    JSON.parse(extractJsonObjectText(String(text ?? "")));
+    return true;
+  } catch {
+    return false;
+  }
+};
 
 /**
  * Runs `prompt` as `roleId`, at that role's declared model, effort and timeout.
@@ -48,19 +65,25 @@ export function runRole(roleId, prompt, { runClaude = runClaudeWithPrompt, logDi
     }
   };
 
-  let response;
-  try {
-    response = runClaude(prompt, {
-      scopeEnvPrefix: [`ANKI_BUILDER_${role.envScope}`],
-      defaults: { model: role.model, effort: role.effort, timeoutMs: role.timeoutMs },
-      maxBuffer: MAX_BUFFER,
-    });
-  } catch (error) {
-    // The call itself failed. Written before the rethrow for the same reason the parse guards below
-    // it now have evidence at all: the thing that failed is the thing worth reading.
-    tee(false, { error: error?.message ?? String(error) });
-    throw error;
-  }
+  const call = () => {
+    try {
+      return runClaude(prompt, {
+        scopeEnvPrefix: [`ANKI_BUILDER_${role.envScope}`],
+        defaults: { model: role.model, effort: role.effort, timeoutMs: role.timeoutMs },
+        maxBuffer: MAX_BUFFER,
+      });
+    } catch (error) {
+      // The call itself failed. Written before the rethrow for the same reason the parse guards below
+      // it now have evidence at all: the thing that failed is the thing worth reading.
+      tee(false, { error: error?.message ?? String(error) });
+      throw error;
+    }
+  };
+
+  const response = call();
   tee(true, { response });
-  return response;
+  if (parsesAsJsonObject(response)) return response;
+  const retried = call();
+  tee(true, { response: retried });
+  return retried;
 }

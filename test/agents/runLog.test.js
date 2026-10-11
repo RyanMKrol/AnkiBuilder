@@ -94,12 +94,12 @@ test("runRole tees a successful response into the ambient directory", () => {
   const { dir, cleanup } = scratch();
   try {
     withRunLogDir(logDirFor(dir), () => {
-      runRole("gapAuthor", "the prompt", { runClaude: () => "the response" });
+      runRole("gapAuthor", "the prompt", { runClaude: () => '{"items":[]}' });
     });
     const logs = readRunLogs(dir);
     assert.equal(logs.length, 1);
     assert.equal(logs[0].ok, true);
-    assert.equal(logs[0].response, "the response");
+    assert.equal(logs[0].response, '{"items":[]}');
     assert.equal(logs[0].model, "claude-sonnet-5");
   } finally {
     cleanup();
@@ -117,12 +117,56 @@ test("runRole tees a response BEFORE the caller parses it, which is the gap this
         JSON.parse(raw);
       });
     });
+    // Both tries are on disk: the first bad reply is evidence too.
     const logs = readRunLogs(dir);
-    assert.equal(logs.length, 1);
+    assert.equal(logs.length, 2);
     assert.equal(logs[0].response, "not json at all");
+    assert.equal(logs[1].response, "not json at all");
   } finally {
     cleanup();
   }
+});
+
+test("runRole asks once more when a reply has no JSON object, and returns the good one", () => {
+  const { dir, cleanup } = scratch();
+  try {
+    // The Lesson 21 shape: a chatty line where the JSON should be, then a normal answer.
+    const replies = ["Tool's loaded and ready whenever you need it.", '{"items":[1]}'];
+    let calls = 0;
+    const raw = withRunLogDir(logDirFor(dir), () =>
+      runRole("inventiveAuthor", "p", { runClaude: () => replies[calls++] }),
+    );
+    assert.equal(calls, 2);
+    assert.equal(raw, '{"items":[1]}');
+    assert.equal(readRunLogs(dir).length, 2);
+  } finally {
+    cleanup();
+  }
+});
+
+test("runRole does not retry a reply that parses, fenced or bare", () => {
+  for (const reply of ['{"a":1}', 'Here you go:\n```json\n{"a":1}\n```']) {
+    let calls = 0;
+    runRole("gapAuthor", "p", {
+      runClaude: () => {
+        calls++;
+        return reply;
+      },
+    });
+    assert.equal(calls, 1);
+  }
+});
+
+test("runRole retries only once: a second bad reply goes back to the caller as is", () => {
+  let calls = 0;
+  const raw = runRole("gapAuthor", "p", {
+    runClaude: () => {
+      calls++;
+      return `chat ${calls}`;
+    },
+  });
+  assert.equal(calls, 2);
+  assert.equal(raw, "chat 2");
 });
 
 test("runRole tees a call that threw, then rethrows", () => {

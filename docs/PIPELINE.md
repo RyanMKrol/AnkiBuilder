@@ -2147,6 +2147,10 @@ fallback**: v1's families group passes that share a blast radius, and v2's roles
 a single knob moving both the adversary and what it checks would undo the ranking the registry
 asserts.
 
+It is also where an unusable reply gets its one retry. Every role answers with a JSON object, so a
+reply that `extractJsonObjectText` cannot turn into one is requested again once, and a second bad
+reply goes back to the caller unchanged, to fail at its parse as before.
+
 ### Numbered blocks come from the book's own markers
 
 `chapterOutline` reports a chapter's numbered runs (`EXERCISES: 8 block(s) — I … VIII`) and names

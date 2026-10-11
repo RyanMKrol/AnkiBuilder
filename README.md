@@ -349,7 +349,8 @@ them out, because for a reviewing agent, a miss and a clean run otherwise look i
 
 Agent transcripts (`<unit>/agent-logs/`) are written by `runRole` for every call including failed
 ones. That closes a gap this repo carried knowingly: the guards parse, validate and throw, so a
-rejected response used to be destroyed by the act of judging it.
+rejected response used to be destroyed by the act of judging it. A reply with no parseable JSON object
+is asked for once more before the caller sees it, and both replies are logged.
 
 ### The deterministic gate: `npm run preflight`
 

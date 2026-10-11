@@ -137,7 +137,8 @@ audio-editing are one page, not two. The two views behind them:
   ElevenLabs variants to audition and pick — including, for Japanese, **Generate (kanji)**, which
   turns the card's kana reading into natural kanji+kana orthography that ElevenLabs voices more
   naturally than all-kana), then **Mark done**. A lesson edits at the audio stage on its own,
-  independent of its siblings' stages. **Marking a lesson done never locks it**: done only decides
+  independent of its siblings' stages, on its own page and on the whole-book page alike: a lesson
+  still at the corpus review does not hide the audio tools on the others. **Marking a lesson done never locks it**: done only decides
   what ships (the merged `.apkg` and AnkiConnect delivery include done lessons only), and a done
   lesson keeps every edit tool, with each edit rebuilding the package automatically. AI-suggested /
   uncertain items are badged at every step.

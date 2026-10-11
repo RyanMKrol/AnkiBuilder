@@ -340,21 +340,23 @@ ${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately remo
     if (units.length === 0) return null;
 
     // A lesson is ALWAYS open for editing — done or not. `done` only gates delivery / .apkg
-    // inclusion, never the tools. Audio editing unlocks when EVERY rendered unit is at the audio
-    // stage. Deck-level: a mixed book stays non-editable at the deck URL. Unit-scoped: a single
-    // audio lesson is editable even when its siblings aren't — so you can work one lesson at a time.
-    const allAudio = units.every((u) => (u.stage || "audio") === "audio");
+    // inclusion, never the tools. Audio editing is on whenever ANY rendered unit is at the audio
+    // stage, and it lands only on that unit's rows: the corpus table has no audio cells, so a lesson
+    // still at gate 1 simply gets none. This used to require EVERY unit at the audio stage, from when
+    // a book with a lesson in review could not be merge-rebuilt. It can now (the merge takes done
+    // lessons only), so the rule did nothing but hide the audio tools on the whole book page for as
+    // long as one lesson sat in review.
+    const hasAudio = units.some((u) => (u.stage || "audio") === "audio");
     // `anyDone` no longer locks anything; it tells the client (via #deckctx) that edits must
     // auto-rebuild the .apkg, and flavors the lede.
     const anyDone = units.some((u) => u.done);
     // A lesson a CLI stage is actively writing renders READ-ONLY: the stage will rewrite
     // cards.json when it finishes, so any edit made now would be silently discarded.
     const anyBuilding = units.some((u) => u.building);
-    const canEdit = editable && units.length > 0 && allAudio && !anyBuilding;
+    const canEdit = editable && hasAudio && !anyBuilding;
 
     // The Corpus review — the first gate (editable: exclude / edit / mark reviewed).
     const hasReview = units.some((u) => (u.stage || "audio") === "corpus");
-    const hasAudio = units.some((u) => (u.stage || "audio") === "audio");
     // Kana+kanji audio variants are Japanese-only (they generate a kanji orthography from the kana
     // reading), so the button only appears for a ja deck.
     const deckLanguageCode = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id));

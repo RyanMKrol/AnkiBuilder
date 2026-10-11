@@ -48,7 +48,12 @@
       "category": "Time",
       "target": "むかし",
       "pronunciation": "mukashi",
-      "sourceOrder": 121
+      "sourceOrder": 121,
+      "audio": "306045e4b1216e69.mp3",
+      "audioOriginal": "306045e4b1216e69.orig.mp3",
+      "audioAuto": "306045e4b1216e69.mp3",
+      "audioMarked": true,
+      "audioTextHash": "306045e4b1216e69"
     },
     {
       "id": "panfuretto",
@@ -56,7 +61,12 @@
       "category": "Everyday Objects",
       "target": "パンフレット",
       "pronunciation": "panfuretto",
-      "sourceOrder": 153
+      "sourceOrder": 153,
+      "audio": "0037adcf42f678a6.mp3",
+      "audioOriginal": "0037adcf42f678a6.orig.mp3",
+      "audioAuto": "0037adcf42f678a6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0037adcf42f678a6"
     },
     {
       "id": "moraimasu-receive-get",
@@ -79,7 +89,12 @@
       "target": "もらってもいいですか",
       "pronunciation": "moratte mo ii desu ka",
       "sourceOrder": 217,
-      "note": "もらいます (moraimasu, receive) in its て-form plus もいいですか — the same permission pattern as すわってもいいですか and (しゃしんを)とってもいいですか in this lesson, here asking to receive something."
+      "note": "もらいます (moraimasu, receive) in its て-form plus もいいですか — the same permission pattern as すわってもいいですか and (しゃしんを)とってもいいですか in this lesson, here asking to receive something.",
+      "audio": "576b57c0aed7632f.mp3",
+      "audioOriginal": "576b57c0aed7632f.orig.mp3",
+      "audioAuto": "576b57c0aed7632f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "576b57c0aed7632f"
     },
     {
       "id": "ni-particle-put-place",
@@ -91,7 +106,12 @@
       "note": "Marks the place or thing an action leaves its result on: ここに なまえを かきます (koko ni namae o kakimasu, write your name here), いすに すわります (isu ni suwarimasu, sit on a chair). The verbs this chapter names with it are かきます, すわります, おきます and とめます. Lesson 12's に is different: it marks where something simply is, with あります or います.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
       "sourceOrder": 148,
-      "scene": "marking where you put, write or park something"
+      "scene": "marking where you put, write or park something",
+      "audio": "557359c0476f3633.mp3",
+      "audioOriginal": "557359c0476f3633.orig.mp3",
+      "audioAuto": "557359c0476f3633.mp3",
+      "audioMarked": true,
+      "audioTextHash": "557359c0476f3633"
     },
     {
       "id": "suwarimasu",
@@ -99,7 +119,12 @@
       "category": "Home & Household",
       "target": "すわります",
       "pronunciation": "suwarimasu",
-      "sourceOrder": 916
+      "sourceOrder": 916,
+      "audio": "8892f19c2192743e.mp3",
+      "audioOriginal": "8892f19c2192743e.orig.mp3",
+      "audioAuto": "8892f19c2192743e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8892f19c2192743e"
     },
     {
       "id": "suwatte-sit-down-te-form",
@@ -108,7 +133,12 @@
       "target": "すわって",
       "pronunciation": "suwatte",
       "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
-      "sourceOrder": 892
+      "sourceOrder": 892,
+      "audio": "203d196747c7c317.mp3",
+      "audioOriginal": "203d196747c7c317.orig.mp3",
+      "audioAuto": "203d196747c7c317.mp3",
+      "audioMarked": true,
+      "audioTextHash": "203d196747c7c317"
     },
     {
       "id": "suwattemo-iidesu-ka",
@@ -116,7 +146,12 @@
       "category": "Grammar & Function Words",
       "target": "すわってもいいですか",
       "pronunciation": "suwatte mo ii desu ka",
-      "sourceOrder": 378
+      "sourceOrder": 378,
+      "audio": "f3809b57a808e1bc.mp3",
+      "audioOriginal": "f3809b57a808e1bc.orig.mp3",
+      "audioAuto": "f3809b57a808e1bc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f3809b57a808e1bc"
     },
     {
       "id": "shashin-wo-tottemo-iidesu-ka",
@@ -125,7 +160,12 @@
       "target": "しゃしんをとってもいいですか",
       "pronunciation": "shashin o totte mo ii desu ka",
       "sourceOrder": 1691,
-      "reviewNote": "The book prints the object in brackets as an optional insertion; kept as one entry rather than split."
+      "reviewNote": "The book prints the object in brackets as an optional insertion; kept as one entry rather than split.",
+      "audio": "9584f81ef63f510d.mp3",
+      "audioOriginal": "9584f81ef63f510d.orig.mp3",
+      "audioAuto": "9584f81ef63f510d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9584f81ef63f510d"
     },
     {
       "id": "ashi",
@@ -133,7 +173,12 @@
       "category": "Body & Health",
       "target": "あし",
       "pronunciation": "ashi",
-      "sourceOrder": 304
+      "sourceOrder": 304,
+      "audio": "4ba27b34ec70bd71.mp3",
+      "audioOriginal": "4ba27b34ec70bd71.orig.mp3",
+      "audioAuto": "4ba27b34ec70bd71.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4ba27b34ec70bd71"
     },
     {
       "id": "itai-hurts",
@@ -143,7 +188,12 @@
       "pronunciation": "itai",
       "uncertain": false,
       "reviewNote": "Possibly already taught — いたい! in chapter-14 is the same adjective いたい used as an exclamation, not a different word. | Kept: chapter-14/itai is the exclamation いたい! (\"Ouch!\"); this is the adjective used in からだの ところが いたいです. New id, since itai is chapter 14's note guid.",
-      "sourceOrder": 307
+      "sourceOrder": 307,
+      "audio": "33ec398728ed013f.mp3",
+      "audioOriginal": "33ec398728ed013f.orig.mp3",
+      "audioAuto": "33ec398728ed013f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "33ec398728ed013f"
     },
     {
       "id": "atama",
@@ -151,7 +201,12 @@
       "category": "Body & Health",
       "target": "あたま",
       "pronunciation": "atama",
-      "sourceOrder": 1724
+      "sourceOrder": 1724,
+      "audio": "476861aefcf03272.mp3",
+      "audioOriginal": "476861aefcf03272.orig.mp3",
+      "audioAuto": "476861aefcf03272.mp3",
+      "audioMarked": true,
+      "audioTextHash": "476861aefcf03272"
     },
     {
       "id": "me",
@@ -176,7 +231,12 @@
       "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target) | Kept: a different word from the topic particle は (chapter-1/wa-particle), which it shares a spelling with.",
       "sourceOrder": 120,
       "note": "は (ha) is the noun for \"tooth\". It is written the same as the topic particle は from Lesson 1, which is read wa.",
-      "scene": "a part of the body"
+      "scene": "a part of the body",
+      "audio": "7fb113ef732b8282.mp3",
+      "audioOriginal": "7fb113ef732b8282.orig.mp3",
+      "audioAuto": "7fb113ef732b8282.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7fb113ef732b8282"
     },
     {
       "id": "nodo",
@@ -184,7 +244,12 @@
       "category": "Body & Health",
       "target": "のど",
       "pronunciation": "nodo",
-      "sourceOrder": 1813
+      "sourceOrder": 1813,
+      "audio": "77b542db5b47d51e.mp3",
+      "audioOriginal": "77b542db5b47d51e.orig.mp3",
+      "audioAuto": "77b542db5b47d51e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "77b542db5b47d51e"
     },
     {
       "id": "onaka",
@@ -192,7 +257,12 @@
       "category": "Body & Health",
       "target": "おなか",
       "pronunciation": "onaka",
-      "sourceOrder": 1816
+      "sourceOrder": 1816,
+      "audio": "5191a0c59eaf9974.mp3",
+      "audioOriginal": "5191a0c59eaf9974.orig.mp3",
+      "audioAuto": "5191a0c59eaf9974.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5191a0c59eaf9974"
     },
     {
       "id": "kata",
@@ -200,7 +270,12 @@
       "category": "Body & Health",
       "target": "かた",
       "pronunciation": "kata",
-      "sourceOrder": 1820
+      "sourceOrder": 1820,
+      "audio": "b9cec12181dcc0a9.mp3",
+      "audioOriginal": "b9cec12181dcc0a9.orig.mp3",
+      "audioAuto": "b9cec12181dcc0a9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b9cec12181dcc0a9"
     },
     {
       "id": "senaka",
@@ -208,7 +283,12 @@
       "category": "Body & Health",
       "target": "せなか",
       "pronunciation": "senaka",
-      "sourceOrder": 1823
+      "sourceOrder": 1823,
+      "audio": "8853d85c3c5a02e9.mp3",
+      "audioOriginal": "8853d85c3c5a02e9.orig.mp3",
+      "audioAuto": "8853d85c3c5a02e9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8853d85c3c5a02e9"
     },
     {
       "id": "koshi",
@@ -216,7 +296,12 @@
       "category": "Body & Health",
       "target": "こし",
       "pronunciation": "koshi",
-      "sourceOrder": 1827
+      "sourceOrder": 1827,
+      "audio": "bb6afbfdf584ebff.mp3",
+      "audioOriginal": "bb6afbfdf584ebff.orig.mp3",
+      "audioAuto": "bb6afbfdf584ebff.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bb6afbfdf584ebff"
     },
     {
       "id": "kibun",
@@ -225,7 +310,12 @@
       "target": "きぶん",
       "pronunciation": "kibun",
       "sourceOrder": 2027,
-      "reviewNote": "Sub-row under きぶんが わるい."
+      "reviewNote": "Sub-row under きぶんが わるい.",
+      "audio": "eb6c7c9546c6ce36.mp3",
+      "audioOriginal": "eb6c7c9546c6ce36.orig.mp3",
+      "audioAuto": "eb6c7c9546c6ce36.mp3",
+      "audioMarked": true,
+      "audioTextHash": "eb6c7c9546c6ce36"
     },
     {
       "id": "kibun-ga-warui",
@@ -233,7 +323,12 @@
       "category": "Body & Health",
       "target": "きぶんがわるい",
       "pronunciation": "kibun ga warui",
-      "sourceOrder": 1855
+      "sourceOrder": 1855,
+      "audio": "acca8ff70de6913a.mp3",
+      "audioOriginal": "acca8ff70de6913a.orig.mp3",
+      "audioAuto": "acca8ff70de6913a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "acca8ff70de6913a"
     },
     {
       "id": "netsu",
@@ -242,7 +337,12 @@
       "target": "ねつ",
       "pronunciation": "netsu",
       "sourceOrder": 2059,
-      "reviewNote": "Sub-row under ねつが あります."
+      "reviewNote": "Sub-row under ねつが あります.",
+      "audio": "d5231727daf7e5e5.mp3",
+      "audioOriginal": "d5231727daf7e5e5.orig.mp3",
+      "audioAuto": "d5231727daf7e5e5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d5231727daf7e5e5"
     },
     {
       "id": "netsu-ga-arimasu",
@@ -250,7 +350,12 @@
       "category": "Body & Health",
       "target": "ねつがあります",
       "pronunciation": "netsu ga arimasu",
-      "sourceOrder": 1866
+      "sourceOrder": 1866,
+      "audio": "715ab3aeeb8e8d76.mp3",
+      "audioOriginal": "715ab3aeeb8e8d76.orig.mp3",
+      "audioAuto": "715ab3aeeb8e8d76.mp3",
+      "audioMarked": true,
+      "audioTextHash": "715ab3aeeb8e8d76"
     },
     {
       "id": "tsukaimasu",
@@ -258,7 +363,12 @@
       "category": "Home & Household",
       "target": "つかいます",
       "pronunciation": "tsukaimasu",
-      "sourceOrder": 1747
+      "sourceOrder": 1747,
+      "audio": "b77cea507256164e.mp3",
+      "audioOriginal": "b77cea507256164e.orig.mp3",
+      "audioAuto": "b77cea507256164e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b77cea507256164e"
     },
     {
       "id": "tsukatte-use-te-form",
@@ -267,7 +377,12 @@
       "target": "つかって",
       "pronunciation": "tsukatte",
       "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
-      "sourceOrder": 2182
+      "sourceOrder": 2182,
+      "audio": "509d63742fd9e465.mp3",
+      "audioOriginal": "509d63742fd9e465.orig.mp3",
+      "audioAuto": "509d63742fd9e465.mp3",
+      "audioMarked": true,
+      "audioTextHash": "509d63742fd9e465"
     },
     {
       "id": "hairimasu",
@@ -275,7 +390,12 @@
       "category": "Home & Household",
       "target": "はいります",
       "pronunciation": "hairimasu",
-      "sourceOrder": 1759
+      "sourceOrder": 1759,
+      "audio": "0050210007c6cca0.mp3",
+      "audioOriginal": "0050210007c6cca0.orig.mp3",
+      "audioAuto": "0050210007c6cca0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0050210007c6cca0"
     },
     {
       "id": "haitte-enter-te-form",
@@ -284,7 +404,12 @@
       "target": "はいって",
       "pronunciation": "haitte",
       "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
-      "sourceOrder": 2212
+      "sourceOrder": 2212,
+      "audio": "e5812ab3fae8cc09.mp3",
+      "audioOriginal": "e5812ab3fae8cc09.orig.mp3",
+      "audioAuto": "e5812ab3fae8cc09.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e5812ab3fae8cc09"
     },
     {
       "id": "okimasu",
@@ -293,7 +418,12 @@
       "target": "おきます",
       "pronunciation": "okimasu",
       "note": "Also named in GRAMMAR 2's prose as an example of an action taking place/thing + に.",
-      "sourceOrder": 1291
+      "sourceOrder": 1291,
+      "audio": "2004e625a9926ecb.mp3",
+      "audioOriginal": "2004e625a9926ecb.orig.mp3",
+      "audioAuto": "2004e625a9926ecb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2004e625a9926ecb"
     },
     {
       "id": "oite-put-place-te-form",
@@ -302,7 +432,12 @@
       "target": "おいて",
       "pronunciation": "oite",
       "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
-      "sourceOrder": 2229
+      "sourceOrder": 2229,
+      "audio": "8c40f238512ea77d.mp3",
+      "audioOriginal": "8c40f238512ea77d.orig.mp3",
+      "audioAuto": "8c40f238512ea77d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8c40f238512ea77d"
     },
     {
       "id": "akemasu",
@@ -311,7 +446,12 @@
       "target": "あけます",
       "pronunciation": "akemasu",
       "note": "Marked (R2) in the book: a ru-verb (Regular II).",
-      "sourceOrder": 1770
+      "sourceOrder": 1770,
+      "audio": "dbdffaabdc4a2e5b.mp3",
+      "audioOriginal": "dbdffaabdc4a2e5b.orig.mp3",
+      "audioAuto": "dbdffaabdc4a2e5b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dbdffaabdc4a2e5b"
     },
     {
       "id": "akete-open-te-form",
@@ -320,7 +460,12 @@
       "target": "あけて",
       "pronunciation": "akete",
       "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
-      "sourceOrder": 2240
+      "sourceOrder": 2240,
+      "audio": "e082e06a2d528315.mp3",
+      "audioOriginal": "e082e06a2d528315.orig.mp3",
+      "audioAuto": "e082e06a2d528315.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e082e06a2d528315"
     },
     {
       "id": "shimemasu",
@@ -329,7 +474,12 @@
       "target": "しめます",
       "pronunciation": "shimemasu",
       "note": "Marked (R2) in the book: a ru-verb (Regular II).",
-      "sourceOrder": 1775
+      "sourceOrder": 1775,
+      "audio": "e96c471d487b8324.mp3",
+      "audioOriginal": "e96c471d487b8324.orig.mp3",
+      "audioAuto": "e96c471d487b8324.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e96c471d487b8324"
     },
     {
       "id": "shimete-close-te-form",
@@ -338,7 +488,12 @@
       "target": "しめて",
       "pronunciation": "shimete",
       "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
-      "sourceOrder": 2252
+      "sourceOrder": 2252,
+      "audio": "208f082f289d2dcc.mp3",
+      "audioOriginal": "208f082f289d2dcc.orig.mp3",
+      "audioAuto": "208f082f289d2dcc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "208f082f289d2dcc"
     },
     {
       "id": "tsukemasu",
@@ -347,7 +502,12 @@
       "target": "つけます",
       "pronunciation": "tsukemasu",
       "note": "Marked (R2) in the book: a ru-verb (Regular II).",
-      "sourceOrder": 1780
+      "sourceOrder": 1780,
+      "audio": "e3ec54cdd52b4130.mp3",
+      "audioOriginal": "e3ec54cdd52b4130.orig.mp3",
+      "audioAuto": "e3ec54cdd52b4130.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e3ec54cdd52b4130"
     },
     {
       "id": "tsukete-turn-on-te-form",
@@ -356,7 +516,12 @@
       "target": "つけて",
       "pronunciation": "tsukete",
       "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
-      "sourceOrder": 2265
+      "sourceOrder": 2265,
+      "audio": "6a19b8262a792729.mp3",
+      "audioOriginal": "6a19b8262a792729.orig.mp3",
+      "audioAuto": "6a19b8262a792729.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6a19b8262a792729"
     },
     {
       "id": "keshimasu",
@@ -365,7 +530,12 @@
       "target": "けします",
       "pronunciation": "keshimasu",
       "sourceOrder": 1785,
-      "note": "R1 verb (ends in す, conjugates like はなします), unlike あけます/しめます/つけます above which are R2."
+      "note": "R1 verb (ends in す, conjugates like はなします), unlike あけます/しめます/つけます above which are R2.",
+      "audio": "adbcc858e56656a3.mp3",
+      "audioOriginal": "adbcc858e56656a3.orig.mp3",
+      "audioAuto": "adbcc858e56656a3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "adbcc858e56656a3"
     },
     {
       "id": "keshite-turn-off-te-form",
@@ -374,7 +544,12 @@
       "target": "けして",
       "pronunciation": "keshite",
       "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
-      "sourceOrder": 2279
+      "sourceOrder": 2279,
+      "audio": "71e927ea8680bedd.mp3",
+      "audioOriginal": "71e927ea8680bedd.orig.mp3",
+      "audioAuto": "71e927ea8680bedd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "71e927ea8680bedd"
     },
     {
       "id": "mado",
@@ -382,7 +557,12 @@
       "category": "Home & Household",
       "target": "まど",
       "pronunciation": "mado",
-      "sourceOrder": 2401
+      "sourceOrder": 2401,
+      "audio": "efa83d59aba2f71a.mp3",
+      "audioOriginal": "efa83d59aba2f71a.orig.mp3",
+      "audioAuto": "efa83d59aba2f71a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "efa83d59aba2f71a"
     },
     {
       "id": "kaaten",
@@ -390,7 +570,12 @@
       "category": "Home & Household",
       "target": "カーテン",
       "pronunciation": "kāten",
-      "sourceOrder": 2414
+      "sourceOrder": 2414,
+      "audio": "af02e751469dc305.mp3",
+      "audioOriginal": "af02e751469dc305.orig.mp3",
+      "audioAuto": "af02e751469dc305.mp3",
+      "audioMarked": true,
+      "audioTextHash": "af02e751469dc305"
     },
     {
       "id": "yasumimasu-day-off",
@@ -401,7 +586,12 @@
       "uncertain": false,
       "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target) | Kept as a sense this chapter adds: chapter-16/yasumimasu teaches \"Rest\". New id, since yasumimasu is chapter 16's note guid.",
       "sourceOrder": 2446,
-      "scene": "missing a day of work or school"
+      "scene": "missing a day of work or school",
+      "audio": "4906277f94fbbd24.mp3",
+      "audioOriginal": "4906277f94fbbd24.orig.mp3",
+      "audioAuto": "4906277f94fbbd24.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4906277f94fbbd24"
     },
     {
       "id": "kopii-shimasu",
@@ -409,7 +599,12 @@
       "category": "Technology & Communication",
       "target": "コピーします",
       "pronunciation": "kopī shimasu",
-      "sourceOrder": 2774
+      "sourceOrder": 2774,
+      "audio": "ac679038d87af440.mp3",
+      "audioOriginal": "ac679038d87af440.orig.mp3",
+      "audioAuto": "ac679038d87af440.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ac679038d87af440"
     },
     {
       "id": "juuden-shimasu",
@@ -417,7 +612,12 @@
       "category": "Technology & Communication",
       "target": "じゅうでんします",
       "pronunciation": "jūden shimasu",
-      "sourceOrder": 2789
+      "sourceOrder": 2789,
+      "audio": "0df54341fb264ac9.mp3",
+      "audioOriginal": "0df54341fb264ac9.orig.mp3",
+      "audioAuto": "0df54341fb264ac9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0df54341fb264ac9"
     },
     {
       "id": "niwa",
@@ -425,7 +625,12 @@
       "category": "Home & Household",
       "target": "にわ",
       "pronunciation": "niwa",
-      "sourceOrder": 961
+      "sourceOrder": 961,
+      "audio": "263e0d4608dfb75f.mp3",
+      "audioOriginal": "263e0d4608dfb75f.orig.mp3",
+      "audioAuto": "263e0d4608dfb75f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "263e0d4608dfb75f"
     },
     {
       "id": "do-counter",
@@ -434,7 +639,12 @@
       "target": "ど",
       "pronunciation": "do",
       "note": "Counts degrees of temperature: 38ど (sanjūhachi-do) is 38 degrees.",
-      "sourceOrder": 4268
+      "sourceOrder": 4268,
+      "audio": "f3f16b4082b2c0b2.mp3",
+      "audioOriginal": "f3f16b4082b2c0b2.orig.mp3",
+      "audioAuto": "f3f16b4082b2c0b2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f3f16b4082b2c0b2"
     },
     {
       "id": "isha",
@@ -456,7 +666,12 @@
       "target": "どうしましたか",
       "pronunciation": "dō shimashita ka",
       "note": "Said by a doctor to a patient (see Notes 2, p. 208).",
-      "sourceOrder": 4040
+      "sourceOrder": 4040,
+      "audio": "d52bcb6d00056b13.mp3",
+      "audioOriginal": "d52bcb6d00056b13.orig.mp3",
+      "audioAuto": "d52bcb6d00056b13.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d52bcb6d00056b13"
     },
     {
       "id": "roomaji",
@@ -502,7 +717,12 @@
       "target": "あたまがいたいです",
       "pronunciation": "atama ga itai desu",
       "sourceOrder": 1844,
-      "reviewNote": "KEY SENTENCES item 3 renders as the corrupted fragment 「たまが たいです」 in the source markup, but its translation ('I have a headache') and the WORD POWER Symptoms list both confirm this full phrase."
+      "reviewNote": "KEY SENTENCES item 3 renders as the corrupted fragment 「たまが たいです」 in the source markup, but its translation ('I have a headache') and the WORD POWER Symptoms list both confirm this full phrase.",
+      "audio": "1c3d7c17078e4da8.mp3",
+      "audioOriginal": "1c3d7c17078e4da8.orig.mp3",
+      "audioAuto": "1c3d7c17078e4da8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1c3d7c17078e4da8"
     },
     {
       "id": "denki-2",
@@ -510,7 +730,12 @@
       "category": "Home & Household",
       "target": "でんき",
       "pronunciation": "denki",
-      "sourceOrder": 2515
+      "sourceOrder": 2515,
+      "audio": "d0e4f3dfc39626b1.mp3",
+      "audioOriginal": "d0e4f3dfc39626b1.orig.mp3",
+      "audioAuto": "d0e4f3dfc39626b1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d0e4f3dfc39626b1"
     },
     {
       "id": "tomemasu-park",
@@ -522,7 +747,12 @@
       "note": "Same とめます (tomemasu) as \"Stop\" from Lesson 19, here meaning \"park\" a vehicle rather than bring one to a halt — the place parked in takes に.",
       "reviewNote": "Possibly already taught — とめます already taught in chapter-19 as 'stop'; 'park (a car)' is the same verb/meaning (to bring to a stop), not a distinct sense worth its own card. | Kept as a sense this chapter adds: chapter-19/tomemasu teaches \"Stop\" (telling a driver where to stop). Target had the book's (R2) verb-class tag, removed.",
       "sourceOrder": 3619,
-      "scene": "leaving a car in a parking space"
+      "scene": "leaving a car in a parking space",
+      "audio": "1b5869c89deed973.mp3",
+      "audioOriginal": "1b5869c89deed973.orig.mp3",
+      "audioAuto": "1b5869c89deed973.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1b5869c89deed973"
     },
     {
       "id": "kakimasu",
@@ -807,7 +1037,12 @@
       "reviewNote": "Only Japanese text on this symptoms-illustration page; page range (207) sits past this lesson's main spread (199-206) so it may belong to an adjacent lesson on describing symptoms rather than Lesson 21's asking-permission content — confirm which lesson owns this page before carding. | Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ). | Checked: さんじゅうはちど (sanjūhachi-do) is the right reading. The extraction note doubting this page is wrong: page 207 is Lesson 21's Exercise IX, whose vocabulary box lists 38ど.",
       "sourceOrder": 4256,
       "ttsText": "さんじゅうはちど",
-      "note": "ど (do) counts degrees of temperature: the number, then ど. 38ど is a fever."
+      "note": "ど (do) counts degrees of temperature: the number, then ど. 38ど is a fever.",
+      "audio": "1f4eec134ae41b5e.mp3",
+      "audioOriginal": "1f4eec134ae41b5e.orig.mp3",
+      "audioAuto": "1f4eec134ae41b5e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1f4eec134ae41b5e"
     },
     {
       "id": "hai-douzo-permission",
@@ -819,7 +1054,12 @@
       "note": "The standard yes to a 〜てもいいですか (te mo ii desu ka, \"may I…?\") request.",
       "uncertain": true,
       "reviewNote": "Added by the operator at gate 1: GRAMMAR 1 gives はい、どうぞ as the affirmative answer to a permission request, and no card taught that sense (chapter-4-extras/hai-douzo is \"Here you go\").",
-      "sourceOrder": 1209
+      "sourceOrder": 1209,
+      "audio": "9915e349766284d0.mp3",
+      "audioOriginal": "9915e349766284d0.orig.mp3",
+      "audioAuto": "9915e349766284d0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9915e349766284d0"
     },
     {
       "id": "sumimasenga-chotto-polite-refusal",
@@ -830,7 +1070,12 @@
       "uncertain": false,
       "note": "Combines すみません with the trailing-off ちょっと (chotto) from Lesson 16, which politely declines without saying what's wrong — the standard polite refusal to a てもいいですか request.",
       "reviewNote": "Possibly premature — explicitly taught later in Casual Style 2 (uncertain: the trailing-off ちょっと… soft-refusal pattern is given its own formal teaching treatment (in its casual form えー、ちょっと…) in the Casual Style 2 supplement, so the reviewer may prefer the card there) | Kept: GRAMMAR 1 of this chapter teaches it as the refusal to 〜てもいいですか. Casual Style 2 only adds the casual えー、ちょっと….",
-      "sourceOrder": 1210
+      "sourceOrder": 1210,
+      "audio": "5c7f9c4e8962a945.mp3",
+      "audioOriginal": "5c7f9c4e8962a945.orig.mp3",
+      "audioAuto": "5c7f9c4e8962a945.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5c7f9c4e8962a945"
     }
   ]
 }

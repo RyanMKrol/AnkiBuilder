@@ -1108,9 +1108,19 @@ test("unit-scoped review: a DONE lesson stays fully editable; out-of-range unit 
         assert.match(one, /<details class="lesson" open>/); // still expanded
         assert.doesNotMatch(one, /Expand all/);
 
-        // A whole-deck review is NOT editable while stages are mixed (no audio edit controls).
+        // The whole-deck review keeps the audio tools while another lesson is still in review: the
+        // audio-stage lesson's rows get them, the in-review lesson's rows (no audio yet) do not.
         const all = await (await fetch(`${url}/review/book/mybook`)).text();
-        assert.doesNotMatch(all, /class="repl"/);
+        // Both lessons have a card "c", so a row is named by its unit as well as its id.
+        const rowOf = (html, unit, card) =>
+          html.match(
+            new RegExp(`<tr[^>]*data-card-id="${card}" data-unit="${unit}"[\\s\\S]*?</tr>`),
+          )[0];
+        assert.match(rowOf(all, 0, "a"), /class="repl"/);
+        assert.match(rowOf(all, 0, "a"), /class="trim"/);
+        assert.match(rowOf(all, 1, "c"), /data-stage="corpus"/);
+        assert.doesNotMatch(rowOf(all, 1, "c"), /class="repl"|class="trim"/);
+        assert.match(all, /id="trim-modal"/);
         // An out-of-range unit has no lesson to show.
         assert.equal((await fetch(`${url}/review/book/mybook/9`)).status, 404);
       },

@@ -134,7 +134,7 @@
       "english": "No parking",
       "category": "Transport",
       "sourceOrder": 1952,
-      "note": "ちゅうしゃ (parking, from ちゅうしゃじょう) + きんし \"prohibition\" — the same suffix as たちいりきんし."
+      "note": "ちゅうしゃ (parking, the word inside ちゅうしゃじょう, parking lot) + きんし (prohibited), the same きんし as in たちいりきんし."
     },
     {
       "id": "kinen-no-smoking",
@@ -785,7 +785,7 @@
       "target": "すわない",
       "english": "Does not smoke",
       "category": "Grammar & Function Words",
-      "note": "ない-form of たばこをすいます (smoke) above — う→わ before ない. Not to be confused with すわります \"sit\" (Lesson 21), whose ない-form would instead be すわらない."
+      "note": "ない-form of たばこをすいます (smoke) above, Regular I: う→わ before ない (すう→すわない). Not to be confused with すわります \"sit\" (Lesson 21), whose ない-form would instead be すわらない."
     },
     {
       "id": "kakimasu-write",
@@ -918,6 +918,46 @@
       "category": "Other",
       "sourceOrder": 2158,
       "note": "ない-form of あいます (meet), Regular I: う→わ before ない (あう→あわない)."
+    },
+    {
+      "id": "nai-misenai",
+      "target": "みせない",
+      "english": "Does not show",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2159,
+      "note": "ない-form of みせます (show), Regular II: みせる→みせない.",
+      "aiSuggested": true,
+      "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form."
+    },
+    {
+      "id": "nai-sawaranai",
+      "target": "さわらない",
+      "english": "Does not touch",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2160,
+      "note": "ない-form of さわります (touch), Regular I: る→ら before ない (さわる→さわらない).",
+      "aiSuggested": true,
+      "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form."
+    },
+    {
+      "id": "nai-agenai",
+      "target": "あげない",
+      "english": "Does not give",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2161,
+      "note": "ない-form of あげます (give), Regular II: あげる→あげない.",
+      "aiSuggested": true,
+      "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form."
+    },
+    {
+      "id": "nai-kikanai",
+      "target": "きかない",
+      "english": "Does not listen or ask",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2162,
+      "note": "ない-form of ききます (listen, ask), Regular I: く→か before ない (きく→きかない).",
+      "aiSuggested": true,
+      "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form."
     },
     {
       "id": "misemasu-show",

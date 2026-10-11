@@ -111,6 +111,36 @@
         "at": "2026-10-11T11:49:21.688Z",
         "message": "chapter-21: \"しゃしんをとってもいいですか\" (May I take photos?) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "L21 gate 1: all five are the book's own vocabulary entries (しゃしんを とっても いいですか, ねつが あります and あたまが いたいです are glossed as single units in VOCABULARY/WORD POWER); はいります and じゅうでんします are plain verbs the check misreads as sentences"
+      },
+      "chapter-22/irenaide-kudasai": {
+        "at": "2026-10-11T23:02:35.907Z",
+        "message": "chapter-22: \"いれないでください\" (Please don't add/put in.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 22: all six are headwords the book's own vocabulary boxes gloss as single units (とらないでください, とめないでください, いれないでください, たばこをすいます, きにします, きにしないでください), so they stay in the base unit"
+      },
+      "chapter-22/ki-ni-shimasu": {
+        "at": "2026-10-11T23:02:35.907Z",
+        "message": "chapter-22: \"きにします\" (Worry about) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 22: all six are headwords the book's own vocabulary boxes gloss as single units (とらないでください, とめないでください, いれないでください, たばこをすいます, きにします, きにしないでください), so they stay in the base unit"
+      },
+      "chapter-22/ki-ni-shinaide-kudasai": {
+        "at": "2026-10-11T23:02:35.907Z",
+        "message": "chapter-22: \"きにしないでください\" (Please don't worry about it.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 22: all six are headwords the book's own vocabulary boxes gloss as single units (とらないでください, とめないでください, いれないでください, たばこをすいます, きにします, きにしないでください), so they stay in the base unit"
+      },
+      "chapter-22/tabako-wo-suimasu": {
+        "at": "2026-10-11T23:02:35.907Z",
+        "message": "chapter-22: \"たばこをすいます\" (Smoke a cigarette) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 22: all six are headwords the book's own vocabulary boxes gloss as single units (とらないでください, とめないでください, いれないでください, たばこをすいます, きにします, きにしないでください), so they stay in the base unit"
+      },
+      "chapter-22/tomenaide-kudasai": {
+        "at": "2026-10-11T23:02:35.907Z",
+        "message": "chapter-22: \"とめないでください\" (Please don't park.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 22: all six are headwords the book's own vocabulary boxes gloss as single units (とらないでください, とめないでください, いれないでください, たばこをすいます, きにします, きにしないでください), so they stay in the base unit"
+      },
+      "chapter-22/toranaide-kudasai": {
+        "at": "2026-10-11T23:02:35.907Z",
+        "message": "chapter-22: \"とらないでください\" (Please don't take [photos].) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 22: all six are headwords the book's own vocabulary boxes gloss as single units (とらないでください, とめないでください, いれないでください, たばこをすいます, きにします, きにしないでください), so they stay in the base unit"
       }
     }
   }

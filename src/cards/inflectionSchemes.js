@@ -118,5 +118,16 @@ export function describeScheme(targetLanguage) {
       lines.push(`  - ${form.label}: ${form.gloss}${cite}`);
     }
   }
+  // Lesson 21's table specialist read the list above as the complete set of verb forms worth
+  // carding, called the chapter's て-form table a "paradigm" outside it, and extracted nothing, so
+  // all eight cells had to be recovered by the coverage adversary. The list is the forms every word
+  // eventually needs, not a whitelist.
+  lines.push(
+    "",
+    "This list is NOT exhaustive. It names the forms every word eventually needs, not every form the",
+    "language has. When the chapter teaches a form that is not listed (a て-form, a ない-form, a plain",
+    "past, anything), each form it teaches is still a card, exactly as above. A form being absent from",
+    "this list is never a reason to skip it.",
+  );
   return lines.join("\n");
 }

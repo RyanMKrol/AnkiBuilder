@@ -233,7 +233,9 @@ inflected form it derives from.
 learner who meets あいます and never meets あいました, あいません or あいませんでした knows one form
 and cannot use the word. The paradigm worth carding is declared per language in
 `src/cards/inflectionSchemes.js` and injected into the prompts that decide what earns a card, so the
-requirement travels with the language rather than living in English prose about Japanese. Measured on
+requirement travels with the language rather than living in English prose about Japanese. The
+declared list is the forms every word eventually needs, not every form there is: a form the chapter
+teaches that the list leaves out (a て-form, a ない-form) is carded all the same. Measured on
 chapter 9: fifteen of the coverage adversary's forty-eight gaps were conjugations printed in that
 chapter and carded by nobody. Give each form a gloss that distinguishes it ("Met", not a second "To
 meet"), or the learner gets four cards they cannot tell apart.

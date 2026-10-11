@@ -778,6 +778,12 @@ Open the lesson's **Review** view on the dashboard (distinct from the read-only 
 /faces/<type>/<collection-slug>/<unit>       the card-face preview, read-only
 ```
 
+`<n>` in the chapter view is the lesson number, the same one the unit view and every script use
+(`/chapter/book/my-book-slug/17` is Lesson 17 and its extras). It is never the book's internal file
+number (`meta.chapterNumber`, 47 for Busy People's Lesson 21). Until 2026-10-11 the page filtered on
+that file number while its Mark done posted the lesson number, so the page loaded only at the file
+number and Mark done then reported "no units found for this chapter".
+
 **`<type>` is the ADAPTER name — `book`, `course` or `template` — not the folder under `output/`.**
 The directories are `output/epubs/…`, `output/courses/…`, `output/templates/…`, and guessing `epubs`
 from the path gives a rendered 404 that looks exactly like a dead server. **`<unit>` is the bare

@@ -1849,7 +1849,11 @@ function withChapterPair(root, { extrasReviewed = true } = {}) {
       JSON.stringify({
         meta: {
           targetLanguage: "ja",
-          chapterNumber: 2,
+          // The book's own file number, deliberately NOT the folder's 2. On a real book the two
+          // never agree (Busy People's Lesson 21 is file 47), and while this fixture had them equal
+          // the chapter page filtered on one and its Mark done posted the other: the page loaded
+          // only at /47, and Mark done then found no units at all.
+          chapterNumber: 46,
           chapterLabel: name.endsWith("-extras") ? "Lesson 2: Two (Extras)" : "Lesson 2: Two",
           ...meta,
         },

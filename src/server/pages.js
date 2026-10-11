@@ -333,7 +333,11 @@ ${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately remo
     // because this function already renders N units on one page.
     let units = deck.units;
     if (chapterNumber != null) {
-      units = units.filter((u) => Number(u.number) === Number(chapterNumber));
+      // By the FOLDER's lesson number (`seq` is 21 or "21-extras"), which is what the chapter Mark
+      // done endpoint (chapterUnits) and every script select on. Not `u.number`: for a book that is
+      // meta.chapterNumber, the book's own file index (47 for Lesson 21), so this page loaded only
+      // at /47 and then posted 47 to an endpoint that looks for a chapter-47 folder.
+      units = units.filter((u) => parseInt(String(u.seq), 10) === Number(chapterNumber));
     } else if (unit != null) {
       units = units.filter((u) => String(u.seq) === String(unit));
     }

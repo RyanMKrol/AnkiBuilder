@@ -1,0 +1,447 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 47,
+    "chapterLabel": "Lesson 21: Asking Permission: May I Have It? (Extras)",
+    "baseChapterLabel": "Lesson 21: Asking Permission: May I Have It?",
+    "phase": "extras"
+  },
+  "items": [
+    {
+      "id": "senaka-ga-itai",
+      "target": "せなかがいたいです",
+      "english": "My back hurts.",
+      "category": "Body & Health",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-put-luggage-here",
+      "target": "ここに にもつを おいても いいですか。",
+      "english": "May I put my luggage here?",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "open-the-curtain",
+      "target": "カーテンをあけてもいいですか。",
+      "english": "May I open the curtain?",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "request-sit-in-that-chair",
+      "target": "その いすに すわってください。",
+      "english": "Please sit in that chair.",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "denki-tsukete-mo-ii",
+      "target": "でんきをつけてもいいですか",
+      "english": "May I turn on the light?",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "netsu-ga-sanjuuhachido",
+      "target": "ねつが38どあります",
+      "english": "I have a fever of 38 degrees.",
+      "category": "Body & Health",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-eat-here-permission",
+      "target": "ここでしょくじをしてもいいですか。",
+      "english": "May I have a meal here?",
+      "category": "Food"
+    },
+    {
+      "id": "toshokan-de-shiryou-copy",
+      "target": "としょかんでしりょうをコピーします",
+      "english": "I make a copy of the documents at the library.",
+      "category": "Technology & Communication",
+      "aiSuggested": true
+    },
+    {
+      "id": "fever-feel-sick",
+      "target": "ねつがありますから、きぶんがわるいです。",
+      "english": "I have a fever, so I feel sick.",
+      "category": "Body & Health",
+      "aiSuggested": true
+    },
+    {
+      "id": "kyou-wa-sanjuu-do",
+      "target": "きょうはさんじゅうどです",
+      "english": "It's 30 degrees today.",
+      "category": "Numbers",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaaten-shimemasu",
+      "target": "カーテンをしめます",
+      "english": "I close the curtain.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-use-until-four-permission",
+      "target": "4じまでつかってもいいですか。",
+      "english": "May I use it until 4:00?",
+      "category": "Time",
+      "scene": "Following up, in the same conversation, after being told it's fine to study in the meeting room"
+    },
+    {
+      "id": "ks-sit-permission",
+      "target": "ここにすわってもいいですか。",
+      "english": "May I sit here?",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — chapter-21's すわってもいいですか already glosses as \"May I sit [here]?\"; this just spells out ここに with no new content."
+    },
+    {
+      "id": "lesson21-write-in-romaji-permission",
+      "target": "ローマじでかいてもいいですか。",
+      "english": "May I write it in romaji?",
+      "category": "Shopping",
+      "scene": "Asking while filling out an address-and-name form at a store"
+    },
+    {
+      "id": "ask-use-until-130",
+      "target": "いちじはんまで つかっても いいですか。",
+      "english": "May I use it until 1:30?",
+      "category": "Time",
+      "fillInBlank": true
+    },
+    {
+      "id": "request-park-car-that-lot",
+      "target": "あの ちゅうしゃじょうに くるまを とめてください。",
+      "english": "Please park the car in that parking lot.",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "lesson21-study-meeting-room-permission",
+      "target": "すみません。かいぎしつでべんきょうしてもいいですか。",
+      "english": "Excuse me, may I study in the meeting room?",
+      "category": "School & Education"
+    },
+    {
+      "id": "tsukue-ni-hon-okimasu",
+      "target": "つくえのうえにほんをおきます",
+      "english": "I put a book on the desk.",
+      "category": "Other",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-deliver-tv-request",
+      "target": "すみません。このテレビをとどけてください。",
+      "english": "Excuse me, please deliver this TV.",
+      "category": "Shopping"
+    },
+    {
+      "id": "lesson21-speak-english-permission",
+      "target": "すみません。えいごではなしてもいいですか。",
+      "english": "Excuse me, may I speak in English?",
+      "category": "Body & Health",
+      "scene": "Said by a patient to a doctor"
+    },
+    {
+      "id": "symptom-stomach-hurts",
+      "target": "おなかが いたいです。",
+      "english": "My stomach hurts.",
+      "category": "Body & Health",
+      "fillInBlank": true
+    },
+    {
+      "id": "ask-eat-lunch-meeting-room",
+      "target": "すみません。かいぎしつで ひるごはんを たべても いいですか。",
+      "english": "Excuse me, may I eat lunch in the meeting room?",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "ks-headache",
+      "target": "あたまがいたいです。",
+      "english": "I have a headache.",
+      "category": "Body & Health",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Identical target and gloss already in chapter-21 (あたまがいたいです).",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Same sentence and sense as the base card chapter-21/atama-ga-itaidesu"
+    },
+    {
+      "id": "ask-open-window",
+      "target": "まどを あけても いいですか。",
+      "english": "May I open the window?",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "lesson21-copy-material-permission",
+      "target": "しりょうをコピーしてもいいですか。",
+      "english": "May I make a copy of this material?",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "kata-ga-itai",
+      "target": "かたがいたいです",
+      "english": "My shoulder hurts.",
+      "category": "Body & Health",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-read-book-meeting-room",
+      "target": "すみません。かいぎしつで ほんを よんでも いいですか。",
+      "english": "Excuse me, may I read a book in the meeting room?",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "kaaten-shimete-mo-ii",
+      "target": "カーテンをしめてもいいですか",
+      "english": "May I close the curtain?",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "terebi-keshite-mo-ii",
+      "target": "テレビをけしてもいいですか",
+      "english": "May I turn off the TV?",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "hot-may-i-open-window",
+      "target": "あついですから、まどをあけてもいいですか。",
+      "english": "It's hot, so may I open the window?",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "sukoshi-mizu-moratte-mo-ii",
+      "target": "すこしみずをもらってもいいですか",
+      "english": "May I have a little water, please?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "denki-tsukete-kudasai",
+      "target": "でんきをつけてください",
+      "english": "Please turn on the light.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "ashita-shigoto-yasumimasu",
+      "target": "あしたしごとをやすみます",
+      "english": "I will take tomorrow off work.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "mukashi-tokei",
+      "target": "このとけいはむかしのです",
+      "english": "This clock is from a long time ago.",
+      "category": "Time",
+      "aiSuggested": true
+    },
+    {
+      "id": "photo-in-the-garden",
+      "target": "にわでしゃしんをとってもいいですか。",
+      "english": "May I take a photo in the garden?",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "denki-tsukemasu",
+      "target": "でんきをつけます",
+      "english": "I turn on the light.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "nodo-ga-itai",
+      "target": "のどがいたいです",
+      "english": "My throat hurts.",
+      "category": "Body & Health",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-put-luggage-on-table",
+      "target": "テーブルのうえににもつをおいてください。",
+      "english": "Please put the luggage on the table.",
+      "category": "Everyday Objects"
+    },
+    {
+      "id": "dialogue-leg-hurts",
+      "target": "あしがいたいです。",
+      "english": "My legs hurt.",
+      "category": "Body & Health"
+    },
+    {
+      "id": "kirei-na-kaaten",
+      "target": "きれいなカーテンですね",
+      "english": "It's a pretty curtain, isn't it?",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-give-address-name-here",
+      "target": "はい、ここにごじゅうしょとおなまえをおねがいします。",
+      "english": "Yes, your address and name here, please.",
+      "category": "Shopping",
+      "scene": "Said by a salesperson taking down a customer's delivery details"
+    },
+    {
+      "id": "symptom-tooth-hurts",
+      "target": "はが いたいです。",
+      "english": "I have a toothache.",
+      "category": "Body & Health",
+      "fillInBlank": true
+    },
+    {
+      "id": "katarogu-moratte-mo-ii",
+      "target": "このカタログをもらってもいいですか",
+      "english": "May I have this catalog?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "dialogue-pamphlet-permission",
+      "target": "このパンフレットをもらってもいいですか。",
+      "english": "May I have this pamphlet?",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "isu-ni-suwarimasu",
+      "target": "いすにすわります",
+      "english": "I sit in the chair.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-enter-this-room",
+      "target": "この へやに はいっても いいですか。",
+      "english": "May I enter this room?",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true
+    },
+    {
+      "id": "charge-my-phone",
+      "target": "スマホをじゅうでんしてもいいですか。",
+      "english": "May I charge my phone?",
+      "category": "Technology & Communication",
+      "aiSuggested": true
+    },
+    {
+      "id": "ks-photo-permission",
+      "target": "このえのしゃしんをとってもいいですか。",
+      "english": "May I take a photo of this painting?",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "koshi-ga-itai",
+      "target": "こしがいたいです",
+      "english": "My lower back hurts.",
+      "category": "Body & Health",
+      "aiSuggested": true
+    },
+    {
+      "id": "chuushajou-kuruma-tomemasu",
+      "target": "ちゅうしゃじょうにくるまをとめます",
+      "english": "I park the car in the parking lot.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "kono-isu-suwatte-mo-ii",
+      "target": "このいすにすわってもいいですか",
+      "english": "May I sit in this chair?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ima-koko-suwatte-mo-ii",
+      "target": "いまここにすわってもいいですか",
+      "english": "May I sit here now?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same \"may I sit here\" meaning as chapter-21's すわってもいいですか/\"[here]\", with いま adding no new teaching content."
+    },
+    {
+      "id": "lesson21-write-name-here",
+      "target": "ここになまえをかいてください。",
+      "english": "Please write your name here.",
+      "category": "Grammar & Function Words",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same request as chapter-19-extras' なまえをかいてください with ここに added; not a meaningfully new instruction."
+    },
+    {
+      "id": "close-the-window",
+      "target": "まどをしめてもいいですか。",
+      "english": "May I close the window?",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "toshokan-de-pasokon-tsukaimasu",
+      "target": "としょかんでパソコンをつかいます",
+      "english": "I use a computer at the library.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "mado-akemasu",
+      "target": "まどをあけます",
+      "english": "I open the window.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-feel-sick-reply",
+      "target": "きぶんがわるいです。",
+      "english": "I feel sick.",
+      "category": "Body & Health",
+      "scene": "Replying to a doctor who has just asked what's wrong",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same phrase as chapter-21's きぶんがわるい, just with です added; no new content."
+    },
+    {
+      "id": "use-the-telephone",
+      "target": "でんわをつかってもいいですか。",
+      "english": "May I use the telephone?",
+      "category": "Technology & Communication",
+      "aiSuggested": true
+    },
+    {
+      "id": "terebi-keshimasu",
+      "target": "テレビをけします",
+      "english": "I turn off the TV.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "symptom-leg-hurts",
+      "target": "あしが いたいです。",
+      "english": "My leg hurts.",
+      "category": "Body & Health",
+      "fillInBlank": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence (あし が いたいです); the space is textbook formatting, and the singular/plural gloss difference isn't a real distinction since Japanese doesn't mark number."
+    },
+    {
+      "id": "speaking-practice-speak-english",
+      "target": "えいごではなしてもいいですか。",
+      "english": "May I speak in English?",
+      "category": "Grammar & Function Words",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same underlying request with and without すみません; keeping the one carrying the scene per the same-after-interjection rule."
+    }
+  ]
+}

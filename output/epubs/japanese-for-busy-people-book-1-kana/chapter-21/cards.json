@@ -431,8 +431,8 @@
       "id": "do-counter",
       "english": "Degrees (counter)",
       "category": "Numbers",
-      "target": "〜ど",
-      "pronunciation": "-do",
+      "target": "ど",
+      "pronunciation": "do",
       "note": "Counts degrees of temperature: 38ど (sanjūhachi-do) is 38 degrees.",
       "sourceOrder": 4268
     },

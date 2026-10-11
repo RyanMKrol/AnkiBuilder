@@ -1,0 +1,507 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 47,
+    "chapterLabel": "Lesson 21: Asking Permission: May I Have It? (Extras)",
+    "baseChapterLabel": "Lesson 21: Asking Permission: May I Have It?",
+    "phase": "extras",
+    "passes": {
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
+      },
+      "numberReadings": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2's own miners produced this unit's sentences"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "senaka-ga-itai",
+      "english": "My back hurts.",
+      "category": "Body & Health",
+      "target": "せなかがいたいです",
+      "pronunciation": "senaka ga itai desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-put-luggage-here",
+      "english": "May I put my luggage here?",
+      "category": "Grammar & Function Words",
+      "target": "ここににもつをおいてもいいですか",
+      "pronunciation": "koko ni nimotsu o oite mo ii desu ka"
+    },
+    {
+      "id": "open-the-curtain",
+      "english": "May I open the curtain?",
+      "category": "Home & Household",
+      "target": "カーテンをあけてもいいですか",
+      "pronunciation": "kāten o akete mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "request-sit-in-that-chair",
+      "english": "Please sit in that chair.",
+      "category": "Grammar & Function Words",
+      "target": "そのいすにすわってください",
+      "pronunciation": "sono isu ni suwatte kudasai"
+    },
+    {
+      "id": "denki-tsukete-mo-ii",
+      "english": "May I turn on the light?",
+      "category": "Home & Household",
+      "target": "でんきをつけてもいいですか",
+      "pronunciation": "denki o tsukete mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "netsu-ga-sanjuuhachido",
+      "english": "I have a fever of 38 degrees.",
+      "category": "Body & Health",
+      "target": "ねつが38どあります",
+      "pronunciation": "netsu ga sanjūhachi-do arimasu",
+      "aiSuggested": true,
+      "ttsText": "ねつがさんじゅうはちどあります",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "lesson21-eat-here-permission",
+      "english": "May I have a meal here?",
+      "category": "Food",
+      "target": "ここでしょくじをしてもいいですか",
+      "pronunciation": "koko de shokuji o shite mo ii desu ka"
+    },
+    {
+      "id": "toshokan-de-shiryou-copy",
+      "english": "I make a copy of the documents at the library.",
+      "category": "Technology & Communication",
+      "target": "としょかんでしりょうをコピーします",
+      "pronunciation": "toshokan de shiryō o kopī shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "fever-feel-sick",
+      "english": "I have a fever, so I feel sick.",
+      "category": "Body & Health",
+      "target": "ねつがありますから、きぶんがわるいです",
+      "pronunciation": "netsu ga arimasu kara, kibun ga warui desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "kyou-wa-sanjuu-do",
+      "english": "It's 30 degrees today.",
+      "category": "Numbers",
+      "target": "きょうはさんじゅうどです",
+      "pronunciation": "kyō wa sanjū-do desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "kaaten-shimemasu",
+      "english": "I close the curtain.",
+      "category": "Home & Household",
+      "target": "カーテンをしめます",
+      "pronunciation": "kāten o shimemasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-use-until-four-permission",
+      "english": "May I use it until 4:00?",
+      "category": "Time",
+      "target": "4じまでつかってもいいですか",
+      "pronunciation": "yo-ji made tsukatte mo ii desu ka",
+      "scene": "Following up, in the same conversation, after being told it's fine to study in the meeting room",
+      "ttsText": "よじまでつかってもいいですか",
+      "uncertain": true,
+      "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ)."
+    },
+    {
+      "id": "ks-sit-permission",
+      "english": "May I sit here?",
+      "category": "Grammar & Function Words",
+      "target": "ここにすわってもいいですか",
+      "pronunciation": "koko ni suwatte mo ii desu ka",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — chapter-21's すわってもいいですか already glosses as \"May I sit [here]?\"; this just spells out ここに with no new content."
+    },
+    {
+      "id": "lesson21-write-in-romaji-permission",
+      "english": "May I write it in romaji?",
+      "category": "Shopping",
+      "target": "ローマじでかいてもいいですか",
+      "pronunciation": "rōmaji de kaite mo ii desu ka",
+      "scene": "Asking while filling out an address-and-name form at a store"
+    },
+    {
+      "id": "ask-use-until-130",
+      "english": "May I use it until 1:30?",
+      "category": "Time",
+      "target": "いちじはんまでつかってもいいですか",
+      "pronunciation": "ichi-ji han made tsukatte mo ii desu ka"
+    },
+    {
+      "id": "request-park-car-that-lot",
+      "english": "Please park the car in that parking lot.",
+      "category": "Grammar & Function Words",
+      "target": "あのちゅうしゃじょうにくるまをとめてください",
+      "pronunciation": "ano chūshajō ni kuruma o tomete kudasai"
+    },
+    {
+      "id": "lesson21-study-meeting-room-permission",
+      "english": "Excuse me, may I study in the meeting room?",
+      "category": "School & Education",
+      "target": "すみません。かいぎしつでべんきょうしてもいいですか",
+      "pronunciation": "sumimasen. kaigishitsu de benkyō shite mo ii desu ka"
+    },
+    {
+      "id": "tsukue-ni-hon-okimasu",
+      "english": "I put a book on the desk.",
+      "category": "Other",
+      "target": "つくえのうえにほんをおきます",
+      "pronunciation": "tsukue no ue ni hon o okimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-deliver-tv-request",
+      "english": "Excuse me, please deliver this TV.",
+      "category": "Shopping",
+      "target": "すみません。このテレビをとどけてください",
+      "pronunciation": "sumimasen. kono terebi o todokete kudasai"
+    },
+    {
+      "id": "lesson21-speak-english-permission",
+      "english": "Excuse me, may I speak in English?",
+      "category": "Body & Health",
+      "target": "すみません。えいごではなしてもいいですか",
+      "pronunciation": "sumimasen. eigo de hanashite mo ii desu ka",
+      "scene": "Said by a patient to a doctor"
+    },
+    {
+      "id": "symptom-stomach-hurts",
+      "english": "My stomach hurts.",
+      "category": "Body & Health",
+      "target": "おなかがいたいです",
+      "pronunciation": "onaka ga itai desu"
+    },
+    {
+      "id": "ask-eat-lunch-meeting-room",
+      "english": "Excuse me, may I eat lunch in the meeting room?",
+      "category": "Grammar & Function Words",
+      "target": "すみません。かいぎしつでひるごはんをたべてもいいですか",
+      "pronunciation": "sumimasen. kaigishitsu de hirugohan o tabete mo ii desu ka"
+    },
+    {
+      "id": "ks-headache",
+      "english": "I have a headache.",
+      "category": "Body & Health",
+      "target": "あたまがいたいです",
+      "pronunciation": "atama ga itai desu",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Identical target and gloss already in chapter-21 (あたまがいたいです).",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Same sentence and sense as the base card chapter-21/atama-ga-itaidesu"
+    },
+    {
+      "id": "ask-open-window",
+      "english": "May I open the window?",
+      "category": "Grammar & Function Words",
+      "target": "まどをあけてもいいですか",
+      "pronunciation": "mado o akete mo ii desu ka"
+    },
+    {
+      "id": "lesson21-copy-material-permission",
+      "english": "May I make a copy of this material?",
+      "category": "Work & Occupations",
+      "target": "しりょうをコピーしてもいいですか",
+      "pronunciation": "shiryō o kopī shite mo ii desu ka"
+    },
+    {
+      "id": "kata-ga-itai",
+      "english": "My shoulder hurts.",
+      "category": "Body & Health",
+      "target": "かたがいたいです",
+      "pronunciation": "kata ga itai desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-read-book-meeting-room",
+      "english": "Excuse me, may I read a book in the meeting room?",
+      "category": "Grammar & Function Words",
+      "target": "すみません。かいぎしつでほんをよんでもいいですか",
+      "pronunciation": "sumimasen. kaigishitsu de hon o yonde mo ii desu ka"
+    },
+    {
+      "id": "kaaten-shimete-mo-ii",
+      "english": "May I close the curtain?",
+      "category": "Home & Household",
+      "target": "カーテンをしめてもいいですか",
+      "pronunciation": "kāten o shimete mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "terebi-keshite-mo-ii",
+      "english": "May I turn off the TV?",
+      "category": "Home & Household",
+      "target": "テレビをけしてもいいですか",
+      "pronunciation": "terebi o keshite mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "hot-may-i-open-window",
+      "english": "It's hot, so may I open the window?",
+      "category": "Home & Household",
+      "target": "あついですから、まどをあけてもいいですか",
+      "pronunciation": "atsui desu kara, mado o akete mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "sukoshi-mizu-moratte-mo-ii",
+      "english": "May I have a little water, please?",
+      "category": "Grammar & Function Words",
+      "target": "すこしみずをもらってもいいですか",
+      "pronunciation": "sukoshi mizu o moratte mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "denki-tsukete-kudasai",
+      "english": "Please turn on the light.",
+      "category": "Home & Household",
+      "target": "でんきをつけてください",
+      "pronunciation": "denki o tsukete kudasai",
+      "aiSuggested": true
+    },
+    {
+      "id": "ashita-shigoto-yasumimasu",
+      "english": "I will take tomorrow off work.",
+      "category": "Work & Occupations",
+      "target": "あしたしごとをやすみます",
+      "pronunciation": "ashita shigoto o yasumimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "mukashi-tokei",
+      "english": "This clock is from a long time ago.",
+      "category": "Time",
+      "target": "このとけいはむかしのです",
+      "pronunciation": "kono tokei wa mukashi no desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "photo-in-the-garden",
+      "english": "May I take a photo in the garden?",
+      "category": "Home & Household",
+      "target": "にわでしゃしんをとってもいいですか",
+      "pronunciation": "niwa de shashin o totte mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "denki-tsukemasu",
+      "english": "I turn on the light.",
+      "category": "Home & Household",
+      "target": "でんきをつけます",
+      "pronunciation": "denki o tsukemasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "nodo-ga-itai",
+      "english": "My throat hurts.",
+      "category": "Body & Health",
+      "target": "のどがいたいです",
+      "pronunciation": "nodo ga itai desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-put-luggage-on-table",
+      "english": "Please put the luggage on the table.",
+      "category": "Everyday Objects",
+      "target": "テーブルのうえににもつをおいてください",
+      "pronunciation": "tēburu no ue ni nimotsu o oite kudasai"
+    },
+    {
+      "id": "dialogue-leg-hurts",
+      "english": "My legs hurt.",
+      "category": "Body & Health",
+      "target": "あしがいたいです",
+      "pronunciation": "ashi ga itai desu"
+    },
+    {
+      "id": "kirei-na-kaaten",
+      "english": "It's a pretty curtain, isn't it?",
+      "category": "Home & Household",
+      "target": "きれいなカーテンですね",
+      "pronunciation": "kirei na kāten desu ne",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-give-address-name-here",
+      "english": "Yes, your address and name here, please.",
+      "category": "Shopping",
+      "target": "はい、ここにごじゅうしょとおなまえをおねがいします",
+      "pronunciation": "hai, koko ni go-jūsho to o-namae o onegaishimasu",
+      "scene": "Said by a salesperson taking down a customer's delivery details"
+    },
+    {
+      "id": "symptom-tooth-hurts",
+      "english": "I have a toothache.",
+      "category": "Body & Health",
+      "target": "はがいたいです",
+      "pronunciation": "ha ga itai desu"
+    },
+    {
+      "id": "katarogu-moratte-mo-ii",
+      "english": "May I have this catalog?",
+      "category": "Grammar & Function Words",
+      "target": "このカタログをもらってもいいですか",
+      "pronunciation": "kono katarogu o moratte mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "dialogue-pamphlet-permission",
+      "english": "May I have this pamphlet?",
+      "category": "Grammar & Function Words",
+      "target": "このパンフレットをもらってもいいですか",
+      "pronunciation": "kono panfuretto o moratte mo ii desu ka"
+    },
+    {
+      "id": "isu-ni-suwarimasu",
+      "english": "I sit in the chair.",
+      "category": "Home & Household",
+      "target": "いすにすわります",
+      "pronunciation": "isu ni suwarimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-enter-this-room",
+      "english": "May I enter this room?",
+      "category": "Grammar & Function Words",
+      "target": "このへやにはいってもいいですか",
+      "pronunciation": "kono heya ni haitte mo ii desu ka"
+    },
+    {
+      "id": "charge-my-phone",
+      "english": "May I charge my phone?",
+      "category": "Technology & Communication",
+      "target": "スマホをじゅうでんしてもいいですか",
+      "pronunciation": "sumaho o jūden shite mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "ks-photo-permission",
+      "english": "May I take a photo of this painting?",
+      "category": "Grammar & Function Words",
+      "target": "このえのしゃしんをとってもいいですか",
+      "pronunciation": "kono e no shashin o totte mo ii desu ka"
+    },
+    {
+      "id": "koshi-ga-itai",
+      "english": "My lower back hurts.",
+      "category": "Body & Health",
+      "target": "こしがいたいです",
+      "pronunciation": "koshi ga itai desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "chuushajou-kuruma-tomemasu",
+      "english": "I park the car in the parking lot.",
+      "category": "Transport",
+      "target": "ちゅうしゃじょうにくるまをとめます",
+      "pronunciation": "chūshajō ni kuruma o tomemasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "kono-isu-suwatte-mo-ii",
+      "english": "May I sit in this chair?",
+      "category": "Grammar & Function Words",
+      "target": "このいすにすわってもいいですか",
+      "pronunciation": "kono isu ni suwatte mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "ima-koko-suwatte-mo-ii",
+      "english": "May I sit here now?",
+      "category": "Grammar & Function Words",
+      "target": "いまここにすわってもいいですか",
+      "pronunciation": "ima koko ni suwatte mo ii desu ka",
+      "uncertain": true,
+      "aiSuggested": true,
+      "reviewNote": "Possibly already taught — Same \"may I sit here\" meaning as chapter-21's すわってもいいですか/\"[here]\", with いま adding no new teaching content."
+    },
+    {
+      "id": "lesson21-write-name-here",
+      "english": "Please write your name here.",
+      "category": "Grammar & Function Words",
+      "target": "ここになまえをかいてください",
+      "pronunciation": "koko ni namae o kaite kudasai",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same request as chapter-19-extras' なまえをかいてください with ここに added; not a meaningfully new instruction."
+    },
+    {
+      "id": "close-the-window",
+      "english": "May I close the window?",
+      "category": "Home & Household",
+      "target": "まどをしめてもいいですか",
+      "pronunciation": "mado o shimete mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "toshokan-de-pasokon-tsukaimasu",
+      "english": "I use a computer at the library.",
+      "category": "Home & Household",
+      "target": "としょかんでパソコンをつかいます",
+      "pronunciation": "toshokan de pasokon o tsukaimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "mado-akemasu",
+      "english": "I open the window.",
+      "category": "Home & Household",
+      "target": "まどをあけます",
+      "pronunciation": "mado o akemasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "lesson21-feel-sick-reply",
+      "english": "I feel sick.",
+      "category": "Body & Health",
+      "target": "きぶんがわるいです",
+      "pronunciation": "kibun ga warui desu",
+      "uncertain": true,
+      "scene": "Replying to a doctor who has just asked what's wrong",
+      "reviewNote": "Possibly already taught — Same phrase as chapter-21's きぶんがわるい, just with です added; no new content."
+    },
+    {
+      "id": "use-the-telephone",
+      "english": "May I use the telephone?",
+      "category": "Technology & Communication",
+      "target": "でんわをつかってもいいですか",
+      "pronunciation": "denwa o tsukatte mo ii desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "terebi-keshimasu",
+      "english": "I turn off the TV.",
+      "category": "Home & Household",
+      "target": "テレビをけします",
+      "pronunciation": "terebi o keshimasu",
+      "aiSuggested": true
+    }
+  ]
+}

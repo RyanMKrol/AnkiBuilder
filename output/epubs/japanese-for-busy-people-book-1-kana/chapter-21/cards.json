@@ -2,7 +2,7 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": false,
+    "reviewed": true,
     "phase": "base",
     "epubHash": "1fab0f99d1195ad9",
     "chapterNumber": 47,
@@ -434,10 +434,7 @@
       "target": "〜ど",
       "pronunciation": "-do",
       "note": "Sub-row counter under 38 ど.",
-      "sourceOrder": 4268,
-      "excluded": true,
-      "excludedBy": "placeholder-target",
-      "excludedReason": "Schematic 〜 target. The counter is taught by l21-sanjuuhachi-do (38ど), which now carries the note on how ど counts degrees"
+      "sourceOrder": 4268
     },
     {
       "id": "isha",
@@ -467,7 +464,9 @@
       "category": "School & Education",
       "target": "ローマじ",
       "pronunciation": "rōmaji",
-      "sourceOrder": 4455
+      "sourceOrder": 4455,
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "eigo-2",

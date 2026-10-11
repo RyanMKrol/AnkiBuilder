@@ -401,10 +401,7 @@
       "english": "...degree(s).",
       "category": "Numbers",
       "note": "Sub-row counter under 38 ど.",
-      "sourceOrder": 4268,
-      "excluded": true,
-      "excludedBy": "placeholder-target",
-      "excludedReason": "Schematic 〜 target. The counter is taught by l21-sanjuuhachi-do (38ど), which now carries the note on how ど counts degrees"
+      "sourceOrder": 4268
     },
     {
       "id": "sanjuuhachi-do",
@@ -441,7 +438,9 @@
       "target": "ローマじ",
       "english": "Romaji, romanized Japanese",
       "category": "School & Education",
-      "sourceOrder": 4455
+      "sourceOrder": 4455,
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "eigo-2",

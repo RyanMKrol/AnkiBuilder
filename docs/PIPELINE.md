@@ -1348,6 +1348,10 @@ negative, past-negative) and four adjective forms. Every other language is delib
 an unconfigured one returns `null` so its prompt is told to card each word once rather than to invent
 a paradigm.
 
+The list is not a whitelist, and the prompt text says so. A chapter that teaches a form the list
+does not name (Lesson 21's て-form table) still has every cell carded; the table specialist once read
+the list as complete and skipped that table.
+
 **It states what is worth carding, not what must exist.** A form earns a card in the chapter that
 teaches it, and nowhere else. That boundary is not a detail: `card-authoring-rules.md` records that
 supplying forms the source has not reached was tried on this deck in 2026-09, reviewed, and stripped

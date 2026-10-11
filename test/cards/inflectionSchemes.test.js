@@ -39,6 +39,14 @@ test("the description tells a prompt to card taught forms and invent none", () =
   assert.match(text, /polite past negative/);
 });
 
+test("the description says its list is not exhaustive, so a taught form outside it is still carded", () => {
+  // Lesson 21: the table specialist declined the chapter's て-form table because "the て-form isn't
+  // one of this pass's catalogued verb forms". The list must not read as a whitelist.
+  const text = describeScheme("ja");
+  assert.match(text, /This list is NOT exhaustive/);
+  assert.match(text, /never a reason to skip it/);
+});
+
 test("an unconfigured language gets a plain instruction, not a made-up paradigm", () => {
   const text = describeScheme("Spanish");
   assert.match(text, /No inflection paradigm is configured/);

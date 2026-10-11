@@ -70,7 +70,7 @@
       "target": "に",
       "english": "On, in (particle marking where something is put, written or parked)",
       "category": "Grammar & Function Words",
-      "note": "Marks the place a stationary action happens — おきます (okimasu, put) and とめます (tomemasu, park) use this に. Contrast the に marking a vehicle's arrival point with のります/つきます in Lesson 20, and the plain location に used with あります/います in Lesson 12.",
+      "note": "Marks the place or thing an action leaves its result on: ここに なまえを かきます (koko ni namae o kakimasu, write your name here), いすに すわります (isu ni suwarimasu, sit on a chair). The verbs this chapter names with it are かきます, すわります, おきます and とめます. Lesson 12's に is different: it marks where something simply is, with あります or います.",
       "sourceOrder": 148,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
@@ -103,8 +103,8 @@
       "target": "しゃしんをとってもいいですか",
       "english": "May I take photos?",
       "category": "Grammar & Function Words",
-      "note": "The book prints the object in brackets as an optional insertion; kept as one entry rather than split.",
-      "sourceOrder": 1691
+      "sourceOrder": 1691,
+      "reviewNote": "The book prints the object in brackets as an optional insertion; kept as one entry rather than split."
     },
     {
       "id": "ashi",
@@ -149,7 +149,7 @@
       "sourceOrder": 120,
       "uncertain": false,
       "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target) | Kept: a different word from the topic particle は (chapter-1/wa-particle), which it shares a spelling with.",
-      "note": "Same は (ha) as the topic-marking particle from Lesson 1 — here it's the unrelated noun for \"tooth.\" Only the body-part context tells them apart.",
+      "note": "は (ha) is the noun for \"tooth\". It is written the same as the topic particle は from Lesson 1, which is read wa.",
       "scene": "a part of the body"
     },
     {
@@ -192,8 +192,8 @@
       "target": "きぶん",
       "english": "Feeling",
       "category": "Emotions & Feelings",
-      "note": "Sub-row under きぶんが わるい.",
-      "sourceOrder": 2027
+      "sourceOrder": 2027,
+      "reviewNote": "Sub-row under きぶんが わるい."
     },
     {
       "id": "kibun-ga-warui",
@@ -207,8 +207,8 @@
       "target": "ねつ",
       "english": "Fever",
       "category": "Body & Health",
-      "note": "Sub-row under ねつが あります.",
-      "sourceOrder": 2059
+      "sourceOrder": 2059,
+      "reviewNote": "Sub-row under ねつが あります."
     },
     {
       "id": "netsu-ga-arimasu",
@@ -515,8 +515,8 @@
       "target": "あたまがいたいです",
       "english": "I have a headache.",
       "category": "Body & Health",
-      "note": "KEY SENTENCES item 3 renders as the corrupted fragment 「たまが たいです」 in the source markup, but its translation ('I have a headache') and the WORD POWER Symptoms list both confirm this full phrase.",
-      "sourceOrder": 1844
+      "sourceOrder": 1844,
+      "reviewNote": "KEY SENTENCES item 3 renders as the corrupted fragment 「たまが たいです」 in the source markup, but its translation ('I have a headache') and the WORD POWER Symptoms list both confirm this full phrase."
     },
     {
       "id": "denki-2",

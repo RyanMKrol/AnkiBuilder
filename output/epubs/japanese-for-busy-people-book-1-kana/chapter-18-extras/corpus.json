@@ -395,7 +395,8 @@
       "target": "ここにいてください",
       "english": "Please stay here.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "いて (ite) is the て-form of います (imasu), \"Be, exist\" from Lesson 12, the verb used for people and animals. So this is literally \"please be here\". Lesson 20 uses the same います (imasu) to mean \"stay\"."
     },
     {
       "id": "depaato-ni-itte-kaimono",

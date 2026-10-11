@@ -92,12 +92,12 @@
       "target": "うちにきて、ひるごはんをたべませんか",
       "pronunciation": "uchi ni kite, hirugohan o tabemasen ka",
       "note": "きて (kite) is the て-form of きます (kimasu), an Irregular verb.",
-      "audioOriginal": "ce31bb33b946a76a-genkanji-55a17fb2.orig.mp3",
-      "audioAuto": "ce31bb33b946a76a-genkanji-55a17fb2.mp3",
+      "audioOriginal": "40002b876b9673dd-genkanji-92fd4c1e.orig.mp3",
+      "audioAuto": "40002b876b9673dd-genkanji-92fd4c1e.mp3",
       "audioMarked": true,
-      "audioTextHash": "ce31bb33b946a76a",
+      "audioTextHash": "40002b876b9673dd",
       "audioFilter": "standard",
-      "audio": "ce31bb33b946a76a-genkanji-55a17fb2.mp3"
+      "audio": "40002b876b9673dd-genkanji-92fd4c1e.mp3"
     },
     {
       "id": "kiku-ask",
@@ -230,11 +230,12 @@
       "target": "にほんごではなしてください",
       "pronunciation": "nihongo de hanashite kudasai",
       "aiSuggested": true,
-      "audio": "ca4e8379390aa613.mp3",
-      "audioOriginal": "ca4e8379390aa613.orig.mp3",
-      "audioAuto": "ca4e8379390aa613.mp3",
+      "audioOriginal": "d5fd7f1bbdb74c15-genkanji-0fa9347e.orig.mp3",
+      "audioAuto": "d5fd7f1bbdb74c15-genkanji-0fa9347e.mp3",
       "audioMarked": true,
-      "audioTextHash": "ca4e8379390aa613"
+      "audioTextHash": "d5fd7f1bbdb74c15",
+      "audioFilter": "standard",
+      "audio": "d5fd7f1bbdb74c15-genkanji-0fa9347e.mp3"
     },
     {
       "id": "tomodachi-ni-atte-eiga",
@@ -632,7 +633,8 @@
       "audioOriginal": "8166c74bd78de6aa.orig.mp3",
       "audioAuto": "8166c74bd78de6aa.mp3",
       "audioMarked": true,
-      "audioTextHash": "8166c74bd78de6aa"
+      "audioTextHash": "8166c74bd78de6aa",
+      "note": "いて (ite) is the て-form of います (imasu), \"Be, exist\" from Lesson 12, the verb used for people and animals. So this is literally \"please be here\". Lesson 20 uses the same います (imasu) to mean \"stay\"."
     },
     {
       "id": "depaato-ni-itte-kaimono",
@@ -767,11 +769,12 @@
       "pronunciation": "Ōsaka shisha ni itte, purezen o shimashita",
       "scene": "Someone asks what you did yesterday.",
       "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. The tense is set only by the last verb, しました (shimashita).",
-      "audio": "f478268d15a90f71.mp3",
-      "audioOriginal": "f478268d15a90f71.orig.mp3",
-      "audioAuto": "f478268d15a90f71.mp3",
+      "audioOriginal": "332326fe16a0925e-genkanji-438515db.orig.mp3",
+      "audioAuto": "332326fe16a0925e-genkanji-438515db.mp3",
       "audioMarked": true,
-      "audioTextHash": "f478268d15a90f71"
+      "audioTextHash": "332326fe16a0925e",
+      "audioFilter": "standard",
+      "audio": "332326fe16a0925e-genkanji-438515db.mp3"
     },
     {
       "id": "kaku-denwa",

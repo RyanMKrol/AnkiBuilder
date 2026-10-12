@@ -632,11 +632,6 @@
       "category": "Weather & Nature",
       "target": "(お)はなみをします",
       "pronunciation": "(o)hanami o shimasu",
-      "audio": "32ac360ff263ccb1.mp3",
-      "audioOriginal": "32ac360ff263ccb1.orig.mp3",
-      "audioAuto": "32ac360ff263ccb1.mp3",
-      "audioMarked": true,
-      "audioTextHash": "32ac360ff263ccb1",
       "excluded": true,
       "excludedBy": "human",
       "sourceOrder": 3710
@@ -1158,7 +1153,13 @@
       "note": "Dictionary form of ねます (nemasu, \"sleep, go to bed\", Lesson 17), which is also its casual form. Regular 2: ます becomes る.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught ねます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "fc5e35f285ffbebc.mp3",
+      "audioOriginal": "fc5e35f285ffbebc.orig.mp3",
+      "audioAuto": "fc5e35f285ffbebc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fc5e35f285ffbebc"
     },
     {
       "id": "narau-dict-form",
@@ -1169,7 +1170,13 @@
       "note": "Dictionary form of ならいます (naraimasu, \"learn\", Lesson 17), which is also its casual form. Regular 1: the い before ます becomes う.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught ならいます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "e5a87e0a6c292455.mp3",
+      "audioOriginal": "e5a87e0a6c292455.orig.mp3",
+      "audioAuto": "e5a87e0a6c292455.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e5a87e0a6c292455"
     },
     {
       "id": "arau-dict-form",
@@ -1180,7 +1187,13 @@
       "note": "Dictionary form of あらいます (araimasu, \"wash\", Lesson 17), which is also its casual form. Regular 1: the い before ます becomes う.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught あらいます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "4671592c955b9c36.mp3",
+      "audioOriginal": "4671592c955b9c36.orig.mp3",
+      "audioAuto": "4671592c955b9c36.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4671592c955b9c36"
     },
     {
       "id": "abiru-dict-form",
@@ -1191,7 +1204,13 @@
       "note": "Dictionary form of あびます (abimasu, \"take (a shower)\", Lesson 17), which is also its casual form. Regular 2: ます becomes る. It comes in シャワーをあびる (shawā o abiru, take a shower).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught あびます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "a894cd57146a5236.mp3",
+      "audioOriginal": "a894cd57146a5236.orig.mp3",
+      "audioAuto": "a894cd57146a5236.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a894cd57146a5236"
     },
     {
       "id": "hajimeru-dict-form",
@@ -1202,7 +1221,13 @@
       "note": "Dictionary form of はじめます (hajimemasu, \"start, begin\", Lesson 17), which is also its casual form. Regular 2: ます becomes る.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught はじめます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "c66ebe7f3da01f39.mp3",
+      "audioOriginal": "c66ebe7f3da01f39.orig.mp3",
+      "audioAuto": "c66ebe7f3da01f39.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c66ebe7f3da01f39"
     },
     {
       "id": "sumu-dict-form",
@@ -1213,7 +1238,13 @@
       "note": "Dictionary form of すみます (sumimasu, \"live\", Lesson 17), which is also its casual form. Regular 1: the み before ます becomes む.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught すみます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "610bda3b50f3f70a.mp3",
+      "audioOriginal": "610bda3b50f3f70a.orig.mp3",
+      "audioAuto": "610bda3b50f3f70a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "610bda3b50f3f70a"
     },
     {
       "id": "daunroodo-suru-dict-form",
@@ -1224,7 +1255,13 @@
       "note": "Dictionary form of ダウンロードします (daunrōdo shimasu, \"download\", Lesson 17), which is also its casual form. Irregular: the する part works like します → する.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught ダウンロードします (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "a221491ad8137a54.mp3",
+      "audioOriginal": "a221491ad8137a54.orig.mp3",
+      "audioAuto": "a221491ad8137a54.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a221491ad8137a54"
     },
     {
       "id": "chekku-suru-dict-form",
@@ -1235,7 +1272,13 @@
       "note": "Dictionary form of チェックします (chekku shimasu, \"check\", Lesson 17), which is also its casual form. Irregular: the する part works like します → する.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught チェックします (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "36d4f38303e4dbc4.mp3",
+      "audioOriginal": "36d4f38303e4dbc4.orig.mp3",
+      "audioAuto": "36d4f38303e4dbc4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "36d4f38303e4dbc4"
     }
   ]
 }

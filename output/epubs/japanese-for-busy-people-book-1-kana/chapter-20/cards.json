@@ -136,11 +136,6 @@
       "hint": "Trailing off after the part you caught",
       "note": "Say the part you heard, pause, then add なんですか. Paul says すい…なんですか for すいどうばし.",
       "sourceOrder": 5239,
-      "audio": "ed86c838d3f78854.mp3",
-      "audioOriginal": "ed86c838d3f78854.orig.mp3",
-      "audioAuto": "ed86c838d3f78854.mp3",
-      "audioMarked": true,
-      "audioTextHash": "ed86c838d3f78854",
       "excluded": true,
       "excludedBy": "human",
       "excludedReason": "Owner decision 2026-09-22: the leading … is a slot, both concrete instances (すい…なんですか, あか…なんですか) were excluded at gate 2, and what remains sounds identical to chapter-2-extras/irl-l1-38 (なんですか, What is it?)."
@@ -463,11 +458,6 @@
       "target": "はねだくうこう",
       "pronunciation": "Haneda Kūkō",
       "sourceOrder": 4591,
-      "audio": "3d04ebe6fd7e5324.mp3",
-      "audioOriginal": "3d04ebe6fd7e5324.orig.mp3",
-      "audioAuto": "3d04ebe6fd7e5324.mp3",
-      "audioMarked": true,
-      "audioTextHash": "3d04ebe6fd7e5324",
       "excluded": true,
       "excludedBy": "human",
       "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is くうこう."
@@ -555,11 +545,6 @@
       "target": "すいどうばし",
       "pronunciation": "Suidōbashi",
       "sourceOrder": 5218,
-      "audio": "4e6e5f99ecaeb61c.mp3",
-      "audioOriginal": "4e6e5f99ecaeb61c.orig.mp3",
-      "audioAuto": "4e6e5f99ecaeb61c.mp3",
-      "audioMarked": true,
-      "audioTextHash": "4e6e5f99ecaeb61c",
       "excluded": true,
       "excludedBy": "human",
       "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is えき."
@@ -651,11 +636,6 @@
       "target": "ひろしまえき",
       "pronunciation": "Hiroshima-eki",
       "sourceOrder": 685,
-      "audio": "c7b65aceae829dcb.mp3",
-      "audioOriginal": "c7b65aceae829dcb.orig.mp3",
-      "audioAuto": "c7b65aceae829dcb.mp3",
-      "audioMarked": true,
-      "audioTextHash": "c7b65aceae829dcb",
       "excluded": true,
       "excludedBy": "human",
       "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is えき."
@@ -809,11 +789,6 @@
       "target": "とうきょうドーム",
       "pronunciation": "Tōkyō Dōmu",
       "sourceOrder": 5180,
-      "audio": "e3b8bb657fb6df41.mp3",
-      "audioOriginal": "e3b8bb657fb6df41.orig.mp3",
-      "audioAuto": "e3b8bb657fb6df41.mp3",
-      "audioMarked": true,
-      "audioTextHash": "e3b8bb657fb6df41",
       "excluded": true,
       "excludedBy": "human",
       "excludedReason": "A named facility is not a card (owner ruling 2026-09-22, card-rules-shared.md). The name stays in the sentences that use it; the common noun is the venue itself; ドーム is not carded."
@@ -1621,7 +1596,13 @@
       "note": "Dictionary form of ねぼうします (nebō shimasu, \"oversleep\", Lesson 20), which is also its casual form. Irregular: the する part works like します → する.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught ねぼうします (Lesson 20).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "124979e5629eb58e.mp3",
+      "audioOriginal": "124979e5629eb58e.orig.mp3",
+      "audioAuto": "124979e5629eb58e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "124979e5629eb58e"
     }
   ]
 }

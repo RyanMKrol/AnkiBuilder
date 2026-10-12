@@ -21,7 +21,7 @@
  * fixture that genuinely lives in one of these trees). It prints that it is off.
  */
 import { spawnSync } from "child_process";
-import { lstatSync, readdirSync } from "fs";
+import { lstatSync, readFileSync, readdirSync } from "fs";
 import { dirname, join, relative, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -99,15 +99,52 @@ if (disabled) {
   );
 }
 
+// Git exports GIT_DIR (and friends) to every hook it runs. From the main checkout GIT_DIR is the
+// relative ".git", which harmlessly resolves inside a test's scratch repo, but from a linked
+// worktree it is ABSOLUTE, so every `git` a test ran in its tmpdir hit the real repository instead.
+// The dashboard-git tests' `git config` calls set this repo's user.name to "Test", turned commit
+// signing off and pointed core.hooksPath at a temp folder, which disabled this very pre-push hook.
+// Sixty commits were authored as "Test" before anyone noticed. No test needs these variables.
+const suiteEnv = Object.fromEntries(
+  Object.entries(process.env).filter(([key]) => !key.startsWith("GIT_")),
+);
+
+// The repository's own config is durable state too, and the failure above is invisible until a
+// commit lands under the wrong name, so compare it the same way as the guarded trees.
+function gitConfig() {
+  const dir = spawnSync("git", ["rev-parse", "--path-format=absolute", "--git-common-dir"], {
+    cwd: REPO_ROOT,
+    env: suiteEnv,
+    encoding: "utf-8",
+  });
+  if (dir.status !== 0) return null;
+  try {
+    return readFileSync(join(dir.stdout.trim(), "config"), "utf-8");
+  } catch {
+    return null;
+  }
+}
+
 const before = disabled ? null : snapshot();
+const configBefore = disabled ? null : gitConfig();
 
 const suite = spawnSync(process.execPath, ["--test", ...process.argv.slice(2)], {
   cwd: REPO_ROOT,
   stdio: "inherit",
+  env: suiteEnv,
 });
 
 if (disabled) {
   process.exit(suite.status ?? 1);
+}
+
+if (gitConfig() !== configBefore) {
+  console.error(
+    "\ndurable-write guard: FAIL — the test suite changed this repository's git config. A test " +
+      "ran git against the real repo instead of its scratch one. Run `git config --list --local` " +
+      "and undo what it added (a user.name of Test, core.hooksPath in a temp dir).",
+  );
+  process.exit(1);
 }
 
 const { created, modified, deleted } = diff(before, snapshot());

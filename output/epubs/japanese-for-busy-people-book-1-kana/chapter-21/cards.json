@@ -1087,7 +1087,8 @@
       "note": "Dictionary form of あけます (akemasu, \"open\", Lesson 21), which is also its casual form. Regular 2: ます becomes る.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught あけます (Lesson 21), or Lesson 15 where the form itself is taught if the verb came earlier.",
-      "addition": "dictionary-forms-2026-10"
+      "addition": "dictionary-forms-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "shimeru-dict-form",
@@ -1098,7 +1099,8 @@
       "note": "Dictionary form of しめます (shimemasu, \"close\", Lesson 21), which is also its casual form. Regular 2: ます becomes る.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught しめます (Lesson 21), or Lesson 15 where the form itself is taught if the verb came earlier.",
-      "addition": "dictionary-forms-2026-10"
+      "addition": "dictionary-forms-2026-10",
+      "additionReviewed": true
     }
   ]
 }

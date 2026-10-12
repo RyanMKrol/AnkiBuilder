@@ -952,7 +952,8 @@
       "note": "Dictionary form of あいます (aimasu, \"meet\", Lesson 9), which is also its casual form. Regular 1: the い before ます becomes う.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught あいます (Lesson 9), or Lesson 15 where the form itself is taught if the verb came earlier.",
-      "addition": "dictionary-forms-2026-10"
+      "addition": "dictionary-forms-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "miseru-dict-form",
@@ -963,7 +964,8 @@
       "note": "Dictionary form of みせます (misemasu, \"show\", Lesson 11), which is also its casual form. Regular 2: ます becomes る. Lesson 15's grammar names みせます among the Regular 2 verbs.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught みせます (Lesson 11), or Lesson 15 where the form itself is taught if the verb came earlier.",
-      "addition": "dictionary-forms-2026-10"
+      "addition": "dictionary-forms-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "ageru-dict-form",
@@ -974,7 +976,8 @@
       "note": "Dictionary form of あげます (agemasu, \"give\", Lesson 14), which is also its casual form. Regular 2: ます becomes る. Lesson 15's grammar names あげます among the Regular 2 verbs.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught あげます (Lesson 14), or Lesson 15 where the form itself is taught if the verb came earlier.",
-      "addition": "dictionary-forms-2026-10"
+      "addition": "dictionary-forms-2026-10",
+      "additionReviewed": true
     }
   ]
 }

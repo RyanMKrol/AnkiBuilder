@@ -1129,7 +1129,8 @@
       "audioOriginal": "b543c42ca81cf19c.orig.mp3",
       "audioAuto": "b543c42ca81cf19c.mp3",
       "audioMarked": true,
-      "audioTextHash": "b543c42ca81cf19c"
+      "audioTextHash": "b543c42ca81cf19c",
+      "additionDone": true
     },
     {
       "id": "tsukau-dict-form",
@@ -1146,7 +1147,8 @@
       "audioOriginal": "1c07f593c4051599.orig.mp3",
       "audioAuto": "1c07f593c4051599.mp3",
       "audioMarked": true,
-      "audioTextHash": "1c07f593c4051599"
+      "audioTextHash": "1c07f593c4051599",
+      "additionDone": true
     },
     {
       "id": "hairu-dict-form",
@@ -1163,7 +1165,8 @@
       "audioOriginal": "ffa2c00d0396d537.orig.mp3",
       "audioAuto": "ffa2c00d0396d537.mp3",
       "audioMarked": true,
-      "audioTextHash": "ffa2c00d0396d537"
+      "audioTextHash": "ffa2c00d0396d537",
+      "additionDone": true
     },
     {
       "id": "oku-dict-form",
@@ -1180,7 +1183,8 @@
       "audioOriginal": "6c9f58910a397336.orig.mp3",
       "audioAuto": "6c9f58910a397336.mp3",
       "audioMarked": true,
-      "audioTextHash": "6c9f58910a397336"
+      "audioTextHash": "6c9f58910a397336",
+      "additionDone": true
     },
     {
       "id": "tsukeru-dict-form",
@@ -1197,7 +1201,8 @@
       "audioOriginal": "7902899c32e9c4d6.orig.mp3",
       "audioAuto": "7902899c32e9c4d6.mp3",
       "audioMarked": true,
-      "audioTextHash": "7902899c32e9c4d6"
+      "audioTextHash": "7902899c32e9c4d6",
+      "additionDone": true
     },
     {
       "id": "kesu-dict-form",
@@ -1214,7 +1219,8 @@
       "audioOriginal": "5de82fe89a51bd6b.orig.mp3",
       "audioAuto": "5de82fe89a51bd6b.mp3",
       "audioMarked": true,
-      "audioTextHash": "5de82fe89a51bd6b"
+      "audioTextHash": "5de82fe89a51bd6b",
+      "additionDone": true
     },
     {
       "id": "kopii-suru-dict-form",
@@ -1231,7 +1237,8 @@
       "audioOriginal": "f6be7a3bd80c8ed9.orig.mp3",
       "audioAuto": "f6be7a3bd80c8ed9.mp3",
       "audioMarked": true,
-      "audioTextHash": "f6be7a3bd80c8ed9"
+      "audioTextHash": "f6be7a3bd80c8ed9",
+      "additionDone": true
     },
     {
       "id": "juuden-suru-dict-form",
@@ -1248,7 +1255,8 @@
       "audioOriginal": "7121484aa5864118.orig.mp3",
       "audioAuto": "7121484aa5864118.mp3",
       "audioMarked": true,
-      "audioTextHash": "7121484aa5864118"
+      "audioTextHash": "7121484aa5864118",
+      "additionDone": true
     }
   ]
 }

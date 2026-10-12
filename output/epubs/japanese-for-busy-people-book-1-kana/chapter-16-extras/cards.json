@@ -1105,7 +1105,8 @@
       "audioOriginal": "7697d01a513f1e51.orig.mp3",
       "audioAuto": "7697d01a513f1e51.mp3",
       "audioMarked": true,
-      "audioTextHash": "7697d01a513f1e51"
+      "audioTextHash": "7697d01a513f1e51",
+      "additionDone": true
     }
   ]
 }

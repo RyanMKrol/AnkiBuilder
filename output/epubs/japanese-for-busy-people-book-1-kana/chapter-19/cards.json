@@ -1591,7 +1591,8 @@
       "audioOriginal": "be231f0910abd819.orig.mp3",
       "audioAuto": "be231f0910abd819.mp3",
       "audioMarked": true,
-      "audioTextHash": "be231f0910abd819"
+      "audioTextHash": "be231f0910abd819",
+      "additionDone": true
     },
     {
       "id": "magaru-dict-form",
@@ -1608,7 +1609,8 @@
       "audioOriginal": "33de316f9453ed1f.orig.mp3",
       "audioAuto": "33de316f9453ed1f.mp3",
       "audioMarked": true,
-      "audioTextHash": "33de316f9453ed1f"
+      "audioTextHash": "33de316f9453ed1f",
+      "additionDone": true
     },
     {
       "id": "todokeru-dict-form",
@@ -1625,7 +1627,8 @@
       "audioOriginal": "ee4b30f71ffd2ebd.orig.mp3",
       "audioAuto": "ee4b30f71ffd2ebd.mp3",
       "audioMarked": true,
-      "audioTextHash": "ee4b30f71ffd2ebd"
+      "audioTextHash": "ee4b30f71ffd2ebd",
+      "additionDone": true
     },
     {
       "id": "motte-kuru-dict-form",
@@ -1642,7 +1645,8 @@
       "audioOriginal": "a355c0cf05ed244b.orig.mp3",
       "audioAuto": "a355c0cf05ed244b.mp3",
       "audioMarked": true,
-      "audioTextHash": "a355c0cf05ed244b"
+      "audioTextHash": "a355c0cf05ed244b",
+      "additionDone": true
     },
     {
       "id": "tsutaeru-dict-form",
@@ -1659,7 +1663,8 @@
       "audioOriginal": "3c00f252a8787497.orig.mp3",
       "audioAuto": "3c00f252a8787497.mp3",
       "audioMarked": true,
-      "audioTextHash": "3c00f252a8787497"
+      "audioTextHash": "3c00f252a8787497",
+      "additionDone": true
     },
     {
       "id": "houkoku-suru-dict-form",
@@ -1676,7 +1681,8 @@
       "audioOriginal": "f7ab55de2296805b.orig.mp3",
       "audioAuto": "f7ab55de2296805b.mp3",
       "audioMarked": true,
-      "audioTextHash": "f7ab55de2296805b"
+      "audioTextHash": "f7ab55de2296805b",
+      "additionDone": true
     },
     {
       "id": "azukaru-dict-form",
@@ -1693,7 +1699,8 @@
       "audioOriginal": "ec10389b20531463.orig.mp3",
       "audioAuto": "ec10389b20531463.mp3",
       "audioMarked": true,
-      "audioTextHash": "ec10389b20531463"
+      "audioTextHash": "ec10389b20531463",
+      "additionDone": true
     }
   ]
 }

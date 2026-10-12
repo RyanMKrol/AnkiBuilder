@@ -53,17 +53,14 @@
       "note": "A fixed phrase for \"a little more/longer\" — not compositional with もう (\"already\") above."
     },
     {
-      "id": "nanika",
+      "id": "nanika-before-noun",
       "target": "なにか",
-      "english": "Something, any",
+      "english": "Some, any",
       "category": "Grammar & Function Words",
-      "note": "Combined with a noun (なにか + noun) it means \"some/any [noun]\"; alone it means \"something.\" Contrast なにも (Lesson 8), which pairs with a negative verb for \"nothing\" — なにか is its affirmative/question counterpart.",
+      "note": "Before a noun, なにか means \"some\" or \"any\": なにか うんどう (nanika undō, \"any kind of exercise\"). On its own it means \"something\" (Lesson 16).",
       "sourceOrder": 5385,
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target) | Possibly premature — なにか (indefinite 'something/any') is an indefinite-pronoun construction that the index does not show being formally introduced in any chapter up to 50 — may be an incidental dialogue word rather than taught vocabulary",
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-16/nanika (same target and sense)"
+      "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target) | Possibly premature — なにか (indefinite 'something/any') is an indefinite-pronoun construction that the index does not show being formally introduced in any chapter up to 50 — may be an incidental dialogue word rather than taught vocabulary | Restored at gate 1 after the final review: Lesson 16 teaches the bare pronoun (\"Something\"); this chapter's NOTES 3 teaches なにか + noun (\"some/any [noun]\"), a sense no card had. Excluding it as the same sense was wrong.",
+      "scene": "placed before a noun"
     },
     {
       "id": "dekimasu-be-done",
@@ -113,10 +110,10 @@
       "target": "チェック",
       "english": "Check",
       "category": "Travel & Tourism",
-      "uncertain": true,
-      "reviewNote": "Loanword noun glossed only as 'check'; unclear if this means hotel check-in/check-out or a verification check — table gives no disambiguating context.",
+      "reviewNote": "Loanword noun glossed only as 'check'; unclear if this means hotel check-in/check-out or a verification check — table gives no disambiguating context. | Judged at gate 1: the chapter uses it for checking work (チェックを おねがいします), so a hint names that sense.",
       "sourceOrder": 273,
-      "note": "Bare loanword noun; already met combined directly with します (チェックします, no を) in Lesson 17."
+      "note": "Bare loanword noun; already met combined directly with します (チェックします, no を) in Lesson 17.",
+      "hint": "looking something over, not a bill"
     },
     {
       "id": "tsukurimasu-make",
@@ -458,6 +455,22 @@
       "sourceOrder": 1077
     },
     {
+      "id": "dekimashita",
+      "english": "Was done, is ready (polite past)",
+      "category": "Other",
+      "target": "できました",
+      "note": "Past of できます (dekimasu). It says something is finished and ready: しりょうが できました (shiryō ga dekimashita, \"the materials are ready\").",
+      "reviewNote": "Added at gate 1 after the final review: NOTES 1 teaches noun が できました／おわりました for something finished, and the target dialogue uses できました twice. Carded the same way as よみました."
+    },
+    {
+      "id": "owarimashita",
+      "english": "Finished (polite past)",
+      "category": "Other",
+      "target": "おわりました",
+      "note": "Past of おわります (owarimasu). With もう (mō, \"already\") it asks whether something is over: そうじは もう おわりましたか (sōji wa mō owarimashita ka, \"is the cleaning finished?\").",
+      "reviewNote": "Added at gate 1 after the final review: NOTES 1 teaches noun が できました／おわりました for something finished, and the target dialogue uses できました twice. Carded the same way as よみました."
+    },
+    {
       "id": "benkyou-study",
       "target": "べんきょう",
       "english": "Study",
@@ -598,7 +611,7 @@
       "target": "かい",
       "english": "Floor (counter for building floors)",
       "category": "Numbers",
-      "note": "Counter for the floors of a building; voices to がい after some numbers (3がい, 6がい).",
+      "note": "Counter for the floors of a building: 1かい (ikkai, \"1st floor\"), 3がい (sangai, \"3rd floor\"), 6かい (rokkai, \"6th floor\"). After 3 it voices to がい; most other numbers keep かい.",
       "sourceOrder": 696
     },
     {

@@ -141,6 +141,81 @@
         "at": "2026-10-11T23:02:35.907Z",
         "message": "chapter-22: \"とらないでください\" (Please don't take [photos].) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "Lesson 22: all six are headwords the book's own vocabulary boxes gloss as single units (とらないでください, とめないでください, いれないでください, たばこをすいます, きにします, きにしないでください), so they stay in the base unit"
+      },
+      "chapter-23/dekimashita": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"できました\" (Was done, is ready (polite past)) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/dekimasu-be-done-2": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"できます\" (Be done, be ready) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/hanashite-imasen-2": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"はなしていません\" (Is not talking) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/hanashite-imasu-2": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"はなしています\" (Is talking) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/jogging-o-shimasu": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"ジョギングをします\" (Jog) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/junbi-o-shimasu-prepare": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"じゅんびをします\" (Prepare) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/nonde-imasen-2": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"のんでいません\" (Is not drinking) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/nonde-imasu-2": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"のんでいます\" (Is drinking) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/online-kaigi-o-shimasu": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"オンラインかいぎをします\" (Have an online meeting) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/setsumei-shimasu-explain": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"せつめいをします\" (Explain) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/setsumei-shite-imasen-2": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"せつめいをしていません\" (Is not explaining) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/setsumei-shite-imasu-2": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"せつめいをしています\" (Is explaining) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/snowboard-o-shimasu": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"スノーボードをします\" (Snowboard) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/souji-shimasu-clean": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"そうじをします\" (Clean) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-23/undou-o-shimasu": {
+        "at": "2026-10-12T22:59:56.817Z",
+        "message": "chapter-23: \"うんどうをします\" (Do exercise) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
       }
     }
   }

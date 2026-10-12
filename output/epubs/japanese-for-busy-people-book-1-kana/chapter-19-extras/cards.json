@@ -1225,7 +1225,8 @@
       "audioOriginal": "7c1e625d792d0925.orig.mp3",
       "audioAuto": "7c1e625d792d0925.mp3",
       "audioMarked": true,
-      "audioTextHash": "7c1e625d792d0925"
+      "audioTextHash": "7c1e625d792d0925",
+      "additionDone": true
     },
     {
       "id": "shingou-wo-magaru-mae-ni-tomete",
@@ -1238,12 +1239,17 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using まがる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "8f56d509e6b10254.mp3",
+      "audio": "shingou-wo-magaru-mae-ni-tomete-manual-35476c74.mp3",
       "audioOriginal": "8f56d509e6b10254.orig.mp3",
       "audioAuto": "8f56d509e6b10254.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "8f56d509e6b10254"
+      "audioTextHash": "8f56d509e6b10254",
+      "audioManual": "shingou-wo-magaru-mae-ni-tomete-manual-35476c74.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.9075616438356167
+      },
+      "additionDone": true
     },
     {
       "id": "nimotsu-wo-todokeru-mae-ni-denwa",
@@ -1256,12 +1262,17 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using とどける, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "003cbc9f5c0d365b.mp3",
+      "audio": "nimotsu-wo-todokeru-mae-ni-denwa-manual-233084d3.mp3",
       "audioOriginal": "003cbc9f5c0d365b.orig.mp3",
       "audioAuto": "003cbc9f5c0d365b.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "003cbc9f5c0d365b"
+      "audioTextHash": "003cbc9f5c0d365b",
+      "audioManual": "nimotsu-wo-todokeru-mae-ni-denwa-manual-233084d3.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.4401048801369862
+      },
+      "additionDone": true
     },
     {
       "id": "shorui-wo-motte-kuru-mae-ni-yonde",
@@ -1278,7 +1289,8 @@
       "audioOriginal": "026e9721a3b9575c.orig.mp3",
       "audioAuto": "026e9721a3b9575c.mp3",
       "audioMarked": true,
-      "audioTextHash": "026e9721a3b9575c"
+      "audioTextHash": "026e9721a3b9575c",
+      "additionDone": true
     },
     {
       "id": "shachou-ni-tsutaeru-mae-ni-oshiete",
@@ -1295,7 +1307,8 @@
       "audioOriginal": "ef86492af548fe52.orig.mp3",
       "audioAuto": "ef86492af548fe52.mp3",
       "audioMarked": true,
-      "audioTextHash": "ef86492af548fe52"
+      "audioTextHash": "ef86492af548fe52",
+      "additionDone": true
     },
     {
       "id": "shachou-ni-houkoku-suru-mae-ni-repooto",
@@ -1312,7 +1325,8 @@
       "audioOriginal": "6bc40c9a302ea7dd.orig.mp3",
       "audioAuto": "6bc40c9a302ea7dd.mp3",
       "audioMarked": true,
-      "audioTextHash": "6bc40c9a302ea7dd"
+      "audioTextHash": "6bc40c9a302ea7dd",
+      "additionDone": true
     },
     {
       "id": "nimotsu-wo-azukaru-mae-ni-namae",
@@ -1329,7 +1343,8 @@
       "audioOriginal": "bd9e83edbc371b10.orig.mp3",
       "audioAuto": "bd9e83edbc371b10.mp3",
       "audioMarked": true,
-      "audioTextHash": "bd9e83edbc371b10"
+      "audioTextHash": "bd9e83edbc371b10",
+      "additionDone": true
     }
   ]
 }

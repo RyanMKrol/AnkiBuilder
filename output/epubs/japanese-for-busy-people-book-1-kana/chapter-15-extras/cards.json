@@ -1360,7 +1360,8 @@
       "audioOriginal": "9190d878f194ad3d.orig.mp3",
       "audioAuto": "9190d878f194ad3d.mp3",
       "audioMarked": true,
-      "audioTextHash": "9190d878f194ad3d"
+      "audioTextHash": "9190d878f194ad3d",
+      "additionDone": true
     },
     {
       "id": "kazoku-ni-shashin-wo-okuru-no-ga-suki",
@@ -1377,7 +1378,8 @@
       "audioOriginal": "b3350c5528efb7af.orig.mp3",
       "audioAuto": "b3350c5528efb7af.mp3",
       "audioMarked": true,
-      "audioTextHash": "b3350c5528efb7af"
+      "audioTextHash": "b3350c5528efb7af",
+      "additionDone": true
     },
     {
       "id": "fujisan-ni-noboru-no-ga-suki",
@@ -1394,7 +1396,8 @@
       "audioOriginal": "60975d1e3c702067.orig.mp3",
       "audioAuto": "60975d1e3c702067.mp3",
       "audioMarked": true,
-      "audioTextHash": "60975d1e3c702067"
+      "audioTextHash": "60975d1e3c702067",
+      "additionDone": true
     },
     {
       "id": "teeburu-ni-hana-ga-aru-no-ga-suki",
@@ -1411,7 +1414,8 @@
       "audioOriginal": "ba6a5db43d9d8fcb.orig.mp3",
       "audioAuto": "ba6a5db43d9d8fcb.mp3",
       "audioMarked": true,
-      "audioTextHash": "ba6a5db43d9d8fcb"
+      "audioTextHash": "ba6a5db43d9d8fcb",
+      "additionDone": true
     },
     {
       "id": "hana-wo-morau-no-ga-suki",
@@ -1428,7 +1432,8 @@
       "audioOriginal": "a69d196b6905d629.orig.mp3",
       "audioAuto": "a69d196b6905d629.mp3",
       "audioMarked": true,
-      "audioTextHash": "a69d196b6905d629"
+      "audioTextHash": "a69d196b6905d629",
+      "additionDone": true
     },
     {
       "id": "haha-ga-kureru-okashi-ga-suki",
@@ -1445,7 +1450,8 @@
       "audioOriginal": "9b07b4324996332b.orig.mp3",
       "audioAuto": "9b07b4324996332b.mp3",
       "audioMarked": true,
-      "audioTextHash": "9b07b4324996332b"
+      "audioTextHash": "9b07b4324996332b",
+      "additionDone": true
     },
     {
       "id": "toshokan-de-hon-wo-kariru-no-ga-suki",
@@ -1462,7 +1468,8 @@
       "audioOriginal": "a8fccfd250f7a59b.orig.mp3",
       "audioAuto": "a8fccfd250f7a59b.mp3",
       "audioMarked": true,
-      "audioTextHash": "a8fccfd250f7a59b"
+      "audioTextHash": "a8fccfd250f7a59b",
+      "additionDone": true
     },
     {
       "id": "niau-fuku-wo-kau-no-ga-suki",
@@ -1479,7 +1486,8 @@
       "audioOriginal": "ae264352c1744526.orig.mp3",
       "audioAuto": "ae264352c1744526.mp3",
       "audioMarked": true,
-      "audioTextHash": "ae264352c1744526"
+      "audioTextHash": "ae264352c1744526",
+      "additionDone": true
     }
   ]
 }

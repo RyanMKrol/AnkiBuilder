@@ -960,7 +960,8 @@
       "audioOriginal": "e57e0e56972419d2.orig.mp3",
       "audioAuto": "e57e0e56972419d2.mp3",
       "audioMarked": true,
-      "audioTextHash": "e57e0e56972419d2"
+      "audioTextHash": "e57e0e56972419d2",
+      "additionDone": true
     }
   ]
 }

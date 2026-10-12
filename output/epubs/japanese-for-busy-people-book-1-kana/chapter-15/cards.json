@@ -992,7 +992,8 @@
       "audioOriginal": "134a2dcca20b5fe9.orig.mp3",
       "audioAuto": "134a2dcca20b5fe9.mp3",
       "audioMarked": true,
-      "audioTextHash": "134a2dcca20b5fe9"
+      "audioTextHash": "134a2dcca20b5fe9",
+      "additionDone": true
     },
     {
       "id": "okuru-dict-form",
@@ -1009,7 +1010,8 @@
       "audioOriginal": "8941b87cfb872364.orig.mp3",
       "audioAuto": "8941b87cfb872364.mp3",
       "audioMarked": true,
-      "audioTextHash": "8941b87cfb872364"
+      "audioTextHash": "8941b87cfb872364",
+      "additionDone": true
     },
     {
       "id": "noboru-dict-form",
@@ -1026,7 +1028,8 @@
       "audioOriginal": "463a643db48cbddc.orig.mp3",
       "audioAuto": "463a643db48cbddc.mp3",
       "audioMarked": true,
-      "audioTextHash": "463a643db48cbddc"
+      "audioTextHash": "463a643db48cbddc",
+      "additionDone": true
     },
     {
       "id": "aru-dict-form",
@@ -1043,7 +1046,8 @@
       "audioOriginal": "051f32ef3ca77be2.orig.mp3",
       "audioAuto": "051f32ef3ca77be2.mp3",
       "audioMarked": true,
-      "audioTextHash": "051f32ef3ca77be2"
+      "audioTextHash": "051f32ef3ca77be2",
+      "additionDone": true
     },
     {
       "id": "morau-dict-form",
@@ -1060,7 +1064,8 @@
       "audioOriginal": "9f93538ccaf7f4cb.orig.mp3",
       "audioAuto": "9f93538ccaf7f4cb.mp3",
       "audioMarked": true,
-      "audioTextHash": "9f93538ccaf7f4cb"
+      "audioTextHash": "9f93538ccaf7f4cb",
+      "additionDone": true
     },
     {
       "id": "kureru-dict-form",
@@ -1077,7 +1082,8 @@
       "audioOriginal": "e66053f128329feb.orig.mp3",
       "audioAuto": "e66053f128329feb.mp3",
       "audioMarked": true,
-      "audioTextHash": "e66053f128329feb"
+      "audioTextHash": "e66053f128329feb",
+      "additionDone": true
     },
     {
       "id": "kariru-dict-form",
@@ -1094,7 +1100,8 @@
       "audioOriginal": "4d1627c69e1a068d.orig.mp3",
       "audioAuto": "4d1627c69e1a068d.mp3",
       "audioMarked": true,
-      "audioTextHash": "4d1627c69e1a068d"
+      "audioTextHash": "4d1627c69e1a068d",
+      "additionDone": true
     },
     {
       "id": "niau-dict-form",
@@ -1111,7 +1118,8 @@
       "audioOriginal": "3a367506a201a4f6.orig.mp3",
       "audioAuto": "3a367506a201a4f6.mp3",
       "audioMarked": true,
-      "audioTextHash": "3a367506a201a4f6"
+      "audioTextHash": "3a367506a201a4f6",
+      "additionDone": true
     }
   ]
 }

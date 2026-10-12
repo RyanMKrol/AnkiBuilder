@@ -1159,7 +1159,8 @@
       "audioOriginal": "fc5e35f285ffbebc.orig.mp3",
       "audioAuto": "fc5e35f285ffbebc.mp3",
       "audioMarked": true,
-      "audioTextHash": "fc5e35f285ffbebc"
+      "audioTextHash": "fc5e35f285ffbebc",
+      "additionDone": true
     },
     {
       "id": "narau-dict-form",
@@ -1176,7 +1177,8 @@
       "audioOriginal": "e5a87e0a6c292455.orig.mp3",
       "audioAuto": "e5a87e0a6c292455.mp3",
       "audioMarked": true,
-      "audioTextHash": "e5a87e0a6c292455"
+      "audioTextHash": "e5a87e0a6c292455",
+      "additionDone": true
     },
     {
       "id": "arau-dict-form",
@@ -1193,7 +1195,8 @@
       "audioOriginal": "4671592c955b9c36.orig.mp3",
       "audioAuto": "4671592c955b9c36.mp3",
       "audioMarked": true,
-      "audioTextHash": "4671592c955b9c36"
+      "audioTextHash": "4671592c955b9c36",
+      "additionDone": true
     },
     {
       "id": "abiru-dict-form",
@@ -1210,7 +1213,8 @@
       "audioOriginal": "a894cd57146a5236.orig.mp3",
       "audioAuto": "a894cd57146a5236.mp3",
       "audioMarked": true,
-      "audioTextHash": "a894cd57146a5236"
+      "audioTextHash": "a894cd57146a5236",
+      "additionDone": true
     },
     {
       "id": "hajimeru-dict-form",
@@ -1227,7 +1231,8 @@
       "audioOriginal": "c66ebe7f3da01f39.orig.mp3",
       "audioAuto": "c66ebe7f3da01f39.mp3",
       "audioMarked": true,
-      "audioTextHash": "c66ebe7f3da01f39"
+      "audioTextHash": "c66ebe7f3da01f39",
+      "additionDone": true
     },
     {
       "id": "sumu-dict-form",
@@ -1244,7 +1249,8 @@
       "audioOriginal": "610bda3b50f3f70a.orig.mp3",
       "audioAuto": "610bda3b50f3f70a.mp3",
       "audioMarked": true,
-      "audioTextHash": "610bda3b50f3f70a"
+      "audioTextHash": "610bda3b50f3f70a",
+      "additionDone": true
     },
     {
       "id": "daunroodo-suru-dict-form",
@@ -1261,7 +1267,8 @@
       "audioOriginal": "a221491ad8137a54.orig.mp3",
       "audioAuto": "a221491ad8137a54.mp3",
       "audioMarked": true,
-      "audioTextHash": "a221491ad8137a54"
+      "audioTextHash": "a221491ad8137a54",
+      "additionDone": true
     },
     {
       "id": "chekku-suru-dict-form",
@@ -1278,7 +1285,8 @@
       "audioOriginal": "36d4f38303e4dbc4.orig.mp3",
       "audioAuto": "36d4f38303e4dbc4.mp3",
       "audioMarked": true,
-      "audioTextHash": "36d4f38303e4dbc4"
+      "audioTextHash": "36d4f38303e4dbc4",
+      "additionDone": true
     }
   ]
 }

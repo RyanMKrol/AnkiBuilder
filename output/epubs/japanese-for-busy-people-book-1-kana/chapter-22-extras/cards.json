@@ -912,7 +912,8 @@
       "audioOriginal": "da6c2004195dea4f.orig.mp3",
       "audioAuto": "da6c2004195dea4f.mp3",
       "audioMarked": true,
-      "audioTextHash": "da6c2004195dea4f"
+      "audioTextHash": "da6c2004195dea4f",
+      "additionDone": true
     },
     {
       "id": "ki-ni-suru-no-wa-yokunai",
@@ -929,7 +930,8 @@
       "audioOriginal": "1054059d40c1ce6d.orig.mp3",
       "audioAuto": "1054059d40c1ce6d.mp3",
       "audioMarked": true,
-      "audioTextHash": "1054059d40c1ce6d"
+      "audioTextHash": "1054059d40c1ce6d",
+      "additionDone": true
     }
   ]
 }

@@ -1594,7 +1594,8 @@
       "audioOriginal": "390ce137b958afdd.orig.mp3",
       "audioAuto": "390ce137b958afdd.mp3",
       "audioMarked": true,
-      "audioTextHash": "390ce137b958afdd"
+      "audioTextHash": "390ce137b958afdd",
+      "additionDone": true
     },
     {
       "id": "ki-ni-suru-dict-form",
@@ -1611,7 +1612,8 @@
       "audioOriginal": "5922ff3d5adc305e.orig.mp3",
       "audioAuto": "5922ff3d5adc305e.mp3",
       "audioMarked": true,
-      "audioTextHash": "5922ff3d5adc305e"
+      "audioTextHash": "5922ff3d5adc305e",
+      "additionDone": true
     }
   ]
 }

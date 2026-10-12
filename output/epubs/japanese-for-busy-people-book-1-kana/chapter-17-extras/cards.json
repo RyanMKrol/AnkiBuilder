@@ -1514,7 +1514,8 @@
       "audioOriginal": "af1f8e039d7460f7.orig.mp3",
       "audioAuto": "af1f8e039d7460f7.mp3",
       "audioMarked": true,
-      "audioTextHash": "af1f8e039d7460f7"
+      "audioTextHash": "af1f8e039d7460f7",
+      "additionDone": true
     },
     {
       "id": "ikebana-wo-narau-mae-ni-hon",
@@ -1531,7 +1532,8 @@
       "audioOriginal": "9082804ea1a27f2a.orig.mp3",
       "audioAuto": "9082804ea1a27f2a.mp3",
       "audioMarked": true,
-      "audioTextHash": "9082804ea1a27f2a"
+      "audioTextHash": "9082804ea1a27f2a",
+      "additionDone": true
     },
     {
       "id": "kuruma-wo-arau-mae-ni-hirugohan",
@@ -1548,7 +1550,8 @@
       "audioOriginal": "7bf29e33f2234df3.orig.mp3",
       "audioAuto": "7bf29e33f2234df3.mp3",
       "audioMarked": true,
-      "audioTextHash": "7bf29e33f2234df3"
+      "audioTextHash": "7bf29e33f2234df3",
+      "additionDone": true
     },
     {
       "id": "shawaa-wo-abiru-mae-ni-kohii",
@@ -1565,7 +1568,8 @@
       "audioOriginal": "1473b913ebac5161.orig.mp3",
       "audioAuto": "1473b913ebac5161.mp3",
       "audioMarked": true,
-      "audioTextHash": "1473b913ebac5161"
+      "audioTextHash": "1473b913ebac5161",
+      "additionDone": true
     },
     {
       "id": "kaigi-wo-hajimeru-mae-ni-kohii",
@@ -1582,7 +1586,8 @@
       "audioOriginal": "d26b38d0a7dd254e.orig.mp3",
       "audioAuto": "d26b38d0a7dd254e.mp3",
       "audioMarked": true,
-      "audioTextHash": "d26b38d0a7dd254e"
+      "audioTextHash": "d26b38d0a7dd254e",
+      "additionDone": true
     },
     {
       "id": "toukyou-ni-sumu-mae-ni-uchi-wo-mitai",
@@ -1599,7 +1604,8 @@
       "audioOriginal": "a01afc2647a94688.orig.mp3",
       "audioAuto": "a01afc2647a94688.mp3",
       "audioMarked": true,
-      "audioTextHash": "a01afc2647a94688"
+      "audioTextHash": "a01afc2647a94688",
+      "additionDone": true
     },
     {
       "id": "daunroodo-suru-mae-ni-mitai",
@@ -1616,7 +1622,8 @@
       "audioOriginal": "5bac8803ed3ccc6e.orig.mp3",
       "audioAuto": "5bac8803ed3ccc6e.mp3",
       "audioMarked": true,
-      "audioTextHash": "5bac8803ed3ccc6e"
+      "audioTextHash": "5bac8803ed3ccc6e",
+      "additionDone": true
     },
     {
       "id": "meeru-wo-chekku-suru-mae-ni-asagohan",
@@ -1633,7 +1640,8 @@
       "audioOriginal": "c4ff00016c7fcf8b.orig.mp3",
       "audioAuto": "c4ff00016c7fcf8b.mp3",
       "audioMarked": true,
-      "audioTextHash": "c4ff00016c7fcf8b"
+      "audioTextHash": "c4ff00016c7fcf8b",
+      "additionDone": true
     }
   ]
 }

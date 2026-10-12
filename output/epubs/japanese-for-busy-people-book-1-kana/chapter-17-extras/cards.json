@@ -1508,7 +1508,8 @@
       "note": "ねる (go to bed) + まえに (before), then this lesson's たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ねる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "ikebana-wo-narau-mae-ni-hon",
@@ -1519,7 +1520,8 @@
       "note": "ならう (learn). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ならう, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "kuruma-wo-arau-mae-ni-hirugohan",
@@ -1530,7 +1532,8 @@
       "note": "あらう (wash). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あらう, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "shawaa-wo-abiru-mae-ni-kohii",
@@ -1541,7 +1544,8 @@
       "note": "あびる (take, of a shower). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あびる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "kaigi-wo-hajimeru-mae-ni-kohii",
@@ -1552,7 +1556,8 @@
       "note": "はじめる (start). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using はじめる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "toukyou-ni-sumu-mae-ni-uchi-wo-mitai",
@@ -1563,7 +1568,8 @@
       "note": "すむ (live). The place you live takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using すむ, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "daunroodo-suru-mae-ni-mitai",
@@ -1574,7 +1580,8 @@
       "note": "ダウンロードする (download). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then みたいです (want to see).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ダウンロードする, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "meeru-wo-chekku-suru-mae-ni-asagohan",
@@ -1585,7 +1592,8 @@
       "note": "チェックする (check). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using チェックする, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     }
   ]
 }

@@ -1158,7 +1158,8 @@
       "note": "Dictionary form of ねます (nemasu, \"sleep, go to bed\", Lesson 17), which is also its casual form. Regular 2: ます becomes る.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught ねます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "narau-dict-form",
@@ -1169,7 +1170,8 @@
       "note": "Dictionary form of ならいます (naraimasu, \"learn\", Lesson 17), which is also its casual form. Regular 1: the い before ます becomes う.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught ならいます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "arau-dict-form",
@@ -1180,7 +1182,8 @@
       "note": "Dictionary form of あらいます (araimasu, \"wash\", Lesson 17), which is also its casual form. Regular 1: the い before ます becomes う.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught あらいます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "abiru-dict-form",
@@ -1191,7 +1194,8 @@
       "note": "Dictionary form of あびます (abimasu, \"take (a shower)\", Lesson 17), which is also its casual form. Regular 2: ます becomes る. It comes in シャワーをあびる (shawā o abiru, take a shower).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught あびます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "hajimeru-dict-form",
@@ -1202,7 +1206,8 @@
       "note": "Dictionary form of はじめます (hajimemasu, \"start, begin\", Lesson 17), which is also its casual form. Regular 2: ます becomes る.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught はじめます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "sumu-dict-form",
@@ -1213,7 +1218,8 @@
       "note": "Dictionary form of すみます (sumimasu, \"live\", Lesson 17), which is also its casual form. Regular 1: the み before ます becomes む.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught すみます (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "daunroodo-suru-dict-form",
@@ -1224,7 +1230,8 @@
       "note": "Dictionary form of ダウンロードします (daunrōdo shimasu, \"download\", Lesson 17), which is also its casual form. Irregular: the する part works like します → する.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught ダウンロードします (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "chekku-suru-dict-form",
@@ -1235,7 +1242,8 @@
       "note": "Dictionary form of チェックします (chekku shimasu, \"check\", Lesson 17), which is also its casual form. Irregular: the する part works like します → する.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught チェックします (Lesson 17).",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     }
   ]
 }

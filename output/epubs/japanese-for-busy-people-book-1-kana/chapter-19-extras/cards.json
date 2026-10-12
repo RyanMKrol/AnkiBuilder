@@ -1219,7 +1219,8 @@
       "note": "いう (say, tell). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いう, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "shingou-wo-magaru-mae-ni-tomete",
@@ -1230,7 +1231,8 @@
       "note": "まがる (turn), said to a taxi driver. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using まがる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "nimotsu-wo-todokeru-mae-ni-denwa",
@@ -1241,7 +1243,8 @@
       "note": "とどける (deliver). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using とどける, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "shorui-wo-motte-kuru-mae-ni-yonde",
@@ -1252,7 +1255,8 @@
       "note": "もってくる (bring). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using もってくる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "shachou-ni-tsutaeru-mae-ni-oshiete",
@@ -1263,7 +1267,8 @@
       "note": "つたえる (relay a message). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つたえる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "shachou-ni-houkoku-suru-mae-ni-repooto",
@@ -1274,7 +1279,8 @@
       "note": "ほうこくする (report). The person you report to takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ほうこくする, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "nimotsu-wo-azukaru-mae-ni-namae",
@@ -1285,7 +1291,8 @@
       "note": "あずかる (keep, take care of), said by staff at a cloakroom. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あずかる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     }
   ]
 }

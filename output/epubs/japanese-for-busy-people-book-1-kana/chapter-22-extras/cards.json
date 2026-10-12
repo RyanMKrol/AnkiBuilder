@@ -906,7 +906,8 @@
       "note": "いれる (put in). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's ないでください (please don't).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いれる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "ki-ni-suru-no-wa-yokunai",
@@ -917,7 +918,8 @@
       "note": "きにする (worry about) + のは, \"worrying\" (the の turns the verb into a thing, as in のがすきです), then よくないです (isn't good). The second half is this lesson's きにしないでください.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using きにする, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     }
   ]
 }

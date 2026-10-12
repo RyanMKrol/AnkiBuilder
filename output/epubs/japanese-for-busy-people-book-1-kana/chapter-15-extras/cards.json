@@ -1354,7 +1354,8 @@
       "note": "わかる (understand) + のはたのしいです, \"doing ~ is fun\". The の turns the verb into a thing, exactly as in のがすきです; here it takes は instead of が.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using わかる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "kazoku-ni-shashin-wo-okuru-no-ga-suki",
@@ -1365,7 +1366,8 @@
       "note": "おくる (send) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson. The person you send to takes に.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using おくる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "fujisan-ni-noboru-no-ga-suki",
@@ -1376,7 +1378,8 @@
       "note": "のぼる (climb) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson. The mountain takes に.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using のぼる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "teeburu-ni-hana-ga-aru-no-ga-suki",
@@ -1387,7 +1390,8 @@
       "note": "ある (be, for things) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson: literally \"I like it that there are flowers on the table\".",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ある, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "hana-wo-morau-no-ga-suki",
@@ -1398,7 +1402,8 @@
       "note": "もらう (receive) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using もらう, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "haha-ga-kureru-okashi-ga-suki",
@@ -1409,7 +1414,8 @@
       "note": "くれる (give to me) sits in front of おかし (sweets) and describes it: \"the sweets my mother gives me\". A verb describing a noun is always in the dictionary form.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using くれる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "toshokan-de-hon-wo-kariru-no-ga-suki",
@@ -1420,7 +1426,8 @@
       "note": "かりる (borrow) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson. The place you borrow at takes で.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using かりる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "niau-fuku-wo-kau-no-ga-suki",
@@ -1431,7 +1438,8 @@
       "note": "にあう (suit) sits in front of ふく (clothes) and describes it, \"clothes that suit me\"; then かう (buy) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using にあう, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     }
   ]
 }

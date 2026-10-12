@@ -959,7 +959,8 @@
       "note": "すわる (sit down). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's てもいいですか (may I).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using すわる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "heya-wo-tsukau-mae-ni-eakon",
@@ -970,7 +971,8 @@
       "note": "つかう (use). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つかう, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "kaigishitsu-ni-hairu-mae-ni-denwa",
@@ -981,7 +983,8 @@
       "note": "はいる (enter). The place you enter takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using はいる, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "keeki-wo-oku-mae-ni-shashin",
@@ -992,7 +995,8 @@
       "note": "おく (put). The place you put something takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using おく, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "eakon-wo-tsukeru-mae-ni-mado",
@@ -1003,7 +1007,8 @@
       "note": "つける (turn on). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つける, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "terebi-wo-kesu-mae-ni-nyuusu",
@@ -1014,7 +1019,8 @@
       "note": "けす (turn off). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using けす, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "shorui-wo-kopii-suru-mae-ni-yonde",
@@ -1025,7 +1031,8 @@
       "note": "コピーする (make a copy). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using コピーする, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "sumaho-wo-juuden-suru-mae-ni-denwa",
@@ -1036,7 +1043,8 @@
       "note": "じゅうでんする (recharge). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using じゅうでんする, the dictionary form added to the base unit in the same batch.",
-      "addition": "dictionary-forms-sweep-2026-10"
+      "addition": "dictionary-forms-sweep-2026-10",
+      "additionReviewed": true
     }
   ]
 }

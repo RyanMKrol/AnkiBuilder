@@ -241,8 +241,12 @@ went in as an AI-suggested card:
 - that lesson's extras unit gets a sentence using it, in the theme of what the lesson teaches
   (Lesson 15's のがすきです, Lesson 21's てもいいですか).
 
-A finished lesson receives them as additions (batch `dictionary-forms-2026-10`), so it keeps its
-sign-off. This is the one exception to "hand-authored cards go in extras": a missing form of a word
+A finished lesson receives them as additions (batches `dictionary-forms-2026-10` and
+`dictionary-forms-sweep-2026-10`), so it keeps its sign-off. The owner then asked for this on every
+lesson going forward, so it is no longer a rule anyone has to remember: phase 1 computes the missing
+forms (`src/cards/carriedForms.js`) and hands them to the gap filler, and the `carried-forms` preflight
+check reports any finished lesson still missing one. A phrase is covered by its verb, so
+テニスをします needs no テニスをする once する has a card. This is the one exception to "hand-authored cards go in extras": a missing form of a word
 the base unit already teaches is still that unit's vocabulary.
 
 **Every form the chapter DOES teach earns its own card, and that is the half most often missed.** A

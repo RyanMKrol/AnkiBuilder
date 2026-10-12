@@ -15,6 +15,7 @@ import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js"
 import { vocabCoverageCheck } from "./vocab.js";
 import { taughtNeverUsedCheck } from "./taughtNeverUsed.js";
 import { baseSplitCheck } from "./baseSplit.js";
+import { carriedFormsCheck } from "./carriedForms.js";
 import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
 import {
   collectionStateCheck,
@@ -47,6 +48,7 @@ const SPEAKING_ONLY = [
   vocabCoverageCheck,
   taughtNeverUsedCheck,
   baseSplitCheck,
+  carriedFormsCheck,
   extrasLibraryWriteCheck,
   libraryCompletenessCheck,
   duplicatesCheck,
@@ -106,6 +108,7 @@ const SPEAKING_AND_SHARED_CHECKS = [
   vocabCoverageCheck,
   taughtNeverUsedCheck,
   baseSplitCheck,
+  carriedFormsCheck,
   strayPackageCheck,
   packageFreshnessCheck,
   duplicatesCheck,

@@ -227,3 +227,36 @@ test("a step that writes nothing is caught by verifyRun, not by a reviewer", () 
     assert.ok(verdict.notes.some((n) => /produced nothing/.test(n)));
   });
 });
+
+test("a form an earlier lesson taught reaches the gap filler for this chapter's verbs", () =>
+  withUnit(({ unitDir, chapterFile }) => {
+    let seen = null;
+    runBasePhase({
+      unitDir,
+      chapterFilePath: chapterFile,
+      chapterHtml: HTML,
+      targetLanguage: "ja",
+      meta: { hints: { vocabularyTableClass: "voca" } },
+      priorItems: [{ id: "taberu", target: "たべる", english: "Eat (dictionary form)" }],
+      agents: {
+        ...agents,
+        readChapter: ({ sections }) => ({
+          items: [
+            { id: "nemasu", target: "ねます", english: "Sleep", producedBy: "chapterReader" },
+          ],
+          sections: sections.map((s) => ({ title: s.title, read: true, contributed: 1 })),
+        }),
+        fillCoverageGaps: ({ gaps }) => {
+          seen = gaps;
+          return { items: [], declined: [], unfilled: [], skipped: false };
+        },
+      },
+    });
+    const carried = seen.filter((g) => g.carriedForm);
+    assert.deepEqual(
+      carried.map((g) => [g.target, g.carriedForm]),
+      [["ねます", "dictionary form"]],
+    );
+    const fills = JSON.parse(readFileSync(join(unitDir, "candidates", "coverage-fills.json")));
+    assert.deepEqual(fills.carriedForms, ["ねます"]);
+  }));

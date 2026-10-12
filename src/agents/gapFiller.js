@@ -113,10 +113,24 @@ export function fillCoverageGaps({
 
   // `...item` first, so an `uncertain` the model set on a gap it read off a chart without a gloss
   // survives. That is the right flag for a shaky reading; `aiSuggested` is not.
-  const filled = (Array.isArray(parsed.items) ? parsed.items : []).map((item) => ({
-    ...item,
-    producedBy: ROLE_ID,
-  }));
+  //
+  // The one exception is a CARRIED form (src/cards/carriedForms.js): a form an earlier lesson taught
+  // that this chapter never prints. That card really is not from the source, so it is stamped, and
+  // the reviewer sees why on the card rather than having to guess.
+  const carried = new Map(gaps.filter((g) => g.carriedForm).map((g) => [g.target, g]));
+  const filled = (Array.isArray(parsed.items) ? parsed.items : []).map((item) => {
+    const gap = carried.get(item.fillsGap);
+    if (!gap) return { ...item, producedBy: ROLE_ID };
+    return {
+      ...item,
+      producedBy: ROLE_ID,
+      aiSuggested: true,
+      reviewNote:
+        item.reviewNote ??
+        `The book taught the ${gap.carriedForm} in an earlier lesson and never prints it for ` +
+          `${gap.target}, so it was added here (owner ruling 2026-10-12).`,
+    };
+  });
   const declined = Array.isArray(parsed.declined) ? parsed.declined : [];
 
   return {

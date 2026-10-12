@@ -35,6 +35,30 @@ a form this chapter has not reached.
 
 Everything else gets a card.
 
+## A gap with `carriedForm` is not in the chapter, and is still owed
+
+Some gaps carry a `carriedForm` field (`"dictionary form"`, say). Those did not come from the reader.
+A script found that an EARLIER lesson of this book taught that form, and that this chapter teaches the
+verb in the gap without it. The book will never print it, so "not taught by the chapter" is not a
+reason to decline one. The owner ruled on 2026-10-12 that every verb is owed it, in the lesson that
+teaches the verb.
+
+Card the form itself, not the verb you were given:
+
+- **`target`**: the form, written out (`ねます` gives `ねる`; `ダウンロードします` gives
+  `ダウンロードする`). For a phrase, card the verb alone when that is the part being conjugated
+  (`シャワーをあびます` gives `あびる`).
+- **`english`**: the verb's gloss followed by the form's label in parentheses, as in
+  `Sleep, go to bed (dictionary form)`. Every card of this form in the deck reads that way, and the
+  check that found the gap recognises a card by it.
+- **`category`**: `Grammar & Function Words`, so the extras pass gives it a sentence.
+- **`note`**: which form it is the dictionary form of, with its romaji, its gloss and its lesson, then
+  the verb class and the rule that derives it. For example:
+  `Dictionary form of ねます (nemasu, "sleep", Lesson 17), which is also its casual form. Regular 2: ます becomes る.`
+- **`fillsGap`**: the gap's target verbatim, which is the ます form, not the form you wrote.
+
+Decline one only if the verb's class genuinely cannot be determined, and say so.
+
 ## What a finished card needs
 
 The gap gives you a target and a rough gloss. You supply the rest, to the same standard as any other

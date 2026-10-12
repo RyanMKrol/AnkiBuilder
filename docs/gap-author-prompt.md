@@ -33,6 +33,18 @@ Where the form contrasts with one the learner already knows (`は`/`が`, `に`/
 **minimal pair** is worth more than two unrelated sentences: two sentences differing only in that
 form, each with a `note` naming the contrast. These are the highest-value cards this pass produces.
 
+**An inflected form of a verb is not a function word**, even when it is filed under Grammar &
+Function Words and arrives in this list. A ない-form, a て-form, a past or a dictionary form wants
+**one** sentence, not {{EXAMPLES_WANTED}}. A lesson that teaches twenty-six ない-forms and gets three
+sentences for each has been padded with seventy-eight drills of one pattern.
+
+Put that one sentence in **this chapter's construction** when the chapter has one that carries the
+form: a ない-form inside ないでください, a て-form inside てください. The form is still in the sentence,
+so it counts. Do **not** end a sentence on a bare plain form (たべない。, たばこをすう。) unless the
+chapter itself speaks in the plain register. That is casual speech, and a course that has taught the
+plain form only as a building block has not taught the learner to say it to anyone. If no
+construction in this chapter or an earlier one carries the form naturally, say so in `unfillable`.
+
 ### `paradigm`: a cell of a grid the lesson teaches and has not carded
 
 Deliver a missing cell as a **sentence in a fixed frame**, not as a table row. A paradigm carded as a

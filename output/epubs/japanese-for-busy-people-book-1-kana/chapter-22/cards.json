@@ -47,7 +47,12 @@
       "category": "Clothing",
       "target": "きもの",
       "pronunciation": "kimono",
-      "sourceOrder": 131
+      "sourceOrder": 131,
+      "audio": "2f141e2cd0d8329e.mp3",
+      "audioOriginal": "2f141e2cd0d8329e.orig.mp3",
+      "audioAuto": "2f141e2cd0d8329e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2f141e2cd0d8329e"
     },
     {
       "id": "mae-ago",
@@ -57,7 +62,12 @@
       "pronunciation": "mae",
       "sourceOrder": 621,
       "note": "Attached directly to a span of time (number + counter), まえ means \"...ago\" — みっかまえ \"three days ago.\" This is different from the まえ already met for \"before [verb]-ing\" (ねるまえに, Lesson 17) or \"in front of\" (Lesson 12/19) — here there's no に and no verb, just a duration.",
-      "scene": "after a length of time, as in 300 years ago"
+      "scene": "after a length of time, as in 300 years ago",
+      "audio": "1ac5880b7f90e6a6.mp3",
+      "audioOriginal": "1ac5880b7f90e6a6.orig.mp3",
+      "audioAuto": "1ac5880b7f90e6a6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1ac5880b7f90e6a6"
     },
     {
       "id": "imouto-younger-sister",
@@ -80,7 +90,12 @@
       "target": "とらないでください",
       "pronunciation": "toranaide kudasai",
       "sourceOrder": 234,
-      "note": "Negative request: the ない-form of とります (take a photo) plus でください — \"please don't do X,\" the mirror of てください \"please do X\" (Lesson 18/19). とる is a Regular I verb: とる→とらない. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: とらないで."
+      "note": "Negative request: the ない-form of とります (take a photo) plus でください — \"please don't do X,\" the mirror of てください \"please do X\" (Lesson 18/19). とる is a Regular I verb: とる→とらない. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: とらないで.",
+      "audio": "ce0466a39db02c1b.mp3",
+      "audioOriginal": "ce0466a39db02c1b.orig.mp3",
+      "audioAuto": "ce0466a39db02c1b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ce0466a39db02c1b"
     },
     {
       "id": "tomenaide-kudasai",
@@ -89,7 +104,12 @@
       "target": "とめないでください",
       "pronunciation": "tomenaide kudasai",
       "sourceOrder": 710,
-      "note": "Same ないでください pattern as とらないでください this lesson, here with とめます (park). とめる is Regular II: とめる→とめない. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: とめないで."
+      "note": "Same ないでください pattern as とらないでください this lesson, here with とめます (park). とめる is Regular II: とめる→とめない. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: とめないで.",
+      "audio": "252464575b244637.mp3",
+      "audioOriginal": "252464575b244637.orig.mp3",
+      "audioAuto": "252464575b244637.mp3",
+      "audioMarked": true,
+      "audioTextHash": "252464575b244637"
     },
     {
       "id": "wasabi",
@@ -97,7 +117,12 @@
       "category": "Food",
       "target": "わさび",
       "pronunciation": "wasabi",
-      "sourceOrder": 722
+      "sourceOrder": 722,
+      "audio": "aa2b8a23398814fe.mp3",
+      "audioOriginal": "aa2b8a23398814fe.orig.mp3",
+      "audioAuto": "aa2b8a23398814fe.mp3",
+      "audioMarked": true,
+      "audioTextHash": "aa2b8a23398814fe"
     },
     {
       "id": "iremasu-put-in",
@@ -106,7 +131,12 @@
       "target": "いれます",
       "pronunciation": "iremasu",
       "note": "Marked (R2) in the book: a ru-verb (Regular II).",
-      "sourceOrder": 1865
+      "sourceOrder": 1865,
+      "audio": "2b68b7105ef35a20.mp3",
+      "audioOriginal": "2b68b7105ef35a20.orig.mp3",
+      "audioAuto": "2b68b7105ef35a20.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2b68b7105ef35a20"
     },
     {
       "id": "irenaide-kudasai",
@@ -115,7 +145,12 @@
       "target": "いれないでください",
       "pronunciation": "irenaide kudasai",
       "sourceOrder": 726,
-      "note": "いれます (put in) is Regular II: ない-form いれない + でください, the same \"please don't\" pattern as とらないでください and とめないでください this lesson. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: いれないで."
+      "note": "いれます (put in) is Regular II: ない-form いれない + でください, the same \"please don't\" pattern as とらないでください and とめないでください this lesson. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: いれないで.",
+      "audio": "49b9c33a613e8efa.mp3",
+      "audioOriginal": "49b9c33a613e8efa.orig.mp3",
+      "audioAuto": "49b9c33a613e8efa.mp3",
+      "audioMarked": true,
+      "audioTextHash": "49b9c33a613e8efa"
     },
     {
       "id": "tachimasu-stand-up",
@@ -123,7 +158,12 @@
       "category": "Body & Health",
       "target": "たちます",
       "pronunciation": "tachimasu",
-      "sourceOrder": 1898
+      "sourceOrder": 1898,
+      "audio": "cc617ee03e2c56c0.mp3",
+      "audioOriginal": "cc617ee03e2c56c0.orig.mp3",
+      "audioAuto": "cc617ee03e2c56c0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cc617ee03e2c56c0"
     },
     {
       "id": "sawarimasu-touch",
@@ -131,7 +171,12 @@
       "category": "Body & Health",
       "target": "さわります",
       "pronunciation": "sawarimasu",
-      "sourceOrder": 1903
+      "sourceOrder": 1903,
+      "audio": "61d39fafa436ebc2.mp3",
+      "audioOriginal": "61d39fafa436ebc2.orig.mp3",
+      "audioAuto": "61d39fafa436ebc2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "61d39fafa436ebc2"
     },
     {
       "id": "tabako-wo-suimasu",
@@ -140,7 +185,12 @@
       "target": "たばこをすいます",
       "pronunciation": "tabako o suimasu",
       "sourceOrder": 1914,
-      "note": "すいます here means \"smoke/inhale,\" a different verb from すわります \"sit\" (Lesson 21) despite looking similar. Its ない-form is すわない (う→わ), not すわらない."
+      "note": "すいます here means \"smoke/inhale,\" a different verb from すわります \"sit\" (Lesson 21) despite looking similar. Its ない-form is すわない (う→わ), not すわらない.",
+      "audio": "d9b7511f366a5790.mp3",
+      "audioOriginal": "d9b7511f366a5790.orig.mp3",
+      "audioAuto": "d9b7511f366a5790.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d9b7511f366a5790"
     },
     {
       "id": "tachiirikinshi",
@@ -149,7 +199,12 @@
       "target": "たちいりきんし",
       "pronunciation": "tachiiri kinshi",
       "sourceOrder": 1944,
-      "note": "たちいり (going into a place) + きんし (prohibited). The same きんし ends ちゅうしゃきんし."
+      "note": "たちいり (going into a place) + きんし (prohibited). The same きんし ends ちゅうしゃきんし.",
+      "audio": "c868bf885e5d32c5.mp3",
+      "audioOriginal": "c868bf885e5d32c5.orig.mp3",
+      "audioAuto": "c868bf885e5d32c5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c868bf885e5d32c5"
     },
     {
       "id": "chuushakinshi",
@@ -158,7 +213,12 @@
       "target": "ちゅうしゃきんし",
       "pronunciation": "chūsha kinshi",
       "sourceOrder": 1952,
-      "note": "ちゅうしゃ (parking, the word inside ちゅうしゃじょう, parking lot) + きんし (prohibited), the same きんし as in たちいりきんし."
+      "note": "ちゅうしゃ (parking, the word inside ちゅうしゃじょう, parking lot) + きんし (prohibited), the same きんし as in たちいりきんし.",
+      "audio": "6800e2cd606a22d1.mp3",
+      "audioOriginal": "6800e2cd606a22d1.orig.mp3",
+      "audioAuto": "6800e2cd606a22d1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6800e2cd606a22d1"
     },
     {
       "id": "kinen-no-smoking",
@@ -167,7 +227,12 @@
       "target": "きんえん",
       "pronunciation": "kin'en",
       "sourceOrder": 1961,
-      "note": "A set sign word. It does not use きんし like たちいりきんし and ちゅうしゃきんし, though its きん also means \"prohibited\"."
+      "note": "A set sign word. It does not use きんし like たちいりきんし and ちゅうしゃきんし, though its きん also means \"prohibited\".",
+      "audio": "ab8ed7f54f2753f6.mp3",
+      "audioOriginal": "ab8ed7f54f2753f6.orig.mp3",
+      "audioAuto": "ab8ed7f54f2753f6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ab8ed7f54f2753f6"
     },
     {
       "id": "abunai",
@@ -176,7 +241,12 @@
       "target": "あぶない",
       "pronunciation": "abunai",
       "sourceOrder": 2073,
-      "reviewNote": "Pictured as the Word Power adjective example; glossed in the Exercise II vocabulary box."
+      "reviewNote": "Pictured as the Word Power adjective example; glossed in the Exercise II vocabulary box.",
+      "audio": "dc14cc46c8459189.mp3",
+      "audioOriginal": "dc14cc46c8459189.orig.mp3",
+      "audioAuto": "dc14cc46c8459189.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dc14cc46c8459189"
     },
     {
       "id": "doa",
@@ -184,7 +254,12 @@
       "category": "Home & Household",
       "target": "ドア",
       "pronunciation": "doa",
-      "sourceOrder": 2407
+      "sourceOrder": 2407,
+      "audio": "bd8829b256cafdc1.mp3",
+      "audioOriginal": "bd8829b256cafdc1.orig.mp3",
+      "audioAuto": "bd8829b256cafdc1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bd8829b256cafdc1"
     },
     {
       "id": "kabin",
@@ -192,7 +267,12 @@
       "category": "Home & Household",
       "target": "かびん",
       "pronunciation": "kabin",
-      "sourceOrder": 2434
+      "sourceOrder": 2434,
+      "audio": "c0e6f7d8c2194133.mp3",
+      "audioOriginal": "c0e6f7d8c2194133.orig.mp3",
+      "audioAuto": "c0e6f7d8c2194133.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c0e6f7d8c2194133"
     },
     {
       "id": "iriguchi",
@@ -201,7 +281,12 @@
       "target": "いりぐち",
       "pronunciation": "iriguchi",
       "sourceOrder": 2619,
-      "note": "Contrast でぐち (exit, Lesson 16 and this lesson) — いりぐち is its opposite, \"entrance.\""
+      "note": "Contrast でぐち (exit, Lesson 16 and this lesson) — いりぐち is its opposite, \"entrance.\"",
+      "audio": "8abd16219e7be398.mp3",
+      "audioOriginal": "8abd16219e7be398.orig.mp3",
+      "audioAuto": "8abd16219e7be398.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8abd16219e7be398"
     },
     {
       "id": "hanbaagaa",
@@ -209,7 +294,12 @@
       "category": "Food",
       "target": "ハンバーガー",
       "pronunciation": "hanbāgā",
-      "sourceOrder": 3636
+      "sourceOrder": 3636,
+      "audio": "8e3ebfd60c7cdd29.mp3",
+      "audioOriginal": "8e3ebfd60c7cdd29.orig.mp3",
+      "audioAuto": "8e3ebfd60c7cdd29.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8e3ebfd60c7cdd29"
     },
     {
       "id": "kechappu",
@@ -217,7 +307,12 @@
       "category": "Food",
       "target": "ケチャップ",
       "pronunciation": "kechappu",
-      "sourceOrder": 3671
+      "sourceOrder": 3671,
+      "audio": "5bdd45956aaa1e4f.mp3",
+      "audioOriginal": "5bdd45956aaa1e4f.orig.mp3",
+      "audioAuto": "5bdd45956aaa1e4f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5bdd45956aaa1e4f"
     },
     {
       "id": "mayoneezu",
@@ -225,7 +320,12 @@
       "category": "Food",
       "target": "マヨネーズ",
       "pronunciation": "mayonēzu",
-      "sourceOrder": 3764
+      "sourceOrder": 3764,
+      "audio": "2a13a52790f15d6b.mp3",
+      "audioOriginal": "2a13a52790f15d6b.orig.mp3",
+      "audioAuto": "2a13a52790f15d6b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2a13a52790f15d6b"
     },
     {
       "id": "chiizubaagaa",
@@ -233,7 +333,12 @@
       "category": "Food",
       "target": "チーズバーガー",
       "pronunciation": "chīzubāgā",
-      "sourceOrder": 3785
+      "sourceOrder": 3785,
+      "audio": "408be343884bad3f.mp3",
+      "audioOriginal": "408be343884bad3f.orig.mp3",
+      "audioAuto": "408be343884bad3f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "408be343884bad3f"
     },
     {
       "id": "tomato",
@@ -241,7 +346,12 @@
       "category": "Food",
       "target": "トマト",
       "pronunciation": "tomato",
-      "sourceOrder": 3804
+      "sourceOrder": 3804,
+      "audio": "b95bca4bf3cd279f.mp3",
+      "audioOriginal": "b95bca4bf3cd279f.orig.mp3",
+      "audioAuto": "b95bca4bf3cd279f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b95bca4bf3cd279f"
     },
     {
       "id": "ki-ni-shimasu",
@@ -250,7 +360,12 @@
       "target": "きにします",
       "pronunciation": "ki ni shimasu",
       "sourceOrder": 4561,
-      "note": "An idiom: き (mind/feeling) + に + します. Don't expect to reuse き or にします separately — learn the whole phrase."
+      "note": "An idiom: き (mind/feeling) + に + します. Don't expect to reuse き or にします separately — learn the whole phrase.",
+      "audio": "02eedb366dd586ab.mp3",
+      "audioOriginal": "02eedb366dd586ab.orig.mp3",
+      "audioAuto": "02eedb366dd586ab.mp3",
+      "audioMarked": true,
+      "audioTextHash": "02eedb366dd586ab"
     },
     {
       "id": "ki-ni-shinaide-kudasai",
@@ -259,7 +374,12 @@
       "target": "きにしないでください",
       "pronunciation": "ki ni shinaide kudasai",
       "sourceOrder": 4166,
-      "note": "きにします (worry about) in its ない-form plus でください — the same negative-request pattern as とらないでください and とめないでください this lesson. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: きにしないで."
+      "note": "きにします (worry about) in its ない-form plus でください — the same negative-request pattern as とらないでください and とめないでください this lesson. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: きにしないで.",
+      "audio": "4c532c58c1cc152a.mp3",
+      "audioOriginal": "4c532c58c1cc152a.orig.mp3",
+      "audioAuto": "4c532c58c1cc152a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4c532c58c1cc152a"
     },
     {
       "id": "osake",
@@ -268,7 +388,12 @@
       "target": "(お)さけ",
       "pronunciation": "(o)sake",
       "sourceOrder": 4576,
-      "note": "The お is optional, and is usual when talking about alcohol in general. Without it, さけ often means Japanese rice wine in particular."
+      "note": "The お is optional, and is usual when talking about alcohol in general. Without it, さけ often means Japanese rice wine in particular.",
+      "audio": "c198208cbe430366.mp3",
+      "audioOriginal": "c198208cbe430366.orig.mp3",
+      "audioAuto": "c198208cbe430366.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c198208cbe430366"
     },
     {
       "id": "deguchi",
@@ -580,7 +705,12 @@
       "target": "かわない",
       "pronunciation": "kawanai",
       "note": "Casual: for friends and family. The polite equivalent is かいません. ない-form of かいます (buy), a Regular I verb: the final う becomes わ before ない (かう→かわない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "7c9ca861ca2e02ee.mp3",
+      "audioOriginal": "7c9ca861ca2e02ee.orig.mp3",
+      "audioAuto": "7c9ca861ca2e02ee.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7c9ca861ca2e02ee"
     },
     {
       "id": "ikimasu-go",
@@ -601,7 +731,12 @@
       "target": "いかない",
       "pronunciation": "ikanai",
       "note": "Casual: for friends and family. The polite equivalent is いきません. ない-form of いきます (go), Regular I: く→か before ない (いく→いかない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "268d1bbabb3db3a5.mp3",
+      "audioOriginal": "268d1bbabb3db3a5.orig.mp3",
+      "audioAuto": "268d1bbabb3db3a5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "268d1bbabb3db3a5"
     },
     {
       "id": "oyogimasu-swim",
@@ -623,7 +758,12 @@
       "target": "およがない",
       "pronunciation": "oyoganai",
       "note": "Casual: for friends and family. The polite equivalent is およぎません. ない-form of およぎます (swim), Regular I: ぐ→が before ない (およぐ→およがない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "3c7a1e67475ed232.mp3",
+      "audioOriginal": "3c7a1e67475ed232.orig.mp3",
+      "audioAuto": "3c7a1e67475ed232.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3c7a1e67475ed232"
     },
     {
       "id": "kashimasu-lend",
@@ -644,7 +784,12 @@
       "target": "かさない",
       "pronunciation": "kasanai",
       "note": "Casual: for friends and family. The polite equivalent is かしません. ない-form of かします (lend), Regular I: す→さ before ない (かす→かさない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "772f0c8df66b8bfd.mp3",
+      "audioOriginal": "772f0c8df66b8bfd.orig.mp3",
+      "audioAuto": "772f0c8df66b8bfd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "772f0c8df66b8bfd"
     },
     {
       "id": "machimasu-wait",
@@ -665,7 +810,12 @@
       "target": "またない",
       "pronunciation": "matanai",
       "note": "Casual: for friends and family. The polite equivalent is まちません. ない-form of まちます (wait), Regular I: つ→た before ない (まつ→またない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "f19d4382f0b5d8b2.mp3",
+      "audioOriginal": "f19d4382f0b5d8b2.orig.mp3",
+      "audioAuto": "f19d4382f0b5d8b2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f19d4382f0b5d8b2"
     },
     {
       "id": "nomimasu-drink",
@@ -687,7 +837,12 @@
       "pronunciation": "nomanai",
       "sourceOrder": 4374,
       "note": "Casual: for friends and family. The polite equivalent is のみません. ない-form of のみます (drink), Regular I: む→ま before ない (のむ→のまない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "43014ea6d55dd13f.mp3",
+      "audioOriginal": "43014ea6d55dd13f.orig.mp3",
+      "audioAuto": "43014ea6d55dd13f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "43014ea6d55dd13f"
     },
     {
       "id": "kaerimasu-return-home",
@@ -708,7 +863,12 @@
       "target": "かえらない",
       "pronunciation": "kaeranai",
       "note": "Casual: for friends and family. The polite equivalent is かえりません. ない-form of かえります (return home). Despite ending in -eru, かえる is a Regular I verb, not Regular II, so its ない-form is かえらない, not かえない — one of the few -eru verbs that breaks the Regular II pattern.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "694c498988df0d2a.mp3",
+      "audioOriginal": "694c498988df0d2a.orig.mp3",
+      "audioAuto": "694c498988df0d2a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "694c498988df0d2a"
     },
     {
       "id": "mimasu-see",
@@ -729,7 +889,12 @@
       "target": "みない",
       "pronunciation": "minai",
       "note": "Casual: for friends and family. The polite equivalent is みません. ない-form of みます (see), Regular II: drop る and add ない (みる→みない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "cef41255185b7a3f.mp3",
+      "audioOriginal": "cef41255185b7a3f.orig.mp3",
+      "audioAuto": "cef41255185b7a3f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cef41255185b7a3f"
     },
     {
       "id": "imasu-be-animate",
@@ -751,7 +916,12 @@
       "target": "いない",
       "pronunciation": "inai",
       "note": "Casual: for friends and family. The polite equivalent is いません. ない-form of います (be, for a person/animal), Regular II: いる→いない.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "7fe956c2b4e50d06.mp3",
+      "audioOriginal": "7fe956c2b4e50d06.orig.mp3",
+      "audioAuto": "7fe956c2b4e50d06.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7fe956c2b4e50d06"
     },
     {
       "id": "tabemasu-eat",
@@ -772,7 +942,12 @@
       "target": "たべない",
       "pronunciation": "tabenai",
       "note": "Casual: for friends and family. The polite equivalent is たべません. ない-form of たべます (eat), Regular II: たべる→たべない.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "c62c60951fb341ff.mp3",
+      "audioOriginal": "c62c60951fb341ff.orig.mp3",
+      "audioAuto": "c62c60951fb341ff.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c62c60951fb341ff"
     },
     {
       "id": "oshiemasu-teach",
@@ -793,7 +968,12 @@
       "target": "おしえない",
       "pronunciation": "oshienai",
       "note": "Casual: for friends and family. The polite equivalent is おしえません. ない-form of おしえます (teach), Regular II: おしえる→おしえない.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "6c315dcb9452963f.mp3",
+      "audioOriginal": "6c315dcb9452963f.orig.mp3",
+      "audioAuto": "6c315dcb9452963f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6c315dcb9452963f"
     },
     {
       "id": "kimasu-come",
@@ -816,7 +996,12 @@
       "pronunciation": "konai",
       "reviewNote": "Irregular nai-form, keep even though it looks similar to the regular cells.",
       "note": "Casual: for friends and family. The polite equivalent is きません. ない-form of きます (come), irregular: くる becomes こない — a sound change specific to this one verb, not a pattern to apply elsewhere.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "2b5c101a1d9c5a1f.mp3",
+      "audioOriginal": "2b5c101a1d9c5a1f.orig.mp3",
+      "audioAuto": "2b5c101a1d9c5a1f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2b5c101a1d9c5a1f"
     },
     {
       "id": "shimasu-do",
@@ -840,7 +1025,12 @@
       "reviewNote": "Irregular nai-form, keep even though it looks similar to the regular cells.",
       "sourceOrder": 4528,
       "note": "Casual: for friends and family. The polite equivalent is しません. ない-form of します (do), irregular: する becomes しない.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "3281f1c27173c98c.mp3",
+      "audioOriginal": "3281f1c27173c98c.orig.mp3",
+      "audioAuto": "3281f1c27173c98c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3281f1c27173c98c"
     },
     {
       "id": "nai-suwanai",
@@ -849,7 +1039,12 @@
       "target": "すわない",
       "pronunciation": "suwanai",
       "note": "Casual: for friends and family. The polite equivalent is たばこをすいません. ない-form of たばこをすいます (smoke) above, Regular I: う→わ before ない (すう→すわない). Not to be confused with すわります \"sit\" (Lesson 21), whose ない-form would instead be すわらない.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "9a915cf4f7b917a8.mp3",
+      "audioOriginal": "9a915cf4f7b917a8.orig.mp3",
+      "audioAuto": "9a915cf4f7b917a8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9a915cf4f7b917a8"
     },
     {
       "id": "kakimasu-write",
@@ -871,7 +1066,12 @@
       "target": "かかない",
       "pronunciation": "kakanai",
       "note": "Casual: for friends and family. The polite equivalent is かきません. ない-form of かきます (write), Regular I: く→か before ない (かく→かかない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "d83703eb34be4a8c.mp3",
+      "audioOriginal": "d83703eb34be4a8c.orig.mp3",
+      "audioAuto": "d83703eb34be4a8c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d83703eb34be4a8c"
     },
     {
       "id": "hanashimasu-speak",
@@ -893,7 +1093,12 @@
       "target": "はなさない",
       "pronunciation": "hanasanai",
       "note": "Casual: for friends and family. The polite equivalent is はなしません. ない-form of はなします (speak), Regular I: す→さ before ない (はなす→はなさない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "6c4d06f8c2f822ed.mp3",
+      "audioOriginal": "6c4d06f8c2f822ed.orig.mp3",
+      "audioAuto": "6c4d06f8c2f822ed.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6c4d06f8c2f822ed"
     },
     {
       "id": "nai-tatanai",
@@ -902,7 +1107,12 @@
       "target": "たたない",
       "pronunciation": "tatanai",
       "note": "Casual: for friends and family. The polite equivalent is たちません. ない-form of たちます (stand up), Regular I: つ→た before ない (たつ→たたない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "edab0862d5b38657.mp3",
+      "audioOriginal": "edab0862d5b38657.orig.mp3",
+      "audioAuto": "edab0862d5b38657.mp3",
+      "audioMarked": true,
+      "audioTextHash": "edab0862d5b38657"
     },
     {
       "id": "torimasu-take-photo",
@@ -925,7 +1135,12 @@
       "pronunciation": "toranai",
       "sourceOrder": 649,
       "note": "Casual: for friends and family. The polite equivalent is とりません. ない-form of とります (take a photo), Regular I: る→ら before ない (とる→とらない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "6d9cbb71ce9653bc.mp3",
+      "audioOriginal": "6d9cbb71ce9653bc.orig.mp3",
+      "audioAuto": "6d9cbb71ce9653bc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6d9cbb71ce9653bc"
     },
     {
       "id": "shashin-photograph",
@@ -948,7 +1163,12 @@
       "pronunciation": "akenai",
       "sourceOrder": 2378,
       "note": "Casual: for friends and family. The polite equivalent is あけません. ない-form of あけます (open), Regular II: あける→あけない.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "48640c9f7b36bd9b.mp3",
+      "audioOriginal": "48640c9f7b36bd9b.orig.mp3",
+      "audioAuto": "48640c9f7b36bd9b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "48640c9f7b36bd9b"
     },
     {
       "id": "nai-shimenai",
@@ -957,7 +1177,12 @@
       "target": "しめない",
       "pronunciation": "shimenai",
       "note": "Casual: for friends and family. The polite equivalent is しめません. ない-form of しめます (close), Regular II: しめる→しめない.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "45f7386d80c275bd.mp3",
+      "audioOriginal": "45f7386d80c275bd.orig.mp3",
+      "audioAuto": "45f7386d80c275bd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "45f7386d80c275bd"
     },
     {
       "id": "tomemasu-park",
@@ -980,7 +1205,12 @@
       "pronunciation": "tomenai",
       "sourceOrder": 1803,
       "note": "Casual: for friends and family. The polite equivalent is とめません. ない-form of とめます (park), Regular II: とめる→とめない.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "b856fe7a96af34ee.mp3",
+      "audioOriginal": "b856fe7a96af34ee.orig.mp3",
+      "audioAuto": "b856fe7a96af34ee.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b856fe7a96af34ee"
     },
     {
       "id": "aimasu-meet",
@@ -1003,7 +1233,12 @@
       "pronunciation": "awanai",
       "sourceOrder": 2158,
       "note": "Casual: for friends and family. The polite equivalent is あいません. ない-form of あいます (meet), Regular I: う→わ before ない (あう→あわない).",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "f227a005902e4778.mp3",
+      "audioOriginal": "f227a005902e4778.orig.mp3",
+      "audioAuto": "f227a005902e4778.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f227a005902e4778"
     },
     {
       "id": "nai-misenai",
@@ -1015,7 +1250,12 @@
       "note": "Casual: for friends and family. The polite equivalent is みせません. ない-form of みせます (show), Regular II: みせる→みせない.",
       "aiSuggested": true,
       "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "b30eb84b1d19b637.mp3",
+      "audioOriginal": "b30eb84b1d19b637.orig.mp3",
+      "audioAuto": "b30eb84b1d19b637.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b30eb84b1d19b637"
     },
     {
       "id": "nai-sawaranai",
@@ -1027,7 +1267,12 @@
       "note": "Casual: for friends and family. The polite equivalent is さわりません. ない-form of さわります (touch), Regular I: る→ら before ない (さわる→さわらない).",
       "aiSuggested": true,
       "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "1d87575dd6e24495.mp3",
+      "audioOriginal": "1d87575dd6e24495.orig.mp3",
+      "audioAuto": "1d87575dd6e24495.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1d87575dd6e24495"
     },
     {
       "id": "nai-agenai",
@@ -1039,7 +1284,12 @@
       "note": "Casual: for friends and family. The polite equivalent is あげません. ない-form of あげます (give), Regular II: あげる→あげない.",
       "aiSuggested": true,
       "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "024abd6a3b4a0bb3.mp3",
+      "audioOriginal": "024abd6a3b4a0bb3.orig.mp3",
+      "audioAuto": "024abd6a3b4a0bb3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "024abd6a3b4a0bb3"
     },
     {
       "id": "nai-kikanai",
@@ -1051,7 +1301,12 @@
       "note": "Casual: for friends and family. The polite equivalent is ききません. ない-form of ききます (listen, ask), Regular I: く→か before ない (きく→きかない).",
       "aiSuggested": true,
       "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
-      "hint": "casual form"
+      "hint": "casual form",
+      "audio": "8f0533f78ed23c5a.mp3",
+      "audioOriginal": "8f0533f78ed23c5a.orig.mp3",
+      "audioAuto": "8f0533f78ed23c5a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8f0533f78ed23c5a"
     },
     {
       "pronunciation": "tatsu",
@@ -1062,7 +1317,12 @@
       "category": "Grammar & Function Words",
       "sourceOrder": 2162,
       "aiSuggested": true,
-      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15."
+      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15.",
+      "audio": "17cef98056811641.mp3",
+      "audioOriginal": "17cef98056811641.orig.mp3",
+      "audioAuto": "17cef98056811641.mp3",
+      "audioMarked": true,
+      "audioTextHash": "17cef98056811641"
     },
     {
       "pronunciation": "suu",
@@ -1073,7 +1333,12 @@
       "category": "Grammar & Function Words",
       "sourceOrder": 2162,
       "aiSuggested": true,
-      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15."
+      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15.",
+      "audio": "f20e79fd1bc1d99a.mp3",
+      "audioOriginal": "f20e79fd1bc1d99a.orig.mp3",
+      "audioAuto": "f20e79fd1bc1d99a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f20e79fd1bc1d99a"
     },
     {
       "pronunciation": "sawaru",
@@ -1084,7 +1349,12 @@
       "category": "Grammar & Function Words",
       "sourceOrder": 2162,
       "aiSuggested": true,
-      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15."
+      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15.",
+      "audio": "27f92da719e8776a.mp3",
+      "audioOriginal": "27f92da719e8776a.orig.mp3",
+      "audioAuto": "27f92da719e8776a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "27f92da719e8776a"
     },
     {
       "id": "misemasu-show",
@@ -1301,7 +1571,12 @@
       "target": "にも",
       "pronunciation": "nimo",
       "note": "に (location) + も (also): the に is kept and も added after it.",
-      "sourceOrder": 274
+      "sourceOrder": 274,
+      "audio": "06711242b0a9ab64.mp3",
+      "audioOriginal": "06711242b0a9ab64.orig.mp3",
+      "audioAuto": "06711242b0a9ab64.mp3",
+      "audioMarked": true,
+      "audioTextHash": "06711242b0a9ab64"
     }
   ]
 }

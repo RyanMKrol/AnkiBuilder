@@ -986,6 +986,36 @@
       "hint": "casual form"
     },
     {
+      "id": "tatsu-dict-form",
+      "english": "Stand up (dictionary form)",
+      "target": "たつ",
+      "note": "Dictionary form of たちます (tachimasu, \"stand up\") above, which is also its casual form. Regular 1: the ち before ます becomes つ.",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2162,
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15."
+    },
+    {
+      "id": "suu-dict-form",
+      "english": "Smoke (dictionary form)",
+      "target": "すう",
+      "note": "Dictionary form of すいます in たばこをすいます (tabako o suimasu, \"smoke a cigarette\") above, which is also its casual form. Regular 1: the い before ます becomes う.",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2162,
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15."
+    },
+    {
+      "id": "sawaru-dict-form",
+      "english": "Touch (dictionary form)",
+      "target": "さわる",
+      "note": "Dictionary form of さわります (sawarimasu, \"touch\") above, which is also its casual form. Regular 1: the り before ます becomes る.",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2162,
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15."
+    },
+    {
       "id": "misemasu-show",
       "target": "みせます",
       "english": "Show.",

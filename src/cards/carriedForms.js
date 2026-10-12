@@ -43,6 +43,14 @@ const I_TO_U = {
 /** Set phrases that end in ます and are not a verb a learner conjugates. */
 const JA_FIXED_PHRASES = /(ございます|おねがいします|しつれいします|いただきます|おじゃまします)$/;
 
+/**
+ * A ています progressive (たべています, のんでいます) ends in ます like any polite verb, but it is the
+ * て-form plus the auxiliary います, so its "stem" yields nonsense candidates (のんでいる, のんでう) and
+ * the gap could never close. Its dictionary form is the base verb's, owed by the base verb's own card.
+ * Lesson 23's paradigm cells were reported as six false gaps before this existed.
+ */
+const JA_PROGRESSIVE = /[てで]います$/;
+
 /** Particles that join an object or subject to its verb, so the phrase is covered by the verb. */
 const JA_PHRASE_PARTICLES = ["を", "が"];
 
@@ -60,6 +68,7 @@ export const CARRIED_FORMS = {
         if (!target.endsWith("ます")) return false;
         if (/[、。？！?!\s]/.test(target)) return false;
         if (JA_FIXED_PHRASES.test(target)) return false;
+        if (JA_PROGRESSIVE.test(target)) return false;
         if (item.category === "Greetings") return false;
         // A sentence glosses as one ("There is a bank."); an entry does not ("Be, exist").
         if (/[.?!]\s*$/.test(item.english ?? "")) return false;

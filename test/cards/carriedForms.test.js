@@ -89,3 +89,11 @@ test("sentences, set phrases, excluded cards and other forms are not verbs to co
   );
   assert.deepEqual(gaps, []);
 });
+
+test("a ています progressive is not a verb entry of its own", () => {
+  // Its dictionary form is the base verb's. Treating it as a source generated のんでいる and
+  // のんでう as candidates, so Lesson 23's paradigm cells were reported as gaps no card could close.
+  const prior = [dict("たべる", "Eat"), dict("のむ", "Drink")];
+  const here = [verb("たべています", "Be eating"), verb("のんでいます", "Is drinking")];
+  assert.deepEqual(missingCarriedForms(here, { priorItems: prior, languageCode: "ja" }), []);
+});

@@ -508,6 +508,24 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "Same underlying request with and without すみません; keeping the one carrying the scene per the same-after-interjection rule."
+    },
+    {
+      "id": "mado-wo-akeru-mae-ni-eakon",
+      "english": "May I turn off the air conditioner before I open the window?",
+      "category": "Grammar & Function Words",
+      "target": "まどをあけるまえに、エアコンをけしてもいいですか",
+      "note": "あける (open) in the dictionary form before まえに (before), then this lesson's てもいいですか to ask permission.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あける, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "mise-wo-shimeru-mae-ni-kau",
+      "english": "May I buy this before you close the shop?",
+      "category": "Grammar & Function Words",
+      "target": "みせをしめるまえに、これをかってもいいですか",
+      "note": "しめる (close) in the dictionary form before まえに (before), then this lesson's てもいいですか to ask permission.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using しめる, the dictionary form added to the base unit in the same batch."
     }
   ]
 }

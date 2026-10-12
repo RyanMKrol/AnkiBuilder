@@ -669,6 +669,15 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "Same sentence and same meaning; the kept card has the natural target spacing, the fuller 'Please' gloss and a scene."
+    },
+    {
+      "id": "kuruma-wo-tomeru-mae-ni-denwa",
+      "english": "Please call before you park the car.",
+      "category": "Grammar & Function Words",
+      "target": "くるまをとめるまえに、でんわをしてください",
+      "note": "とめる (park) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using とめる, the dictionary form added to the base unit in the same batch."
     }
   ]
 }

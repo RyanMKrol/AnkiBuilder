@@ -54,7 +54,7 @@
     {
       "id": "convenience-store-nearby-a",
       "target": "ええ、えきのまえにあります。それから、えきのなかにもありますよ。",
-      "english": "Yes, there is one in front of the station. There is also one inside the station.",
+      "english": "Yes, there is one in front of the station. And there is also one inside the station.",
       "category": "Shopping",
       "scene": "Answering someone who just asked whether there's a convenience store nearby."
     },
@@ -160,14 +160,14 @@
     {
       "id": "nai-oshienai-ex1",
       "target": "わたしの でんわばんごうを おしえないでください。",
-      "english": "Please don't tell anyone my phone number.",
+      "english": "Please don't give out my phone number.",
       "category": "Grammar & Function Words",
       "aiSuggested": true
     },
     {
       "id": "ask-nearby-park",
       "target": "すみません。この ちかくに こうえんが ありますか。ええ、びょういんの まえに あります。それから、がっこうの となりにも ありますよ。",
-      "english": "Excuse me, is there a park nearby? Yes, there's one in front of the hospital. There's also one next to the school, you know.",
+      "english": "Excuse me, is there a park nearby? Yes, there's one in front of the hospital. And there's also one next to the school, you know.",
       "category": "Directions",
       "fillInBlank": true
     },
@@ -245,7 +245,7 @@
       "target": "からくしないでください。",
       "english": "Please don't make it spicy.",
       "category": "Food",
-      "note": "からい (spicy, Lesson 3) becomes からく before します, \"make it ~\". The book has not taught this change yet.",
+      "note": "からい (spicy, Lesson 10) becomes からく before します, \"make it ~\". The book has not taught this change yet.",
       "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. Uses the い-adjective く-form, not yet taught.",
       "aiSuggested": true
     },
@@ -364,7 +364,7 @@
     {
       "id": "ask-nearby-parking-lot",
       "target": "すみません。この ちかくに ちゅうしゃじょうが ありますか。ええ、あの ビルの となりに あります。それから、デパートの ちかにも ありますよ。",
-      "english": "Excuse me, is there a parking lot nearby? Yes, there's one next to that building. There's also one in the department store basement, you know.",
+      "english": "Excuse me, is there a parking lot nearby? Yes, there's one next to that building. And there's also one in the department store basement, you know.",
       "category": "Directions",
       "fillInBlank": true
     },
@@ -419,7 +419,8 @@
       "category": "Grammar & Function Words",
       "aiSuggested": true,
       "note": "いない is the ない-form of います (be, for people and animals). With でください it asks someone not to be, or stay, somewhere.",
-      "reviewNote": "Rewritten by the operator before gate 2: was ねこは ここに いないでください."
+      "reviewNote": "Rewritten by the operator before gate 2: was ねこは ここに いないでください.",
+      "hint": "with います"
     },
     {
       "id": "nai-tabenai-ex1",

@@ -80,7 +80,7 @@
     },
     {
       "id": "convenience-store-nearby-a",
-      "english": "Yes, there is one in front of the station. There is also one inside the station.",
+      "english": "Yes, there is one in front of the station. And there is also one inside the station.",
       "category": "Shopping",
       "target": "ええ、えきのまえにあります。それから、えきのなかにもありますよ",
       "pronunciation": "ē, eki no mae ni arimasu. sorekara, eki no naka ni mo arimasu yo",
@@ -200,7 +200,7 @@
     },
     {
       "id": "nai-oshienai-ex1",
-      "english": "Please don't tell anyone my phone number.",
+      "english": "Please don't give out my phone number.",
       "category": "Grammar & Function Words",
       "target": "わたしのでんわばんごうをおしえないでください",
       "pronunciation": "watashi no denwa bangō o oshienaide kudasai",
@@ -208,7 +208,7 @@
     },
     {
       "id": "ask-nearby-park",
-      "english": "Excuse me, is there a park nearby? Yes, there's one in front of the hospital. There's also one next to the school, you know.",
+      "english": "Excuse me, is there a park nearby? Yes, there's one in front of the hospital. And there's also one next to the school, you know.",
       "category": "Directions",
       "target": "すみません。このちかくにこうえんがありますか。ええ、びょういんのまえにあります。それから、がっこうのとなりにもありますよ",
       "pronunciation": "sumimasen. kono chikaku ni kōen ga arimasu ka. ē, byōin no mae ni arimasu. sorekara, gakkō no tonari ni mo arimasu yo"
@@ -297,7 +297,7 @@
       "target": "からくしないでください",
       "english": "Please don't make it spicy.",
       "category": "Food",
-      "note": "からい (spicy, Lesson 3) becomes からく before します, \"make it ~\". The book has not taught this change yet.",
+      "note": "からい (spicy, Lesson 10) becomes からく before します, \"make it ~\". The book has not taught this change yet.",
       "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. Uses the い-adjective く-form, not yet taught.",
       "aiSuggested": true,
       "pronunciation": "karaku shinaide kudasai"
@@ -431,7 +431,7 @@
     },
     {
       "id": "ask-nearby-parking-lot",
-      "english": "Excuse me, is there a parking lot nearby? Yes, there's one next to that building. There's also one in the department store basement, you know.",
+      "english": "Excuse me, is there a parking lot nearby? Yes, there's one next to that building. And there's also one in the department store basement, you know.",
       "category": "Directions",
       "target": "すみません。このちかくにちゅうしゃじょうがありますか。ええ、あのビルのとなりにあります。それから、デパートのちかにもありますよ",
       "pronunciation": "sumimasen. kono chikaku ni chūshajō ga arimasu ka. ē, ano biru no tonari ni arimasu. sorekara, depāto no chika ni mo arimasu yo"
@@ -490,7 +490,8 @@
       "pronunciation": "abunai desu kara, koko ni inaide kudasai",
       "aiSuggested": true,
       "note": "いない is the ない-form of います (be, for people and animals). With でください it asks someone not to be, or stay, somewhere.",
-      "reviewNote": "Rewritten by the operator before gate 2: was ねこはここにいないでください."
+      "reviewNote": "Rewritten by the operator before gate 2: was ねこはここにいないでください.",
+      "hint": "with います"
     },
     {
       "id": "nai-tabenai-ex1",

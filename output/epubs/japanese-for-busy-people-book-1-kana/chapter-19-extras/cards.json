@@ -454,11 +454,6 @@
       "ttsText": "よんせんえんです",
       "uncertain": true,
       "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
-      "audio": "5133d00ef061ad32.mp3",
-      "audioOriginal": "5133d00ef061ad32.orig.mp3",
-      "audioAuto": "5133d00ef061ad32.mp3",
-      "audioMarked": true,
-      "audioTextHash": "5133d00ef061ad32",
       "excluded": true,
       "excludedBy": "human"
     },
@@ -1207,7 +1202,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using とめる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "d83da1e0dd9a08b6.mp3",
+      "audioOriginal": "d83da1e0dd9a08b6.orig.mp3",
+      "audioAuto": "d83da1e0dd9a08b6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d83da1e0dd9a08b6"
     }
   ]
 }

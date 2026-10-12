@@ -1300,7 +1300,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "f48fae3c5fd26c63.mp3",
+      "audioOriginal": "f48fae3c5fd26c63.orig.mp3",
+      "audioAuto": "f48fae3c5fd26c63.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f48fae3c5fd26c63"
     },
     {
       "id": "shashin-wo-miseru-no-ga-suki",
@@ -1312,7 +1317,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using みせる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "4ee082ac7e89abdc.mp3",
+      "audioOriginal": "4ee082ac7e89abdc.orig.mp3",
+      "audioAuto": "4ee082ac7e89abdc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4ee082ac7e89abdc"
     },
     {
       "id": "hana-wo-ageru-no-ga-suki",
@@ -1324,7 +1334,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あげる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "c8e5ff621b6ac650.mp3",
+      "audioOriginal": "c8e5ff621b6ac650.orig.mp3",
+      "audioAuto": "c8e5ff621b6ac650.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c8e5ff621b6ac650"
     }
   ]
 }

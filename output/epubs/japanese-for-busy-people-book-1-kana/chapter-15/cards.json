@@ -366,11 +366,6 @@
       "pronunciation": "Chan-san wa nihongo ga jōzu deshita",
       "aiSuggested": true,
       "reviewNote": "Exercise I's conjugation chart (Page_146_Image_0001.jpg) teaches the past-tense forms でした / じゃありませんでした for すきです / じょうずです, but no sentence anywhere in the chapter's text actually uses them. This reuses チャンさん and にほんご from Key Sentence 2 to demonstrate じょうずでした in context.",
-      "audio": "3b1f02a79d0d2059.mp3",
-      "audioOriginal": "3b1f02a79d0d2059.orig.mp3",
-      "audioAuto": "3b1f02a79d0d2059.mp3",
-      "audioMarked": true,
-      "audioTextHash": "3b1f02a79d0d2059",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "AI-suggested sentence; the past forms have their own cards and the extras carry them in sentences."
@@ -397,11 +392,6 @@
       "uncertain": true,
       "aiSuggested": true,
       "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
-      "audio": "cc41fb9a720a3248.mp3",
-      "audioOriginal": "cc41fb9a720a3248.orig.mp3",
-      "audioAuto": "cc41fb9a720a3248.mp3",
-      "audioMarked": true,
-      "audioTextHash": "cc41fb9a720a3248",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Printed only inside pictures and example sentences; already known from テニスをします (Lesson 8)."
@@ -416,11 +406,6 @@
       "uncertain": true,
       "aiSuggested": true,
       "reviewNote": "Read off the EXERCISES II picture cues (Page_146_Image_0002-0005), where the word is printed inside the image and not in any vocabulary box; the English gloss is supplied, not the book's.",
-      "audio": "66bb10942db6fe92.mp3",
-      "audioOriginal": "66bb10942db6fe92.orig.mp3",
-      "audioAuto": "66bb10942db6fe92.mp3",
-      "audioMarked": true,
-      "audioTextHash": "66bb10942db6fe92",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Not printed in the book: inferred from a picture of a sake bottle, whose word in this chapter is にほんしゅ (Lesson 8)."
@@ -862,11 +847,6 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "fcacf2d09109a9ce.mp3",
-      "audioOriginal": "fcacf2d09109a9ce.orig.mp3",
-      "audioAuto": "fcacf2d09109a9ce.mp3",
-      "audioMarked": true,
-      "audioTextHash": "fcacf2d09109a9ce",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Same どんな〜がすきですか frame as the Target Dialogue and EXERCISES III example, which ship."
@@ -881,11 +861,6 @@
       "scene": "answering what kind of fruit Suzuki-san likes",
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "327608f4e212db34.mp3",
-      "audioOriginal": "327608f4e212db34.orig.mp3",
-      "audioAuto": "327608f4e212db34.mp3",
-      "audioMarked": true,
-      "audioTextHash": "327608f4e212db34",
       "excluded": true,
       "excludedBy": "v2-retrofit-2026-09-28",
       "excludedReason": "Same 〜がすきです answer frame as やきゅうがすきです (EXERCISES III example), which ships; りんご is Lesson 5 vocabulary."
@@ -953,7 +928,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught あいます (Lesson 9), or Lesson 15 where the form itself is taught if the verb came earlier.",
       "addition": "dictionary-forms-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "5d68810955be6135.mp3",
+      "audioOriginal": "5d68810955be6135.orig.mp3",
+      "audioAuto": "5d68810955be6135.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5d68810955be6135"
     },
     {
       "id": "miseru-dict-form",
@@ -965,7 +945,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught みせます (Lesson 11), or Lesson 15 where the form itself is taught if the verb came earlier.",
       "addition": "dictionary-forms-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "453f4ef0748ab4c4.mp3",
+      "audioOriginal": "453f4ef0748ab4c4.orig.mp3",
+      "audioAuto": "453f4ef0748ab4c4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "453f4ef0748ab4c4"
     },
     {
       "id": "ageru-dict-form",
@@ -977,7 +962,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught あげます (Lesson 14), or Lesson 15 where the form itself is taught if the verb came earlier.",
       "addition": "dictionary-forms-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "37cb1c0a2b7a941a.mp3",
+      "audioOriginal": "37cb1c0a2b7a941a.orig.mp3",
+      "audioAuto": "37cb1c0a2b7a941a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "37cb1c0a2b7a941a"
     }
   ]
 }

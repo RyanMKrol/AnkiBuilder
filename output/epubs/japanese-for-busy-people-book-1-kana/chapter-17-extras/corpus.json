@@ -792,6 +792,78 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "Same sentence, same meaning; only the English wording differs. Kept the gloss that translates しょうらい as 'In the future' and the shorter id."
+    },
+    {
+      "id": "neru-mae-ni-terebi-mitai",
+      "english": "I want to watch TV before I go to bed.",
+      "category": "Grammar & Function Words",
+      "target": "ねるまえに、テレビをみたいです",
+      "note": "ねる (go to bed) + まえに (before), then this lesson's たいです (want to).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ねる, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "ikebana-wo-narau-mae-ni-hon",
+      "english": "Before I take ikebana lessons, I want to read a book about it.",
+      "category": "Grammar & Function Words",
+      "target": "いけばなをならうまえに、ほんをよみたいです",
+      "note": "ならう (learn). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ならう, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "kuruma-wo-arau-mae-ni-hirugohan",
+      "english": "I want to have lunch before I wash the car.",
+      "category": "Grammar & Function Words",
+      "target": "くるまをあらうまえに、ひるごはんをたべたいです",
+      "note": "あらう (wash). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あらう, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "shawaa-wo-abiru-mae-ni-kohii",
+      "english": "In the morning, I want to have a coffee before I take a shower.",
+      "category": "Grammar & Function Words",
+      "target": "あさ、シャワーをあびるまえに、コーヒーをのみたいです",
+      "note": "あびる (take, of a shower). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あびる, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "kaigi-wo-hajimeru-mae-ni-kohii",
+      "english": "I'd like to have a coffee before we start the meeting.",
+      "category": "Grammar & Function Words",
+      "target": "かいぎをはじめるまえに、コーヒーをのみたいです",
+      "note": "はじめる (start). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using はじめる, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "toukyou-ni-sumu-mae-ni-uchi-wo-mitai",
+      "english": "Before I live in Tokyo, I want to see the house.",
+      "category": "Grammar & Function Words",
+      "target": "とうきょうにすむまえに、うちをみたいです",
+      "note": "すむ (live). The place you live takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using すむ, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "daunroodo-suru-mae-ni-mitai",
+      "english": "I want to take a quick look before I download it.",
+      "category": "Grammar & Function Words",
+      "target": "ダウンロードするまえに、ちょっとみたいです",
+      "note": "ダウンロードする (download). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then みたいです (want to see).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ダウンロードする, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "meeru-wo-chekku-suru-mae-ni-asagohan",
+      "english": "I want to eat breakfast before I check my e-mail.",
+      "category": "Grammar & Function Words",
+      "target": "メールをチェックするまえに、あさごはんをたべたいです",
+      "note": "チェックする (check). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using チェックする, the dictionary form added to the base unit in the same batch."
     }
   ]
 }

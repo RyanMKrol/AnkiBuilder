@@ -1089,6 +1089,17 @@
       "audioMarked": true,
       "audioTextHash": "68cc29b45bbdfa81",
       "additionDone": true
+    },
+    {
+      "id": "uchi-de-yasumu-no-ga-suki-chotto",
+      "english": "I like to rest at home on Saturdays, so that doesn't really work for me.",
+      "category": "Grammar & Function Words",
+      "target": "どようびはうちでやすむのがすきですから、ちょっと",
+      "pronunciation": "doyōbi wa uchi de yasumu no ga suki desu kara, chotto",
+      "note": "Turning down an invitation, as this lesson does: やすむ (rest) + のがすきです from Lesson 15, then ですから (so) and ちょっと, the polite way to leave a refusal unsaid.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using やすむ, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
     }
   ]
 }

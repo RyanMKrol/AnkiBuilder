@@ -1209,6 +1209,83 @@
       "audioMarked": true,
       "audioTextHash": "d83da1e0dd9a08b6",
       "additionDone": true
+    },
+    {
+      "id": "douryou-ni-iu-mae-ni-denwa",
+      "english": "Please call me before you tell your colleagues.",
+      "category": "Grammar & Function Words",
+      "target": "どうりょうにいうまえに、わたしにでんわをしてください",
+      "pronunciation": "dōryō ni iu mae ni, watashi ni denwa o shite kudasai",
+      "note": "いう (say, tell). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's てください (please).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いう, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "shingou-wo-magaru-mae-ni-tomete",
+      "english": "Please stop before you turn right at the traffic light.",
+      "category": "Grammar & Function Words",
+      "target": "しんごうをみぎにまがるまえに、とめてください",
+      "pronunciation": "shingō o migi ni magaru mae ni, tomete kudasai",
+      "note": "まがる (turn), said to a taxi driver. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using まがる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "nimotsu-wo-todokeru-mae-ni-denwa",
+      "english": "Please call before you deliver the package.",
+      "category": "Grammar & Function Words",
+      "target": "にもつをとどけるまえに、でんわをしてください",
+      "pronunciation": "nimotsu o todokeru mae ni, denwa o shite kudasai",
+      "note": "とどける (deliver). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using とどける, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "shorui-wo-motte-kuru-mae-ni-yonde",
+      "english": "Please read the documents once more before you bring them.",
+      "category": "Grammar & Function Words",
+      "target": "しょるいをもってくるまえに、もういちどよんでください",
+      "pronunciation": "shorui o motte kuru mae ni, mō ichido yonde kudasai",
+      "note": "もってくる (bring). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using もってくる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "shachou-ni-tsutaeru-mae-ni-oshiete",
+      "english": "Please let me know before you pass it on to the president.",
+      "category": "Grammar & Function Words",
+      "target": "しゃちょうにつたえるまえに、わたしにおしえてください",
+      "pronunciation": "shachō ni tsutaeru mae ni, watashi ni oshiete kudasai",
+      "note": "つたえる (relay a message). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つたえる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "shachou-ni-houkoku-suru-mae-ni-repooto",
+      "english": "Please show me the report before you report to the president.",
+      "category": "Grammar & Function Words",
+      "target": "しゃちょうにほうこくするまえに、レポートをみせてください",
+      "pronunciation": "shachō ni hōkoku suru mae ni, repōto o misete kudasai",
+      "note": "ほうこくする (report). The person you report to takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ほうこくする, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "nimotsu-wo-azukaru-mae-ni-namae",
+      "english": "Please write your name before we take your luggage.",
+      "category": "Grammar & Function Words",
+      "target": "にもつをあずかるまえに、なまえをかいてください",
+      "pronunciation": "nimotsu o azukaru mae ni, namae o kaite kudasai",
+      "note": "あずかる (keep, take care of), said by staff at a cloakroom. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あずかる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
     }
   ]
 }

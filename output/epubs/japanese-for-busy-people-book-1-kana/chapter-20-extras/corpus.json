@@ -547,6 +547,15 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "Same sentence, only half-width vs full-width 7; neither has a scene, so keep the shorter id."
+    },
+    {
+      "id": "yasumi-ni-nebou-suru-no-ga-suki",
+      "english": "On my days off, I like sleeping in.",
+      "category": "Grammar & Function Words",
+      "target": "やすみのひは、ねぼうするのがすきです",
+      "note": "ねぼうする (oversleep) + のがすきです from Lesson 15. On a work day ねぼう is an accident; on a day off it can be a pleasure.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ねぼうする, the dictionary form added to the base unit in the same batch."
     }
   ]
 }

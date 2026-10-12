@@ -944,6 +944,17 @@
       "audioMarked": true,
       "audioTextHash": "d4fb2b5104d027d1",
       "additionDone": true
+    },
+    {
+      "id": "yasumu-dict-form",
+      "english": "Rest (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "やすむ",
+      "pronunciation": "yasumu",
+      "note": "Dictionary form of やすみます (yasumimasu, \"rest\", Lesson 16), which is also its casual form. Regular 1: the み before ます becomes む.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught やすみます (Lesson 16).",
+      "addition": "dictionary-forms-sweep-2026-10"
     }
   ]
 }

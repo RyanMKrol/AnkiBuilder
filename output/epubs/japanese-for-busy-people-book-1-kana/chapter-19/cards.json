@@ -1557,6 +1557,17 @@
       "excludedBy": "backward-dedup",
       "excludedReason": "Already taught: chapter-3/furonto (same target and sense)",
       "sourceOrder": 4580
+    },
+    {
+      "id": "tomeru-dict-form",
+      "english": "Stop, park (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "とめる",
+      "pronunciation": "tomeru",
+      "note": "Dictionary form of とめます (tomemasu, \"stop\", Lesson 19), which is also its casual form. Regular 2: ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught とめます (Lesson 19), or Lesson 15 where the form itself is taught if the verb came earlier.",
+      "addition": "dictionary-forms-2026-10"
     }
   ]
 }

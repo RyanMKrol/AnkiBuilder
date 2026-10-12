@@ -913,6 +913,28 @@
       "audioAuto": "6b65bb41381360b8.mp3",
       "audioMarked": true,
       "audioTextHash": "6b65bb41381360b8"
+    },
+    {
+      "id": "mado-wo-akeru-mae-ni-eakon",
+      "english": "May I turn off the air conditioner before I open the window?",
+      "category": "Grammar & Function Words",
+      "target": "まどをあけるまえに、エアコンをけしてもいいですか",
+      "pronunciation": "mado o akeru mae ni, eakon o keshite mo ii desu ka",
+      "note": "あける (open) in the dictionary form before まえに (before), then this lesson's てもいいですか to ask permission.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あける, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-2026-10"
+    },
+    {
+      "id": "mise-wo-shimeru-mae-ni-kau",
+      "english": "May I buy this before you close the shop?",
+      "category": "Grammar & Function Words",
+      "target": "みせをしめるまえに、これをかってもいいですか",
+      "pronunciation": "mise o shimeru mae ni, kore o katte mo ii desu ka",
+      "note": "しめる (close) in the dictionary form before まえに (before), then this lesson's てもいいですか to ask permission.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using しめる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-2026-10"
     }
   ]
 }

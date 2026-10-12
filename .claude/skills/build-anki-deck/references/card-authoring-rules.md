@@ -229,6 +229,22 @@ So: no citation-form card for a verb whose citation form the source has not intr
 source does introduce it, that lesson is its home, and a citation form never lands earlier than the
 inflected form it derives from.
 
+**Once the source HAS introduced the form, a missing one is a gap to fill where the verb lives.** The
+owner ruled this on 2026-10-12, after Lesson 22's ない-form chart gave nine verbs a casual negative
+with no casual positive anywhere in the deck. The dictionary form is taught in Lesson 15, so it was
+not ahead of the book; what was missing was the card for verbs the book never printed it for. Each
+went in as an AI-suggested card:
+
+- the bare form goes in the BASE unit, because the base corpus is for simple vocabulary;
+- it goes in the lesson that taught the verb, or in the lesson that introduces the form if the verb
+  came earlier (あう, from Lesson 9, went in Lesson 15);
+- that lesson's extras unit gets a sentence using it, in the theme of what the lesson teaches
+  (Lesson 15's のがすきです, Lesson 21's てもいいですか).
+
+A finished lesson receives them as additions (batch `dictionary-forms-2026-10`), so it keeps its
+sign-off. This is the one exception to "hand-authored cards go in extras": a missing form of a word
+the base unit already teaches is still that unit's vocabulary.
+
 **Every form the chapter DOES teach earns its own card, and that is the half most often missed.** A
 learner who meets あいます and never meets あいました, あいません or あいませんでした knows one form
 and cannot use the word. The paradigm worth carding is declared per language in

@@ -1,0 +1,437 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 48,
+    "chapterLabel": "Lesson 22: Forbidding Actions: Please Don’t Take Photos",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "kimono",
+      "english": "Kimono",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "きもの"
+    },
+    {
+      "id": "mae-ago",
+      "english": "…ago",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "まえ"
+    },
+    {
+      "id": "toranaide-kudasai",
+      "english": "Please don't take [photos].",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "とらないでください"
+    },
+    {
+      "id": "tomenaide-kudasai",
+      "english": "Please don't park.",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "とめないでください"
+    },
+    {
+      "id": "wasabi",
+      "english": "Wasabi",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "わさび"
+    },
+    {
+      "id": "iremasu-put-in",
+      "english": "Put in, add",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "いれます"
+    },
+    {
+      "id": "irenaide-kudasai",
+      "english": "Please don't add/put in.",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "いれないでください"
+    },
+    {
+      "id": "tachimasu-stand-up",
+      "english": "Stand up",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "たちます"
+    },
+    {
+      "id": "sawarimasu-touch",
+      "english": "Touch",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "さわります"
+    },
+    {
+      "id": "tabako-wo-suimasu",
+      "english": "Smoke a cigarette",
+      "category": "Body & Health",
+      "reviewNote": null,
+      "target": "たばこをすいます"
+    },
+    {
+      "id": "tachiirikinshi",
+      "english": "No entry",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "たちいりきんし"
+    },
+    {
+      "id": "chuushakinshi",
+      "english": "No parking",
+      "category": "Transport",
+      "reviewNote": null,
+      "target": "ちゅうしゃきんし"
+    },
+    {
+      "id": "kinen-no-smoking",
+      "english": "No smoking",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "きんえん"
+    },
+    {
+      "id": "abunai",
+      "english": "Dangerous",
+      "category": "Descriptions & Qualities",
+      "reviewNote": "Pictured as the Word Power adjective example; glossed in the Exercise II vocabulary box.",
+      "target": "あぶない"
+    },
+    {
+      "id": "doa",
+      "english": "Door",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "ドア"
+    },
+    {
+      "id": "kabin",
+      "english": "Vase",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "かびん"
+    },
+    {
+      "id": "iriguchi",
+      "english": "Entrance",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "いりぐち"
+    },
+    {
+      "id": "hanbaagaa",
+      "english": "Hamburger",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ハンバーガー"
+    },
+    {
+      "id": "kechappu",
+      "english": "Ketchup",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "ケチャップ"
+    },
+    {
+      "id": "mayoneezu",
+      "english": "Mayonnaise",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "マヨネーズ"
+    },
+    {
+      "id": "chiizubaagaa",
+      "english": "Cheeseburger",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "チーズバーガー"
+    },
+    {
+      "id": "tomato",
+      "english": "Tomato",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "トマト"
+    },
+    {
+      "id": "ki-ni-shimasu",
+      "english": "Worry about",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "きにします"
+    },
+    {
+      "id": "ki-ni-shinaide-kudasai",
+      "english": "Please don't worry about it.",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "きにしないでください"
+    },
+    {
+      "id": "osake",
+      "english": "Alcoholic drink, sake",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "(お)さけ"
+    },
+    {
+      "id": "nai-kawanai",
+      "english": "Does not buy",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かわない"
+    },
+    {
+      "id": "nai-ikanai",
+      "english": "Does not go",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いかない"
+    },
+    {
+      "id": "nai-oyoganai",
+      "english": "Does not swim",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "およがない"
+    },
+    {
+      "id": "nai-kasanai",
+      "english": "Does not lend",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かさない"
+    },
+    {
+      "id": "nai-matanai",
+      "english": "Does not wait",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "またない"
+    },
+    {
+      "id": "nai-nomanai",
+      "english": "Does not drink",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "のまない"
+    },
+    {
+      "id": "nai-kaeranai",
+      "english": "Does not return home",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かえらない"
+    },
+    {
+      "id": "nai-minai",
+      "english": "Does not see",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "みない"
+    },
+    {
+      "id": "nai-inai",
+      "english": "Is not there (for a person or animal)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "いない"
+    },
+    {
+      "id": "nai-tabenai",
+      "english": "Does not eat",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "たべない"
+    },
+    {
+      "id": "nai-oshienai",
+      "english": "Does not teach or tell",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "おしえない"
+    },
+    {
+      "id": "nai-konai",
+      "english": "Does not come",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Irregular nai-form, keep even though it looks similar to the regular cells.",
+      "target": "こない"
+    },
+    {
+      "id": "nai-shinai",
+      "english": "Does not do",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Irregular nai-form, keep even though it looks similar to the regular cells.",
+      "target": "しない"
+    },
+    {
+      "id": "nai-suwanai",
+      "english": "Does not smoke",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "すわない"
+    },
+    {
+      "id": "nai-kakanai",
+      "english": "Does not write",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かかない"
+    },
+    {
+      "id": "nai-hanasanai",
+      "english": "Does not speak",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "はなさない"
+    },
+    {
+      "id": "nai-tatanai",
+      "english": "Does not stand",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "たたない"
+    },
+    {
+      "id": "nai-toranai",
+      "english": "Does not take",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "とらない"
+    },
+    {
+      "id": "nai-akenai",
+      "english": "Does not open",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あけない"
+    },
+    {
+      "id": "nai-shimenai",
+      "english": "Does not close",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "しめない"
+    },
+    {
+      "id": "nai-tomenai",
+      "english": "Does not stop or park",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "とめない"
+    },
+    {
+      "id": "awanai-not-meet",
+      "english": "Does not meet",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "あわない"
+    },
+    {
+      "id": "nai-misenai",
+      "english": "Does not show",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
+      "target": "みせない",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-sawaranai",
+      "english": "Does not touch",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
+      "target": "さわらない",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-agenai",
+      "english": "Does not give",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
+      "target": "あげない",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-kikanai",
+      "english": "Does not listen or ask",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
+      "target": "きかない",
+      "aiSuggested": true
+    },
+    {
+      "id": "tatsu-dict-form",
+      "english": "Stand up (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15.",
+      "target": "たつ",
+      "aiSuggested": true
+    },
+    {
+      "id": "suu-dict-form",
+      "english": "Smoke (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15.",
+      "target": "すう",
+      "aiSuggested": true
+    },
+    {
+      "id": "sawaru-dict-form",
+      "english": "Touch (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Owner request 2026-10-12: this lesson's ない-form gives the verb a casual negative, and the deck had no casual positive for it. The book never prints this dictionary form; the form itself is taught in Lesson 15.",
+      "target": "さわる",
+      "aiSuggested": true
+    },
+    {
+      "id": "nimo-also-at",
+      "english": "Also at/in [a place]",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "にも"
+    }
+  ]
+}

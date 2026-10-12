@@ -1,0 +1,495 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 48,
+    "chapterLabel": "Lesson 22: Forbidding Actions: Please Don’t Take Photos (Extras)",
+    "baseChapterLabel": "Lesson 22: Forbidding Actions: Please Don’t Take Photos",
+    "phase": "extras"
+  },
+  "items": [
+    {
+      "id": "nai-hanasanai-ex1",
+      "target": "としょかんで はなさないでください。",
+      "english": "Please don't talk in the library.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "please-dont-photo",
+      "target": "しゃしんを とらないでください。",
+      "english": "Please don't take photos.",
+      "category": "Grammar & Function Words",
+      "fillInBlank": true,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Chapter-22's とらないでください card already covers 'please don't take [photos]'; this is the same sentence completed with しゃしん."
+    },
+    {
+      "id": "please-dont-touch-vase",
+      "target": "かびんに さわらないでください。",
+      "english": "Please don't touch the vase.",
+      "category": "Home & Household",
+      "fillInBlank": true
+    },
+    {
+      "id": "window-dont-open",
+      "target": "まどをあけないでください。",
+      "english": "Please don't open the window.",
+      "category": "Home & Household"
+    },
+    {
+      "id": "please-dont-turn-off-lights",
+      "target": "でんきを けさないでください。",
+      "english": "Please don't turn off the lights.",
+      "category": "Home & Household",
+      "fillInBlank": true
+    },
+    {
+      "id": "no-entry-request",
+      "target": "ここはたちいりきんしですから、はいらないでください。",
+      "english": "This is a no-entry area, so please do not go in.",
+      "category": "Directions"
+    },
+    {
+      "id": "convenience-store-nearby-a",
+      "target": "ええ、えきのまえにあります。それから、えきのなかにもありますよ。",
+      "english": "Yes, there is one in front of the station. And there is also one inside the station.",
+      "category": "Shopping",
+      "scene": "Answering someone who just asked whether there's a convenience store nearby."
+    },
+    {
+      "id": "nai-kikanai-ex1",
+      "target": "わたしに なにも きかないでください。",
+      "english": "Please don't ask me anything.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "tatsu-dict-form-ex1",
+      "target": "たつまえに、にもつをとってください。",
+      "english": "Please take your luggage before you stand up.",
+      "category": "Grammar & Function Words",
+      "note": "たつ (stand up) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "aiSuggested": true,
+      "reviewNote": "Rewritten by the operator before gate 2: was あさ、たつまえに、みずを のみます."
+    },
+    {
+      "id": "nai-agenai-ex1",
+      "target": "この ゆびわは たかいですから、むすめに あげないでください。",
+      "english": "This ring is expensive, so please don't give it to my daughter.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "convenience-store-nearby-q",
+      "target": "すみません。このちかくにコンビニがありますか。",
+      "english": "Excuse me, is there a convenience store near here?",
+      "category": "Shopping"
+    },
+    {
+      "id": "nai-ikanai-ex1",
+      "target": "あぶないですから、そこへ いかないでください。",
+      "english": "It's dangerous, so please don't go there.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "no-parking-entrance",
+      "target": "ここはいりぐちですから、くるまをとめないでください。",
+      "english": "This is the entrance, so please do not park your car here.",
+      "category": "Transport"
+    },
+    {
+      "id": "restaurant-no-ketchup",
+      "target": "すみませんが、ケチャップをいれないでください。",
+      "english": "Excuse me, but please don't add ketchup.",
+      "category": "Food",
+      "scene": "Speaking to restaurant staff right after ordering, about what goes into the food."
+    },
+    {
+      "id": "nai-matanai-ex1",
+      "target": "すずきさんは きませんから、またないでください。",
+      "english": "Suzuki-san isn't coming, so please don't wait.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "restaurant-order-hamburger",
+      "target": "ハンバーガーをおねがいします。",
+      "english": "A hamburger, please.",
+      "category": "Food"
+    },
+    {
+      "id": "awanai-not-meet-ex1",
+      "target": "すずきさんは げんきじゃないですから、あわないでください。",
+      "english": "Suzuki-san isn't feeling well, so please don't meet him.",
+      "category": "Other",
+      "aiSuggested": true
+    },
+    {
+      "id": "osake-ex1",
+      "target": "ともだちと おさけを のみます。",
+      "english": "I drink sake with a friend.",
+      "category": "Food",
+      "aiSuggested": true
+    },
+    {
+      "id": "iremasu-put-in-ex1",
+      "target": "ラーメンにわさびをいれます。",
+      "english": "I put wasabi in the ramen.",
+      "category": "Food",
+      "aiSuggested": true
+    },
+    {
+      "id": "also-in-fridge",
+      "target": "テーブルの うえに ビールが あります。れいぞうこの なかにも あります。",
+      "english": "There is beer on the table. There's also some in the refrigerator.",
+      "category": "Food",
+      "fillInBlank": true
+    },
+    {
+      "id": "travel-no-ice",
+      "target": "こおりをいれないでください。",
+      "english": "No ice, please.",
+      "category": "Food",
+      "note": "こおり means ice. Same pattern as わさびをいれないでください: ask for something to be left out of your drink or food.",
+      "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. こおり (ice) is not taught by the book.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-oshienai-ex1",
+      "target": "わたしの でんわばんごうを おしえないでください。",
+      "english": "Please don't give out my phone number.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-nearby-park",
+      "target": "すみません。この ちかくに こうえんが ありますか。ええ、びょういんの まえに あります。それから、がっこうの となりにも ありますよ。",
+      "english": "Excuse me, is there a park nearby? Yes, there's one in front of the hospital. And there's also one next to the school, you know.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "dangerous-dont-stand",
+      "target": "あぶないですから、たたないでください。",
+      "english": "It's dangerous, so please don't stand up.",
+      "category": "Other",
+      "fillInBlank": true
+    },
+    {
+      "id": "nai-misenai-ex1",
+      "target": "これは わたしの しゃしんですから、みせないでください。",
+      "english": "This is my photo, so please don't show it.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "also-in-meeting-room",
+      "target": "2かいに かいぎしつが あります。3がいにも あります。",
+      "english": "There is a meeting room on the 2nd floor. There's also one on the 3rd floor.",
+      "category": "Home & Household",
+      "fillInBlank": true
+    },
+    {
+      "id": "window-open",
+      "target": "まどをあけます。",
+      "english": "Open the window.",
+      "category": "Home & Household",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same sentence 'まどをあけます' already a card in chapter-21-extras; this is a plain restatement without a new period/form.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-21-extras/mado-akemasu (same target and sense)"
+    },
+    {
+      "id": "nai-kasanai-ex1",
+      "target": "この かさは たかいですから、かさないでください。",
+      "english": "This umbrella is expensive, so please don't lend it.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-konai-ex1",
+      "target": "あしたは いそがしいですから、こないでください。",
+      "english": "I'm busy tomorrow, so please don't come.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-minai-ex1",
+      "target": "これは わたしの てがみですから、みないでください。",
+      "english": "This is my letter, so please don't look at it.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ireru-box-pen",
+      "target": "はこの なかに ペンを いれないでください。",
+      "english": "Please don't put the pen in the box.",
+      "category": "Everyday Objects",
+      "aiSuggested": true
+    },
+    {
+      "id": "sawaru-dict-form-ex1",
+      "target": "さわるまえに、てをあらってください。",
+      "english": "Please wash your hands before you touch it.",
+      "category": "Grammar & Function Words",
+      "note": "さわる (touch) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "aiSuggested": true,
+      "reviewNote": "Rewritten by the operator before gate 2: was さわるまえに、てを あらいます."
+    },
+    {
+      "id": "travel-not-spicy",
+      "target": "からくしないでください。",
+      "english": "Please don't make it spicy.",
+      "category": "Food",
+      "note": "からい (spicy, Lesson 10) becomes からく before します, \"make it ~\". The book has not taught this change yet.",
+      "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. Uses the い-adjective く-form, not yet taught.",
+      "aiSuggested": true
+    },
+    {
+      "id": "suu-dict-form-ex1",
+      "target": "たばこをすうまえに、まどをあけてください。",
+      "english": "Please open the window before you smoke.",
+      "category": "Grammar & Function Words",
+      "note": "すう (smoke) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "aiSuggested": true,
+      "reviewNote": "Rewritten by the operator before gate 2: was すうまえに、ドアを あけます."
+    },
+    {
+      "id": "ks3-convenience-store-also-inside",
+      "target": "えきのまえにコンビニがあります。えきのなかにもあります。",
+      "english": "There is a convenience store in front of the station. There is another one inside the station too.",
+      "category": "Directions"
+    },
+    {
+      "id": "tachimasu-stand-up-ex1",
+      "target": "いすから たちます。",
+      "english": "I stand up from the chair.",
+      "category": "Body & Health",
+      "aiSuggested": true
+    },
+    {
+      "id": "order-sushi-no-wasabi",
+      "target": "おすしを おねがいします。すみませんが、わさびを いれないでください。",
+      "english": "Sushi, please. I'm sorry, but please don't add wasabi.",
+      "category": "Food",
+      "fillInBlank": true,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — This is a paradigm-cell drill (おすし + no-wasabi) alongside candidates 11/12/13 for the same frame; flagging to confirm it isn't redundant with the base chapter-22 pattern cards rather than a new teaching point — reviewer should check against other 'X wo onegaishimasu, Y wo irenaide kudasai' drill cards already in chapter-22."
+    },
+    {
+      "id": "travel-dont-forget",
+      "target": "わすれないでください。",
+      "english": "Please don't forget.",
+      "category": "Travel & Tourism",
+      "note": "わすれます means forget, a Regular II verb: わすれる→わすれない.",
+      "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. わすれます (forget) is not taught by the book yet.",
+      "aiSuggested": true
+    },
+    {
+      "id": "onsen-also-in-hakone",
+      "target": "にっこうにおんせんがあります。はこねにもあります。",
+      "english": "There is a hot spring in Nikko. There is also one in Hakone.",
+      "category": "Travel & Tourism"
+    },
+    {
+      "id": "ks2-no-wasabi",
+      "target": "わさびをいれないでください。",
+      "english": "Please don't add wasabi.",
+      "category": "Food",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same sentence shape already carded in chapter-22 as いれないでください (please don't add); わさび substitution alone may not warrant a separate card, but since 10-13 look like a deliberate drill set, flagging for reviewer to confirm against chapter-22's existing わさび-specific card if one exists."
+    },
+    {
+      "id": "kinishinai-test",
+      "target": "テストを きにしないでください。",
+      "english": "Please don't worry about the test.",
+      "category": "School & Education",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Chapter-22's きにしないでください card already covers 'please don't worry about it'; テスト just fills the same slot without new grammar."
+    },
+    {
+      "id": "please-dont-close-door",
+      "target": "ドアを しめないでください。",
+      "english": "Please don't close the door.",
+      "category": "Home & Household",
+      "fillInBlank": true
+    },
+    {
+      "id": "dialogue-kimono-300-years-ago",
+      "target": "これは300ねんぐらいまえのきものです。",
+      "english": "This is a kimono from about 300 years ago.",
+      "category": "Clothing"
+    },
+    {
+      "id": "ki-ni-shimasu-ex1",
+      "target": "わたしは てんきを きにします。",
+      "english": "I worry about the weather.",
+      "category": "Emotions & Feelings",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-kakanai-ex1",
+      "target": "ここに なまえを かかないでください。",
+      "english": "Please don't write your name here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "tomeru-bicycle",
+      "target": "じてんしゃを ここに とめないでください。",
+      "english": "Please don't park the bicycle here.",
+      "category": "Transport",
+      "aiSuggested": true
+    },
+    {
+      "id": "order-cheeseburger-no-tomato",
+      "target": "チーズバーガーを おねがいします。すみませんが、トマトを いれないでください。",
+      "english": "A cheeseburger, please. I'm sorry, but please don't add tomato.",
+      "category": "Food",
+      "fillInBlank": true
+    },
+    {
+      "id": "nai-kawanai-ex1",
+      "target": "たかいですから、それを かわないでください。",
+      "english": "It's expensive, so please don't buy that one.",
+      "category": "Grammar & Function Words",
+      "note": "An inflected ない-form, not a function word: one sentence, delivered inside this chapter's verb[ない-form]でください pattern rather than as a bare plain-form ending.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ask-nearby-parking-lot",
+      "target": "すみません。この ちかくに ちゅうしゃじょうが ありますか。ええ、あの ビルの となりに あります。それから、デパートの ちかにも ありますよ。",
+      "english": "Excuse me, is there a parking lot nearby? Yes, there's one next to that building. And there's also one in the department store basement, you know.",
+      "category": "Directions",
+      "fillInBlank": true
+    },
+    {
+      "id": "no-parking-exit-2",
+      "target": "ここは でぐちですから、くるまを とめないでください。",
+      "english": "This is the exit, so please don't park your car here.",
+      "category": "Transport",
+      "fillInBlank": true
+    },
+    {
+      "id": "no-parking-sign",
+      "target": "ここは ちゅうしゃきんしですから、くるまを とめないでください。",
+      "english": "This is a no-parking area, so please don't park your car here.",
+      "category": "Transport",
+      "fillInBlank": true
+    },
+    {
+      "id": "order-sandwich-no-mayo",
+      "target": "サンドイッチを おねがいします。すみませんが、マヨネーズを いれないでください。",
+      "english": "A sandwich, please. I'm sorry, but please don't add mayonnaise.",
+      "category": "Food",
+      "fillInBlank": true
+    },
+    {
+      "id": "travel-dont-go-yet",
+      "target": "まだいかないでください。",
+      "english": "Please don't go yet.",
+      "category": "Travel & Tourism",
+      "note": "まだ means still or yet. Useful to a driver or guide who is about to leave without you.",
+      "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. まだ (still, yet) is not taught by the book yet.",
+      "aiSuggested": true
+    },
+    {
+      "id": "no-parking-shop-front",
+      "target": "ここは みせの まえですから、くるまを とめないでください。",
+      "english": "This is in front of the shop, so please don't park your car here.",
+      "category": "Transport",
+      "fillInBlank": true
+    },
+    {
+      "id": "nai-oyoganai-ex1",
+      "target": "この うみは あぶないですから、およがないでください。",
+      "english": "This ocean is dangerous, so please don't swim.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-inai-ex1",
+      "target": "あぶないですから、ここにいないでください。",
+      "english": "It's dangerous, so please don't stay here.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true,
+      "note": "いない is the ない-form of います (be, for people and animals). With でください it asks someone not to be, or stay, somewhere.",
+      "reviewNote": "Rewritten by the operator before gate 2: was ねこは ここに いないでください.",
+      "hint": "with います"
+    },
+    {
+      "id": "nai-tabenai-ex1",
+      "target": "はくぶつかんで たべないでください。",
+      "english": "Please don't eat in the museum.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "no-smoking-forbid",
+      "target": "ここは きんえんですから、たばこを すわないでください。",
+      "english": "This is a no-smoking area, so please don't smoke.",
+      "category": "Other",
+      "fillInBlank": true
+    },
+    {
+      "id": "travel-dont-worry",
+      "target": "しんぱいしないでください。",
+      "english": "Please don't worry.",
+      "category": "Emotions & Feelings",
+      "note": "しんぱい means worry. A general \"don't worry\", where きにしないでください from this lesson is \"don't let it bother you\".",
+      "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. しんぱい (worry) is not taught by the book yet.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-nomanai-ex1",
+      "target": "きょうは おさけを のまないでください。",
+      "english": "Please don't drink alcohol today.",
+      "category": "Grammar & Function Words",
+      "note": "Reuses the chapter's own Speaking Practice line (the doctor's instruction).",
+      "aiSuggested": true
+    },
+    {
+      "id": "nai-kaeranai-ex1",
+      "target": "パーティーは たのしいですから、かえらないでください。",
+      "english": "The party is fun, so please don't go home.",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "sawarimasu-touch-ex1",
+      "target": "かびんに さわります。",
+      "english": "I touch the vase.",
+      "category": "Body & Health",
+      "note": "Reuses the book's own Exercise 2 stimulus sentence (item 4, before its transformation into the ないでください drill).",
+      "aiSuggested": true
+    },
+    {
+      "id": "shinai-study-holiday",
+      "target": "きょうは やすみですから、べんきょうを しないでください。",
+      "english": "Today is a day off, so please don't study.",
+      "category": "School & Education",
+      "aiSuggested": true
+    },
+    {
+      "id": "no-entry-reply",
+      "target": "はい、わかりました。すみません。",
+      "english": "Yes, I understand. I'm sorry.",
+      "category": "Other",
+      "scene": "Replying after being told not to enter a restricted area."
+    },
+    {
+      "id": "no-parking-exit",
+      "target": "ここはでぐちですから、くるまをとめないでください。",
+      "english": "This is the exit, so please do not park your car here.",
+      "category": "Transport",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same sentence; the kept id's spacing/English is more natural and the id is shorter."
+    }
+  ]
+}

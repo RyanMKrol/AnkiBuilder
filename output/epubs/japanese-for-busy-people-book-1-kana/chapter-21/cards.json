@@ -1093,7 +1093,8 @@
       "audioOriginal": "3ee619c4a7dbe601.orig.mp3",
       "audioAuto": "3ee619c4a7dbe601.mp3",
       "audioMarked": true,
-      "audioTextHash": "3ee619c4a7dbe601"
+      "audioTextHash": "3ee619c4a7dbe601",
+      "additionDone": true
     },
     {
       "id": "shimeru-dict-form",
@@ -1110,7 +1111,8 @@
       "audioOriginal": "78ca2c9e5a2ad113.orig.mp3",
       "audioAuto": "78ca2c9e5a2ad113.mp3",
       "audioMarked": true,
-      "audioTextHash": "78ca2c9e5a2ad113"
+      "audioTextHash": "78ca2c9e5a2ad113",
+      "additionDone": true
     }
   ]
 }

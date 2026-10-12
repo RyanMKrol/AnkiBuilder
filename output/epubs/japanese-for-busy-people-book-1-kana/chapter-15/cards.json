@@ -933,7 +933,8 @@
       "audioOriginal": "5d68810955be6135.orig.mp3",
       "audioAuto": "5d68810955be6135.mp3",
       "audioMarked": true,
-      "audioTextHash": "5d68810955be6135"
+      "audioTextHash": "5d68810955be6135",
+      "additionDone": true
     },
     {
       "id": "miseru-dict-form",
@@ -950,7 +951,8 @@
       "audioOriginal": "453f4ef0748ab4c4.orig.mp3",
       "audioAuto": "453f4ef0748ab4c4.mp3",
       "audioMarked": true,
-      "audioTextHash": "453f4ef0748ab4c4"
+      "audioTextHash": "453f4ef0748ab4c4",
+      "additionDone": true
     },
     {
       "id": "ageru-dict-form",
@@ -963,11 +965,17 @@
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught あげます (Lesson 14), or Lesson 15 where the form itself is taught if the verb came earlier.",
       "addition": "dictionary-forms-2026-10",
       "additionReviewed": true,
-      "audio": "37cb1c0a2b7a941a.mp3",
+      "audio": "ageru-dict-form-manual-1d77e5a1.mp3",
       "audioOriginal": "37cb1c0a2b7a941a.orig.mp3",
       "audioAuto": "37cb1c0a2b7a941a.mp3",
       "audioMarked": true,
-      "audioTextHash": "37cb1c0a2b7a941a"
+      "audioTextHash": "37cb1c0a2b7a941a",
+      "audioManual": "ageru-dict-form-manual-1d77e5a1.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.1164383561643836
+      },
+      "additionDone": true
     }
   ]
 }

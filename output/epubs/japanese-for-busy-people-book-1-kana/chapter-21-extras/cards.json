@@ -929,7 +929,8 @@
       "audioOriginal": "aaa0feb5e3873aa0.orig.mp3",
       "audioAuto": "aaa0feb5e3873aa0.mp3",
       "audioMarked": true,
-      "audioTextHash": "aaa0feb5e3873aa0"
+      "audioTextHash": "aaa0feb5e3873aa0",
+      "additionDone": true
     },
     {
       "id": "mise-wo-shimeru-mae-ni-kau",
@@ -946,7 +947,8 @@
       "audioOriginal": "287f631d3c8df21b.orig.mp3",
       "audioAuto": "287f631d3c8df21b.mp3",
       "audioMarked": true,
-      "audioTextHash": "287f631d3c8df21b"
+      "audioTextHash": "287f631d3c8df21b",
+      "additionDone": true
     }
   ]
 }

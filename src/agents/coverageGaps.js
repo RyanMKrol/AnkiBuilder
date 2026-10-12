@@ -61,6 +61,10 @@ export function underExampledForms(cards, { wanted = EXAMPLES_WANTED, languageCo
       // therefore false there, so an unconfigured language keeps the old behaviour rather than
       // silently dropping gaps nobody has verified are droppable.
       .filter((c) => isPredicateShaped(c.target, languageCode) !== true)
+      // Inflected verb forms (a ない-form, a dictionary form) are filed under the same category and
+      // land here too, wanting EXAMPLES_WANTED sentences each. Nothing in a card says "verb form" in
+      // a language-agnostic way, so the gap author's prompt tells it a verb form wants one sentence in
+      // the chapter's own construction. Lesson 22 got seventy-eight bare casual drills before it did.
       .map((card) => {
         const form = norm(card.target);
         const examples = sentences.filter((s) => s !== form && s.includes(form));

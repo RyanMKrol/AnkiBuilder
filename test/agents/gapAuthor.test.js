@@ -123,6 +123,10 @@ test("the prompt hands over the computed list and says not to invent gaps", () =
     assert.match(prompt, /"target": "が"/);
     assert.match(prompt, /Do not invent a gap/);
     assert.match(prompt, /minimal pair/);
+    // Lesson 22: twenty-six ない-forms filed under Grammar & Function Words came back as seventy-eight
+    // bare casual drills. A verb form wants one sentence, in the chapter's own construction.
+    assert.match(prompt, /An inflected form of a verb is not a function word/);
+    assert.match(prompt, /ないでください/);
     assert.doesNotMatch(prompt, /\{\{[A-Z_]+\}\}/);
   });
 });

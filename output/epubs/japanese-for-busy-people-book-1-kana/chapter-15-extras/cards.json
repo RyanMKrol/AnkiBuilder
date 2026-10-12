@@ -1355,7 +1355,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using わかる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "9190d878f194ad3d.mp3",
+      "audioOriginal": "9190d878f194ad3d.orig.mp3",
+      "audioAuto": "9190d878f194ad3d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9190d878f194ad3d"
     },
     {
       "id": "kazoku-ni-shashin-wo-okuru-no-ga-suki",
@@ -1367,7 +1372,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using おくる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "b3350c5528efb7af.mp3",
+      "audioOriginal": "b3350c5528efb7af.orig.mp3",
+      "audioAuto": "b3350c5528efb7af.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b3350c5528efb7af"
     },
     {
       "id": "fujisan-ni-noboru-no-ga-suki",
@@ -1379,7 +1389,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using のぼる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "60975d1e3c702067.mp3",
+      "audioOriginal": "60975d1e3c702067.orig.mp3",
+      "audioAuto": "60975d1e3c702067.mp3",
+      "audioMarked": true,
+      "audioTextHash": "60975d1e3c702067"
     },
     {
       "id": "teeburu-ni-hana-ga-aru-no-ga-suki",
@@ -1391,7 +1406,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ある, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "ba6a5db43d9d8fcb.mp3",
+      "audioOriginal": "ba6a5db43d9d8fcb.orig.mp3",
+      "audioAuto": "ba6a5db43d9d8fcb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ba6a5db43d9d8fcb"
     },
     {
       "id": "hana-wo-morau-no-ga-suki",
@@ -1403,7 +1423,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using もらう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "a69d196b6905d629.mp3",
+      "audioOriginal": "a69d196b6905d629.orig.mp3",
+      "audioAuto": "a69d196b6905d629.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a69d196b6905d629"
     },
     {
       "id": "haha-ga-kureru-okashi-ga-suki",
@@ -1415,7 +1440,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using くれる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "9b07b4324996332b.mp3",
+      "audioOriginal": "9b07b4324996332b.orig.mp3",
+      "audioAuto": "9b07b4324996332b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9b07b4324996332b"
     },
     {
       "id": "toshokan-de-hon-wo-kariru-no-ga-suki",
@@ -1427,7 +1457,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using かりる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "a8fccfd250f7a59b.mp3",
+      "audioOriginal": "a8fccfd250f7a59b.orig.mp3",
+      "audioAuto": "a8fccfd250f7a59b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a8fccfd250f7a59b"
     },
     {
       "id": "niau-fuku-wo-kau-no-ga-suki",
@@ -1439,7 +1474,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using にあう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "ae264352c1744526.mp3",
+      "audioOriginal": "ae264352c1744526.orig.mp3",
+      "audioAuto": "ae264352c1744526.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ae264352c1744526"
     }
   ]
 }

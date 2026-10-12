@@ -1220,7 +1220,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "7c1e625d792d0925.mp3",
+      "audioOriginal": "7c1e625d792d0925.orig.mp3",
+      "audioAuto": "7c1e625d792d0925.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7c1e625d792d0925"
     },
     {
       "id": "shingou-wo-magaru-mae-ni-tomete",
@@ -1232,7 +1237,13 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using まがる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "8f56d509e6b10254.mp3",
+      "audioOriginal": "8f56d509e6b10254.orig.mp3",
+      "audioAuto": "8f56d509e6b10254.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "8f56d509e6b10254"
     },
     {
       "id": "nimotsu-wo-todokeru-mae-ni-denwa",
@@ -1244,7 +1255,13 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using とどける, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "003cbc9f5c0d365b.mp3",
+      "audioOriginal": "003cbc9f5c0d365b.orig.mp3",
+      "audioAuto": "003cbc9f5c0d365b.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "003cbc9f5c0d365b"
     },
     {
       "id": "shorui-wo-motte-kuru-mae-ni-yonde",
@@ -1256,7 +1273,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using もってくる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "026e9721a3b9575c.mp3",
+      "audioOriginal": "026e9721a3b9575c.orig.mp3",
+      "audioAuto": "026e9721a3b9575c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "026e9721a3b9575c"
     },
     {
       "id": "shachou-ni-tsutaeru-mae-ni-oshiete",
@@ -1268,7 +1290,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つたえる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "ef86492af548fe52.mp3",
+      "audioOriginal": "ef86492af548fe52.orig.mp3",
+      "audioAuto": "ef86492af548fe52.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ef86492af548fe52"
     },
     {
       "id": "shachou-ni-houkoku-suru-mae-ni-repooto",
@@ -1280,7 +1307,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ほうこくする, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "6bc40c9a302ea7dd.mp3",
+      "audioOriginal": "6bc40c9a302ea7dd.orig.mp3",
+      "audioAuto": "6bc40c9a302ea7dd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6bc40c9a302ea7dd"
     },
     {
       "id": "nimotsu-wo-azukaru-mae-ni-namae",
@@ -1292,7 +1324,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あずかる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "bd9e83edbc371b10.mp3",
+      "audioOriginal": "bd9e83edbc371b10.orig.mp3",
+      "audioAuto": "bd9e83edbc371b10.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bd9e83edbc371b10"
     }
   ]
 }

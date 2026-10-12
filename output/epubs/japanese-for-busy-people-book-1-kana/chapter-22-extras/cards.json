@@ -907,7 +907,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いれる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "da6c2004195dea4f.mp3",
+      "audioOriginal": "da6c2004195dea4f.orig.mp3",
+      "audioAuto": "da6c2004195dea4f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "da6c2004195dea4f"
     },
     {
       "id": "ki-ni-suru-no-wa-yokunai",
@@ -919,7 +924,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using きにする, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "1054059d40c1ce6d.mp3",
+      "audioOriginal": "1054059d40c1ce6d.orig.mp3",
+      "audioAuto": "1054059d40c1ce6d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1054059d40c1ce6d"
     }
   ]
 }

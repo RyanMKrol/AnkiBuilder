@@ -987,7 +987,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught わかります (Lesson 8), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "134a2dcca20b5fe9.mp3",
+      "audioOriginal": "134a2dcca20b5fe9.orig.mp3",
+      "audioAuto": "134a2dcca20b5fe9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "134a2dcca20b5fe9"
     },
     {
       "id": "okuru-dict-form",
@@ -999,7 +1004,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught おくります (Lesson 9), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "8941b87cfb872364.mp3",
+      "audioOriginal": "8941b87cfb872364.orig.mp3",
+      "audioAuto": "8941b87cfb872364.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8941b87cfb872364"
     },
     {
       "id": "noboru-dict-form",
@@ -1011,7 +1021,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught のぼります (Lesson 11), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "463a643db48cbddc.mp3",
+      "audioOriginal": "463a643db48cbddc.orig.mp3",
+      "audioAuto": "463a643db48cbddc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "463a643db48cbddc"
     },
     {
       "id": "aru-dict-form",
@@ -1023,7 +1038,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught あります (Lesson 12), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "051f32ef3ca77be2.mp3",
+      "audioOriginal": "051f32ef3ca77be2.orig.mp3",
+      "audioAuto": "051f32ef3ca77be2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "051f32ef3ca77be2"
     },
     {
       "id": "morau-dict-form",
@@ -1035,7 +1055,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught もらいます (Lesson 14), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "9f93538ccaf7f4cb.mp3",
+      "audioOriginal": "9f93538ccaf7f4cb.orig.mp3",
+      "audioAuto": "9f93538ccaf7f4cb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9f93538ccaf7f4cb"
     },
     {
       "id": "kureru-dict-form",
@@ -1047,7 +1072,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught くれます (Lesson 14), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "e66053f128329feb.mp3",
+      "audioOriginal": "e66053f128329feb.orig.mp3",
+      "audioAuto": "e66053f128329feb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e66053f128329feb"
     },
     {
       "id": "kariru-dict-form",
@@ -1059,7 +1089,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught かります (Lesson 14), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "4d1627c69e1a068d.mp3",
+      "audioOriginal": "4d1627c69e1a068d.orig.mp3",
+      "audioAuto": "4d1627c69e1a068d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4d1627c69e1a068d"
     },
     {
       "id": "niau-dict-form",
@@ -1071,7 +1106,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught にあいます (Lesson 14), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "3a367506a201a4f6.mp3",
+      "audioOriginal": "3a367506a201a4f6.orig.mp3",
+      "audioAuto": "3a367506a201a4f6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3a367506a201a4f6"
     }
   ]
 }

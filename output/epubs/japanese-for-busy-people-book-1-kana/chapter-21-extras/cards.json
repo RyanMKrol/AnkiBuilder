@@ -960,7 +960,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using すわる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "66a20447fc6b5144.mp3",
+      "audioOriginal": "66a20447fc6b5144.orig.mp3",
+      "audioAuto": "66a20447fc6b5144.mp3",
+      "audioMarked": true,
+      "audioTextHash": "66a20447fc6b5144"
     },
     {
       "id": "heya-wo-tsukau-mae-ni-eakon",
@@ -972,7 +977,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つかう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "d1a7fd4f71f12619.mp3",
+      "audioOriginal": "d1a7fd4f71f12619.orig.mp3",
+      "audioAuto": "d1a7fd4f71f12619.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d1a7fd4f71f12619"
     },
     {
       "id": "kaigishitsu-ni-hairu-mae-ni-denwa",
@@ -984,7 +994,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using はいる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "74d84bb587676aab.mp3",
+      "audioOriginal": "74d84bb587676aab.orig.mp3",
+      "audioAuto": "74d84bb587676aab.mp3",
+      "audioMarked": true,
+      "audioTextHash": "74d84bb587676aab"
     },
     {
       "id": "keeki-wo-oku-mae-ni-shashin",
@@ -996,7 +1011,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using おく, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "9e3be7bd6d2eeace.mp3",
+      "audioOriginal": "9e3be7bd6d2eeace.orig.mp3",
+      "audioAuto": "9e3be7bd6d2eeace.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9e3be7bd6d2eeace"
     },
     {
       "id": "eakon-wo-tsukeru-mae-ni-mado",
@@ -1008,7 +1028,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つける, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "2bb20f84b2574ec2.mp3",
+      "audioOriginal": "2bb20f84b2574ec2.orig.mp3",
+      "audioAuto": "2bb20f84b2574ec2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2bb20f84b2574ec2"
     },
     {
       "id": "terebi-wo-kesu-mae-ni-nyuusu",
@@ -1020,7 +1045,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using けす, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "3364a7987c1612b8.mp3",
+      "audioOriginal": "3364a7987c1612b8.orig.mp3",
+      "audioAuto": "3364a7987c1612b8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3364a7987c1612b8"
     },
     {
       "id": "shorui-wo-kopii-suru-mae-ni-yonde",
@@ -1032,7 +1062,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using コピーする, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "a5ea515679856b64.mp3",
+      "audioOriginal": "a5ea515679856b64.orig.mp3",
+      "audioAuto": "a5ea515679856b64.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a5ea515679856b64"
     },
     {
       "id": "sumaho-wo-juuden-suru-mae-ni-denwa",
@@ -1044,7 +1079,13 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using じゅうでんする, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "82dd41350188ea41.mp3",
+      "audioOriginal": "82dd41350188ea41.orig.mp3",
+      "audioAuto": "82dd41350188ea41.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "82dd41350188ea41"
     }
   ]
 }

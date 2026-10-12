@@ -1100,7 +1100,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using やすむ, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "7697d01a513f1e51.mp3",
+      "audioOriginal": "7697d01a513f1e51.orig.mp3",
+      "audioAuto": "7697d01a513f1e51.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7697d01a513f1e51"
     }
   ]
 }

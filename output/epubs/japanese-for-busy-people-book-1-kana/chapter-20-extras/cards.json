@@ -444,11 +444,6 @@
       "aiSuggested": true,
       "note": "Say the part you caught, pause, then add なんですか. The answer would be あかさかです.",
       "reviewNote": "Possibly already taught — Same 'X…なんですか' request for a half-heard word as the chapter-20 '…なんですか' card, with 'aka' in the slot. Chapter-2-extras なんですか is a different question.",
-      "audio": "c26ed7ee5f77036e.mp3",
-      "audioOriginal": "c26ed7ee5f77036e.orig.mp3",
-      "audioAuto": "c26ed7ee5f77036e.mp3",
-      "audioMarked": true,
-      "audioTextHash": "c26ed7ee5f77036e",
       "excluded": true,
       "excludedBy": "human"
     },
@@ -644,11 +639,6 @@
       "uncertain": true,
       "scene": "Only part of a station name was heard, so you ask for it again",
       "reviewNote": "Possibly already taught — Same partial-hearing 'X…なんですか' request as the chapter-20 card '…なんですか', with 'sui' in the slot.",
-      "audio": "e8ab0158c0968922.mp3",
-      "audioOriginal": "e8ab0158c0968922.orig.mp3",
-      "audioAuto": "e8ab0158c0968922.mp3",
-      "audioMarked": true,
-      "audioTextHash": "e8ab0158c0968922",
       "excluded": true,
       "excludedBy": "human"
     },
@@ -965,7 +955,12 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ねぼうする, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "d3e505b48c718502.mp3",
+      "audioOriginal": "d3e505b48c718502.orig.mp3",
+      "audioAuto": "d3e505b48c718502.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d3e505b48c718502"
     }
   ]
 }

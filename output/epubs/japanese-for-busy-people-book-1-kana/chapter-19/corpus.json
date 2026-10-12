@@ -1195,6 +1195,69 @@
       "note": "Dictionary form of とめます (tomemasu, \"stop\", Lesson 19), which is also its casual form. Regular 2: ます becomes る.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught とめます (Lesson 19), or Lesson 15 where the form itself is taught if the verb came earlier."
+    },
+    {
+      "id": "iu-dict-form",
+      "english": "Say (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "いう",
+      "note": "Dictionary form of いいます (iimasu, \"say\", Lesson 19), which is also its casual form. Regular 1: the い before ます becomes う.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught いいます (Lesson 19)."
+    },
+    {
+      "id": "magaru-dict-form",
+      "english": "Turn (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "まがる",
+      "note": "Dictionary form of まがります (magarimasu, \"turn\", Lesson 19), which is also its casual form. Regular 1: the り before ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught まがります (Lesson 19)."
+    },
+    {
+      "id": "todokeru-dict-form",
+      "english": "Deliver (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "とどける",
+      "note": "Dictionary form of とどけます (todokemasu, \"deliver\", Lesson 19), which is also its casual form. Regular 2: ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught とどけます (Lesson 19)."
+    },
+    {
+      "id": "motte-kuru-dict-form",
+      "english": "Bring (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "もってくる",
+      "note": "Dictionary form of もってきます (motte kimasu, \"bring\", Lesson 19), which is also its casual form. Irregular: the くる part works like きます → くる.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught もってきます (Lesson 19)."
+    },
+    {
+      "id": "tsutaeru-dict-form",
+      "english": "Relay a message (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "つたえる",
+      "note": "Dictionary form of つたえます (tsutaemasu, \"relay a message\", Lesson 19), which is also its casual form. Regular 2: ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught つたえます (Lesson 19)."
+    },
+    {
+      "id": "houkoku-suru-dict-form",
+      "english": "Report (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "ほうこくする",
+      "note": "Dictionary form of ほうこくします (hōkoku shimasu, \"report\", Lesson 19), which is also its casual form. Irregular: the する part works like します → する.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught ほうこくします (Lesson 19)."
+    },
+    {
+      "id": "azukaru-dict-form",
+      "english": "Keep, take care of (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "あずかる",
+      "note": "Dictionary form of あずかります (azukarimasu, \"keep, take care of\", Lesson 19), which is also its casual form. Regular 1: the り before ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught あずかります (Lesson 19)."
     }
   ]
 }

@@ -743,6 +743,15 @@
       "note": "Used when inviting someone to your own home or to an event you are hosting; いきませんか is for going somewhere together.",
       "reviewNote": "Retrofit 2026-09-28: taught in the SPEAKING PRACTICE notes as its own invitation form; previously carded only inside sp1-party-invite.",
       "aiSuggested": true
+    },
+    {
+      "id": "yasumu-dict-form",
+      "english": "Rest (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "やすむ",
+      "note": "Dictionary form of やすみます (yasumimasu, \"rest\", Lesson 16), which is also its casual form. Regular 1: the み before ます becomes む.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught やすみます (Lesson 16)."
     }
   ]
 }

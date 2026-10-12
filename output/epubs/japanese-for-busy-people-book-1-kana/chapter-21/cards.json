@@ -1113,6 +1113,94 @@
       "audioMarked": true,
       "audioTextHash": "78ca2c9e5a2ad113",
       "additionDone": true
+    },
+    {
+      "id": "suwaru-dict-form",
+      "english": "Sit down (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "すわる",
+      "pronunciation": "suwaru",
+      "note": "Dictionary form of すわります (suwarimasu, \"sit down\", Lesson 21), which is also its casual form. Regular 1: the り before ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught すわります (Lesson 21).",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "tsukau-dict-form",
+      "english": "Use (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "つかう",
+      "pronunciation": "tsukau",
+      "note": "Dictionary form of つかいます (tsukaimasu, \"use\", Lesson 21), which is also its casual form. Regular 1: the い before ます becomes う.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught つかいます (Lesson 21).",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "hairu-dict-form",
+      "english": "Enter (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "はいる",
+      "pronunciation": "hairu",
+      "note": "Dictionary form of はいります (hairimasu, \"enter\", Lesson 21), which is also its casual form. Regular 1: the り before ます becomes る. It looks like a Regular 2 verb and is not.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught はいります (Lesson 21).",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "oku-dict-form",
+      "english": "Put, place (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "おく",
+      "pronunciation": "oku",
+      "note": "Dictionary form of おきます (okimasu, \"put, place\", Lesson 21), which is also its casual form. Regular 1: the き before ます becomes く.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught おきます (Lesson 21).",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "tsukeru-dict-form",
+      "english": "Turn on (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "つける",
+      "pronunciation": "tsukeru",
+      "note": "Dictionary form of つけます (tsukemasu, \"turn on\", Lesson 21), which is also its casual form. Regular 2: ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught つけます (Lesson 21).",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "kesu-dict-form",
+      "english": "Turn off (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "けす",
+      "pronunciation": "kesu",
+      "note": "Dictionary form of けします (keshimasu, \"turn off\", Lesson 21), which is also its casual form. Regular 1: the し before ます becomes す.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught けします (Lesson 21).",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "kopii-suru-dict-form",
+      "english": "Make a copy (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "コピーする",
+      "pronunciation": "kopī suru",
+      "note": "Dictionary form of コピーします (kopī shimasu, \"make a copy\", Lesson 21), which is also its casual form. Irregular: the する part works like します → する.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught コピーします (Lesson 21).",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "juuden-suru-dict-form",
+      "english": "Recharge (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "じゅうでんする",
+      "pronunciation": "jūden suru",
+      "note": "Dictionary form of じゅうでんします (jūden shimasu, \"recharge\", Lesson 21), which is also its casual form. Irregular: the する part works like します → する.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught じゅうでんします (Lesson 21).",
+      "addition": "dictionary-forms-sweep-2026-10"
     }
   ]
 }

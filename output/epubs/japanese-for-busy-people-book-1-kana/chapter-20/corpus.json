@@ -1288,6 +1288,15 @@
       "category": "Time",
       "sourceOrder": 2869,
       "note": "はん comes after the counter, and the optional かん is left out: いちねんはん, not いちねんかんはん."
+    },
+    {
+      "id": "nebou-suru-dict-form",
+      "english": "Oversleep (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "ねぼうする",
+      "note": "Dictionary form of ねぼうします (nebō shimasu, \"oversleep\", Lesson 20), which is also its casual form. Irregular: the する part works like します → する.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught ねぼうします (Lesson 20)."
     }
   ]
 }

@@ -490,6 +490,24 @@
       "excluded": true,
       "excludedBy": "semantic-dedup",
       "excludedReason": "Same sentence; the kept id's spacing/English is more natural and the id is shorter."
+    },
+    {
+      "id": "wasabi-wo-ireru-mae-ni-tabenaide",
+      "english": "Please don't eat it before I put the wasabi in.",
+      "category": "Grammar & Function Words",
+      "target": "わさびをいれるまえに、たべないでください",
+      "note": "いれる (put in). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's ないでください (please don't).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いれる, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "ki-ni-suru-no-wa-yokunai",
+      "english": "Worrying about it isn't good, so please don't worry.",
+      "category": "Grammar & Function Words",
+      "target": "きにするのはよくないですから、きにしないでください",
+      "note": "きにする (worry about) + のは, \"worrying\" (the の turns the verb into a thing, as in のがすきです), then よくないです (isn't good). The second half is this lesson's きにしないでください.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using きにする, the dictionary form added to the base unit in the same batch."
     }
   ]
 }

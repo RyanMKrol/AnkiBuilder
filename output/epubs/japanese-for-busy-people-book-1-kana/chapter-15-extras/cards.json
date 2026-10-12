@@ -1344,6 +1344,94 @@
       "audioFilter": "standard",
       "audio": "4f210fe01b279147-genkanji-06583c1b.mp3",
       "additionDone": true
+    },
+    {
+      "id": "nihongo-no-anime-ga-wakaru-no-wa-tanoshii",
+      "english": "It's fun to understand anime in Japanese.",
+      "category": "Grammar & Function Words",
+      "target": "にほんごのアニメがわかるのはたのしいです",
+      "pronunciation": "nihongo no anime ga wakaru no wa tanoshii desu",
+      "note": "わかる (understand) + のはたのしいです, \"doing ~ is fun\". The の turns the verb into a thing, exactly as in のがすきです; here it takes は instead of が.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using わかる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "kazoku-ni-shashin-wo-okuru-no-ga-suki",
+      "english": "I like sending photos to my family by e-mail.",
+      "category": "Grammar & Function Words",
+      "target": "かぞくにメールでしゃしんをおくるのがすきです",
+      "pronunciation": "kazoku ni mēru de shashin o okuru no ga suki desu",
+      "note": "おくる (send) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson. The person you send to takes に.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using おくる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "fujisan-ni-noboru-no-ga-suki",
+      "english": "I like climbing Mt. Fuji.",
+      "category": "Grammar & Function Words",
+      "target": "ふじさんにのぼるのがすきです",
+      "pronunciation": "Fujisan ni noboru no ga suki desu",
+      "note": "のぼる (climb) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson. The mountain takes に.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using のぼる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "teeburu-ni-hana-ga-aru-no-ga-suki",
+      "english": "I like having flowers on the table.",
+      "category": "Grammar & Function Words",
+      "target": "テーブルのうえにはながあるのがすきです",
+      "pronunciation": "tēburu no ue ni hana ga aru no ga suki desu",
+      "note": "ある (be, for things) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson: literally \"I like it that there are flowers on the table\".",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ある, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "hana-wo-morau-no-ga-suki",
+      "english": "I like getting flowers.",
+      "category": "Grammar & Function Words",
+      "target": "はなをもらうのがすきです",
+      "pronunciation": "hana o morau no ga suki desu",
+      "note": "もらう (receive) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using もらう, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "haha-ga-kureru-okashi-ga-suki",
+      "english": "I like the sweets my mother gives me.",
+      "category": "Grammar & Function Words",
+      "target": "ははがくれるおかしがすきです",
+      "pronunciation": "haha ga kureru okashi ga suki desu",
+      "note": "くれる (give to me) sits in front of おかし (sweets) and describes it: \"the sweets my mother gives me\". A verb describing a noun is always in the dictionary form.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using くれる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "toshokan-de-hon-wo-kariru-no-ga-suki",
+      "english": "I like borrowing books from the library.",
+      "category": "Grammar & Function Words",
+      "target": "としょかんでほんをかりるのがすきです",
+      "pronunciation": "toshokan de hon o kariru no ga suki desu",
+      "note": "かりる (borrow) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson. The place you borrow at takes で.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using かりる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
+    },
+    {
+      "id": "niau-fuku-wo-kau-no-ga-suki",
+      "english": "I like buying clothes that suit me.",
+      "category": "Grammar & Function Words",
+      "target": "にあうふくをかうのがすきです",
+      "pronunciation": "niau fuku o kau no ga suki desu",
+      "note": "にあう (suit) sits in front of ふく (clothes) and describes it, \"clothes that suit me\"; then かう (buy) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using にあう, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-sweep-2026-10"
     }
   ]
 }

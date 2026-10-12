@@ -662,6 +662,78 @@
       "note": "Dictionary form of あげます (agemasu, \"give\", Lesson 14), which is also its casual form. Regular 2: ます becomes る. Lesson 15's grammar names あげます among the Regular 2 verbs.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught あげます (Lesson 14), or Lesson 15 where the form itself is taught if the verb came earlier."
+    },
+    {
+      "id": "wakaru-dict-form",
+      "english": "Understand (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "わかる",
+      "note": "Dictionary form of わかります (wakarimasu, \"understand\", Lesson 8), which is also its casual form. Regular 1: the り before ます becomes る. It looks like a Regular 2 verb and is not.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught わかります (Lesson 8), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier."
+    },
+    {
+      "id": "okuru-dict-form",
+      "english": "Send (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "おくる",
+      "note": "Dictionary form of おくります (okurimasu, \"send\", Lesson 9), which is also its casual form. Regular 1: the り before ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught おくります (Lesson 9), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier."
+    },
+    {
+      "id": "noboru-dict-form",
+      "english": "Climb (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "のぼる",
+      "note": "Dictionary form of のぼります (noborimasu, \"climb\", Lesson 11), which is also its casual form. Regular 1: the り before ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught のぼります (Lesson 11), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier."
+    },
+    {
+      "id": "aru-dict-form",
+      "english": "Be, exist (inanimate) (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "ある",
+      "note": "Dictionary form of あります (arimasu, \"be, exist\", Lesson 12), which is also its casual form. Regular 1: the り before ます becomes る. The partner of いる, which is for people and animals. Its casual negative is the odd one out: ない, not あらない.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught あります (Lesson 12), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier."
+    },
+    {
+      "id": "morau-dict-form",
+      "english": "Receive (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "もらう",
+      "note": "Dictionary form of もらいます (moraimasu, \"receive\", Lesson 14), which is also its casual form. Regular 1: the い before ます becomes う.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught もらいます (Lesson 14), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier."
+    },
+    {
+      "id": "kureru-dict-form",
+      "english": "Give (to me) (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "くれる",
+      "note": "Dictionary form of くれます (kuremasu, \"give (to me)\", Lesson 14), which is also its casual form. Regular 2: ます becomes る.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught くれます (Lesson 14), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier."
+    },
+    {
+      "id": "kariru-dict-form",
+      "english": "Borrow (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "かりる",
+      "note": "Dictionary form of かります (karimasu, \"borrow\", Lesson 14), which is also its casual form. Regular 2: ます becomes る. Not かる: the り stays, because the verb is Regular 2.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught かります (Lesson 14), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier."
+    },
+    {
+      "id": "niau-dict-form",
+      "english": "Suit, look good on (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "にあう",
+      "note": "Dictionary form of にあいます (niaimasu, \"suit\", Lesson 14), which is also its casual form. Regular 1: the い before ます becomes う.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught にあいます (Lesson 14), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier."
     }
   ]
 }

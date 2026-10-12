@@ -526,6 +526,78 @@
       "note": "しめる (close) in the dictionary form before まえに (before), then this lesson's てもいいですか to ask permission.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using しめる, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "suwaru-mae-ni-nimotsu-oite",
+      "english": "May I put my bag here before I sit down?",
+      "category": "Grammar & Function Words",
+      "target": "すわるまえに、にもつをここにおいてもいいですか",
+      "note": "すわる (sit down). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's てもいいですか (may I).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using すわる, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "heya-wo-tsukau-mae-ni-eakon",
+      "english": "May I turn on the air conditioner before we use this room?",
+      "category": "Grammar & Function Words",
+      "target": "このへやをつかうまえに、エアコンをつけてもいいですか",
+      "note": "つかう (use). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つかう, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "kaigishitsu-ni-hairu-mae-ni-denwa",
+      "english": "May I make a phone call before I go into the meeting room?",
+      "category": "Grammar & Function Words",
+      "target": "かいぎしつにはいるまえに、でんわをしてもいいですか",
+      "note": "はいる (enter). The place you enter takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using はいる, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "keeki-wo-oku-mae-ni-shashin",
+      "english": "May I take a photo before you put the cake on the table?",
+      "category": "Grammar & Function Words",
+      "target": "ケーキをテーブルにおくまえに、しゃしんをとってもいいですか",
+      "note": "おく (put). The place you put something takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using おく, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "eakon-wo-tsukeru-mae-ni-mado",
+      "english": "May I close the window before I turn on the air conditioner?",
+      "category": "Grammar & Function Words",
+      "target": "エアコンをつけるまえに、まどをしめてもいいですか",
+      "note": "つける (turn on). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つける, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "terebi-wo-kesu-mae-ni-nyuusu",
+      "english": "May I watch the news before you turn off the TV?",
+      "category": "Grammar & Function Words",
+      "target": "テレビをけすまえに、ニュースをみてもいいですか",
+      "note": "けす (turn off). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using けす, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "shorui-wo-kopii-suru-mae-ni-yonde",
+      "english": "May I read the document quickly before you copy it?",
+      "category": "Grammar & Function Words",
+      "target": "しょるいをコピーするまえに、ちょっとよんでもいいですか",
+      "note": "コピーする (make a copy). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using コピーする, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "sumaho-wo-juuden-suru-mae-ni-denwa",
+      "english": "May I make a call before I charge my phone?",
+      "category": "Grammar & Function Words",
+      "target": "スマホをじゅうでんするまえに、でんわをしてもいいですか",
+      "note": "じゅうでんする (recharge). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using じゅうでんする, the dictionary form added to the base unit in the same batch."
     }
   ]
 }

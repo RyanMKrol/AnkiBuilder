@@ -579,7 +579,8 @@
       "category": "Time",
       "target": "ばん",
       "note": "Sub-entry under ばんごはん (bangohan) (dinner) — ばん (ban) means 'evening' on its own",
-      "scene": "the time of day"
+      "scene": "the time of day",
+      "hint": "evening into night"
     },
     {
       "id": "puuru",

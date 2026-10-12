@@ -547,7 +547,8 @@
       "target": "ダウンロードします",
       "english": "Download",
       "category": "Technology & Communication",
-      "sourceOrder": 4122
+      "sourceOrder": 4122,
+      "hint": "the verb, \"to download\""
     },
     {
       "id": "daunroudo-shimasu",

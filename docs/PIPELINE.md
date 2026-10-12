@@ -1409,6 +1409,18 @@ reconcile → coverage-adversary → gap-filler → SNAPSHOT → semantic-dedup 
 
 Producing happens above the line; pruning happens below it. Both halves are asserted.
 
+**The filler also gets gaps the adversary cannot see: carried forms.** A textbook introduces a form
+once and then prints later verbs without it. Busy People teaches the dictionary form in Lesson 15 and
+prints every later verb as a ます form, so by Lesson 22 thirty-five verbs had no dictionary form
+anywhere in the deck. The adversary reads one chapter and the chapter never prints the form, so it can
+never report one. `missingCarriedForms` (`src/cards/carriedForms.js`) finds them by arithmetic
+instead: once an earlier unit holds a card marked `(dictionary form)`, every verb this chapter teaches
+needs one too. The unit that introduces the form owes it for every earlier verb as well. Those gaps are
+appended to the adversary's, carry a `carriedForm` field, and the filler stamps what it writes for
+them `aiSuggested`, because unlike the adversary's gaps they really are not in the book. The
+`carried-forms` preflight check (ACK) runs the same function over finished lessons. Owner ruling
+2026-10-12.
+
 ### The semantic deduplicator: the one agent that reconciles rather than produces
 
 Every other agent in the pipeline is a producer. Nine of them across the two phases, and each either

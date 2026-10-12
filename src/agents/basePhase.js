@@ -42,6 +42,7 @@ import {
 } from "./coverageAdversary.js";
 import { writeVerdicts } from "./imageVerdicts.js";
 import { fillCoverageGaps, GAP_FILLS_FILE, ROLE_ID as GAP_FILLER_ROLE } from "./gapFiller.js";
+import { missingCarriedForms } from "../cards/carriedForms.js";
 import { writeSnapshot } from "./snapshot.js";
 import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
 import { deduplicateAgainstEarlier, BACKWARD_FILE } from "./backwardDeduplicator.js";
@@ -287,9 +288,14 @@ function runBasePhaseInner({
   // The adversary's findings used to end here, in a file nothing opened. Its gaps are evidence, not
   // suggestions: another reader found them in the chapter and a set operation confirmed the corpus
   // lacks them. So they are filled, and what is declined says why.
+  //
+  // The carried forms ride along: a form an EARLIER lesson taught (the dictionary form, from Lesson
+  // 15 of Busy People) that a verb in this chapter does not have yet. The chapter never prints it, so
+  // the adversary cannot find it; arithmetic over the cards can (src/cards/carriedForms.js).
+  const carried = missingCarriedForms(merged.items, { priorItems, languageCode: targetLanguage });
   const fills = timed(() =>
     impl.fillCoverageGaps({
-      gaps: gaps.gaps,
+      gaps: [...gaps.gaps, ...(carried ?? [])],
       items: merged.items,
       chapterFilePath,
       targetLanguage,
@@ -305,9 +311,10 @@ function runBasePhaseInner({
     role: "gapFiller",
     status: STEP_STATUS.OK,
     durationMs: fills.durationMs,
-    counts: { in: gaps.counts.gaps, out: fills.value.items.length },
+    counts: { in: gaps.counts.gaps + (carried?.length ?? 0), out: fills.value.items.length },
     artifact: writeRelative(unitDir, GAP_FILLS_FILE, {
       gaps: gaps.counts.gaps,
+      carriedForms: carried === null ? null : carried.map((g) => g.target),
       skipped: fills.value.skipped,
       filled: fills.value.items.map((i) => ({ id: i.id, target: i.target, fillsGap: i.fillsGap })),
       declined: fills.value.declined,

@@ -96,3 +96,35 @@ test("the prompt shows the corpus so a gap that restates a card can be declined"
   assert.ok(!prompt.includes("{{"));
   assert.match(prompt, /irregular/i, "the shared card rules are injected");
 });
+
+test("a CARRIED form is stamped aiSuggested, because the book never prints it", () => {
+  const out = fillCoverageGaps({
+    gaps: [...GAPS, { target: "ねます", english: "Sleep", carriedForm: "dictionary form" }],
+    items: CORPUS,
+    chapterFilePath: "/tmp/ch.xhtml",
+    targetLanguage: "Japanese",
+    runClaude: reply({
+      items: [
+        { id: "neru", target: "ねる", english: "Sleep (dictionary form)", fillsGap: "ねます" },
+        { id: "toshokan", target: "としょかん", english: "Library", fillsGap: "としょかん" },
+      ],
+      declined: [{ gap: "あまり…〜ません", reason: "already carded" }],
+    }),
+  });
+  const [neru, toshokan] = out.items;
+  assert.equal(neru.aiSuggested, true);
+  assert.match(neru.reviewNote, /dictionary form/);
+  assert.equal(toshokan.aiSuggested, undefined, "an ordinary gap is still not an invention");
+  assert.deepEqual(out.unfilled, []);
+});
+
+test("the prompt tells the filler a carried form is owed, not declined", () => {
+  const prompt = renderGapFillerPrompt({
+    gaps: GAPS,
+    items: CORPUS,
+    chapterFilePath: "/tmp/ch.xhtml",
+    targetLanguage: "Japanese",
+  });
+  assert.match(prompt, /A gap with `carriedForm` is not in the chapter, and is still owed/);
+  assert.match(prompt, /\(dictionary form\)/);
+});

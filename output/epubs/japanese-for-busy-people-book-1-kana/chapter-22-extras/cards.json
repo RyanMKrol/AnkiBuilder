@@ -30,7 +30,8 @@
         "reason": "phase 2 dedups its own miners' output"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -387,12 +388,17 @@
       "target": "このかさはたかいですから、かさないでください",
       "pronunciation": "kono kasa wa takai desu kara, kasanaide kudasai",
       "aiSuggested": true,
-      "audio": "8c5802e3d757a282.mp3",
+      "audio": "nai-kasanai-ex1-manual-471d6935.mp3",
       "audioOriginal": "8c5802e3d757a282.orig.mp3",
       "audioAuto": "8c5802e3d757a282.mp3",
       "audioMarked": true,
       "audioMarkerStuck": true,
-      "audioTextHash": "8c5802e3d757a282"
+      "audioTextHash": "8c5802e3d757a282",
+      "audioManual": "nai-kasanai-ex1-manual-471d6935.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.7622106164383564
+      }
     },
     {
       "id": "nai-konai-ex1",
@@ -695,12 +701,16 @@
       "category": "Transport",
       "target": "ここはちゅうしゃきんしですから、くるまをとめないでください",
       "pronunciation": "koko wa chūsha kinshi desu kara, kuruma o tomenaide kudasai",
-      "audio": "e7ebe83003c40c24.mp3",
+      "audio": "no-parking-sign-manual-f299e71a.mp3",
       "audioOriginal": "e7ebe83003c40c24.orig.mp3",
       "audioAuto": "e7ebe83003c40c24.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "e7ebe83003c40c24"
+      "audioTextHash": "e7ebe83003c40c24",
+      "audioManual": "no-parking-sign-manual-f299e71a.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 4.369931506849315
+      }
     },
     {
       "id": "order-sandwich-no-mayo",
@@ -831,12 +841,16 @@
       "target": "パーティーはたのしいですから、かえらないでください",
       "pronunciation": "pātī wa tanoshii desu kara, kaeranaide kudasai",
       "aiSuggested": true,
-      "audio": "3c1ca3217def4311.mp3",
+      "audio": "nai-kaeranai-ex1-manual-2b390ae4.mp3",
       "audioOriginal": "3c1ca3217def4311.orig.mp3",
       "audioAuto": "3c1ca3217def4311.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "3c1ca3217def4311"
+      "audioTextHash": "3c1ca3217def4311",
+      "audioManual": "nai-kaeranai-ex1-manual-2b390ae4.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.553960616438357
+      }
     },
     {
       "id": "sawarimasu-touch-ex1",
@@ -872,12 +886,16 @@
       "target": "はい、わかりました。すみません",
       "pronunciation": "hai, wakarimashita. sumimasen",
       "scene": "Replying after being told not to enter a restricted area.",
-      "audio": "c0e71d18c68b23e1.mp3",
+      "audio": "no-entry-reply-manual-69265d96.mp3",
       "audioOriginal": "c0e71d18c68b23e1.orig.mp3",
       "audioAuto": "c0e71d18c68b23e1.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "c0e71d18c68b23e1"
+      "audioTextHash": "c0e71d18c68b23e1",
+      "audioManual": "no-entry-reply-manual-69265d96.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.1790924657534245
+      }
     }
   ]
 }

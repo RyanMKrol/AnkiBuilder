@@ -174,8 +174,9 @@ In the dashboard the owner reviews the chapter and presses **Mark reviewed**, wh
 reading collection's own dedup library. The card-faces view shows the reading card exactly as Anki
 will: one face, the written form alone.
 
-**Never hand over a gate and stop: arm a watcher with the Monitor tool when you give the link**, and
-tell the owner it is armed. When it fires, carry on by yourself (audio after gate 1). It is the same
+**Never hand over a gate and stop: arm a silent background watcher when you give the link**, and
+tell the owner it is armed, once. Do not run it under the Monitor tool, and do not report its
+heartbeat: speak again only when the owner has signed off. When it fires, carry on by yourself (audio after gate 1). It is the same
 script and the same rules as the speaking decks (`build-anki-deck` SKILL.md, "Arm a watcher"); it
 reads a reading unit exactly as it reads a speaking one. Pass an absolute path.
 

@@ -106,17 +106,20 @@ background watcher that polls the flag the dashboard writes and exits once it is
 notification is your cue to carry straight on: phase 2 after gate 1, phase 3 after gate 2, and the
 merge or the deliver after gate 3.
 
-**Use the Monitor tool, so the watcher is VISIBLE in the conversation.** A plain background poll
-loop works but is silent until the moment it fires, which leaves the reviewer with no evidence that
-anything is waiting on them; they end up asking whether it is running, which is the message the
-watcher existed to save. Monitor turns each stdout line into a message in the thread, and the script
-below announces when it arms, ticks every few minutes while waiting, and announces when it fires,
-then exits — so the watch ends with the event instead of lingering.
+**Run the watcher SILENTLY, and speak only when the owner has acted.** Start it as a background
+command (Bash with `run_in_background`, output redirected to a file) so the only message it produces
+is its completion. Say once, when you hand over the link, that it is armed. After that, say nothing
+until it fires. Do NOT run it under the Monitor tool: Monitor turns the script's heartbeat lines into
+chat messages, so the owner got "still waiting" every four minutes while reviewing, and its 30-minute
+cap forced re-arms that added more. On 2026-10-13 the owner ruled: "Ping me when I've done something.
+Don't ping me optimistically for no reason." The heartbeat still goes to the log file, where it is
+useful if you need to check the watcher is alive. Give it a long `--timeout` (a review can take
+hours), and if it does time out, re-arm it silently.
 
 ```sh
 node scripts/await-review.mjs <runDir> --gate 1     # wait for Mark reviewed
 node scripts/await-review.mjs <runDir> --gate 2     # wait for Mark done AND its rebuild
-#   --timeout 30m   how long to wait before giving up (default 30m)
+#   --timeout 30m   how long to wait before giving up (default 30m; pass something like 12h)
 #   --interval 15s  how often to poll (default 15s)
 ```
 
@@ -155,11 +158,10 @@ getting it wrong in a real build:
 - **It waits for the human; it never replaces them.** The script only reads. Setting a review flag
   yourself to unblock a stage defeats the gate that exists to keep unseen cards out of the deck. If a
   stage refuses because a unit is unreviewed, that is the system working.
-- **The wait is bounded and the heartbeat is sparse.** An unattended session ends with a clear
-  timeout message rather than a process that quietly lingers, and a monitor that prints every poll
-  floods the thread and gets stopped automatically — which is the one failure a watcher cannot
-  report. Tell the user it is armed when you hand over the link, so they know the next step runs on
-  its own and no follow-up message is needed.
+- **The wait is bounded, and the heartbeat stays out of the conversation.** An unattended session
+  ends with a clear timeout rather than a process that quietly lingers. The heartbeat goes to the
+  log file, never to the owner (see above). Tell the user it is armed when you hand over the link,
+  so they know the next step runs on its own and no follow-up message is needed.
 
 One more thing to do before you hand the link over, which is not the watcher's job:
 

@@ -1289,6 +1289,39 @@
       "audioMarked": true,
       "audioTextHash": "83348d364623e1bc",
       "additionDone": true
+    },
+    {
+      "id": "tomodachi-ni-au-no-ga-suki",
+      "english": "I like meeting friends.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちにあうのがすきです",
+      "pronunciation": "tomodachi ni au no ga suki desu",
+      "note": "あう (meet) + のがすきです, \"I like doing ~\". The person you meet takes に, as with あいます.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あう, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-2026-10"
+    },
+    {
+      "id": "shashin-wo-miseru-no-ga-suki",
+      "english": "I like showing photos to my friends.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちにしゃしんをみせるのがすきです",
+      "pronunciation": "tomodachi ni shashin o miseru no ga suki desu",
+      "note": "みせる (show) + のがすきです. The person you show something to takes に.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using みせる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-2026-10"
+    },
+    {
+      "id": "hana-wo-ageru-no-ga-suki",
+      "english": "I like giving flowers to my friends.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちにはなをあげるのがすきです",
+      "pronunciation": "tomodachi ni hana o ageru no ga suki desu",
+      "note": "あげる (give) + のがすきです. The person you give to takes に.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あげる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-2026-10"
     }
   ]
 }

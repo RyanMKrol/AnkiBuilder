@@ -1196,6 +1196,17 @@
       "audioAuto": "5ec0997e07a623b4.mp3",
       "audioMarked": true,
       "audioTextHash": "5ec0997e07a623b4"
+    },
+    {
+      "id": "kuruma-wo-tomeru-mae-ni-denwa",
+      "english": "Please call before you park the car.",
+      "category": "Grammar & Function Words",
+      "target": "くるまをとめるまえに、でんわをしてください",
+      "pronunciation": "kuruma o tomeru mae ni, denwa o shite kudasai",
+      "note": "とめる (park) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using とめる, the dictionary form added to the base unit in the same batch.",
+      "addition": "dictionary-forms-2026-10"
     }
   ]
 }

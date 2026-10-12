@@ -701,6 +701,33 @@
       "note": "とります → とる is Regular 1, even though it ends in る like a Regular 2 verb.",
       "reviewNote": "Retrofit 2026-09-28: from the v2 gap author (Lesson 15 shadow run); gives the chart's とる a sentence. りょこう is Lesson 7, しゃしん Lesson 11.",
       "aiSuggested": true
+    },
+    {
+      "id": "tomodachi-ni-au-no-ga-suki",
+      "english": "I like meeting friends.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちにあうのがすきです",
+      "note": "あう (meet) + のがすきです, \"I like doing ~\". The person you meet takes に, as with あいます.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あう, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "shashin-wo-miseru-no-ga-suki",
+      "english": "I like showing photos to my friends.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちにしゃしんをみせるのがすきです",
+      "note": "みせる (show) + のがすきです. The person you show something to takes に.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using みせる, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "hana-wo-ageru-no-ga-suki",
+      "english": "I like giving flowers to my friends.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちにはなをあげるのがすきです",
+      "note": "あげる (give) + のがすきです. The person you give to takes に.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あげる, the dictionary form added to the base unit in the same batch."
     }
   ]
 }

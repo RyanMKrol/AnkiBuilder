@@ -1373,7 +1373,8 @@
       "audioOriginal": "0949713caf649e25.orig.mp3",
       "audioAuto": "0949713caf649e25.mp3",
       "audioMarked": true,
-      "audioTextHash": "0949713caf649e25"
+      "audioTextHash": "0949713caf649e25",
+      "additionDone": true
     },
     {
       "id": "r-35511b1ede96",
@@ -1391,7 +1392,8 @@
       "audioOriginal": "5063046a8e0a3534.orig.mp3",
       "audioAuto": "5063046a8e0a3534.mp3",
       "audioMarked": true,
-      "audioTextHash": "5063046a8e0a3534"
+      "audioTextHash": "5063046a8e0a3534",
+      "additionDone": true
     },
     {
       "id": "r-59b66cb563cb",
@@ -1409,7 +1411,8 @@
       "audioOriginal": "29e11451cd485a3a.orig.mp3",
       "audioAuto": "29e11451cd485a3a.mp3",
       "audioMarked": true,
-      "audioTextHash": "29e11451cd485a3a"
+      "audioTextHash": "29e11451cd485a3a",
+      "additionDone": true
     },
     {
       "id": "r-d94084e5dab8",
@@ -1427,7 +1430,8 @@
       "audioOriginal": "32948080073c230c.orig.mp3",
       "audioAuto": "32948080073c230c.mp3",
       "audioMarked": true,
-      "audioTextHash": "32948080073c230c"
+      "audioTextHash": "32948080073c230c",
+      "additionDone": true
     },
     {
       "id": "r-c8312f5d5926",
@@ -1445,7 +1449,8 @@
       "audioOriginal": "db4c80348cff959e.orig.mp3",
       "audioAuto": "db4c80348cff959e.mp3",
       "audioMarked": true,
-      "audioTextHash": "db4c80348cff959e"
+      "audioTextHash": "db4c80348cff959e",
+      "additionDone": true
     },
     {
       "id": "r-6e8985ac3ad7",
@@ -1463,7 +1468,8 @@
       "audioOriginal": "5a3256947dd6f4f4.orig.mp3",
       "audioAuto": "5a3256947dd6f4f4.mp3",
       "audioMarked": true,
-      "audioTextHash": "5a3256947dd6f4f4"
+      "audioTextHash": "5a3256947dd6f4f4",
+      "additionDone": true
     },
     {
       "id": "r-7c87d5ed72f7",
@@ -1481,7 +1487,8 @@
       "audioOriginal": "97b5202057b79618.orig.mp3",
       "audioAuto": "97b5202057b79618.mp3",
       "audioMarked": true,
-      "audioTextHash": "97b5202057b79618"
+      "audioTextHash": "97b5202057b79618",
+      "additionDone": true
     },
     {
       "id": "r-37d5c168f7c4",
@@ -1499,7 +1506,8 @@
       "audioOriginal": "d8f7a059c80742a8.orig.mp3",
       "audioAuto": "d8f7a059c80742a8.mp3",
       "audioMarked": true,
-      "audioTextHash": "d8f7a059c80742a8"
+      "audioTextHash": "d8f7a059c80742a8",
+      "additionDone": true
     },
     {
       "id": "r-64ee22460455",
@@ -1517,7 +1525,8 @@
       "audioOriginal": "cf0db2a0421bb7c3.orig.mp3",
       "audioAuto": "cf0db2a0421bb7c3.mp3",
       "audioMarked": true,
-      "audioTextHash": "cf0db2a0421bb7c3"
+      "audioTextHash": "cf0db2a0421bb7c3",
+      "additionDone": true
     },
     {
       "id": "r-a0e2a8fa1a60",
@@ -1531,12 +1540,17 @@
       "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
       "addition": "genki-reading-words-only-2026-10",
       "additionReviewed": true,
-      "audio": "5272e2d37fbb58fc.mp3",
+      "audio": "r-a0e2a8fa1a60-manual-29424fa2.mp3",
       "audioOriginal": "5272e2d37fbb58fc.orig.mp3",
       "audioAuto": "5272e2d37fbb58fc.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "5272e2d37fbb58fc"
+      "audioTextHash": "5272e2d37fbb58fc",
+      "additionDone": true,
+      "audioManual": "r-a0e2a8fa1a60-manual-29424fa2.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.9065303938356165
+      }
     },
     {
       "id": "r-3aa370751431",
@@ -1554,7 +1568,8 @@
       "audioOriginal": "c7d4730ce2185b93.orig.mp3",
       "audioAuto": "c7d4730ce2185b93.mp3",
       "audioMarked": true,
-      "audioTextHash": "c7d4730ce2185b93"
+      "audioTextHash": "c7d4730ce2185b93",
+      "additionDone": true
     },
     {
       "id": "r-6b00d78b45af",
@@ -1572,7 +1587,8 @@
       "audioOriginal": "14b4ec12bb693558.orig.mp3",
       "audioAuto": "14b4ec12bb693558.mp3",
       "audioMarked": true,
-      "audioTextHash": "14b4ec12bb693558"
+      "audioTextHash": "14b4ec12bb693558",
+      "additionDone": true
     }
   ]
 }

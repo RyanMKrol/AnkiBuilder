@@ -58,7 +58,7 @@
     },
     {
       "id": "asoko",
-      "english": "Over there",
+      "english": "Over there (away from both of us)",
       "category": "Directions",
       "target": "あそこ",
       "pronunciation": "asoko",
@@ -461,7 +461,7 @@
     },
     {
       "id": "soko",
-      "english": "There",
+      "english": "There (near you)",
       "category": "Directions",
       "target": "そこ",
       "pronunciation": "soko",
@@ -470,7 +470,8 @@
       "audioOriginal": "f53174521c55ff20.orig.mp3",
       "audioAuto": "f53174521c55ff20.mp3",
       "audioMarked": true,
-      "audioTextHash": "f53174521c55ff20"
+      "audioTextHash": "f53174521c55ff20",
+      "hint": "everyday form"
     },
     {
       "id": "kurippu",

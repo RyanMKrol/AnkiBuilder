@@ -610,7 +610,7 @@
       "target": "かい",
       "english": "Floor (counter for building floors)",
       "category": "Numbers",
-      "note": "Counter for the floors of a building: 1かい (ikkai, \"1st floor\"), 3がい (sangai, \"3rd floor\"), 6かい (rokkai, \"6th floor\"). After 3 it voices to がい; most other numbers keep かい.",
+      "note": "Counter for the floors of a building: 1かい (ikkai, \"1st floor\"), 3がい (sangai, \"3rd floor\"), 6かい (rokkai, \"6th floor\"). Only 3 voices it to がい; the other numbers keep かい.",
       "sourceOrder": 696
     },
     {

@@ -1132,7 +1132,7 @@
     },
     {
       "id": "ex7-eg-green-reply-what-about-you",
-      "english": "Yes, I do. What about you, Kato-san?",
+      "english": "Yes, I like it. What about you, Kato-san?",
       "category": "Grammar & Function Words",
       "target": "ええ、すきです。かとうさんは?",
       "pronunciation": "ē, suki desu. Katō-san wa",
@@ -1301,12 +1301,13 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-2026-10",
       "additionReviewed": true,
-      "audio": "f48fae3c5fd26c63.mp3",
-      "audioOriginal": "f48fae3c5fd26c63.orig.mp3",
-      "audioAuto": "f48fae3c5fd26c63.mp3",
+      "audioOriginal": "0a39e552029d623c-genkanji-ba972115.orig.mp3",
+      "audioAuto": "0a39e552029d623c-genkanji-ba972115.mp3",
       "audioMarked": true,
-      "audioTextHash": "f48fae3c5fd26c63",
-      "additionDone": true
+      "audioTextHash": "0a39e552029d623c",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "0a39e552029d623c-genkanji-ba972115.mp3"
     },
     {
       "id": "shashin-wo-miseru-no-ga-suki",

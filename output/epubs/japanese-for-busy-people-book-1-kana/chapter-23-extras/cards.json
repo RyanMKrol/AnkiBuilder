@@ -843,7 +843,8 @@
       "audioOriginal": "164262b8aff2be28.orig.mp3",
       "audioAuto": "164262b8aff2be28.mp3",
       "audioMarked": true,
-      "audioTextHash": "164262b8aff2be28"
+      "audioTextHash": "164262b8aff2be28",
+      "additionDone": true
     },
     {
       "id": "contrast-yasumi-sunday-saturday",
@@ -859,7 +860,8 @@
       "audioOriginal": "8dbd766d972361ef.orig.mp3",
       "audioAuto": "8dbd766d972361ef.mp3",
       "audioMarked": true,
-      "audioTextHash": "8dbd766d972361ef"
+      "audioTextHash": "8dbd766d972361ef",
+      "additionDone": true
     },
     {
       "id": "contrast-snowboard-not-ski",
@@ -876,7 +878,8 @@
       "audioOriginal": "b0d75f025d023c57.orig.mp3",
       "audioAuto": "b0d75f025d023c57.mp3",
       "audioMarked": true,
-      "audioTextHash": "b0d75f025d023c57"
+      "audioTextHash": "b0d75f025d023c57",
+      "additionDone": true
     },
     {
       "id": "contrast-throat-not-head",
@@ -892,7 +895,8 @@
       "audioOriginal": "839def2602d26a84.orig.mp3",
       "audioAuto": "839def2602d26a84.mp3",
       "audioMarked": true,
-      "audioTextHash": "839def2602d26a84"
+      "audioTextHash": "839def2602d26a84",
+      "additionDone": true
     },
     {
       "id": "already-eaten-lunch-a",

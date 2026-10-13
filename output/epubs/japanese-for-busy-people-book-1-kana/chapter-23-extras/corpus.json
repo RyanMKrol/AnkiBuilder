@@ -464,6 +464,39 @@
       "category": "Food"
     },
     {
+      "id": "contrast-ni-wa-tanaka-yamada",
+      "english": "I met Tanaka-san, but not Yamada-san.",
+      "category": "Grammar & Function Words",
+      "target": "たなかさんには あいましたが、やまださんには あいませんでした。",
+      "note": "Contrast with a particle other than が or を: the particle stays and は is added after it, so たなかさんに becomes たなかさんには (Tanaka-san ni wa). が and を are replaced by は instead, as in ワインは のみますが (wain wa nomimasu ga).",
+      "reviewNote": "The book's own GRAMMAR 3 example. Added after the chapter-mode final review: the chapter teaches は for contrast with two sub-rules, and only the が/を one had a card."
+    },
+    {
+      "id": "contrast-yasumi-sunday-saturday",
+      "english": "Sunday is a day off, but Saturday isn't.",
+      "category": "Time",
+      "target": "にちようびは やすみですが、どようびは やすみじゃありません。",
+      "aiSuggested": true,
+      "reviewNote": "Exercise VI item 1, written from its picture (Sunday circled, Saturday crossed out); the book prints no answer. Added after the chapter-mode final review: the chapter teaches は for contrast with two sub-rules, and only the が/を one had a card."
+    },
+    {
+      "id": "contrast-snowboard-not-ski",
+      "english": "I snowboard, but I don't ski.",
+      "category": "Sports & Hobbies",
+      "target": "スノーボードは しますが、スキーは しません。",
+      "aiSuggested": true,
+      "note": "スノーボードを します (sunōbōdo o shimasu) becomes スノーボードは します: を is replaced by は, never kept as をは.",
+      "reviewNote": "Exercise VI item 2, written from its picture (snowboarding circled, skiing crossed out); the book prints no answer. Added after the chapter-mode final review: the chapter teaches は for contrast with two sub-rules, and only the が/を one had a card."
+    },
+    {
+      "id": "contrast-throat-not-head",
+      "english": "My throat hurts, but my head doesn't.",
+      "category": "Body & Health",
+      "target": "のどは いたいですが、あたまは いたくないです。",
+      "aiSuggested": true,
+      "reviewNote": "Exercise VI item 3, written from its picture (throat circled, head crossed out); the book prints no answer. Added after the chapter-mode final review: the chapter teaches は for contrast with two sub-rules, and only the が/を one had a card."
+    },
+    {
       "id": "already-eaten-lunch-a",
       "target": "はい、たべました。",
       "english": "Yes, I have eaten.",

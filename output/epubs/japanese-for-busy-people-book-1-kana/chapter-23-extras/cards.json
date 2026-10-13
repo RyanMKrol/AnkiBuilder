@@ -829,6 +829,47 @@
       "audioTextHash": "d8991af49f576781"
     },
     {
+      "id": "contrast-ni-wa-tanaka-yamada",
+      "english": "I met Tanaka-san, but not Yamada-san.",
+      "category": "Grammar & Function Words",
+      "target": "たなかさんにはあいましたが、やまださんにはあいませんでした",
+      "pronunciation": "Tanaka-san ni wa aimashita ga, Yamada-san ni wa aimasen deshita",
+      "note": "Contrast with a particle other than が or を: the particle stays and は is added after it, so たなかさんに becomes たなかさんには (Tanaka-san ni wa). が and を are replaced by は instead, as in ワインは のみますが (wain wa nomimasu ga).",
+      "reviewNote": "The book's own GRAMMAR 3 example. Added after the chapter-mode final review: the chapter teaches は for contrast with two sub-rules, and only the が/を one had a card.",
+      "addition": "lesson-23-contrast-wa-2026-10"
+    },
+    {
+      "id": "contrast-yasumi-sunday-saturday",
+      "english": "Sunday is a day off, but Saturday isn't.",
+      "category": "Time",
+      "target": "にちようびはやすみですが、どようびはやすみじゃありません",
+      "pronunciation": "nichiyōbi wa yasumi desu ga, doyōbi wa yasumi ja arimasen",
+      "aiSuggested": true,
+      "reviewNote": "Exercise VI item 1, written from its picture (Sunday circled, Saturday crossed out); the book prints no answer. Added after the chapter-mode final review: the chapter teaches は for contrast with two sub-rules, and only the が/を one had a card.",
+      "addition": "lesson-23-contrast-wa-2026-10"
+    },
+    {
+      "id": "contrast-snowboard-not-ski",
+      "english": "I snowboard, but I don't ski.",
+      "category": "Sports & Hobbies",
+      "target": "スノーボードはしますが、スキーはしません",
+      "pronunciation": "sunōbōdo wa shimasu ga, sukī wa shimasen",
+      "aiSuggested": true,
+      "note": "スノーボードを します (sunōbōdo o shimasu) becomes スノーボードは します: を is replaced by は, never kept as をは.",
+      "reviewNote": "Exercise VI item 2, written from its picture (snowboarding circled, skiing crossed out); the book prints no answer. Added after the chapter-mode final review: the chapter teaches は for contrast with two sub-rules, and only the が/を one had a card.",
+      "addition": "lesson-23-contrast-wa-2026-10"
+    },
+    {
+      "id": "contrast-throat-not-head",
+      "english": "My throat hurts, but my head doesn't.",
+      "category": "Body & Health",
+      "target": "のどはいたいですが、あたまはいたくないです",
+      "pronunciation": "nodo wa itai desu ga, atama wa itaku nai desu",
+      "aiSuggested": true,
+      "reviewNote": "Exercise VI item 3, written from its picture (throat circled, head crossed out); the book prints no answer. Added after the chapter-mode final review: the chapter teaches は for contrast with two sub-rules, and only the が/を one had a card.",
+      "addition": "lesson-23-contrast-wa-2026-10"
+    },
+    {
       "id": "already-eaten-lunch-a",
       "english": "Yes, I have eaten.",
       "category": "Food",

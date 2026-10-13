@@ -38,7 +38,12 @@
       "english": "The materials are ready.",
       "category": "Work & Occupations",
       "target": "しりょうができました",
-      "pronunciation": "shiryō ga dekimashita"
+      "pronunciation": "shiryō ga dekimashita",
+      "audio": "b226c1c777b81d7f.mp3",
+      "audioOriginal": "b226c1c777b81d7f.orig.mp3",
+      "audioAuto": "b226c1c777b81d7f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b226c1c777b81d7f"
     },
     {
       "id": "owarimasu-finish-1",
@@ -46,7 +51,12 @@
       "category": "Other",
       "target": "かいぎはもうおわりました",
       "pronunciation": "kaigi wa mō owarimashita",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "d47f164edd5eabf1.mp3",
+      "audioOriginal": "d47f164edd5eabf1.orig.mp3",
+      "audioAuto": "d47f164edd5eabf1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d47f164edd5eabf1"
     },
     {
       "id": "madadesu-not-yet-1",
@@ -54,21 +64,36 @@
       "category": "Grammar & Function Words",
       "target": "レポートはもうかきましたか。すみません、まだです",
       "pronunciation": "repōto wa mō kakimashita ka. sumimasen, mada desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c4b30c33cc996350.mp3",
+      "audioOriginal": "c4b30c33cc996350.orig.mp3",
+      "audioAuto": "c4b30c33cc996350.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c4b30c33cc996350"
     },
     {
       "id": "sasaki-drinking-coffee",
       "english": "Is Sasaki-san drinking coffee now?",
       "category": "Food",
       "target": "ささきさんはいまコーヒーをのんでいますか",
-      "pronunciation": "Sasaki-san wa ima kōhī o nonde imasu ka"
+      "pronunciation": "Sasaki-san wa ima kōhī o nonde imasu ka",
+      "audio": "0000cfe197a2dbc7.mp3",
+      "audioOriginal": "0000cfe197a2dbc7.orig.mp3",
+      "audioAuto": "0000cfe197a2dbc7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0000cfe197a2dbc7"
     },
     {
       "id": "download-finished-yet",
       "english": "Has the download finished yet?",
       "category": "Technology & Communication",
       "target": "ダウンロードはもうおわりましたか",
-      "pronunciation": "daunrōdo wa mō owarimashita ka"
+      "pronunciation": "daunrōdo wa mō owarimashita ka",
+      "audio": "01f6c2915b38db66.mp3",
+      "audioOriginal": "01f6c2915b38db66.orig.mp3",
+      "audioAuto": "01f6c2915b38db66.mp3",
+      "audioMarked": true,
+      "audioTextHash": "01f6c2915b38db66"
     },
     {
       "id": "writing-report-wait",
@@ -76,7 +101,12 @@
       "category": "Work & Occupations",
       "target": "いまレポートをかいています。もうすこしまってください",
       "pronunciation": "ima repōto o kaite imasu. mō sukoshi matte kudasai",
-      "scene": "said when asked whether the report is ready yet"
+      "scene": "said when asked whether the report is ready yet",
+      "audio": "8d0bf0139c3001ef.mp3",
+      "audioOriginal": "8d0bf0139c3001ef.orig.mp3",
+      "audioAuto": "8d0bf0139c3001ef.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8d0bf0139c3001ef"
     },
     {
       "id": "mousugu-soon-3",
@@ -84,7 +114,12 @@
       "category": "Grammar & Function Words",
       "target": "かいぎのじゅんびはもうすぐできますか",
       "pronunciation": "kaigi no junbi wa mōsugu dekimasu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "73e81ae1085f5dda.mp3",
+      "audioOriginal": "73e81ae1085f5dda.orig.mp3",
+      "audioAuto": "73e81ae1085f5dda.mp3",
+      "audioMarked": true,
+      "audioTextHash": "73e81ae1085f5dda"
     },
     {
       "id": "mainichi-kanji-benkyou",
@@ -92,7 +127,12 @@
       "category": "School & Education",
       "target": "まいにちかんじをべんきょうします",
       "pronunciation": "mainichi kanji o benkyō shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "483f485533e2cab6.mp3",
+      "audioOriginal": "483f485533e2cab6.orig.mp3",
+      "audioAuto": "483f485533e2cab6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "483f485533e2cab6"
     },
     {
       "id": "smith-weekly-japanese-lessons",
@@ -111,14 +151,24 @@
       "english": "Have you finished studying kanji yet?",
       "category": "School & Education",
       "target": "かんじのべんきょうはもうおわりましたか",
-      "pronunciation": "kanji no benkyō wa mō owarimashita ka"
+      "pronunciation": "kanji no benkyō wa mō owarimashita ka",
+      "audio": "b44430d171c7faf0.mp3",
+      "audioOriginal": "b44430d171c7faf0.orig.mp3",
+      "audioAuto": "b44430d171c7faf0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b44430d171c7faf0"
     },
     {
       "id": "report-written-yet",
       "english": "Have you already written the report?",
       "category": "Work & Occupations",
       "target": "もうレポートをかきましたか",
-      "pronunciation": "mō repōto o kakimashita ka"
+      "pronunciation": "mō repōto o kakimashita ka",
+      "audio": "50ec542ef011e2ee.mp3",
+      "audioOriginal": "50ec542ef011e2ee.orig.mp3",
+      "audioAuto": "50ec542ef011e2ee.mp3",
+      "audioMarked": true,
+      "audioTextHash": "50ec542ef011e2ee"
     },
     {
       "id": "yoyaku-suru-dict-form-1",
@@ -126,28 +176,48 @@
       "category": "Grammar & Function Words",
       "target": "レストランをよやくするまえに、でんわします",
       "pronunciation": "resutoran o yoyaku suru mae ni, denwa shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "63126600a78a0b6f.mp3",
+      "audioOriginal": "63126600a78a0b6f.orig.mp3",
+      "audioAuto": "63126600a78a0b6f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "63126600a78a0b6f"
     },
     {
       "id": "ks-smith-eating-lunch-now",
       "english": "Smith-san is eating his lunch now.",
       "category": "Food",
       "target": "スミスさんはいまひるごはんをたべています",
-      "pronunciation": "Sumisu-san wa ima hirugohan o tabete imasu"
+      "pronunciation": "Sumisu-san wa ima hirugohan o tabete imasu",
+      "audio": "467675e2f9e152ac.mp3",
+      "audioOriginal": "467675e2f9e152ac.orig.mp3",
+      "audioAuto": "467675e2f9e152ac.mp3",
+      "audioMarked": true,
+      "audioTextHash": "467675e2f9e152ac"
     },
     {
       "id": "already-eaten-lunch-q",
       "english": "Have you already eaten lunch?",
       "category": "Food",
       "target": "もうひるごはんをたべましたか",
-      "pronunciation": "mō hirugohan o tabemashita ka"
+      "pronunciation": "mō hirugohan o tabemashita ka",
+      "audio": "d2556e69d7a4a61e.mp3",
+      "audioOriginal": "d2556e69d7a4a61e.orig.mp3",
+      "audioAuto": "d2556e69d7a4a61e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d2556e69d7a4a61e"
     },
     {
       "id": "smith-explains-project",
       "english": "Smith-san is explaining the project.",
       "category": "Work & Occupations",
       "target": "スミスさんはプロジェクトのせつめいをしています",
-      "pronunciation": "Sumisu-san wa purojekuto no setsumei o shite imasu"
+      "pronunciation": "Sumisu-san wa purojekuto no setsumei o shite imasu",
+      "audio": "f6c0d5a9cc7cafbd.mp3",
+      "audioOriginal": "f6c0d5a9cc7cafbd.orig.mp3",
+      "audioAuto": "f6c0d5a9cc7cafbd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f6c0d5a9cc7cafbd"
     },
     {
       "id": "dekiru-dict-form-1",
@@ -155,7 +225,12 @@
       "category": "Grammar & Function Words",
       "target": "しりょうができるまえに、へやのじゅんびをします",
       "pronunciation": "shiryō ga dekiru mae ni, heya no junbi o shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e905a90b16d302f5.mp3",
+      "audioOriginal": "e905a90b16d302f5.orig.mp3",
+      "audioAuto": "e905a90b16d302f5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e905a90b16d302f5"
     },
     {
       "id": "nanika-kaimashitaka",
@@ -163,14 +238,24 @@
       "category": "Shopping",
       "target": "なにかかいましたか",
       "pronunciation": "nanika kaimashita ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "814491c239d41f84.mp3",
+      "audioOriginal": "814491c239d41f84.orig.mp3",
+      "audioAuto": "814491c239d41f84.mp3",
+      "audioMarked": true,
+      "audioTextHash": "814491c239d41f84"
     },
     {
       "id": "kato-guitar-weekly",
       "english": "Kato-san takes guitar lessons every week.",
       "category": "Sports & Hobbies",
       "target": "かとうさんはまいしゅうギターをならっています",
-      "pronunciation": "Katō-san wa maishū gitā o naratte imasu"
+      "pronunciation": "Katō-san wa maishū gitā o naratte imasu",
+      "audio": "32e360f552d421bc.mp3",
+      "audioOriginal": "32e360f552d421bc.orig.mp3",
+      "audioAuto": "32e360f552d421bc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "32e360f552d421bc"
     },
     {
       "id": "shodou-calligraphy-1",
@@ -179,7 +264,12 @@
       "target": "エマさんはまいしゅうしょどうをならっています",
       "pronunciation": "Ema-san wa maishū shodō o naratte imasu",
       "aiSuggested": true,
-      "note": "Follows the chapter's EXERCISES III drill pattern directly."
+      "note": "Follows the chapter's EXERCISES III drill pattern directly.",
+      "audio": "4c05843160a8a06b.mp3",
+      "audioOriginal": "4c05843160a8a06b.orig.mp3",
+      "audioAuto": "4c05843160a8a06b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4c05843160a8a06b"
     },
     {
       "id": "smith-meeting-room-presentation-prep",
@@ -188,7 +278,12 @@
       "target": "スミスさんはいま6かいのかいぎしつでプレゼンのじゅんびをしています",
       "pronunciation": "Sumisu-san wa ima rok-kai no kaigishitsu de purezen no junbi o shite imasu",
       "ttsText": "スミスさんはいまろっかいのかいぎしつでプレゼンのじゅんびをしています",
-      "reviewNote": "Checked before review: 6かい reads ろっかい."
+      "reviewNote": "Checked before review: 6かい reads ろっかい.",
+      "audio": "89955fc60403c1de.mp3",
+      "audioOriginal": "89955fc60403c1de.orig.mp3",
+      "audioAuto": "89955fc60403c1de.mp3",
+      "audioMarked": true,
+      "audioTextHash": "89955fc60403c1de"
     },
     {
       "id": "tsukurimasu-make-1",
@@ -196,7 +291,12 @@
       "category": "Other",
       "target": "スミスさんはばんごはんをつくります",
       "pronunciation": "Sumisu-san wa bangohan o tsukurimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "a43a089fdb58e851.mp3",
+      "audioOriginal": "a43a089fdb58e851.orig.mp3",
+      "audioAuto": "a43a089fdb58e851.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a43a089fdb58e851"
     },
     {
       "id": "report-check-shimasu",
@@ -204,7 +304,12 @@
       "category": "Work & Occupations",
       "target": "レポートのチェックをします",
       "pronunciation": "repōto no chekku o shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "23af65702bb93d2c.mp3",
+      "audioOriginal": "23af65702bb93d2c.orig.mp3",
+      "audioAuto": "23af65702bb93d2c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "23af65702bb93d2c"
     },
     {
       "id": "meeting-materials-ready-a",
@@ -212,7 +317,12 @@
       "category": "Work & Occupations",
       "target": "いまつくっています。もうすこしまってください",
       "pronunciation": "ima tsukutte imasu. mō sukoshi matte kudasai",
-      "scene": "asked whether the meeting materials are ready yet"
+      "scene": "asked whether the meeting materials are ready yet",
+      "audio": "d302ecda843f0a1a.mp3",
+      "audioOriginal": "d302ecda843f0a1a.orig.mp3",
+      "audioAuto": "d302ecda843f0a1a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d302ecda843f0a1a"
     },
     {
       "id": "ashita-party-junbi",
@@ -220,7 +330,12 @@
       "category": "Everyday Objects",
       "target": "あしたパーティーのじゅんびをします",
       "pronunciation": "ashita pātī no junbi o shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "901d780541d2c29c.mp3",
+      "audioOriginal": "901d780541d2c29c.orig.mp3",
+      "audioAuto": "901d780541d2c29c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "901d780541d2c29c"
     },
     {
       "id": "sumisu-nihongo-naratteimasen",
@@ -228,7 +343,12 @@
       "category": "School & Education",
       "target": "スミスさんはにほんごをならっていません",
       "pronunciation": "Sumisu-san wa nihongo o naratte imasen",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "8bb8385e341c2109.mp3",
+      "audioOriginal": "8bb8385e341c2109.orig.mp3",
+      "audioAuto": "8bb8385e341c2109.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8bb8385e341c2109"
     },
     {
       "id": "moshi-moshi-1",
@@ -236,7 +356,12 @@
       "category": "Greetings",
       "target": "もしもし、たなかです",
       "pronunciation": "moshimoshi, Tanaka desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "692e46d9a6d3da71.mp3",
+      "audioOriginal": "692e46d9a6d3da71.orig.mp3",
+      "audioAuto": "692e46d9a6d3da71.mp3",
+      "audioMarked": true,
+      "audioTextHash": "692e46d9a6d3da71"
     },
     {
       "id": "hanashite-imasen-2-1",
@@ -244,14 +369,24 @@
       "category": "Other",
       "target": "エマさんはいまささきさんとはなしていません",
       "pronunciation": "Ema-san wa ima Sasaki-san to hanashite imasen",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "3aef37d318b1f9e1.mp3",
+      "audioOriginal": "3aef37d318b1f9e1.orig.mp3",
+      "audioAuto": "3aef37d318b1f9e1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3aef37d318b1f9e1"
     },
     {
       "id": "nakamura-on-phone",
       "english": "Is Nakamura-san on the phone right now?",
       "category": "Technology & Communication",
       "target": "なかむらさんはいまでんわをしていますか",
-      "pronunciation": "Nakamura-san wa ima denwa o shite imasu ka"
+      "pronunciation": "Nakamura-san wa ima denwa o shite imasu ka",
+      "audio": "acd9270236d1d6fb.mp3",
+      "audioOriginal": "acd9270236d1d6fb.orig.mp3",
+      "audioAuto": "acd9270236d1d6fb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "acd9270236d1d6fb"
     },
     {
       "id": "madadesu-not-yet-2",
@@ -271,14 +406,24 @@
       "category": "Grammar & Function Words",
       "target": "かいぎのしりょうをつくるまえに、コーヒーをのみます",
       "pronunciation": "kaigi no shiryō o tsukuru mae ni, kōhī o nomimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "de17fc2a3cb9fd1e.mp3",
+      "audioOriginal": "de17fc2a3cb9fd1e.orig.mp3",
+      "audioAuto": "de17fc2a3cb9fd1e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "de17fc2a3cb9fd1e"
     },
     {
       "id": "nakamura-flower-arrangement-weekly",
       "english": "Nakamura-san takes flower arrangement lessons every week.",
       "category": "Sports & Hobbies",
       "target": "なかむらさんはまいしゅういけばなをならっています",
-      "pronunciation": "Nakamura-san wa maishū ikebana o naratte imasu"
+      "pronunciation": "Nakamura-san wa maishū ikebana o naratte imasu",
+      "audio": "e093d3841989148e.mp3",
+      "audioOriginal": "e093d3841989148e.orig.mp3",
+      "audioAuto": "e093d3841989148e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e093d3841989148e"
     },
     {
       "id": "on-the-phone-now",
@@ -286,14 +431,24 @@
       "category": "Technology & Communication",
       "target": "でんわをしています",
       "pronunciation": "denwa o shite imasu",
-      "scene": "asked what Green-san is doing right now"
+      "scene": "asked what Green-san is doing right now",
+      "audio": "1b021417f6af21a8.mp3",
+      "audioOriginal": "1b021417f6af21a8.orig.mp3",
+      "audioAuto": "1b021417f6af21a8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1b021417f6af21a8"
     },
     {
       "id": "kato-making-materials",
       "english": "Is Kato-san making the materials now?",
       "category": "Work & Occupations",
       "target": "かとうさんはいましりょうをつくっていますか",
-      "pronunciation": "Katō-san wa ima shiryō o tsukutte imasu ka"
+      "pronunciation": "Katō-san wa ima shiryō o tsukutte imasu ka",
+      "audio": "f4558e06efbb4cd0.mp3",
+      "audioOriginal": "f4558e06efbb4cd0.orig.mp3",
+      "audioAuto": "f4558e06efbb4cd0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f4558e06efbb4cd0"
     },
     {
       "id": "nanika-before-noun-2",
@@ -301,7 +456,12 @@
       "category": "Grammar & Function Words",
       "target": "かとうさんはなにかりょうりをつくっています",
       "pronunciation": "Katō-san wa nanika ryōri o tsukutte imasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "9e40917cdc3f252e.mp3",
+      "audioOriginal": "9e40917cdc3f252e.orig.mp3",
+      "audioAuto": "9e40917cdc3f252e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9e40917cdc3f252e"
     },
     {
       "id": "suzuki-cafe-customer",
@@ -310,7 +470,12 @@
       "target": "すずきさんはいま1かいのカフェでおきゃくさんとはなしています",
       "pronunciation": "Suzuki-san wa ima ik-kai no kafe de okyakusan to hanashite imasu",
       "ttsText": "すずきさんはいまいっかいのカフェでおきゃくさんとはなしています",
-      "reviewNote": "Checked before review: 1かい reads いっかい."
+      "reviewNote": "Checked before review: 1かい reads いっかい.",
+      "audio": "b2c3ad8f6fdb050a.mp3",
+      "audioOriginal": "b2c3ad8f6fdb050a.orig.mp3",
+      "audioAuto": "b2c3ad8f6fdb050a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b2c3ad8f6fdb050a"
     },
     {
       "id": "mousugu-soon-1",
@@ -318,7 +483,12 @@
       "category": "Grammar & Function Words",
       "target": "しりょうはもうすぐできます",
       "pronunciation": "shiryō wa mōsugu dekimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c235fbb9ea8b4578.mp3",
+      "audioOriginal": "c235fbb9ea8b4578.orig.mp3",
+      "audioAuto": "c235fbb9ea8b4578.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c235fbb9ea8b4578"
     },
     {
       "id": "nonde-imasen-2-1",
@@ -326,14 +496,24 @@
       "category": "Other",
       "target": "ささきさんはいまコーヒーをのんでいません",
       "pronunciation": "Sasaki-san wa ima kōhī o nonde imasen",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "754d4fcb927131cd.mp3",
+      "audioOriginal": "754d4fcb927131cd.orig.mp3",
+      "audioAuto": "754d4fcb927131cd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "754d4fcb927131cd"
     },
     {
       "id": "like-tea-not-coffee",
       "english": "I like tea, but I don't like coffee.",
       "category": "Food",
       "target": "こうちゃはすきですが、コーヒーはすきじゃありません",
-      "pronunciation": "kōcha wa suki desu ga, kōhī wa suki ja arimasen"
+      "pronunciation": "kōcha wa suki desu ga, kōhī wa suki ja arimasen",
+      "audio": "57752ba505742d09.mp3",
+      "audioOriginal": "57752ba505742d09.orig.mp3",
+      "audioAuto": "57752ba505742d09.mp3",
+      "audioMarked": true,
+      "audioTextHash": "57752ba505742d09"
     },
     {
       "id": "tsukutte-imasen-2-1",
@@ -341,7 +521,12 @@
       "category": "Other",
       "target": "スミスさんはいましりょうをつくっていません",
       "pronunciation": "Sumisu-san wa ima shiryō o tsukutte imasen",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "8b8b44cd146fa761.mp3",
+      "audioOriginal": "8b8b44cd146fa761.orig.mp3",
+      "audioAuto": "8b8b44cd146fa761.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8b8b44cd146fa761"
     },
     {
       "id": "dialogue-finish-by-three",
@@ -350,7 +535,12 @@
       "target": "3じまでにおわりますか",
       "pronunciation": "sanji made ni owarimasu ka",
       "ttsText": "さんじまでにおわりますか",
-      "reviewNote": "Checked before review: 3じ reads さんじ."
+      "reviewNote": "Checked before review: 3じ reads さんじ.",
+      "audio": "90b482492087f38f.mp3",
+      "audioOriginal": "90b482492087f38f.orig.mp3",
+      "audioAuto": "90b482492087f38f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "90b482492087f38f"
     },
     {
       "id": "presenting-prep-wait",
@@ -358,7 +548,12 @@
       "category": "Work & Occupations",
       "target": "いまプレゼンのじゅんびをしています。もうすこしまってください",
       "pronunciation": "ima purezen no junbi o shite imasu. mō sukoshi matte kudasai",
-      "scene": "said when asked whether the presentation is ready"
+      "scene": "said when asked whether the presentation is ready",
+      "audio": "fbeb21a5559d4293.mp3",
+      "audioOriginal": "fbeb21a5559d4293.orig.mp3",
+      "audioAuto": "fbeb21a5559d4293.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fbeb21a5559d4293"
     },
     {
       "id": "app-download-shiteimasu",
@@ -366,14 +561,24 @@
       "category": "Technology & Communication",
       "target": "いまアプリをダウンロードしています",
       "pronunciation": "ima apuri o daunrōdo shite imasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e0f4086cf99a751f.mp3",
+      "audioOriginal": "e0f4086cf99a751f.orig.mp3",
+      "audioAuto": "e0f4086cf99a751f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e0f4086cf99a751f"
     },
     {
       "id": "restaurant-reservation-done-yet",
       "english": "Have you already made a reservation at the restaurant?",
       "category": "Work & Occupations",
       "target": "もうレストランをよやくしましたか",
-      "pronunciation": "mō resutoran o yoyaku shimashita ka"
+      "pronunciation": "mō resutoran o yoyaku shimashita ka",
+      "audio": "b7425d586897f11e.mp3",
+      "audioOriginal": "b7425d586897f11e.orig.mp3",
+      "audioAuto": "b7425d586897f11e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b7425d586897f11e"
     },
     {
       "id": "nihongo-setsumei-shiteimasu",
@@ -393,21 +598,36 @@
       "english": "Are you doing any kind of exercise?",
       "category": "Sports & Hobbies",
       "target": "なにかうんどうをしていますか",
-      "pronunciation": "nanika undō o shite imasu ka"
+      "pronunciation": "nanika undō o shite imasu ka",
+      "audio": "d8a6fd2eeb779acd.mp3",
+      "audioOriginal": "d8a6fd2eeb779acd.orig.mp3",
+      "audioAuto": "d8a6fd2eeb779acd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d8a6fd2eeb779acd"
     },
     {
       "id": "emma-talking-with-sasaki",
       "english": "Is Emma-san talking with Sasaki-san now?",
       "category": "Other",
       "target": "エマさんはいまささきさんとはなしていますか",
-      "pronunciation": "Ema-san wa ima Sasaki-san to hanashite imasu ka"
+      "pronunciation": "Ema-san wa ima Sasaki-san to hanashite imasu ka",
+      "audio": "fbd5d1278c660b37.mp3",
+      "audioOriginal": "fbd5d1278c660b37.orig.mp3",
+      "audioAuto": "fbd5d1278c660b37.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fbd5d1278c660b37"
     },
     {
       "id": "smith-cleaning-now",
       "english": "Smith-san is cleaning.",
       "category": "Home & Household",
       "target": "スミスさんはそうじをしています",
-      "pronunciation": "Sumisu-san wa sōji o shite imasu"
+      "pronunciation": "Sumisu-san wa sōji o shite imasu",
+      "audio": "cdbaa5cb5f566841.mp3",
+      "audioOriginal": "cdbaa5cb5f566841.orig.mp3",
+      "audioAuto": "cdbaa5cb5f566841.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cdbaa5cb5f566841"
     },
     {
       "id": "raishuu-restaurant-yoyaku",
@@ -415,7 +635,12 @@
       "category": "Food",
       "target": "らいしゅうレストランをよやくします",
       "pronunciation": "raishū resutoran o yoyaku shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "e5e54cc5e99f17fb.mp3",
+      "audioOriginal": "e5e54cc5e99f17fb.orig.mp3",
+      "audioAuto": "e5e54cc5e99f17fb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e5e54cc5e99f17fb"
     },
     {
       "id": "undou-o-shimasu-1",
@@ -423,14 +648,24 @@
       "category": "Sports & Hobbies",
       "target": "スミスさんはまいあさうんどうをします",
       "pronunciation": "Sumisu-san wa maiasa undō o shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "ab89463b18bac09a.mp3",
+      "audioOriginal": "ab89463b18bac09a.orig.mp3",
+      "audioAuto": "ab89463b18bac09a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ab89463b18bac09a"
     },
     {
       "id": "smith-reads-newspaper",
       "english": "Smith-san is reading the newspaper.",
       "category": "Everyday Objects",
       "target": "スミスさんはしんぶんをよんでいます",
-      "pronunciation": "Sumisu-san wa shinbun o yonde imasu"
+      "pronunciation": "Sumisu-san wa shinbun o yonde imasu",
+      "audio": "3f70b4ed2ff1a198.mp3",
+      "audioOriginal": "3f70b4ed2ff1a198.orig.mp3",
+      "audioAuto": "3f70b4ed2ff1a198.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3f70b4ed2ff1a198"
     },
     {
       "id": "dialogue-dry-cleaning-ready-wednesday-evening",
@@ -438,7 +673,12 @@
       "category": "Shopping",
       "target": "すいようびのゆうがたできます",
       "pronunciation": "suiyōbi no yūgata dekimasu",
-      "scene": "A customer at the dry cleaners asks when their order will be ready."
+      "scene": "A customer at the dry cleaners asks when their order will be ready.",
+      "audio": "f6b2c7f4a99ff71a.mp3",
+      "audioOriginal": "f6b2c7f4a99ff71a.orig.mp3",
+      "audioAuto": "f6b2c7f4a99ff71a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f6b2c7f4a99ff71a"
     },
     {
       "id": "souji-shimasu-clean-1",
@@ -459,14 +699,24 @@
       "english": "What is Green-san doing now?",
       "category": "Other",
       "target": "グリーンさんはいまなにをしていますか",
-      "pronunciation": "Gurīn-san wa ima nani o shite imasu ka"
+      "pronunciation": "Gurīn-san wa ima nani o shite imasu ka",
+      "audio": "977041c15df3c8f7.mp3",
+      "audioOriginal": "977041c15df3c8f7.orig.mp3",
+      "audioAuto": "977041c15df3c8f7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "977041c15df3c8f7"
     },
     {
       "id": "ks-green-tempura-not-sushi",
       "english": "Green-san likes tempura, but he does not like sushi.",
       "category": "Food",
       "target": "グリーンさんはてんぷらはすきですが、おすしはすきじゃありません",
-      "pronunciation": "Gurīn-san wa tenpura wa suki desu ga, osushi wa suki ja arimasen"
+      "pronunciation": "Gurīn-san wa tenpura wa suki desu ga, osushi wa suki ja arimasen",
+      "audio": "2b1173c43c6d790e.mp3",
+      "audioOriginal": "2b1173c43c6d790e.orig.mp3",
+      "audioAuto": "2b1173c43c6d790e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2b1173c43c6d790e"
     },
     {
       "id": "explaining-project-not-materials",
@@ -474,28 +724,48 @@
       "category": "Work & Occupations",
       "target": "いいえ、プロジェクトのせつめいをしています",
       "pronunciation": "iie, purojekuto no setsumei o shite imasu",
-      "scene": "asked whether Kato-san is making the meeting materials right now"
+      "scene": "asked whether Kato-san is making the meeting materials right now",
+      "audio": "81ec966045e2aa72.mp3",
+      "audioOriginal": "81ec966045e2aa72.orig.mp3",
+      "audioAuto": "81ec966045e2aa72.mp3",
+      "audioMarked": true,
+      "audioTextHash": "81ec966045e2aa72"
     },
     {
       "id": "ks-smith-learning-japanese",
       "english": "Smith-san is taking Japanese lessons.",
       "category": "School & Education",
       "target": "スミスさんはにほんごをならっています",
-      "pronunciation": "Sumisu-san wa nihongo o naratte imasu"
+      "pronunciation": "Sumisu-san wa nihongo o naratte imasu",
+      "audio": "9b0393e031cad39e.mp3",
+      "audioOriginal": "9b0393e031cad39e.orig.mp3",
+      "audioAuto": "9b0393e031cad39e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9b0393e031cad39e"
     },
     {
       "id": "cleaning-finished-q",
       "english": "Have you finished cleaning already?",
       "category": "Home & Household",
       "target": "そうじはもうおわりましたか",
-      "pronunciation": "sōji wa mō owarimashita ka"
+      "pronunciation": "sōji wa mō owarimashita ka",
+      "audio": "63f1dc0a5bf13e4f.mp3",
+      "audioOriginal": "63f1dc0a5bf13e4f.orig.mp3",
+      "audioAuto": "63f1dc0a5bf13e4f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "63f1dc0a5bf13e4f"
     },
     {
       "id": "ks-already-read-report",
       "english": "Have you already read the report?",
       "category": "Work & Occupations",
       "target": "もうレポートをよみましたか",
-      "pronunciation": "mō repōto o yomimashita ka"
+      "pronunciation": "mō repōto o yomimashita ka",
+      "audio": "9cbfcd4afafc362c.mp3",
+      "audioOriginal": "9cbfcd4afafc362c.orig.mp3",
+      "audioAuto": "9cbfcd4afafc362c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9cbfcd4afafc362c"
     },
     {
       "id": "nanika-before-noun-1",
@@ -503,14 +773,24 @@
       "category": "Grammar & Function Words",
       "target": "なにかたべましたか",
       "pronunciation": "nanika tabemashita ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "f0d70b2b0b59d689.mp3",
+      "audioOriginal": "f0d70b2b0b59d689.orig.mp3",
+      "audioAuto": "f0d70b2b0b59d689.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f0d70b2b0b59d689"
     },
     {
       "id": "suzuki-french-weekly",
       "english": "Suzuki-san takes French lessons every week.",
       "category": "Sports & Hobbies",
       "target": "すずきさんはまいしゅうフランスごをならっています",
-      "pronunciation": "Suzuki-san wa maishū furansugo o naratte imasu"
+      "pronunciation": "Suzuki-san wa maishū furansugo o naratte imasu",
+      "audio": "bb88c6baa5b07d1e.mp3",
+      "audioOriginal": "bb88c6baa5b07d1e.orig.mp3",
+      "audioAuto": "bb88c6baa5b07d1e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bb88c6baa5b07d1e"
     },
     {
       "id": "mousugu-kaigi-hajimemasu",
@@ -529,14 +809,24 @@
       "category": "Grammar & Function Words",
       "target": "かいぎがおわるまえに、レポートをよみます",
       "pronunciation": "kaigi ga owaru mae ni, repōto o yomimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "cd72bf6d7c5ddffe.mp3",
+      "audioOriginal": "cd72bf6d7c5ddffe.orig.mp3",
+      "audioAuto": "cd72bf6d7c5ddffe.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cd72bf6d7c5ddffe"
     },
     {
       "id": "grammar-wine-not-beer-contrast",
       "english": "I drink wine, but I don't drink beer.",
       "category": "Food",
       "target": "ワインはのみますが、ビールはのみません",
-      "pronunciation": "wain wa nomimasu ga, bīru wa nomimasen"
+      "pronunciation": "wain wa nomimasu ga, bīru wa nomimasen",
+      "audio": "d8991af49f576781.mp3",
+      "audioOriginal": "d8991af49f576781.orig.mp3",
+      "audioAuto": "d8991af49f576781.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d8991af49f576781"
     },
     {
       "id": "already-eaten-lunch-a",
@@ -544,7 +834,12 @@
       "category": "Food",
       "target": "はい、たべました",
       "pronunciation": "hai, tabemashita",
-      "scene": "asked whether they have already eaten lunch"
+      "scene": "asked whether they have already eaten lunch",
+      "audio": "e0ead6428c2cd7e6.mp3",
+      "audioOriginal": "e0ead6428c2cd7e6.orig.mp3",
+      "audioAuto": "e0ead6428c2cd7e6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e0ead6428c2cd7e6"
     },
     {
       "id": "making-lunch-wait",
@@ -552,14 +847,24 @@
       "category": "Food",
       "target": "いまひるごはんをつくっています。もうすこしまってください",
       "pronunciation": "ima hirugohan o tsukutte imasu. mō sukoshi matte kudasai",
-      "scene": "said when asked whether lunch is ready"
+      "scene": "said when asked whether lunch is ready",
+      "audio": "9b099eb9d604f43c.mp3",
+      "audioOriginal": "9b099eb9d604f43c.orig.mp3",
+      "audioAuto": "9b099eb9d604f43c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9b099eb9d604f43c"
     },
     {
       "id": "meeting-materials-ready-q",
       "english": "Are the meeting materials ready yet?",
       "category": "Work & Occupations",
       "target": "かいぎのしりょうはもうできましたか",
-      "pronunciation": "kaigi no shiryō wa mō dekimashita ka"
+      "pronunciation": "kaigi no shiryō wa mō dekimashita ka",
+      "audio": "943ff066565f1ef8.mp3",
+      "audioOriginal": "943ff066565f1ef8.orig.mp3",
+      "audioAuto": "943ff066565f1ef8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "943ff066565f1ef8"
     },
     {
       "id": "jogging-o-shimasu-1",
@@ -567,7 +872,12 @@
       "category": "Sports & Hobbies",
       "target": "スミスさんはときどきジョギングをしています",
       "pronunciation": "Sumisu-san wa tokidoki jogingu o shite imasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "3b9219b63559215e.mp3",
+      "audioOriginal": "3b9219b63559215e.orig.mp3",
+      "audioAuto": "3b9219b63559215e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3b9219b63559215e"
     },
     {
       "id": "yoyakushimasu-make-reservation-1",
@@ -575,7 +885,12 @@
       "category": "Travel & Tourism",
       "target": "レストランをよやくしました",
       "pronunciation": "resutoran o yoyaku shimashita",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "45d6e3b466375b1a.mp3",
+      "audioOriginal": "45d6e3b466375b1a.orig.mp3",
+      "audioAuto": "45d6e3b466375b1a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "45d6e3b466375b1a"
     },
     {
       "id": "owarimasu-finish-2",
@@ -583,7 +898,12 @@
       "category": "Other",
       "target": "しごとはなんじにおわりますか",
       "pronunciation": "shigoto wa nanji ni owarimasu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "552501c725592e52.mp3",
+      "audioOriginal": "552501c725592e52.orig.mp3",
+      "audioAuto": "552501c725592e52.mp3",
+      "audioMarked": true,
+      "audioTextHash": "552501c725592e52"
     },
     {
       "id": "mousugu-soon-2",
@@ -591,7 +911,12 @@
       "category": "Grammar & Function Words",
       "target": "しごとはもうすぐおわります",
       "pronunciation": "shigoto wa mōsugu owarimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "3057e441d455a4d0.mp3",
+      "audioOriginal": "3057e441d455a4d0.orig.mp3",
+      "audioAuto": "3057e441d455a4d0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3057e441d455a4d0"
     },
     {
       "id": "setsumei-shimasu-explain-1",
@@ -599,7 +924,12 @@
       "category": "Other",
       "target": "かとうさんはあたらしいしょうひんのせつめいをします",
       "pronunciation": "Katō-san wa atarashii shōhin no setsumei o shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "216632df4a96d35c.mp3",
+      "audioOriginal": "216632df4a96d35c.orig.mp3",
+      "audioAuto": "216632df4a96d35c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "216632df4a96d35c"
     },
     {
       "id": "check-noun-1",
@@ -607,7 +937,12 @@
       "category": "Travel & Tourism",
       "target": "しりょうのチェックをおねがいします",
       "pronunciation": "shiryō no chekku o onegai shimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b1a4bc8a29d70f55.mp3",
+      "audioOriginal": "b1a4bc8a29d70f55.orig.mp3",
+      "audioAuto": "b1a4bc8a29d70f55.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b1a4bc8a29d70f55"
     },
     {
       "id": "ima-ii-desu-ka-1",
@@ -627,14 +962,24 @@
       "english": "She is explaining the new product to Tanaka-san of Nozomi Department Store right now.",
       "category": "Work & Occupations",
       "target": "いまのぞみデパートのたなかさんにあたらしいしょうひんのせつめいをしています",
-      "pronunciation": "ima Nozomi Depāto no Tanaka-san ni atarashii shōhin no setsumei o shite imasu"
+      "pronunciation": "ima Nozomi Depāto no Tanaka-san ni atarashii shōhin no setsumei o shite imasu",
+      "audio": "1c994602b1ba58fe.mp3",
+      "audioOriginal": "1c994602b1ba58fe.orig.mp3",
+      "audioAuto": "1c994602b1ba58fe.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1c994602b1ba58fe"
     },
     {
       "id": "where-is-emma",
       "english": "Nakamura-san, where is Emma-san?",
       "category": "Work & Occupations",
       "target": "なかむらさん、エマさんはどこですか",
-      "pronunciation": "Nakamura-san, Ema-san wa doko desu ka"
+      "pronunciation": "Nakamura-san, Ema-san wa doko desu ka",
+      "audio": "6472fcad9981a459.mp3",
+      "audioOriginal": "6472fcad9981a459.orig.mp3",
+      "audioAuto": "6472fcad9981a459.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6472fcad9981a459"
     },
     {
       "id": "cleaning-finished-a",
@@ -642,14 +987,24 @@
       "category": "Home & Household",
       "target": "いいえ、まだです",
       "pronunciation": "iie, mada desu",
-      "scene": "asked whether the cleaning is already finished"
+      "scene": "asked whether the cleaning is already finished",
+      "audio": "825af30d30dbc630.mp3",
+      "audioOriginal": "825af30d30dbc630.orig.mp3",
+      "audioAuto": "825af30d30dbc630.mp3",
+      "audioMarked": true,
+      "audioTextHash": "825af30d30dbc630"
     },
     {
       "id": "smith-writes-email",
       "english": "Smith-san is writing an e-mail.",
       "category": "Technology & Communication",
       "target": "スミスさんはメールをかいています",
-      "pronunciation": "Sumisu-san wa mēru o kaite imasu"
+      "pronunciation": "Sumisu-san wa mēru o kaite imasu",
+      "audio": "b56cf302e4177945.mp3",
+      "audioOriginal": "b56cf302e4177945.orig.mp3",
+      "audioAuto": "b56cf302e4177945.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b56cf302e4177945"
     },
     {
       "id": "emma-in-meeting-room",
@@ -659,7 +1014,12 @@
       "pronunciation": "san-gai no kaigishitsu desu",
       "scene": "asked where Emma-san is",
       "ttsText": "さんがいのかいぎしつです",
-      "reviewNote": "Checked before review: the book prints ３がい, and after 3 the floor counter voices to がい (さんがい). The number pass had read it as さんかい."
+      "reviewNote": "Checked before review: the book prints ３がい, and after 3 the floor counter voices to がい (さんがい). The number pass had read it as さんかい.",
+      "audio": "57c33c6ddafe3529.mp3",
+      "audioOriginal": "57c33c6ddafe3529.orig.mp3",
+      "audioAuto": "57c33c6ddafe3529.mp3",
+      "audioMarked": true,
+      "audioTextHash": "57c33c6ddafe3529"
     }
   ]
 }

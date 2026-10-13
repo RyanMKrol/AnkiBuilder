@@ -48,7 +48,12 @@
       "target": "もう",
       "pronunciation": "mō",
       "sourceOrder": 134,
-      "note": "Often pairs with a question like もう〜ましたか (\"have you already...?\"), answered with まだです below (\"not yet\")."
+      "note": "Often pairs with a question like もう〜ましたか (\"have you already...?\"), answered with まだです below (\"not yet\").",
+      "audio": "0f56b9b3a38edc40.mp3",
+      "audioOriginal": "0f56b9b3a38edc40.orig.mp3",
+      "audioAuto": "0f56b9b3a38edc40.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0f56b9b3a38edc40"
     },
     {
       "id": "madadesu-not-yet",
@@ -57,7 +62,12 @@
       "target": "まだです",
       "pronunciation": "mada desu",
       "sourceOrder": 162,
-      "note": "The negative answer to a もう〜ましたか question (\"have you already...?\") above — \"not yet.\""
+      "note": "The negative answer to a もう〜ましたか question (\"have you already...?\") above — \"not yet.\"",
+      "audio": "7a9c958a7b8e0028.mp3",
+      "audioOriginal": "7a9c958a7b8e0028.orig.mp3",
+      "audioAuto": "7a9c958a7b8e0028.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7a9c958a7b8e0028"
     },
     {
       "id": "mousugu-soon",
@@ -66,7 +76,12 @@
       "target": "もうすぐ",
       "pronunciation": "mōsugu",
       "sourceOrder": 226,
-      "note": "A fixed phrase for \"soon, shortly\" — not compositional with もう (\"already\") above; don't read it as \"already soon.\""
+      "note": "A fixed phrase for \"soon, shortly\" — not compositional with もう (\"already\") above; don't read it as \"already soon.\"",
+      "audio": "76c296da60555580.mp3",
+      "audioOriginal": "76c296da60555580.orig.mp3",
+      "audioAuto": "76c296da60555580.mp3",
+      "audioMarked": true,
+      "audioTextHash": "76c296da60555580"
     },
     {
       "id": "mou-sukoshi",
@@ -75,7 +90,12 @@
       "target": "もうすこし",
       "pronunciation": "mō sukoshi",
       "sourceOrder": 3944,
-      "note": "A fixed phrase for \"a little more/longer\" — not compositional with もう (\"already\") above."
+      "note": "A fixed phrase for \"a little more/longer\" — not compositional with もう (\"already\") above.",
+      "audio": "669539b4e52ed103.mp3",
+      "audioOriginal": "669539b4e52ed103.orig.mp3",
+      "audioAuto": "669539b4e52ed103.mp3",
+      "audioMarked": true,
+      "audioTextHash": "669539b4e52ed103"
     },
     {
       "id": "nanika-before-noun",
@@ -86,7 +106,12 @@
       "note": "Before a noun, なにか means \"some\" or \"any\": なにか うんどう (nanika undō, \"any kind of exercise\"). On its own it means \"something\" (Lesson 16).",
       "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target) | Possibly premature — なにか (indefinite 'something/any') is an indefinite-pronoun construction that the index does not show being formally introduced in any chapter up to 50 — may be an incidental dialogue word rather than taught vocabulary | Restored at gate 1 after the final review: Lesson 16 teaches the bare pronoun (\"Something\"); this chapter's NOTES 3 teaches なにか + noun (\"some/any [noun]\"), a sense no card had. Excluding it as the same sense was wrong.",
       "sourceOrder": 5385,
-      "scene": "placed before a noun"
+      "scene": "placed before a noun",
+      "audio": "3929725120ac288a.mp3",
+      "audioOriginal": "3929725120ac288a.orig.mp3",
+      "audioAuto": "3929725120ac288a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3929725120ac288a"
     },
     {
       "id": "dekimasu-be-done-2",
@@ -96,7 +121,12 @@
       "pronunciation": "dekimasu",
       "note": "(R2) marks its conjugation class in the book.",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (exact duplicate of dekimasu-be-done (できます) with only a reworded gloss — reviewer should pick one) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 591
+      "sourceOrder": 591,
+      "audio": "b2c454892f827ca0.mp3",
+      "audioOriginal": "b2c454892f827ca0.orig.mp3",
+      "audioAuto": "b2c454892f827ca0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b2c454892f827ca0"
     },
     {
       "id": "junbi-preparation",
@@ -104,7 +134,12 @@
       "category": "Other",
       "target": "じゅんび",
       "pronunciation": "junbi",
-      "sourceOrder": 140
+      "sourceOrder": 140,
+      "audio": "2a41e023a1ffb349.mp3",
+      "audioOriginal": "2a41e023a1ffb349.orig.mp3",
+      "audioAuto": "2a41e023a1ffb349.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2a41e023a1ffb349"
     },
     {
       "id": "junbi-o-shimasu-prepare",
@@ -113,7 +148,12 @@
       "target": "じゅんびをします",
       "pronunciation": "junbi o shimasu",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (overlaps junbi-preparation (じゅんび vs じゅんびを します)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 4621
+      "sourceOrder": 4621,
+      "audio": "c818f0ab38dad98a.mp3",
+      "audioOriginal": "c818f0ab38dad98a.orig.mp3",
+      "audioAuto": "c818f0ab38dad98a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c818f0ab38dad98a"
     },
     {
       "id": "yoyakushimasu-make-reservation",
@@ -122,7 +162,12 @@
       "target": "よやくします",
       "pronunciation": "yoyaku shimasu",
       "sourceOrder": 615,
-      "note": "よやく (yoyaku, \"reservation\", Lesson 8) + します (shimasu). Lesson 8 asked for one with よやくをおねがいします (yoyaku o onegaishimasu, \"a reservation, please\"); this is the plain verb."
+      "note": "よやく (yoyaku, \"reservation\", Lesson 8) + します (shimasu). Lesson 8 asked for one with よやくをおねがいします (yoyaku o onegaishimasu, \"a reservation, please\"); this is the plain verb.",
+      "audio": "d5c6114a6c0c20b1.mp3",
+      "audioOriginal": "d5c6114a6c0c20b1.orig.mp3",
+      "audioAuto": "d5c6114a6c0c20b1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d5c6114a6c0c20b1"
     },
     {
       "id": "check-noun",
@@ -133,7 +178,12 @@
       "reviewNote": "Loanword noun glossed only as 'check'; unclear if this means hotel check-in/check-out or a verification check — table gives no disambiguating context. | Judged at gate 1: the chapter uses it for checking work (チェックを おねがいします), so a hint names that sense.",
       "sourceOrder": 273,
       "note": "Bare loanword noun; already met combined directly with します (チェックします, no を) in Lesson 17.",
-      "hint": "looking something over, not a bill"
+      "hint": "looking something over, not a bill",
+      "audio": "a242cc1008a42348.mp3",
+      "audioOriginal": "a242cc1008a42348.orig.mp3",
+      "audioAuto": "a242cc1008a42348.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a242cc1008a42348"
     },
     {
       "id": "tsukurimasu-make",
@@ -142,7 +192,12 @@
       "target": "つくります",
       "pronunciation": "tsukurimasu",
       "note": null,
-      "sourceOrder": 652
+      "sourceOrder": 652,
+      "audio": "8a190c01532d91ba.mp3",
+      "audioOriginal": "8a190c01532d91ba.orig.mp3",
+      "audioAuto": "8a190c01532d91ba.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8a190c01532d91ba"
     },
     {
       "id": "tsukutte-imasu-be-making",
@@ -151,7 +206,12 @@
       "target": "つくっています",
       "pronunciation": "tsukutte imasu",
       "sourceOrder": 189,
-      "note": "The ています form: the て-form of つくります (tsukutte, made with the て-form rules from Lesson 18) + います (imasu), for an action happening right now."
+      "note": "The ています form: the て-form of つくります (tsukutte, made with the て-form rules from Lesson 18) + います (imasu), for an action happening right now.",
+      "audio": "909c9fba87b4ee8d.mp3",
+      "audioOriginal": "909c9fba87b4ee8d.orig.mp3",
+      "audioAuto": "909c9fba87b4ee8d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "909c9fba87b4ee8d"
     },
     {
       "id": "tsukutte-imasen-2",
@@ -161,7 +221,12 @@
       "pronunciation": "tsukutte imasen",
       "note": "Negates ています the same way います negates on its own: ています → ていません.",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of tsukutte-imasen (つくっていません)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 2544
+      "sourceOrder": 2544,
+      "audio": "08af5b64931da58a.mp3",
+      "audioOriginal": "08af5b64931da58a.orig.mp3",
+      "audioAuto": "08af5b64931da58a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "08af5b64931da58a"
     },
     {
       "id": "nomimasu",
@@ -184,7 +249,12 @@
       "pronunciation": "nonde imasu",
       "note": null,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of nonde-imasu (のんでいます)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 3220
+      "sourceOrder": 3220,
+      "audio": "3965315486c125f8.mp3",
+      "audioOriginal": "3965315486c125f8.orig.mp3",
+      "audioAuto": "3965315486c125f8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3965315486c125f8"
     },
     {
       "id": "nonde-imasen-2",
@@ -194,7 +264,12 @@
       "pronunciation": "nonde imasen",
       "note": null,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of nonde-imasen (のんでいません)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 2567
+      "sourceOrder": 2567,
+      "audio": "fa086c0cfb3d79ca.mp3",
+      "audioOriginal": "fa086c0cfb3d79ca.orig.mp3",
+      "audioAuto": "fa086c0cfb3d79ca.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fa086c0cfb3d79ca"
     },
     {
       "id": "hanashimasu",
@@ -217,7 +292,12 @@
       "pronunciation": "hanashite imasu",
       "note": null,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of hanashite-imasu (はなしています)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 3249
+      "sourceOrder": 3249,
+      "audio": "7eb61070efaa6a10.mp3",
+      "audioOriginal": "7eb61070efaa6a10.orig.mp3",
+      "audioAuto": "7eb61070efaa6a10.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7eb61070efaa6a10"
     },
     {
       "id": "hanashite-imasen-2",
@@ -227,7 +307,12 @@
       "pronunciation": "hanashite imasen",
       "note": null,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of hanashite-imasen (はなしていません)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 2590
+      "sourceOrder": 2590,
+      "audio": "a3dd780f60cf7cde.mp3",
+      "audioOriginal": "a3dd780f60cf7cde.orig.mp3",
+      "audioAuto": "a3dd780f60cf7cde.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a3dd780f60cf7cde"
     },
     {
       "id": "setsumei-shimasu-explain",
@@ -236,7 +321,12 @@
       "target": "せつめいをします",
       "pronunciation": "setsumei o shimasu",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (overlaps setsumei-shite-imasu and the せつめい noun entries; reviewer may want to collapse the ます/て-form set) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 2236
+      "sourceOrder": 2236,
+      "audio": "eec60c938e9fed0a.mp3",
+      "audioOriginal": "eec60c938e9fed0a.orig.mp3",
+      "audioAuto": "eec60c938e9fed0a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "eec60c938e9fed0a"
     },
     {
       "id": "setsumei-shite-imasu-2",
@@ -246,7 +336,12 @@
       "pronunciation": "setsumei o shite imasu",
       "note": null,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of setsumei-shite-imasu (せつめいを しています)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 3190
+      "sourceOrder": 3190,
+      "audio": "0fe764cac321f6d2.mp3",
+      "audioOriginal": "0fe764cac321f6d2.orig.mp3",
+      "audioAuto": "0fe764cac321f6d2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0fe764cac321f6d2"
     },
     {
       "id": "setsumei-shite-imasen-2",
@@ -256,7 +351,12 @@
       "pronunciation": "setsumei o shite imasen",
       "note": null,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of setsumei-shite-imasen (せつめいを していません)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
-      "sourceOrder": 2517
+      "sourceOrder": 2517,
+      "audio": "f1802b2e33173276.mp3",
+      "audioOriginal": "f1802b2e33173276.orig.mp3",
+      "audioAuto": "f1802b2e33173276.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f1802b2e33173276"
     },
     {
       "id": "owarimasu-finish",
@@ -264,7 +364,12 @@
       "category": "Grammar & Function Words",
       "target": "おわります",
       "pronunciation": "owarimasu",
-      "sourceOrder": 212
+      "sourceOrder": 212,
+      "audio": "330566ac66c18612.mp3",
+      "audioOriginal": "330566ac66c18612.orig.mp3",
+      "audioAuto": "330566ac66c18612.mp3",
+      "audioMarked": true,
+      "audioTextHash": "330566ac66c18612"
     },
     {
       "id": "tabete-imasu-be-eating",
@@ -272,7 +377,12 @@
       "category": "Food",
       "target": "たべています",
       "pronunciation": "tabete imasu",
-      "sourceOrder": 1040
+      "sourceOrder": 1040,
+      "audio": "666478d5cfded869.mp3",
+      "audioOriginal": "666478d5cfded869.orig.mp3",
+      "audioAuto": "666478d5cfded869.mp3",
+      "audioMarked": true,
+      "audioTextHash": "666478d5cfded869"
     },
     {
       "id": "naratte-imasu-taking-lessons",
@@ -281,7 +391,12 @@
       "target": "ならっています",
       "pronunciation": "naratte imasu",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (ならっています expresses an ongoing/habitual state rather than the chapter-50 progressive; if intended as the state sense it sits closer to the chapter-51 て-form います (2) teaching — worth a reviewer glance) | Judged before review: the chapter's own grammar note 1 teaches this (KS2, an action repeated over a period) and its vocabulary box glosses it. Not premature; kept.",
-      "sourceOrder": 1060
+      "sourceOrder": 1060,
+      "audio": "08aaf3626dfb8853.mp3",
+      "audioOriginal": "08aaf3626dfb8853.orig.mp3",
+      "audioAuto": "08aaf3626dfb8853.mp3",
+      "audioMarked": true,
+      "audioTextHash": "08aaf3626dfb8853"
     },
     {
       "id": "souji-shimasu-clean",
@@ -289,7 +404,12 @@
       "category": "Home & Household",
       "target": "そうじをします",
       "pronunciation": "sōji o shimasu",
-      "sourceOrder": 2245
+      "sourceOrder": 2245,
+      "audio": "52c5ec27d5ce6c52.mp3",
+      "audioOriginal": "52c5ec27d5ce6c52.orig.mp3",
+      "audioAuto": "52c5ec27d5ce6c52.mp3",
+      "audioMarked": true,
+      "audioTextHash": "52c5ec27d5ce6c52"
     },
     {
       "id": "shodou-calligraphy",
@@ -297,7 +417,12 @@
       "category": "School & Education",
       "target": "しょどう",
       "pronunciation": "shodō",
-      "sourceOrder": 2278
+      "sourceOrder": 2278,
+      "audio": "8c43fdc9c10d996a.mp3",
+      "audioOriginal": "8c43fdc9c10d996a.orig.mp3",
+      "audioAuto": "8c43fdc9c10d996a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8c43fdc9c10d996a"
     },
     {
       "id": "guitar-loanword",
@@ -305,7 +430,12 @@
       "category": "Sports & Hobbies",
       "target": "ギター",
       "pronunciation": "gitā",
-      "sourceOrder": 2283
+      "sourceOrder": 2283,
+      "audio": "fdb00e03f67b03e3.mp3",
+      "audioOriginal": "fdb00e03f67b03e3.orig.mp3",
+      "audioAuto": "fdb00e03f67b03e3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fdb00e03f67b03e3"
     },
     {
       "id": "furansugo-french-2",
@@ -315,7 +445,12 @@
       "pronunciation": "furansugo",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of furansugo-french (フランスご)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
       "sourceOrder": 2353,
-      "note": "ご (language suffix, Lesson 9: にほんご, えいご, イタリアご) + フランス = French language."
+      "note": "ご (language suffix, Lesson 9: にほんご, えいご, イタリアご) + フランス = French language.",
+      "audio": "49fed83dbbd8b2f4.mp3",
+      "audioOriginal": "49fed83dbbd8b2f4.orig.mp3",
+      "audioAuto": "49fed83dbbd8b2f4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "49fed83dbbd8b2f4"
     },
     {
       "id": "ikebana",
@@ -338,7 +473,12 @@
       "target": "スノーボードをします",
       "pronunciation": "sunōbōdo o shimasu",
       "sourceOrder": 4232,
-      "hint": "the verb, \"to snowboard\""
+      "hint": "the verb, \"to snowboard\"",
+      "audio": "5492da02b5ca7e9a.mp3",
+      "audioOriginal": "5492da02b5ca7e9a.orig.mp3",
+      "audioAuto": "5492da02b5ca7e9a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5492da02b5ca7e9a"
     },
     {
       "id": "sunoboodo-snowboard",
@@ -349,7 +489,12 @@
       "uncertain": true,
       "reviewNote": "Listening-exercise example pair (スノーボード vs スキー); check whether already taught before carding. | Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (overlaps snowboard-o-shimasu (スノーボード vs スノーボードを します))",
       "sourceOrder": 4232,
-      "hint": "the noun"
+      "hint": "the noun",
+      "audio": "030412f729162621.mp3",
+      "audioOriginal": "030412f729162621.orig.mp3",
+      "audioAuto": "030412f729162621.mp3",
+      "audioMarked": true,
+      "audioTextHash": "030412f729162621"
     },
     {
       "id": "sukii-ski",
@@ -369,7 +514,12 @@
       "category": "Sports & Hobbies",
       "target": "うんどうをします",
       "pronunciation": "undō o shimasu",
-      "sourceOrder": 6135
+      "sourceOrder": 6135,
+      "audio": "755118504d53e759.mp3",
+      "audioOriginal": "755118504d53e759.orig.mp3",
+      "audioAuto": "755118504d53e759.mp3",
+      "audioMarked": true,
+      "audioTextHash": "755118504d53e759"
     },
     {
       "id": "jogging-o-shimasu",
@@ -377,7 +527,12 @@
       "category": "Sports & Hobbies",
       "target": "ジョギングをします",
       "pronunciation": "jogingu o shimasu",
-      "sourceOrder": 6153
+      "sourceOrder": 6153,
+      "audio": "57e9ed8bef0fdf9a.mp3",
+      "audioOriginal": "57e9ed8bef0fdf9a.orig.mp3",
+      "audioAuto": "57e9ed8bef0fdf9a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "57e9ed8bef0fdf9a"
     },
     {
       "id": "kanji-noun",
@@ -385,7 +540,12 @@
       "category": "School & Education",
       "target": "かんじ",
       "pronunciation": "kanji",
-      "sourceOrder": 3858
+      "sourceOrder": 3858,
+      "audio": "d712f07de2e51ba3.mp3",
+      "audioOriginal": "d712f07de2e51ba3.orig.mp3",
+      "audioAuto": "d712f07de2e51ba3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d712f07de2e51ba3"
     },
     {
       "id": "kakimasu-write",
@@ -420,7 +580,12 @@
       "target": "よみました",
       "pronunciation": "yomimashita",
       "reviewNote": "Polite past form used in Key Sentence 3; the dictionary form よみます is not glossed in this chapter and may be taught earlier. | Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (polite past form given as its own item alongside よみます; the past tense was taught much earlier but a bare conjugated-form card here may be redundant with yomimasu-read) | Judged before review: no earlier unit carries よみました. Key Sentence 3 uses it for the もう...ましたか completion pattern this chapter teaches; kept as the past-tense cell of a taught verb.",
-      "sourceOrder": 1077
+      "sourceOrder": 1077,
+      "audio": "70027608abb47bc0.mp3",
+      "audioOriginal": "70027608abb47bc0.orig.mp3",
+      "audioAuto": "70027608abb47bc0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "70027608abb47bc0"
     },
     {
       "id": "dekimashita",
@@ -429,7 +594,12 @@
       "target": "できました",
       "pronunciation": "dekimashita",
       "note": "Past of できます (dekimasu). It says something is finished and ready: しりょうが できました (shiryō ga dekimashita, \"the materials are ready\").",
-      "reviewNote": "Added at gate 1 after the final review: NOTES 1 teaches noun が できました／おわりました for something finished, and the target dialogue uses できました twice. Carded the same way as よみました."
+      "reviewNote": "Added at gate 1 after the final review: NOTES 1 teaches noun が できました／おわりました for something finished, and the target dialogue uses できました twice. Carded the same way as よみました.",
+      "audio": "29638dbe78e71736.mp3",
+      "audioOriginal": "29638dbe78e71736.orig.mp3",
+      "audioAuto": "29638dbe78e71736.mp3",
+      "audioMarked": true,
+      "audioTextHash": "29638dbe78e71736"
     },
     {
       "id": "owarimashita",
@@ -438,7 +608,12 @@
       "target": "おわりました",
       "pronunciation": "owarimashita",
       "note": "Past of おわります (owarimasu). With もう (mō, \"already\") it asks whether something is over: そうじは もう おわりましたか (sōji wa mō owarimashita ka, \"is the cleaning finished?\").",
-      "reviewNote": "Added at gate 1 after the final review: NOTES 1 teaches noun が できました／おわりました for something finished, and the target dialogue uses できました twice. Carded the same way as よみました."
+      "reviewNote": "Added at gate 1 after the final review: NOTES 1 teaches noun が できました／おわりました for something finished, and the target dialogue uses できました twice. Carded the same way as よみました.",
+      "audio": "e320b39c5c02fcbe.mp3",
+      "audioOriginal": "e320b39c5c02fcbe.orig.mp3",
+      "audioAuto": "e320b39c5c02fcbe.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e320b39c5c02fcbe"
     },
     {
       "id": "benkyou-study",
@@ -447,7 +622,13 @@
       "target": "べんきょう",
       "pronunciation": "benkyō",
       "sourceOrder": 3862,
-      "hint": "the noun"
+      "hint": "the noun",
+      "audio": "bf9f787ae1c8e77e.mp3",
+      "audioOriginal": "bf9f787ae1c8e77e.orig.mp3",
+      "audioAuto": "bf9f787ae1c8e77e.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "bf9f787ae1c8e77e"
     },
     {
       "id": "shinbun-newspaper",
@@ -455,7 +636,12 @@
       "category": "Everyday Objects",
       "target": "しんぶん",
       "pronunciation": "shinbun",
-      "sourceOrder": 2721
+      "sourceOrder": 2721,
+      "audio": "3f23ecde11871f1e.mp3",
+      "audioOriginal": "3f23ecde11871f1e.orig.mp3",
+      "audioAuto": "3f23ecde11871f1e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3f23ecde11871f1e"
     },
     {
       "id": "hirugohan-lunch",
@@ -595,7 +781,12 @@
       "target": "かい",
       "pronunciation": "kai",
       "note": "Counter for the floors of a building: 1かい (ikkai, \"1st floor\"), 3がい (sangai, \"3rd floor\"), 6かい (rokkai, \"6th floor\"). Only 3 voices it to がい; the other numbers keep かい.",
-      "sourceOrder": 696
+      "sourceOrder": 696,
+      "audio": "f8ef664bbf6ef4e1.mp3",
+      "audioOriginal": "f8ef664bbf6ef4e1.orig.mp3",
+      "audioAuto": "f8ef664bbf6ef4e1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f8ef664bbf6ef4e1"
     },
     {
       "id": "online-kaigi-o-shimasu",
@@ -603,7 +794,12 @@
       "category": "Technology & Communication",
       "target": "オンラインかいぎをします",
       "pronunciation": "onrain kaigi o shimasu",
-      "sourceOrder": 2804
+      "sourceOrder": 2804,
+      "audio": "5a9e0d2d6c261fd8.mp3",
+      "audioOriginal": "5a9e0d2d6c261fd8.orig.mp3",
+      "audioAuto": "5a9e0d2d6c261fd8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5a9e0d2d6c261fd8"
     },
     {
       "id": "shiryou-materials",
@@ -638,7 +834,12 @@
       "category": "Work & Occupations",
       "target": "プロジェクト",
       "pronunciation": "purojekuto",
-      "sourceOrder": 2828
+      "sourceOrder": 2828,
+      "audio": "4fd3452113144342.mp3",
+      "audioOriginal": "4fd3452113144342.orig.mp3",
+      "audioAuto": "4fd3452113144342.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4fd3452113144342"
     },
     {
       "id": "puresen",
@@ -715,7 +916,12 @@
       "category": "Shopping",
       "target": "しょうひん",
       "pronunciation": "shōhin",
-      "sourceOrder": 4485
+      "sourceOrder": 4485,
+      "audio": "0fe90f32d37fc1f9.mp3",
+      "audioOriginal": "0fe90f32d37fc1f9.orig.mp3",
+      "audioAuto": "0fe90f32d37fc1f9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0fe90f32d37fc1f9"
     },
     {
       "id": "denwa-telephone-noun",
@@ -777,7 +983,12 @@
       "pronunciation": "daunrōdo",
       "sourceOrder": 3842,
       "note": "Bare loanword noun; already met as the verb ダウンロードします in Lesson 17.",
-      "hint": "the noun"
+      "hint": "the noun",
+      "audio": "ba8dd0cd346a371b.mp3",
+      "audioOriginal": "ba8dd0cd346a371b.orig.mp3",
+      "audioAuto": "ba8dd0cd346a371b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ba8dd0cd346a371b"
     },
     {
       "id": "moshi-moshi",
@@ -787,7 +998,12 @@
       "pronunciation": "moshimoshi",
       "note": "Used by both caller and recipient when answering the phone; not much used in a business setting.",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of moshimoshi-hello (もしもし) differing only in the trailing 。) | Judged before review: no earlier unit teaches もしもし, and the chapter glosses it in Speaking Practice 2 and NOTES. The flag pointed at an in-lesson duplicate the deduplicator already removed; kept.",
-      "sourceOrder": 5213
+      "sourceOrder": 5213,
+      "audio": "0d9719d09c152167.mp3",
+      "audioOriginal": "0d9719d09c152167.orig.mp3",
+      "audioAuto": "0d9719d09c152167.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0d9719d09c152167"
     },
     {
       "id": "ima-ii-desu-ka",
@@ -797,7 +1013,12 @@
       "pronunciation": "ima ii desu ka",
       "hint": "Asked over the phone, checking whether the other person is free to talk right now.",
       "reviewNote": "Possibly premature — set phrase 'いま いいですか' used idiomatically for 'is now a good time to talk?'; its meaning is not derivable from any pattern the book has taught and it is not shown as a formally taught item — reviewer should confirm the book actually glosses it | Judged before review: the chapter's NOTES gloss this phrase (\"used to ask whether the person called is free to speak\"). Not premature; kept.",
-      "sourceOrder": 5018
+      "sourceOrder": 5018,
+      "audio": "936c5a9b1badab10.mp3",
+      "audioOriginal": "936c5a9b1badab10.orig.mp3",
+      "audioAuto": "936c5a9b1badab10.mp3",
+      "audioMarked": true,
+      "audioTextHash": "936c5a9b1badab10"
     },
     {
       "id": "yuugata-evening",
@@ -806,7 +1027,12 @@
       "target": "ゆうがた",
       "pronunciation": "yūgata",
       "sourceOrder": 4874,
-      "hint": "early evening, around dusk"
+      "hint": "early evening, around dusk",
+      "audio": "784623614bd9df33.mp3",
+      "audioOriginal": "784623614bd9df33.orig.mp3",
+      "audioAuto": "784623614bd9df33.mp3",
+      "audioMarked": true,
+      "audioTextHash": "784623614bd9df33"
     },
     {
       "id": "atode-later",
@@ -844,7 +1070,12 @@
       "pronunciation": "tsukuru",
       "aiSuggested": true,
       "note": "Dictionary form of つくります (tsukurimasu, \"make\") above, which is also its casual form. Regular 1: り becomes る.",
-      "reviewNote": "The book taught the dictionary form in an earlier lesson and never prints it for つくります, so it was added here (owner ruling 2026-10-12). | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (dictionary form of a verb; chapter 50 teaches the て-form います pattern, and the dictionary form as a citation item is only formally put to work in the ことです nominalizer in lesson 24 — check whether a bare dictionary-form card belongs here) | Judged before review: carried dictionary form per the 2026-10-12 ruling (dictionary form introduced in Lesson 15). The forward flag about Lesson 24 does not apply; kept."
+      "reviewNote": "The book taught the dictionary form in an earlier lesson and never prints it for つくります, so it was added here (owner ruling 2026-10-12). | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (dictionary form of a verb; chapter 50 teaches the て-form います pattern, and the dictionary form as a citation item is only formally put to work in the ことです nominalizer in lesson 24 — check whether a bare dictionary-form card belongs here) | Judged before review: carried dictionary form per the 2026-10-12 ruling (dictionary form introduced in Lesson 15). The forward flag about Lesson 24 does not apply; kept.",
+      "audio": "56856b5e0c387f81.mp3",
+      "audioOriginal": "56856b5e0c387f81.orig.mp3",
+      "audioAuto": "56856b5e0c387f81.mp3",
+      "audioMarked": true,
+      "audioTextHash": "56856b5e0c387f81"
     },
     {
       "id": "dekiru-dict-form",
@@ -854,7 +1085,12 @@
       "pronunciation": "dekiru",
       "aiSuggested": true,
       "note": "Dictionary form of できます (dekimasu, \"be done, be ready\") above, which is also its casual form. Regular 2: ます becomes る.",
-      "reviewNote": "The book taught the dictionary form in an earlier lesson and never prints it for できます, so it was added here (owner ruling 2026-10-12). | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (dictionary-form citation card (see つくる above); the dictionary form's own teaching moment as a usable pattern is lesson 24's verb[dictionary form] ことです) | Judged before review: carried dictionary form per the 2026-10-12 ruling (dictionary form introduced in Lesson 15). The forward flag about Lesson 24 does not apply; kept."
+      "reviewNote": "The book taught the dictionary form in an earlier lesson and never prints it for できます, so it was added here (owner ruling 2026-10-12). | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (dictionary-form citation card (see つくる above); the dictionary form's own teaching moment as a usable pattern is lesson 24's verb[dictionary form] ことです) | Judged before review: carried dictionary form per the 2026-10-12 ruling (dictionary form introduced in Lesson 15). The forward flag about Lesson 24 does not apply; kept.",
+      "audio": "9f4acd94cd794083.mp3",
+      "audioOriginal": "9f4acd94cd794083.orig.mp3",
+      "audioAuto": "9f4acd94cd794083.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9f4acd94cd794083"
     },
     {
       "id": "owaru-dict-form",
@@ -864,7 +1100,12 @@
       "pronunciation": "owaru",
       "aiSuggested": true,
       "note": "Dictionary form of おわります (owarimasu, \"finish\") above, which is also its casual form. Regular 1: り becomes る, the same change as つくります → つくる (tsukurimasu → tsukuru, \"make\").",
-      "reviewNote": "Gate-1 preflight (carried-forms): the book taught the dictionary form in Lesson 15 and never prints it for おわります, so it was added here (owner ruling 2026-10-12). The gap filler missed it because the base gloss ended in a full stop, which the carried-forms check reads as a sentence."
+      "reviewNote": "Gate-1 preflight (carried-forms): the book taught the dictionary form in Lesson 15 and never prints it for おわります, so it was added here (owner ruling 2026-10-12). The gap filler missed it because the base gloss ended in a full stop, which the carried-forms check reads as a sentence.",
+      "audio": "f85df27025e616bd.mp3",
+      "audioOriginal": "f85df27025e616bd.orig.mp3",
+      "audioAuto": "f85df27025e616bd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f85df27025e616bd"
     },
     {
       "id": "yoyaku-suru-dict-form",
@@ -874,7 +1115,12 @@
       "pronunciation": "yoyaku suru",
       "aiSuggested": true,
       "note": "Dictionary form of よやくします (yoyaku shimasu, \"make a reservation\") above, which is also its casual form. Irregular: the します part becomes する, the same change as コピーします → コピーする (kopī shimasu → kopī suru, \"make a copy\", Lesson 21).",
-      "reviewNote": "Gate-1 preflight (carried-forms): the book taught the dictionary form in Lesson 15 and never prints it for よやくします, so it was added here (owner ruling 2026-10-12). The gap filler missed it because the base gloss ended in a full stop, which the carried-forms check reads as a sentence."
+      "reviewNote": "Gate-1 preflight (carried-forms): the book taught the dictionary form in Lesson 15 and never prints it for よやくします, so it was added here (owner ruling 2026-10-12). The gap filler missed it because the base gloss ended in a full stop, which the carried-forms check reads as a sentence.",
+      "audio": "f70e16dc873318d5.mp3",
+      "audioOriginal": "f70e16dc873318d5.orig.mp3",
+      "audioAuto": "f70e16dc873318d5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f70e16dc873318d5"
     },
     {
       "id": "nomu-dict-form",

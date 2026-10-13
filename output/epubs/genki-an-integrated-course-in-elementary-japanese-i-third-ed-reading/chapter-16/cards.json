@@ -248,7 +248,10 @@
       "audioOriginal": "eb24fe147f6e8eaa.orig.mp3",
       "audioAuto": "eb24fe147f6e8eaa.mp3",
       "audioMarked": true,
-      "audioTextHash": "eb24fe147f6e8eaa"
+      "audioTextHash": "eb24fe147f6e8eaa",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 子ども, 時."
     },
     {
       "id": "r-9853d6b13a8e",

@@ -231,7 +231,10 @@
       "english": "To take care of oneself",
       "category": "Body & Health",
       "sourceOrder": 27,
-      "ttsText": "からだにきをつける"
+      "ttsText": "からだにきをつける",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 体, 気をつける."
     },
     {
       "id": "r-4590bfff3e78",
@@ -248,6 +251,14 @@
       "category": "School & Education",
       "ttsText": "ぶんがく",
       "sourceOrder": 29
+    },
+    {
+      "id": "r-ecda751ef69a",
+      "target": "気をつける",
+      "english": "To be careful; to take care",
+      "category": "Other",
+      "ttsText": "きをつける",
+      "sourceOrder": 30
     }
   ]
 }

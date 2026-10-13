@@ -439,7 +439,10 @@
       "english": "Right side of the street",
       "category": "Directions",
       "ttsText": "みちのみぎがわ",
-      "sourceOrder": 53
+      "sourceOrder": 53,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 道, 右側."
     },
     {
       "id": "r-bbd9c5c83d29",
@@ -447,7 +450,10 @@
       "english": "Turn right at the first traffic light",
       "category": "Directions",
       "ttsText": "ひとつめのしんごうをみぎにまがる",
-      "sourceOrder": 54
+      "sourceOrder": 54,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 信号, 右, 曲がる."
     },
     {
       "id": "r-b0d9ce76f796",
@@ -455,7 +461,10 @@
       "english": "To smoke",
       "category": "Body & Health",
       "ttsText": "たばこをすう",
-      "sourceOrder": 55
+      "sourceOrder": 55,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: たばこ, 吸う."
     },
     {
       "id": "r-4da7571d829d",
@@ -487,7 +496,10 @@
       "english": "Turn right",
       "category": "Directions",
       "ttsText": "みぎにまがる",
-      "sourceOrder": 59
+      "sourceOrder": 59,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 右, 曲がる."
     },
     {
       "id": "r-882bcf144d7e",
@@ -495,7 +507,10 @@
       "english": "Cross the street",
       "category": "Directions",
       "ttsText": "みちをわたる",
-      "sourceOrder": 60
+      "sourceOrder": 60,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 道, 渡る."
     },
     {
       "id": "r-8d2086f34297",
@@ -511,7 +526,10 @@
       "english": "Turn left at the second corner",
       "category": "Directions",
       "ttsText": "ふたつめのかどをひだりにまがる",
-      "sourceOrder": 62
+      "sourceOrder": 62,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 角, 左, 曲がる."
     },
     {
       "id": "r-132fa45a7a57",
@@ -535,7 +553,10 @@
       "english": "Really?",
       "category": "Greetings",
       "ttsText": "ほんとうですか",
-      "sourceOrder": 65
+      "sourceOrder": 65,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 本当."
     },
     {
       "id": "r-50b94ed0ecb3",
@@ -543,7 +564,10 @@
       "english": "To take a shower",
       "category": "Body & Health",
       "ttsText": "シャワーをあびる",
-      "sourceOrder": 66
+      "sourceOrder": 66,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: シャワー, 浴びる."
     },
     {
       "id": "r-7e3f4f6bfc58",
@@ -567,7 +591,10 @@
       "english": "That would be fine; That wouldn't be necessary",
       "category": "Greetings",
       "ttsText": "けっこうです",
-      "sourceOrder": 69
+      "sourceOrder": 69,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 結構."
     },
     {
       "id": "r-2dbcf362984d",
@@ -615,7 +642,10 @@
       "english": "Left side of the street",
       "category": "Directions",
       "ttsText": "みちのひだりがわ",
-      "sourceOrder": 75
+      "sourceOrder": 75,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 道, 左側."
     },
     {
       "id": "r-808268623287",
@@ -623,7 +653,10 @@
       "english": "Go straight",
       "category": "Directions",
       "ttsText": "まっすぐいく",
-      "sourceOrder": 76
+      "sourceOrder": 76,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: まっすぐ, 行く."
     },
     {
       "id": "r-fe8e50ef842a",
@@ -775,7 +808,10 @@
       "english": "Turn left",
       "category": "Directions",
       "ttsText": "ひだりにまがる",
-      "sourceOrder": 95
+      "sourceOrder": 95,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 左, 曲がる."
     },
     {
       "id": "r-a76072644bf6",
@@ -816,6 +852,70 @@
       "category": "Transport",
       "ttsText": "でんしゃ",
       "sourceOrder": 100
+    },
+    {
+      "id": "r-932fcb57bfb7",
+      "target": "信号",
+      "english": "Traffic light",
+      "category": "Directions",
+      "ttsText": "しんごう",
+      "sourceOrder": 101
+    },
+    {
+      "id": "r-c1f5acd9d1eb",
+      "target": "曲がる",
+      "english": "To turn",
+      "category": "Directions",
+      "ttsText": "まがる",
+      "sourceOrder": 102
+    },
+    {
+      "id": "r-79603fee4063",
+      "target": "吸う",
+      "english": "To smoke; to breathe in",
+      "category": "Other",
+      "ttsText": "すう",
+      "sourceOrder": 103
+    },
+    {
+      "id": "r-fb2046cced43",
+      "target": "浴びる",
+      "english": "To take (a shower); to bathe in",
+      "category": "Home & Household",
+      "ttsText": "あびる",
+      "sourceOrder": 104
+    },
+    {
+      "id": "r-545381a68ba6",
+      "target": "渡る",
+      "english": "To cross",
+      "category": "Directions",
+      "ttsText": "わたる",
+      "sourceOrder": 105
+    },
+    {
+      "id": "r-f84bbc7925a0",
+      "target": "左側",
+      "english": "Left side",
+      "category": "Directions",
+      "ttsText": "ひだりがわ",
+      "sourceOrder": 106
+    },
+    {
+      "id": "r-b5c29eb379c0",
+      "target": "本当",
+      "english": "True; real",
+      "category": "Other",
+      "ttsText": "ほんとう",
+      "sourceOrder": 107
+    },
+    {
+      "id": "r-bbf0ab71a872",
+      "target": "結構",
+      "english": "Fine; enough",
+      "category": "Other",
+      "ttsText": "けっこう",
+      "sourceOrder": 108
     }
   ]
 }

@@ -415,7 +415,10 @@
       "english": "To become thirsty",
       "category": "Body & Health",
       "ttsText": "のどがかわく",
-      "sourceOrder": 50
+      "sourceOrder": 50,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: のど, 渇く."
     },
     {
       "id": "r-2a5b14d2199e",
@@ -439,7 +442,10 @@
       "english": "I have a runny nose.",
       "category": "Body & Health",
       "ttsText": "はなみずがでます",
-      "sourceOrder": 53
+      "sourceOrder": 53,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 鼻水, 出る."
     },
     {
       "id": "r-8e8439de7b78",
@@ -463,7 +469,10 @@
       "english": "I have a bad tooth.",
       "category": "Body & Health",
       "ttsText": "むしばがあります",
-      "sourceOrder": 56
+      "sourceOrder": 56,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 虫歯."
     },
     {
       "id": "r-24fb3048655a",
@@ -503,7 +512,10 @@
       "english": "I have hay fever.",
       "category": "Body & Health",
       "ttsText": "かふんしょうです",
-      "sourceOrder": 61
+      "sourceOrder": 61,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 花粉症."
     },
     {
       "id": "r-6c36eb6f1079",
@@ -543,7 +555,10 @@
       "english": "To catch a cold",
       "category": "Body & Health",
       "ttsText": "かぜをひく",
-      "sourceOrder": 66
+      "sourceOrder": 66,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 風邪, ひく."
     },
     {
       "id": "r-ed6245923454",
@@ -551,7 +566,10 @@
       "english": "I have rashes.",
       "category": "Body & Health",
       "ttsText": "はっしんがあります",
-      "sourceOrder": 67
+      "sourceOrder": 67,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 発疹."
     },
     {
       "id": "r-e9e796e9cb60",
@@ -567,7 +585,10 @@
       "english": "I have diarrhea.",
       "category": "Body & Health",
       "ttsText": "げりです",
-      "sourceOrder": 69
+      "sourceOrder": 69,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 下痢."
     },
     {
       "id": "r-7e63ca48451d",
@@ -583,7 +604,10 @@
       "english": "I broke my leg.",
       "category": "Body & Health",
       "ttsText": "あしをこっせつしました",
-      "sourceOrder": 71
+      "sourceOrder": 71,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 足, 骨折."
     },
     {
       "id": "r-4c3076304aa5",
@@ -607,7 +631,10 @@
       "english": "To have a fever",
       "category": "Body & Health",
       "ttsText": "ねつがある",
-      "sourceOrder": 74
+      "sourceOrder": 74,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 熱."
     },
     {
       "id": "r-14a64db61704",
@@ -623,7 +650,10 @@
       "english": "My back itches.",
       "category": "Body & Health",
       "ttsText": "せなかがかゆいです",
-      "sourceOrder": 76
+      "sourceOrder": 76,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 背中, かゆい."
     },
     {
       "id": "r-7878d7a46305",
@@ -647,7 +677,10 @@
       "english": "I am not feeling well.",
       "category": "Body & Health",
       "ttsText": "きぶんがわるいです",
-      "sourceOrder": 79
+      "sourceOrder": 79,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 気分, 悪い."
     },
     {
       "id": "r-c6512529b527",
@@ -711,7 +744,10 @@
       "english": "Don't look well",
       "category": "Body & Health",
       "ttsText": "げんきがない",
-      "sourceOrder": 87
+      "sourceOrder": 87,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 元気."
     },
     {
       "id": "r-43c9111e5850",
@@ -719,7 +755,10 @@
       "english": "I have my period.",
       "category": "Body & Health",
       "ttsText": "せいりです",
-      "sourceOrder": 88
+      "sourceOrder": 88,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 生理."
     },
     {
       "id": "r-c37db7770bf4",
@@ -727,7 +766,10 @@
       "english": "I sneeze.",
       "category": "Body & Health",
       "ttsText": "くしゃみがでます",
-      "sourceOrder": 89
+      "sourceOrder": 89,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: くしゃみ, 出る."
     },
     {
       "id": "r-b39534ea66b8",
@@ -735,7 +777,10 @@
       "english": "I am constipated.",
       "category": "Body & Health",
       "ttsText": "べんぴです",
-      "sourceOrder": 90
+      "sourceOrder": 90,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 便秘."
     },
     {
       "id": "r-dd99adc12245",
@@ -783,7 +828,10 @@
       "english": "I threw up.",
       "category": "Body & Health",
       "ttsText": "はきました",
-      "sourceOrder": 96
+      "sourceOrder": 96,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 吐く."
     },
     {
       "id": "r-003253e63d95",
@@ -831,7 +879,10 @@
       "english": "To be interested (in . . .)",
       "category": "Emotions & Feelings",
       "ttsText": "きょうみがある",
-      "sourceOrder": 102
+      "sourceOrder": 102,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 興味."
     },
     {
       "id": "r-3573405f6923",
@@ -855,7 +906,106 @@
       "english": "To cough",
       "category": "Body & Health",
       "ttsText": "せきがでる",
-      "sourceOrder": 105
+      "sourceOrder": 105,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: せき, 出る."
+    },
+    {
+      "id": "r-ac3f035949bf",
+      "target": "渇く",
+      "english": "To become dry; (of the throat) to feel thirsty",
+      "category": "Body & Health",
+      "ttsText": "かわく",
+      "sourceOrder": 106
+    },
+    {
+      "id": "r-35511b1ede96",
+      "target": "鼻水",
+      "english": "Runny nose",
+      "category": "Body & Health",
+      "ttsText": "はなみず",
+      "sourceOrder": 107
+    },
+    {
+      "id": "r-59b66cb563cb",
+      "target": "虫歯",
+      "english": "Cavity; bad tooth",
+      "category": "Body & Health",
+      "ttsText": "むしば",
+      "sourceOrder": 108
+    },
+    {
+      "id": "r-d94084e5dab8",
+      "target": "花粉症",
+      "english": "Hay fever",
+      "category": "Body & Health",
+      "ttsText": "かふんしょう",
+      "sourceOrder": 109
+    },
+    {
+      "id": "r-c8312f5d5926",
+      "target": "発疹",
+      "english": "Rash",
+      "category": "Body & Health",
+      "ttsText": "はっしん",
+      "sourceOrder": 110
+    },
+    {
+      "id": "r-6e8985ac3ad7",
+      "target": "骨折",
+      "english": "Broken bone; fracture",
+      "category": "Body & Health",
+      "ttsText": "こっせつ",
+      "sourceOrder": 111
+    },
+    {
+      "id": "r-7c87d5ed72f7",
+      "target": "気分",
+      "english": "Feeling; mood",
+      "category": "Emotions & Feelings",
+      "ttsText": "きぶん",
+      "sourceOrder": 112
+    },
+    {
+      "id": "r-37d5c168f7c4",
+      "target": "吐く",
+      "english": "To throw up",
+      "category": "Body & Health",
+      "ttsText": "はく",
+      "sourceOrder": 113
+    },
+    {
+      "id": "r-64ee22460455",
+      "target": "興味",
+      "english": "Interest",
+      "category": "Emotions & Feelings",
+      "ttsText": "きょうみ",
+      "sourceOrder": 114
+    },
+    {
+      "id": "r-a0e2a8fa1a60",
+      "target": "下痢",
+      "english": "Diarrhea",
+      "category": "Body & Health",
+      "ttsText": "げり",
+      "sourceOrder": 115
+    },
+    {
+      "id": "r-3aa370751431",
+      "target": "生理",
+      "english": "Period (menstruation)",
+      "category": "Body & Health",
+      "ttsText": "せいり",
+      "sourceOrder": 116
+    },
+    {
+      "id": "r-6b00d78b45af",
+      "target": "便秘",
+      "english": "Constipation",
+      "category": "Body & Health",
+      "ttsText": "べんぴ",
+      "sourceOrder": 117
     }
   ]
 }

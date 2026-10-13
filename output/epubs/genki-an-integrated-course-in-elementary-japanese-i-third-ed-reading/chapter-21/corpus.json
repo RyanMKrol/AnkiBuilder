@@ -207,7 +207,10 @@
       "english": "To be tired",
       "category": "Body & Health",
       "ttsText": "つかれている",
-      "sourceOrder": 24
+      "sourceOrder": 24,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 疲れる."
     },
     {
       "id": "r-ef416d2e9b03",

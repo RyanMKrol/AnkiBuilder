@@ -91,6 +91,22 @@ test("reading-length: a front past word size is acknowledged", () => {
   );
 });
 
+test("reading-phrase: a sentence or a word-plus-particle phrase is acknowledged, a word is not", () => {
+  expect(
+    "reading-phrase",
+    [word("a", "この中にお酒が入っていますか", { ttsText: "このなかにおさけがはいっていますか" })],
+    [word("a", "お酒", { ttsText: "おさけ" })],
+    /polite or inflected ending/,
+  );
+  expect(
+    "reading-phrase",
+    [word("a", "雨が降る", { ttsText: "あめがふる" })],
+    // The が inside 曲がる is part of the word, not a particle: no kanji follows it.
+    [word("a", "曲がる", { ttsText: "まがる" })],
+    /joins two words with a particle/,
+  );
+});
+
 test("reading-kana-reading: a kanji word carries a reading, and it is kana", () => {
   expect(
     "reading-kana-reading",

@@ -522,7 +522,10 @@
       "audioOriginal": "f6fa368fcee44b82.orig.mp3",
       "audioAuto": "f6fa368fcee44b82.mp3",
       "audioMarked": true,
-      "audioTextHash": "f6fa368fcee44b82"
+      "audioTextHash": "f6fa368fcee44b82",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 人気."
     },
     {
       "id": "r-f9fe70b5c2d8",
@@ -927,7 +930,10 @@
       "audioOriginal": "6944f8b0fe4bfb83.orig.mp3",
       "audioAuto": "6944f8b0fe4bfb83.mp3",
       "audioMarked": true,
-      "audioTextHash": "6944f8b0fe4bfb83"
+      "audioTextHash": "6944f8b0fe4bfb83",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 薬, 飲む."
     },
     {
       "id": "r-d0a7b02e2cd6",

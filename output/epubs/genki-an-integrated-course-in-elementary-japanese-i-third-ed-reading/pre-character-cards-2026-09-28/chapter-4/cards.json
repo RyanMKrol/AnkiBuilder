@@ -1,0 +1,400 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 5,
+    "chapterLabel": "Chapter 05: Lesson 3: Making a Date",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-4c620ecb9469",
+      "target": "お酒",
+      "english": "Sake; alcoholic drink",
+      "category": "Food",
+      "ttsText": "おさけ",
+      "sourceOrder": 0,
+      "pronunciation": "osake",
+      "ttsKanji": "お酒"
+    },
+    {
+      "id": "r-c3da86d447f2",
+      "target": "お茶",
+      "english": "Green tea",
+      "category": "Food",
+      "ttsText": "おちゃ",
+      "sourceOrder": 1,
+      "pronunciation": "ocha",
+      "ttsKanji": "お茶"
+    },
+    {
+      "id": "r-4a2f5c2aed74",
+      "target": "全然",
+      "english": "Not at all",
+      "category": "Grammar & Function Words",
+      "ttsText": "ぜんぜん",
+      "sourceOrder": 2,
+      "pronunciation": "zenzen",
+      "ttsKanji": "全然"
+    },
+    {
+      "id": "r-aeb26253096f",
+      "target": "早い",
+      "english": "Early",
+      "category": "Descriptions & Qualities",
+      "ttsText": "はやい",
+      "sourceOrder": 3,
+      "pronunciation": "hayai",
+      "ttsKanji": "早い"
+    },
+    {
+      "id": "r-8ffbf192934a",
+      "target": "水",
+      "english": "Water",
+      "category": "Food",
+      "ttsText": "みず",
+      "sourceOrder": 4,
+      "pronunciation": "mizu"
+    },
+    {
+      "id": "r-d63043a38863",
+      "target": "毎日",
+      "english": "Every day",
+      "category": "Time",
+      "ttsText": "まいにち",
+      "sourceOrder": 5,
+      "pronunciation": "mainichi",
+      "ttsKanji": "毎日"
+    },
+    {
+      "id": "r-9b004af92def",
+      "target": "障子",
+      "english": "Sliding door",
+      "category": "Home & Household",
+      "ttsText": "しょうじ",
+      "sourceOrder": 6,
+      "pronunciation": "shōji",
+      "ttsKanji": "障子"
+    },
+    {
+      "id": "r-3a9f9a5edc18",
+      "target": "帰る",
+      "english": "To go back; to return",
+      "category": "Travel & Tourism",
+      "ttsText": "かえる",
+      "sourceOrder": 7,
+      "pronunciation": "kaeru",
+      "ttsKanji": "帰る"
+    },
+    {
+      "id": "r-a0dede70ceb2",
+      "target": "晩ご飯",
+      "english": "Dinner",
+      "category": "Food",
+      "ttsText": "ばんごはん",
+      "sourceOrder": 8,
+      "pronunciation": "bangohan",
+      "ttsKanji": "晩ご飯"
+    },
+    {
+      "id": "r-7fc9b181f57e",
+      "target": "読む",
+      "english": "To read",
+      "category": "School & Education",
+      "ttsText": "よむ",
+      "sourceOrder": 9,
+      "pronunciation": "yomu",
+      "ttsKanji": "読む"
+    },
+    {
+      "id": "r-abb639bc774f",
+      "target": "聞く",
+      "english": "To listen; to hear",
+      "category": "Other",
+      "ttsText": "きく",
+      "sourceOrder": 10,
+      "pronunciation": "kiku",
+      "ttsKanji": "聞く"
+    },
+    {
+      "id": "r-5f1ce3d353de",
+      "target": "起きる",
+      "english": "To get up",
+      "category": "Body & Health",
+      "ttsText": "おきる",
+      "sourceOrder": 11,
+      "pronunciation": "okiru",
+      "ttsKanji": "起きる"
+    },
+    {
+      "id": "r-d5ac2f996349",
+      "target": "畳",
+      "english": "Straw mat",
+      "category": "Home & Household",
+      "ttsText": "たたみ",
+      "sourceOrder": 12,
+      "pronunciation": "tatami"
+    },
+    {
+      "id": "r-8f10296a8d0a",
+      "target": "毎晩",
+      "english": "Every night",
+      "category": "Time",
+      "ttsText": "まいばん",
+      "sourceOrder": 13,
+      "pronunciation": "maiban",
+      "ttsKanji": "毎晩"
+    },
+    {
+      "id": "r-49f334cb28a3",
+      "target": "昼ご飯",
+      "english": "Lunch",
+      "category": "Food",
+      "ttsText": "ひるごはん",
+      "sourceOrder": 14,
+      "pronunciation": "hirugohan",
+      "ttsKanji": "昼ご飯"
+    },
+    {
+      "id": "r-eae85310dc8e",
+      "target": "土曜日",
+      "english": "Saturday",
+      "category": "Time",
+      "ttsText": "どようび",
+      "sourceOrder": 15,
+      "pronunciation": "doyōbi",
+      "ttsKanji": "土曜日"
+    },
+    {
+      "id": "r-71400c113af9",
+      "target": "来る",
+      "english": "To come",
+      "category": "Other",
+      "ttsText": "くる",
+      "sourceOrder": 16,
+      "pronunciation": "kuru",
+      "ttsKanji": "来る"
+    },
+    {
+      "id": "r-c88ba17eb422",
+      "target": "見る",
+      "english": "To see; to look at; to watch",
+      "category": "Other",
+      "ttsText": "みる",
+      "sourceOrder": 17,
+      "pronunciation": "miru",
+      "ttsKanji": "見る"
+    },
+    {
+      "id": "r-08610a85a1b5",
+      "target": "学校",
+      "english": "School",
+      "category": "School & Education",
+      "ttsText": "がっこう",
+      "sourceOrder": 18,
+      "pronunciation": "gakkō",
+      "ttsKanji": "学校"
+    },
+    {
+      "id": "r-b5ef4b947061",
+      "target": "週末",
+      "english": "Weekend",
+      "category": "Time",
+      "ttsText": "しゅうまつ",
+      "sourceOrder": 19,
+      "pronunciation": "shūmatsu",
+      "ttsKanji": "週末"
+    },
+    {
+      "id": "r-21dac0842106",
+      "target": "食べる",
+      "english": "To eat",
+      "category": "Food",
+      "ttsText": "たべる",
+      "sourceOrder": 20,
+      "pronunciation": "taberu",
+      "ttsKanji": "食べる"
+    },
+    {
+      "id": "r-04fd047918fb",
+      "target": "朝ご飯",
+      "english": "Breakfast",
+      "category": "Food",
+      "ttsText": "あさごはん",
+      "sourceOrder": 21,
+      "pronunciation": "asagohan",
+      "ttsKanji": "朝ご飯"
+    },
+    {
+      "id": "r-b75b20ed5dc4",
+      "target": "お風呂",
+      "english": "Bathroom",
+      "category": "Home & Household",
+      "ttsText": "おふろ",
+      "sourceOrder": 22,
+      "pronunciation": "ofuro",
+      "ttsKanji": "お風呂"
+    },
+    {
+      "id": "r-ed448a8b8e4d",
+      "target": "日曜日",
+      "english": "Sunday",
+      "category": "Time",
+      "ttsText": "にちようび",
+      "sourceOrder": 23,
+      "pronunciation": "nichiyōbi",
+      "ttsKanji": "日曜日"
+    },
+    {
+      "id": "r-26df93526766",
+      "target": "話す",
+      "english": "To speak; to talk",
+      "category": "Other",
+      "ttsText": "はなす",
+      "sourceOrder": 24,
+      "pronunciation": "hanasu",
+      "ttsKanji": "話す"
+    },
+    {
+      "id": "r-6376c974631e",
+      "target": "音楽",
+      "english": "Music",
+      "category": "Sports & Hobbies",
+      "ttsText": "おんがく",
+      "sourceOrder": 25,
+      "pronunciation": "ongaku",
+      "ttsKanji": "音楽"
+    },
+    {
+      "id": "r-675d287d3ed0",
+      "target": "映画",
+      "english": "Movie",
+      "category": "Sports & Hobbies",
+      "ttsText": "えいが",
+      "sourceOrder": 26,
+      "pronunciation": "eiga",
+      "ttsKanji": "映画"
+    },
+    {
+      "id": "r-695aad811ab9",
+      "target": "朝",
+      "english": "Morning",
+      "category": "Time",
+      "ttsText": "あさ",
+      "sourceOrder": 27,
+      "pronunciation": "asa"
+    },
+    {
+      "id": "r-7de8177ce74b",
+      "target": "家",
+      "english": "Home; house",
+      "category": "Home & Household",
+      "ttsText": "いえ",
+      "sourceOrder": 28,
+      "pronunciation": "ie"
+    },
+    {
+      "id": "r-a1ac40e3c709",
+      "target": "飲む",
+      "english": "To drink",
+      "category": "Food",
+      "ttsText": "のむ",
+      "sourceOrder": 29,
+      "pronunciation": "nomu",
+      "ttsKanji": "飲む"
+    },
+    {
+      "id": "r-493879fafdb2",
+      "target": "雑誌",
+      "english": "Magazine",
+      "category": "Everyday Objects",
+      "ttsText": "ざっし",
+      "sourceOrder": 30,
+      "pronunciation": "zasshi",
+      "ttsKanji": "雑誌"
+    },
+    {
+      "id": "r-bba9fee5bef0",
+      "target": "寝る",
+      "english": "To sleep; to go to sleep",
+      "category": "Body & Health",
+      "ttsText": "ねる",
+      "sourceOrder": 31,
+      "pronunciation": "neru",
+      "ttsKanji": "寝る"
+    },
+    {
+      "id": "r-1666a3e3247d",
+      "target": "今晩",
+      "english": "Tonight",
+      "category": "Time",
+      "ttsText": "こんばん",
+      "sourceOrder": 32,
+      "pronunciation": "konban",
+      "ttsKanji": "今晩"
+    },
+    {
+      "id": "r-44bf896f470f",
+      "target": "時々",
+      "english": "Sometimes",
+      "category": "Grammar & Function Words",
+      "ttsText": "ときどき",
+      "sourceOrder": 33,
+      "pronunciation": "tokidoki",
+      "ttsKanji": "時々"
+    },
+    {
+      "id": "r-8cf41de96032",
+      "target": "勉強する",
+      "english": "To study",
+      "category": "School & Education",
+      "ttsText": "べんきょうする",
+      "sourceOrder": 34,
+      "pronunciation": "benkyō suru",
+      "ttsKanji": "勉強する"
+    },
+    {
+      "id": "r-574cd4fb795b",
+      "target": "今日",
+      "english": "Today",
+      "category": "Time",
+      "ttsText": "きょう",
+      "sourceOrder": 35,
+      "pronunciation": "kyō",
+      "ttsKanji": "今日"
+    },
+    {
+      "id": "r-762ffcba27ad",
+      "target": "明日",
+      "english": "Tomorrow",
+      "category": "Time",
+      "ttsText": "あした",
+      "sourceOrder": 36,
+      "pronunciation": "ashita",
+      "ttsKanji": "明日"
+    },
+    {
+      "id": "r-bcded40b3472",
+      "target": "玄関",
+      "english": "Entryway",
+      "category": "Home & Household",
+      "ttsText": "げんかん",
+      "sourceOrder": 37,
+      "pronunciation": "genkan",
+      "ttsKanji": "玄関"
+    },
+    {
+      "id": "r-638c386a4d8a",
+      "target": "行く",
+      "english": "To go",
+      "category": "Travel & Tourism",
+      "ttsText": "いく",
+      "sourceOrder": 38,
+      "pronunciation": "iku",
+      "ttsKanji": "行く"
+    }
+  ]
+}

@@ -503,7 +503,10 @@
       "english": "A little different",
       "category": "School & Education",
       "ttsText": "ちょっとちがいます",
-      "sourceOrder": 61
+      "sourceOrder": 61,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: ちょっと, 違う."
     },
     {
       "id": "r-8be6bd467548",
@@ -519,7 +522,10 @@
       "english": "Same thing",
       "category": "School & Education",
       "ttsText": "おなじです",
-      "sourceOrder": 63
+      "sourceOrder": 63,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 同じ."
     },
     {
       "id": "r-3a9e882a5a3b",
@@ -583,7 +589,10 @@
       "english": "Read it before coming to class",
       "category": "School & Education",
       "ttsText": "よんできてください",
-      "sourceOrder": 71
+      "sourceOrder": 71,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 読む."
     },
     {
       "id": "r-244b0ce365f3",
@@ -599,7 +608,10 @@
       "english": "Ask the person sitting next to you",
       "category": "School & Education",
       "ttsText": "となりのひとにきいてください",
-      "sourceOrder": 73
+      "sourceOrder": 73,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 隣, 人, 聞く."
     },
     {
       "id": "r-f86e76ae2c37",
@@ -607,7 +619,10 @@
       "english": "Open the book to page 10",
       "category": "School & Education",
       "ttsText": "じゅっページをひらいてください",
-      "sourceOrder": 74
+      "sourceOrder": 74,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: ページ, 開く."
     },
     {
       "id": "r-58495b457de5",
@@ -679,7 +694,10 @@
       "english": "Can't use it",
       "category": "School & Education",
       "ttsText": "つかえません",
-      "sourceOrder": 83
+      "sourceOrder": 83,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 使う."
     },
     {
       "id": "r-440682eae91b",
@@ -695,7 +713,10 @@
       "english": "Close the textbook",
       "category": "School & Education",
       "ttsText": "きょうかしょをとじてください",
-      "sourceOrder": 85
+      "sourceOrder": 85,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 教科書, 閉じる."
     },
     {
       "id": "r-4b1414b4a1f2",
@@ -847,7 +868,10 @@
       "english": "More or less the same",
       "category": "School & Education",
       "ttsText": "だいたいおなじです",
-      "sourceOrder": 104
+      "sourceOrder": 104,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: だいたい, 同じ."
     },
     {
       "id": "r-f879e978add7",
@@ -959,7 +983,10 @@
       "english": "Hand in the homework",
       "category": "School & Education",
       "ttsText": "しゅくだいをだしてください",
-      "sourceOrder": 118
+      "sourceOrder": 118,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 宿題, 出す."
     },
     {
       "id": "r-1d4ebd368cf4",
@@ -999,7 +1026,10 @@
       "english": "Raise your hand",
       "category": "School & Education",
       "ttsText": "てをあげてください",
-      "sourceOrder": 123
+      "sourceOrder": 123,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 手, あげる."
     },
     {
       "id": "r-a9733c6c0a41",
@@ -1007,7 +1037,10 @@
       "english": "That's it for today",
       "category": "School & Education",
       "ttsText": "きょうはこれでおわります",
-      "sourceOrder": 124
+      "sourceOrder": 124,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 今日, 終わる."
     },
     {
       "id": "r-5dcc8d49b6fa",
@@ -1024,6 +1057,30 @@
       "category": "School & Education",
       "ttsText": "れんしゅう",
       "sourceOrder": 126
+    },
+    {
+      "id": "r-119daf93eeb9",
+      "target": "開く",
+      "english": "To open (a book)",
+      "category": "School & Education",
+      "ttsText": "ひらく",
+      "sourceOrder": 127
+    },
+    {
+      "id": "r-3da5c1855151",
+      "target": "閉じる",
+      "english": "To close (a book)",
+      "category": "School & Education",
+      "ttsText": "とじる",
+      "sourceOrder": 128
+    },
+    {
+      "id": "r-95113cfcb578",
+      "target": "違う",
+      "english": "To be different; to be wrong",
+      "category": "Other",
+      "ttsText": "ちがう",
+      "sourceOrder": 129
     }
   ]
 }

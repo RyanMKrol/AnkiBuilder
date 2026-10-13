@@ -454,7 +454,10 @@
       "english": "Various places",
       "category": "Descriptions & Qualities",
       "ttsText": "いろいろなところ",
-      "sourceOrder": 55
+      "sourceOrder": 55,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: いろいろ, 所."
     },
     {
       "id": "r-ca169f1b09d7",

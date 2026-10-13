@@ -586,7 +586,10 @@
       "audioOriginal": "a9827ac58651a910.orig.mp3",
       "audioAuto": "a9827ac58651a910.mp3",
       "audioMarked": true,
-      "audioTextHash": "a9827ac58651a910"
+      "audioTextHash": "a9827ac58651a910",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 背, 高い."
     },
     {
       "id": "r-d57207655b68",
@@ -981,7 +984,10 @@
       "audioOriginal": "2cdf71ef99d27afb.orig.mp3",
       "audioAuto": "2cdf71ef99d27afb.mp3",
       "audioMarked": true,
-      "audioTextHash": "2cdf71ef99d27afb"
+      "audioTextHash": "2cdf71ef99d27afb",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 知る."
     },
     {
       "id": "r-d7e621055f5c",
@@ -1056,7 +1062,10 @@
       "audioOriginal": "570bbe95258fbfab.orig.mp3",
       "audioAuto": "570bbe95258fbfab.mp3",
       "audioMarked": true,
-      "audioTextHash": "570bbe95258fbfab"
+      "audioTextHash": "570bbe95258fbfab",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 頭, いい."
     },
     {
       "id": "r-d900c8df601a",
@@ -1116,7 +1125,10 @@
       "audioOriginal": "ce1f448cac13bf78.orig.mp3",
       "audioAuto": "ce1f448cac13bf78.mp3",
       "audioMarked": true,
-      "audioTextHash": "ce1f448cac13bf78"
+      "audioTextHash": "ce1f448cac13bf78",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 太る."
     },
     {
       "id": "r-242e8e5c3fbc",
@@ -1346,7 +1358,10 @@
       "audioOriginal": "926ffaf4f5cbc001.orig.mp3",
       "audioAuto": "926ffaf4f5cbc001.mp3",
       "audioMarked": true,
-      "audioTextHash": "926ffaf4f5cbc001"
+      "audioTextHash": "926ffaf4f5cbc001",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 背, 低い."
     },
     {
       "id": "r-8586dc33c850",
@@ -1436,7 +1451,22 @@
       "audioOriginal": "8491bdacf0e5ef7f.orig.mp3",
       "audioAuto": "8491bdacf0e5ef7f.mp3",
       "audioMarked": true,
-      "audioTextHash": "8491bdacf0e5ef7f"
+      "audioTextHash": "8491bdacf0e5ef7f",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 知る."
+    },
+    {
+      "id": "r-c022ef791faa",
+      "target": "低い",
+      "english": "Low; short (in height)",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ひくい",
+      "sourceOrder": 105,
+      "pronunciation": "hikui",
+      "ttsKanji": "低い",
+      "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
+      "addition": "genki-reading-words-only-2026-10"
     }
   ]
 }

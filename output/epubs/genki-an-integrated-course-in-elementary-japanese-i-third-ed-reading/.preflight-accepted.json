@@ -31,6 +31,58 @@
         "message": "r-f23f878f91a8 \"LLサイズ\" has Latin letters"
       }
     },
+    "reading-phrase": {
+      "chapter-26/r-0742d4ed3a53": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-0742d4ed3a53 \"よろしくおねがいします\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-26/r-11c8fca7e223": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-11c8fca7e223 \"ごちそうさまでした\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-26/r-24afcca10e22": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-24afcca10e22 \"ありがとうございます\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-26/r-25567f8581d3": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-25567f8581d3 \"いただきます\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-26/r-5a3c5f71eeac": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-5a3c5f71eeac \"おはようございます\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-26/r-78b86e4e9b50": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-78b86e4e9b50 \"いってきます\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-26/r-a3a6f9c774ae": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-a3a6f9c774ae \"おめでとうございます\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-26/r-cce1862bcbd9": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-cce1862bcbd9 \"すみません\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-26/r-dfc3bb392e50": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-dfc3bb392e50 \"しつれいします\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-26/r-eee137f58589": {
+        "at": "2026-10-13T21:14:36.468Z",
+        "message": "r-eee137f58589 \"あけましておめでとうございます\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      }
+    },
     "reading-single-kana": {
       "chapter-1/r-27a87259d93f": {
         "at": "2026-09-23T23:18:41.997Z",

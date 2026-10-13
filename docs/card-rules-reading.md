@@ -41,9 +41,18 @@ for it.
    single kana the book teaches as a WORD, with a meaning of its own, is a word like any other: に
    "Two", ご "Five", き "Tree". Give it `kind: "word"`; a kana taught as a letter is
    `kind: "character"` and is left out.
-6. **No sentences, grammar patterns, conjugation tables or drill lines.** A set phrase is a card only
-   when the book teaches it as a unit (a greeting, a classroom expression). A phrase whose meaning is
-   just its words added together is its words.
+6. **Words, not sentences or phrases.** The deck is for reading what the learner will actually meet
+   written down, which is words (owner ruling, 2026-10-13, after cutting 73 Genki cards such as この中に
+   お酒が入っていますか "Is there alcohol in this?", a sentence nobody ever reads). So:
+   - No sentences, questions, requests, grammar patterns, conjugation tables or drill lines. That
+     includes the classroom expressions and "useful expressions" lists a book teaches as units.
+   - A word joined to another by a particle (雨が降る, 薬を飲む, 風邪をひく) is its words: card 雨, 降る,
+     薬, 飲む and so on, never the phrase.
+   - An inflected form (知っています, 来ます, 疲れている) is its dictionary form (知る, 来る, 疲れる).
+   - What stays: fixed greetings and set expressions you would see written as one unit (ありがとう
+     ございます, いらっしゃいませ), and compounds the language uses as one name (男の人, 母の日, a public
+     holiday).
+   - When a phrase is left out, each word in it that the book teaches is still a card.
 7. **Proper names are not cards**: people, places, companies, named facilities.
 8. **`english` is the meaning, in natural sentence-case English**: "Movie", "Good morning", "Day;
    sun". Not lowercased dictionary clips, and never the pronunciation.

@@ -988,12 +988,17 @@
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught わかります (Lesson 8), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "134a2dcca20b5fe9.mp3",
+      "audio": "wakaru-dict-form-manual-1ce9e365.mp3",
       "audioOriginal": "134a2dcca20b5fe9.orig.mp3",
       "audioAuto": "134a2dcca20b5fe9.mp3",
       "audioMarked": true,
       "audioTextHash": "134a2dcca20b5fe9",
-      "additionDone": true
+      "additionDone": true,
+      "audioManual": "wakaru-dict-form-manual-1ce9e365.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.7805265410958904
+      }
     },
     {
       "id": "okuru-dict-form",

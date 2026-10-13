@@ -1132,7 +1132,7 @@
     },
     {
       "id": "ex7-eg-green-reply-what-about-you",
-      "english": "Yes, I do. What about you, Kato-san?",
+      "english": "Yes, I like it. What about you, Kato-san?",
       "category": "Grammar & Function Words",
       "target": "ええ、すきです。かとうさんは?",
       "pronunciation": "ē, suki desu. Katō-san wa",
@@ -1301,12 +1301,13 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-2026-10",
       "additionReviewed": true,
-      "audio": "f48fae3c5fd26c63.mp3",
-      "audioOriginal": "f48fae3c5fd26c63.orig.mp3",
-      "audioAuto": "f48fae3c5fd26c63.mp3",
+      "audioOriginal": "0a39e552029d623c-genkanji-ba972115.orig.mp3",
+      "audioAuto": "0a39e552029d623c-genkanji-ba972115.mp3",
       "audioMarked": true,
-      "audioTextHash": "f48fae3c5fd26c63",
-      "additionDone": true
+      "audioTextHash": "0a39e552029d623c",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "0a39e552029d623c-genkanji-ba972115.mp3"
     },
     {
       "id": "shashin-wo-miseru-no-ga-suki",
@@ -1374,12 +1375,13 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using おくる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "b3350c5528efb7af.mp3",
-      "audioOriginal": "b3350c5528efb7af.orig.mp3",
-      "audioAuto": "b3350c5528efb7af.mp3",
+      "audioOriginal": "39cba0da1f29b17f-genkanji-b251956b.orig.mp3",
+      "audioAuto": "39cba0da1f29b17f-genkanji-b251956b.mp3",
       "audioMarked": true,
-      "audioTextHash": "b3350c5528efb7af",
-      "additionDone": true
+      "audioTextHash": "39cba0da1f29b17f",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "39cba0da1f29b17f-genkanji-b251956b.mp3"
     },
     {
       "id": "fujisan-ni-noboru-no-ga-suki",
@@ -1410,12 +1412,13 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ある, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "ba6a5db43d9d8fcb.mp3",
-      "audioOriginal": "ba6a5db43d9d8fcb.orig.mp3",
-      "audioAuto": "ba6a5db43d9d8fcb.mp3",
+      "audioOriginal": "2fd8409b0e725037-genkanji-d2d5517c.orig.mp3",
+      "audioAuto": "2fd8409b0e725037-genkanji-d2d5517c.mp3",
       "audioMarked": true,
-      "audioTextHash": "ba6a5db43d9d8fcb",
-      "additionDone": true
+      "audioTextHash": "2fd8409b0e725037",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "2fd8409b0e725037-genkanji-d2d5517c.mp3"
     },
     {
       "id": "hana-wo-morau-no-ga-suki",
@@ -1446,12 +1449,13 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using くれる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "9b07b4324996332b.mp3",
-      "audioOriginal": "9b07b4324996332b.orig.mp3",
-      "audioAuto": "9b07b4324996332b.mp3",
+      "audioOriginal": "a4c3dc195c1f973c-genkanji-d56903b3.orig.mp3",
+      "audioAuto": "a4c3dc195c1f973c-genkanji-d56903b3.mp3",
       "audioMarked": true,
-      "audioTextHash": "9b07b4324996332b",
-      "additionDone": true
+      "audioTextHash": "a4c3dc195c1f973c",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "a4c3dc195c1f973c-genkanji-d56903b3.mp3"
     },
     {
       "id": "toshokan-de-hon-wo-kariru-no-ga-suki",
@@ -1482,12 +1486,13 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using にあう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "ae264352c1744526.mp3",
-      "audioOriginal": "ae264352c1744526.orig.mp3",
-      "audioAuto": "ae264352c1744526.mp3",
+      "audioOriginal": "f3f6070ad555fd32-genkanji-c94492cb.orig.mp3",
+      "audioAuto": "f3f6070ad555fd32-genkanji-c94492cb.mp3",
       "audioMarked": true,
-      "audioTextHash": "ae264352c1744526",
-      "additionDone": true
+      "audioTextHash": "f3f6070ad555fd32",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "f3f6070ad555fd32-genkanji-c94492cb.mp3"
     }
   ]
 }

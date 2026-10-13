@@ -43,7 +43,7 @@
     },
     {
       "id": "asoko",
-      "english": "Over there",
+      "english": "Over there (away from both of us)",
       "category": "Directions",
       "scene": null,
       "hint": "everyday form",
@@ -356,10 +356,10 @@
     },
     {
       "id": "soko",
-      "english": "There",
+      "english": "There (near you)",
       "category": "Directions",
       "scene": null,
-      "hint": null,
+      "hint": "everyday form",
       "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER (the chapter teaches this with a picture, not words): ここ is where the speaker is, そこ is near the LISTENER, あそこ is away from both. そこ is not simply \"there\" — it specifically means near the person you are talking to.",
       "reviewNote": null,
       "target": "そこ"

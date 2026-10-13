@@ -451,11 +451,12 @@
       "category": "Everyday Objects",
       "target": "スミスさんはりょうりをするまえにてをあらいます",
       "pronunciation": "Sumisu-san wa ryōri o suru mae ni te o araimasu",
-      "audio": "7f4f5e95df2f0172.mp3",
-      "audioOriginal": "7f4f5e95df2f0172.orig.mp3",
-      "audioAuto": "7f4f5e95df2f0172.mp3",
+      "audioOriginal": "4d39dc947c462d5a-genkanji-20a69315.orig.mp3",
+      "audioAuto": "4d39dc947c462d5a-genkanji-20a69315.mp3",
       "audioMarked": true,
-      "audioTextHash": "7f4f5e95df2f0172"
+      "audioTextHash": "4d39dc947c462d5a",
+      "audioFilter": "standard",
+      "audio": "4d39dc947c462d5a-genkanji-20a69315.mp3"
     },
     {
       "id": "beer-no-water-yes",

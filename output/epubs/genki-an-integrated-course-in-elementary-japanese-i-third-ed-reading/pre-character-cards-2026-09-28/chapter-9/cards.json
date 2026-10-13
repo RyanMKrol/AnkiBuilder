@@ -1,0 +1,527 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 10,
+    "chapterLabel": "Chapter 10: Lesson 8: Barbecue",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-4af73d5eb3c6",
+      "target": "毎週",
+      "english": "Every week",
+      "category": "Time",
+      "ttsText": "まいしゅう",
+      "sourceOrder": 0,
+      "pronunciation": "maishū",
+      "ttsKanji": "毎週"
+    },
+    {
+      "id": "r-cf8190cb3dfa",
+      "target": "遅くなる",
+      "english": "To be late",
+      "category": "Time",
+      "ttsText": "おそくなる",
+      "sourceOrder": 1,
+      "pronunciation": "osoku naru",
+      "ttsKanji": "遅くなる"
+    },
+    {
+      "id": "r-195cb8caaeed",
+      "target": "掃除する",
+      "english": "To clean",
+      "category": "Home & Household",
+      "ttsText": "そうじする",
+      "sourceOrder": 2,
+      "pronunciation": "sōji suru",
+      "ttsKanji": "掃除する"
+    },
+    {
+      "id": "r-0ede079ba7d4",
+      "target": "残念ですね",
+      "english": "That's too bad.",
+      "category": "Emotions & Feelings",
+      "ttsText": "ざんねんですね",
+      "sourceOrder": 3,
+      "pronunciation": "zannen desu ne",
+      "ttsKanji": "残念ですね"
+    },
+    {
+      "id": "r-422694d6b7a1",
+      "target": "会社員",
+      "english": "Office worker",
+      "category": "Work & Occupations",
+      "ttsText": "かいしゃいん",
+      "sourceOrder": 4,
+      "pronunciation": "kaishain",
+      "ttsKanji": "会社員"
+    },
+    {
+      "id": "r-d5ca75a91f1a",
+      "target": "冬",
+      "english": "Winter",
+      "category": "Weather & Nature",
+      "ttsText": "ふゆ",
+      "sourceOrder": 5,
+      "pronunciation": "fuyu"
+    },
+    {
+      "id": "r-3177ccc0660e",
+      "target": "持っていく",
+      "english": "To take (a thing)",
+      "category": "Other",
+      "ttsText": "もっていく",
+      "sourceOrder": 6,
+      "pronunciation": "motte iku",
+      "ttsKanji": "持っていく"
+    },
+    {
+      "id": "r-becf1c4a15db",
+      "target": "玉ねぎ",
+      "english": "Onion",
+      "category": "Food",
+      "ttsText": "たまねぎ",
+      "sourceOrder": 7,
+      "pronunciation": "tamanegi",
+      "ttsKanji": "玉ねぎ"
+    },
+    {
+      "id": "r-eb27f636d2c3",
+      "target": "作る",
+      "english": "To make",
+      "category": "Other",
+      "ttsText": "つくる",
+      "sourceOrder": 8,
+      "pronunciation": "tsukuru",
+      "ttsKanji": "作る"
+    },
+    {
+      "id": "r-6759709d6002",
+      "target": "肉",
+      "english": "Meat",
+      "category": "Food",
+      "ttsText": "にく",
+      "sourceOrder": 9,
+      "pronunciation": "niku"
+    },
+    {
+      "id": "r-6233213a50d5",
+      "target": "遅く",
+      "english": "Late (doing something)",
+      "category": "Time",
+      "ttsText": "おそく",
+      "sourceOrder": 10,
+      "pronunciation": "osoku",
+      "ttsKanji": "遅く"
+    },
+    {
+      "id": "r-ce0a21de8541",
+      "target": "夏",
+      "english": "Summer",
+      "category": "Weather & Nature",
+      "ttsText": "なつ",
+      "sourceOrder": 11,
+      "pronunciation": "natsu"
+    },
+    {
+      "id": "r-283112eb7d8b",
+      "target": "曇り",
+      "english": "Cloudy weather",
+      "category": "Weather & Nature",
+      "ttsText": "くもり",
+      "sourceOrder": 12,
+      "pronunciation": "kumori",
+      "ttsKanji": "曇り"
+    },
+    {
+      "id": "r-664daafc9401",
+      "target": "焼き魚",
+      "english": "Broiled fish",
+      "category": "Food",
+      "ttsText": "やきざかな",
+      "sourceOrder": 13,
+      "pronunciation": "yakizakana",
+      "ttsKanji": "焼き魚"
+    },
+    {
+      "id": "r-e678f8b27f10",
+      "target": "（雨／雪が）降る",
+      "english": "(Rain/snow) falls",
+      "category": "Weather & Nature",
+      "ttsText": "（あめ",
+      "reviewNote": "The book gives more than one reading: （あめ, ゆきが）ふる. Audio uses the first.",
+      "sourceOrder": 14,
+      "pronunciation": "(ame"
+    },
+    {
+      "id": "r-df2144b4987d",
+      "target": "料理",
+      "english": "Cooking; cuisine",
+      "category": "Food",
+      "ttsText": "りょうり",
+      "sourceOrder": 15,
+      "pronunciation": "ryōri",
+      "ttsKanji": "料理"
+    },
+    {
+      "id": "r-66901a639dd6",
+      "target": "始める",
+      "english": "To begin",
+      "category": "Other",
+      "ttsText": "はじめる",
+      "sourceOrder": 16,
+      "pronunciation": "hajimeru",
+      "ttsKanji": "始める"
+    },
+    {
+      "id": "r-0324f8ecbb96",
+      "target": "晴れ",
+      "english": "Sunny weather",
+      "category": "Weather & Nature",
+      "ttsText": "はれ",
+      "sourceOrder": 17,
+      "pronunciation": "hare",
+      "ttsKanji": "晴れ"
+    },
+    {
+      "id": "r-0070242dc8bf",
+      "target": "下手",
+      "english": "Clumsy; poor at",
+      "category": "Descriptions & Qualities",
+      "ttsText": "へた",
+      "sourceOrder": 18,
+      "pronunciation": "heta",
+      "ttsKanji": "下手"
+    },
+    {
+      "id": "r-adbaff5fee5c",
+      "target": "所",
+      "english": "Place",
+      "category": "Directions",
+      "ttsText": "ところ",
+      "sourceOrder": 19,
+      "pronunciation": "tokoro"
+    },
+    {
+      "id": "r-20e5ac902f21",
+      "target": "洗う",
+      "english": "To wash",
+      "category": "Home & Household",
+      "ttsText": "あらう",
+      "sourceOrder": 20,
+      "pronunciation": "arau",
+      "ttsKanji": "洗う"
+    },
+    {
+      "id": "r-8d16fa3b675f",
+      "target": "お好み焼き",
+      "english": "Savory pancake",
+      "category": "Food",
+      "ttsText": "おこのみやき",
+      "sourceOrder": 21,
+      "pronunciation": "okonomiyaki",
+      "ttsKanji": "お好み焼き"
+    },
+    {
+      "id": "r-7d12bce4b691",
+      "target": "上手",
+      "english": "Skillful; good at",
+      "category": "Descriptions & Qualities",
+      "ttsText": "じょうず",
+      "sourceOrder": 22,
+      "pronunciation": "jōzu",
+      "ttsKanji": "上手"
+    },
+    {
+      "id": "r-2a27c8e6ccfd",
+      "target": "みそ汁",
+      "english": "Miso soup",
+      "category": "Food",
+      "ttsText": "みそしる",
+      "sourceOrder": 23,
+      "pronunciation": "misoshiru",
+      "ttsKanji": "みそ汁"
+    },
+    {
+      "id": "r-af8377b844c6",
+      "target": "残念",
+      "english": "That's too bad; regrettable",
+      "category": "Emotions & Feelings",
+      "ttsText": "ざんねん",
+      "sourceOrder": 24,
+      "pronunciation": "zannen",
+      "ttsKanji": "残念"
+    },
+    {
+      "id": "r-f0b1b8bb6bdd",
+      "target": "牛肉",
+      "english": "Beef",
+      "category": "Food",
+      "ttsText": "ぎゅうにく",
+      "sourceOrder": 25,
+      "pronunciation": "gyūniku",
+      "ttsKanji": "牛肉"
+    },
+    {
+      "id": "r-5abfcbebeed7",
+      "target": "降る",
+      "english": "To fall (rain/snow)",
+      "category": "Weather & Nature",
+      "ttsText": "ふる",
+      "sourceOrder": 26,
+      "pronunciation": "furu",
+      "ttsKanji": "降る"
+    },
+    {
+      "id": "r-304fce687a69",
+      "target": "度",
+      "english": "Degrees (temperature)",
+      "category": "Grammar & Function Words",
+      "ttsText": "ど",
+      "sourceOrder": 27,
+      "pronunciation": "do"
+    },
+    {
+      "id": "r-a5c6e9ec8432",
+      "target": "乾杯",
+      "english": "Cheers! (a toast)",
+      "category": "Greetings",
+      "ttsText": "かんぱい",
+      "sourceOrder": 28,
+      "pronunciation": "kanpai",
+      "ttsKanji": "乾杯"
+    },
+    {
+      "id": "r-b9f34ab24617",
+      "target": "洗濯する",
+      "english": "To do laundry",
+      "category": "Home & Household",
+      "ttsText": "せんたくする",
+      "sourceOrder": 29,
+      "pronunciation": "sentaku suru",
+      "ttsKanji": "洗濯する"
+    },
+    {
+      "id": "r-7aeef663f3d7",
+      "target": "気温",
+      "english": "Temperature",
+      "category": "Weather & Nature",
+      "ttsText": "きおん",
+      "sourceOrder": 30,
+      "pronunciation": "kion",
+      "ttsKanji": "気温"
+    },
+    {
+      "id": "r-526e60e1cbcd",
+      "target": "この中にお酒が入っていますか",
+      "english": "Is there alcohol in this?",
+      "category": "Shopping",
+      "ttsText": "このなかにおさけがはいっていますか",
+      "sourceOrder": 31,
+      "pronunciation": "kono naka ni osake ga haitte imasu ka",
+      "ttsKanji": "この中にお酒が入っていますか"
+    },
+    {
+      "id": "r-cb11335d9a39",
+      "target": "運転する",
+      "english": "To drive",
+      "category": "Transport",
+      "ttsText": "うんてんする",
+      "sourceOrder": 32,
+      "pronunciation": "unten suru",
+      "ttsKanji": "運転する"
+    },
+    {
+      "id": "r-4b97e5b867e3",
+      "target": "遅い",
+      "english": "Late",
+      "category": "Descriptions & Qualities",
+      "ttsText": "おそい",
+      "sourceOrder": 33,
+      "pronunciation": "osoi",
+      "ttsKanji": "遅い"
+    },
+    {
+      "id": "r-a709b05c384a",
+      "target": "勉強",
+      "english": "Study",
+      "category": "School & Education",
+      "ttsText": "べんきょう",
+      "sourceOrder": 34,
+      "pronunciation": "benkyō",
+      "ttsKanji": "勉強"
+    },
+    {
+      "id": "r-9974e63cfa89",
+      "target": "牛丼",
+      "english": "Beef rice bowl",
+      "category": "Food",
+      "ttsText": "ぎゅうどん",
+      "sourceOrder": 35,
+      "pronunciation": "gyūdon",
+      "ttsKanji": "牛丼"
+    },
+    {
+      "id": "r-a128579869e4",
+      "target": "お風呂に入る",
+      "english": "To take a bath",
+      "category": "Home & Household",
+      "ttsText": "おふろにはいる",
+      "sourceOrder": 36,
+      "pronunciation": "ofuro ni hairu",
+      "ttsKanji": "お風呂に入る"
+    },
+    {
+      "id": "r-7d742a7f9f36",
+      "target": "雪",
+      "english": "Snow",
+      "category": "Weather & Nature",
+      "ttsText": "ゆき",
+      "sourceOrder": 37,
+      "pronunciation": "yuki"
+    },
+    {
+      "id": "r-9f359fc57904",
+      "target": "料理する",
+      "english": "To cook",
+      "category": "Food",
+      "ttsText": "りょうりする",
+      "sourceOrder": 38,
+      "pronunciation": "ryōri suru",
+      "ttsKanji": "料理する"
+    },
+    {
+      "id": "r-c5ea074db5ec",
+      "target": "思う",
+      "english": "To think",
+      "category": "Emotions & Feelings",
+      "ttsText": "おもう",
+      "sourceOrder": 39,
+      "pronunciation": "omou",
+      "ttsKanji": "思う"
+    },
+    {
+      "id": "r-e2329c277f51",
+      "target": "言う",
+      "english": "To say",
+      "category": "Other",
+      "ttsText": "いう",
+      "sourceOrder": 40,
+      "pronunciation": "iu",
+      "ttsKanji": "言う"
+    },
+    {
+      "id": "r-5dc4a4fa474f",
+      "target": "仕事",
+      "english": "Job; work; occupation",
+      "category": "Work & Occupations",
+      "ttsText": "しごと",
+      "sourceOrder": 41,
+      "pronunciation": "shigoto",
+      "ttsKanji": "仕事"
+    },
+    {
+      "id": "r-101ade837073",
+      "target": "今朝",
+      "english": "This morning",
+      "category": "Time",
+      "ttsText": "けさ",
+      "sourceOrder": 42,
+      "pronunciation": "kesa",
+      "ttsKanji": "今朝"
+    },
+    {
+      "id": "r-06cd7186b922",
+      "target": "有名",
+      "english": "Famous",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ゆうめい",
+      "sourceOrder": 43,
+      "pronunciation": "yūmei",
+      "ttsKanji": "有名"
+    },
+    {
+      "id": "r-c3c8e08c555f",
+      "target": "鶏肉",
+      "english": "Chicken",
+      "category": "Food",
+      "ttsText": "とりにく",
+      "sourceOrder": 44,
+      "pronunciation": "toriniku",
+      "ttsKanji": "鶏肉"
+    },
+    {
+      "id": "r-7ca67446a09f",
+      "target": "捨てる",
+      "english": "To throw away",
+      "category": "Home & Household",
+      "ttsText": "すてる",
+      "sourceOrder": 45,
+      "pronunciation": "suteru",
+      "ttsKanji": "捨てる"
+    },
+    {
+      "id": "r-b375332a2082",
+      "target": "切る",
+      "english": "To cut",
+      "category": "Other",
+      "ttsText": "きる",
+      "sourceOrder": 46,
+      "pronunciation": "kiru",
+      "ttsKanji": "切る"
+    },
+    {
+      "id": "r-54a97b56becf",
+      "target": "何か",
+      "english": "Something",
+      "category": "Grammar & Function Words",
+      "ttsText": "なにか",
+      "sourceOrder": 47,
+      "pronunciation": "nanika",
+      "ttsKanji": "何か"
+    },
+    {
+      "id": "r-8995b8979971",
+      "target": "雨",
+      "english": "Rain",
+      "category": "Weather & Nature",
+      "ttsText": "あめ",
+      "sourceOrder": 48,
+      "pronunciation": "ame"
+    },
+    {
+      "id": "r-27d59e1426e0",
+      "target": "袋をお願いします",
+      "english": "Can I have a bag?",
+      "category": "Shopping",
+      "ttsText": "ふくろをおねがいします",
+      "sourceOrder": 49,
+      "pronunciation": "fukuro o onegai shimasu",
+      "ttsKanji": "袋をお願いします"
+    },
+    {
+      "id": "r-97d2e2825721",
+      "target": "天気予報",
+      "english": "Weather forecast",
+      "category": "Weather & Nature",
+      "ttsText": "てんきよほう",
+      "sourceOrder": 50,
+      "pronunciation": "tenki yohō",
+      "ttsKanji": "天気予報"
+    },
+    {
+      "id": "r-a886af71a417",
+      "target": "豚肉",
+      "english": "Pork",
+      "category": "Food",
+      "ttsText": "ぶたにく",
+      "sourceOrder": 51,
+      "pronunciation": "butaniku",
+      "ttsKanji": "豚肉"
+    }
+  ]
+}

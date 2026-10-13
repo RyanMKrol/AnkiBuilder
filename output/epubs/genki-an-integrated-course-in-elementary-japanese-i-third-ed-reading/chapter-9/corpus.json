@@ -383,7 +383,10 @@
       "english": "That's too bad.",
       "category": "Emotions & Feelings",
       "ttsText": "ざんねんですね",
-      "sourceOrder": 46
+      "sourceOrder": 46,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 残念."
     },
     {
       "id": "r-422694d6b7a1",
@@ -543,7 +546,10 @@
       "english": "It snows",
       "category": "Weather & Nature",
       "ttsText": "ゆきがふる",
-      "sourceOrder": 66
+      "sourceOrder": 66,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 雪, 降る."
     },
     {
       "id": "r-b9f34ab24617",
@@ -567,7 +573,10 @@
       "english": "Is there alcohol in this?",
       "category": "Shopping",
       "ttsText": "このなかにおさけがはいっていますか",
-      "sourceOrder": 69
+      "sourceOrder": 69,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 中, お酒, 入る."
     },
     {
       "id": "r-cb11335d9a39",
@@ -607,7 +616,10 @@
       "english": "It rains",
       "category": "Weather & Nature",
       "ttsText": "あめがふる",
-      "sourceOrder": 74
+      "sourceOrder": 74,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 雨, 降る."
     },
     {
       "id": "r-a128579869e4",
@@ -615,7 +627,10 @@
       "english": "To take a bath",
       "category": "Home & Household",
       "ttsText": "おふろにはいる",
-      "sourceOrder": 75
+      "sourceOrder": 75,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: お風呂, 入る."
     },
     {
       "id": "r-9f359fc57904",
@@ -703,7 +718,10 @@
       "english": "Can I have a bag?",
       "category": "Shopping",
       "ttsText": "ふくろをおねがいします",
-      "sourceOrder": 86
+      "sourceOrder": 86,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 袋."
     },
     {
       "id": "r-97d2e2825721",

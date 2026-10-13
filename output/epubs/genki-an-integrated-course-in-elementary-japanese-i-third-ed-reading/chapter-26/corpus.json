@@ -112,7 +112,10 @@
       "target": "やけどをしました",
       "english": "I burned myself.",
       "category": "Body & Health",
-      "sourceOrder": 14
+      "sourceOrder": 14,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: やけど."
     },
     {
       "id": "r-ae0748603257",
@@ -273,7 +276,10 @@
       "target": "ちょっとまってください",
       "english": "Please wait for a while.",
       "category": "School & Education",
-      "sourceOrder": 37
+      "sourceOrder": 37,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: ちょっと, 待つ."
     },
     {
       "id": "r-4d0161accded",
@@ -315,7 +321,10 @@
       "target": "アボカドはありますか",
       "english": "Do you have avocado?",
       "category": "Shopping",
-      "sourceOrder": 43
+      "sourceOrder": 43,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: アボカド."
     },
     {
       "id": "r-50b943d01fa9",
@@ -329,7 +338,10 @@
       "target": "ピーナッツアレルギーがあります",
       "english": "I have an allergy to peanuts.",
       "category": "Shopping",
-      "sourceOrder": 45
+      "sourceOrder": 45,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: ピーナッツ, アレルギー."
     },
     {
       "id": "r-831166ef4b1b",
@@ -553,7 +565,10 @@
       "target": "うそをつく",
       "english": "To tell a lie",
       "category": "Other",
-      "sourceOrder": 77
+      "sourceOrder": 77,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: うそ."
     },
     {
       "id": "r-e0ef1ee214c0",
@@ -693,7 +708,10 @@
       "target": "ゆっくりいってください",
       "english": "Please say it slowly.",
       "category": "School & Education",
-      "sourceOrder": 97
+      "sourceOrder": 97,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: ゆっくり, 言う."
     },
     {
       "id": "r-78b86e4e9b50",
@@ -721,7 +739,10 @@
       "target": "これはハラルフードですか",
       "english": "Is this halal?",
       "category": "Shopping",
-      "sourceOrder": 101
+      "sourceOrder": 101,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: ハラルフード."
     },
     {
       "id": "r-1e0b17cf5100",
@@ -868,7 +889,10 @@
       "target": "わかりましたか",
       "english": "Do you understand?",
       "category": "School & Education",
-      "sourceOrder": 122
+      "sourceOrder": 122,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: わかる."
     },
     {
       "id": "r-260f5044cc51",
@@ -1869,7 +1893,10 @@
       "target": "アレルギーがあります",
       "english": "I have an allergy to . . .",
       "category": "Body & Health",
-      "sourceOrder": 265
+      "sourceOrder": 265,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: アレルギー."
     },
     {
       "id": "r-c098491c166e",
@@ -1946,7 +1973,10 @@
       "target": "たのしみにする",
       "english": "To look forward (to)",
       "category": "Emotions & Feelings",
-      "sourceOrder": 276
+      "sourceOrder": 276,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: たのしみ."
     },
     {
       "id": "r-39349b07de1e",
@@ -2066,6 +2096,132 @@
       "english": "Guitar",
       "category": "Sports & Hobbies",
       "sourceOrder": 293
+    },
+    {
+      "id": "r-1cd72882c51d",
+      "target": "あげる",
+      "english": "To give; to raise (a hand)",
+      "category": "Other",
+      "sourceOrder": 294
+    },
+    {
+      "id": "r-46b255d3a847",
+      "target": "いい",
+      "english": "Good",
+      "category": "Descriptions & Qualities",
+      "sourceOrder": 295
+    },
+    {
+      "id": "r-0173abb167e5",
+      "target": "いろいろ",
+      "english": "Various",
+      "category": "Descriptions & Qualities",
+      "sourceOrder": 296
+    },
+    {
+      "id": "r-b166be49ea2a",
+      "target": "うそ",
+      "english": "Lie",
+      "category": "Other",
+      "sourceOrder": 297
+    },
+    {
+      "id": "r-f39892f4fbb2",
+      "target": "かゆい",
+      "english": "Itchy",
+      "category": "Body & Health",
+      "sourceOrder": 298
+    },
+    {
+      "id": "r-29c26602d23e",
+      "target": "せき",
+      "english": "Cough",
+      "category": "Body & Health",
+      "sourceOrder": 299
+    },
+    {
+      "id": "r-29d27921e5e9",
+      "target": "たのしみ",
+      "english": "Something to look forward to",
+      "category": "Emotions & Feelings",
+      "sourceOrder": 300
+    },
+    {
+      "id": "r-8b6b06a85157",
+      "target": "たばこ",
+      "english": "Cigarette; tobacco",
+      "category": "Other",
+      "sourceOrder": 301
+    },
+    {
+      "id": "r-65ede9049b5e",
+      "target": "だいたい",
+      "english": "Mostly; roughly",
+      "category": "Other",
+      "sourceOrder": 302
+    },
+    {
+      "id": "r-6133e265479c",
+      "target": "のど",
+      "english": "Throat",
+      "category": "Body & Health",
+      "sourceOrder": 303
+    },
+    {
+      "id": "r-1282f31d5b5b",
+      "target": "はた",
+      "english": "Loom",
+      "category": "Other",
+      "sourceOrder": 304
+    },
+    {
+      "id": "r-a2d3fe43375c",
+      "target": "ひく",
+      "english": "To catch (a cold)",
+      "category": "Body & Health",
+      "sourceOrder": 305
+    },
+    {
+      "id": "r-3729cf98eb6d",
+      "target": "まっすぐ",
+      "english": "Straight",
+      "category": "Directions",
+      "sourceOrder": 306
+    },
+    {
+      "id": "r-36a8a626602b",
+      "target": "やけど",
+      "english": "Burn",
+      "category": "Body & Health",
+      "sourceOrder": 307
+    },
+    {
+      "id": "r-278ac6fcc5b8",
+      "target": "わかる",
+      "english": "To understand",
+      "category": "Other",
+      "sourceOrder": 308
+    },
+    {
+      "id": "r-dc0a069d6cb7",
+      "target": "アボカド",
+      "english": "Avocado",
+      "category": "Food",
+      "sourceOrder": 309
+    },
+    {
+      "id": "r-aba3088aef48",
+      "target": "ハラルフード",
+      "english": "Halal food",
+      "category": "Food",
+      "sourceOrder": 310
+    },
+    {
+      "id": "r-7dcb22aeec03",
+      "target": "ピーナッツ",
+      "english": "Peanuts",
+      "category": "Food",
+      "sourceOrder": 311
     }
   ]
 }

@@ -92,7 +92,10 @@
       "english": "To come",
       "category": "Travel & Tourism",
       "ttsText": "きます",
-      "sourceOrder": 10
+      "sourceOrder": 10,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 来る."
     },
     {
       "id": "r-364bd1bf0580",
@@ -156,7 +159,10 @@
       "english": "To have a talk",
       "category": "Other",
       "ttsText": "はなしをする",
-      "sourceOrder": 18
+      "sourceOrder": 18,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 話."
     },
     {
       "id": "r-83f0f64b4403",

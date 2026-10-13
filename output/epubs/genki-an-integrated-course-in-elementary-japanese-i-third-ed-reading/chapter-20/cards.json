@@ -416,7 +416,10 @@
       "audioOriginal": "bcf6183491dcc3a8.orig.mp3",
       "audioAuto": "bcf6183491dcc3a8.mp3",
       "audioMarked": true,
-      "audioTextHash": "bcf6183491dcc3a8"
+      "audioTextHash": "bcf6183491dcc3a8",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 体, 気をつける."
     },
     {
       "id": "r-4590bfff3e78",
@@ -447,6 +450,18 @@
       "audioAuto": "f31d204d766b5715.mp3",
       "audioMarked": true,
       "audioTextHash": "f31d204d766b5715"
+    },
+    {
+      "id": "r-ecda751ef69a",
+      "target": "気をつける",
+      "english": "To be careful; to take care",
+      "category": "Other",
+      "ttsText": "きをつける",
+      "sourceOrder": 30,
+      "pronunciation": "ki o tsukeru",
+      "ttsKanji": "気をつける",
+      "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
+      "addition": "genki-reading-words-only-2026-10"
     }
   ]
 }

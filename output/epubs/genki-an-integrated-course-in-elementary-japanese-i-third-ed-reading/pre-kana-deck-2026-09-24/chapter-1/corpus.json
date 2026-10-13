@@ -1,0 +1,272 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 2,
+    "chapterLabel": "Chapter 02: Numbers",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-d3a4ab7b3e1d",
+      "target": "ゼロ",
+      "english": "Zero",
+      "category": "Numbers",
+      "sourceOrder": 51
+    },
+    {
+      "id": "r-0754a262e6a3",
+      "target": "れい",
+      "english": "Zero",
+      "category": "Numbers",
+      "sourceOrder": 56
+    },
+    {
+      "id": "r-e0ef1ee214c0",
+      "target": "いち",
+      "english": "One",
+      "category": "Numbers",
+      "sourceOrder": 66
+    },
+    {
+      "id": "r-de3d1ecc94b2",
+      "target": "に",
+      "english": "Two",
+      "category": "Numbers",
+      "sourceOrder": 73
+    },
+    {
+      "id": "r-0d0fd2531ac7",
+      "target": "さん",
+      "english": "Three",
+      "category": "Numbers",
+      "sourceOrder": 77
+    },
+    {
+      "id": "r-ceb4a54e2de4",
+      "target": "よん",
+      "english": "Four",
+      "category": "Numbers",
+      "sourceOrder": 83
+    },
+    {
+      "id": "r-812f45bfcf7e",
+      "target": "し",
+      "english": "Four",
+      "category": "Numbers",
+      "sourceOrder": 86
+    },
+    {
+      "id": "r-27a87259d93f",
+      "target": "ご",
+      "english": "Five",
+      "category": "Numbers",
+      "sourceOrder": 102
+    },
+    {
+      "id": "r-ea67c234af27",
+      "target": "ろく",
+      "english": "Six",
+      "category": "Numbers",
+      "sourceOrder": 106
+    },
+    {
+      "id": "r-1e0b17cf5100",
+      "target": "なな",
+      "english": "Seven",
+      "category": "Numbers",
+      "sourceOrder": 113
+    },
+    {
+      "id": "r-032c8901930a",
+      "target": "しち",
+      "english": "Seven",
+      "category": "Numbers",
+      "sourceOrder": 116
+    },
+    {
+      "id": "r-17728bef111e",
+      "target": "はち",
+      "english": "Eight",
+      "category": "Numbers",
+      "sourceOrder": 129
+    },
+    {
+      "id": "r-850ea8378a58",
+      "target": "きゅう",
+      "english": "Nine",
+      "category": "Numbers",
+      "sourceOrder": 137
+    },
+    {
+      "id": "r-ac94e112183c",
+      "target": "く",
+      "english": "Nine",
+      "category": "Numbers",
+      "sourceOrder": 141
+    },
+    {
+      "id": "r-c3c54579ea2a",
+      "target": "じゅう",
+      "english": "Ten",
+      "category": "Numbers",
+      "sourceOrder": 150
+    },
+    {
+      "id": "r-291e4d540757",
+      "target": "じゅういち",
+      "english": "Eleven",
+      "category": "Numbers",
+      "sourceOrder": 158
+    },
+    {
+      "id": "r-4168d783193c",
+      "target": "じゅうに",
+      "english": "Twelve",
+      "category": "Numbers",
+      "sourceOrder": 172
+    },
+    {
+      "id": "r-2ed995113163",
+      "target": "じゅうさん",
+      "english": "Thirteen",
+      "category": "Numbers",
+      "sourceOrder": 183
+    },
+    {
+      "id": "r-cbca1ae8529b",
+      "target": "じゅうよん",
+      "english": "Fourteen",
+      "category": "Numbers",
+      "sourceOrder": 196
+    },
+    {
+      "id": "r-9b376ff9b07f",
+      "target": "じゅうし",
+      "english": "Fourteen",
+      "category": "Numbers",
+      "sourceOrder": 202
+    },
+    {
+      "id": "r-b1e54ac54e42",
+      "target": "じゅうご",
+      "english": "Fifteen",
+      "category": "Numbers",
+      "sourceOrder": 220
+    },
+    {
+      "id": "r-260f5044cc51",
+      "target": "じゅうろく",
+      "english": "Sixteen",
+      "category": "Numbers",
+      "sourceOrder": 231
+    },
+    {
+      "id": "r-e99a023f2402",
+      "target": "じゅうなな",
+      "english": "Seventeen",
+      "category": "Numbers",
+      "sourceOrder": 245
+    },
+    {
+      "id": "r-980277415f89",
+      "target": "じゅうしち",
+      "english": "Seventeen",
+      "category": "Numbers",
+      "sourceOrder": 251
+    },
+    {
+      "id": "r-b872b71da215",
+      "target": "じゅうはち",
+      "english": "Eighteen",
+      "category": "Numbers",
+      "sourceOrder": 274
+    },
+    {
+      "id": "r-4041ff247b2c",
+      "target": "じゅうきゅう",
+      "english": "Nineteen",
+      "category": "Numbers",
+      "sourceOrder": 289
+    },
+    {
+      "id": "r-ee911c21ce92",
+      "target": "じゅうく",
+      "english": "Nineteen",
+      "category": "Numbers",
+      "sourceOrder": 296
+    },
+    {
+      "id": "r-b37ef4affd8a",
+      "target": "にじゅう",
+      "english": "Twenty",
+      "category": "Numbers",
+      "sourceOrder": 314
+    },
+    {
+      "id": "r-456646675181",
+      "target": "さんじゅう",
+      "english": "Thirty",
+      "category": "Numbers",
+      "sourceOrder": 325
+    },
+    {
+      "id": "r-fcf78769cda5",
+      "target": "よんじゅう",
+      "english": "Forty",
+      "category": "Numbers",
+      "sourceOrder": 338
+    },
+    {
+      "id": "r-298de825d787",
+      "target": "ごじゅう",
+      "english": "Fifty",
+      "category": "Numbers",
+      "sourceOrder": 351
+    },
+    {
+      "id": "r-02a136c09688",
+      "target": "ろくじゅう",
+      "english": "Sixty",
+      "category": "Numbers",
+      "sourceOrder": 362
+    },
+    {
+      "id": "r-4d0161accded",
+      "target": "ななじゅう",
+      "english": "Seventy",
+      "category": "Numbers",
+      "sourceOrder": 376
+    },
+    {
+      "id": "r-a24e9414b3ee",
+      "target": "はちじゅう",
+      "english": "Eighty",
+      "category": "Numbers",
+      "sourceOrder": 390
+    },
+    {
+      "id": "r-9a78c480d6b9",
+      "target": "きゅうじゅう",
+      "english": "Ninety",
+      "category": "Numbers",
+      "sourceOrder": 405
+    },
+    {
+      "id": "r-1119c7bdbd3b",
+      "target": "ひゃく",
+      "english": "Hundred",
+      "category": "Numbers",
+      "sourceOrder": 421
+    },
+    {
+      "id": "r-6f46f7d4a286",
+      "target": "よ",
+      "english": "Four",
+      "category": "Numbers",
+      "sourceOrder": 89
+    }
+  ]
+}

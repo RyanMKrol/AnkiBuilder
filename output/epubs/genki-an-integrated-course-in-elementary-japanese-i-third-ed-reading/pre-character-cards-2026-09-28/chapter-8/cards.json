@@ -1,0 +1,810 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 9,
+    "chapterLabel": "Chapter 09: Lesson 7: Family Picture",
+    "phase": "reading",
+    "kanjiTts": true
+  },
+  "items": [
+    {
+      "id": "r-1b60f62fba6e",
+      "target": "兄",
+      "english": "(My) older brother",
+      "category": "Family & People",
+      "ttsText": "あに",
+      "sourceOrder": 0,
+      "pronunciation": "ani"
+    },
+    {
+      "id": "r-2324576c4116",
+      "target": "お兄さん",
+      "english": "Older brother",
+      "category": "Family & People",
+      "ttsText": "おにいさん",
+      "sourceOrder": 1,
+      "pronunciation": "onīsan",
+      "ttsKanji": "お兄さん"
+    },
+    {
+      "id": "r-8481effa10a7",
+      "target": "耳",
+      "english": "Ear",
+      "category": "Body & Health",
+      "ttsText": "みみ",
+      "sourceOrder": 2,
+      "pronunciation": "mimi"
+    },
+    {
+      "id": "r-f27a36c8d505",
+      "target": "背が高い",
+      "english": "Tall (stature)",
+      "category": "Body & Health",
+      "ttsText": "せがたかい",
+      "sourceOrder": 3,
+      "pronunciation": "se ga takai",
+      "ttsKanji": "背が高い"
+    },
+    {
+      "id": "r-d57207655b68",
+      "target": "眼鏡",
+      "english": "Glasses",
+      "category": "Clothing",
+      "ttsText": "めがね",
+      "sourceOrder": 4,
+      "pronunciation": "megane",
+      "ttsKanji": "眼鏡"
+    },
+    {
+      "id": "r-9b887cd5f508",
+      "target": "お兄ちゃん",
+      "english": "Older brother (affectionate)",
+      "category": "Family & People",
+      "ttsText": "おにいちゃん",
+      "sourceOrder": 5,
+      "pronunciation": "onīchan",
+      "ttsKanji": "お兄ちゃん"
+    },
+    {
+      "id": "r-12a20b1ddc54",
+      "target": "太る",
+      "english": "To gain weight",
+      "category": "Body & Health",
+      "ttsText": "ふとる",
+      "sourceOrder": 6,
+      "pronunciation": "futoru",
+      "ttsKanji": "太る"
+    },
+    {
+      "id": "r-a396c638a8dc",
+      "target": "短い",
+      "english": "Short (length)",
+      "category": "Descriptions & Qualities",
+      "ttsText": "みじかい",
+      "sourceOrder": 7,
+      "pronunciation": "mijikai",
+      "ttsKanji": "短い"
+    },
+    {
+      "id": "r-8dfa494661bc",
+      "target": "奥さん",
+      "english": "Someone else's wife",
+      "category": "Family & People",
+      "ttsText": "おくさん",
+      "sourceOrder": 8,
+      "pronunciation": "okusan",
+      "ttsKanji": "奥さん"
+    },
+    {
+      "id": "r-c0cb98246cdd",
+      "target": "歯",
+      "english": "Tooth",
+      "category": "Body & Health",
+      "ttsText": "は",
+      "sourceOrder": 9,
+      "pronunciation": "ha"
+    },
+    {
+      "id": "r-b1a3afebdb30",
+      "target": "姉",
+      "english": "(My) older sister",
+      "category": "Family & People",
+      "ttsText": "あね",
+      "sourceOrder": 10,
+      "pronunciation": "ane"
+    },
+    {
+      "id": "r-ce7a642f061b",
+      "target": "長い",
+      "english": "Long",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ながい",
+      "sourceOrder": 11,
+      "pronunciation": "nagai",
+      "ttsKanji": "長い"
+    },
+    {
+      "id": "r-f4eb2ac566a7",
+      "target": "お母さん",
+      "english": "Mother",
+      "category": "Family & People",
+      "ttsText": "おかあさん",
+      "sourceOrder": 12,
+      "pronunciation": "okāsan",
+      "ttsKanji": "お母さん"
+    },
+    {
+      "id": "r-9832b0190026",
+      "target": "背中",
+      "english": "Back",
+      "category": "Body & Health",
+      "ttsText": "せなか",
+      "sourceOrder": 13,
+      "pronunciation": "senaka",
+      "ttsKanji": "背中"
+    },
+    {
+      "id": "r-e16fad51fbde",
+      "target": "元気な",
+      "english": "Energetic; lively",
+      "category": "Descriptions & Qualities",
+      "ttsText": "げんきな",
+      "sourceOrder": 14,
+      "pronunciation": "genki na",
+      "ttsKanji": "元気な"
+    },
+    {
+      "id": "r-339883a9e19c",
+      "target": "お子さん",
+      "english": "Someone else's child",
+      "category": "Family & People",
+      "ttsText": "おこさん",
+      "sourceOrder": 15,
+      "pronunciation": "okosan",
+      "ttsKanji": "お子さん"
+    },
+    {
+      "id": "r-3f9f4a086bc1",
+      "target": "何も",
+      "english": "Not…anything (with a negative)",
+      "category": "Grammar & Function Words",
+      "ttsText": "なにも",
+      "sourceOrder": 16,
+      "pronunciation": "nani mo",
+      "ttsKanji": "何も"
+    },
+    {
+      "id": "r-f1916d4c675e",
+      "target": "兄弟",
+      "english": "Brothers and sisters",
+      "category": "Family & People",
+      "ttsText": "きょうだい",
+      "sourceOrder": 17,
+      "pronunciation": "kyōdai",
+      "ttsKanji": "兄弟"
+    },
+    {
+      "id": "r-4e56d4020313",
+      "target": "結婚する",
+      "english": "To get married",
+      "category": "Family & People",
+      "ttsText": "けっこんする",
+      "sourceOrder": 18,
+      "pronunciation": "kekkon suru",
+      "ttsKanji": "結婚する"
+    },
+    {
+      "id": "r-e9f535383b0d",
+      "target": "お姉ちゃん",
+      "english": "Older sister (affectionate)",
+      "category": "Family & People",
+      "ttsText": "おねえちゃん",
+      "sourceOrder": 19,
+      "pronunciation": "onēchan",
+      "ttsKanji": "お姉ちゃん"
+    },
+    {
+      "id": "r-d3868c229859",
+      "target": "五人",
+      "english": "Five people",
+      "category": "Numbers",
+      "ttsText": "ごにん",
+      "sourceOrder": 20,
+      "pronunciation": "go-nin",
+      "ttsKanji": "五人"
+    },
+    {
+      "id": "r-cd29568063bd",
+      "target": "弟さん",
+      "english": "Someone else's younger brother",
+      "category": "Family & People",
+      "ttsText": "おとうとさん",
+      "sourceOrder": 21,
+      "pronunciation": "otōto-san",
+      "ttsKanji": "弟さん"
+    },
+    {
+      "id": "r-ffb5060bdee1",
+      "target": "うちの人",
+      "english": "Husband (informal)",
+      "category": "Family & People",
+      "ttsText": "うちのひと",
+      "sourceOrder": 22,
+      "pronunciation": "uchi no hito",
+      "ttsKanji": "うちの人"
+    },
+    {
+      "id": "r-f7c743bbd4c0",
+      "target": "家内",
+      "english": "My wife (formal)",
+      "category": "Family & People",
+      "ttsText": "かない",
+      "sourceOrder": 23,
+      "pronunciation": "kanai",
+      "ttsKanji": "家内"
+    },
+    {
+      "id": "r-a203225b0390",
+      "target": "食堂",
+      "english": "Cafeteria; dining commons",
+      "category": "Food",
+      "ttsText": "しょくどう",
+      "sourceOrder": 24,
+      "pronunciation": "shokudō",
+      "ttsKanji": "食堂"
+    },
+    {
+      "id": "r-9d89b6001b4c",
+      "target": "一人",
+      "english": "One person",
+      "category": "Numbers",
+      "ttsText": "ひとり",
+      "sourceOrder": 25,
+      "pronunciation": "hitori",
+      "ttsKanji": "一人"
+    },
+    {
+      "id": "r-3a3857bfa3f6",
+      "target": "歌",
+      "english": "Song",
+      "category": "Sports & Hobbies",
+      "ttsText": "うた",
+      "sourceOrder": 26,
+      "pronunciation": "uta"
+    },
+    {
+      "id": "r-fe7df3634ec6",
+      "target": "首",
+      "english": "Neck",
+      "category": "Body & Health",
+      "ttsText": "くび",
+      "sourceOrder": 27,
+      "pronunciation": "kubi"
+    },
+    {
+      "id": "r-25e914fe05f6",
+      "target": "うちの子",
+      "english": "My child (informal)",
+      "category": "Family & People",
+      "ttsText": "うちのこ",
+      "sourceOrder": 28,
+      "pronunciation": "uchi no ko",
+      "ttsKanji": "うちの子"
+    },
+    {
+      "id": "r-16fdcc7e7746",
+      "target": "足",
+      "english": "Leg; foot",
+      "category": "Body & Health",
+      "ttsText": "あし",
+      "sourceOrder": 29,
+      "pronunciation": "ashi"
+    },
+    {
+      "id": "r-8940dd82b056",
+      "target": "鼻",
+      "english": "Nose",
+      "category": "Body & Health",
+      "ttsText": "はな",
+      "sourceOrder": 30,
+      "pronunciation": "hana"
+    },
+    {
+      "id": "r-1e4792083f53",
+      "target": "知る",
+      "english": "To get to know",
+      "category": "Other",
+      "ttsText": "しる",
+      "sourceOrder": 31,
+      "pronunciation": "shiru",
+      "ttsKanji": "知る"
+    },
+    {
+      "id": "r-e9d3dae7d71d",
+      "target": "七人",
+      "english": "Seven people",
+      "category": "Numbers",
+      "ttsText": "しちにん",
+      "reviewNote": "The book gives more than one reading: しちにん, ななにん. Audio uses the first.",
+      "sourceOrder": 32,
+      "pronunciation": "shichi-nin"
+    },
+    {
+      "id": "r-78ce0b021c44",
+      "target": "母",
+      "english": "(My) mother",
+      "category": "Family & People",
+      "ttsText": "はは",
+      "sourceOrder": 33,
+      "pronunciation": "haha"
+    },
+    {
+      "id": "r-79b38a8ca7b9",
+      "target": "夫",
+      "english": "Husband",
+      "category": "Family & People",
+      "ttsText": "おっと",
+      "sourceOrder": 34,
+      "pronunciation": "otto"
+    },
+    {
+      "id": "r-f6a47ce25e49",
+      "target": "八人",
+      "english": "Eight people",
+      "category": "Numbers",
+      "ttsText": "はちにん",
+      "sourceOrder": 35,
+      "pronunciation": "hachi-nin",
+      "ttsKanji": "八人"
+    },
+    {
+      "id": "r-d98d70afea35",
+      "target": "二人",
+      "english": "Two people",
+      "category": "Numbers",
+      "ttsText": "ふたり",
+      "sourceOrder": 36,
+      "pronunciation": "futari",
+      "ttsKanji": "二人"
+    },
+    {
+      "id": "r-f45938c905d5",
+      "target": "髪",
+      "english": "Hair",
+      "category": "Body & Health",
+      "ttsText": "かみ",
+      "sourceOrder": 37,
+      "pronunciation": "kami"
+    },
+    {
+      "id": "r-b58641e8cb48",
+      "target": "知っています",
+      "english": "I know",
+      "category": "Other",
+      "ttsText": "しっています",
+      "sourceOrder": 38,
+      "pronunciation": "shitte imasu",
+      "ttsKanji": "知っています"
+    },
+    {
+      "id": "r-276330ed9702",
+      "target": "弟",
+      "english": "Younger brother",
+      "category": "Family & People",
+      "ttsText": "おとうと",
+      "sourceOrder": 39,
+      "pronunciation": "otōto"
+    },
+    {
+      "id": "r-0b27d61a0761",
+      "target": "父",
+      "english": "(My) father",
+      "category": "Family & People",
+      "ttsText": "ちち",
+      "sourceOrder": 40,
+      "pronunciation": "chichi"
+    },
+    {
+      "id": "r-d7e621055f5c",
+      "target": "親切",
+      "english": "Kind",
+      "category": "Descriptions & Qualities",
+      "ttsText": "しんせつ",
+      "sourceOrder": 41,
+      "pronunciation": "shinsetsu",
+      "ttsKanji": "親切"
+    },
+    {
+      "id": "r-715a30074c48",
+      "target": "別に",
+      "english": "Nothing in particular",
+      "category": "Grammar & Function Words",
+      "ttsText": "べつに",
+      "sourceOrder": 42,
+      "pronunciation": "betsuni",
+      "ttsKanji": "別に"
+    },
+    {
+      "id": "r-c08a56997a21",
+      "target": "手",
+      "english": "Hand",
+      "category": "Body & Health",
+      "ttsText": "て",
+      "sourceOrder": 43,
+      "pronunciation": "te"
+    },
+    {
+      "id": "r-235f0f7e939c",
+      "target": "働く",
+      "english": "To work",
+      "category": "Work & Occupations",
+      "ttsText": "はたらく",
+      "sourceOrder": 44,
+      "pronunciation": "hataraku",
+      "ttsKanji": "働く"
+    },
+    {
+      "id": "r-a615e2a99a6f",
+      "target": "妻",
+      "english": "Wife",
+      "category": "Family & People",
+      "ttsText": "つま",
+      "sourceOrder": 45,
+      "pronunciation": "tsuma"
+    },
+    {
+      "id": "r-96bbe7e67370",
+      "target": "会社",
+      "english": "Company",
+      "category": "Work & Occupations",
+      "ttsText": "かいしゃ",
+      "sourceOrder": 46,
+      "pronunciation": "kaisha",
+      "ttsKanji": "会社"
+    },
+    {
+      "id": "r-3da316390f78",
+      "target": "頭がいい",
+      "english": "Bright; smart; clever",
+      "category": "Descriptions & Qualities",
+      "ttsText": "あたまがいい",
+      "sourceOrder": 47,
+      "pronunciation": "atama ga ii",
+      "ttsKanji": "頭がいい"
+    },
+    {
+      "id": "r-d900c8df601a",
+      "target": "男の人",
+      "english": "Man",
+      "category": "Family & People",
+      "ttsText": "おとこのひと",
+      "reviewNote": "The book gives more than one reading: おとこのひと, おとこひと. Audio uses the first.",
+      "sourceOrder": 48,
+      "pronunciation": "otoko no hito"
+    },
+    {
+      "id": "r-007ef2817354",
+      "target": "便利",
+      "english": "Convenient",
+      "category": "Descriptions & Qualities",
+      "ttsText": "べんり",
+      "sourceOrder": 49,
+      "pronunciation": "benri",
+      "ttsKanji": "便利"
+    },
+    {
+      "id": "r-ec5ce7442ea8",
+      "target": "お姉さん",
+      "english": "Older sister",
+      "category": "Family & People",
+      "ttsText": "おねえさん",
+      "sourceOrder": 50,
+      "pronunciation": "onēsan",
+      "ttsKanji": "お姉さん"
+    },
+    {
+      "id": "r-18bc71b152cb",
+      "target": "太っています",
+      "english": "To be on the heavy side; overweight",
+      "category": "Body & Health",
+      "ttsText": "ふとっています",
+      "sourceOrder": 51,
+      "pronunciation": "futotte imasu",
+      "ttsKanji": "太っています"
+    },
+    {
+      "id": "r-28f894973975",
+      "target": "妹",
+      "english": "Younger sister",
+      "category": "Family & People",
+      "ttsText": "いもうと",
+      "sourceOrder": 52,
+      "pronunciation": "imōto"
+    },
+    {
+      "id": "r-242e8e5c3fbc",
+      "target": "家族",
+      "english": "Family",
+      "category": "Family & People",
+      "ttsText": "かぞく",
+      "sourceOrder": 53,
+      "pronunciation": "kazoku",
+      "ttsKanji": "家族"
+    },
+    {
+      "id": "r-dd0ea605ead0",
+      "target": "肩",
+      "english": "Shoulder",
+      "category": "Body & Health",
+      "ttsText": "かた",
+      "sourceOrder": 54,
+      "pronunciation": "kata"
+    },
+    {
+      "id": "r-e75310c78c04",
+      "target": "十人",
+      "english": "Ten people",
+      "category": "Numbers",
+      "ttsText": "じゅうにん",
+      "sourceOrder": 55,
+      "pronunciation": "jū-nin",
+      "ttsKanji": "十人"
+    },
+    {
+      "id": "r-6f8cf67d2c33",
+      "target": "三人",
+      "english": "Three people",
+      "category": "Numbers",
+      "ttsText": "さんにん",
+      "sourceOrder": 56,
+      "pronunciation": "san-nin",
+      "ttsKanji": "三人"
+    },
+    {
+      "id": "r-5c77079d7e63",
+      "target": "眉毛",
+      "english": "Eyebrow",
+      "category": "Body & Health",
+      "ttsText": "まゆげ",
+      "sourceOrder": 57,
+      "pronunciation": "mayuge",
+      "ttsKanji": "眉毛"
+    },
+    {
+      "id": "r-90cc45d59ba9",
+      "target": "嫁さん",
+      "english": "Wife (informal)",
+      "category": "Family & People",
+      "ttsText": "よめさん",
+      "sourceOrder": 58,
+      "pronunciation": "yomesan",
+      "ttsKanji": "嫁さん"
+    },
+    {
+      "id": "r-7ee90a22ff3a",
+      "target": "歌う",
+      "english": "To sing",
+      "category": "Sports & Hobbies",
+      "ttsText": "うたう",
+      "sourceOrder": 59,
+      "pronunciation": "utau",
+      "ttsKanji": "歌う"
+    },
+    {
+      "id": "r-e9d97f866d43",
+      "target": "六人",
+      "english": "Six people",
+      "category": "Numbers",
+      "ttsText": "ろくにん",
+      "sourceOrder": 60,
+      "pronunciation": "roku-nin",
+      "ttsKanji": "六人"
+    },
+    {
+      "id": "r-a9976079705d",
+      "target": "妹さん",
+      "english": "Someone else's younger sister",
+      "category": "Family & People",
+      "ttsText": "いもうとさん",
+      "sourceOrder": 61,
+      "pronunciation": "imōto-san",
+      "ttsKanji": "妹さん"
+    },
+    {
+      "id": "r-47782cc9bccb",
+      "target": "車",
+      "english": "Car",
+      "category": "Transport",
+      "ttsText": "くるま",
+      "sourceOrder": 62,
+      "pronunciation": "kuruma"
+    },
+    {
+      "id": "r-3a0ea34a22f0",
+      "target": "目",
+      "english": "Eye",
+      "category": "Body & Health",
+      "ttsText": "め",
+      "sourceOrder": 63,
+      "pronunciation": "me"
+    },
+    {
+      "id": "r-346413644cb8",
+      "target": "ご主人",
+      "english": "Someone else's husband",
+      "category": "Family & People",
+      "ttsText": "ごしゅじん",
+      "sourceOrder": 64,
+      "pronunciation": "goshujin",
+      "ttsKanji": "ご主人"
+    },
+    {
+      "id": "r-636e7702bc4b",
+      "target": "主人",
+      "english": "My husband (formal)",
+      "category": "Family & People",
+      "ttsText": "しゅじん",
+      "sourceOrder": 65,
+      "pronunciation": "shujin",
+      "ttsKanji": "主人"
+    },
+    {
+      "id": "r-bb0883fddfc0",
+      "target": "祖父",
+      "english": "My grandfather (formal)",
+      "category": "Family & People",
+      "ttsText": "そふ",
+      "sourceOrder": 66,
+      "pronunciation": "sofu",
+      "ttsKanji": "祖父"
+    },
+    {
+      "id": "r-e1110589655f",
+      "target": "お父さん",
+      "english": "Father",
+      "category": "Family & People",
+      "ttsText": "おとうさん",
+      "sourceOrder": 67,
+      "pronunciation": "otōsan",
+      "ttsKanji": "お父さん"
+    },
+    {
+      "id": "r-2fdb1b3a1002",
+      "target": "祖母",
+      "english": "My grandmother (formal)",
+      "category": "Family & People",
+      "ttsText": "そぼ",
+      "sourceOrder": 68,
+      "pronunciation": "sobo",
+      "ttsKanji": "祖母"
+    },
+    {
+      "id": "r-e349ae133850",
+      "target": "頭",
+      "english": "Head",
+      "category": "Body & Health",
+      "ttsText": "あたま",
+      "sourceOrder": 69,
+      "pronunciation": "atama"
+    },
+    {
+      "id": "r-94959c02dce1",
+      "target": "着る",
+      "english": "To put on (clothes above your waist)",
+      "category": "Clothing",
+      "ttsText": "きる",
+      "sourceOrder": 70,
+      "pronunciation": "kiru",
+      "ttsKanji": "着る"
+    },
+    {
+      "id": "r-f74b021bab61",
+      "target": "背が低い",
+      "english": "Short (stature)",
+      "category": "Body & Health",
+      "ttsText": "せがひくい",
+      "sourceOrder": 71,
+      "pronunciation": "se ga hikui",
+      "ttsKanji": "背が低い"
+    },
+    {
+      "id": "r-1e7b07e7149d",
+      "target": "口",
+      "english": "Mouth",
+      "category": "Body & Health",
+      "ttsText": "くち",
+      "sourceOrder": 72,
+      "pronunciation": "kuchi"
+    },
+    {
+      "id": "r-8586dc33c850",
+      "target": "速い",
+      "english": "Fast",
+      "category": "Descriptions & Qualities",
+      "ttsText": "はやい",
+      "sourceOrder": 73,
+      "pronunciation": "hayai",
+      "ttsKanji": "速い"
+    },
+    {
+      "id": "r-3e26395d9d56",
+      "target": "女の人",
+      "english": "Woman",
+      "category": "Family & People",
+      "ttsText": "おんなのひと",
+      "reviewNote": "The book gives more than one reading: おんなのひと, おんなひと. Audio uses the first.",
+      "sourceOrder": 74,
+      "pronunciation": "onna no hito"
+    },
+    {
+      "id": "r-5aee66146dbf",
+      "target": "九人",
+      "english": "Nine people",
+      "category": "Numbers",
+      "ttsText": "きゅうにん",
+      "sourceOrder": 75,
+      "pronunciation": "kyū-nin",
+      "ttsKanji": "九人"
+    },
+    {
+      "id": "r-367e94cdaa01",
+      "target": "顔",
+      "english": "Face",
+      "category": "Body & Health",
+      "ttsText": "かお",
+      "sourceOrder": 76,
+      "pronunciation": "kao"
+    },
+    {
+      "id": "r-e674d94e7541",
+      "target": "四人",
+      "english": "Four people",
+      "category": "Numbers",
+      "ttsText": "よにん",
+      "sourceOrder": 77,
+      "pronunciation": "yo-nin",
+      "ttsKanji": "四人"
+    },
+    {
+      "id": "r-a2a6c87168ef",
+      "target": "指",
+      "english": "Finger",
+      "category": "Body & Health",
+      "ttsText": "ゆび",
+      "sourceOrder": 78,
+      "pronunciation": "yubi"
+    },
+    {
+      "id": "r-4f40e0596a9b",
+      "target": "住む",
+      "english": "To live",
+      "category": "Home & Household",
+      "ttsText": "すむ",
+      "sourceOrder": 79,
+      "pronunciation": "sumu",
+      "ttsKanji": "住む"
+    },
+    {
+      "id": "r-a6577e51aa03",
+      "target": "胸",
+      "english": "Chest",
+      "category": "Body & Health",
+      "ttsText": "むね",
+      "sourceOrder": 80,
+      "pronunciation": "mune"
+    },
+    {
+      "id": "r-fd5e817c05d4",
+      "target": "知りません",
+      "english": "I do not know",
+      "category": "Other",
+      "ttsText": "しりません",
+      "sourceOrder": 81,
+      "pronunciation": "shirimasen",
+      "ttsKanji": "知りません"
+    }
+  ]
+}

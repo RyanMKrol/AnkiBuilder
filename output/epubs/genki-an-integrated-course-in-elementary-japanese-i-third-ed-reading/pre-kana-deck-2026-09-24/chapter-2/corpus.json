@@ -1,0 +1,889 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 3,
+    "chapterLabel": "Chapter 03: Lesson 1: New Friends",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-04d5f579ed3d",
+      "target": "だいがく",
+      "english": "College; university",
+      "category": "School & Education",
+      "sourceOrder": 848
+    },
+    {
+      "id": "r-c53c9bc9de35",
+      "target": "こうこう",
+      "english": "High school",
+      "category": "School & Education",
+      "sourceOrder": 1466
+    },
+    {
+      "id": "r-58f16b7e1247",
+      "target": "がくせい",
+      "english": "Student",
+      "category": "School & Education",
+      "sourceOrder": 853
+    },
+    {
+      "id": "r-304ca93218af",
+      "target": "だいがくせい",
+      "english": "College student",
+      "category": "School & Education",
+      "sourceOrder": 1505
+    },
+    {
+      "id": "r-c424b9b709c2",
+      "target": "りゅうがくせい",
+      "english": "International student",
+      "category": "School & Education",
+      "sourceOrder": 380
+    },
+    {
+      "id": "r-4ca0d0546bc2",
+      "target": "せんせい",
+      "english": "Teacher; Professor",
+      "category": "School & Education",
+      "sourceOrder": 1574
+    },
+    {
+      "id": "r-4a7eccc4223c",
+      "target": "ねんせい",
+      "english": "...year student",
+      "category": "School & Education",
+      "sourceOrder": 1606
+    },
+    {
+      "id": "r-7e7a20b2280c",
+      "target": "いちねんせい",
+      "english": "First-year student",
+      "category": "School & Education",
+      "sourceOrder": 1633
+    },
+    {
+      "id": "r-85deb3d5621f",
+      "target": "せんこう",
+      "english": "Major",
+      "category": "School & Education",
+      "sourceOrder": 911
+    },
+    {
+      "id": "r-b8020da03ae5",
+      "target": "わたし",
+      "english": "I",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 1688
+    },
+    {
+      "id": "r-fa04cb341f01",
+      "target": "ともだち",
+      "english": "Friend",
+      "category": "Family & People",
+      "sourceOrder": 76
+    },
+    {
+      "id": "r-a6f2cd3984e4",
+      "target": "じん",
+      "english": "...people (nationality)",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 1740
+    },
+    {
+      "id": "r-d13a0fc29c11",
+      "target": "にほんじん",
+      "english": "Japanese people",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 445
+    },
+    {
+      "id": "r-23a32f106a4e",
+      "target": "いま",
+      "english": "Now",
+      "category": "Time",
+      "sourceOrder": 1788
+    },
+    {
+      "id": "r-172aebba3ba3",
+      "target": "ごぜん",
+      "english": "A.M.",
+      "category": "Time",
+      "sourceOrder": 1796
+    },
+    {
+      "id": "r-8338e52c2a4e",
+      "target": "ごご",
+      "english": "P.M.",
+      "category": "Time",
+      "sourceOrder": 1808
+    },
+    {
+      "id": "r-41f11fe610d4",
+      "target": "じ",
+      "english": "O'clock",
+      "category": "Time",
+      "sourceOrder": 777
+    },
+    {
+      "id": "r-ae83794b6e28",
+      "target": "いちじ",
+      "english": "One o'clock",
+      "category": "Time",
+      "sourceOrder": 1832
+    },
+    {
+      "id": "r-cc64850fe97d",
+      "target": "はん",
+      "english": "Half",
+      "category": "Time",
+      "sourceOrder": 1851
+    },
+    {
+      "id": "r-40b19aa2a016",
+      "target": "にじはん",
+      "english": "Half past two",
+      "category": "Time",
+      "sourceOrder": 1860
+    },
+    {
+      "id": "r-01b64b5814b8",
+      "target": "にほん",
+      "english": "Japan",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 1757
+    },
+    {
+      "id": "r-2dcbf2a36cf1",
+      "target": "アメリカ",
+      "english": "U.S.A.",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 1902
+    },
+    {
+      "id": "r-f31040750b56",
+      "target": "にほんご",
+      "english": "Japanese language",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 916
+    },
+    {
+      "id": "r-74083073fe9a",
+      "target": "さい",
+      "english": "...years old",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 1971
+    },
+    {
+      "id": "r-78b47ae41b4f",
+      "target": "でんわ",
+      "english": "Telephone",
+      "category": "Technology & Communication",
+      "sourceOrder": 1990
+    },
+    {
+      "id": "r-0f3003428c75",
+      "target": "ばん",
+      "english": "Number...",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2008
+    },
+    {
+      "id": "r-78fc285b999a",
+      "target": "ばんごう",
+      "english": "Number",
+      "category": "Numbers",
+      "sourceOrder": 2054
+    },
+    {
+      "id": "r-17d0cfcdf57e",
+      "target": "なまえ",
+      "english": "Name",
+      "category": "Other",
+      "sourceOrder": 2070
+    },
+    {
+      "id": "r-98bd08f18ff1",
+      "target": "なん",
+      "english": "What",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2083
+    },
+    {
+      "id": "r-b41e23d04a56",
+      "target": "なに",
+      "english": "What",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2086
+    },
+    {
+      "id": "r-b61dc552c306",
+      "target": "あのう",
+      "english": "Um...",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 376,
+      "excluded": true,
+      "excludedBy": "human"
+    },
+    {
+      "id": "r-c92b4cda8bdf",
+      "target": "はい",
+      "english": "Yes",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2124
+    },
+    {
+      "id": "r-f7df6ac2474a",
+      "target": "そうです",
+      "english": "That's right.",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 2132
+    },
+    {
+      "id": "r-e523d88822b8",
+      "target": "そうですか",
+      "english": "I see; Is that so?",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 487
+    },
+    {
+      "id": "r-67c73f17c865",
+      "target": "イギリス",
+      "english": "Britain",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 2280
+    },
+    {
+      "id": "r-94040c19e00e",
+      "target": "オーストラリア",
+      "english": "Australia",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 2302
+    },
+    {
+      "id": "r-46ad495f2ea6",
+      "target": "かんこく",
+      "english": "Korea",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 2336
+    },
+    {
+      "id": "r-73266ed7c3d5",
+      "target": "カナダ",
+      "english": "Canada",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 2352
+    },
+    {
+      "id": "r-66fde06ecdf5",
+      "target": "ちゅうごく",
+      "english": "China",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 2370
+    },
+    {
+      "id": "r-b7e02fc879dc",
+      "target": "インド",
+      "english": "India",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 2388
+    },
+    {
+      "id": "r-f5f54874f47a",
+      "target": "エジプト",
+      "english": "Egypt",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 2400
+    },
+    {
+      "id": "r-1f55e646d370",
+      "target": "フィリピン",
+      "english": "Philippines",
+      "category": "Nationalities & Countries",
+      "sourceOrder": 2416
+    },
+    {
+      "id": "r-3568c388ef30",
+      "target": "アジアけんきゅう",
+      "english": "Asian studies",
+      "category": "School & Education"
+    },
+    {
+      "id": "r-3f18d2a253b7",
+      "target": "けいざい",
+      "english": "Economics",
+      "category": "School & Education",
+      "sourceOrder": 2491
+    },
+    {
+      "id": "r-818340ae4904",
+      "target": "こうがく",
+      "english": "Engineering",
+      "category": "School & Education",
+      "sourceOrder": 2510
+    },
+    {
+      "id": "r-eea7a47b3823",
+      "target": "こくさいかんけい",
+      "english": "International relations",
+      "category": "School & Education",
+      "sourceOrder": 2532
+    },
+    {
+      "id": "r-b637fd75f5de",
+      "target": "コンピューター",
+      "english": "Computer",
+      "category": "Technology & Communication",
+      "sourceOrder": 2575
+    },
+    {
+      "id": "r-5e442de46eb9",
+      "target": "せいじ",
+      "english": "Politics",
+      "category": "School & Education",
+      "sourceOrder": 2607
+    },
+    {
+      "id": "r-7a8b100b9517",
+      "target": "せいぶつがく",
+      "english": "Biology",
+      "category": "School & Education",
+      "sourceOrder": 2623
+    },
+    {
+      "id": "r-5b070f57a617",
+      "target": "ビジネス",
+      "english": "Business",
+      "category": "School & Education",
+      "sourceOrder": 2648
+    },
+    {
+      "id": "r-b8347e7bdcbf",
+      "target": "ぶんがく",
+      "english": "Literature",
+      "category": "School & Education",
+      "sourceOrder": 2672
+    },
+    {
+      "id": "r-ab82e387c3e3",
+      "target": "れきし",
+      "english": "History",
+      "category": "School & Education",
+      "sourceOrder": 2693
+    },
+    {
+      "id": "r-b68960b205eb",
+      "target": "いしゃ",
+      "english": "Doctor",
+      "category": "Work & Occupations",
+      "sourceOrder": 2733
+    },
+    {
+      "id": "r-d2801641caa4",
+      "target": "かいしゃいん",
+      "english": "Office worker",
+      "category": "Work & Occupations",
+      "sourceOrder": 2746
+    },
+    {
+      "id": "r-0ee831a038b8",
+      "target": "かんごし",
+      "english": "Nurse",
+      "category": "Work & Occupations",
+      "sourceOrder": 2772
+    },
+    {
+      "id": "r-34f63fb79186",
+      "target": "こうこうせい",
+      "english": "High school student",
+      "category": "School & Education",
+      "sourceOrder": 2789
+    },
+    {
+      "id": "r-7325fb0118b0",
+      "target": "しゅふ",
+      "english": "Housewife",
+      "category": "Work & Occupations",
+      "sourceOrder": 2821
+    },
+    {
+      "id": "r-188b69f5bc98",
+      "target": "だいがくいんせい",
+      "english": "Graduate student",
+      "category": "School & Education",
+      "sourceOrder": 2838
+    },
+    {
+      "id": "r-cd6d8ce02deb",
+      "target": "べんごし",
+      "english": "Lawyer",
+      "category": "Work & Occupations",
+      "sourceOrder": 2873
+    },
+    {
+      "id": "r-a2a755f4c07f",
+      "target": "おかあさん",
+      "english": "Mother",
+      "category": "Family & People",
+      "sourceOrder": 2908
+    },
+    {
+      "id": "r-35e78f55d014",
+      "target": "おとうさん",
+      "english": "Father",
+      "category": "Family & People",
+      "sourceOrder": 2926
+    },
+    {
+      "id": "r-8cf44fafbf93",
+      "target": "おねえさん",
+      "english": "Older sister",
+      "category": "Family & People",
+      "sourceOrder": 2944
+    },
+    {
+      "id": "r-ecaf215b0381",
+      "target": "おにいさん",
+      "english": "Older brother",
+      "category": "Family & People",
+      "sourceOrder": 2967
+    },
+    {
+      "id": "r-3f5b4e6556fa",
+      "target": "いもうと",
+      "english": "Younger sister",
+      "category": "Family & People",
+      "sourceOrder": 2991
+    },
+    {
+      "id": "r-f4b1936b0927",
+      "target": "おとうと",
+      "english": "Younger brother",
+      "category": "Family & People",
+      "sourceOrder": 3014
+    },
+    {
+      "id": "r-aa3f089dd749",
+      "target": "にねんせい",
+      "english": "Second-year student",
+      "category": "School & Education",
+      "sourceOrder": 860
+    },
+    {
+      "id": "r-119d06cc0a23",
+      "target": "さんねんせい",
+      "english": "Third-year student",
+      "category": "School & Education",
+      "sourceOrder": 11007
+    },
+    {
+      "id": "r-433860db32b2",
+      "target": "よねんせい",
+      "english": "Fourth-year student",
+      "category": "School & Education",
+      "sourceOrder": 540
+    },
+    {
+      "id": "r-1c1f59d949d4",
+      "target": "ごねんせい",
+      "english": "Fifth-year student",
+      "category": "School & Education",
+      "sourceOrder": 11023
+    },
+    {
+      "id": "r-a868c8ba81cb",
+      "target": "ろくねんせい",
+      "english": "Sixth-year student",
+      "category": "School & Education",
+      "sourceOrder": 11065
+    },
+    {
+      "id": "r-c4af3d6a1ba6",
+      "target": "いっさい",
+      "english": "One year old",
+      "category": "Numbers",
+      "sourceOrder": 7875
+    },
+    {
+      "id": "r-c5f05d13b81e",
+      "target": "にさい",
+      "english": "Two years old",
+      "category": "Numbers",
+      "sourceOrder": 11291
+    },
+    {
+      "id": "r-3c96e759ec9d",
+      "target": "さんさい",
+      "english": "Three years old",
+      "category": "Numbers",
+      "sourceOrder": 11340
+    },
+    {
+      "id": "r-8ce49a810428",
+      "target": "よんさい",
+      "english": "Four years old",
+      "category": "Numbers",
+      "sourceOrder": 11382
+    },
+    {
+      "id": "r-18ffbb8f2fc9",
+      "target": "ごさい",
+      "english": "Five years old",
+      "category": "Numbers",
+      "sourceOrder": 11427
+    },
+    {
+      "id": "r-969e2b059a5f",
+      "target": "ろくさい",
+      "english": "Six years old",
+      "category": "Numbers",
+      "sourceOrder": 11262
+    },
+    {
+      "id": "r-8b00a8687ae7",
+      "target": "ななさい",
+      "english": "Seven years old",
+      "category": "Numbers",
+      "sourceOrder": 11300
+    },
+    {
+      "id": "r-c9ecd97c8968",
+      "target": "はっさい",
+      "english": "Eight years old",
+      "category": "Numbers",
+      "sourceOrder": 8449
+    },
+    {
+      "id": "r-bb923eb9fe2a",
+      "target": "きゅうさい",
+      "english": "Nine years old",
+      "category": "Numbers",
+      "sourceOrder": 926
+    },
+    {
+      "id": "r-0a56bfc0ac60",
+      "target": "じゅっさい",
+      "english": "Ten years old",
+      "category": "Numbers",
+      "sourceOrder": 8535
+    },
+    {
+      "id": "r-151b5bb0f5bf",
+      "target": "じゅういっさい",
+      "english": "Eleven years old",
+      "category": "Numbers",
+      "sourceOrder": 11275
+    },
+    {
+      "id": "r-8d87abccdd0d",
+      "target": "はたち",
+      "english": "Twenty years old",
+      "category": "Numbers",
+      "sourceOrder": 11313
+    },
+    {
+      "id": "r-a4e684349a30",
+      "target": "にじゅっさい",
+      "english": "Twenty years old",
+      "category": "Numbers",
+      "sourceOrder": 11317
+    },
+    {
+      "id": "r-ed6d465baaee",
+      "target": "にじゅういっさい",
+      "english": "Twenty-one years old",
+      "category": "Numbers",
+      "sourceOrder": 11363
+    },
+    {
+      "id": "r-b84d129f545d",
+      "target": "さんじゅうごさい",
+      "english": "Thirty-five years old",
+      "category": "Numbers",
+      "sourceOrder": 11407
+    },
+    {
+      "id": "r-6b3156dbae8a",
+      "target": "よんじゅっさい",
+      "english": "Forty years old",
+      "category": "Numbers",
+      "sourceOrder": 11451
+    },
+    {
+      "id": "r-caae763ebfb0",
+      "target": "にじ",
+      "english": "Two o'clock",
+      "category": "Time",
+      "sourceOrder": 11483
+    },
+    {
+      "id": "r-9959160f14aa",
+      "target": "さんじ",
+      "english": "Three o'clock",
+      "category": "Time",
+      "sourceOrder": 15990
+    },
+    {
+      "id": "r-c4f7d845e204",
+      "target": "よじ",
+      "english": "Four o'clock",
+      "category": "Time",
+      "sourceOrder": 8147
+    },
+    {
+      "id": "r-4752e5f0d223",
+      "target": "ごじ",
+      "english": "Five o'clock",
+      "category": "Time",
+      "sourceOrder": 16118
+    },
+    {
+      "id": "r-39f340d7449a",
+      "target": "ろくじ",
+      "english": "Six o'clock",
+      "category": "Time",
+      "sourceOrder": 16181
+    },
+    {
+      "id": "r-cd1583669d37",
+      "target": "しちじ",
+      "english": "Seven o'clock",
+      "category": "Time",
+      "sourceOrder": 8408
+    },
+    {
+      "id": "r-479ce52807e4",
+      "target": "はちじ",
+      "english": "Eight o'clock",
+      "category": "Time",
+      "sourceOrder": 16315
+    },
+    {
+      "id": "r-7d77eb0b8aea",
+      "target": "くじ",
+      "english": "Nine o'clock",
+      "category": "Time",
+      "sourceOrder": 5425
+    },
+    {
+      "id": "r-c8c93d6d0c76",
+      "target": "じゅうじ",
+      "english": "Ten o'clock",
+      "category": "Time",
+      "sourceOrder": 16447
+    },
+    {
+      "id": "r-c1c7bb6bb8e2",
+      "target": "じゅういちじ",
+      "english": "Eleven o'clock",
+      "category": "Time",
+      "sourceOrder": 16515
+    },
+    {
+      "id": "r-e6fc99a7f3d0",
+      "target": "じゅうにじ",
+      "english": "Twelve o'clock",
+      "category": "Time",
+      "sourceOrder": 3288
+    },
+    {
+      "id": "r-c82df96d3357",
+      "target": "いっぷん",
+      "english": "One minute",
+      "category": "Time",
+      "sourceOrder": 7857
+    },
+    {
+      "id": "r-8e609bbd5e4d",
+      "target": "にふん",
+      "english": "Two minutes",
+      "category": "Time",
+      "sourceOrder": 18734
+    },
+    {
+      "id": "r-83f9d1705203",
+      "target": "さんぷん",
+      "english": "Three minutes",
+      "category": "Time",
+      "sourceOrder": 8066
+    },
+    {
+      "id": "r-cef82f0ac721",
+      "target": "よんぷん",
+      "english": "Four minutes",
+      "category": "Time",
+      "sourceOrder": 8268
+    },
+    {
+      "id": "r-593100bf1c1a",
+      "target": "ごふん",
+      "english": "Five minutes",
+      "category": "Time",
+      "sourceOrder": 18817
+    },
+    {
+      "id": "r-f80934b5c025",
+      "target": "ろっぷん",
+      "english": "Six minutes",
+      "category": "Time",
+      "sourceOrder": 8368
+    },
+    {
+      "id": "r-49c630c15285",
+      "target": "ななふん",
+      "english": "Seven minutes",
+      "category": "Time",
+      "sourceOrder": 18871
+    },
+    {
+      "id": "r-2b66d465a8d9",
+      "target": "はっぷん",
+      "english": "Eight minutes",
+      "category": "Time",
+      "sourceOrder": 8442
+    },
+    {
+      "id": "r-cad73e4a6249",
+      "target": "はちふん",
+      "english": "Eight minutes",
+      "category": "Time",
+      "sourceOrder": 18932
+    },
+    {
+      "id": "r-a8b67298a312",
+      "target": "きゅうふん",
+      "english": "Nine minutes",
+      "category": "Time",
+      "sourceOrder": 18963
+    },
+    {
+      "id": "r-f149751bbf78",
+      "target": "じゅっぷん",
+      "english": "Ten minutes",
+      "category": "Time",
+      "sourceOrder": 8522
+    },
+    {
+      "id": "r-32f1207a3023",
+      "target": "じゅういっぷん",
+      "english": "Eleven minutes",
+      "category": "Time",
+      "sourceOrder": 18718
+    },
+    {
+      "id": "r-73cae64f0563",
+      "target": "じゅうにふん",
+      "english": "Twelve minutes",
+      "category": "Time",
+      "sourceOrder": 18744
+    },
+    {
+      "id": "r-08e5b3f26904",
+      "target": "じゅうさんぷん",
+      "english": "Thirteen minutes",
+      "category": "Time",
+      "sourceOrder": 18771
+    },
+    {
+      "id": "r-339e9af6a0d7",
+      "target": "じゅうよんぷん",
+      "english": "Fourteen minutes",
+      "category": "Time",
+      "sourceOrder": 18800
+    },
+    {
+      "id": "r-fb5597cad068",
+      "target": "じゅうごふん",
+      "english": "Fifteen minutes",
+      "category": "Time",
+      "sourceOrder": 18827
+    },
+    {
+      "id": "r-da4bd02b3d7f",
+      "target": "じゅうろっぷん",
+      "english": "Sixteen minutes",
+      "category": "Time",
+      "sourceOrder": 18854
+    },
+    {
+      "id": "r-f076ce177e72",
+      "target": "じゅうななふん",
+      "english": "Seventeen minutes",
+      "category": "Time",
+      "sourceOrder": 18884
+    },
+    {
+      "id": "r-9905854979b4",
+      "target": "じゅうはっぷん",
+      "english": "Eighteen minutes",
+      "category": "Time",
+      "sourceOrder": 18915
+    },
+    {
+      "id": "r-660049d206bd",
+      "target": "じゅうはちふん",
+      "english": "Eighteen minutes",
+      "category": "Time",
+      "sourceOrder": 18944
+    },
+    {
+      "id": "r-e9e3725e760c",
+      "target": "じゅうきゅうふん",
+      "english": "Nineteen minutes",
+      "category": "Time",
+      "sourceOrder": 18977
+    },
+    {
+      "id": "r-30b3421ff45e",
+      "target": "にじゅっぷん",
+      "english": "Twenty minutes",
+      "category": "Time",
+      "sourceOrder": 19011
+    },
+    {
+      "id": "r-ed9bdcd391c8",
+      "target": "さんじゅっぷん",
+      "english": "Thirty minutes",
+      "category": "Time",
+      "sourceOrder": 19028
+    },
+    {
+      "id": "r-8acf078cd9d5",
+      "target": "なんじ",
+      "english": "What time",
+      "category": "Time",
+      "sourceOrder": 5381
+    },
+    {
+      "id": "r-e313d4648f74",
+      "target": "なんさい",
+      "english": "How old",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 5473
+    },
+    {
+      "id": "r-6ca00c6457d0",
+      "target": "なんねんせい",
+      "english": "What year (in school)",
+      "category": "School & Education",
+      "sourceOrder": 493
+    },
+    {
+      "id": "r-6151fa749ad2",
+      "target": "なんばん",
+      "english": "What number",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 5977
+    },
+    {
+      "id": "r-91cb5276610f",
+      "target": "あなた",
+      "english": "You",
+      "category": "Grammar & Function Words",
+      "sourceOrder": 9450
+    }
+  ]
+}

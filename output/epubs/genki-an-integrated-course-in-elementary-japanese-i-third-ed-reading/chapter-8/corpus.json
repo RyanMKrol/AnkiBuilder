@@ -399,7 +399,10 @@
       "english": "Tall (stature)",
       "category": "Body & Health",
       "ttsText": "せがたかい",
-      "sourceOrder": 48
+      "sourceOrder": 48,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 背, 高い."
     },
     {
       "id": "r-d57207655b68",
@@ -608,7 +611,10 @@
       "english": "I know",
       "category": "Other",
       "ttsText": "しっています",
-      "sourceOrder": 74
+      "sourceOrder": 74,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 知る."
     },
     {
       "id": "r-d7e621055f5c",
@@ -648,7 +654,10 @@
       "english": "Bright; smart; clever",
       "category": "Descriptions & Qualities",
       "ttsText": "あたまがいい",
-      "sourceOrder": 79
+      "sourceOrder": 79,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 頭, いい."
     },
     {
       "id": "r-d900c8df601a",
@@ -681,7 +690,10 @@
       "english": "To be on the heavy side; overweight",
       "category": "Body & Health",
       "ttsText": "ふとっています",
-      "sourceOrder": 83
+      "sourceOrder": 83,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 太る."
     },
     {
       "id": "r-242e8e5c3fbc",
@@ -801,7 +813,10 @@
       "english": "Short (stature)",
       "category": "Body & Health",
       "ttsText": "せがひくい",
-      "sourceOrder": 98
+      "sourceOrder": 98,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 背, 低い."
     },
     {
       "id": "r-8586dc33c850",
@@ -850,7 +865,18 @@
       "english": "I do not know",
       "category": "Other",
       "ttsText": "しりません",
-      "sourceOrder": 104
+      "sourceOrder": 104,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 知る."
+    },
+    {
+      "id": "r-c022ef791faa",
+      "target": "低い",
+      "english": "Low; short (in height)",
+      "category": "Descriptions & Qualities",
+      "ttsText": "ひくい",
+      "sourceOrder": 105
     }
   ]
 }

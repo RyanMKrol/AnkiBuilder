@@ -367,7 +367,10 @@
       "english": "To be popular",
       "category": "Emotions & Feelings",
       "ttsText": "にんきがある",
-      "sourceOrder": 44
+      "sourceOrder": 44,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 人気."
     },
     {
       "id": "r-f9fe70b5c2d8",
@@ -583,7 +586,10 @@
       "english": "To take medicine",
       "category": "Body & Health",
       "ttsText": "くすりをのむ",
-      "sourceOrder": 71
+      "sourceOrder": 71,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 薬, 飲む."
     },
     {
       "id": "r-d0a7b02e2cd6",

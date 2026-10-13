@@ -348,7 +348,10 @@
       "audioOriginal": "691b6cf07fdb9f63.orig.mp3",
       "audioAuto": "691b6cf07fdb9f63.mp3",
       "audioMarked": true,
-      "audioTextHash": "691b6cf07fdb9f63"
+      "audioTextHash": "691b6cf07fdb9f63",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 疲れる."
     },
     {
       "id": "r-ef416d2e9b03",

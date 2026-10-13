@@ -1,0 +1,525 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 12,
+    "chapterLabel": "Chapter 12: Lesson 10: Winter Vacation Plans",
+    "phase": "reading"
+  },
+  "items": [
+    {
+      "id": "r-8e1145478aed",
+      "target": "生活",
+      "english": "Life; living",
+      "category": "Other",
+      "ttsText": "せいかつ",
+      "sourceOrder": 0
+    },
+    {
+      "id": "r-3ad78db16e5a",
+      "target": "手袋",
+      "english": "Gloves",
+      "category": "Clothing",
+      "ttsText": "てぶくろ",
+      "sourceOrder": 1
+    },
+    {
+      "id": "r-801d88a9ebfa",
+      "target": "階段",
+      "english": "Stairs",
+      "category": "Directions",
+      "ttsText": "かいだん",
+      "sourceOrder": 2
+    },
+    {
+      "id": "r-c344910a8f57",
+      "target": "一号車",
+      "english": "Car No. 1",
+      "category": "Transport",
+      "ttsText": "いちごうしゃ",
+      "sourceOrder": 3
+    },
+    {
+      "id": "r-b98148951f3d",
+      "target": "決める",
+      "english": "To decide",
+      "category": "Other",
+      "ttsText": "きめる",
+      "sourceOrder": 4
+    },
+    {
+      "id": "r-7525e358b791",
+      "target": "乗車券",
+      "english": "(Boarding) ticket",
+      "category": "Transport",
+      "ttsText": "じょうしゃけん",
+      "sourceOrder": 5
+    },
+    {
+      "id": "r-5183903f3825",
+      "target": "早く",
+      "english": "(Do something) early; fast",
+      "category": "Descriptions & Qualities",
+      "ttsText": "はやく",
+      "sourceOrder": 6
+    },
+    {
+      "id": "r-e183430c05b6",
+      "target": "予約",
+      "english": "Reservation",
+      "category": "Travel & Tourism",
+      "ttsText": "よやく",
+      "sourceOrder": 7
+    },
+    {
+      "id": "r-8af73add8ab5",
+      "target": "美容院",
+      "english": "Beauty parlor",
+      "category": "Other",
+      "ttsText": "びよういん",
+      "sourceOrder": 8
+    },
+    {
+      "id": "r-7cda072d452b",
+      "target": "普通",
+      "english": "Local",
+      "category": "Transport",
+      "ttsText": "ふつう",
+      "sourceOrder": 9
+    },
+    {
+      "id": "r-5bc2516ad13b",
+      "target": "一番",
+      "english": "Best",
+      "category": "Descriptions & Qualities",
+      "ttsText": "いちばん",
+      "sourceOrder": 10
+    },
+    {
+      "id": "r-7b72e1d41a0c",
+      "target": "地下鉄",
+      "english": "Subway",
+      "category": "Transport",
+      "ttsText": "ちかてつ",
+      "sourceOrder": 11
+    },
+    {
+      "id": "r-08c75256e151",
+      "target": "簡単",
+      "english": "Easy; simple",
+      "category": "Descriptions & Qualities",
+      "ttsText": "かんたん",
+      "sourceOrder": 12
+    },
+    {
+      "id": "r-ffea659b17ae",
+      "target": "定期券",
+      "english": "Commuter's pass",
+      "category": "Transport",
+      "ttsText": "ていきけん",
+      "sourceOrder": 13
+    },
+    {
+      "id": "r-1e75a5247f10",
+      "target": "泊まる",
+      "english": "To stay (at a hotel, etc.)",
+      "category": "Travel & Tourism",
+      "ttsText": "とまる",
+      "sourceOrder": 14
+    },
+    {
+      "id": "r-6f14c2641c25",
+      "target": "年",
+      "english": "... years",
+      "category": "Time",
+      "ttsText": "ねん",
+      "sourceOrder": 15
+    },
+    {
+      "id": "r-185303b1d9f2",
+      "target": "練習する",
+      "english": "To practice",
+      "category": "School & Education",
+      "ttsText": "れんしゅうする",
+      "sourceOrder": 16
+    },
+    {
+      "id": "r-954df4424486",
+      "target": "急行",
+      "english": "Express",
+      "category": "Transport",
+      "ttsText": "きゅうこう",
+      "sourceOrder": 17
+    },
+    {
+      "id": "r-cb365f543bc8",
+      "target": "売店",
+      "english": "Shop; stand",
+      "category": "Shopping",
+      "ttsText": "ばいてん",
+      "sourceOrder": 18
+    },
+    {
+      "id": "r-05589a4f72fb",
+      "target": "野球",
+      "english": "Baseball",
+      "category": "Sports & Hobbies",
+      "ttsText": "やきゅう",
+      "sourceOrder": 19
+    },
+    {
+      "id": "r-b6632397faca",
+      "target": "指定席",
+      "english": "Reserved seat",
+      "category": "Transport",
+      "ttsText": "していせき",
+      "sourceOrder": 20
+    },
+    {
+      "id": "r-e31c661ec472",
+      "target": "学割",
+      "english": "Student discount",
+      "category": "Transport",
+      "ttsText": "がくわり",
+      "sourceOrder": 21
+    },
+    {
+      "id": "r-c64f974fa90b",
+      "target": "方面",
+      "english": "Serving . . . areas",
+      "category": "Transport",
+      "ttsText": "ほうめん",
+      "sourceOrder": 22
+    },
+    {
+      "id": "r-52b0708545e4",
+      "target": "自由席",
+      "english": "General admission seat",
+      "category": "Transport",
+      "ttsText": "じゆうせき",
+      "sourceOrder": 23
+    },
+    {
+      "id": "r-c3424b7dff7c",
+      "target": "終電",
+      "english": "Last train",
+      "category": "Transport",
+      "ttsText": "しゅうでん",
+      "sourceOrder": 24
+    },
+    {
+      "id": "r-c27f2bb41a12",
+      "target": "新幹線",
+      "english": "Shinkansen; \"Bullet Train\"",
+      "category": "Transport",
+      "ttsText": "しんかんせん",
+      "sourceOrder": 25
+    },
+    {
+      "id": "r-19b9994d115e",
+      "target": "涼しい",
+      "english": "Cool (weather)",
+      "category": "Weather & Nature",
+      "ttsText": "すずしい",
+      "sourceOrder": 26
+    },
+    {
+      "id": "r-76c5d9145145",
+      "target": "次は",
+      "english": "Next (stop), . . .",
+      "category": "Transport",
+      "ttsText": "つぎは",
+      "sourceOrder": 27
+    },
+    {
+      "id": "r-e389584bbdad",
+      "target": "速く",
+      "english": "(Do something) early; fast",
+      "category": "Descriptions & Qualities",
+      "ttsText": "はやく",
+      "sourceOrder": 28
+    },
+    {
+      "id": "r-27bf621d4b71",
+      "target": "飛行機",
+      "english": "Airplane",
+      "category": "Transport",
+      "ttsText": "ひこうき",
+      "sourceOrder": 29
+    },
+    {
+      "id": "r-e07e75baa71b",
+      "target": "交通系ICカード",
+      "english": "Rechargeable card such as Suica, Icoca, Pasmo, etc.",
+      "category": "Transport",
+      "ttsText": "こうつうけいアイシーカード",
+      "sourceOrder": 30
+    },
+    {
+      "id": "r-a63df47d88c3",
+      "target": "改札",
+      "english": "Gate",
+      "category": "Transport",
+      "ttsText": "かいさつ",
+      "sourceOrder": 31
+    },
+    {
+      "id": "r-eec9a060f61c",
+      "target": "次発",
+      "english": "Departing second",
+      "category": "Transport",
+      "ttsText": "じはつ",
+      "sourceOrder": 32
+    },
+    {
+      "id": "r-f2d556c645f7",
+      "target": "お金持ち",
+      "english": "Rich person",
+      "category": "Descriptions & Qualities",
+      "ttsText": "おかねもち",
+      "sourceOrder": 33
+    },
+    {
+      "id": "r-455ec8daabaa",
+      "target": "乗り換え",
+      "english": "Transfer",
+      "category": "Transport",
+      "ttsText": "のりかえ",
+      "sourceOrder": 34
+    },
+    {
+      "id": "r-efa430d2ee11",
+      "target": "先発",
+      "english": "Departing first",
+      "category": "Transport",
+      "ttsText": "せんぱつ",
+      "sourceOrder": 35
+    },
+    {
+      "id": "r-7ca448e7caf2",
+      "target": "天ぷら",
+      "english": "Tempura",
+      "category": "Food",
+      "ttsText": "てんぷら",
+      "sourceOrder": 36
+    },
+    {
+      "id": "r-3729c4603ebb",
+      "target": "片道",
+      "english": "One way",
+      "category": "Transport",
+      "ttsText": "かたみち",
+      "sourceOrder": 37
+    },
+    {
+      "id": "r-856d5830b52b",
+      "target": "番線",
+      "english": "Track number . . .",
+      "category": "Transport",
+      "ttsText": "ばんせん",
+      "sourceOrder": 38
+    },
+    {
+      "id": "r-ae5d2000edcb",
+      "target": "週間",
+      "english": "For ... weeks",
+      "category": "Time",
+      "ttsText": "しゅうかん",
+      "sourceOrder": 39
+    },
+    {
+      "id": "r-dd877ebcea7c",
+      "target": "出口",
+      "english": "Exit",
+      "category": "Directions",
+      "ttsText": "でぐち",
+      "sourceOrder": 40
+    },
+    {
+      "id": "r-e546e7d633e6",
+      "target": "冷たい",
+      "english": "Cold (things; people)",
+      "category": "Descriptions & Qualities",
+      "ttsText": "つめたい",
+      "sourceOrder": 41
+    },
+    {
+      "id": "r-cf1656101ed5",
+      "target": "世界",
+      "english": "World",
+      "category": "Other",
+      "ttsText": "せかい",
+      "sourceOrder": 42
+    },
+    {
+      "id": "r-f1e99579ea18",
+      "target": "動物園",
+      "english": "Zoo",
+      "category": "Travel & Tourism",
+      "ttsText": "どうぶつえん",
+      "sourceOrder": 43
+    },
+    {
+      "id": "r-cd91af5d05a4",
+      "target": "行き",
+      "english": "Bound for . . .",
+      "category": "Transport",
+      "ttsText": "いき",
+      "sourceOrder": 44
+    },
+    {
+      "id": "r-3e450648252d",
+      "target": "春",
+      "english": "Spring",
+      "category": "Weather & Nature",
+      "ttsText": "はる",
+      "sourceOrder": 45
+    },
+    {
+      "id": "r-889cde6bf4a6",
+      "target": "旅行する",
+      "english": "To travel",
+      "category": "Travel & Tourism",
+      "ttsText": "りょこうする",
+      "sourceOrder": 46
+    },
+    {
+      "id": "r-a1c9474ff9d2",
+      "target": "往復",
+      "english": "Round trip",
+      "category": "Transport",
+      "ttsText": "おうふく",
+      "sourceOrder": 47
+    },
+    {
+      "id": "r-b5636efa5513",
+      "target": "季節",
+      "english": "Season",
+      "category": "Weather & Nature",
+      "ttsText": "きせつ",
+      "sourceOrder": 48
+    },
+    {
+      "id": "r-41ee2cdcc1a8",
+      "target": "有名人",
+      "english": "Celebrity",
+      "category": "Family & People",
+      "ttsText": "ゆうめいじん",
+      "sourceOrder": 49
+    },
+    {
+      "id": "r-2eaf3458232b",
+      "target": "船",
+      "english": "Ship; boat",
+      "category": "Transport",
+      "ttsText": "ふね",
+      "sourceOrder": 50
+    },
+    {
+      "id": "r-a1a8cfd1dec3",
+      "target": "後",
+      "english": "In ... time; after ",
+      "category": "Time",
+      "ttsText": "ご",
+      "sourceOrder": 51
+    },
+    {
+      "id": "r-48748de4ab55",
+      "target": "歩いて",
+      "english": "On foot",
+      "category": "Transport",
+      "ttsText": "あるいて",
+      "sourceOrder": 52
+    },
+    {
+      "id": "r-c141850f9e8a",
+      "target": "暖かい",
+      "english": "Warm",
+      "category": "Weather & Nature",
+      "ttsText": "あたたかい",
+      "sourceOrder": 53
+    },
+    {
+      "id": "r-4c80d67f1adb",
+      "target": "特急",
+      "english": "Super express",
+      "category": "Transport",
+      "ttsText": "とっきゅう",
+      "sourceOrder": 54
+    },
+    {
+      "id": "r-14b95d6b2df0",
+      "target": "切符売り場",
+      "english": "Ticket vending area",
+      "category": "Transport",
+      "ttsText": "きっぷうりば",
+      "sourceOrder": 55
+    },
+    {
+      "id": "r-cfb25a13c72a",
+      "target": "医者",
+      "english": "Doctor",
+      "category": "Work & Occupations",
+      "ttsText": "いしゃ",
+      "sourceOrder": 56
+    },
+    {
+      "id": "r-9c0ce029cd58",
+      "target": "眠い",
+      "english": "Sleepy",
+      "category": "Emotions & Feelings",
+      "ttsText": "ねむい",
+      "sourceOrder": 57
+    },
+    {
+      "id": "r-5c8d7a349fdf",
+      "target": "年上",
+      "english": "Someone older",
+      "category": "Family & People",
+      "ttsText": "としうえ",
+      "sourceOrder": 58
+    },
+    {
+      "id": "r-370f0655dc10",
+      "target": "か月",
+      "english": "For ... months",
+      "category": "Time",
+      "ttsText": "かげつ",
+      "sourceOrder": 59
+    },
+    {
+      "id": "r-ce72cd6b4eb0",
+      "target": "牛乳",
+      "english": "Milk",
+      "category": "Food",
+      "ttsText": "ぎゅうにゅう",
+      "sourceOrder": 60
+    },
+    {
+      "id": "r-8d8f4aeca850",
+      "target": "秋",
+      "english": "Fall (autumn)",
+      "category": "Weather & Nature",
+      "ttsText": "あき",
+      "sourceOrder": 61
+    },
+    {
+      "id": "r-38e9cd1ffb95",
+      "target": "入口",
+      "english": "Entrance",
+      "category": "Directions",
+      "ttsText": "いりぐち",
+      "sourceOrder": 62
+    },
+    {
+      "id": "r-e70b5299d05d",
+      "target": "駅",
+      "english": "Station",
+      "category": "Transport",
+      "ttsText": "えき",
+      "sourceOrder": 63
+    }
+  ]
+}

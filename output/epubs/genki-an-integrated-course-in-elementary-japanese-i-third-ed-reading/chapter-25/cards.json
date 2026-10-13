@@ -383,7 +383,10 @@
       "audioOriginal": "3f4ba7b3d6b98f88.orig.mp3",
       "audioAuto": "3f4ba7b3d6b98f88.mp3",
       "audioMarked": true,
-      "audioTextHash": "3f4ba7b3d6b98f88"
+      "audioTextHash": "3f4ba7b3d6b98f88",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: はた, 織る."
     },
     {
       "id": "r-0e4f2a55b516",
@@ -744,6 +747,18 @@
       "audioAuto": "e3df42dedb5e1392.mp3",
       "audioMarked": true,
       "audioTextHash": "e3df42dedb5e1392"
+    },
+    {
+      "id": "r-ca3d67737989",
+      "target": "織る",
+      "english": "To weave",
+      "category": "Other",
+      "ttsText": "おる",
+      "sourceOrder": 52,
+      "pronunciation": "oru",
+      "ttsKanji": "織る",
+      "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
+      "addition": "genki-reading-words-only-2026-10"
     }
   ]
 }

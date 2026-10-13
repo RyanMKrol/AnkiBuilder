@@ -280,7 +280,10 @@
       "english": "Once in a lifetime",
       "category": "Other",
       "ttsText": "いっしょうにいちど",
-      "sourceOrder": 33
+      "sourceOrder": 33,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 一生, 一度."
     },
     {
       "id": "r-b43484cfb9ad",
@@ -337,6 +340,14 @@
       "category": "School & Education",
       "ttsText": "しゅっせき",
       "sourceOrder": 40
+    },
+    {
+      "id": "r-9444769cd2c6",
+      "target": "一生",
+      "english": "Whole life; lifetime",
+      "category": "Time",
+      "ttsText": "いっしょう",
+      "sourceOrder": 41
     }
   ]
 }

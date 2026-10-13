@@ -230,7 +230,10 @@
       "english": "To weave",
       "category": "Work & Occupations",
       "ttsText": "はたをおる",
-      "sourceOrder": 27
+      "sourceOrder": 27,
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: はた, 織る."
     },
     {
       "id": "r-0e4f2a55b516",
@@ -423,6 +426,14 @@
       "category": "Time",
       "ttsText": "いちど",
       "sourceOrder": 51
+    },
+    {
+      "id": "r-ca3d67737989",
+      "target": "織る",
+      "english": "To weave",
+      "category": "Other",
+      "ttsText": "おる",
+      "sourceOrder": 52
     }
   ]
 }

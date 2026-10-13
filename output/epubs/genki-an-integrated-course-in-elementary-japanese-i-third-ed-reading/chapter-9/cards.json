@@ -515,7 +515,10 @@
       "audioOriginal": "5ca5a77f2fc7ad13.orig.mp3",
       "audioAuto": "5ca5a77f2fc7ad13.mp3",
       "audioMarked": true,
-      "audioTextHash": "5ca5a77f2fc7ad13"
+      "audioTextHash": "5ca5a77f2fc7ad13",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 残念."
     },
     {
       "id": "r-422694d6b7a1",
@@ -815,7 +818,10 @@
       "audioOriginal": "fc6403aec5fa2050.orig.mp3",
       "audioAuto": "fc6403aec5fa2050.mp3",
       "audioMarked": true,
-      "audioTextHash": "fc6403aec5fa2050"
+      "audioTextHash": "fc6403aec5fa2050",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 雪, 降る."
     },
     {
       "id": "r-b9f34ab24617",
@@ -860,7 +866,10 @@
       "audioOriginal": "4e227be2f1685d6c.orig.mp3",
       "audioAuto": "4e227be2f1685d6c.mp3",
       "audioMarked": true,
-      "audioTextHash": "4e227be2f1685d6c"
+      "audioTextHash": "4e227be2f1685d6c",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 中, お酒, 入る."
     },
     {
       "id": "r-cb11335d9a39",
@@ -935,7 +944,10 @@
       "audioOriginal": "5a4a58c1f6e11f6d.orig.mp3",
       "audioAuto": "5a4a58c1f6e11f6d.mp3",
       "audioMarked": true,
-      "audioTextHash": "5a4a58c1f6e11f6d"
+      "audioTextHash": "5a4a58c1f6e11f6d",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 雨, 降る."
     },
     {
       "id": "r-a128579869e4",
@@ -950,7 +962,10 @@
       "audioOriginal": "25ed015608b22eba.orig.mp3",
       "audioAuto": "25ed015608b22eba.mp3",
       "audioMarked": true,
-      "audioTextHash": "25ed015608b22eba"
+      "audioTextHash": "25ed015608b22eba",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: お風呂, 入る."
     },
     {
       "id": "r-9f359fc57904",
@@ -1115,7 +1130,10 @@
       "audioOriginal": "0b87037b2734a692.orig.mp3",
       "audioAuto": "0b87037b2734a692.mp3",
       "audioMarked": true,
-      "audioTextHash": "0b87037b2734a692"
+      "audioTextHash": "0b87037b2734a692",
+      "excluded": true,
+      "excludedBy": "owner-words-only-2026-10-13",
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 袋."
     },
     {
       "id": "r-97d2e2825721",

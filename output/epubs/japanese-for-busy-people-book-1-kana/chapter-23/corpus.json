@@ -376,7 +376,8 @@
       "target": "スノーボードをします",
       "english": "Snowboard",
       "category": "Sports & Hobbies",
-      "sourceOrder": 4232
+      "sourceOrder": 4232,
+      "hint": "the verb, \"to snowboard\""
     },
     {
       "id": "sunoboodo-snowboard",
@@ -386,9 +387,7 @@
       "uncertain": true,
       "reviewNote": "Listening-exercise example pair (スノーボード vs スキー); check whether already taught before carding. | Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (overlaps snowboard-o-shimasu (スノーボード vs スノーボードを します))",
       "sourceOrder": 4232,
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Covered by snowboard-o-shimasu (スノーボードをします) in this unit, which is the form the chapter glosses; both read \"Snowboard\" in English, so keeping both would be an uncued collision"
+      "hint": "the noun"
     },
     {
       "id": "sukii-ski",

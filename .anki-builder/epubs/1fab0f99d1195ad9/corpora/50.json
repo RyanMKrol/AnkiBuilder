@@ -1,0 +1,393 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 50,
+    "chapterLabel": "Lesson 23: Explaining Actions: What Are You Doing Now?",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "mou-already",
+      "english": "Already",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "もう"
+    },
+    {
+      "id": "madadesu-not-yet",
+      "english": "Not yet",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "まだです"
+    },
+    {
+      "id": "mousugu-soon",
+      "english": "Soon",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "もうすぐ"
+    },
+    {
+      "id": "mou-sukoshi",
+      "english": "A little longer",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "もうすこし"
+    },
+    {
+      "id": "nanika-before-noun",
+      "english": "Some, any",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target) | Possibly premature — なにか (indefinite 'something/any') is an indefinite-pronoun construction that the index does not show being formally introduced in any chapter up to 50 — may be an incidental dialogue word rather than taught vocabulary | Restored at gate 1 after the final review: Lesson 16 teaches the bare pronoun (\"Something\"); this chapter's NOTES 3 teaches なにか + noun (\"some/any [noun]\"), a sense no card had. Excluding it as the same sense was wrong.",
+      "target": "なにか"
+    },
+    {
+      "id": "dekimasu-be-done-2",
+      "english": "Be done, be ready",
+      "category": "Other",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (exact duplicate of dekimasu-be-done (できます) with only a reworded gloss — reviewer should pick one) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "できます"
+    },
+    {
+      "id": "junbi-preparation",
+      "english": "Preparation",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "じゅんび"
+    },
+    {
+      "id": "junbi-o-shimasu-prepare",
+      "english": "Prepare",
+      "category": "Other",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (overlaps junbi-preparation (じゅんび vs じゅんびを します)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "じゅんびをします"
+    },
+    {
+      "id": "yoyakushimasu-make-reservation",
+      "english": "Make a reservation",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "よやくします"
+    },
+    {
+      "id": "check-noun",
+      "english": "Check",
+      "category": "Travel & Tourism",
+      "reviewNote": "Loanword noun glossed only as 'check'; unclear if this means hotel check-in/check-out or a verification check — table gives no disambiguating context. | Judged at gate 1: the chapter uses it for checking work (チェックを おねがいします), so a hint names that sense.",
+      "target": "チェック"
+    },
+    {
+      "id": "tsukurimasu-make",
+      "english": "Make",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "つくります"
+    },
+    {
+      "id": "tsukutte-imasu-be-making",
+      "english": "Be making",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "つくっています"
+    },
+    {
+      "id": "tsukutte-imasen-2",
+      "english": "Is not making",
+      "category": "Other",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of tsukutte-imasen (つくっていません)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "つくっていません"
+    },
+    {
+      "id": "nonde-imasu-2",
+      "english": "Is drinking",
+      "category": "Other",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of nonde-imasu (のんでいます)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "のんでいます"
+    },
+    {
+      "id": "nonde-imasen-2",
+      "english": "Is not drinking",
+      "category": "Other",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of nonde-imasen (のんでいません)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "のんでいません"
+    },
+    {
+      "id": "hanashite-imasu-2",
+      "english": "Is talking",
+      "category": "Other",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of hanashite-imasu (はなしています)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "はなしています"
+    },
+    {
+      "id": "hanashite-imasen-2",
+      "english": "Is not talking",
+      "category": "Other",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of hanashite-imasen (はなしていません)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "はなしていません"
+    },
+    {
+      "id": "setsumei-shimasu-explain",
+      "english": "Explain",
+      "category": "Other",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (overlaps setsumei-shite-imasu and the せつめい noun entries; reviewer may want to collapse the ます/て-form set) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "せつめいをします"
+    },
+    {
+      "id": "setsumei-shite-imasu-2",
+      "english": "Is explaining",
+      "category": "Work & Occupations",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of setsumei-shite-imasu (せつめいを しています)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "せつめいをしています"
+    },
+    {
+      "id": "setsumei-shite-imasen-2",
+      "english": "Is not explaining",
+      "category": "Work & Occupations",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of setsumei-shite-imasen (せつめいを していません)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "せつめいをしていません"
+    },
+    {
+      "id": "owarimasu-finish",
+      "english": "Finish",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "おわります"
+    },
+    {
+      "id": "tabete-imasu-be-eating",
+      "english": "Be eating",
+      "category": "Food",
+      "reviewNote": null,
+      "target": "たべています"
+    },
+    {
+      "id": "naratte-imasu-taking-lessons",
+      "english": "Be taking lessons in",
+      "category": "School & Education",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (ならっています expresses an ongoing/habitual state rather than the chapter-50 progressive; if intended as the state sense it sits closer to the chapter-51 て-form います (2) teaching — worth a reviewer glance) | Judged before review: the chapter's own grammar note 1 teaches this (KS2, an action repeated over a period) and its vocabulary box glosses it. Not premature; kept.",
+      "target": "ならっています"
+    },
+    {
+      "id": "souji-shimasu-clean",
+      "english": "Clean",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "そうじをします"
+    },
+    {
+      "id": "shodou-calligraphy",
+      "english": "Calligraphy",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "しょどう"
+    },
+    {
+      "id": "guitar-loanword",
+      "english": "Guitar",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ギター"
+    },
+    {
+      "id": "furansugo-french-2",
+      "english": "French (language)",
+      "category": "Nationalities & Countries",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of furansugo-french (フランスご)) | Judged before review: the forward-flag pass named THIS lesson (Lesson 23) as the later one that teaches it. It is taught here, so the flag is a misfire; kept.",
+      "target": "フランスご"
+    },
+    {
+      "id": "snowboard-o-shimasu",
+      "english": "Snowboard",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "スノーボードをします"
+    },
+    {
+      "id": "sunoboodo-snowboard",
+      "english": "Snowboard",
+      "category": "Sports & Hobbies",
+      "reviewNote": "Listening-exercise example pair (スノーボード vs スキー); check whether already taught before carding. | Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (overlaps snowboard-o-shimasu (スノーボード vs スノーボードを します))",
+      "target": "スノーボード",
+      "uncertain": true
+    },
+    {
+      "id": "undou-o-shimasu",
+      "english": "Do exercise",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "うんどうをします"
+    },
+    {
+      "id": "jogging-o-shimasu",
+      "english": "Jog",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "ジョギングをします"
+    },
+    {
+      "id": "kanji-noun",
+      "english": "Kanji",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "かんじ"
+    },
+    {
+      "id": "yomimashita",
+      "english": "Read (polite past)",
+      "category": "Other",
+      "reviewNote": "Polite past form used in Key Sentence 3; the dictionary form よみます is not glossed in this chapter and may be taught earlier. | Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (polite past form given as its own item alongside よみます; the past tense was taught much earlier but a bare conjugated-form card here may be redundant with yomimasu-read) | Judged before review: no earlier unit carries よみました. Key Sentence 3 uses it for the もう...ましたか completion pattern this chapter teaches; kept as the past-tense cell of a taught verb.",
+      "target": "よみました"
+    },
+    {
+      "id": "dekimashita",
+      "english": "Was done, is ready (polite past)",
+      "category": "Other",
+      "reviewNote": "Added at gate 1 after the final review: NOTES 1 teaches noun が できました／おわりました for something finished, and the target dialogue uses できました twice. Carded the same way as よみました.",
+      "target": "できました"
+    },
+    {
+      "id": "owarimashita",
+      "english": "Finished (polite past)",
+      "category": "Other",
+      "reviewNote": "Added at gate 1 after the final review: NOTES 1 teaches noun が できました／おわりました for something finished, and the target dialogue uses できました twice. Carded the same way as よみました.",
+      "target": "おわりました"
+    },
+    {
+      "id": "benkyou-study",
+      "english": "Study",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "べんきょう"
+    },
+    {
+      "id": "shinbun-newspaper",
+      "english": "Newspaper",
+      "category": "Everyday Objects",
+      "reviewNote": null,
+      "target": "しんぶん"
+    },
+    {
+      "id": "kai-floor-counter",
+      "english": "Floor (counter for building floors)",
+      "category": "Numbers",
+      "reviewNote": null,
+      "target": "かい"
+    },
+    {
+      "id": "online-kaigi-o-shimasu",
+      "english": "Have an online meeting",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "オンラインかいぎをします"
+    },
+    {
+      "id": "project-loanword",
+      "english": "Project",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "プロジェクト"
+    },
+    {
+      "id": "shouhin-product",
+      "english": "Product, goods",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "しょうひん"
+    },
+    {
+      "id": "download-loanword",
+      "english": "Download",
+      "category": "Technology & Communication",
+      "reviewNote": null,
+      "target": "ダウンロード"
+    },
+    {
+      "id": "moshi-moshi",
+      "english": "Hello (phone greeting)",
+      "category": "Greetings",
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 23: Explaining Actions: What Are You Doing Now? (duplicate of moshimoshi-hello (もしもし) differing only in the trailing 。) | Judged before review: no earlier unit teaches もしもし, and the chapter glosses it in Speaking Practice 2 and NOTES. The flag pointed at an in-lesson duplicate the deduplicator already removed; kept.",
+      "target": "もしもし"
+    },
+    {
+      "id": "ima-ii-desu-ka",
+      "english": "Is now a good time to talk?",
+      "category": "Greetings",
+      "reviewNote": "Possibly premature — set phrase 'いま いいですか' used idiomatically for 'is now a good time to talk?'; its meaning is not derivable from any pattern the book has taught and it is not shown as a formally taught item — reviewer should confirm the book actually glosses it | Judged before review: the chapter's NOTES gloss this phrase (\"used to ask whether the person called is free to speak\"). Not premature; kept.",
+      "target": "いまいいですか"
+    },
+    {
+      "id": "yuugata-evening",
+      "english": "Evening",
+      "category": "Time",
+      "reviewNote": null,
+      "target": "ゆうがた"
+    },
+    {
+      "id": "tsukuru-dict-form",
+      "english": "Make (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "The book taught the dictionary form in an earlier lesson and never prints it for つくります, so it was added here (owner ruling 2026-10-12). | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (dictionary form of a verb; chapter 50 teaches the て-form います pattern, and the dictionary form as a citation item is only formally put to work in the ことです nominalizer in lesson 24 — check whether a bare dictionary-form card belongs here) | Judged before review: carried dictionary form per the 2026-10-12 ruling (dictionary form introduced in Lesson 15). The forward flag about Lesson 24 does not apply; kept.",
+      "target": "つくる",
+      "aiSuggested": true
+    },
+    {
+      "id": "dekiru-dict-form",
+      "english": "Be done, be ready (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "The book taught the dictionary form in an earlier lesson and never prints it for できます, so it was added here (owner ruling 2026-10-12). | Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (dictionary-form citation card (see つくる above); the dictionary form's own teaching moment as a usable pattern is lesson 24's verb[dictionary form] ことです) | Judged before review: carried dictionary form per the 2026-10-12 ruling (dictionary form introduced in Lesson 15). The forward flag about Lesson 24 does not apply; kept.",
+      "target": "できる",
+      "aiSuggested": true
+    },
+    {
+      "id": "owaru-dict-form",
+      "english": "Finish (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Gate-1 preflight (carried-forms): the book taught the dictionary form in Lesson 15 and never prints it for おわります, so it was added here (owner ruling 2026-10-12). The gap filler missed it because the base gloss ended in a full stop, which the carried-forms check reads as a sentence.",
+      "target": "おわる",
+      "aiSuggested": true
+    },
+    {
+      "id": "yoyaku-suru-dict-form",
+      "english": "Make a reservation (dictionary form)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Gate-1 preflight (carried-forms): the book taught the dictionary form in Lesson 15 and never prints it for よやくします, so it was added here (owner ruling 2026-10-12). The gap filler missed it because the base gloss ended in a full stop, which the carried-forms check reads as a sentence.",
+      "target": "よやくする",
+      "aiSuggested": true
+    }
+  ]
+}

@@ -34,9 +34,12 @@ because of the Production card, and a reading deck has none.
    so it keeps its audio.
 5. **Never a single letter or kana.** The owner studies hiragana and katakana in a separate deck, and
    an alphabet is a template, not a book.
-6. **No sentences, grammar patterns, conjugation tables or drill lines.** A set phrase is a card only
-   when the book teaches it as a unit (greetings, classroom expressions). A phrase whose meaning is
-   just its words added together is its words.
+6. **Words, not sentences or phrases.** No sentences, requests, grammar patterns, conjugation tables
+   or drill lines, classroom expressions included. A word joined to another by a particle is its
+   words, and an inflected form is its dictionary form. Only fixed greetings and set expressions
+   written as one unit stay. (Owner ruling, 2026-10-13, which narrowed the first version: that one
+   let in any set phrase the book taught as a unit, and 73 Genki cards had to be cut. The working
+   rule is `docs/card-rules-reading.md`.)
 7. **Proper names are not cards**, the same rule the speaking decks follow.
 8. **The English is the meaning, in natural sentence-case English** ("Movie", "Good morning"), the
    same rule as the speaking decks. For a character it is the meanings the book gives ("Day; sun").

@@ -167,7 +167,8 @@ skipped. **FAIL** findings must be fixed before the link goes out: a front carry
 bracketed reading or sentence punctuation; a written form carded twice; a kanji word with no kana
 reading. **ACK** findings are judgements: a single kana (right as a word like に "Two", wrong as a
 letter of the syllabary), Latin letters on a front (Ｔシャツ is right,
-romaji is not), a front over 16 characters (right for a long set phrase the book teaches), a word
+romaji is not), a front over 16 characters (right for a long set phrase the book teaches), a front
+that reads as a phrase (`reading-phrase`: cut it and card its words, unless it is a fixed greeting), a word
 carded in kana where the chapter prints its kanji.
 
 In the dashboard the owner reviews the chapter and presses **Mark reviewed**, which saves it to the

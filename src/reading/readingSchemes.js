@@ -44,6 +44,20 @@ const JAPANESE = Object.freeze({
   requiresReading: (target) => HAN.test(String(target ?? "")),
   isValidReading: (reading) => KANA_READING.test(String(reading ?? "").trim()),
   /**
+   * Why a front reads as a sentence or a phrase rather than a word, or null (card rules 6; owner
+   * ruling, 2026-10-13: the deck cards words, and 73 Genki cards like この中にお酒が入っていますか had
+   * to be cut by hand). A polite or inflected ending, or a particle joining two words where a kanji
+   * follows it (雨が降る, のどが渇く). The kanji after the particle is what spares 曲がる, whose が is
+   * part of the word. A heuristic: the fixed greetings it also catches are accepted at the gate.
+   */
+  phraseReason: (target) => {
+    const t = String(target ?? "").trim();
+    if (/(ます|ません|ました|でした|です|ください|ている|ていた)か?$/.test(t))
+      return "ends in a polite or inflected ending";
+    if (/.[をがにで]\p{Script=Han}/u.test(t)) return "joins two words with a particle";
+    return null;
+  },
+  /**
    * Kana-only words are carded once per collection, in one kana deck chosen from the whole book
    * (src/reading/kanaUnits.js; owner decisions, 2026-09-24): first so every sound unit is in at
    * least `minPerUnit` words, then up to a budget per script. Chapters card only kanji. `label` is

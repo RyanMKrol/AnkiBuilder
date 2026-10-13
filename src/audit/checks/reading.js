@@ -202,6 +202,35 @@ export const readingLengthCheck = readingCheck({
   },
 });
 
+export const readingPhraseCheck = readingCheck({
+  id: "reading-phrase",
+  title: "reading front is a word, not a phrase",
+  scope: "unit",
+  tier: "ACK",
+  /**
+   * The deck cards words (card rules 6). A sentence, a request, a word-plus-particle phrase or an
+   * inflected form is cut and its words carded instead. The language plugin says what a phrase looks
+   * like; a fixed greeting it catches is a judgement, so this acknowledges rather than fails.
+   */
+  run({ unit }) {
+    const scheme = readingScheme(unitLanguage(unit));
+    if (!scheme?.phraseReason) return { findings: [], summary: "no phrase rule for this language" };
+    const findings = [];
+    for (const item of shipped(unit)) {
+      const reason = scheme.phraseReason(item.target);
+      if (reason) {
+        findings.push({
+          key: item.id,
+          message:
+            `${item.id} "${item.target}" ${reason}: card its words instead, or accept it if it ` +
+            `is a fixed greeting or set expression.`,
+        });
+      }
+    }
+    return { findings, summary: "every front is a word" };
+  },
+});
+
 export const readingReadingCheck = readingCheck({
   id: "reading-kana-reading",
   title: "kanji words carry a kana reading",
@@ -357,6 +386,7 @@ export const READING_CHECKS = [
   readingSingleKanaCheck,
   readingKanaInChapterCheck,
   readingLengthCheck,
+  readingPhraseCheck,
   readingReadingCheck,
   readingKanjiSpellingCheck,
   readingEnglishCheck,

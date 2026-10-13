@@ -67,6 +67,27 @@ test("the prompt takes Key Sentences without a cap and narrows only the dialogue
   });
 });
 
+test("the prompt says a taught verb in a taught inflection is taught, not only its exact form", () => {
+  // Busy People Lesson 23: the miner declined the book's own example たなかさんには あいましたが、
+  // やまださんには あいませんでした because only あいます had a card, though the polite past had
+  // been taught many lessons earlier. Every card for the chapter's contrast rule was lost with it.
+  withChapter((file) => {
+    const prompt = renderExampleSentenceMinerPrompt({
+      chapterFilePath: file,
+      sections: SECTIONS,
+      baseItems: BASE,
+      earlierItems: [{ target: "いきました", english: "Went." }],
+      targetLanguage: "ja",
+    });
+    // The rule itself arrives through the shared card rules, so every card-writing pass has it.
+    assert.match(prompt, /Judge a word and\s+its inflection separately/);
+    assert.match(prompt, /a missing exact\s+string proves nothing/);
+    // And this prompt ties it to the lists it is actually handed.
+    assert.match(prompt, /"Untaught" means the WORD is missing, not its exact form/);
+    assert.match(prompt, /あいました/);
+  });
+});
+
 test("a dialogue line naming no form it uniquely demonstrates is refused", () => {
   // This is exactly what banning the whole dialogue was avoiding: a line taken because it seemed
   // useful. Narrowing the ban only works if the narrowing has teeth.

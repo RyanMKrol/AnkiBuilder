@@ -1928,6 +1928,16 @@ leaves `とけい`, which is a finding a person can act on.
 It is a **report, never a filter**. Substring containment over a space-free script cannot be certain,
 so a silent drop would remove a good sentence for a bad reason and say nothing about it.
 
+**"Taught" is judged on the word, not on its exact inflected form.** The vocabulary lists a role is
+handed (`vocabularyForPrompt`) hold each word in the form it was carded in, so a verb carded only in
+the present is absent from them in the past even when the past tense was taught lessons earlier. The
+rule that a taught word in a taught inflection counts as taught lives in `docs/card-rules-shared.md`,
+because every card-writing pass reads these lists, and each miner's prompt points at it. It was
+written after Busy People Lesson 23's example-sentence miner declined the book's own example
+`たなかさんには あいましたが、やまださんには あいませんでした` (Tanaka-san ni wa aimashita ga, Yamada-san
+ni wa aimasen deshita: "I met Tanaka-san, but not Yamada-san") as needing an untaught past tense, and
+every card for the chapter's contrast rule was lost with it.
+
 #### The inventive author (F5), the only capped role
 
 It writes practice the book does not supply, and it is the only phase-2 role with a ceiling:

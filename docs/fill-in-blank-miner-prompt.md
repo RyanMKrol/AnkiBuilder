@@ -33,7 +33,9 @@ Two exceptions, both learned by getting this wrong:
 
 **Every word you use must already be taught**, from the approved base vocabulary below or the earlier
 lessons after it. A filler the chapter supplies but neither list teaches means that filler is skipped:
-record it in `skipped` rather than building a sentence the learner cannot study.
+record it in `skipped` rather than building a sentence the learner cannot study. A taught word in an
+inflection the lists show on other words is taught: judge the word, not its exact string (the shared
+rule on inflections above).
 
 ## The chapter
 

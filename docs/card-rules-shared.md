@@ -38,7 +38,15 @@ looks like a duplicate of the regular ones and exactly why it is not. Watch for 
 _instead_, _irregular_ and _does not take_.
 
 **Only vocabulary and grammar the learner has already met.** A card may use only what this chapter or
-an earlier one teaches. Where topical fit and this rule disagree, this rule wins.
+an earlier one teaches. Where topical fit and this rule disagree, this rule wins. Judge a word and
+its inflection separately: a word the learner has met, in an inflection the source has already
+taught, is taught, even when no card has ever shown that exact inflected form. The vocabulary lists
+you are given hold each word in the form it was carded in, not every form of it, so a missing exact
+string proves nothing. Look for the word in any of its forms, and for the inflection on any other
+word of the same kind. Skip only when the word itself is absent, or the inflection appears nowhere
+in what you were given. _An extras pass declined the source's own example for a grammar point,
+calling a past-tense verb untaught because only its present form had a card, though the past tense
+had been taught many lessons earlier. Every card for that point was lost._
 
 **A proper name is not a card.** The name of a person, a business, a school, a shop or a club --
 and above all one the source invented to populate an exercise -- teaches the learner nothing about

@@ -18,6 +18,8 @@ worse than no sentence: they cannot study it, and it will sit in the deck lookin
 This is the rule most likely to be broken and the most damaging when it is. If a drill in the chapter
 needs a word that is not in either list, **skip that drill** and say so in `skipped`. Reaching for a
 natural-sounding word the book has not introduced is the specific failure this warning exists for.
+The opposite failure costs as much: a taught word in an inflection the lists show on other words is
+taught, so judge the word, not its exact string (the shared rule on inflections above).
 
 ## The chapter
 

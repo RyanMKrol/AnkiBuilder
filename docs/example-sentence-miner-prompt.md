@@ -41,6 +41,11 @@ for one. Reaching for a fifth line is not.
 after it. A Key Sentence needing an untaught word is skipped and recorded in `skipped`, not rewritten
 into something the chapter did not say.
 
+"Untaught" means the WORD is missing, not its exact form. These lists hold each word in the form it
+was carded in, so a verb carded only as `あいます` is still taught as `あいました` when other verbs in
+the lists show the polite past. Skipping a sentence because its inflected form is not printed
+character for character in a list is the shared rule on inflections above, broken.
+
 ## An answer studied alone needs a scene
 
 Chapters are full of question-and-answer exchanges. An answer card is shuffled and studied months

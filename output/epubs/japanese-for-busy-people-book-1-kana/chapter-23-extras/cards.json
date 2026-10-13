@@ -1,0 +1,665 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 50,
+    "chapterLabel": "Lesson 23: Explaining Actions: What Are You Doing Now? (Extras)",
+    "baseChapterLabel": "Lesson 23: Explaining Actions: What Are You Doing Now?",
+    "phase": "extras",
+    "passes": {
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
+      },
+      "numberReadings": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2's own miners produced this unit's sentences"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "dialogue-materials-ready",
+      "english": "The materials are ready.",
+      "category": "Work & Occupations",
+      "target": "しりょうができました",
+      "pronunciation": "shiryō ga dekimashita"
+    },
+    {
+      "id": "owarimasu-finish-1",
+      "english": "The meeting has already finished.",
+      "category": "Other",
+      "target": "かいぎはもうおわりました",
+      "pronunciation": "kaigi wa mō owarimashita",
+      "aiSuggested": true
+    },
+    {
+      "id": "madadesu-not-yet-1",
+      "english": "Have you already written the report? I'm sorry, not yet.",
+      "category": "Grammar & Function Words",
+      "target": "レポートはもうかきましたか。すみません、まだです",
+      "pronunciation": "repōto wa mō kakimashita ka. sumimasen, mada desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "sasaki-drinking-coffee",
+      "english": "Is Sasaki-san drinking coffee now?",
+      "category": "Food",
+      "target": "ささきさんはいまコーヒーをのんでいますか",
+      "pronunciation": "Sasaki-san wa ima kōhī o nonde imasu ka"
+    },
+    {
+      "id": "download-finished-yet",
+      "english": "Has the download finished yet?",
+      "category": "Technology & Communication",
+      "target": "ダウンロードはもうおわりましたか",
+      "pronunciation": "daunrōdo wa mō owarimashita ka"
+    },
+    {
+      "id": "writing-report-wait",
+      "english": "I'm writing the report now. Please wait a little longer.",
+      "category": "Work & Occupations",
+      "target": "いまレポートをかいています。もうすこしまってください",
+      "pronunciation": "ima repōto o kaite imasu. mō sukoshi matte kudasai",
+      "scene": "said when asked whether the report is ready yet"
+    },
+    {
+      "id": "mousugu-soon-3",
+      "english": "Will the meeting preparations be ready soon?",
+      "category": "Grammar & Function Words",
+      "target": "かいぎのじゅんびはもうすぐできますか",
+      "pronunciation": "kaigi no junbi wa mōsugu dekimasu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "mainichi-kanji-benkyou",
+      "english": "I study kanji every day.",
+      "category": "School & Education",
+      "target": "まいにちかんじをべんきょうします",
+      "pronunciation": "mainichi kanji o benkyō shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-weekly-japanese-lessons",
+      "english": "Smith-san takes Japanese lessons every week.",
+      "category": "School & Education",
+      "target": "スミスさんはまいしゅうにほんごをならっています",
+      "pronunciation": "sumisu san wa mai shi yuunihongoonaratteimasu.",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Same subject, frequency, object and gloss as chapter-17-extras' card, only ならいます swapped for the ています form of the same verb — no new content, just a conjugation change.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: Same subject, frequency, object and gloss as chapter-17-extras' card, only ならいます swapped for the ています form of the same verb — no new content, just a conjugation change."
+    },
+    {
+      "id": "kanji-study-finished-yet",
+      "english": "Have you finished studying kanji yet?",
+      "category": "School & Education",
+      "target": "かんじのべんきょうはもうおわりましたか",
+      "pronunciation": "kanji no benkyō wa mō owarimashita ka"
+    },
+    {
+      "id": "report-written-yet",
+      "english": "Have you already written the report?",
+      "category": "Work & Occupations",
+      "target": "もうレポートをかきましたか",
+      "pronunciation": "mō repōto o kakimashita ka"
+    },
+    {
+      "id": "yoyaku-suru-dict-form-1",
+      "english": "Before reserving the restaurant, I make a phone call.",
+      "category": "Grammar & Function Words",
+      "target": "レストランをよやくするまえに、でんわします",
+      "pronunciation": "resutoran o yoyaku suru mae ni, denwa shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ks-smith-eating-lunch-now",
+      "english": "Smith-san is eating his lunch now.",
+      "category": "Food",
+      "target": "スミスさんはいまひるごはんをたべています",
+      "pronunciation": "Sumisu-san wa ima hirugohan o tabete imasu"
+    },
+    {
+      "id": "already-eaten-lunch-q",
+      "english": "Have you already eaten lunch?",
+      "category": "Food",
+      "target": "もうひるごはんをたべましたか",
+      "pronunciation": "mō hirugohan o tabemashita ka"
+    },
+    {
+      "id": "smith-explains-project",
+      "english": "Smith-san is explaining the project.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはプロジェクトのせつめいをしています",
+      "pronunciation": "Sumisu-san wa purojekuto no setsumei o shite imasu"
+    },
+    {
+      "id": "dekiru-dict-form-1",
+      "english": "Before the materials are ready, I prepare the room.",
+      "category": "Grammar & Function Words",
+      "target": "しりょうができるまえに、へやのじゅんびをします",
+      "pronunciation": "shiryō ga dekiru mae ni, heya no junbi o shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "nanika-kaimashitaka",
+      "english": "Did you buy something?",
+      "category": "Shopping",
+      "target": "なにかかいましたか",
+      "pronunciation": "nanika kaimashita ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "kato-guitar-weekly",
+      "english": "Kato-san takes guitar lessons every week.",
+      "category": "Sports & Hobbies",
+      "target": "かとうさんはまいしゅうギターをならっています",
+      "pronunciation": "Katō-san wa maishū gitā o naratte imasu"
+    },
+    {
+      "id": "shodou-calligraphy-1",
+      "english": "Emma-san takes calligraphy lessons every week.",
+      "category": "School & Education",
+      "target": "エマさんはまいしゅうしょどうをならっています",
+      "pronunciation": "Ema-san wa maishū shodō o naratte imasu",
+      "aiSuggested": true,
+      "note": "Follows the chapter's EXERCISES III drill pattern directly."
+    },
+    {
+      "id": "smith-meeting-room-presentation-prep",
+      "english": "Smith-san is preparing for the presentation now in the meeting room on the sixth floor.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはいま6かいのかいぎしつでプレゼンのじゅんびをしています",
+      "pronunciation": "Sumisu-san wa ima rok-kai no kaigishitsu de purezen no junbi o shite imasu",
+      "ttsText": "スミスさんはいまろっかいのかいぎしつでプレゼンのじゅんびをしています",
+      "reviewNote": "Checked before review: 6かい reads ろっかい."
+    },
+    {
+      "id": "tsukurimasu-make-1",
+      "english": "Smith-san makes dinner.",
+      "category": "Other",
+      "target": "スミスさんはばんごはんをつくります",
+      "pronunciation": "Sumisu-san wa bangohan o tsukurimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "report-check-shimasu",
+      "english": "I will check the report.",
+      "category": "Work & Occupations",
+      "target": "レポートのチェックをします",
+      "pronunciation": "repōto no chekku o shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "meeting-materials-ready-a",
+      "english": "I'm making them now. Please wait a little longer.",
+      "category": "Work & Occupations",
+      "target": "いまつくっています。もうすこしまってください",
+      "pronunciation": "ima tsukutte imasu. mō sukoshi matte kudasai",
+      "scene": "asked whether the meeting materials are ready yet"
+    },
+    {
+      "id": "ashita-party-junbi",
+      "english": "I will prepare for the party tomorrow.",
+      "category": "Everyday Objects",
+      "target": "あしたパーティーのじゅんびをします",
+      "pronunciation": "ashita pātī no junbi o shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "sumisu-nihongo-naratteimasen",
+      "english": "Smith-san is not taking Japanese lessons.",
+      "category": "School & Education",
+      "target": "スミスさんはにほんごをならっていません",
+      "pronunciation": "Sumisu-san wa nihongo o naratte imasen",
+      "aiSuggested": true
+    },
+    {
+      "id": "moshi-moshi-1",
+      "english": "Hello, this is Tanaka.",
+      "category": "Greetings",
+      "target": "もしもし、たなかです",
+      "pronunciation": "moshimoshi, Tanaka desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "hanashite-imasen-2-1",
+      "english": "Emma-san is not talking with Sasaki-san right now.",
+      "category": "Other",
+      "target": "エマさんはいまささきさんとはなしていません",
+      "pronunciation": "Ema-san wa ima Sasaki-san to hanashite imasen",
+      "aiSuggested": true
+    },
+    {
+      "id": "nakamura-on-phone",
+      "english": "Is Nakamura-san on the phone right now?",
+      "category": "Technology & Communication",
+      "target": "なかむらさんはいまでんわをしていますか",
+      "pronunciation": "Nakamura-san wa ima denwa o shite imasu ka"
+    },
+    {
+      "id": "madadesu-not-yet-2",
+      "english": "Have you already finished cleaning? No, not yet.",
+      "category": "Grammar & Function Words",
+      "target": "そうじはもうおわりましたか。いいえ、まだです",
+      "pronunciation": "sō ji wa mō owari mashi ta ka. īe, mada desu.",
+      "aiSuggested": true,
+      "note": "Reuses the chapter's own EXERCISES VI.B example line.",
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "Same exchange as cleaning-finished-q + cleaning-finished-a (そうじはもうおわりましたか / いいえ、まだです), which carry it as two cards"
+    },
+    {
+      "id": "tsukuru-dict-form-1",
+      "english": "Before making the meeting materials, I drink coffee.",
+      "category": "Grammar & Function Words",
+      "target": "かいぎのしりょうをつくるまえに、コーヒーをのみます",
+      "pronunciation": "kaigi no shiryō o tsukuru mae ni, kōhī o nomimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "nakamura-flower-arrangement-weekly",
+      "english": "Nakamura-san takes flower arrangement lessons every week.",
+      "category": "Sports & Hobbies",
+      "target": "なかむらさんはまいしゅういけばなをならっています",
+      "pronunciation": "Nakamura-san wa maishū ikebana o naratte imasu"
+    },
+    {
+      "id": "on-the-phone-now",
+      "english": "He is on the phone.",
+      "category": "Technology & Communication",
+      "target": "でんわをしています",
+      "pronunciation": "denwa o shite imasu",
+      "scene": "asked what Green-san is doing right now"
+    },
+    {
+      "id": "kato-making-materials",
+      "english": "Is Kato-san making the materials now?",
+      "category": "Work & Occupations",
+      "target": "かとうさんはいましりょうをつくっていますか",
+      "pronunciation": "Katō-san wa ima shiryō o tsukutte imasu ka"
+    },
+    {
+      "id": "nanika-before-noun-2",
+      "english": "Kato-san is making some kind of dish.",
+      "category": "Grammar & Function Words",
+      "target": "かとうさんはなにかりょうりをつくっています",
+      "pronunciation": "Katō-san wa nanika ryōri o tsukutte imasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "suzuki-cafe-customer",
+      "english": "Suzuki-san is talking with a customer now at the café on the first floor.",
+      "category": "Work & Occupations",
+      "target": "すずきさんはいま1かいのカフェでおきゃくさんとはなしています",
+      "pronunciation": "Suzuki-san wa ima ik-kai no kafe de okyakusan to hanashite imasu",
+      "ttsText": "すずきさんはいまいっかいのカフェでおきゃくさんとはなしています",
+      "reviewNote": "Checked before review: 1かい reads いっかい."
+    },
+    {
+      "id": "mousugu-soon-1",
+      "english": "The materials will be ready soon.",
+      "category": "Grammar & Function Words",
+      "target": "しりょうはもうすぐできます",
+      "pronunciation": "shiryō wa mōsugu dekimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "nonde-imasen-2-1",
+      "english": "Sasaki-san is not drinking coffee right now.",
+      "category": "Other",
+      "target": "ささきさんはいまコーヒーをのんでいません",
+      "pronunciation": "Sasaki-san wa ima kōhī o nonde imasen",
+      "aiSuggested": true
+    },
+    {
+      "id": "like-tea-not-coffee",
+      "english": "I like tea, but I don't like coffee.",
+      "category": "Food",
+      "target": "こうちゃはすきですが、コーヒーはすきじゃありません",
+      "pronunciation": "kōcha wa suki desu ga, kōhī wa suki ja arimasen"
+    },
+    {
+      "id": "tsukutte-imasen-2-1",
+      "english": "Smith-san is not making the materials right now.",
+      "category": "Other",
+      "target": "スミスさんはいましりょうをつくっていません",
+      "pronunciation": "Sumisu-san wa ima shiryō o tsukutte imasen",
+      "aiSuggested": true
+    },
+    {
+      "id": "dialogue-finish-by-three",
+      "english": "Will it be finished by three o'clock?",
+      "category": "Time",
+      "target": "3じまでにおわりますか",
+      "pronunciation": "sanji made ni owarimasu ka",
+      "ttsText": "さんじまでにおわりますか",
+      "reviewNote": "Checked before review: 3じ reads さんじ."
+    },
+    {
+      "id": "presenting-prep-wait",
+      "english": "I'm preparing for the presentation now. Please wait a little longer.",
+      "category": "Work & Occupations",
+      "target": "いまプレゼンのじゅんびをしています。もうすこしまってください",
+      "pronunciation": "ima purezen no junbi o shite imasu. mō sukoshi matte kudasai",
+      "scene": "said when asked whether the presentation is ready"
+    },
+    {
+      "id": "app-download-shiteimasu",
+      "english": "I am downloading the app now.",
+      "category": "Technology & Communication",
+      "target": "いまアプリをダウンロードしています",
+      "pronunciation": "ima apuri o daunrōdo shite imasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "restaurant-reservation-done-yet",
+      "english": "Have you already made a reservation at the restaurant?",
+      "category": "Work & Occupations",
+      "target": "もうレストランをよやくしましたか",
+      "pronunciation": "mō resutoran o yoyaku shimashita ka"
+    },
+    {
+      "id": "nihongo-setsumei-shiteimasu",
+      "english": "He is explaining Japanese.",
+      "category": "School & Education",
+      "target": "にほんごのせつめいをしています",
+      "pronunciation": "ni hon go nose tsu mei o shi te i masu.",
+      "uncertain": true,
+      "aiSuggested": true,
+      "reviewNote": "Possibly already taught — Just attaches にほんごの to chapter-23's existing せつめいをしています card; same predicate and gloss, no new grammar or distinct usage added.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: Just attaches にほんごの to chapter-23's existing せつめいをしています card; same predicate and gloss, no new grammar or distinct usage added."
+    },
+    {
+      "id": "dialogue-doing-any-exercise",
+      "english": "Are you doing any kind of exercise?",
+      "category": "Sports & Hobbies",
+      "target": "なにかうんどうをしていますか",
+      "pronunciation": "nanika undō o shite imasu ka"
+    },
+    {
+      "id": "emma-talking-with-sasaki",
+      "english": "Is Emma-san talking with Sasaki-san now?",
+      "category": "Other",
+      "target": "エマさんはいまささきさんとはなしていますか",
+      "pronunciation": "Ema-san wa ima Sasaki-san to hanashite imasu ka"
+    },
+    {
+      "id": "smith-cleaning-now",
+      "english": "Smith-san is cleaning.",
+      "category": "Home & Household",
+      "target": "スミスさんはそうじをしています",
+      "pronunciation": "Sumisu-san wa sōji o shite imasu"
+    },
+    {
+      "id": "raishuu-restaurant-yoyaku",
+      "english": "I will make a reservation at the restaurant next week.",
+      "category": "Food",
+      "target": "らいしゅうレストランをよやくします",
+      "pronunciation": "raishū resutoran o yoyaku shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "undou-o-shimasu-1",
+      "english": "Smith-san exercises every morning.",
+      "category": "Sports & Hobbies",
+      "target": "スミスさんはまいあさうんどうをします",
+      "pronunciation": "Sumisu-san wa maiasa undō o shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "smith-reads-newspaper",
+      "english": "Smith-san is reading the newspaper.",
+      "category": "Everyday Objects",
+      "target": "スミスさんはしんぶんをよんでいます",
+      "pronunciation": "Sumisu-san wa shinbun o yonde imasu"
+    },
+    {
+      "id": "dialogue-dry-cleaning-ready-wednesday-evening",
+      "english": "It will be ready Wednesday evening.",
+      "category": "Shopping",
+      "target": "すいようびのゆうがたできます",
+      "pronunciation": "suiyōbi no yūgata dekimasu",
+      "scene": "A customer at the dry cleaners asks when their order will be ready."
+    },
+    {
+      "id": "souji-shimasu-clean-1",
+      "english": "Smith-san cleans.",
+      "category": "Home & Household",
+      "target": "スミスさんはそうじをします",
+      "pronunciation": "sumisu san wa sō ji o shi masu.",
+      "uncertain": true,
+      "aiSuggested": true,
+      "note": "The chapter's own conjugation drill (EXERCISES I) prints this exact ます-form line.",
+      "reviewNote": "Possibly already taught — Just attaches スミスさんは to chapter-23's existing そうじをします predicate; basic topic-marking adds no new grammar or vocabulary over the chapter-23 card.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: Just attaches スミスさんは to chapter-23's existing そうじをします predicate; basic topic-marking adds no new grammar or vocabulary over the chapter-23 card."
+    },
+    {
+      "id": "what-is-green-doing",
+      "english": "What is Green-san doing now?",
+      "category": "Other",
+      "target": "グリーンさんはいまなにをしていますか",
+      "pronunciation": "Gurīn-san wa ima nani o shite imasu ka"
+    },
+    {
+      "id": "ks-green-tempura-not-sushi",
+      "english": "Green-san likes tempura, but he does not like sushi.",
+      "category": "Food",
+      "target": "グリーンさんはてんぷらはすきですが、おすしはすきじゃありません",
+      "pronunciation": "Gurīn-san wa tenpura wa suki desu ga, osushi wa suki ja arimasen"
+    },
+    {
+      "id": "explaining-project-not-materials",
+      "english": "No, he is explaining the project.",
+      "category": "Work & Occupations",
+      "target": "いいえ、プロジェクトのせつめいをしています",
+      "pronunciation": "iie, purojekuto no setsumei o shite imasu",
+      "scene": "asked whether Kato-san is making the meeting materials right now"
+    },
+    {
+      "id": "ks-smith-learning-japanese",
+      "english": "Smith-san is taking Japanese lessons.",
+      "category": "School & Education",
+      "target": "スミスさんはにほんごをならっています",
+      "pronunciation": "Sumisu-san wa nihongo o naratte imasu"
+    },
+    {
+      "id": "cleaning-finished-q",
+      "english": "Have you finished cleaning already?",
+      "category": "Home & Household",
+      "target": "そうじはもうおわりましたか",
+      "pronunciation": "sōji wa mō owarimashita ka"
+    },
+    {
+      "id": "ks-already-read-report",
+      "english": "Have you already read the report?",
+      "category": "Work & Occupations",
+      "target": "もうレポートをよみましたか",
+      "pronunciation": "mō repōto o yomimashita ka"
+    },
+    {
+      "id": "nanika-before-noun-1",
+      "english": "Did you eat something?",
+      "category": "Grammar & Function Words",
+      "target": "なにかたべましたか",
+      "pronunciation": "nanika tabemashita ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "suzuki-french-weekly",
+      "english": "Suzuki-san takes French lessons every week.",
+      "category": "Sports & Hobbies",
+      "target": "すずきさんはまいしゅうフランスごをならっています",
+      "pronunciation": "Suzuki-san wa maishū furansugo o naratte imasu"
+    },
+    {
+      "id": "mousugu-kaigi-hajimemasu",
+      "english": "We'll start the meeting soon.",
+      "category": "Work & Occupations",
+      "target": "もうすぐかいぎをはじめます",
+      "pronunciation": "mōsu gukaigiohajimemasu.",
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "untaught-vocabulary",
+      "excludedReason": "はじめます (begin) is not taught in this book yet; only はじめまして is"
+    },
+    {
+      "id": "owaru-dict-form-1",
+      "english": "Before the meeting ends, I read the report.",
+      "category": "Grammar & Function Words",
+      "target": "かいぎがおわるまえに、レポートをよみます",
+      "pronunciation": "kaigi ga owaru mae ni, repōto o yomimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "grammar-wine-not-beer-contrast",
+      "english": "I drink wine, but I don't drink beer.",
+      "category": "Food",
+      "target": "ワインはのみますが、ビールはのみません",
+      "pronunciation": "wain wa nomimasu ga, bīru wa nomimasen"
+    },
+    {
+      "id": "already-eaten-lunch-a",
+      "english": "Yes, I have eaten.",
+      "category": "Food",
+      "target": "はい、たべました",
+      "pronunciation": "hai, tabemashita",
+      "scene": "asked whether they have already eaten lunch"
+    },
+    {
+      "id": "making-lunch-wait",
+      "english": "I'm making lunch now. Please wait a little longer.",
+      "category": "Food",
+      "target": "いまひるごはんをつくっています。もうすこしまってください",
+      "pronunciation": "ima hirugohan o tsukutte imasu. mō sukoshi matte kudasai",
+      "scene": "said when asked whether lunch is ready"
+    },
+    {
+      "id": "meeting-materials-ready-q",
+      "english": "Are the meeting materials ready yet?",
+      "category": "Work & Occupations",
+      "target": "かいぎのしりょうはもうできましたか",
+      "pronunciation": "kaigi no shiryō wa mō dekimashita ka"
+    },
+    {
+      "id": "jogging-o-shimasu-1",
+      "english": "Smith-san sometimes goes jogging.",
+      "category": "Sports & Hobbies",
+      "target": "スミスさんはときどきジョギングをしています",
+      "pronunciation": "Sumisu-san wa tokidoki jogingu o shite imasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "yoyakushimasu-make-reservation-1",
+      "english": "I made a reservation at the restaurant.",
+      "category": "Travel & Tourism",
+      "target": "レストランをよやくしました",
+      "pronunciation": "resutoran o yoyaku shimashita",
+      "aiSuggested": true
+    },
+    {
+      "id": "owarimasu-finish-2",
+      "english": "What time does work finish?",
+      "category": "Other",
+      "target": "しごとはなんじにおわりますか",
+      "pronunciation": "shigoto wa nanji ni owarimasu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "mousugu-soon-2",
+      "english": "Work will finish soon.",
+      "category": "Grammar & Function Words",
+      "target": "しごとはもうすぐおわります",
+      "pronunciation": "shigoto wa mōsugu owarimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "setsumei-shimasu-explain-1",
+      "english": "Kato-san explains the new product.",
+      "category": "Other",
+      "target": "かとうさんはあたらしいしょうひんのせつめいをします",
+      "pronunciation": "Katō-san wa atarashii shōhin no setsumei o shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "check-noun-1",
+      "english": "Please check over the materials.",
+      "category": "Travel & Tourism",
+      "target": "しりょうのチェックをおねがいします",
+      "pronunciation": "shiryō no chekku o onegai shimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ima-ii-desu-ka-1",
+      "english": "Hello, is now a good time to talk?",
+      "category": "Greetings",
+      "target": "もしもし、いまいいですか",
+      "pronunciation": "moshimoshi, ima ii desu ka.",
+      "uncertain": true,
+      "aiSuggested": true,
+      "reviewNote": "Possibly already taught — いまいいですか is already an identical full-sentence card in chapter-23 with the same gloss; prefixing もしもし adds nothing beyond that existing phrase.",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: いまいいですか is already an identical full-sentence card in chapter-23 with the same gloss; prefixing もしもし adds nothing beyond that existing phrase."
+    },
+    {
+      "id": "emma-explaining-product",
+      "english": "She is explaining the new product to Tanaka-san of Nozomi Department Store right now.",
+      "category": "Work & Occupations",
+      "target": "いまのぞみデパートのたなかさんにあたらしいしょうひんのせつめいをしています",
+      "pronunciation": "ima Nozomi Depāto no Tanaka-san ni atarashii shōhin no setsumei o shite imasu"
+    },
+    {
+      "id": "where-is-emma",
+      "english": "Nakamura-san, where is Emma-san?",
+      "category": "Work & Occupations",
+      "target": "なかむらさん、エマさんはどこですか",
+      "pronunciation": "Nakamura-san, Ema-san wa doko desu ka"
+    },
+    {
+      "id": "cleaning-finished-a",
+      "english": "No, not yet.",
+      "category": "Home & Household",
+      "target": "いいえ、まだです",
+      "pronunciation": "iie, mada desu",
+      "scene": "asked whether the cleaning is already finished"
+    },
+    {
+      "id": "smith-writes-email",
+      "english": "Smith-san is writing an e-mail.",
+      "category": "Technology & Communication",
+      "target": "スミスさんはメールをかいています",
+      "pronunciation": "Sumisu-san wa mēru o kaite imasu"
+    },
+    {
+      "id": "emma-in-meeting-room",
+      "english": "She's in the meeting room on the third floor.",
+      "category": "Work & Occupations",
+      "target": "3がいのかいぎしつです",
+      "pronunciation": "san-gai no kaigishitsu desu",
+      "scene": "asked where Emma-san is",
+      "ttsText": "さんがいのかいぎしつです",
+      "reviewNote": "Checked before review: the book prints ３がい, and after 3 the floor counter voices to がい (さんがい). The number pass had read it as さんかい."
+    }
+  ]
+}

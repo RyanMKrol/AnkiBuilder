@@ -7,7 +7,13 @@ import { withClaim, updateClaim } from "../runClaim.js";
 import { resolveIso639Code } from "../../model/iso639.js";
 import { findUnreadableNumbers, describeUnreadableNumbers } from "../../cards/spokenNumbers.js";
 import { mergeIntoCardsFile } from "../../cards/mergeIntoCardsFile.js";
-import { recordPass, PASS_OK, PASS_FAILED, PASS_SKIPPED } from "../../cards/passLedger.js";
+import {
+  recordPass,
+  failedPasses as ledgerFailures,
+  PASS_OK,
+  PASS_FAILED,
+  PASS_SKIPPED,
+} from "../../cards/passLedger.js";
 import { drillPassExpected } from "../../cards/readiness.js";
 import { readJson, runDirOrderContext } from "./shared.js";
 import { runTranslateInner } from "./translate.js";
@@ -380,6 +386,23 @@ async function runPrepareInner(flags, ctx) {
   }
   stampPasses(paths.cards, passOutcomes);
 
+  // A failure prepare did not cause can still be on the ledger. Translate stamps `romanization`
+  // there and fails open, keeping the library's mis-split romaji, and on Lesson 23's extras unit
+  // that failure sat on the unit while this function signed off with "ready for the corpus review".
+  // Preflight's pass-ledger check would have caught it, but the closing line is what the operator
+  // reads first. `resume` re-runs exactly the recorded failures, so that is the command to give.
+  const owned = new Set(passOutcomes.map((o) => o.name));
+  const earlierFailures = ledgerFailures(readJson(paths.cards).meta)
+    .map(([name]) => name)
+    .filter((name) => !owned.has(name));
+  if (earlierFailures.length > 0) {
+    ctx.log(
+      `prepare: ${runDir} is NOT ready for the corpus review — the pass ledger records ` +
+        `${earlierFailures.join(", ")} as failed. Re-run exactly those with:\n` +
+        `  anki-builder resume --run ${runDir}`,
+    );
+  }
+
   if (failedPasses.length > 0) {
     // Say NOT ready, name what is missing, and give the command that fixes it. The dashboard already
     // withholds Mark reviewed in this state, so the only thing a cheerful closing line changed was
@@ -392,6 +415,7 @@ async function runPrepareInner(flags, ctx) {
     );
     return;
   }
+  if (earlierFailures.length > 0) return;
 
   ctx.log(
     `prepare: ${runDir} is ready for the corpus review — open the dashboard ("npm run serve") and sign it off`,

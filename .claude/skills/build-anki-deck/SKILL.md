@@ -390,8 +390,11 @@ disk, cards with the field set, units in the package build's own line.
 
 **Do not report a lesson to the user until `assemble` has returned.** Its last line is
 `prepare: <runDir> is ready for the corpus review` — that, not `wrote corpus with N item(s)`, is the
-point at which you hand over. If you only need the corpus (rare — a debugging run), pass
-`--no-prepare` and say plainly that the lesson isn't reviewable yet.
+point at which you hand over. If it says `is NOT ready` instead, run the command it names: a
+failure of prepare's own passes gives `prepare --run`, and a failure an earlier stage left on the
+pass ledger (the romanization correction is the usual one) gives `resume --run`. If you only need
+the corpus (rare — a debugging run), pass `--no-prepare` and say plainly that the lesson isn't
+reviewable yet.
 
 If a build stopped partway (a crash, an interrupted session), run **`anki-builder resume --run
 <runDir> --dry`** and then without `--dry`. It reads the pass ledger the build wrote and re-runs

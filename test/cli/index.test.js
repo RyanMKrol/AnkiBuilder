@@ -2161,6 +2161,36 @@ test("prepare: a failed pass makes the closing line say NOT ready, and name it",
   });
 });
 
+test("prepare: a failure already on the ledger also makes the closing line say NOT ready", async () => {
+  // Translate stamps `romanization` on the ledger and fails open. On Lesson 23's extras unit that
+  // failure sat on the unit while prepare signed off with "ready for the corpus review", because the
+  // closing line only counted the passes prepare itself ran.
+  await withTempDir(async (runDir) => {
+    const paths = runPaths(runDir);
+    mkdirSync(runDir, { recursive: true });
+    writeFileSync(paths.corpus, JSON.stringify(baseEpubCorpus()));
+    await runCli(["prepare", "--run", runDir], prepareDeps([]));
+
+    const cards = JSON.parse(readFileSync(paths.cards, "utf-8"));
+    cards.meta.passes = {
+      ...cards.meta.passes,
+      romanization: { status: "failed", reason: "not JSON" },
+    };
+    writeFileSync(paths.cards, JSON.stringify(cards));
+
+    const logged = [];
+    await runCli(["prepare", "--run", runDir], {
+      ...prepareDeps([]),
+      log: (line) => logged.push(line),
+    });
+    const out = logged.join("\n");
+    assert.match(out, /is NOT ready for the corpus review/);
+    assert.match(out, /romanization/, "names the recorded failure");
+    assert.match(out, /anki-builder resume --run/, "gives the command that re-runs it");
+    assert.doesNotMatch(out, /is ready for the corpus review/, "must not also claim it is ready");
+  });
+});
+
 test("prepare: records EVERY pass it owns on the ledger, so a hand-authored unit has one too", async () => {
   // The pass ledger was written only by assemble and translate, so any unit that runs neither — every
   // hand-authored extras unit, half of the live collection — carried no `meta.passes` at all. The

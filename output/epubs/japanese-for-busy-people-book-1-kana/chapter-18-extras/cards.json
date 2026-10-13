@@ -428,11 +428,12 @@
       "ttsText": "ごごいちじからかいぎがあります。かいぎのあと、レポートをかきます",
       "uncertain": true,
       "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
-      "audio": "7c79d7d01e9dab8c.mp3",
-      "audioOriginal": "7c79d7d01e9dab8c.orig.mp3",
-      "audioAuto": "7c79d7d01e9dab8c.mp3",
+      "audioOriginal": "6d9a06c575f05a61-genkanji-b70add02.orig.mp3",
+      "audioAuto": "6d9a06c575f05a61-genkanji-b70add02.mp3",
       "audioMarked": true,
-      "audioTextHash": "7c79d7d01e9dab8c"
+      "audioTextHash": "6d9a06c575f05a61",
+      "audioFilter": "standard",
+      "audio": "6d9a06c575f05a61-genkanji-b70add02.mp3"
     },
     {
       "id": "yoroshii-ima",

@@ -313,11 +313,12 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "98c4b8527c0e6f70.mp3",
-      "audioOriginal": "98c4b8527c0e6f70.orig.mp3",
-      "audioAuto": "98c4b8527c0e6f70.mp3",
+      "audioOriginal": "18504eecf3d9eece-genkanji-5d714a74.orig.mp3",
+      "audioAuto": "18504eecf3d9eece-genkanji-5d714a74.mp3",
       "audioMarked": true,
-      "audioTextHash": "98c4b8527c0e6f70"
+      "audioTextHash": "18504eecf3d9eece",
+      "audioFilter": "standard",
+      "audio": "18504eecf3d9eece-genkanji-5d714a74.mp3"
     },
     {
       "id": "ex12-reizouko-no-naka-ni-mizu-ga-arimasu",

@@ -38,7 +38,8 @@
         "status": "ok"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -623,12 +624,16 @@
       "pronunciation": "benkyō",
       "sourceOrder": 3862,
       "hint": "the noun",
-      "audio": "bf9f787ae1c8e77e.mp3",
+      "audio": "benkyou-study-manual-4d389aaf.mp3",
       "audioOriginal": "bf9f787ae1c8e77e.orig.mp3",
       "audioAuto": "bf9f787ae1c8e77e.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "bf9f787ae1c8e77e"
+      "audioTextHash": "bf9f787ae1c8e77e",
+      "audioManual": "benkyou-study-manual-4d389aaf.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.9344952910958905
+      }
     },
     {
       "id": "shinbun-newspaper",

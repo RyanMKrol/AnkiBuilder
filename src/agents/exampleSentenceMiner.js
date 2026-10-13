@@ -26,6 +26,7 @@ import { renderCardFacesBlock } from "../deck/cardFaces.js";
 import { CATEGORIES } from "../model/categories.js";
 import { teachableVocabulary, findUnteachable, vocabularyForPrompt } from "./extrasVocabulary.js";
 import { runRole } from "./runRole.js";
+import { renderFiguresBlock } from "./figureTranscriptions.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 export const EXAMPLE_SENTENCE_MINER_PROMPT_PATH = resolve(
@@ -47,6 +48,7 @@ export function renderExampleSentenceMinerPrompt({
   baseItems,
   earlierItems = [],
   targetLanguage,
+  figures = [],
 }) {
   const earlier = vocabularyForPrompt(earlierItems);
   return renderPromptTemplate(EXAMPLE_SENTENCE_MINER_PROMPT_PATH, {
@@ -59,6 +61,7 @@ export function renderExampleSentenceMinerPrompt({
       ? ["```json", JSON.stringify(earlier, null, 2), "```"].join("\n")
       : NO_EARLIER,
     SECTIONS_JSON: JSON.stringify(sections, null, 2),
+    FIGURES: renderFiguresBlock(figures),
   });
 }
 
@@ -123,6 +126,9 @@ export function mineExampleSentences({
   baseItems = [],
   earlierItems = [],
   targetLanguage,
+  // The base phase's transcriptions of the chapter's content-bearing pictures
+  // (src/agents/figureTranscriptions.js), for a model sentence whose cue is a picture.
+  figures = [],
   runClaude,
 } = {}) {
   if (!chapterFilePath || !existsSync(chapterFilePath)) {
@@ -136,6 +142,7 @@ export function mineExampleSentences({
     baseItems,
     earlierItems,
     targetLanguage,
+    figures,
   });
   const parsed = JSON.parse(
     extractJsonObjectText(runRole(ROLE_ID, prompt, runClaude ? { runClaude } : {})),

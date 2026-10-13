@@ -151,6 +151,7 @@ const TEMPLATES = {
       "BASE_VOCABULARY",
       "EARLIER_VOCABULARY",
       "SECTIONS_JSON",
+      "FIGURES",
     ],
     outputContract: /"items"[\s\S]*"sections"[\s\S]*"skipped"/,
   },
@@ -162,6 +163,9 @@ const TEMPLATES = {
       "CARD_FACES",
       "BASE_VOCABULARY",
       "EARLIER_VOCABULARY",
+      // The base phase's transcriptions of the chapter's pictures, so a picture-cued drill is
+      // answerable rather than "cued only by illustrations" (Busy People Lesson 23, Exercise VI).
+      "FIGURES",
     ],
     // The envelope: sentences, the frames they came from with offered-vs-kept counts, and the
     // fillers skipped for want of taught vocabulary.
@@ -176,6 +180,7 @@ const TEMPLATES = {
       "BASE_VOCABULARY",
       "EARLIER_VOCABULARY",
       "BLOCKS_JSON",
+      "FIGURES",
     ],
     // The envelope: sentences, a line per block, and the blocks deliberately skipped. Losing
     // `skipped` would make "this drill needed an untaught word" indistinguishable from silence.

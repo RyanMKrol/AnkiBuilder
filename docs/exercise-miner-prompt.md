@@ -18,6 +18,8 @@ worse than no sentence: they cannot study it, and it will sit in the deck lookin
 This is the rule most likely to be broken and the most damaging when it is. If a drill in the chapter
 needs a word that is not in either list, **skip that drill** and say so in `skipped`. Reaching for a
 natural-sounding word the book has not introduced is the specific failure this warning exists for.
+The opposite failure costs as much: a taught word in an inflection the lists show on other words is
+taught, so judge the word, not its exact string (the shared rule on inflections above).
 
 ## The chapter
 
@@ -27,6 +29,20 @@ natural-sounding word the book has not introduced is the specific failure this w
 
 Read it in full. The exercises are usually scattered between the content sections rather than gathered
 at the end.
+
+## Figures the base phase already read
+
+Some drills cue their items with pictures rather than words: a circled picture beside a crossed-out
+one, an illustration next to a numbered blank. To you those are only `<img>` tags. The base phase's
+image specialist opened every picture in this chapter, and what it transcribed from the ones that
+carry content is below, keyed by the `src` the chapter's `<img>` tag uses.
+
+**A picture-cued item is answerable from its transcription.** Match the item's `<img src>` to an
+entry here and build the sentence from what the entry says, in taught vocabulary. An entry may name a
+cue in English (`Sun`, `Sat`): use the taught word for it. Skip a picture-cued item only when its
+picture has no entry here or the entry does not settle the answer, and say which in `skipped`.
+
+{{FIGURES}}
 
 ## Output Format
 

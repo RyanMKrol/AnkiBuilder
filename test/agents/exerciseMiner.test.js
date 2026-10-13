@@ -60,6 +60,19 @@ test("the prompt carries the approved base vocabulary and the blocks to account 
   });
 });
 
+test("the prompt judges a drill's word, not its exact inflected string", () => {
+  withChapter((file) => {
+    const prompt = renderExerciseMinerPrompt({
+      chapterFilePath: file,
+      blocks: BLOCKS,
+      baseItems: BASE,
+      targetLanguage: "ja",
+    });
+    assert.match(prompt, /Judge a word and\s+its inflection separately/);
+    assert.match(prompt, /judge the word, not its exact string/);
+  });
+});
+
 test("items are stamped with the role", () => {
   withChapter((file) => {
     const { items } = mineExercises({

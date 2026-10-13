@@ -41,6 +41,11 @@ for one. Reaching for a fifth line is not.
 after it. A Key Sentence needing an untaught word is skipped and recorded in `skipped`, not rewritten
 into something the chapter did not say.
 
+"Untaught" means the WORD is missing, not its exact form. These lists hold each word in the form it
+was carded in, so a verb carded only as `あいます` is still taught as `あいました` when other verbs in
+the lists show the polite past. Skipping a sentence because its inflected form is not printed
+character for character in a list is the shared rule on inflections above, broken.
+
 ## An answer studied alone needs a scene
 
 Chapters are full of question-and-answer exchanges. An answer card is shuffled and studied months
@@ -53,6 +58,20 @@ the question **without leaking the answer**. And its `english` must be able to p
 ```
 {{CHAPTER_FILE_PATH}}
 ```
+
+## Figures the base phase already read
+
+Some drills cue their items with pictures rather than words: a circled picture beside a crossed-out
+one, an illustration next to a numbered blank. To you those are only `<img>` tags. The base phase's
+image specialist opened every picture in this chapter, and what it transcribed from the ones that
+carry content is below, keyed by the `src` the chapter's `<img>` tag uses.
+
+**A picture-cued item is answerable from its transcription.** Match the item's `<img src>` to an
+entry here and build the sentence from what the entry says, in taught vocabulary. An entry may name a
+cue in English (`Sun`, `Sat`): use the taught word for it. Skip a picture-cued item only when its
+picture has no entry here or the entry does not settle the answer, and say which in `skipped`.
+
+{{FIGURES}}
 
 ## Output Format
 

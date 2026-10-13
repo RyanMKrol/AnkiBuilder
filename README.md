@@ -628,7 +628,8 @@ What is built, newest last:
       effort rather than an inherited one. What that buys, in the order it was needed: three
       specialists find vocabulary independently and are unioned rather than voted on, so a minority
       report survives; every image gets a verdict recorded whatever it is, so "nobody looked" stops
-      reading like "nothing there"; a coverage adversary enumerates the chapter without seeing the
+      reading like "nothing there", and the extras miners are handed those pictures' transcriptions
+      so a drill cued only by pictures is still answerable; a coverage adversary enumerates the chapter without seeing the
       corpus, diffed in code, and a gap author turns what it found into cards rather than into a
       report for a human, along with any form an earlier lesson taught that this chapter's verbs
       lack (`src/cards/carriedForms.js`, checked on finished lessons by the `carried-forms` check); two deduplicators decide which look-alikes are one card, one within the

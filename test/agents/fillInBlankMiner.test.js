@@ -47,6 +47,18 @@ test("the prompt states the cap and the line against the exercise miner", () => 
   });
 });
 
+test("the prompt judges a filler's word, not its exact inflected string", () => {
+  withChapter((file) => {
+    const prompt = renderFillInBlankMinerPrompt({
+      chapterFilePath: file,
+      baseItems: BASE,
+      targetLanguage: "ja",
+    });
+    assert.match(prompt, /Judge a word and\s+its inflection separately/);
+    assert.match(prompt, /judge the word, not its exact string/);
+  });
+});
+
 test("items are stamped with the role and flagged as drills", () => {
   withChapter((file) => {
     const { items } = mineFillInBlanks({

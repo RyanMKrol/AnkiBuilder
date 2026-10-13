@@ -122,6 +122,9 @@ const result = runExtrasPhase({
   // Distinct from `earlierItems` above, which is the vocabulary the miners may USE and leaves out
   // extras sentences. This is prior art for the backward judge and must include them.
   priorItems: loadEarlierUnitItems(collection, extrasDir.split("/").pop()),
+  // Where phase 1 left its image verdicts: the miners are handed the figure transcriptions, so a
+  // drill cued only by pictures is answerable. Missing, the `figures` step is skipped and says so.
+  baseUnitDir: baseDir,
 });
 
 for (const step of result.run.steps) {

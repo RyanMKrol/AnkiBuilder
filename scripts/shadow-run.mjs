@@ -198,6 +198,8 @@ if (withExtras || reuseFrom) {
       priorItems: loadEarlierUnitItems(BOOK, `${unitName}-extras`),
       targetLanguage,
       meta: { hints: loadBookHints(meta.epubHash) },
+      // Phase 1's own output, so the miners get the figure transcriptions its image step recorded.
+      baseUnitDir: reuseFrom ?? scratchUnit,
     });
   } catch (error) {
     console.error(`phase 2 failed: ${error.message}`);

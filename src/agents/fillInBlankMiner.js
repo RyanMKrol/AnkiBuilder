@@ -23,6 +23,7 @@ import { renderCardFacesBlock } from "../deck/cardFaces.js";
 import { CATEGORIES } from "../model/categories.js";
 import { teachableVocabulary, findUnteachable, vocabularyForPrompt } from "./extrasVocabulary.js";
 import { runRole } from "./runRole.js";
+import { renderFiguresBlock } from "./figureTranscriptions.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 export const FILL_IN_BLANK_MINER_PROMPT_PATH = resolve(
@@ -50,6 +51,7 @@ export function renderFillInBlankMinerPrompt({
   baseItems,
   earlierItems = [],
   targetLanguage,
+  figures = [],
 }) {
   const earlier = vocabularyForPrompt(earlierItems);
   return renderPromptTemplate(FILL_IN_BLANK_MINER_PROMPT_PATH, {
@@ -61,6 +63,7 @@ export function renderFillInBlankMinerPrompt({
     EARLIER_VOCABULARY: earlier.length
       ? ["```json", JSON.stringify(earlier, null, 2), "```"].join("\n")
       : NO_EARLIER,
+    FIGURES: renderFiguresBlock(figures),
   });
 }
 
@@ -110,6 +113,10 @@ export function mineFillInBlanks({
   baseItems = [],
   earlierItems = [],
   targetLanguage,
+  // The base phase's transcriptions of the chapter's content-bearing pictures
+  // (src/agents/figureTranscriptions.js). Busy People Lesson 23's Exercise VI was dropped as "cued
+  // only by illustrations" while the base unit held a transcription of every one of them.
+  figures = [],
   runClaude,
 } = {}) {
   if (!chapterFilePath || !existsSync(chapterFilePath)) {
@@ -120,6 +127,7 @@ export function mineFillInBlanks({
     baseItems,
     earlierItems,
     targetLanguage,
+    figures,
   });
   const parsed = JSON.parse(
     extractJsonObjectText(runRole(ROLE_ID, prompt, runClaude ? { runClaude } : {})),

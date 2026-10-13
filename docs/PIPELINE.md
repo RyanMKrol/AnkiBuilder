@@ -1753,7 +1753,8 @@ that cannot tell them apart will guess:
 ### Phase 2 as one ordered script
 
 `node scripts/build-extras.mjs <baseUnitDir> <extrasUnitDir> --lang <code>` takes an **approved**
-base unit to a reviewable extras corpus. `--dry` prints the nine steps and says five of them spend.
+base unit to a reviewable extras corpus. `--dry` prints the twelve steps and says seven of them
+spend.
 
 It refuses an unreviewed base unit. Phase 2 exists to show approved vocabulary at work, so running it
 earlier means every sentence rests on words a human may still cut, which is how v1's extras units
@@ -1769,6 +1770,18 @@ The order carries three constraints, each asserted by a test:
 - **The inventive author runs last.** Its allowance is a share of what the others produced, and its
   job is to add what is missing; earlier, the allowance would be a guess and it could not avoid
   reinventing what it had not yet seen.
+
+**The miners are handed what phase 1 read off the chapter's pictures.** They read the chapter as
+markup, so a drill cued by pictures (a circled picture beside a crossed-out one) is only an `<img>`
+tag to them. Phase 1's image specialist has already opened those pictures and written a
+transcription for each content-bearing one into the base unit's `image-verdicts.json`. The `figures`
+step (`src/agents/figureTranscriptions.js`) reads it from `baseUnitDir`, keeps the content-bearing
+entries that have a transcription (never the specialist's `note`, which answers the base unit's
+question), writes them to `candidates/figures.json`, and passes them to all three miners keyed by the
+`<img src>` they match. Busy People Lesson 23's fill-in-the-blank miner dropped Exercise VI as "cued
+only by illustrations" while the base unit held a transcription of every one of its pictures. It fails
+open: no verdicts file means the miners run exactly as before, and the step is recorded as `skipped`
+with the reason, which `build-extras` prints among its notes.
 
 It is also given every **earlier lesson's** cards, so the vocabulary rule is judged against what the
 learner has actually met rather than against this chapter alone. That means every earlier base unit,
@@ -2222,6 +2235,9 @@ Two distinctions the vocabulary keeps apart:
 
 An unknown verdict string is refused at write time rather than sorting as not-content-bearing, which
 would quietly reintroduce the failure.
+
+The file is read again in phase 2: the `figures` step hands the content-bearing transcriptions to the
+extras miners, so a drill cued only by pictures is answerable (see "Phase 2 as one ordered script").
 
 ### Dumping a chapter's tables, so a script never decides which are vocabulary
 

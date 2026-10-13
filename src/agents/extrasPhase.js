@@ -14,6 +14,13 @@
 //     and its whole job is to add what is missing. Earlier, its allowance would be a guess and it
 //     could not avoid reinventing what it had not yet seen.
 //
+// THE MINERS ARE ALSO HANDED THE BASE PHASE'S FIGURE TRANSCRIPTIONS (the `figures` step). They read
+// the chapter as markup, so a drill cued by pictures is an `<img>` tag to them, while phase 1's image
+// specialist has already opened and transcribed those pictures into the base unit. Busy People
+// Lesson 23 lost its Exercise VI for want of that hand-off. It fails open: a base unit with no
+// `image-verdicts.json` gives the miners no figures, and the step is recorded as skipped with the
+// reason, so the run report says so rather than the phase quietly running blind.
+//
 // WHAT PHASE 2 IS GIVEN. The APPROVED base corpus, after a human has signed it off, plus earlier
 // lessons. Every role is held to it by `extrasVocabulary`, and the phase reports what each role
 // produced that appears to break it rather than dropping anything.
@@ -32,10 +39,12 @@ import { writeSnapshot } from "./snapshot.js";
 import { deduplicateCorpus, DEDUP_FILE } from "./semanticDeduplicator.js";
 import { deduplicateAgainstEarlier, BACKWARD_FILE } from "./backwardDeduplicator.js";
 import { logDirFor, withRunLogDir } from "./runLog.js";
+import { readFigureTranscriptions } from "./figureTranscriptions.js";
 import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "./runReport.js";
 
 export const EXTRAS_PHASE_STEPS = Object.freeze([
   { id: "blocks", kind: "deterministic", artifact: "candidates/blocks.json" },
+  { id: "figures", kind: "deterministic", artifact: "candidates/figures.json" },
   {
     id: "exercise-miner",
     kind: "agent",
@@ -133,6 +142,10 @@ function runExtrasPhaseInner({
   // it excludes extras units on purpose. This is prior ART for the backward judge, and it must
   // include them: extras content being invisible is the whole blind spot this closes.
   priorItems = [],
+  // The approved base unit this extras unit is built from. Read for one thing only: the image
+  // specialist's `image-verdicts.json`, whose transcriptions the miners are handed. Absent, the phase
+  // runs as it always did and the `figures` step says why it was skipped.
+  baseUnitDir = null,
   agents = {},
   now,
 } = {}) {
@@ -166,8 +179,31 @@ function runExtrasPhaseInner({
     artifact: write(unitDir, "candidates/blocks.json", { blocks, sections }),
   });
 
+  // --- deterministic: what phase 1 already read off the chapter's pictures ---------------------
+  const read = readFigureTranscriptions(baseUnitDir);
+  const figures = read?.figures ?? [];
+  const figuresArtifact = write(unitDir, "candidates/figures.json", {
+    source: read?.source ?? null,
+    figures,
+  });
+  recordStep(run, {
+    step: "figures",
+    // SKIPPED, not OK-with-zero, when there is no file: "the chapter's pictures were all decorative"
+    // and "nobody could tell the miners what the pictures said" are different answers, and only the
+    // second is worth a reader's attention.
+    status: read ? STEP_STATUS.OK : STEP_STATUS.SKIPPED,
+    reason: read
+      ? null
+      : `no image-verdicts.json in the base unit${baseUnitDir ? ` (${baseUnitDir})` : ""}; ` +
+        `the miners read the chapter without figure transcriptions, so a picture-cued drill ` +
+        `may be skipped`,
+    counts: { out: figures.length },
+    artifact: figuresArtifact,
+  });
+  const mining = { ...shared, figures };
+
   // --- the three miners: what the book prints and implies -------------------------------------
-  const exercises = pass(() => impl.mineExercises({ chapterFilePath, blocks, ...shared }));
+  const exercises = pass(() => impl.mineExercises({ chapterFilePath, blocks, ...mining }));
   unteachable.push(...exercises.value.unteachable);
   recordStep(run, {
     step: "exercise-miner",
@@ -183,7 +219,7 @@ function runExtrasPhaseInner({
     artifact: write(unitDir, "candidates/exercises.json", exercises.value),
   });
 
-  const drills = pass(() => impl.mineFillInBlanks({ chapterFilePath, ...shared }));
+  const drills = pass(() => impl.mineFillInBlanks({ chapterFilePath, ...mining }));
   unteachable.push(...drills.value.unteachable);
   recordStep(run, {
     step: "fill-in-blank-miner",
@@ -194,7 +230,7 @@ function runExtrasPhaseInner({
     artifact: write(unitDir, "candidates/fill-in-blank.json", drills.value),
   });
 
-  const examples = pass(() => impl.mineExampleSentences({ chapterFilePath, sections, ...shared }));
+  const examples = pass(() => impl.mineExampleSentences({ chapterFilePath, sections, ...mining }));
   unteachable.push(...examples.value.unteachable);
   recordStep(run, {
     step: "example-sentence-miner",

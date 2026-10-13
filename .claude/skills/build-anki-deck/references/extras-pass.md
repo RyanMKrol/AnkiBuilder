@@ -175,6 +175,12 @@ The images are already on disk in the book's cache, written next to the cached c
 chapter was extracted — there is nothing to unzip. The script prints each one's path and quotes the
 book's `conventions.md` where it names the file.
 
+On a phase-built chapter, `build-extras` does part of this for you: its `figures` step hands the
+three miners every transcription phase 1's image specialist wrote into the base unit's
+`image-verdicts.json`, so a drill cued by pictures (a circled picture beside a crossed-out one) is
+answerable. If its notes say `figures: skipped`, the base unit had no verdicts file and the miners
+read the pictures blind, so check every picture-cued drill yourself.
+
 Then **read the files that matter** (the Read tool renders images) and transcribe what they teach into
 the Wave 2 brief. Two cheap signals that an image is load-bearing rather than decorative: it sits
 directly under an exercise or grammar heading whose text then runs out (a heading followed by nothing

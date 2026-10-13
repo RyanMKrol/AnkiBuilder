@@ -944,6 +944,7 @@ decoration.
 | Step | Who | Bound |
 | --- | --- | --- |
 | blocks | script | the chapter's numbered blocks, dumped |
+| figures | script | the base unit's picture transcriptions (`image-verdicts.json`), handed to the three miners so a picture-cued drill is answerable. `figures: skipped` in the notes means the base unit had none and the miners read the pictures blind: check the picture-cued drills by hand at gate 2 |
 | exercise miner | agent | **unbounded**: complete sentences from drills and worked examples |
 | fill-in-the-blank miner | agent | resolved drill sentences, no blank left; at most three per frame |
 | example-sentence miner | agent | **unbounded**: Key Sentences, model sentences, dialogue lines |

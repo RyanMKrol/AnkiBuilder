@@ -645,7 +645,8 @@
       "audioOriginal": "c69ababbb02d2b53.orig.mp3",
       "audioAuto": "c69ababbb02d2b53.mp3",
       "audioMarked": true,
-      "audioTextHash": "c69ababbb02d2b53"
+      "audioTextHash": "c69ababbb02d2b53",
+      "additionDone": true
     }
   ]
 }

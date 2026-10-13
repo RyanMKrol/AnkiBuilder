@@ -1271,7 +1271,8 @@
       "audioOriginal": "011fdb91190c4318.orig.mp3",
       "audioAuto": "011fdb91190c4318.mp3",
       "audioMarked": true,
-      "audioTextHash": "011fdb91190c4318"
+      "audioTextHash": "011fdb91190c4318",
+      "additionDone": true
     },
     {
       "id": "r-c1f5acd9d1eb",
@@ -1289,7 +1290,8 @@
       "audioOriginal": "4ae30f19e4525818.orig.mp3",
       "audioAuto": "4ae30f19e4525818.mp3",
       "audioMarked": true,
-      "audioTextHash": "4ae30f19e4525818"
+      "audioTextHash": "4ae30f19e4525818",
+      "additionDone": true
     },
     {
       "id": "r-79603fee4063",
@@ -1307,7 +1309,8 @@
       "audioOriginal": "07c5dfd8a4755306.orig.mp3",
       "audioAuto": "07c5dfd8a4755306.mp3",
       "audioMarked": true,
-      "audioTextHash": "07c5dfd8a4755306"
+      "audioTextHash": "07c5dfd8a4755306",
+      "additionDone": true
     },
     {
       "id": "r-fb2046cced43",
@@ -1325,7 +1328,8 @@
       "audioOriginal": "ddafdf60d3b63bb2.orig.mp3",
       "audioAuto": "ddafdf60d3b63bb2.mp3",
       "audioMarked": true,
-      "audioTextHash": "ddafdf60d3b63bb2"
+      "audioTextHash": "ddafdf60d3b63bb2",
+      "additionDone": true
     },
     {
       "id": "r-545381a68ba6",
@@ -1343,7 +1347,8 @@
       "audioOriginal": "7bbe95586546790e.orig.mp3",
       "audioAuto": "7bbe95586546790e.mp3",
       "audioMarked": true,
-      "audioTextHash": "7bbe95586546790e"
+      "audioTextHash": "7bbe95586546790e",
+      "additionDone": true
     },
     {
       "id": "r-f84bbc7925a0",
@@ -1361,7 +1366,8 @@
       "audioOriginal": "bfdda95098ed1121.orig.mp3",
       "audioAuto": "bfdda95098ed1121.mp3",
       "audioMarked": true,
-      "audioTextHash": "bfdda95098ed1121"
+      "audioTextHash": "bfdda95098ed1121",
+      "additionDone": true
     },
     {
       "id": "r-b5c29eb379c0",
@@ -1379,7 +1385,8 @@
       "audioOriginal": "833d9be2124bcfaf.orig.mp3",
       "audioAuto": "833d9be2124bcfaf.mp3",
       "audioMarked": true,
-      "audioTextHash": "833d9be2124bcfaf"
+      "audioTextHash": "833d9be2124bcfaf",
+      "additionDone": true
     },
     {
       "id": "r-bbf0ab71a872",
@@ -1397,7 +1404,8 @@
       "audioOriginal": "848216e1221c4d68.orig.mp3",
       "audioAuto": "848216e1221c4d68.mp3",
       "audioMarked": true,
-      "audioTextHash": "848216e1221c4d68"
+      "audioTextHash": "848216e1221c4d68",
+      "additionDone": true
     }
   ]
 }

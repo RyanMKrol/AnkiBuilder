@@ -462,7 +462,8 @@
       "audioOriginal": "486c192080ec1419.orig.mp3",
       "audioAuto": "486c192080ec1419.mp3",
       "audioMarked": true,
-      "audioTextHash": "486c192080ec1419"
+      "audioTextHash": "486c192080ec1419",
+      "additionDone": true
     }
   ]
 }

@@ -582,11 +582,6 @@
       "sourceOrder": 48,
       "pronunciation": "se ga takai",
       "ttsKanji": "背が高い",
-      "audio": "a9827ac58651a910.mp3",
-      "audioOriginal": "a9827ac58651a910.orig.mp3",
-      "audioAuto": "a9827ac58651a910.mp3",
-      "audioMarked": true,
-      "audioTextHash": "a9827ac58651a910",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 背, 高い."
@@ -980,11 +975,6 @@
       "sourceOrder": 74,
       "pronunciation": "shitte imasu",
       "ttsKanji": "知っています",
-      "audio": "2cdf71ef99d27afb.mp3",
-      "audioOriginal": "2cdf71ef99d27afb.orig.mp3",
-      "audioAuto": "2cdf71ef99d27afb.mp3",
-      "audioMarked": true,
-      "audioTextHash": "2cdf71ef99d27afb",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 知る."
@@ -1058,11 +1048,6 @@
       "sourceOrder": 79,
       "pronunciation": "atama ga ii",
       "ttsKanji": "頭がいい",
-      "audio": "570bbe95258fbfab.mp3",
-      "audioOriginal": "570bbe95258fbfab.orig.mp3",
-      "audioAuto": "570bbe95258fbfab.mp3",
-      "audioMarked": true,
-      "audioTextHash": "570bbe95258fbfab",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 頭, いい."
@@ -1121,11 +1106,6 @@
       "sourceOrder": 83,
       "pronunciation": "futotte imasu",
       "ttsKanji": "太っています",
-      "audio": "ce1f448cac13bf78.mp3",
-      "audioOriginal": "ce1f448cac13bf78.orig.mp3",
-      "audioAuto": "ce1f448cac13bf78.mp3",
-      "audioMarked": true,
-      "audioTextHash": "ce1f448cac13bf78",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 太る."
@@ -1354,11 +1334,6 @@
       "sourceOrder": 98,
       "pronunciation": "se ga hikui",
       "ttsKanji": "背が低い",
-      "audio": "926ffaf4f5cbc001.mp3",
-      "audioOriginal": "926ffaf4f5cbc001.orig.mp3",
-      "audioAuto": "926ffaf4f5cbc001.mp3",
-      "audioMarked": true,
-      "audioTextHash": "926ffaf4f5cbc001",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 背, 低い."
@@ -1447,11 +1422,6 @@
       "sourceOrder": 104,
       "pronunciation": "shirimasen",
       "ttsKanji": "知りません",
-      "audio": "8491bdacf0e5ef7f.mp3",
-      "audioOriginal": "8491bdacf0e5ef7f.orig.mp3",
-      "audioAuto": "8491bdacf0e5ef7f.mp3",
-      "audioMarked": true,
-      "audioTextHash": "8491bdacf0e5ef7f",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 知る."
@@ -1466,7 +1436,13 @@
       "pronunciation": "hikui",
       "ttsKanji": "低い",
       "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
-      "addition": "genki-reading-words-only-2026-10"
+      "addition": "genki-reading-words-only-2026-10",
+      "additionReviewed": true,
+      "audio": "20039fc04aec68e0.mp3",
+      "audioOriginal": "20039fc04aec68e0.orig.mp3",
+      "audioAuto": "20039fc04aec68e0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "20039fc04aec68e0"
     }
   ]
 }

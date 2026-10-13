@@ -379,11 +379,6 @@
       "sourceOrder": 27,
       "pronunciation": "hata o oru",
       "ttsKanji": "はたを織る",
-      "audio": "3f4ba7b3d6b98f88.mp3",
-      "audioOriginal": "3f4ba7b3d6b98f88.orig.mp3",
-      "audioAuto": "3f4ba7b3d6b98f88.mp3",
-      "audioMarked": true,
-      "audioTextHash": "3f4ba7b3d6b98f88",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: はた, 織る."
@@ -758,7 +753,13 @@
       "pronunciation": "oru",
       "ttsKanji": "織る",
       "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
-      "addition": "genki-reading-words-only-2026-10"
+      "addition": "genki-reading-words-only-2026-10",
+      "additionReviewed": true,
+      "audio": "3e40c0af76af687c.mp3",
+      "audioOriginal": "3e40c0af76af687c.orig.mp3",
+      "audioAuto": "3e40c0af76af687c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3e40c0af76af687c"
     }
   ]
 }

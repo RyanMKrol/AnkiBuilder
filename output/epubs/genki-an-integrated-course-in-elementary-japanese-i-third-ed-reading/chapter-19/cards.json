@@ -520,11 +520,6 @@
       "sourceOrder": 33,
       "pronunciation": "isshō ni ichido",
       "ttsKanji": "一生に一度",
-      "audio": "487dacc788f89367.mp3",
-      "audioOriginal": "487dacc788f89367.orig.mp3",
-      "audioAuto": "487dacc788f89367.mp3",
-      "audioMarked": true,
-      "audioTextHash": "487dacc788f89367",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 一生, 一度."
@@ -644,7 +639,13 @@
       "pronunciation": "isshō",
       "ttsKanji": "一生",
       "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
-      "addition": "genki-reading-words-only-2026-10"
+      "addition": "genki-reading-words-only-2026-10",
+      "additionReviewed": true,
+      "audio": "c69ababbb02d2b53.mp3",
+      "audioOriginal": "c69ababbb02d2b53.orig.mp3",
+      "audioAuto": "c69ababbb02d2b53.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c69ababbb02d2b53"
     }
   ]
 }

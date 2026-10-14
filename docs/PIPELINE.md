@@ -1997,6 +1997,9 @@ raw material.
 Two sources are computed, one is supplied:
 
 - **`neverUsed`**: `findTaughtNeverUsed` reports a word the lesson teaches and then uses in nothing longer.
+  Every card counts as a place a word gets used, but only a **base** card can be reported (`gapIds`).
+  Without that, a miner's own two-word reply was shorter than the lesson's median, contained in
+  nothing, and came back as an unused word: Lesson 24 handed the gap author ten of them.
 - **`underExampled`**: function words with fewer than three sentences showing them at work.
   Counting is the honest test: `の` once had ten examples in this deck and all ten were the same
   `[company]の[person]` shape, so presence was never the question.

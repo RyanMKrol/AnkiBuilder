@@ -948,7 +948,7 @@ decoration.
 | exercise miner | agent | **unbounded**: complete sentences from drills and worked examples |
 | fill-in-the-blank miner | agent | resolved drill sentences, no blank left; at most three per frame |
 | example-sentence miner | agent | **unbounded**: Key Sentences, model sentences, dialogue lines |
-| gaps | script | `taughtNeverUsed`, the paradigm grid, particle example counts |
+| gaps | script | `taughtNeverUsed` over the base unit's cards (a miner's sentence is a use, never a gap), the paradigm grid, particle example counts |
 | gap author | agent | driven by that gap list |
 | **inventive author** | agent | sentences NOT in the book, capped at **+20% of what the miners produced** |
 | semantic deduplicator | agent, higher model | runs last, on the finished set: which of these are the same sentence |

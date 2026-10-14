@@ -23,6 +23,15 @@ The learner has met the word as a bare gloss and has never seen it in anything l
 sentence putting it to work in an ordinary context. Not a definition, not a sentence about the word,
 a sentence that uses it.
 
+**If the chapter already prints a sentence using the word, that is your sentence.** Look through the
+dialogue, the practice conversations and the notes before writing anything. A line the book wrote,
+in taught vocabulary, beats any variant you could invent. _Lesson 24 got "My dream is to open my own
+shop" while the dialogue's own "My dream is to create my own brand" went uncarded._
+
+**A word that is already a complete utterance is not a gap.** A greeting, an encouragement or a set
+reply is used every time it is said, and wrapping it in a name or a filler adds nothing to study.
+Put it in `unfillable` with the reason "complete utterance on its own".
+
 ### `underExampled`: a function word with too few sentences showing it
 
 A learner who meets `が` as "subject particle" can recite the card and cannot use the word. Each of

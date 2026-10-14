@@ -60,6 +60,16 @@ distinct.
 
 **A word and a phrase containing it are distinct**, even when the glosses overlap.
 
+**A short answer is one card, however many questions it answers.** When members share an identical
+target and differ only in which question they reply to (the person or thing asked about), the
+learner produces the same words every time. The scenes differ; the card does not. The same holds
+when the English differs only in something the target language does not mark, such as "him", "her"
+and "it". Keep the member with the most general scene and drop the rest. A shared target is
+`distinct` only when the target MEANS something different in each member, not when each was said in
+a different conversation. _Lesson 24 reached review with いいえ、しりません ("No, I don't know")
+three times, glossed "it", "her" and "him", after this pass judged them distinct for answering about
+three different people._
+
 **When you genuinely cannot tell, return `distinct`.** Keeping a redundant card costs a reviewer one
 line to read. Dropping a real one removes it from the deck, and nobody will notice it is gone.
 

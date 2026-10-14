@@ -20,7 +20,21 @@ the pattern.
 **At most three per frame**, chosen for variety of vocabulary and context rather than the first three
 in the list. Where a frame genuinely only supports one, produce one.
 
-Two exceptions, both learned by getting this wrong:
+**A filler that only swaps a name makes no new card.** When the slot holds a person, a company or
+a place the learner is not studying, every filled sentence is the drill's `e.g.` line with another
+name in it, and the exercise miner has already carded that line. Fill such a frame only where the
+filler is a word the learner IS studying (an address, a phone number, a language) or where the reply
+changes (a different verb in the answer). In a question-and-answer drill that usually means the
+question carrying only a new name is left out, and the answer bringing a new verb is kept, with a
+scene.
+
+**The cap counts across the chapter, not per block.** One frame often runs through several
+exercises in a row (asking whether someone knows a person, in three blocks). Three per frame means
+three for the chapter, and the `e.g.` lines count toward it. _Lesson 24 reached review with six "Do
+you know [name]?" questions and four "What is [name]'s hobby?" questions, every one a name swap,
+because each block's two fillers were under the cap on their own._
+
+Two exceptions to the cap, both learned by getting this wrong:
 
 - **Never sample away an irregular.** If the fillers include a form the chapter marks as irregular or
   exceptional, it is kept whatever the cap says. Sampling is for cells a learner can derive, and an
@@ -70,7 +84,7 @@ Respond with ONLY a single JSON object, no markdown fences and no prose around i
       "english": "Its translation, in natural sentence-case English.",
       "category": "one of the categories below",
       "fromFrame": "これは〜です",
-      "scene": "optional; the situation, when the sentence is a reply that needs one"
+      "scene": "required for an answer card: the question it replies to, without the answer in it"
     }
   ],
   "frames": [

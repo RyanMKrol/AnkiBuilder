@@ -1,0 +1,792 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 51,
+    "chapterLabel": "Lesson 24: Work and Interests: I Work for an Apparel Maker (Extras)",
+    "baseChapterLabel": "Lesson 24: Work and Interests: I Work for an Apparel Maker",
+    "phase": "extras",
+    "passes": {
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2's own miners produced this unit's sentences"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "ex7b-chan-email-a",
+      "english": "No, I don't know it.",
+      "category": "Other",
+      "target": "いいえ、しりません",
+      "pronunciation": "īe, shirimasen",
+      "scene": "replying that you don't know the thing just asked about"
+    },
+    {
+      "id": "ex7a-a-know-sasaki-yes",
+      "english": "Yes, I know her.",
+      "category": "Family & People",
+      "target": "はい、しっています",
+      "pronunciation": "hai, shitte imasu",
+      "scene": "Answering whether you know Sasaki-san."
+    },
+    {
+      "id": "address-vs-phone-known",
+      "english": "I don't know the address, but I know the phone number.",
+      "category": "Technology & Communication",
+      "target": "じゅうしょはしりませんが、でんわばんごうはしっています",
+      "pronunciation": "jūsho wa shirimasen ga, denwa bangō wa shitte imasu",
+      "aiSuggested": true,
+      "note": "Each half replaces object-marking を with は, the same contrast pattern as \"I snowboard, but I don't ski\" (スノーボードは しますが, sunōbōdo wa shimasu ga — Lesson 23): じゅうしょ (jūsho) and でんわばんごう (denwa bangō) are both objects of しります/しっています (shirimasu/shitte imasu), not topics with an added particle."
+    },
+    {
+      "id": "ex3-q-suzuki-where-live",
+      "english": "Where does Suzuki-san live?",
+      "category": "Home & Household",
+      "target": "すずきさんはどこにすんでいますか",
+      "pronunciation": "suzuki-san wa doko ni sunde imasu ka"
+    },
+    {
+      "id": "ex6-nakamura-sister-residence",
+      "english": "Nakamura-san's younger sister lives in Sapporo.",
+      "category": "Home & Household",
+      "target": "なかむらさんのいもうとさんはさっぽろにすんでいます",
+      "pronunciation": "nakamura-san no imōto-san wa sapporo ni sunde imasu"
+    },
+    {
+      "id": "ex6-chan-sister-employer",
+      "english": "Chan-san's older sister works at a department store.",
+      "category": "Work & Occupations",
+      "target": "チャンさんのおねえさんはデパートにつとめています",
+      "pronunciation": "chan-san no onēsan wa depāto ni tsutomete imasu"
+    },
+    {
+      "id": "brand-object-known",
+      "english": "Do you know that brand?",
+      "category": "Shopping",
+      "target": "そのブランドをしっていますか",
+      "pronunciation": "sono burando o shitte imasu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex8b1-wang-email-q",
+      "english": "Then, do you know Wang-san's e-mail address?",
+      "category": "Other",
+      "target": "じゃ、ワンさんのメールアドレスをしっていますか",
+      "pronunciation": "ja, wan-san no mēruadoresu o shitte imasu ka"
+    },
+    {
+      "id": "ex7a-brown-q",
+      "english": "Do you know Brown-san?",
+      "category": "Other",
+      "target": "ブラウンさんをしっていますか",
+      "pronunciation": "buraun-san o shitte imasu ka"
+    },
+    {
+      "id": "ex10-eg-a-smith-french-yes",
+      "english": "Yes, I understand it.",
+      "category": "School & Education",
+      "target": "はい、わかります",
+      "pronunciation": "hai, wakarimasu",
+      "scene": "Answering whether you understand French."
+    },
+    {
+      "id": "ex2-green-shibuya",
+      "english": "Green-san lives in Shibuya.",
+      "category": "Home & Household",
+      "target": "グリーンさんはしぶやにすんでいます",
+      "pronunciation": "gurīn-san wa shibuya ni sunde imasu"
+    },
+    {
+      "id": "sundeimasen-sentence",
+      "english": "White-san doesn't live in Tokyo. He lives in Osaka.",
+      "category": "Home & Household",
+      "target": "ホワイトさんはとうきょうにすんでいません。おおさかにすんでいます",
+      "pronunciation": "howaito-san wa tōkyō ni sunde imasen. ōsaka ni sunde imasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex4-yamada-bank",
+      "english": "Yamada-san works for a bank.",
+      "category": "Work & Occupations",
+      "target": "やまださんはぎんこうにつとめています",
+      "pronunciation": "yamada-san wa ginkō ni tsutomete imasu"
+    },
+    {
+      "id": "ex5-white-a",
+      "english": "I work for JBP Japan.",
+      "category": "Work & Occupations",
+      "target": "JBPジャパンにつとめています",
+      "pronunciation": "JBP Japan ni tsutomete imasu",
+      "scene": "answering someone who just asked where you work"
+    },
+    {
+      "id": "ex8a-ando-engineer-jbp",
+      "english": "I'm an engineer. I work for JBP Japan.",
+      "category": "Work & Occupations",
+      "target": "エンジニアです。JBPジャパンにつとめています",
+      "pronunciation": "enjinia desu. JBP Japan ni tsutomete imasu",
+      "scene": "Replying to someone who just asked about your work."
+    },
+    {
+      "id": "ex6-ando-works-jbp-japan",
+      "english": "Ando-san works for JBP Japan.",
+      "category": "Work & Occupations",
+      "target": "あんどうさんはJBPジャパンにつとめています",
+      "pronunciation": "andō-san wa JBP Japan ni tsutomete imasu"
+    },
+    {
+      "id": "hobby-travel-suru-koto",
+      "english": "My hobby is traveling.",
+      "category": "Sports & Hobbies",
+      "target": "わたしのしゅみはりょこうをすることです",
+      "pronunciation": "watashi no shumi wa ryokō o suru koto desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex8a2-job-q",
+      "english": "Kobayashi-san, what do you do for work?",
+      "category": "Work & Occupations",
+      "target": "こばやしさん、おしごとは?",
+      "pronunciation": "kobayashi-san, oshigoto wa"
+    },
+    {
+      "id": "ex5-suzuki-brother-a",
+      "english": "He works for a travel agency.",
+      "category": "Work & Occupations",
+      "target": "りょこうがいしゃにつとめています",
+      "pronunciation": "ryokōgaisha ni tsutomete imasu",
+      "scene": "answering someone who just asked where this person works"
+    },
+    {
+      "id": "ex9-french",
+      "english": "Smith-san understands French.",
+      "category": "Other",
+      "target": "スミスさんはフランスごがわかります",
+      "pronunciation": "sumisu-san wa furansugo ga wakarimasu"
+    },
+    {
+      "id": "ex5-suzuki-brother-q",
+      "english": "Where does Suzuki-san's older brother work?",
+      "category": "Work & Occupations",
+      "target": "すずきさんのおにいさんはどこにつとめていますか",
+      "pronunciation": "suzuki-san no oniisan wa doko ni tsutomete imasu ka"
+    },
+    {
+      "id": "shinagawa-bank-exists",
+      "english": "There is a bank in Shinagawa.",
+      "category": "Other",
+      "target": "しながわにぎんこうがあります",
+      "pronunciation": "shinagawa ni ginkō ga arimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex10-2-q-sasaki-chinese",
+      "english": "Does Sasaki-san understand Chinese?",
+      "category": "School & Education",
+      "target": "ささきさんはちゅうごくごがわかりますか",
+      "pronunciation": "sasaki-san wa chūgokugo ga wakarimasu ka",
+      "note": "Answer cued by the chapter's picture: Sasaki-san ○ Chinese ×Korean."
+    },
+    {
+      "id": "ex4-smith-abcfoods",
+      "english": "Smith-san works for ABC Foods.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはABCフーズにつとめています",
+      "pronunciation": "sumisu-san wa ABC Fūzu ni tsutomete imasu"
+    },
+    {
+      "id": "apparel-maker-job",
+      "english": "Lisa-san works for an apparel maker.",
+      "category": "Work & Occupations",
+      "target": "リサさんはアパレルメーカーにつとめています",
+      "pronunciation": "risa-san wa aparerumēkā ni tsutomete imasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex11-q-smiths-hobby",
+      "english": "What is Smith-san's hobby?",
+      "category": "Sports & Hobbies",
+      "target": "スミスさんのしゅみはなんですか",
+      "pronunciation": "sumisu-san no shumi wa nan desu ka"
+    },
+    {
+      "id": "ex9-kanji",
+      "english": "Smith-san understands kanji.",
+      "category": "Other",
+      "target": "スミスさんはかんじがわかります",
+      "pronunciation": "sumisu-san wa kanji ga wakarimasu"
+    },
+    {
+      "id": "nationality-vs-language-a",
+      "english": "No, he's not Chinese, but he understands Chinese.",
+      "category": "Nationalities & Countries",
+      "target": "いいえ、ちゅうごくじんじゃありませんが、ちゅうごくごがわかります",
+      "pronunciation": "īe, chūgokujin ja arimasen ga, chūgokugo ga wakarimasu",
+      "aiSuggested": true,
+      "note": "Second half of the pair with nationality-vs-language-q."
+    },
+    {
+      "id": "ex7a-tanaka-address-q",
+      "english": "Do you know Tanaka-san's address?",
+      "category": "Other",
+      "target": "たなかさんのじゅうしょをしっていますか",
+      "pronunciation": "tanaka-san no jūsho o shitte imasu ka"
+    },
+    {
+      "id": "yone-02",
+      "english": "Tanaka-san works at a bank, right?",
+      "category": "Grammar & Function Words",
+      "target": "たなかさんはぎんこうにつとめていますよね",
+      "pronunciation": "tanaka-san wa ginkō ni tsutomete imasu yo ne",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex11-nakamura-q",
+      "english": "What is Nakamura-san's hobby?",
+      "category": "Sports & Hobbies",
+      "target": "なかむらさんのしゅみはなんですか",
+      "pronunciation": "nakamura-san no shumi wa nan desu ka"
+    },
+    {
+      "id": "ex5-white-q",
+      "english": "Where does White-san work?",
+      "category": "Work & Occupations",
+      "target": "ホワイトさんはどこにつとめていますか",
+      "pronunciation": "howaito-san wa doko ni tsutomete imasu ka"
+    },
+    {
+      "id": "ex11-a-reading-books",
+      "english": "It's reading books.",
+      "category": "Sports & Hobbies",
+      "target": "ほんをよむことです",
+      "pronunciation": "hon o yomu koto desu",
+      "scene": "Answering what Smith-san's hobby is."
+    },
+    {
+      "id": "ex10-eg-q-smith-french",
+      "english": "Does Smith-san understand French?",
+      "category": "School & Education",
+      "target": "スミスさんはフランスごがわかりますか",
+      "pronunciation": "sumisu-san wa furansugo ga wakarimasu ka"
+    },
+    {
+      "id": "ex8b2-ando-mobile-q",
+      "english": "Then, do you know Ando-san's mobile phone number?",
+      "category": "Other",
+      "target": "じゃ、あんどうさんのけいたいのばんごうをしっていますか",
+      "pronunciation": "ja, andō-san no keitai no bangō o shitte imasu ka"
+    },
+    {
+      "id": "ganbarimasu-sentence",
+      "english": "I will do my best.",
+      "category": "Emotions & Feelings",
+      "target": "わたしはがんばります",
+      "pronunciation": "watashi wa ganbarimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "musumesan-sentence",
+      "english": "Tanaka-san's daughter is a designer.",
+      "category": "Family & People",
+      "target": "たなかさんのむすめさんはデザイナーです",
+      "pronunciation": "tanaka-san no musume-san wa dezainā desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex8b-ask-know-ito-jbp",
+      "english": "Do you know Ito-san of JBP Japan?",
+      "category": "Family & People",
+      "target": "JBPジャパンのいとうさんをしっていますか",
+      "pronunciation": "JBP Japan no itō-san o shitte imasu ka"
+    },
+    {
+      "id": "senkou-sentence",
+      "english": "My major is Japanese.",
+      "category": "School & Education",
+      "target": "わたしのせんこうはにほんごです",
+      "pronunciation": "watashi no senkō wa nihongo desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex7b-suzuki-phone-q",
+      "english": "Do you know Suzuki-san's phone number?",
+      "category": "Other",
+      "target": "すずきさんのでんわばんごうをしっていますか",
+      "pronunciation": "suzuki-san no denwa bangō o shitte imasu ka"
+    },
+    {
+      "id": "ex10-eg-q-smith-german-too",
+      "english": "Do you also understand German?",
+      "category": "School & Education",
+      "target": "ドイツごもわかりますか",
+      "pronunciation": "doitsugo mo wakarimasu ka"
+    },
+    {
+      "id": "ex8b-ask-know-ito-phone",
+      "english": "Then, do you know Ito-san's phone number?",
+      "category": "Technology & Communication",
+      "target": "じゃ、いとうさんのでんわばんごうをしっていますか",
+      "pronunciation": "ja, itō-san no denwa bangō o shitte imasu ka"
+    },
+    {
+      "id": "ex11-emma-q",
+      "english": "What is Emma-san's hobby?",
+      "category": "Sports & Hobbies",
+      "target": "エマさんのしゅみはなんですか",
+      "pronunciation": "ema-san no shumi wa nan desu ka"
+    },
+    {
+      "id": "yone-03",
+      "english": "Suzuki-san's older brother works at a travel agency, right?",
+      "category": "Grammar & Function Words",
+      "target": "すずきさんのおにいさんはりょこうがいしゃにつとめていますよね",
+      "pronunciation": "suzuki-san no oniisan wa ryokōgaisha ni tsutomete imasu yo ne",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex11-suzuki-a",
+      "english": "It's drawing pictures.",
+      "category": "Sports & Hobbies",
+      "target": "えをかくことです",
+      "pronunciation": "e o kaku koto desu"
+    },
+    {
+      "id": "tsutometeimasen-sentence",
+      "english": "Smith-san no longer works for ABC Foods.",
+      "category": "Work & Occupations",
+      "target": "スミスさんはもうABCフーズにつとめていません",
+      "pronunciation": "sumisu-san wa mō ABC Fūzu ni tsutomete imasen",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex11-suzuki-q",
+      "english": "What is Suzuki-san's hobby?",
+      "category": "Sports & Hobbies",
+      "target": "すずきさんのしゅみはなんですか",
+      "pronunciation": "suzuki-san no shumi wa nan desu ka"
+    },
+    {
+      "id": "nakamura-son-designer",
+      "english": "Nakamura-san's son is a designer.",
+      "category": "Family & People",
+      "target": "なかむらさんのむすこさんはデザイナーです",
+      "pronunciation": "nakamura-san no musuko-san wa dezainā desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex8a1-know-q",
+      "english": "I see. Well then, do you know Yamashita-san of the Osaka branch?",
+      "category": "Other",
+      "target": "そうですか。じゃ、おおさかししゃのやましたさんをしっていますか",
+      "pronunciation": "sō desu ka. ja, ōsaka shisha no yamashita-san o shitte imasu ka"
+    },
+    {
+      "id": "ex11-emma-a",
+      "english": "It's taking photos.",
+      "category": "Sports & Hobbies",
+      "target": "しゃしんをとることです",
+      "pronunciation": "shashin o toru koto desu"
+    },
+    {
+      "id": "ex6-ando-lives-shinagawa",
+      "english": "Ando-san lives in Shinagawa.",
+      "category": "Home & Household",
+      "target": "あんどうさんはしながわにすんでいます",
+      "pronunciation": "andō-san wa shinagawa ni sunde imasu"
+    },
+    {
+      "id": "ex11-nakamura-a",
+      "english": "It's making cakes.",
+      "category": "Sports & Hobbies",
+      "target": "ケーキをつくることです",
+      "pronunciation": "kēki o tsukuru koto desu"
+    },
+    {
+      "id": "ex2-nakamura-shinjuku",
+      "english": "Nakamura-san lives in Shinjuku.",
+      "category": "Home & Household",
+      "target": "なかむらさんはしんじゅくにすんでいます",
+      "pronunciation": "nakamura-san wa shinjuku ni sunde imasu"
+    },
+    {
+      "id": "smith-knows-chan",
+      "english": "Smith-san knows Chan-san.",
+      "category": "Family & People",
+      "target": "スミスさんはチャンさんをしっています",
+      "pronunciation": "sumisu-san wa chan-san o shitte imasu"
+    },
+    {
+      "id": "ex7b-q-know-white",
+      "english": "Do you know White-san?",
+      "category": "Family & People",
+      "target": "ホワイトさんをしっていますか",
+      "pronunciation": "howaito-san o shitte imasu ka"
+    },
+    {
+      "id": "smiths-hobby-is-reading",
+      "english": "Smith-san's hobby is reading.",
+      "category": "Sports & Hobbies",
+      "target": "スミスさんのしゅみはほんをよむことです",
+      "pronunciation": "sumisu-san no shumi wa hon o yomu koto desu"
+    },
+    {
+      "id": "ex5-a-brown-works-london-bank",
+      "english": "He works at the Bank of London.",
+      "category": "Work & Occupations",
+      "target": "ロンドンぎんこうにつとめています",
+      "pronunciation": "rondon ginkō ni tsutomete imasu",
+      "scene": "Answering a question about where Brown-san works."
+    },
+    {
+      "id": "ex8a-ask-know-ito-yokohama",
+      "english": "I see. Then, do you know Ito-san of the Yokohama branch?",
+      "category": "Family & People",
+      "target": "そうですか。じゃ、よこはまししゃのいとうさんをしっていますか",
+      "pronunciation": "sō desu ka. ja, yokohama shisha no itō-san o shitte imasu ka"
+    },
+    {
+      "id": "burando-sentence",
+      "english": "That brand is famous.",
+      "category": "Shopping",
+      "target": "そのブランドはゆうめいです",
+      "pronunciation": "sono burando wa yūmei desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex10-eg-a-smith-german-no",
+      "english": "No, I don't understand it.",
+      "category": "School & Education",
+      "target": "いいえ、わかりません",
+      "pronunciation": "īe, wakarimasen",
+      "scene": "Answering whether you also understand German."
+    },
+    {
+      "id": "no-i-dont-know-chan",
+      "english": "No, I don't know her.",
+      "category": "Family & People",
+      "target": "いいえ、しりません",
+      "pronunciation": "īe, shirimasen",
+      "scene": "Answering someone who just asked whether you know a particular person, when you don't."
+    },
+    {
+      "id": "yone-with-shiru",
+      "english": "You know Ito-san, right?",
+      "category": "Work & Occupations",
+      "target": "いとうさんをしっていますよね",
+      "pronunciation": "itō-san o shitte imasu yo ne",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex8a2-job-a",
+      "english": "I'm a lawyer.",
+      "category": "Work & Occupations",
+      "target": "べんごしです",
+      "pronunciation": "bengoshi desu",
+      "scene": "answering what your job is"
+    },
+    {
+      "id": "ex6-chan-sister-residence",
+      "english": "Chan-san's older sister lives in Hong Kong.",
+      "category": "Home & Household",
+      "target": "チャンさんのおねえさんはホンコンにすんでいます",
+      "pronunciation": "chan-san no onēsan wa honkon ni sunde imasu"
+    },
+    {
+      "id": "ex10-2-q-sasaki-korean-too",
+      "english": "Do you also understand Korean?",
+      "category": "School & Education",
+      "target": "かんこくごもわかりますか",
+      "pronunciation": "kankokugo mo wakarimasu ka"
+    },
+    {
+      "id": "ex9-smith-understands-japanese",
+      "english": "Smith-san understands Japanese.",
+      "category": "School & Education",
+      "target": "スミスさんはにほんごがわかります",
+      "pronunciation": "sumisu-san wa nihongo ga wakarimasu"
+    },
+    {
+      "id": "ex2-yamamoto-lives-kyoto",
+      "english": "Yamamoto-san lives in Kyoto.",
+      "category": "Home & Household",
+      "target": "やまもとさんはきょうとにすんでいます",
+      "pronunciation": "yamamoto-san wa kyōto ni sunde imasu"
+    },
+    {
+      "id": "yone-01",
+      "english": "Lisa-san, you're a designer, right?",
+      "category": "Grammar & Function Words",
+      "target": "リサさんはデザイナーですよね",
+      "pronunciation": "risa-san wa dezainā desu yo ne",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex3-white-q",
+      "english": "Where does White-san live?",
+      "category": "Home & Household",
+      "target": "ホワイトさんはどこにすんでいますか",
+      "pronunciation": "howaito-san wa doko ni sunde imasu ka"
+    },
+    {
+      "id": "ex8b-dont-know-phone",
+      "english": "I'm sorry. I don't know.",
+      "category": "Technology & Communication",
+      "target": "すみません。わかりません",
+      "pronunciation": "sumimasen. wakarimasen",
+      "scene": "Answering that you don't know Ito-san's phone number, after being asked."
+    },
+    {
+      "id": "ex10-1-q-kato-english",
+      "english": "Does Kato-san understand English?",
+      "category": "School & Education",
+      "target": "かとうさんはえいごがわかりますか",
+      "pronunciation": "katō-san wa eigo ga wakarimasu ka",
+      "note": "Answer cued by the chapter's picture: Kato-san ○ English ×Chinese."
+    },
+    {
+      "id": "ex6-nakamura-sister-employer",
+      "english": "Nakamura-san's younger sister works for a bank.",
+      "category": "Work & Occupations",
+      "target": "なかむらさんのいもうとさんはぎんこうにつとめています",
+      "pronunciation": "nakamura-san no imōto-san wa ginkō ni tsutomete imasu"
+    },
+    {
+      "id": "ex3-white-a",
+      "english": "I live in Roppongi.",
+      "category": "Home & Household",
+      "target": "ろっぽんぎにすんでいます",
+      "pronunciation": "roppongi ni sunde imasu",
+      "scene": "answering someone who just asked where you live"
+    },
+    {
+      "id": "ex8a-know-ito-yes",
+      "english": "Yes, I know him.",
+      "category": "Family & People",
+      "target": "はい、しっています",
+      "pronunciation": "hai, shitte imasu",
+      "scene": "Answering whether you know Ito-san of the Yokohama branch."
+    },
+    {
+      "id": "ex8b1-wang-q",
+      "english": "Do you know Wang-san?",
+      "category": "Other",
+      "target": "ワンさんをしっていますか",
+      "pronunciation": "wan-san o shitte imasu ka"
+    },
+    {
+      "id": "ex4-tanaka-works-department-store",
+      "english": "Tanaka-san works at a department store.",
+      "category": "Work & Occupations",
+      "target": "たなかさんはデパートにつとめています",
+      "pronunciation": "tanaka-san wa depāto ni tsutomete imasu"
+    },
+    {
+      "id": "ex7b-chan-email-q",
+      "english": "Do you know Chan-san's e-mail address?",
+      "category": "Other",
+      "target": "チャンさんのメールアドレスをしっていますか",
+      "pronunciation": "chan-san no mēruadoresu o shitte imasu ka"
+    },
+    {
+      "id": "nationality-vs-language-q",
+      "english": "Is Suzuki-san Chinese?",
+      "category": "Nationalities & Countries",
+      "target": "すずきさんはちゅうごくじんですか",
+      "pronunciation": "suzuki-san wa chūgokujin desu ka",
+      "aiSuggested": true,
+      "note": "First half of a contrast pair with nationality-vs-language-a."
+    },
+    {
+      "id": "effort-with-object",
+      "english": "I will do my best at my new job.",
+      "category": "Work & Occupations",
+      "target": "あたらしいしごとをがんばります",
+      "pronunciation": "atarashii shigoto o ganbarimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex3-yamada-q",
+      "english": "Where does Yamada-san live?",
+      "category": "Home & Household",
+      "target": "やまださんはどこにすんでいますか",
+      "pronunciation": "yamada-san wa doko ni sunde imasu ka"
+    },
+    {
+      "id": "smith-lives-in-tokyo",
+      "english": "Smith-san lives in Tokyo.",
+      "category": "Home & Household",
+      "target": "スミスさんはとうきょうにすんでいます",
+      "pronunciation": "sumisu-san wa tōkyō ni sunde imasu"
+    },
+    {
+      "id": "jibun-no-sentence",
+      "english": "Suzuki-san has his own room.",
+      "category": "Descriptions & Qualities",
+      "target": "すずきさんはじぶんのへやがあります",
+      "pronunciation": "suzuki-san wa jibun no heya ga arimasu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex7b-a-know-white-no",
+      "english": "No, I don't know him.",
+      "category": "Family & People",
+      "target": "いいえ、しりません",
+      "pronunciation": "īe, shirimasen",
+      "scene": "Answering whether you know White-san."
+    },
+    {
+      "id": "ex8a-ask-andos-work",
+      "english": "Ando-san, what do you do?",
+      "category": "Work & Occupations",
+      "target": "あんどうさん、おしごとは?",
+      "pronunciation": "andō-san, oshigoto wa",
+      "scene": "Smith is making small talk with someone new at a party.",
+      "note": "おしごとは? (o-shigoto wa?) leaves off ですか (desu ka) — literally \"and your job?\" — は (wa) alone implies the question once the topic is named."
+    },
+    {
+      "id": "ex10-1-q-kato-chinese-too",
+      "english": "Do you also understand Chinese?",
+      "category": "School & Education",
+      "target": "ちゅうごくごもわかりますか",
+      "pronunciation": "chūgokugo mo wakarimasu ka"
+    },
+    {
+      "id": "tsutomemasu-sentence",
+      "english": "Starting next month, I will work for ABC Foods.",
+      "category": "Work & Occupations",
+      "target": "らいげつ、ABCフーズにつとめます",
+      "pronunciation": "raigetsu, ABC Fūzu ni tsutomemasu",
+      "aiSuggested": true,
+      "note": "The plain ます-form, used for a change taking effect from a future point; つとめています describes the ongoing state once it has started."
+    },
+    {
+      "id": "baiotekunorojii-sentence",
+      "english": "Is Raja-san's major biotechnology?",
+      "category": "School & Education",
+      "target": "ラジャさんのせんこうはバイオテクノロジーですか",
+      "pronunciation": "raja-san no senkō wa baiotekunorojī desu ka",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex8a1-job-a",
+      "english": "I'm a company employee.",
+      "category": "Work & Occupations",
+      "target": "かいしゃいんです",
+      "pronunciation": "kaishain desu",
+      "uncertain": true,
+      "scene": "answering what your job is",
+      "reviewNote": "Possibly already taught — Near-identical to chapter-2-extras' はい、かいしゃいんです — same predicate sentence with only はい dropped, no new content."
+    },
+    {
+      "id": "ganbatte-kudasai-sentence",
+      "english": "Lisa-san, I hope it works out.",
+      "category": "Emotions & Feelings",
+      "target": "リサさん、がんばってください",
+      "pronunciation": "risa-san, ganbatte kudasai",
+      "uncertain": true,
+      "aiSuggested": true,
+      "reviewNote": "Possibly already taught — Near-duplicate of the chapter-24 base card がんばってください — only a vocative name (リサさん) is added, no new grammar or content."
+    },
+    {
+      "id": "ex8a2-know-q",
+      "english": "I see. Well then, do you know Wang-san of the Hong Kong branch?",
+      "category": "Other",
+      "target": "そうですか。じゃ、ホンコンししゃのワンさんをしっていますか",
+      "pronunciation": "sō desu ka. ja, honkon shisha no wan-san o shitte imasu ka"
+    },
+    {
+      "id": "ex5-q-brown-where-work",
+      "english": "Where does Brown-san work?",
+      "category": "Work & Occupations",
+      "target": "ブラウンさんはどこにつとめていますか",
+      "pronunciation": "buraun-san wa doko ni tsutomete imasu ka"
+    },
+    {
+      "id": "ex6-green-abcfoods",
+      "english": "Green-san works for ABC Foods.",
+      "category": "Work & Occupations",
+      "target": "グリーンさんはABCフーズにつとめています",
+      "pronunciation": "gurīn-san wa ABC Fūzu ni tsutomete imasu"
+    },
+    {
+      "id": "ex8b2-ando-q",
+      "english": "Do you know Ando-san?",
+      "category": "Other",
+      "target": "あんどうさんをしっていますか",
+      "pronunciation": "andō-san o shitte imasu ka"
+    },
+    {
+      "id": "dezainaa-sentence",
+      "english": "Smith-san's younger sister is a designer.",
+      "category": "Work & Occupations",
+      "target": "スミスさんのいもうとさんはデザイナーです",
+      "pronunciation": "sumisu-san no imōto-san wa dezainā desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "do-you-know-chan",
+      "english": "Do you know Chan-san?",
+      "category": "Family & People",
+      "target": "チャンさんをしっていますか",
+      "pronunciation": "chan-san o shitte imasu ka"
+    },
+    {
+      "id": "ex8a1-job-q",
+      "english": "Kojima-san, what do you do for work?",
+      "category": "Work & Occupations",
+      "target": "こじまさん、おしごとは?",
+      "pronunciation": "kojima-san, oshigoto wa"
+    },
+    {
+      "id": "ex3-a-suzuki-lives-yokohama",
+      "english": "He lives in Yokohama.",
+      "category": "Home & Household",
+      "target": "よこはまにすんでいます",
+      "pronunciation": "yokohama ni sunde imasu",
+      "scene": "Answering a question about where Suzuki-san lives."
+    },
+    {
+      "id": "yume-sentence",
+      "english": "My dream is to open my own shop.",
+      "category": "Emotions & Feelings",
+      "target": "わたしのゆめはじぶんのみせをつくることです",
+      "pronunciation": "watashi no yume wa jibun no mise o tsukuru koto desu",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex7a-q-know-sasaki",
+      "english": "Do you know Sasaki-san?",
+      "category": "Family & People",
+      "target": "ささきさんをしっていますか",
+      "pronunciation": "sasaki-san o shitte imasu ka"
+    },
+    {
+      "id": "ex3-yamada-a",
+      "english": "I live in Shibuya.",
+      "category": "Home & Household",
+      "target": "しぶやにすんでいます",
+      "pronunciation": "shibuya ni sunde imasu",
+      "scene": "answering someone who just asked where you live"
+    }
+  ]
+}

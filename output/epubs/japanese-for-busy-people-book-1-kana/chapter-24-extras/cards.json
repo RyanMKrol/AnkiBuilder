@@ -30,7 +30,8 @@
         "status": "ok"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -294,12 +295,16 @@
       "pronunciation": "īe, chūgokujin ja arimasen ga, chūgokugo ga wakarimasu",
       "aiSuggested": true,
       "note": "Second half of the pair with nationality-vs-language-q.",
-      "audio": "b85dab312f6e6f99.mp3",
+      "audio": "nationality-vs-language-a-manual-2f570711.mp3",
       "audioOriginal": "b85dab312f6e6f99.orig.mp3",
       "audioAuto": "b85dab312f6e6f99.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "b85dab312f6e6f99"
+      "audioTextHash": "b85dab312f6e6f99",
+      "audioManual": "nationality-vs-language-a-manual-2f570711.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 6.223007705479453
+      }
     },
     {
       "id": "ex3-yamada-a",

@@ -1198,9 +1198,14 @@ export function inspectEpubStructure(epubPath, { labelDecoding = 1 } = {}) {
     };
   });
 
-  // A spine file before the FIRST nav entry is addressable by --chapter-number but by no
-  // --lesson selector at all, because every nav range starts at or after that first entry.
-  const firstCovered = nav.ranges.length ? nav.ranges[0].firstChapterNumber : Infinity;
+  // A spine file before the EARLIEST nav range is addressable by --chapter-number but by no
+  // --lesson selector at all. The earliest, not the first: a Calibre conversion of a Kindle book
+  // (Japanese for Busy People Book 2, 4th edition) lists "Cover" first and points it at the LAST
+  // spine file, and taking that entry's start called 64 of 65 files unreachable when every lesson
+  // resolved to its own file.
+  const firstCovered = nav.ranges.length
+    ? Math.min(...nav.ranges.map((range) => range.firstChapterNumber))
+    : Infinity;
   const unreachable = spine
     .filter((file) => file.number < firstCovered)
     .map((file) => ({

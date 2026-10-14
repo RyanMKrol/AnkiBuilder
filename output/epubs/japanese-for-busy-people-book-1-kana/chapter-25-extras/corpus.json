@@ -316,11 +316,11 @@
     },
     {
       "id": "kaban-ookii-casual",
-      "english": "This bag is big.",
+      "english": "This bag is big. (casual)",
       "category": "Descriptions & Qualities",
       "target": "このかばん、おおきい",
       "hint": "casual style",
-      "note": "An い-adjective ends a casual sentence on its own: このかばんはおおきいです loses は and です.",
+      "note": "Casual counterpart of このかばんはおおきいです (Lesson 10): an い-adjective ends a casual sentence on its own, losing は and です.",
       "aiSuggested": true,
       "reviewNote": "Added after the final review: the casual present affirmative (です dropped) had no sentence once the bare base cells were excluded as already taught."
     },

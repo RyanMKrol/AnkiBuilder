@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 40,
+    "chapterLabel": "Casual Style 1",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "casual-yeah",
+      "english": "Yeah (casual 'yes').",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "うん"
+    },
+    {
+      "id": "casual-no",
+      "english": "Nuh-uh (casual 'no').",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "ううん"
+    },
+    {
+      "id": "suffix-kun",
+      "english": "Familiar name suffix, used for boys, men, or juniors.",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "くん"
+    },
+    {
+      "id": "suffix-chan",
+      "english": "Affectionate name suffix for children or close friends.",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "ちゃん"
+    },
+    {
+      "id": "pronoun-boku",
+      "english": "I (casual, used mainly by men).",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "ぼく"
+    },
+    {
+      "id": "pronoun-ore",
+      "english": "I (casual and rougher, used by men).",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "おれ"
+    },
+    {
+      "id": "pronoun-atashi",
+      "english": "I (casual, used by women).",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "あたし"
+    },
+    {
+      "id": "adj-ookii-present-neg",
+      "english": "Is not big.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "おおきくない"
+    },
+    {
+      "id": "adj-ookii-past-aff",
+      "english": "Was big.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "おおきかった"
+    },
+    {
+      "id": "adj-ookii-past-neg",
+      "english": "Was not big.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "おおきくなかった"
+    },
+    {
+      "id": "adj-ii-present-neg",
+      "english": "Is not good.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "よくない"
+    },
+    {
+      "id": "adj-ii-past-aff",
+      "english": "Was good.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "よかった"
+    },
+    {
+      "id": "adj-ii-past-neg",
+      "english": "Was not good.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "よくなかった"
+    },
+    {
+      "id": "casual-negative-copula-janai",
+      "english": "Is not (casual negative copula).",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "じゃない"
+    },
+    {
+      "id": "adj-kirei-present-neg",
+      "english": "Is not pretty / clean.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "きれいじゃない"
+    },
+    {
+      "id": "adj-kirei-past-aff",
+      "english": "Was pretty / clean.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "きれいだった"
+    },
+    {
+      "id": "adj-kirei-past-neg",
+      "english": "Was not pretty / clean.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "きれいじゃなかった"
+    },
+    {
+      "id": "saa",
+      "english": "Well... / I don't know.",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Gate 1: kept. Chapter-2-extras uses さあ only inside a sentence; this is its first card.",
+      "target": "さあ"
+    },
+    {
+      "id": "tte-casual-topic",
+      "english": "Casual contraction of は (topic marker in a casual question).",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Gate 1: kept. The chapter teaches it explicitly (は sometimes becomes って).",
+      "target": "って"
+    },
+    {
+      "id": "dane",
+      "english": "..., isn't it? (casual, seeking agreement)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "だね"
+    },
+    {
+      "id": "dayo",
+      "english": "..., you know. (casual, adding emphasis)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "だよ"
+    },
+    {
+      "id": "sugoku",
+      "english": "Very, extremely.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "すごく"
+    },
+    {
+      "id": "dou-datta",
+      "english": "How was it? (casual)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Gate 1: kept. A different register from Lesson 11's どうでしたか, cued with (casual).",
+      "target": "どうだった"
+    },
+    {
+      "id": "na-adjective-casual-ne-kirei",
+      "english": "It's pretty, isn't it? (な-adjective + だ before casual ね)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "きれいだね"
+    },
+    {
+      "id": "na-adjective-casual-yo-kirei",
+      "english": "It's pretty, you know. (な-adjective + だ before casual よ)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "きれいだよ"
+    }
+  ]
+}

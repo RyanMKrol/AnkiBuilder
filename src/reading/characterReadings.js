@@ -44,7 +44,11 @@ export function completeCharacterCards(items, { scheme, base, record }) {
     const isCharacterCard =
       scheme.isCharacterTarget(item.target) && (!item.ttsText || cards[item.target]);
     if (!isCharacterCard) return item;
-    const readings = source.complete(base.get(item.target) ?? null, item.target);
+    const readings = source.complete(
+      base.get(item.target) ?? null,
+      item.target,
+      cards[item.target]?.readings ?? null,
+    );
     if (!readings) return item;
     const sole = source.soleReading(readings);
     cards[item.target] = { readings, voiced: Boolean(sole) };

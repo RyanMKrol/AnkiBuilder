@@ -67,6 +67,11 @@
         "message": "\"Four\" answers 3 different cards: よん (chapter-26), よ (chapter-26), し (chapter-26)",
         "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
       },
+      "chapter-26/r-812f45bfcf7e+chapter-26/r-ceb4a54e2de4": {
+        "at": "2026-10-14T22:52:28.549Z",
+        "message": "\"Four\" answers 2 different cards: よん (chapter-26), し (chapter-26)",
+        "note": "Two readings of one number (よ was cut, 2026-10-14)"
+      },
       "chapter-26/r-850ea8378a58+chapter-26/r-ac94e112183c": {
         "at": "2026-10-14T22:37:02.900Z",
         "message": "\"Nine\" answers 2 different cards: く (chapter-26), きゅう (chapter-26)",

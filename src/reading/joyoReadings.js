@@ -27,16 +27,28 @@ export function officialReadings(kanji) {
 
 const union = (first = [], then = []) => [...new Set([...first, ...then])];
 
+/** A kanji's special or narrow-use official readings (bracketed in the table), in hiragana. */
+export function narrowReadings(kanji) {
+  return [...(table()[kanji]?.narrow ?? [])];
+}
+
 /**
  * A kanji's readings completed to the official list: `base` (the book's, or a reviewed generated
  * card's) first, then every official reading it lacks. Null when there is neither.
+ *
+ * `previous` is what the card carried before. A narrow-use reading on it is kept, because one only
+ * gets there when a word in the deck uses it (じ for 除 in 掃除, なの for 七 in 七日): the review
+ * prompt asks for it, or the owner added it by hand. Without this a rebuild from the book's table,
+ * which never prints them, would quietly take it off again (2026-10-14).
  */
-export function completeKanjiReadings(base, kanji) {
+export function completeKanjiReadings(base, kanji, previous = null) {
   const official = officialReadings(kanji);
   if (!base && !official) return null;
+  const narrow = narrowReadings(kanji);
+  const kept = (list) => (list ?? []).filter((r) => narrow.includes(r));
   return {
-    on: union(base?.on, official?.on),
-    kun: union(base?.kun, official?.kun),
+    on: union(union(base?.on, official?.on), kept(previous?.on)),
+    kun: union(union(base?.kun, official?.kun), kept(previous?.kun)),
   };
 }
 

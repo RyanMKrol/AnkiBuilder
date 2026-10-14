@@ -68,7 +68,7 @@
     {
       "id": "r-9a0fe9c816a8",
       "target": "返",
-      "english": "Return; answer",
+      "english": "Give back; return (something)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 7
@@ -76,7 +76,7 @@
     {
       "id": "r-5f413d72c0b1",
       "target": "短",
-      "english": "Short",
+      "english": "Short (length)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 8
@@ -292,7 +292,7 @@
     {
       "id": "r-ab440c8ee491",
       "target": "当",
-      "english": "Right; hit",
+      "english": "Hit; correct",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 35
@@ -340,7 +340,7 @@
     {
       "id": "r-8386bb2637b5",
       "target": "育",
-      "english": "Raise",
+      "english": "Bring up (a child); grow",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 41
@@ -380,7 +380,7 @@
     {
       "id": "r-26f3f4e9a1b4",
       "target": "構",
-      "english": "Stance; appearance",
+      "english": "Build; posture",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 46
@@ -661,7 +661,7 @@
     {
       "id": "r-fe8e50ef842a",
       "target": "電話する",
-      "english": "To call",
+      "english": "To make a phone call",
       "category": "Technology & Communication",
       "ttsText": "でんわする",
       "sourceOrder": 77

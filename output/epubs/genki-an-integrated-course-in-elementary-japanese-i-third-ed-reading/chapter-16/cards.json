@@ -16,9 +16,15 @@
       "target": "歳",
       "english": "Age; years old",
       "category": "Other",
-      "pronunciation": "sai / toshi",
+      "pronunciation": "sai",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 0
+      "sourceOrder": 0,
+      "ttsText": "さい",
+      "audio": "60f0cfd5bdebf82a.mp3",
+      "audioOriginal": "60f0cfd5bdebf82a.orig.mp3",
+      "audioAuto": "60f0cfd5bdebf82a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "60f0cfd5bdebf82a"
     },
     {
       "id": "r-0d3bc6b0dd4e",
@@ -244,11 +250,6 @@
       "sourceOrder": 16,
       "pronunciation": "kodomo no toki",
       "ttsKanji": "子どもの時",
-      "audio": "eb24fe147f6e8eaa.mp3",
-      "audioOriginal": "eb24fe147f6e8eaa.orig.mp3",
-      "audioAuto": "eb24fe147f6e8eaa.mp3",
-      "audioMarked": true,
-      "audioTextHash": "eb24fe147f6e8eaa",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 子ども, 時."

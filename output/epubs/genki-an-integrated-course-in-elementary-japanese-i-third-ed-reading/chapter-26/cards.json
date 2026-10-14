@@ -711,11 +711,9 @@
       "category": "Grammar & Function Words",
       "sourceOrder": 54,
       "pronunciation": "o",
-      "audio": "cd887be7dcd6d4bf.mp3",
-      "audioOriginal": "cd887be7dcd6d4bf.orig.mp3",
-      "audioAuto": "cd887be7dcd6d4bf.mp3",
-      "audioMarked": true,
-      "audioTextHash": "cd887be7dcd6d4bf"
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14: particles are grammar, not words to read; the reading deck does not card them."
     },
     {
       "id": "r-30515e1a4a4e",
@@ -1652,11 +1650,9 @@
       "category": "Grammar & Function Words",
       "sourceOrder": 127,
       "pronunciation": "e",
-      "audio": "06fc6fcc29fa512f.mp3",
-      "audioOriginal": "06fc6fcc29fa512f.orig.mp3",
-      "audioAuto": "06fc6fcc29fa512f.mp3",
-      "audioMarked": true,
-      "audioTextHash": "06fc6fcc29fa512f"
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14: particles are grammar, not words to read; the reading deck does not card them."
     },
     {
       "id": "r-27ed98f4d9b0",
@@ -2198,11 +2194,9 @@
       "category": "Descriptions & Qualities",
       "sourceOrder": 169,
       "pronunciation": "nigiyaka",
-      "audio": "57d89bd60b5189e2.mp3",
-      "audioOriginal": "57d89bd60b5189e2.orig.mp3",
-      "audioAuto": "57d89bd60b5189e2.mp3",
-      "audioMarked": true,
-      "audioTextHash": "57d89bd60b5189e2"
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: にぎやかな."
     },
     {
       "id": "r-2ed995113163",
@@ -2237,11 +2231,9 @@
       "category": "Numbers",
       "sourceOrder": 172,
       "pronunciation": "yo",
-      "audio": "d2c2b490818d144f.mp3",
-      "audioOriginal": "d2c2b490818d144f.orig.mp3",
-      "audioAuto": "d2c2b490818d144f.mp3",
-      "audioMarked": true,
-      "audioTextHash": "d2c2b490818d144f"
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14: よ is the form 4 takes inside よじ and よねんせい, not a word; よん is the card."
     },
     {
       "id": "r-58f16b7e1247",
@@ -4116,6 +4108,23 @@
       "audioAuto": "e2dd0ec623668701.mp3",
       "audioMarked": true,
       "audioTextHash": "e2dd0ec623668701",
+      "additionDone": true
+    },
+    {
+      "id": "r-e8acc67c48f0",
+      "target": "なる",
+      "english": "To become",
+      "category": "Time",
+      "sourceOrder": 312,
+      "pronunciation": "naru",
+      "reviewNote": "Owner ruling 2026-10-14: the reading deck cards single words. Added because a phrase card using this word was cut and the word had no card of its own.",
+      "addition": "genki-reading-review-2026-10-14",
+      "additionReviewed": true,
+      "audio": "6fa0354c69e09577.mp3",
+      "audioOriginal": "6fa0354c69e09577.orig.mp3",
+      "audioAuto": "6fa0354c69e09577.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6fa0354c69e09577",
       "additionDone": true
     }
   ]

@@ -369,7 +369,10 @@
       "english": "To bring (a person) back",
       "category": "Other",
       "ttsText": "つれてかえる",
-      "sourceOrder": 44
+      "sourceOrder": 44,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 連れる, 帰る."
     },
     {
       "id": "r-1c6e8fd7f4ed",
@@ -434,6 +437,14 @@
       "category": "Other",
       "ttsText": "おる",
       "sourceOrder": 52
+    },
+    {
+      "id": "r-29bd54e8b6f1",
+      "target": "連れる",
+      "english": "To take (a person) along",
+      "category": "Other",
+      "ttsText": "つれる",
+      "sourceOrder": 53
     }
   ]
 }

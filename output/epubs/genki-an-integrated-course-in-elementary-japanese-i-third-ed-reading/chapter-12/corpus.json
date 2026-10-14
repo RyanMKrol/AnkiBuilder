@@ -514,7 +514,10 @@
       "english": "Two people each",
       "category": "School & Education",
       "ttsText": "ふたりずつ",
-      "sourceOrder": 62
+      "sourceOrder": 62,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 二人."
     },
     {
       "id": "r-f5ff67acd4bc",
@@ -686,7 +689,10 @@
       "english": "Colloquial expression",
       "category": "School & Education",
       "ttsText": "くだけたいいかた",
-      "sourceOrder": 82
+      "sourceOrder": 82,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 言い方."
     },
     {
       "id": "r-c1dbc93b636f",
@@ -828,7 +834,10 @@
       "english": "Polite expression",
       "category": "School & Education",
       "ttsText": "ていねいないいかた",
-      "sourceOrder": 99
+      "sourceOrder": 99,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 言い方."
     },
     {
       "id": "r-cd41014c34e1",
@@ -919,7 +928,10 @@
       "english": "Bookish expression",
       "category": "School & Education",
       "ttsText": "かたいいいかた",
-      "sourceOrder": 110
+      "sourceOrder": 110,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 言い方."
     },
     {
       "id": "r-e8c9c93cc70e",
@@ -1081,6 +1093,14 @@
       "category": "Other",
       "ttsText": "ちがう",
       "sourceOrder": 129
+    },
+    {
+      "id": "r-20d562bb9014",
+      "target": "言い方",
+      "english": "Way of saying",
+      "category": "School & Education",
+      "ttsText": "いいかた",
+      "sourceOrder": 130
     }
   ]
 }

@@ -190,7 +190,10 @@
       "english": "This person",
       "category": "Family & People",
       "ttsText": "このひと",
-      "sourceOrder": 22
+      "sourceOrder": 22,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 人."
     },
     {
       "id": "r-498a60e1125d",

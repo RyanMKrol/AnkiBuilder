@@ -55,7 +55,18 @@ for (const row of text.split(/\n\|-\n/)) {
   };
   let { on, kun } = parse({ includeBracketed: false });
   if (!on.length && !kun.length) ({ on, kun } = parse({ includeBracketed: true }));
-  out[kanji] = { on: [...new Set(on)], kun: [...new Set(kun)], meaning };
+  // The bracketed ones are kept apart: a card never gets one by default, but one a word in the deck
+  // uses (じ for 除 in 掃除, むい for 六 in 六日) stays once a reviewer or a hand edit has put it there.
+  const all = parse({ includeBracketed: true });
+  const narrow = [...new Set([...all.on, ...all.kun])].filter(
+    (r) => !on.includes(r) && !kun.includes(r),
+  );
+  out[kanji] = {
+    on: [...new Set(on)],
+    kun: [...new Set(kun)],
+    ...(narrow.length ? { narrow } : {}),
+    meaning,
+  };
 }
 const dest = join(
   dirname(fileURLToPath(import.meta.url)),

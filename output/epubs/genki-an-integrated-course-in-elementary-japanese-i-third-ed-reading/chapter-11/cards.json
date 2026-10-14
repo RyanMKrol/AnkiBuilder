@@ -406,9 +406,15 @@
       "target": "活",
       "english": "Lively; activity",
       "category": "Other",
-      "pronunciation": "katsu / i",
+      "pronunciation": "katsu",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 34
+      "sourceOrder": 34,
+      "ttsText": "かつ",
+      "audio": "9c610218a9042fac.mp3",
+      "audioOriginal": "9c610218a9042fac.orig.mp3",
+      "audioAuto": "9c610218a9042fac.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9c610218a9042fac"
     },
     {
       "id": "r-7b40fc240cbe",
@@ -1029,11 +1035,9 @@
       "sourceOrder": 81,
       "pronunciation": "tsugi wa 〜",
       "ttsKanji": "次は",
-      "audio": "ea794b2a5776c119.mp3",
-      "audioOriginal": "ea794b2a5776c119.orig.mp3",
-      "audioAuto": "ea794b2a5776c119.mp3",
-      "audioMarked": true,
-      "audioTextHash": "ea794b2a5776c119"
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 次."
     },
     {
       "id": "r-e389584bbdad",

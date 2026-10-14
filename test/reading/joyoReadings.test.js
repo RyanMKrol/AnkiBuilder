@@ -53,3 +53,20 @@ test("character cards are completed and a single-reading one voiced; a word card
   assert.equal(again.record.cards["曜"].voiced, true);
   assert.equal(again.record.cards["日"], undefined);
 });
+
+test("a narrow-use reading is never added, but one already on the card is kept", () => {
+  // 除: じょ, のぞく, and じ only in 掃除 (bracketed in the official table).
+  assert.deepEqual(completeKanjiReadings({ on: ["じょ"], kun: [] }, "除"), {
+    on: ["じょ"],
+    kun: ["のぞ"],
+  });
+  assert.deepEqual(
+    completeKanjiReadings({ on: ["じょ"], kun: [] }, "除", { on: ["じょ", "じ"], kun: ["のぞ"] }),
+    { on: ["じょ", "じ"], kun: ["のぞ"] },
+  );
+  // A reading that is not official at all is not carried over from the old card.
+  assert.deepEqual(completeKanjiReadings(null, "予", { on: ["よ"], kun: ["あらかじ"] }), {
+    on: ["よ"],
+    kun: [],
+  });
+});

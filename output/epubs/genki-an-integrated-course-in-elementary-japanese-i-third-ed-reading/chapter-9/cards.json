@@ -34,7 +34,7 @@
       "target": "除",
       "english": "Exclude; remove",
       "category": "Other",
-      "pronunciation": "jo / nozo",
+      "pronunciation": "jo, ji / nozo",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 2
     },
@@ -331,9 +331,15 @@
       "target": "予",
       "english": "Beforehand",
       "category": "Other",
-      "pronunciation": "yo / arakaji",
+      "pronunciation": "yo",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 31
+      "sourceOrder": 31,
+      "ttsText": "よ",
+      "audio": "d2c2b490818d144f.mp3",
+      "audioOriginal": "d2c2b490818d144f.orig.mp3",
+      "audioAuto": "d2c2b490818d144f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d2c2b490818d144f"
     },
     {
       "id": "r-cef2673e6282",
@@ -481,11 +487,9 @@
       "sourceOrder": 44,
       "pronunciation": "osoku naru",
       "ttsKanji": "遅くなる",
-      "audio": "3d4bda7f81c76fe4.mp3",
-      "audioOriginal": "3d4bda7f81c76fe4.orig.mp3",
-      "audioAuto": "3d4bda7f81c76fe4.mp3",
-      "audioMarked": true,
-      "audioTextHash": "3d4bda7f81c76fe4"
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 遅く, なる."
     },
     {
       "id": "r-195cb8caaeed",
@@ -511,11 +515,6 @@
       "sourceOrder": 46,
       "pronunciation": "zannen desu ne",
       "ttsKanji": "残念ですね",
-      "audio": "5ca5a77f2fc7ad13.mp3",
-      "audioOriginal": "5ca5a77f2fc7ad13.orig.mp3",
-      "audioAuto": "5ca5a77f2fc7ad13.mp3",
-      "audioMarked": true,
-      "audioTextHash": "5ca5a77f2fc7ad13",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 残念."
@@ -814,11 +813,6 @@
       "ttsKanji": "雪が降る",
       "pronunciation": "yuki ga furu",
       "sourceOrder": 66,
-      "audio": "fc6403aec5fa2050.mp3",
-      "audioOriginal": "fc6403aec5fa2050.orig.mp3",
-      "audioAuto": "fc6403aec5fa2050.mp3",
-      "audioMarked": true,
-      "audioTextHash": "fc6403aec5fa2050",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 雪, 降る."
@@ -862,11 +856,6 @@
       "sourceOrder": 69,
       "pronunciation": "kono naka ni osake ga haitte imasu ka",
       "ttsKanji": "この中にお酒が入っていますか",
-      "audio": "4e227be2f1685d6c.mp3",
-      "audioOriginal": "4e227be2f1685d6c.orig.mp3",
-      "audioAuto": "4e227be2f1685d6c.mp3",
-      "audioMarked": true,
-      "audioTextHash": "4e227be2f1685d6c",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 中, お酒, 入る."
@@ -940,11 +929,6 @@
       "ttsKanji": "雨が降る",
       "pronunciation": "ame ga furu",
       "sourceOrder": 74,
-      "audio": "5a4a58c1f6e11f6d.mp3",
-      "audioOriginal": "5a4a58c1f6e11f6d.orig.mp3",
-      "audioAuto": "5a4a58c1f6e11f6d.mp3",
-      "audioMarked": true,
-      "audioTextHash": "5a4a58c1f6e11f6d",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 雨, 降る."
@@ -958,11 +942,6 @@
       "sourceOrder": 75,
       "pronunciation": "ofuro ni hairu",
       "ttsKanji": "お風呂に入る",
-      "audio": "25ed015608b22eba.mp3",
-      "audioOriginal": "25ed015608b22eba.orig.mp3",
-      "audioAuto": "25ed015608b22eba.mp3",
-      "audioMarked": true,
-      "audioTextHash": "25ed015608b22eba",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: お風呂, 入る."
@@ -1126,11 +1105,6 @@
       "sourceOrder": 86,
       "pronunciation": "fukuro o onegai shimasu",
       "ttsKanji": "袋をお願いします",
-      "audio": "0b87037b2734a692.mp3",
-      "audioOriginal": "0b87037b2734a692.orig.mp3",
-      "audioAuto": "0b87037b2734a692.mp3",
-      "audioMarked": true,
-      "audioTextHash": "0b87037b2734a692",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 袋."

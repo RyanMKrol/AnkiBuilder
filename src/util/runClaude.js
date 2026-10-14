@@ -229,8 +229,16 @@ const QUOTA_PHRASINGS = [
  * out otherwise in one pass. Missing a real quota refusal is the expensive one, because every
  * remaining pass then fails the same way and each reports itself as a separate problem.
  */
+// The one throttle the CLI says, in words, is NOT the account's budget: "API Error: Server is
+// temporarily limiting requests (not your usage limit) · Rate limited". It contains "usage limit",
+// so the wide net above caught it, and a 1,650-picture glyph run stopped a third of the way in on
+// 2026-10-15 while its twin run, throttled the same minute, carried on. It is transient: the
+// caller's ordinary retry is the right response, not stopping the run.
+const NOT_QUOTA = /not your usage limit|temporarily limiting requests/i;
+
 export function looksLikeQuotaExhaustion(text) {
   const subject = String(text ?? "");
+  if (NOT_QUOTA.test(subject)) return false;
   return QUOTA_PHRASINGS.some((pattern) => pattern.test(subject));
 }
 

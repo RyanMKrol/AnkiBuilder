@@ -43,11 +43,16 @@
       "ttsText": "きた",
       "sourceOrder": 2,
       "pronunciation": "kita",
-      "audio": "5e3301c7aac45c54.mp3",
+      "audio": "r-48c146223173-manual-18ecfa81.mp3",
       "audioOriginal": "5e3301c7aac45c54.orig.mp3",
       "audioAuto": "5e3301c7aac45c54.mp3",
       "audioMarked": true,
-      "audioTextHash": "5e3301c7aac45c54"
+      "audioTextHash": "5e3301c7aac45c54",
+      "audioManual": "r-48c146223173-manual-18ecfa81.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.5350034246575343
+      }
     },
     {
       "id": "r-2853730c1c17",

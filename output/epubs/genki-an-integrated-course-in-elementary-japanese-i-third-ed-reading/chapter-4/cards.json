@@ -486,7 +486,7 @@
     {
       "id": "r-9bcae380442f",
       "target": "呂",
-      "english": "Spine; backbone",
+      "english": "Spine; backbone (mostly used for its sound)",
       "category": "Other",
       "pronunciation": "ro",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -820,7 +820,7 @@
     {
       "id": "r-b75b20ed5dc4",
       "target": "お風呂",
-      "english": "Bathroom",
+      "english": "Bath; bathroom (for bathing)",
       "category": "Home & Household",
       "ttsText": "おふろ",
       "sourceOrder": 68,

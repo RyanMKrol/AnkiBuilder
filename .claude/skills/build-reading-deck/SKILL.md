@@ -169,7 +169,21 @@ reading. **ACK** findings are judgements: a single kana (right as a word like �
 letter of the syllabary), Latin letters on a front (Ｔシャツ is right,
 romaji is not), a front over 16 characters (right for a long set phrase the book teaches), a front
 that reads as a phrase (`reading-phrase`: cut it and card its words, unless it is a fixed greeting), a word
-carded in kana where the chapter prints its kanji.
+carded in kana where the chapter prints its kanji, and two different words or two kanji with the same
+English (`reading-distinct-english`, card rules 9).
+
+**`reading-distinct-english` is the one to fix rather than accept.** The English is the whole answer,
+so two cards that share it teach the learner nothing about how they differ: in the Genki deck 洗 and
+濯 were both "Wash", 春 and 泉 both "Spring", 右 and 正 both "Right", and the owner hit them in review.
+Give one card a short note in brackets ("Cold (weather)" / "Cold (to the touch)"). Accept only one word
+in two spellings the check could not see as one (alternative readings of a number, 有名 and 有名な), or a
+loanword the book prints as an alternative (グレー for 灰色). The check spans the whole collection, so a
+new chapter's card can clash with one already delivered; change the new card.
+
+**Read each English as the only thing on the back.** A kanji card's English is the kanji's own meaning,
+not the word it came from (将 in 将来 was "Future"); a word whose English has two senses says which
+("Cold (illness)" for 風邪). These were roughly 140 of 1,744 Genki cards in a review on 2026-10-14,
+after delivery.
 
 In the dashboard the owner reviews the chapter and presses **Mark reviewed**, which saves it to the
 reading collection's own dedup library. The card-faces view shows the reading card exactly as Anki

@@ -27,9 +27,11 @@ export const CHARACTERS_FILE = "candidates/characters.json";
  * 1: the first review, which kept dictionary senses a learner never meets. 2: meanings judged against
  * the words that use the character. 3: at most two meanings, the words' sense first, and only jōyō
  * readings plus any the words need; the Genki run under 2 still left 172 of 384 cards dictionary-like
- * (若 "Young; if; perhaps", readings にゃ and くるお) (2026-09-28).
+ * (若 "Young; if; perhaps", readings にゃ and くるお) (2026-09-28). 4: the character's own meaning,
+ * never its word's (将 "Future" from 将来), and no two cards with one answer (洗 and 濯 both "Wash")
+ * (2026-10-14).
  */
-export const CHARACTER_REVIEW_VERSION = 3;
+export const CHARACTER_REVIEW_VERSION = 4;
 const REPORT = "reading-report.json";
 
 const readJson = (path, fallback = null) => {

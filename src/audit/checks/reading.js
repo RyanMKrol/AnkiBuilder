@@ -108,6 +108,54 @@ export const readingOneCardPerFrontCheck = readingCheck({
   },
 });
 
+export const readingDistinctEnglishCheck = readingCheck({
+  id: "reading-distinct-english",
+  title: "different words have different English",
+  scope: "collection",
+  tier: "ACK",
+  /**
+   * The English is the whole answer on a reading card, so two different words (or two kanji) with
+   * the same English leave the learner nothing to tell them apart by: 洗 and 濯 were both "Wash",
+   * 春 and 泉 both "Spring" (owner, 2026-10-14). Kanji cards are compared with kanji cards and words
+   * with words. Two word cards that are spoken the same (`ttsText`) are one word in two spellings,
+   * ぎんこう and 銀行, and are fine. What is left is accepted when the two really do mean the same
+   * (alternative readings of one number), and otherwise fixed by giving one card a distinguishing
+   * note: "Cold (weather)" and "Cold (to the touch)".
+   */
+  run({ units }) {
+    const groups = new Map();
+    for (const unit of units) {
+      const scheme = readingScheme(unitLanguage(unit));
+      for (const item of shipped(unit)) {
+        const english = String(item.english ?? "")
+          .trim()
+          .toLowerCase();
+        if (!english) continue;
+        const character = Boolean(scheme?.characterCards && scheme.isCharacterTarget(item.target));
+        const key = `${character ? "character" : "word"}:${english}`;
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push({ unit: unit.name, item, character });
+      }
+    }
+    const findings = [];
+    for (const cards of groups.values()) {
+      const spoken = new Set(
+        cards.map(({ item, character }) =>
+          character ? item.target : String(item.ttsText ?? item.target).trim(),
+        ),
+      );
+      if (spoken.size < 2) continue;
+      const ids = cards.map(({ unit, item }) => `${unit}/${item.id}`).sort();
+      const listed = cards.map(({ unit, item }) => `${item.target} (${unit})`).join(", ");
+      findings.push({
+        key: ids.join("+"),
+        message: `"${cards[0].item.english}" answers ${cards.length} different cards: ${listed}`,
+      });
+    }
+    return { findings, summary: "no two different words share an English answer" };
+  },
+});
+
 export const readingSingleCharacterCheck = readingCheck({
   id: "reading-single-character",
   title: "single-character cards",
@@ -393,4 +441,5 @@ export const READING_CHECKS = [
   readingRomajiCheck,
   readingSilentCheck,
   readingOneCardPerFrontCheck,
+  readingDistinctEnglishCheck,
 ];

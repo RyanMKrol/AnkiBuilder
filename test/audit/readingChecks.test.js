@@ -166,6 +166,36 @@ test("reading-one-card-per-front: a written form is carded once across the colle
   }
 });
 
+test("reading-distinct-english: two different kanji or words never share an answer", () => {
+  expect(
+    "reading-distinct-english",
+    [word("a", "洗", { english: "Wash" }), word("b", "濯", { english: "wash" })],
+    [word("a", "洗", { english: "Wash" }), word("b", "濯", { english: "Laundry; rinse" })],
+    /"Wash" answers 2 different cards: 洗 \(chapter-0\), 濯 \(chapter-0\)/,
+  );
+  expect(
+    "reading-distinct-english",
+    [
+      word("a", "始まる", { english: "To begin", ttsText: "はじまる" }),
+      word("b", "始める", { english: "To begin", ttsText: "はじめる" }),
+    ],
+    [
+      word("a", "銀行", { english: "Bank", ttsText: "ぎんこう" }),
+      word("b", "ぎんこう", { english: "Bank", ttsText: "ぎんこう" }),
+    ],
+    /"To begin" answers 2 different cards/,
+  );
+});
+
+test("reading-distinct-english: a kanji card and a word card may share an answer", () => {
+  expect(
+    "reading-distinct-english",
+    [word("a", "目", { english: "Eye" }), word("b", "眼", { english: "Eye" })],
+    [word("a", "目", { english: "Eye" }), word("b", "め", { english: "Eye", ttsText: "め" })],
+    /"Eye" answers 2/,
+  );
+});
+
 test("a reading collection skips the speaking checks and says which", () => {
   const { root, cleanup } = readingRoot([word("a", "映画", { ttsText: "えいが" })]);
   try {

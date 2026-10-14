@@ -84,7 +84,7 @@
     {
       "id": "r-445ba2f95952",
       "target": "皮",
-      "english": "Skin",
+      "english": "Skin; peel",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 9
@@ -108,7 +108,7 @@
     {
       "id": "r-2a46684e2db2",
       "target": "膚",
-      "english": "Skin",
+      "english": "Skin (of the body)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 12
@@ -544,7 +544,7 @@
     {
       "id": "r-cac95c7e2427",
       "target": "目医者",
-      "english": "Ophthalmologist",
+      "english": "Eye doctor",
       "category": "Work & Occupations",
       "ttsText": "めいしゃ",
       "sourceOrder": 65
@@ -593,7 +593,7 @@
     {
       "id": "r-7e63ca48451d",
       "target": "風邪",
-      "english": "Cold",
+      "english": "Cold (illness)",
       "category": "Body & Health",
       "ttsText": "かぜ",
       "sourceOrder": 70
@@ -658,7 +658,7 @@
     {
       "id": "r-7878d7a46305",
       "target": "歯科",
-      "english": "Dentist",
+      "english": "Dentistry (dental clinic)",
       "category": "Work & Occupations",
       "ttsText": "しか",
       "sourceOrder": 77
@@ -685,7 +685,7 @@
     {
       "id": "r-c6512529b527",
       "target": "眼科",
-      "english": "Ophthalmologist",
+      "english": "Ophthalmology (eye clinic)",
       "category": "Work & Occupations",
       "ttsText": "がんか",
       "sourceOrder": 80
@@ -785,7 +785,7 @@
     {
       "id": "r-dd99adc12245",
       "target": "多い",
-      "english": "There are many . . .",
+      "english": "Many; numerous",
       "category": "Descriptions & Qualities",
       "ttsText": "おおい",
       "sourceOrder": 91
@@ -868,7 +868,7 @@
     {
       "id": "r-abd2848ba629",
       "target": "手術",
-      "english": "Operation",
+      "english": "Surgery; operation",
       "category": "Body & Health",
       "ttsText": "しゅじゅつ",
       "sourceOrder": 101

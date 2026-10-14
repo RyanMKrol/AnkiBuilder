@@ -15,13 +15,6 @@ the other, or two glosses that overlap. Each is a reason to look, and none is an
 - `ごふん` after `ふん` looks identical to that, and is not: `ご` there is the number five.
 - A word taught bare in chapter 3 and used inside a sentence in chapter 9 are different cards.
 - The same word deliberately re-taught in a new grammatical role is a new card.
-- **A change of register is a new card.** A casual-style form and the polite form the learner
-  already knows (`いく?` beside `いきますか`, `うん` beside `はい`) teach different things: the casual
-  one is a way of speaking the book is introducing, not a repeat. The same holds for a plain form an
-  earlier lesson taught only as a conjugation step (a dictionary form carded beside its ます-form)
-  and the same form now taught as something you actually say to a friend. In a casual-style
-  chapter, lean towards `new`: the owner asked for care here (2026-10-14), and an exact repeat is
-  still reported by the duplicate check at the gate.
 
 Only reading the two cards tells you which you have.
 

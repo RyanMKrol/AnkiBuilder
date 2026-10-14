@@ -56,6 +56,20 @@ for it.
 7. **Proper names are not cards**: people, places, companies, named facilities.
 8. **`english` is the meaning, in natural sentence-case English**: "Movie", "Good morning", "Day;
    sun". Not lowercased dictionary clips, and never the pronunciation.
+9. **The English is the whole answer, so it must tell this card apart from every other card in the
+   deck.** The learner sees nothing else on the back to go by.
+   - Two different words never share an English answer, and neither do two characters. Give one of
+     them a short note in brackets: 寒 "Cold (weather)" and 冷 "Cold (to the touch)"; 男性 "Man
+     (formal)" beside 男の人 "Man"; 一つ "One (thing)" beside the bare number. One word in two
+     spellings (銀行 and ぎんこう) keeps one answer.
+   - An English word with two everyday senses says which one: "Right (direction)", "Spring
+     (season)", "Cold (illness)", "Platform (at a train station)", "Kind (to people)". A verb pair
+     that differs only in who does it says so: 始める "To begin (something)", 始まる "(Something)
+     begins".
+   - A character's English is what the character itself means, never the meaning of a word it
+     appears in. 将 in 将来 is "Commander; about to", not "Future"; in 質問 (question) 問 is
+     "Question" and 質 is "Quality; substance", never both "Question". A character the language uses
+     only for its sound (呂 in 風呂) says so: "Spine; backbone (mostly used for its sound)".
 
 ## What an item may contain
 

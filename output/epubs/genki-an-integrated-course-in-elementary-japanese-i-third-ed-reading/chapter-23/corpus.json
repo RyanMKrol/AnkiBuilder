@@ -52,7 +52,7 @@
     {
       "id": "r-6771993f14db",
       "target": "今夜",
-      "english": "Tonight",
+      "english": "Tonight (formal)",
       "category": "Time",
       "ttsText": "こんや",
       "sourceOrder": 5
@@ -84,7 +84,7 @@
     {
       "id": "r-2cf138fd79f3",
       "target": "夜中",
-      "english": "Middle of night",
+      "english": "Middle of the night",
       "category": "Time",
       "ttsText": "よなか",
       "sourceOrder": 9

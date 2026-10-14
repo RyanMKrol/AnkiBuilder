@@ -348,7 +348,7 @@
     {
       "id": "r-df3ee667608c",
       "target": "左",
-      "english": "Left",
+      "english": "Left (direction)",
       "category": "Directions",
       "ttsText": "ひだり",
       "sourceOrder": 42
@@ -428,7 +428,7 @@
     {
       "id": "r-851cdd609190",
       "target": "右",
-      "english": "Right",
+      "english": "Right (direction)",
       "category": "Directions",
       "ttsText": "みぎ",
       "sourceOrder": 52
@@ -468,7 +468,7 @@
     {
       "id": "r-29d1ec4c5e0a",
       "target": "便",
-      "english": "Mail; convenience",
+      "english": "Convenience; post",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 57
@@ -972,7 +972,7 @@
     {
       "id": "r-fb5b775c2d04",
       "target": "後ろ",
-      "english": "Back",
+      "english": "Behind",
       "category": "Directions",
       "ttsText": "うしろ",
       "sourceOrder": 120
@@ -1092,7 +1092,7 @@
     {
       "id": "r-09558b2cc685",
       "target": "時間",
-      "english": "...Hours (duration counter)",
+      "english": "Time; ... hours (duration)",
       "category": "Time",
       "ttsText": "じかん",
       "sourceOrder": 135

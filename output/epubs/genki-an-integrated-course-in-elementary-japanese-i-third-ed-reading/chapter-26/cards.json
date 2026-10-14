@@ -427,7 +427,7 @@
     {
       "id": "r-2ab3cbee6f57",
       "target": "ひまな",
-      "english": "Free; idle",
+      "english": "Not busy; free (time)",
       "category": "Descriptions & Qualities",
       "sourceOrder": 32,
       "pronunciation": "hima na",
@@ -529,7 +529,7 @@
     {
       "id": "r-a3a6f9c774ae",
       "target": "おめでとうございます",
-      "english": "Congratulations on ...",
+      "english": "Congratulations",
       "category": "Greetings",
       "sourceOrder": 40,
       "pronunciation": "omedetō gozaimasu",
@@ -850,7 +850,7 @@
     {
       "id": "r-85deb3d5621f",
       "target": "せんこう",
-      "english": "Major",
+      "english": "Major (field of study)",
       "category": "School & Education",
       "sourceOrder": 65,
       "pronunciation": "senkō",
@@ -1046,7 +1046,7 @@
       "english": "Please go and come back",
       "category": "Greetings",
       "sourceOrder": 80,
-      "pronunciation": "itte rasshai",
+      "pronunciation": "itterasshai",
       "audio": "cec5ec3e2f1fb06b.mp3",
       "audioOriginal": "cec5ec3e2f1fb06b.orig.mp3",
       "audioAuto": "cec5ec3e2f1fb06b.mp3",
@@ -1377,7 +1377,7 @@
     {
       "id": "r-f76f81e7a0e6",
       "target": "たんじょうびおめでとう",
-      "english": "Happy Birthday",
+      "english": "Happy birthday",
       "category": "Greetings",
       "sourceOrder": 106,
       "pronunciation": "tanjōbi omedetō",
@@ -1455,7 +1455,7 @@
     {
       "id": "r-08ca274e947b",
       "target": "たいへんな",
-      "english": "Tough",
+      "english": "Tough; hard (situation)",
       "category": "Descriptions & Qualities",
       "sourceOrder": 112,
       "pronunciation": "taihen na",
@@ -1468,7 +1468,7 @@
     {
       "id": "r-5a5f08df9472",
       "target": "プレゼント",
-      "english": "Present",
+      "english": "Present; gift",
       "category": "Shopping",
       "sourceOrder": 113,
       "pronunciation": "purezento",
@@ -1559,7 +1559,7 @@
     {
       "id": "r-ed28cf13bde2",
       "target": "ホーム",
-      "english": "Platform",
+      "english": "Platform (at a train station)",
       "category": "Transport",
       "sourceOrder": 120,
       "pronunciation": "hōmu",
@@ -2116,7 +2116,7 @@
     {
       "id": "r-cc64850fe97d",
       "target": "はん",
-      "english": "Half",
+      "english": "Half (past the hour)",
       "category": "Time",
       "sourceOrder": 163,
       "pronunciation": "han",
@@ -3117,7 +3117,7 @@
     {
       "id": "r-0c5589abf72d",
       "target": "どうぞ",
-      "english": "Please; Here it is",
+      "english": "Please; here it is",
       "category": "Greetings",
       "sourceOrder": 240,
       "pronunciation": "dōzo",
@@ -3195,7 +3195,7 @@
     {
       "id": "r-3aa6571a5e9f",
       "target": "ドライブ",
-      "english": "Drive",
+      "english": "Drive (a trip by car)",
       "category": "Sports & Hobbies",
       "sourceOrder": 246,
       "pronunciation": "doraibu",
@@ -3208,7 +3208,7 @@
     {
       "id": "r-779de660ce88",
       "target": "シェイク",
-      "english": "Shake",
+      "english": "Milkshake",
       "category": "Food",
       "sourceOrder": 247,
       "pronunciation": "sheiku",
@@ -3260,7 +3260,7 @@
     {
       "id": "r-4ca0d0546bc2",
       "target": "せんせい",
-      "english": "Teacher; Professor",
+      "english": "Teacher; professor",
       "category": "School & Education",
       "sourceOrder": 251,
       "pronunciation": "sensei",
@@ -3351,7 +3351,7 @@
     {
       "id": "r-b7e74bb4b1f4",
       "target": "そうですね",
-      "english": "That's right; Let me see",
+      "english": "That's right; let me see",
       "category": "Greetings",
       "sourceOrder": 258,
       "pronunciation": "sō desu ne",
@@ -3453,7 +3453,7 @@
     {
       "id": "r-c098491c166e",
       "target": "バンド",
-      "english": "Band",
+      "english": "Band (music group)",
       "category": "Sports & Hobbies",
       "sourceOrder": 266,
       "pronunciation": "bando",
@@ -3505,7 +3505,7 @@
     {
       "id": "r-066590d5f75d",
       "target": "おじぞうさん",
-      "english": "Guardian deity of children",
+      "english": "Guardian deity of children (affectionate)",
       "category": "Other",
       "sourceOrder": 270,
       "pronunciation": "ojizō-san",
@@ -3685,7 +3685,7 @@
     {
       "id": "r-0cfb0ce96c37",
       "target": "じゃあ",
-      "english": "Then . . ; if that is the case, . . ",
+      "english": "Then; if that is the case",
       "category": "Grammar & Function Words",
       "sourceOrder": 284,
       "pronunciation": "jā",
@@ -3776,10 +3776,10 @@
     {
       "id": "r-f901585367d6",
       "target": "いいえ",
-      "english": "No; Not at all",
+      "english": "No; not at all",
       "category": "Grammar & Function Words",
       "sourceOrder": 291,
-      "pronunciation": "īe",
+      "pronunciation": "iie",
       "audio": "2a99c48a53abfae1.mp3",
       "audioOriginal": "2a99c48a53abfae1.orig.mp3",
       "audioAuto": "2a99c48a53abfae1.mp3",
@@ -3789,7 +3789,7 @@
     {
       "id": "r-97bed54b1a17",
       "target": "いらっしゃいませ",
-      "english": "Welcome (to our store).",
+      "english": "Welcome (to our store)",
       "category": "Greetings",
       "sourceOrder": 292,
       "pronunciation": "irasshaimase",
@@ -3866,7 +3866,7 @@
     {
       "id": "r-b166be49ea2a",
       "target": "うそ",
-      "english": "Lie",
+      "english": "Lie (untruth)",
       "category": "Other",
       "sourceOrder": 297,
       "pronunciation": "uso",

@@ -157,7 +157,7 @@
     {
       "id": "r-faae562d7f8a",
       "target": "国会",
-      "english": "The Diet",
+      "english": "The Diet (Japan's parliament)",
       "category": "Work & Occupations",
       "ttsText": "こっかい",
       "sourceOrder": 18
@@ -269,7 +269,7 @@
     {
       "id": "r-f5746ff6acb8",
       "target": "大変な",
-      "english": "Tough",
+      "english": "Tough; hard (situation)",
       "category": "Descriptions & Qualities",
       "ttsText": "たいへんな",
       "sourceOrder": 32
@@ -288,7 +288,7 @@
     {
       "id": "r-b43484cfb9ad",
       "target": "学ぶ",
-      "english": "To study",
+      "english": "To learn; to study (formal)",
       "category": "School & Education",
       "ttsText": "まなぶ",
       "sourceOrder": 34

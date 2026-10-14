@@ -669,7 +669,8 @@ What is built, newest last:
   enforces the rules, a coverage adversary), and so are its preflight checks
   (`src/audit/checks/reading.js`; a reading collection skips the speaking-only checks and says
   which, and `reading-phrase` flags a front that reads as a sentence or a particle phrase, since
-  the deck cards words only). A Japanese reading collection cards its kana words once, in one kana deck chosen from the
+  the deck cards words only; `reading-distinct-english` flags two different words or two kanji in
+  one collection that give the same English answer). A Japanese reading collection cards its kana words once, in one kana deck chosen from the
   whole book (`--book-pass`; sound coverage first, then 150 hiragana and 150 katakana words), and its
   chapters card kanji only. Every kanji a word uses gets its own silent card with its readings on the
   romaji line, generated in the first chapter that uses it from a kanji dictionary

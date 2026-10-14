@@ -100,7 +100,7 @@
     {
       "id": "r-6c2f88bb192a",
       "target": "普",
-      "english": "General",
+      "english": "Universal; widespread",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 11
@@ -140,7 +140,7 @@
     {
       "id": "r-5a492160842b",
       "target": "界",
-      "english": "World; boundary",
+      "english": "Boundary; realm",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 16
@@ -172,7 +172,7 @@
     {
       "id": "r-3efe154f716d",
       "target": "階",
-      "english": "Storey; stairs",
+      "english": "Floor (of a building); storey",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 20
@@ -212,7 +212,7 @@
     {
       "id": "r-c3af606ceb70",
       "target": "乳",
-      "english": "Milk",
+      "english": "Milk; breast",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 25
@@ -284,7 +284,7 @@
     {
       "id": "r-f3e7a5b215b1",
       "target": "活",
-      "english": "Life; living",
+      "english": "Lively; activity",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 34
@@ -420,7 +420,7 @@
     {
       "id": "r-e409f96ac106",
       "target": "練",
-      "english": "Practice; train",
+      "english": "Practice; drill",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 51
@@ -500,7 +500,7 @@
     {
       "id": "r-5183903f3825",
       "target": "早く",
-      "english": "(Do something) early; fast",
+      "english": "Early; soon",
       "category": "Descriptions & Qualities",
       "ttsText": "はやく",
       "sourceOrder": 61
@@ -524,7 +524,7 @@
     {
       "id": "r-7cda072d452b",
       "target": "普通",
-      "english": "Local",
+      "english": "Local (train); ordinary",
       "category": "Transport",
       "ttsText": "ふつう",
       "sourceOrder": 64
@@ -580,7 +580,7 @@
     {
       "id": "r-954df4424486",
       "target": "急行",
-      "english": "Express",
+      "english": "Express (train)",
       "category": "Transport",
       "ttsText": "きゅうこう",
       "sourceOrder": 71
@@ -588,7 +588,7 @@
     {
       "id": "r-cb365f543bc8",
       "target": "売店",
-      "english": "Shop; stand",
+      "english": "Kiosk; stand",
       "category": "Shopping",
       "ttsText": "ばいてん",
       "sourceOrder": 72
@@ -668,7 +668,7 @@
     {
       "id": "r-e389584bbdad",
       "target": "速く",
-      "english": "(Do something) early; fast",
+      "english": "Fast; quickly",
       "category": "Descriptions & Qualities",
       "ttsText": "はやく",
       "sourceOrder": 82
@@ -692,7 +692,7 @@
     {
       "id": "r-a63df47d88c3",
       "target": "改札",
-      "english": "Gate",
+      "english": "Ticket gate",
       "category": "Transport",
       "ttsText": "かいさつ",
       "sourceOrder": 85

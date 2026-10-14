@@ -22,8 +22,11 @@ Each card must be right on its own: the learner cannot tell a useful sense or re
 nobody else checks after you.
 
 - `english` is at most TWO meanings, sentence-case, joined with "; ", and the FIRST is the sense the
-  listed words use. Judge it against those words: 校 appears in 学校, so "School"; 若 in 若い, so
-  "Young" (not "Young; if; perhaps"); 見 in 見る, so "See; look" (not "See; hopes; chances"). Add a
+  character carries in the listed words. Judge it against those words: 校 appears in 学校, so
+  "School"; 若 in 若い, so "Young" (not "Young; if; perhaps"); 見 in 見る, so "See; look" (not "See;
+  hopes; chances"). That is the character's own share of the word, never the whole word's meaning:
+  将 in 将来 is "Commander; about to", not "Future" (card rules 9). Two cards here never get the same
+  English: 洗 and 濯 (both in 洗濯) were both "Wash". Add a
   second meaning only if a beginner meets it often. Three near-synonyms ("Slap; strike; hit") become one
   ("Hit"). Never keep an obscure, technical or archaic sense.
 - `readings` are only readings in the official list of readings taught in Japanese schools (the jōyō

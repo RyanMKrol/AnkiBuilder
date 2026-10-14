@@ -43,7 +43,7 @@
     {
       "id": "r-c636cb0ec37e",
       "target": "朝食",
-      "english": "Breakfast",
+      "english": "Breakfast (formal)",
       "category": "Food",
       "ttsText": "ちょうしょく",
       "sourceOrder": 4
@@ -147,7 +147,7 @@
     {
       "id": "r-7f81accd1768",
       "target": "地元",
-      "english": "Local",
+      "english": "Local (one's home area)",
       "category": "Other",
       "ttsText": "じもと",
       "sourceOrder": 17
@@ -211,7 +211,7 @@
     {
       "id": "r-c66e98ce0735",
       "target": "男性",
-      "english": "Man",
+      "english": "Man (formal)",
       "category": "Family & People",
       "ttsText": "だんせい",
       "sourceOrder": 25
@@ -219,7 +219,7 @@
     {
       "id": "r-98ef09539013",
       "target": "女性",
-      "english": "Woman",
+      "english": "Woman (formal)",
       "category": "Family & People",
       "ttsText": "じょせい",
       "sourceOrder": 26

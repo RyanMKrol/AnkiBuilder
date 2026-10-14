@@ -284,7 +284,7 @@
     {
       "id": "r-33b5ba8938cd",
       "target": "豚",
-      "english": "Pork; pig",
+      "english": "Pig",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 34
@@ -455,7 +455,7 @@
     {
       "id": "r-66901a639dd6",
       "target": "始める",
-      "english": "To begin",
+      "english": "To begin (something)",
       "category": "Other",
       "ttsText": "はじめる",
       "sourceOrder": 55
@@ -562,7 +562,7 @@
     {
       "id": "r-7aeef663f3d7",
       "target": "気温",
-      "english": "Temperature",
+      "english": "Temperature (weather)",
       "category": "Weather & Nature",
       "ttsText": "きおん",
       "sourceOrder": 68
@@ -589,7 +589,7 @@
     {
       "id": "r-4b97e5b867e3",
       "target": "遅い",
-      "english": "Late",
+      "english": "Slow; late",
       "category": "Descriptions & Qualities",
       "ttsText": "おそい",
       "sourceOrder": 71
@@ -683,7 +683,7 @@
     {
       "id": "r-c3c8e08c555f",
       "target": "鶏肉",
-      "english": "Chicken",
+      "english": "Chicken (meat)",
       "category": "Food",
       "ttsText": "とりにく",
       "sourceOrder": 82

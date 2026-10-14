@@ -127,7 +127,7 @@
     {
       "id": "r-30160a21b92a",
       "target": "是",
-      "english": "Right; just",
+      "english": "Right (correct); proper",
       "category": "Other",
       "pronunciation": "ze",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -160,7 +160,7 @@
     {
       "id": "r-3ccd1c6ae119",
       "target": "箏",
-      "english": "Traditional string instrument",
+      "english": "Koto (Japanese zither)",
       "category": "Other",
       "ttsText": "こと",
       "sourceOrder": 13,
@@ -183,7 +183,7 @@
     {
       "id": "r-c12a2fd19822",
       "target": "弁",
-      "english": "Speech; valve",
+      "english": "Speech; dialect; boxed lunch",
       "category": "Other",
       "pronunciation": "ben",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -236,7 +236,7 @@
     {
       "id": "r-7321380d3c7e",
       "target": "能",
-      "english": "Masked musical",
+      "english": "Noh (masked dance-drama)",
       "category": "Other",
       "ttsText": "のう",
       "sourceOrder": 19,
@@ -398,7 +398,7 @@
     {
       "id": "r-cb7d6aec8f7e",
       "target": "験",
-      "english": "Test",
+      "english": "Examination; effect",
       "category": "Other",
       "pronunciation": "ken",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -590,7 +590,7 @@
     {
       "id": "r-c664873dbc35",
       "target": "五つ",
-      "english": "Five",
+      "english": "Five (things)",
       "category": "Numbers",
       "ttsText": "いつつ",
       "sourceOrder": 49,
@@ -800,7 +800,7 @@
     {
       "id": "r-5fcadade2558",
       "target": "二つ",
-      "english": "Two",
+      "english": "Two (things)",
       "category": "Numbers",
       "ttsText": "ふたつ",
       "sourceOrder": 63,
@@ -815,7 +815,7 @@
     {
       "id": "r-8d2549b3b312",
       "target": "八つ",
-      "english": "Eight",
+      "english": "Eight (things)",
       "category": "Numbers",
       "ttsText": "やっつ",
       "sourceOrder": 64,
@@ -860,7 +860,7 @@
     {
       "id": "r-56a0698cb900",
       "target": "四つ",
-      "english": "Four",
+      "english": "Four (things)",
       "category": "Numbers",
       "ttsText": "よっつ",
       "sourceOrder": 67,
@@ -905,7 +905,7 @@
     {
       "id": "r-12b00051b9b1",
       "target": "九つ",
-      "english": "Nine",
+      "english": "Nine (things)",
       "category": "Numbers",
       "ttsText": "ここのつ",
       "sourceOrder": 70,
@@ -1013,7 +1013,7 @@
     {
       "id": "r-7171cf423e66",
       "target": "三つ",
-      "english": "Three",
+      "english": "Three (things)",
       "category": "Numbers",
       "ttsText": "みっつ",
       "sourceOrder": 77,
@@ -1028,7 +1028,7 @@
     {
       "id": "r-812529a34f6c",
       "target": "六つ",
-      "english": "Six",
+      "english": "Six (things)",
       "category": "Numbers",
       "ttsText": "むっつ",
       "sourceOrder": 78,
@@ -1043,7 +1043,7 @@
     {
       "id": "r-0f00cd9cdf63",
       "target": "七つ",
-      "english": "Seven",
+      "english": "Seven (things)",
       "category": "Numbers",
       "ttsText": "ななつ",
       "sourceOrder": 79,
@@ -1058,7 +1058,7 @@
     {
       "id": "r-d28d96c108f3",
       "target": "一つ",
-      "english": "One",
+      "english": "One (thing)",
       "category": "Numbers",
       "ttsText": "ひとつ",
       "sourceOrder": 80,
@@ -1073,7 +1073,7 @@
     {
       "id": "r-9e8802daf9aa",
       "target": "始まる",
-      "english": "To begin",
+      "english": "(Something) begins",
       "category": "Other",
       "ttsText": "はじまる",
       "sourceOrder": 81,

@@ -1,6 +1,93 @@
 {
   "version": 1,
   "accepted": {
+    "reading-distinct-english": {
+      "chapter-10/r-5996c71fae9f+chapter-26/r-5378733ecf96": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Gray\" answers 2 different cards: 灰色 (chapter-10), グレー (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-10/r-a2d1c9501874+chapter-26/r-ec37cad14855": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Silver\" answers 2 different cards: 銀色 (chapter-10), シルバー (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-10/r-c2cd3188883f+chapter-26/r-717944e2c2c0": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Gold\" answers 2 different cards: 金色 (chapter-10), ゴールド (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-11/r-ce72cd6b4eb0+chapter-26/r-ad3aa4bf97f2": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Milk\" answers 2 different cards: 牛乳 (chapter-11), ミルク (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-17/r-57b7065539d3+chapter-7/r-2e5fecd2cc7f": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Junior high school\" answers 2 different cards: 中学校 (chapter-7), 中学 (chapter-17)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-22/r-7256b05608dc+chapter-9/r-06cd7186b922": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Famous\" answers 2 different cards: 有名 (chapter-9), 有名な (chapter-22)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-25/r-d7674c8ff598+chapter-26/r-0173abb167e5": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Various\" answers 2 different cards: 色々な (chapter-25), いろいろ (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-032c8901930a+chapter-26/r-1e0b17cf5100": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Seven\" answers 2 different cards: なな (chapter-26), しち (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-0754a262e6a3+chapter-26/r-d3a4ab7b3e1d": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Zero\" answers 2 different cards: ゼロ (chapter-26), れい (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-09614a66bafb+chapter-26/r-f23f878f91a8": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Size XL\" answers 2 different cards: LLサイズ (chapter-26), XLサイズ (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-39349b07de1e+chapter-6/r-c9bef118f612": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Quiet\" answers 2 different cards: 静か (chapter-6), しずかな (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-4041ff247b2c+chapter-26/r-ee911c21ce92": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Nineteen\" answers 2 different cards: じゅうく (chapter-26), じゅうきゅう (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-6f46f7d4a286+chapter-26/r-812f45bfcf7e+chapter-26/r-ceb4a54e2de4": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Four\" answers 3 different cards: よん (chapter-26), よ (chapter-26), し (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-850ea8378a58+chapter-26/r-ac94e112183c": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Nine\" answers 2 different cards: く (chapter-26), きゅう (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-980277415f89+chapter-26/r-e99a023f2402": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Seventeen\" answers 2 different cards: じゅうしち (chapter-26), じゅうなな (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-9b376ff9b07f+chapter-26/r-cbca1ae8529b": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"Fourteen\" answers 2 different cards: じゅうよん (chapter-26), じゅうし (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      },
+      "chapter-26/r-c53c9bc9de35+chapter-5/r-ef27a7ae8099+chapter-7/r-4d2e8f09ab66": {
+        "at": "2026-10-14T22:37:02.900Z",
+        "message": "\"High school\" answers 3 different cards: 高校 (chapter-5), 高等学校 (chapter-7), こうこう (chapter-26)",
+        "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
+      }
+    },
     "reading-latin": {
       "chapter-11/r-e07e75baa71b": {
         "at": "2026-09-24T16:20:23.110Z",

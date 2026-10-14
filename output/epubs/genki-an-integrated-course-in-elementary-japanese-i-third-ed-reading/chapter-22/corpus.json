@@ -124,7 +124,7 @@
     {
       "id": "r-4dfe8f5f2b38",
       "target": "友人",
-      "english": "Friend",
+      "english": "Friend (formal)",
       "category": "Family & People",
       "ttsText": "ゆうじん",
       "sourceOrder": 14
@@ -183,7 +183,7 @@
     {
       "id": "r-697b80373ae8",
       "target": "正午",
-      "english": "Noon",
+      "english": "Noon (exactly 12:00)",
       "category": "Time",
       "ttsText": "しょうご",
       "sourceOrder": 21
@@ -199,7 +199,7 @@
     {
       "id": "r-3ad626b47ca9",
       "target": "午後",
-      "english": "P.M; in the afternoon",
+      "english": "P.M.; in the afternoon",
       "category": "Time",
       "ttsText": "ごご",
       "sourceOrder": 23
@@ -223,7 +223,7 @@
     {
       "id": "r-22d9b9afb945",
       "target": "少女",
-      "english": "Girl",
+      "english": "Girl (formal)",
       "category": "Family & People",
       "ttsText": "しょうじょ",
       "sourceOrder": 26
@@ -239,7 +239,7 @@
     {
       "id": "r-faca978c950c",
       "target": "知人",
-      "english": "Acquaintance",
+      "english": "Acquaintance (formal)",
       "category": "Family & People",
       "ttsText": "ちじん",
       "sourceOrder": 28
@@ -247,7 +247,7 @@
     {
       "id": "r-5addc4e4387a",
       "target": "少年",
-      "english": "Boy",
+      "english": "Boy (formal)",
       "category": "Family & People",
       "ttsText": "しょうねん",
       "sourceOrder": 29
@@ -271,7 +271,7 @@
     {
       "id": "r-37b4565f51d1",
       "target": "少し",
-      "english": "Little",
+      "english": "A little; a bit",
       "category": "Descriptions & Qualities",
       "ttsText": "すこし",
       "sourceOrder": 32
@@ -287,7 +287,7 @@
     {
       "id": "r-7d72598db4ca",
       "target": "梅雨",
-      "english": "Rainy season",
+      "english": "Rainy season (in Japan, early summer)",
       "category": "Weather & Nature",
       "ttsText": "つゆ",
       "sourceOrder": 34
@@ -383,7 +383,7 @@
     {
       "id": "r-523ba26a829c",
       "target": "少々",
-      "english": "A little",
+      "english": "A little (formal)",
       "category": "Descriptions & Qualities",
       "ttsText": "しょうしょう",
       "sourceOrder": 46

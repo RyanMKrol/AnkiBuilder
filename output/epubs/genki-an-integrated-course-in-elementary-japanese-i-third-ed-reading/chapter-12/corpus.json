@@ -28,7 +28,7 @@
     {
       "id": "r-9badb0882237",
       "target": "優",
-      "english": "Actor; gentle",
+      "english": "Gentle; excellent",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 2
@@ -76,7 +76,7 @@
     {
       "id": "r-3955785dea35",
       "target": "士",
-      "english": "Profession; expert",
+      "english": "Samurai; professional",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 8
@@ -132,7 +132,7 @@
     {
       "id": "r-13a04753b828",
       "target": "飼",
-      "english": "Raise; keep",
+      "english": "Keep (an animal); raise",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 15
@@ -244,7 +244,7 @@
     {
       "id": "r-d2e4839a3345",
       "target": "研",
-      "english": "Study; polish",
+      "english": "Polish; sharpen",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 29
@@ -260,7 +260,7 @@
     {
       "id": "r-b48e9d30fb4e",
       "target": "師",
-      "english": "Teacher; expert",
+      "english": "Teacher; master",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 31
@@ -324,7 +324,7 @@
     {
       "id": "r-44a60d99966c",
       "target": "身",
-      "english": "Body; oneself",
+      "english": "Oneself; one's body",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 39
@@ -428,7 +428,7 @@
     {
       "id": "r-a0d91b62adb5",
       "target": "質",
-      "english": "Question; substance",
+      "english": "Quality; substance",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 52
@@ -452,7 +452,7 @@
     {
       "id": "r-4170cd50639e",
       "target": "将",
-      "english": "Future",
+      "english": "Commander; about to",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 55
@@ -635,7 +635,7 @@
     {
       "id": "r-8259b1bcb805",
       "target": "授業",
-      "english": "Class",
+      "english": "Class; lesson",
       "category": "School & Education",
       "ttsText": "じゅぎょう",
       "sourceOrder": 76
@@ -1053,7 +1053,7 @@
     {
       "id": "r-2ff4a6f70b6b",
       "target": "練習",
-      "english": "Exercise",
+      "english": "Practice; exercise (drill)",
       "category": "School & Education",
       "ttsText": "れんしゅう",
       "sourceOrder": 126

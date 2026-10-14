@@ -145,7 +145,7 @@
     {
       "id": "r-b9ee259b7f6c",
       "target": "低",
-      "english": "Low; short",
+      "english": "Low",
       "category": "Other",
       "pronunciation": "tei / hiku",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -272,7 +272,7 @@
     {
       "id": "r-f45938c905d5",
       "target": "髪",
-      "english": "Hair",
+      "english": "Hair (on the head)",
       "category": "Body & Health",
       "ttsText": "かみ",
       "sourceOrder": 21,
@@ -419,7 +419,7 @@
     {
       "id": "r-f749203bd901",
       "target": "毛",
-      "english": "Hair; fur",
+      "english": "Fur; body hair",
       "category": "Other",
       "pronunciation": "mō / ke",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -501,7 +501,7 @@
     {
       "id": "r-80b84acecf51",
       "target": "住",
-      "english": "To live",
+      "english": "Live (reside)",
       "category": "Other",
       "pronunciation": "jū / su",
       "reviewNote": "Meaning and readings from the book (Chapter 24: Reading and Writing 10: The Folktale Kasajizo).",
@@ -589,7 +589,7 @@
     {
       "id": "r-d57207655b68",
       "target": "眼鏡",
-      "english": "Glasses",
+      "english": "Glasses (eyewear)",
       "category": "Clothing",
       "ttsText": "めがね",
       "sourceOrder": 49,
@@ -694,7 +694,7 @@
     {
       "id": "r-9832b0190026",
       "target": "背中",
-      "english": "Back",
+      "english": "Back (body)",
       "category": "Body & Health",
       "ttsText": "せなか",
       "sourceOrder": 56,
@@ -982,7 +982,7 @@
     {
       "id": "r-d7e621055f5c",
       "target": "親切",
-      "english": "Kind",
+      "english": "Kind (to people); considerate",
       "category": "Descriptions & Qualities",
       "ttsText": "しんせつ",
       "sourceOrder": 75,
@@ -1401,7 +1401,7 @@
     {
       "id": "r-4f40e0596a9b",
       "target": "住む",
-      "english": "To live",
+      "english": "To live (in a place)",
       "category": "Home & Household",
       "ttsText": "すむ",
       "sourceOrder": 103,

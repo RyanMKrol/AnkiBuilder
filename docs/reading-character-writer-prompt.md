@@ -21,7 +21,8 @@ Each with the words in this deck that use it, and those words' readings where th
 For each character:
 
 - `english`: its core meaning, what a learner needs to recognise it. One to three meanings,
-  sentence-case, joined with "; ". Never an obscure or technical sense.
+  sentence-case, joined with "; ". Never an obscure or technical sense, and never the meaning of a
+  word it appears in rather than its own (card rules 9): 将 is "Commander", not "Future" from 将来.
 - `readings`: the readings a learner meets, in the shape the language rules above describe for a
   character card. Every reading the listed words use must be among them. Leave out rare, archaic and
   name-only readings.

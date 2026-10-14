@@ -277,7 +277,7 @@
     {
       "id": "r-bea55d0635be",
       "target": "物",
-      "english": "Thing",
+      "english": "Thing (physical)",
       "category": "Other",
       "pronunciation": "butsu, motsu / mono",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -375,7 +375,7 @@
     {
       "id": "r-3eb31f888c66",
       "target": "生",
-      "english": "Birth",
+      "english": "Life; birth",
       "category": "Other",
       "pronunciation": "sei, shō / u, i, o, ha, ki, nama",
       "reviewNote": "Meaning and readings from the book (Chapter 20: Reading and Writing 6: My Favorite Restaurant).",
@@ -685,7 +685,7 @@
     {
       "id": "r-3756d168052f",
       "target": "誕",
-      "english": "Birth",
+      "english": "Birth (as in birthday)",
       "category": "Other",
       "pronunciation": "tan",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -727,7 +727,7 @@
     {
       "id": "r-3e450648252d",
       "target": "春",
-      "english": "Spring",
+      "english": "Spring (season)",
       "category": "Other",
       "pronunciation": "shun / haru",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",

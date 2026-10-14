@@ -44,7 +44,7 @@
     {
       "id": "r-e2fc60d070bd",
       "target": "冷",
-      "english": "Cold",
+      "english": "Cold (to the touch)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 4
@@ -60,7 +60,7 @@
     {
       "id": "r-d788044e1425",
       "target": "暖",
-      "english": "Warm",
+      "english": "Warm (weather)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 6
@@ -260,7 +260,7 @@
     {
       "id": "r-edb84a4b9c87",
       "target": "場",
-      "english": "Place",
+      "english": "Spot; location",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 31
@@ -316,7 +316,7 @@
     {
       "id": "r-a9539ed7e679",
       "target": "者",
-      "english": "Person",
+      "english": "Person (who does something)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 38

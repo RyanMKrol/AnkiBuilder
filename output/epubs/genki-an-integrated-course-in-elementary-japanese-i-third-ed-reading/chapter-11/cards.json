@@ -62,7 +62,7 @@
     {
       "id": "r-e2fc60d070bd",
       "target": "冷",
-      "english": "Cold",
+      "english": "Cold (to the touch)",
       "category": "Other",
       "pronunciation": "rei / tsume, hi, sa",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -80,7 +80,7 @@
     {
       "id": "r-d788044e1425",
       "target": "暖",
-      "english": "Warm",
+      "english": "Warm (weather)",
       "category": "Other",
       "pronunciation": "dan / atata",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -377,7 +377,7 @@
     {
       "id": "r-edb84a4b9c87",
       "target": "場",
-      "english": "Place",
+      "english": "Spot; location",
       "category": "Other",
       "pronunciation": "jō / ba",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -452,7 +452,7 @@
     {
       "id": "r-a9539ed7e679",
       "target": "者",
-      "english": "Person",
+      "english": "Person (who does something)",
       "category": "Other",
       "pronunciation": "sha / mono",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",

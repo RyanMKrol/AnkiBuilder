@@ -212,7 +212,7 @@
     {
       "id": "r-bea55d0635be",
       "target": "物",
-      "english": "Thing",
+      "english": "Thing (physical)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 25
@@ -516,7 +516,7 @@
     {
       "id": "r-3756d168052f",
       "target": "誕",
-      "english": "Birth",
+      "english": "Birth (as in birthday)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 63
@@ -548,7 +548,7 @@
     {
       "id": "r-3e450648252d",
       "target": "春",
-      "english": "Spring",
+      "english": "Spring (season)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 67

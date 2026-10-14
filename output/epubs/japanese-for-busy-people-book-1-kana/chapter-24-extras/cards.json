@@ -49,21 +49,36 @@
       "category": "School & Education",
       "target": "いいえ、わかりません",
       "pronunciation": "īe, wakarimasen",
-      "scene": "Answering whether you also understand German."
+      "scene": "Answering whether you also understand German.",
+      "audio": "c29c7fa41575b8fa.mp3",
+      "audioOriginal": "c29c7fa41575b8fa.orig.mp3",
+      "audioAuto": "c29c7fa41575b8fa.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c29c7fa41575b8fa"
     },
     {
       "id": "ex10-eg-q-smith-german-too",
       "english": "Do you also understand German?",
       "category": "School & Education",
       "target": "ドイツごもわかりますか",
-      "pronunciation": "doitsugo mo wakarimasu ka"
+      "pronunciation": "doitsugo mo wakarimasu ka",
+      "audio": "1bb4f256f243cb32.mp3",
+      "audioOriginal": "1bb4f256f243cb32.orig.mp3",
+      "audioAuto": "1bb4f256f243cb32.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1bb4f256f243cb32"
     },
     {
       "id": "ex9-smith-understands-japanese",
       "english": "Smith-san understands Japanese.",
       "category": "School & Education",
       "target": "スミスさんはにほんごがわかります",
-      "pronunciation": "sumisu-san wa nihongo ga wakarimasu"
+      "pronunciation": "sumisu-san wa nihongo ga wakarimasu",
+      "audio": "ee86f3322b8c3bb8.mp3",
+      "audioOriginal": "ee86f3322b8c3bb8.orig.mp3",
+      "audioAuto": "ee86f3322b8c3bb8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ee86f3322b8c3bb8"
     },
     {
       "id": "ex8a2-job-q",
@@ -81,35 +96,60 @@
       "category": "Descriptions & Qualities",
       "target": "すずきさんはじぶんのへやがあります",
       "pronunciation": "suzuki-san wa jibun no heya ga arimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "6ff00e8fe196a956.mp3",
+      "audioOriginal": "6ff00e8fe196a956.orig.mp3",
+      "audioAuto": "6ff00e8fe196a956.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6ff00e8fe196a956"
     },
     {
       "id": "ex8b-ask-know-ito-phone",
       "english": "Then, do you know Ito-san's phone number?",
       "category": "Technology & Communication",
       "target": "じゃ、いとうさんのでんわばんごうをしっていますか",
-      "pronunciation": "ja, itō-san no denwa bangō o shitte imasu ka"
+      "pronunciation": "ja, itō-san no denwa bangō o shitte imasu ka",
+      "audio": "6e2c2e21a7900b32.mp3",
+      "audioOriginal": "6e2c2e21a7900b32.orig.mp3",
+      "audioAuto": "6e2c2e21a7900b32.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6e2c2e21a7900b32"
     },
     {
       "id": "smiths-hobby-is-reading",
       "english": "Smith-san's hobby is reading.",
       "category": "Sports & Hobbies",
       "target": "スミスさんのしゅみはほんをよむことです",
-      "pronunciation": "sumisu-san no shumi wa hon o yomu koto desu"
+      "pronunciation": "sumisu-san no shumi wa hon o yomu koto desu",
+      "audio": "04931a238036e3f1.mp3",
+      "audioOriginal": "04931a238036e3f1.orig.mp3",
+      "audioAuto": "04931a238036e3f1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "04931a238036e3f1"
     },
     {
       "id": "ex7b-chan-email-q",
       "english": "Do you know Chan-san's e-mail address?",
       "category": "Other",
       "target": "チャンさんのメールアドレスをしっていますか",
-      "pronunciation": "chan-san no mēruadoresu o shitte imasu ka"
+      "pronunciation": "chan-san no mēruadoresu o shitte imasu ka",
+      "audio": "52da72656adff2fe.mp3",
+      "audioOriginal": "52da72656adff2fe.orig.mp3",
+      "audioAuto": "52da72656adff2fe.mp3",
+      "audioMarked": true,
+      "audioTextHash": "52da72656adff2fe"
     },
     {
       "id": "ex7b-suzuki-phone-q",
       "english": "Do you know Suzuki-san's phone number?",
       "category": "Other",
       "target": "すずきさんのでんわばんごうをしっていますか",
-      "pronunciation": "suzuki-san no denwa bangō o shitte imasu ka"
+      "pronunciation": "suzuki-san no denwa bangō o shitte imasu ka",
+      "audio": "8f611473e20c1e46.mp3",
+      "audioOriginal": "8f611473e20c1e46.orig.mp3",
+      "audioAuto": "8f611473e20c1e46.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8f611473e20c1e46"
     },
     {
       "id": "effort-with-object",
@@ -117,7 +157,12 @@
       "category": "Work & Occupations",
       "target": "あたらしいしごとをがんばります",
       "pronunciation": "atarashii shigoto o ganbarimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "c9b4cca297469919.mp3",
+      "audioOriginal": "c9b4cca297469919.orig.mp3",
+      "audioAuto": "c9b4cca297469919.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c9b4cca297469919"
     },
     {
       "id": "ex11-emma-q",
@@ -135,21 +180,36 @@
       "category": "Sports & Hobbies",
       "target": "ほんをよむことです",
       "pronunciation": "hon o yomu koto desu",
-      "scene": "Answering what Smith-san's hobby is."
+      "scene": "Answering what Smith-san's hobby is.",
+      "audio": "14d09fed795a1ab2.mp3",
+      "audioOriginal": "14d09fed795a1ab2.orig.mp3",
+      "audioAuto": "14d09fed795a1ab2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "14d09fed795a1ab2"
     },
     {
       "id": "ex6-ando-lives-shinagawa",
       "english": "Ando-san lives in Shinagawa.",
       "category": "Home & Household",
       "target": "あんどうさんはしながわにすんでいます",
-      "pronunciation": "andō-san wa shinagawa ni sunde imasu"
+      "pronunciation": "andō-san wa shinagawa ni sunde imasu",
+      "audio": "5112d7710181a101.mp3",
+      "audioOriginal": "5112d7710181a101.orig.mp3",
+      "audioAuto": "5112d7710181a101.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5112d7710181a101"
     },
     {
       "id": "ex8a-ask-know-ito-yokohama",
       "english": "I see. Then, do you know Ito-san of the Yokohama branch?",
       "category": "Family & People",
       "target": "そうですか。じゃ、よこはまししゃのいとうさんをしっていますか",
-      "pronunciation": "sō desu ka. ja, yokohama shisha no itō-san o shitte imasu ka"
+      "pronunciation": "sō desu ka. ja, yokohama shisha no itō-san o shitte imasu ka",
+      "audio": "9978babb6de66be4.mp3",
+      "audioOriginal": "9978babb6de66be4.orig.mp3",
+      "audioAuto": "9978babb6de66be4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9978babb6de66be4"
     },
     {
       "id": "ex8a-ando-engineer-jbp",
@@ -157,7 +217,12 @@
       "category": "Work & Occupations",
       "target": "エンジニアです。JBPジャパンにつとめています",
       "pronunciation": "enjinia desu. JBP Japan ni tsutomete imasu",
-      "scene": "Replying to someone who just asked about your work."
+      "scene": "Replying to someone who just asked about your work.",
+      "audio": "fb6d075f382cc75c.mp3",
+      "audioOriginal": "fb6d075f382cc75c.orig.mp3",
+      "audioAuto": "fb6d075f382cc75c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fb6d075f382cc75c"
     },
     {
       "id": "ganbarimasu-sentence",
@@ -165,7 +230,12 @@
       "category": "Emotions & Feelings",
       "target": "わたしはがんばります",
       "pronunciation": "watashi wa ganbarimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "14514c11307624c2.mp3",
+      "audioOriginal": "14514c11307624c2.orig.mp3",
+      "audioAuto": "14514c11307624c2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "14514c11307624c2"
     },
     {
       "id": "ex8b1-wang-q",
@@ -183,7 +253,12 @@
       "category": "Grammar & Function Words",
       "target": "リサさんはデザイナーですよね",
       "pronunciation": "risa-san wa dezainā desu yo ne",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "7a10ae2334960311.mp3",
+      "audioOriginal": "7a10ae2334960311.orig.mp3",
+      "audioAuto": "7a10ae2334960311.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7a10ae2334960311"
     },
     {
       "id": "shinagawa-bank-exists",
@@ -191,7 +266,12 @@
       "category": "Other",
       "target": "しながわにぎんこうがあります",
       "pronunciation": "shinagawa ni ginkō ga arimasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "5f83c3834ec7d552.mp3",
+      "audioOriginal": "5f83c3834ec7d552.orig.mp3",
+      "audioAuto": "5f83c3834ec7d552.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5f83c3834ec7d552"
     },
     {
       "id": "yone-03",
@@ -199,7 +279,12 @@
       "category": "Grammar & Function Words",
       "target": "すずきさんのおにいさんはりょこうがいしゃにつとめていますよね",
       "pronunciation": "suzuki-san no oniisan wa ryokōgaisha ni tsutomete imasu yo ne",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "d5d88e3683c5cfdd.mp3",
+      "audioOriginal": "d5d88e3683c5cfdd.orig.mp3",
+      "audioAuto": "d5d88e3683c5cfdd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d5d88e3683c5cfdd"
     },
     {
       "id": "nationality-vs-language-a",
@@ -208,7 +293,13 @@
       "target": "いいえ、ちゅうごくじんじゃありませんが、ちゅうごくごがわかります",
       "pronunciation": "īe, chūgokujin ja arimasen ga, chūgokugo ga wakarimasu",
       "aiSuggested": true,
-      "note": "Second half of the pair with nationality-vs-language-q."
+      "note": "Second half of the pair with nationality-vs-language-q.",
+      "audio": "b85dab312f6e6f99.mp3",
+      "audioOriginal": "b85dab312f6e6f99.orig.mp3",
+      "audioAuto": "b85dab312f6e6f99.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "b85dab312f6e6f99"
     },
     {
       "id": "ex3-yamada-a",
@@ -216,14 +307,24 @@
       "category": "Home & Household",
       "target": "しぶやにすんでいます",
       "pronunciation": "shibuya ni sunde imasu",
-      "scene": "answering someone who just asked where you live"
+      "scene": "answering someone who just asked where you live",
+      "audio": "6cbdf3e3208d6184.mp3",
+      "audioOriginal": "6cbdf3e3208d6184.orig.mp3",
+      "audioAuto": "6cbdf3e3208d6184.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6cbdf3e3208d6184"
     },
     {
       "id": "ex6-chan-sister-residence",
       "english": "Chan-san's older sister lives in Hong Kong.",
       "category": "Home & Household",
       "target": "チャンさんのおねえさんはホンコンにすんでいます",
-      "pronunciation": "chan-san no onēsan wa honkon ni sunde imasu"
+      "pronunciation": "chan-san no onēsan wa honkon ni sunde imasu",
+      "audio": "3548dbcb32cf7821.mp3",
+      "audioOriginal": "3548dbcb32cf7821.orig.mp3",
+      "audioAuto": "3548dbcb32cf7821.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3548dbcb32cf7821"
     },
     {
       "id": "brand-object-known",
@@ -231,14 +332,24 @@
       "category": "Shopping",
       "target": "そのブランドをしっていますか",
       "pronunciation": "sono burando o shitte imasu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "f6da35d3ffb36327.mp3",
+      "audioOriginal": "f6da35d3ffb36327.orig.mp3",
+      "audioAuto": "f6da35d3ffb36327.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f6da35d3ffb36327"
     },
     {
       "id": "ex6-chan-sister-employer",
       "english": "Chan-san's older sister works at a department store.",
       "category": "Work & Occupations",
       "target": "チャンさんのおねえさんはデパートにつとめています",
-      "pronunciation": "chan-san no onēsan wa depāto ni tsutomete imasu"
+      "pronunciation": "chan-san no onēsan wa depāto ni tsutomete imasu",
+      "audio": "479382177a8f2591.mp3",
+      "audioOriginal": "479382177a8f2591.orig.mp3",
+      "audioAuto": "479382177a8f2591.mp3",
+      "audioMarked": true,
+      "audioTextHash": "479382177a8f2591"
     },
     {
       "id": "burando-sentence",
@@ -246,14 +357,24 @@
       "category": "Shopping",
       "target": "そのブランドはゆうめいです",
       "pronunciation": "sono burando wa yūmei desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "57066606e94424f7.mp3",
+      "audioOriginal": "57066606e94424f7.orig.mp3",
+      "audioAuto": "57066606e94424f7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "57066606e94424f7"
     },
     {
       "id": "ex4-yamada-bank",
       "english": "Yamada-san works for a bank.",
       "category": "Work & Occupations",
       "target": "やまださんはぎんこうにつとめています",
-      "pronunciation": "yamada-san wa ginkō ni tsutomete imasu"
+      "pronunciation": "yamada-san wa ginkō ni tsutomete imasu",
+      "audio": "afba92621291e870.mp3",
+      "audioOriginal": "afba92621291e870.orig.mp3",
+      "audioAuto": "afba92621291e870.mp3",
+      "audioMarked": true,
+      "audioTextHash": "afba92621291e870"
     },
     {
       "id": "ex10-eg-a-smith-french-yes",
@@ -261,7 +382,12 @@
       "category": "School & Education",
       "target": "はい、わかります",
       "pronunciation": "hai, wakarimasu",
-      "scene": "Answering whether you understand French."
+      "scene": "Answering whether you understand French.",
+      "audio": "f113319edd434139.mp3",
+      "audioOriginal": "f113319edd434139.orig.mp3",
+      "audioAuto": "f113319edd434139.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f113319edd434139"
     },
     {
       "id": "dezainaa-sentence",
@@ -269,14 +395,24 @@
       "category": "Work & Occupations",
       "target": "スミスさんのいもうとさんはデザイナーです",
       "pronunciation": "sumisu-san no imōto-san wa dezainā desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "2d3201393d70802f.mp3",
+      "audioOriginal": "2d3201393d70802f.orig.mp3",
+      "audioAuto": "2d3201393d70802f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2d3201393d70802f"
     },
     {
       "id": "ex3-white-q",
       "english": "Where does White-san live?",
       "category": "Home & Household",
       "target": "ホワイトさんはどこにすんでいますか",
-      "pronunciation": "howaito-san wa doko ni sunde imasu ka"
+      "pronunciation": "howaito-san wa doko ni sunde imasu ka",
+      "audio": "e1c2cf43f4d7c3ff.mp3",
+      "audioOriginal": "e1c2cf43f4d7c3ff.orig.mp3",
+      "audioAuto": "e1c2cf43f4d7c3ff.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e1c2cf43f4d7c3ff"
     },
     {
       "id": "ex3-white-a",
@@ -284,21 +420,36 @@
       "category": "Home & Household",
       "target": "ろっぽんぎにすんでいます",
       "pronunciation": "roppongi ni sunde imasu",
-      "scene": "answering someone who just asked where you live"
+      "scene": "answering someone who just asked where you live",
+      "audio": "79e8ea76bad54911.mp3",
+      "audioOriginal": "79e8ea76bad54911.orig.mp3",
+      "audioAuto": "79e8ea76bad54911.mp3",
+      "audioMarked": true,
+      "audioTextHash": "79e8ea76bad54911"
     },
     {
       "id": "ex7a-q-know-sasaki",
       "english": "Do you know Sasaki-san?",
       "category": "Family & People",
       "target": "ささきさんをしっていますか",
-      "pronunciation": "sasaki-san o shitte imasu ka"
+      "pronunciation": "sasaki-san o shitte imasu ka",
+      "audio": "36eff3179d8d76c6.mp3",
+      "audioOriginal": "36eff3179d8d76c6.orig.mp3",
+      "audioAuto": "36eff3179d8d76c6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "36eff3179d8d76c6"
     },
     {
       "id": "ex6-nakamura-sister-employer",
       "english": "Nakamura-san's younger sister works for a bank.",
       "category": "Work & Occupations",
       "target": "なかむらさんのいもうとさんはぎんこうにつとめています",
-      "pronunciation": "nakamura-san no imōto-san wa ginkō ni tsutomete imasu"
+      "pronunciation": "nakamura-san no imōto-san wa ginkō ni tsutomete imasu",
+      "audio": "3449417c9e9dfb7c.mp3",
+      "audioOriginal": "3449417c9e9dfb7c.orig.mp3",
+      "audioAuto": "3449417c9e9dfb7c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3449417c9e9dfb7c"
     },
     {
       "id": "ex11-suzuki-q",
@@ -325,7 +476,12 @@
       "english": "I see. Well then, do you know Wang-san of the Hong Kong branch?",
       "category": "Other",
       "target": "そうですか。じゃ、ホンコンししゃのワンさんをしっていますか",
-      "pronunciation": "sō desu ka. ja, honkon shisha no wan-san o shitte imasu ka"
+      "pronunciation": "sō desu ka. ja, honkon shisha no wan-san o shitte imasu ka",
+      "audio": "7dede08a5e601aae.mp3",
+      "audioOriginal": "7dede08a5e601aae.orig.mp3",
+      "audioAuto": "7dede08a5e601aae.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7dede08a5e601aae"
     },
     {
       "id": "no-i-dont-know-chan",
@@ -333,21 +489,36 @@
       "category": "Family & People",
       "target": "いいえ、しりません",
       "pronunciation": "īe, shirimasen",
-      "scene": "Answering someone who just asked whether you know a particular person, when you don't."
+      "scene": "Answering someone who just asked whether you know a particular person, when you don't.",
+      "audio": "52866076cf02d7a3.mp3",
+      "audioOriginal": "52866076cf02d7a3.orig.mp3",
+      "audioAuto": "52866076cf02d7a3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "52866076cf02d7a3"
     },
     {
       "id": "ex11-q-smiths-hobby",
       "english": "What is Smith-san's hobby?",
       "category": "Sports & Hobbies",
       "target": "スミスさんのしゅみはなんですか",
-      "pronunciation": "sumisu-san no shumi wa nan desu ka"
+      "pronunciation": "sumisu-san no shumi wa nan desu ka",
+      "audio": "d590f27a7d108a71.mp3",
+      "audioOriginal": "d590f27a7d108a71.orig.mp3",
+      "audioAuto": "d590f27a7d108a71.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d590f27a7d108a71"
     },
     {
       "id": "ex4-tanaka-works-department-store",
       "english": "Tanaka-san works at a department store.",
       "category": "Work & Occupations",
       "target": "たなかさんはデパートにつとめています",
-      "pronunciation": "tanaka-san wa depāto ni tsutomete imasu"
+      "pronunciation": "tanaka-san wa depāto ni tsutomete imasu",
+      "audio": "7a208d66fd36631e.mp3",
+      "audioOriginal": "7a208d66fd36631e.orig.mp3",
+      "audioAuto": "7a208d66fd36631e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7a208d66fd36631e"
     },
     {
       "id": "ex10-2-q-sasaki-chinese",
@@ -355,7 +526,12 @@
       "category": "School & Education",
       "target": "ささきさんはちゅうごくごがわかりますか",
       "pronunciation": "sasaki-san wa chūgokugo ga wakarimasu ka",
-      "note": "Answer cued by the chapter's picture: Sasaki-san ○ Chinese ×Korean."
+      "note": "Answer cued by the chapter's picture: Sasaki-san ○ Chinese ×Korean.",
+      "audio": "52554971d32ee561.mp3",
+      "audioOriginal": "52554971d32ee561.orig.mp3",
+      "audioAuto": "52554971d32ee561.mp3",
+      "audioMarked": true,
+      "audioTextHash": "52554971d32ee561"
     },
     {
       "id": "ex7b-a-know-white-no",
@@ -375,7 +551,12 @@
       "target": "すみません。わかりません",
       "pronunciation": "sumimasen. wakarimasen",
       "scene": "Answering that you don't know Ito-san's phone number, after being asked.",
-      "note": "わかりません (wakarimasen), not しりません (shirimasen): when someone asks for a piece of information you don't have, such as a phone number, you answer わかりません. しりません answers whether you know of a person or thing at all."
+      "note": "わかりません (wakarimasen), not しりません (shirimasen): when someone asks for a piece of information you don't have, such as a phone number, you answer わかりません. しりません answers whether you know of a person or thing at all.",
+      "audio": "2890372e3f113b1c.mp3",
+      "audioOriginal": "2890372e3f113b1c.orig.mp3",
+      "audioAuto": "2890372e3f113b1c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2890372e3f113b1c"
     },
     {
       "id": "ex5-a-brown-works-london-bank",
@@ -383,7 +564,12 @@
       "category": "Work & Occupations",
       "target": "ロンドンぎんこうにつとめています",
       "pronunciation": "rondon ginkō ni tsutomete imasu",
-      "scene": "Answering a question about where Brown-san works."
+      "scene": "Answering a question about where Brown-san works.",
+      "audio": "11c75846388f5eef.mp3",
+      "audioOriginal": "11c75846388f5eef.orig.mp3",
+      "audioAuto": "11c75846388f5eef.mp3",
+      "audioMarked": true,
+      "audioTextHash": "11c75846388f5eef"
     },
     {
       "id": "ex11-suzuki-a",
@@ -391,7 +577,12 @@
       "category": "Sports & Hobbies",
       "target": "えをかくことです",
       "pronunciation": "e o kaku koto desu",
-      "scene": "Answering what your hobby is."
+      "scene": "Answering what your hobby is.",
+      "audio": "155d66e436485f43.mp3",
+      "audioOriginal": "155d66e436485f43.orig.mp3",
+      "audioAuto": "155d66e436485f43.mp3",
+      "audioMarked": true,
+      "audioTextHash": "155d66e436485f43"
     },
     {
       "id": "ex8a-ask-andos-work",
@@ -400,14 +591,24 @@
       "target": "あんどうさん、おしごとは?",
       "pronunciation": "andō-san, oshigoto wa",
       "scene": "Smith is making small talk with someone new at a party.",
-      "note": "おしごとは? (o-shigoto wa?) leaves off ですか (desu ka) — literally \"and your job?\" — は (wa) alone implies the question once the topic is named."
+      "note": "おしごとは? (o-shigoto wa?) leaves off ですか (desu ka) — literally \"and your job?\" — は (wa) alone implies the question once the topic is named.",
+      "audio": "50db9f0bbb5dfa68.mp3",
+      "audioOriginal": "50db9f0bbb5dfa68.orig.mp3",
+      "audioAuto": "50db9f0bbb5dfa68.mp3",
+      "audioMarked": true,
+      "audioTextHash": "50db9f0bbb5dfa68"
     },
     {
       "id": "ex8b-ask-know-ito-jbp",
       "english": "Do you know Ito-san of JBP Japan?",
       "category": "Family & People",
       "target": "JBPジャパンのいとうさんをしっていますか",
-      "pronunciation": "JBP Japan no itō-san o shitte imasu ka"
+      "pronunciation": "JBP Japan no itō-san o shitte imasu ka",
+      "audio": "8b6aa6adf44049b7.mp3",
+      "audioOriginal": "8b6aa6adf44049b7.orig.mp3",
+      "audioAuto": "8b6aa6adf44049b7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8b6aa6adf44049b7"
     },
     {
       "id": "hobby-travel-suru-koto",
@@ -415,21 +616,36 @@
       "category": "Sports & Hobbies",
       "target": "わたしのしゅみはりょこうをすることです",
       "pronunciation": "watashi no shumi wa ryokō o suru koto desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "29fed35276aa5fd6.mp3",
+      "audioOriginal": "29fed35276aa5fd6.orig.mp3",
+      "audioAuto": "29fed35276aa5fd6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "29fed35276aa5fd6"
     },
     {
       "id": "ex2-yamamoto-lives-kyoto",
       "english": "Yamamoto-san lives in Kyoto.",
       "category": "Home & Household",
       "target": "やまもとさんはきょうとにすんでいます",
-      "pronunciation": "yamamoto-san wa kyōto ni sunde imasu"
+      "pronunciation": "yamamoto-san wa kyōto ni sunde imasu",
+      "audio": "8c7686e832acbe7e.mp3",
+      "audioOriginal": "8c7686e832acbe7e.orig.mp3",
+      "audioAuto": "8c7686e832acbe7e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8c7686e832acbe7e"
     },
     {
       "id": "ex6-nakamura-sister-residence",
       "english": "Nakamura-san's younger sister lives in Sapporo.",
       "category": "Home & Household",
       "target": "なかむらさんのいもうとさんはさっぽろにすんでいます",
-      "pronunciation": "nakamura-san no imōto-san wa sapporo ni sunde imasu"
+      "pronunciation": "nakamura-san no imōto-san wa sapporo ni sunde imasu",
+      "audio": "dc4bf04bc2012bbc.mp3",
+      "audioOriginal": "dc4bf04bc2012bbc.orig.mp3",
+      "audioAuto": "dc4bf04bc2012bbc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dc4bf04bc2012bbc"
     },
     {
       "id": "senkou-sentence",
@@ -437,7 +653,12 @@
       "category": "School & Education",
       "target": "わたしのせんこうはにほんごです",
       "pronunciation": "watashi no senkō wa nihongo desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "566e6ced57af2322.mp3",
+      "audioOriginal": "566e6ced57af2322.orig.mp3",
+      "audioAuto": "566e6ced57af2322.mp3",
+      "audioMarked": true,
+      "audioTextHash": "566e6ced57af2322"
     },
     {
       "id": "ex3-a-suzuki-lives-yokohama",
@@ -445,21 +666,36 @@
       "category": "Home & Household",
       "target": "よこはまにすんでいます",
       "pronunciation": "yokohama ni sunde imasu",
-      "scene": "Answering a question about where Suzuki-san lives."
+      "scene": "Answering a question about where Suzuki-san lives.",
+      "audio": "8f51a89ed41c99d4.mp3",
+      "audioOriginal": "8f51a89ed41c99d4.orig.mp3",
+      "audioAuto": "8f51a89ed41c99d4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8f51a89ed41c99d4"
     },
     {
       "id": "ex7a-tanaka-address-q",
       "english": "Do you know Tanaka-san's address?",
       "category": "Other",
       "target": "たなかさんのじゅうしょをしっていますか",
-      "pronunciation": "tanaka-san no jūsho o shitte imasu ka"
+      "pronunciation": "tanaka-san no jūsho o shitte imasu ka",
+      "audio": "376f9a6bff39575e.mp3",
+      "audioOriginal": "376f9a6bff39575e.orig.mp3",
+      "audioAuto": "376f9a6bff39575e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "376f9a6bff39575e"
     },
     {
       "id": "ex9-kanji",
       "english": "Smith-san understands kanji.",
       "category": "Other",
       "target": "スミスさんはかんじがわかります",
-      "pronunciation": "sumisu-san wa kanji ga wakarimasu"
+      "pronunciation": "sumisu-san wa kanji ga wakarimasu",
+      "audio": "06bc91ec479069e1.mp3",
+      "audioOriginal": "06bc91ec479069e1.orig.mp3",
+      "audioAuto": "06bc91ec479069e1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "06bc91ec479069e1"
     },
     {
       "id": "ex7b-q-know-white",
@@ -476,14 +712,24 @@
       "english": "Does Smith-san understand French?",
       "category": "School & Education",
       "target": "スミスさんはフランスごがわかりますか",
-      "pronunciation": "sumisu-san wa furansugo ga wakarimasu ka"
+      "pronunciation": "sumisu-san wa furansugo ga wakarimasu ka",
+      "audio": "d5921b6ba067152d.mp3",
+      "audioOriginal": "d5921b6ba067152d.orig.mp3",
+      "audioAuto": "d5921b6ba067152d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d5921b6ba067152d"
     },
     {
       "id": "smith-lives-in-tokyo",
       "english": "Smith-san lives in Tokyo.",
       "category": "Home & Household",
       "target": "スミスさんはとうきょうにすんでいます",
-      "pronunciation": "sumisu-san wa tōkyō ni sunde imasu"
+      "pronunciation": "sumisu-san wa tōkyō ni sunde imasu",
+      "audio": "917fbbcf0a454c11.mp3",
+      "audioOriginal": "917fbbcf0a454c11.orig.mp3",
+      "audioAuto": "917fbbcf0a454c11.mp3",
+      "audioMarked": true,
+      "audioTextHash": "917fbbcf0a454c11"
     },
     {
       "id": "tsutomemasu-sentence",
@@ -492,7 +738,12 @@
       "target": "らいげつ、ABCフーズにつとめます",
       "pronunciation": "raigetsu, ABC Fūzu ni tsutomemasu",
       "aiSuggested": true,
-      "note": "The plain ます-form, used for a change taking effect from a future point; つとめています describes the ongoing state once it has started."
+      "note": "The plain ます-form, used for a change taking effect from a future point; つとめています describes the ongoing state once it has started.",
+      "audio": "7e86b0d46f5cec7d.mp3",
+      "audioOriginal": "7e86b0d46f5cec7d.orig.mp3",
+      "audioAuto": "7e86b0d46f5cec7d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7e86b0d46f5cec7d"
     },
     {
       "id": "ex7a-a-know-sasaki-yes",
@@ -500,7 +751,12 @@
       "category": "Family & People",
       "target": "はい、しっています",
       "pronunciation": "hai, shitte imasu",
-      "scene": "Answering whether you know Sasaki-san."
+      "scene": "Answering whether you know Sasaki-san.",
+      "audio": "9f035fe2e5b1c7c6.mp3",
+      "audioOriginal": "9f035fe2e5b1c7c6.orig.mp3",
+      "audioAuto": "9f035fe2e5b1c7c6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9f035fe2e5b1c7c6"
     },
     {
       "id": "yone-with-shiru",
@@ -508,7 +764,12 @@
       "category": "Work & Occupations",
       "target": "いとうさんをしっていますよね",
       "pronunciation": "itō-san o shitte imasu yo ne",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "36656ef19be26964.mp3",
+      "audioOriginal": "36656ef19be26964.orig.mp3",
+      "audioAuto": "36656ef19be26964.mp3",
+      "audioMarked": true,
+      "audioTextHash": "36656ef19be26964"
     },
     {
       "id": "tsutometeimasen-sentence",
@@ -517,7 +778,12 @@
       "target": "スミスさんはもうABCフーズにつとめていません",
       "pronunciation": "sumisu-san wa mō ABC Fūzu ni tsutomete imasen",
       "aiSuggested": true,
-      "note": "もう (mō) with a negative means \"no longer\" or \"not any more\". It is a different use from もういちど (mō ichido, \"once more\") and もうすこし (mō sukoshi, \"a little more\")."
+      "note": "もう (mō) with a negative means \"no longer\" or \"not any more\". It is a different use from もういちど (mō ichido, \"once more\") and もうすこし (mō sukoshi, \"a little more\").",
+      "audio": "e0530c59305e749f.mp3",
+      "audioOriginal": "e0530c59305e749f.orig.mp3",
+      "audioAuto": "e0530c59305e749f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e0530c59305e749f"
     },
     {
       "id": "senkou-wa-nan-desu-ka",
@@ -526,14 +792,24 @@
       "target": "せんこうはなんですか",
       "pronunciation": "senkō wa nan desu ka",
       "aiSuggested": true,
-      "reviewNote": "Lifted from Speaking Practice 1 at gate 2: the book's own use of せんこう."
+      "reviewNote": "Lifted from Speaking Practice 1 at gate 2: the book's own use of せんこう.",
+      "audio": "bf1749522856b166.mp3",
+      "audioOriginal": "bf1749522856b166.orig.mp3",
+      "audioAuto": "bf1749522856b166.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bf1749522856b166"
     },
     {
       "id": "ex3-yamada-q",
       "english": "Where does Yamada-san live?",
       "category": "Home & Household",
       "target": "やまださんはどこにすんでいますか",
-      "pronunciation": "yamada-san wa doko ni sunde imasu ka"
+      "pronunciation": "yamada-san wa doko ni sunde imasu ka",
+      "audio": "e3ffb4433505dde1.mp3",
+      "audioOriginal": "e3ffb4433505dde1.orig.mp3",
+      "audioAuto": "e3ffb4433505dde1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e3ffb4433505dde1"
     },
     {
       "id": "ex8a1-job-a",
@@ -554,7 +830,12 @@
       "category": "Family & People",
       "target": "たなかさんのむすめさんはデザイナーです",
       "pronunciation": "tanaka-san no musume-san wa dezainā desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "7ed33fee8629a4d5.mp3",
+      "audioOriginal": "7ed33fee8629a4d5.orig.mp3",
+      "audioAuto": "7ed33fee8629a4d5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7ed33fee8629a4d5"
     },
     {
       "id": "ex5-suzuki-brother-a",
@@ -562,14 +843,24 @@
       "category": "Work & Occupations",
       "target": "りょこうがいしゃにつとめています",
       "pronunciation": "ryokōgaisha ni tsutomete imasu",
-      "scene": "answering someone who just asked where this person works"
+      "scene": "answering someone who just asked where this person works",
+      "audio": "49764a59b5cd4990.mp3",
+      "audioOriginal": "49764a59b5cd4990.orig.mp3",
+      "audioAuto": "49764a59b5cd4990.mp3",
+      "audioMarked": true,
+      "audioTextHash": "49764a59b5cd4990"
     },
     {
       "id": "ex10-1-q-kato-chinese-too",
       "english": "Do you also understand Chinese?",
       "category": "School & Education",
       "target": "ちゅうごくごもわかりますか",
-      "pronunciation": "chūgokugo mo wakarimasu ka"
+      "pronunciation": "chūgokugo mo wakarimasu ka",
+      "audio": "d42f32a4ac466adf.mp3",
+      "audioOriginal": "d42f32a4ac466adf.orig.mp3",
+      "audioAuto": "d42f32a4ac466adf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d42f32a4ac466adf"
     },
     {
       "id": "yume-sentence",
@@ -578,7 +869,12 @@
       "target": "わたしのゆめはじぶんのブランドをつくることです",
       "pronunciation": "watashi no yume wa jibun no burando o tsukuru koto desu",
       "aiSuggested": true,
-      "reviewNote": "Lifted verbatim from the Target Dialogue at gate 2, replacing an invented variant (\"open my own shop\")."
+      "reviewNote": "Lifted verbatim from the Target Dialogue at gate 2, replacing an invented variant (\"open my own shop\").",
+      "audio": "73fdf9f989854afd.mp3",
+      "audioOriginal": "73fdf9f989854afd.orig.mp3",
+      "audioAuto": "73fdf9f989854afd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "73fdf9f989854afd"
     },
     {
       "id": "ex8a1-job-q",
@@ -598,7 +894,12 @@
       "pronunciation": "hai, yoku shitte imasu",
       "scene": "Answering whether you know Professor Mori.",
       "aiSuggested": true,
-      "reviewNote": "Lifted from Speaking Practice 1 at gate 2: よく with しっています appears nowhere else in the lesson."
+      "reviewNote": "Lifted from Speaking Practice 1 at gate 2: よく with しっています appears nowhere else in the lesson.",
+      "audio": "7c494bfc2e1aac42.mp3",
+      "audioOriginal": "7c494bfc2e1aac42.orig.mp3",
+      "audioAuto": "7c494bfc2e1aac42.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7c494bfc2e1aac42"
     },
     {
       "id": "nationality-vs-language-q",
@@ -607,14 +908,24 @@
       "target": "すずきさんはちゅうごくじんですか",
       "pronunciation": "suzuki-san wa chūgokujin desu ka",
       "aiSuggested": true,
-      "note": "First half of a contrast pair with nationality-vs-language-a."
+      "note": "First half of a contrast pair with nationality-vs-language-a.",
+      "audio": "64464c8ccac1f044.mp3",
+      "audioOriginal": "64464c8ccac1f044.orig.mp3",
+      "audioAuto": "64464c8ccac1f044.mp3",
+      "audioMarked": true,
+      "audioTextHash": "64464c8ccac1f044"
     },
     {
       "id": "ex8b1-wang-email-q",
       "english": "Then, do you know Wang-san's e-mail address?",
       "category": "Other",
       "target": "じゃ、ワンさんのメールアドレスをしっていますか",
-      "pronunciation": "ja, wan-san no mēruadoresu o shitte imasu ka"
+      "pronunciation": "ja, wan-san no mēruadoresu o shitte imasu ka",
+      "audio": "9fe10e4e8b2f5b97.mp3",
+      "audioOriginal": "9fe10e4e8b2f5b97.orig.mp3",
+      "audioAuto": "9fe10e4e8b2f5b97.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9fe10e4e8b2f5b97"
     },
     {
       "id": "ex7b-chan-email-a",
@@ -633,7 +944,12 @@
       "category": "School & Education",
       "target": "かとうさんはえいごがわかりますか",
       "pronunciation": "katō-san wa eigo ga wakarimasu ka",
-      "note": "Answer cued by the chapter's picture: Kato-san ○ English ×Chinese."
+      "note": "Answer cued by the chapter's picture: Kato-san ○ English ×Chinese.",
+      "audio": "f2e59f28fc0d584b.mp3",
+      "audioOriginal": "f2e59f28fc0d584b.orig.mp3",
+      "audioAuto": "f2e59f28fc0d584b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f2e59f28fc0d584b"
     },
     {
       "id": "sukoshi-wakarimasu-yo",
@@ -643,42 +959,72 @@
       "pronunciation": "hai, sukoshi wakarimasu yo",
       "scene": "Answering whether your younger sister understands Japanese.",
       "aiSuggested": true,
-      "reviewNote": "Lifted from the Target Dialogue at gate 2: すこし with わかります."
+      "reviewNote": "Lifted from the Target Dialogue at gate 2: すこし with わかります.",
+      "audio": "c056908a795f2698.mp3",
+      "audioOriginal": "c056908a795f2698.orig.mp3",
+      "audioAuto": "c056908a795f2698.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c056908a795f2698"
     },
     {
       "id": "ex9-french",
       "english": "Smith-san understands French.",
       "category": "Other",
       "target": "スミスさんはフランスごがわかります",
-      "pronunciation": "sumisu-san wa furansugo ga wakarimasu"
+      "pronunciation": "sumisu-san wa furansugo ga wakarimasu",
+      "audio": "1323e43c508aa675.mp3",
+      "audioOriginal": "1323e43c508aa675.orig.mp3",
+      "audioAuto": "1323e43c508aa675.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1323e43c508aa675"
     },
     {
       "id": "ex6-green-abcfoods",
       "english": "Green-san works for ABC Foods.",
       "category": "Work & Occupations",
       "target": "グリーンさんはABCフーズにつとめています",
-      "pronunciation": "gurīn-san wa ABC Fūzu ni tsutomete imasu"
+      "pronunciation": "gurīn-san wa ABC Fūzu ni tsutomete imasu",
+      "audio": "a2522bfdc5970eba.mp3",
+      "audioOriginal": "a2522bfdc5970eba.orig.mp3",
+      "audioAuto": "a2522bfdc5970eba.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a2522bfdc5970eba"
     },
     {
       "id": "ex2-nakamura-shinjuku",
       "english": "Nakamura-san lives in Shinjuku.",
       "category": "Home & Household",
       "target": "なかむらさんはしんじゅくにすんでいます",
-      "pronunciation": "nakamura-san wa shinjuku ni sunde imasu"
+      "pronunciation": "nakamura-san wa shinjuku ni sunde imasu",
+      "audio": "53c5be5ba593fb14.mp3",
+      "audioOriginal": "53c5be5ba593fb14.orig.mp3",
+      "audioAuto": "53c5be5ba593fb14.mp3",
+      "audioMarked": true,
+      "audioTextHash": "53c5be5ba593fb14"
     },
     {
       "id": "ex11-nakamura-q",
       "english": "What is Nakamura-san's hobby?",
       "category": "Sports & Hobbies",
       "target": "なかむらさんのしゅみはなんですか",
-      "pronunciation": "nakamura-san no shumi wa nan desu ka"
+      "pronunciation": "nakamura-san no shumi wa nan desu ka",
+      "audio": "ab2072cf4f5bffb1.mp3",
+      "audioOriginal": "ab2072cf4f5bffb1.orig.mp3",
+      "audioAuto": "ab2072cf4f5bffb1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ab2072cf4f5bffb1"
     },
     {
       "id": "ex8a1-know-q",
       "english": "I see. Well then, do you know Yamashita-san of the Osaka branch?",
       "category": "Other",
       "target": "そうですか。じゃ、おおさかししゃのやましたさんをしっていますか",
-      "pronunciation": "sō desu ka. ja, ōsaka shisha no yamashita-san o shitte imasu ka"
+      "pronunciation": "sō desu ka. ja, ōsaka shisha no yamashita-san o shitte imasu ka",
+      "audio": "cbb7a07b5ba767b2.mp3",
+      "audioOriginal": "cbb7a07b5ba767b2.orig.mp3",
+      "audioAuto": "cbb7a07b5ba767b2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cbb7a07b5ba767b2"
     },
     {
       "id": "baiotekunorojii-sentence",
@@ -686,7 +1032,12 @@
       "category": "School & Education",
       "target": "ラジャさんのせんこうはバイオテクノロジーですか",
       "pronunciation": "raja-san no senkō wa baiotekunorojī desu ka",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b94036a572601a4f.mp3",
+      "audioOriginal": "b94036a572601a4f.orig.mp3",
+      "audioAuto": "b94036a572601a4f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b94036a572601a4f"
     },
     {
       "id": "ex11-emma-a",
@@ -694,14 +1045,24 @@
       "category": "Sports & Hobbies",
       "target": "しゃしんをとることです",
       "pronunciation": "shashin o toru koto desu",
-      "scene": "Answering what your hobby is."
+      "scene": "Answering what your hobby is.",
+      "audio": "a07fed6a999359a9.mp3",
+      "audioOriginal": "a07fed6a999359a9.orig.mp3",
+      "audioAuto": "a07fed6a999359a9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a07fed6a999359a9"
     },
     {
       "id": "smith-knows-chan",
       "english": "Smith-san knows Chan-san.",
       "category": "Family & People",
       "target": "スミスさんはチャンさんをしっています",
-      "pronunciation": "sumisu-san wa chan-san o shitte imasu"
+      "pronunciation": "sumisu-san wa chan-san o shitte imasu",
+      "audio": "a4869b1e08fc4b09.mp3",
+      "audioOriginal": "a4869b1e08fc4b09.orig.mp3",
+      "audioAuto": "a4869b1e08fc4b09.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a4869b1e08fc4b09"
     },
     {
       "id": "nakamura-son-designer",
@@ -709,14 +1070,24 @@
       "category": "Family & People",
       "target": "なかむらさんのむすこさんはデザイナーです",
       "pronunciation": "nakamura-san no musuko-san wa dezainā desu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "7fd95e07bdb9ff1f.mp3",
+      "audioOriginal": "7fd95e07bdb9ff1f.orig.mp3",
+      "audioAuto": "7fd95e07bdb9ff1f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7fd95e07bdb9ff1f"
     },
     {
       "id": "ex8b2-ando-mobile-q",
       "english": "Then, do you know Ando-san's mobile phone number?",
       "category": "Other",
       "target": "じゃ、あんどうさんのけいたいのばんごうをしっていますか",
-      "pronunciation": "ja, andō-san no keitai no bangō o shitte imasu ka"
+      "pronunciation": "ja, andō-san no keitai no bangō o shitte imasu ka",
+      "audio": "86c5358a508f5ee3.mp3",
+      "audioOriginal": "86c5358a508f5ee3.orig.mp3",
+      "audioAuto": "86c5358a508f5ee3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "86c5358a508f5ee3"
     },
     {
       "id": "yone-02",
@@ -724,14 +1095,24 @@
       "category": "Grammar & Function Words",
       "target": "たなかさんはぎんこうにつとめていますよね",
       "pronunciation": "tanaka-san wa ginkō ni tsutomete imasu yo ne",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "612223bb6ba1c9d7.mp3",
+      "audioOriginal": "612223bb6ba1c9d7.orig.mp3",
+      "audioAuto": "612223bb6ba1c9d7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "612223bb6ba1c9d7"
     },
     {
       "id": "ex5-q-brown-where-work",
       "english": "Where does Brown-san work?",
       "category": "Work & Occupations",
       "target": "ブラウンさんはどこにつとめていますか",
-      "pronunciation": "buraun-san wa doko ni tsutomete imasu ka"
+      "pronunciation": "buraun-san wa doko ni tsutomete imasu ka",
+      "audio": "62a29c080aaa46a3.mp3",
+      "audioOriginal": "62a29c080aaa46a3.orig.mp3",
+      "audioAuto": "62a29c080aaa46a3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "62a29c080aaa46a3"
     },
     {
       "id": "ex5-white-a",
@@ -739,14 +1120,24 @@
       "category": "Work & Occupations",
       "target": "JBPジャパンにつとめています",
       "pronunciation": "JBP Japan ni tsutomete imasu",
-      "scene": "answering someone who just asked where you work"
+      "scene": "answering someone who just asked where you work",
+      "audio": "f5b0364cc1501fbc.mp3",
+      "audioOriginal": "f5b0364cc1501fbc.orig.mp3",
+      "audioAuto": "f5b0364cc1501fbc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f5b0364cc1501fbc"
     },
     {
       "id": "ex5-suzuki-brother-q",
       "english": "Where does Suzuki-san's older brother work?",
       "category": "Work & Occupations",
       "target": "すずきさんのおにいさんはどこにつとめていますか",
-      "pronunciation": "suzuki-san no oniisan wa doko ni tsutomete imasu ka"
+      "pronunciation": "suzuki-san no oniisan wa doko ni tsutomete imasu ka",
+      "audio": "3c2f7316e17c7228.mp3",
+      "audioOriginal": "3c2f7316e17c7228.orig.mp3",
+      "audioAuto": "3c2f7316e17c7228.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3c2f7316e17c7228"
     },
     {
       "id": "ganbatte-kudasai-sentence",
@@ -767,14 +1158,24 @@
       "category": "Home & Household",
       "target": "ホワイトさんはとうきょうにすんでいません。おおさかにすんでいます",
       "pronunciation": "howaito-san wa tōkyō ni sunde imasen. ōsaka ni sunde imasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "196ab6ada482f59a.mp3",
+      "audioOriginal": "196ab6ada482f59a.orig.mp3",
+      "audioAuto": "196ab6ada482f59a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "196ab6ada482f59a"
     },
     {
       "id": "ex5-white-q",
       "english": "Where does White-san work?",
       "category": "Work & Occupations",
       "target": "ホワイトさんはどこにつとめていますか",
-      "pronunciation": "howaito-san wa doko ni tsutomete imasu ka"
+      "pronunciation": "howaito-san wa doko ni tsutomete imasu ka",
+      "audio": "1ebc87e9f8c22e4c.mp3",
+      "audioOriginal": "1ebc87e9f8c22e4c.orig.mp3",
+      "audioAuto": "1ebc87e9f8c22e4c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1ebc87e9f8c22e4c"
     },
     {
       "id": "ex11-nakamura-a",
@@ -782,14 +1183,24 @@
       "category": "Sports & Hobbies",
       "target": "ケーキをつくることです",
       "pronunciation": "kēki o tsukuru koto desu",
-      "scene": "Answering what your hobby is."
+      "scene": "Answering what your hobby is.",
+      "audio": "9f2db8803054c7d8.mp3",
+      "audioOriginal": "9f2db8803054c7d8.orig.mp3",
+      "audioAuto": "9f2db8803054c7d8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9f2db8803054c7d8"
     },
     {
       "id": "ex6-ando-works-jbp-japan",
       "english": "Ando-san works for JBP Japan.",
       "category": "Work & Occupations",
       "target": "あんどうさんはJBPジャパンにつとめています",
-      "pronunciation": "andō-san wa JBP Japan ni tsutomete imasu"
+      "pronunciation": "andō-san wa JBP Japan ni tsutomete imasu",
+      "audio": "dbd57a30204c6972.mp3",
+      "audioOriginal": "dbd57a30204c6972.orig.mp3",
+      "audioAuto": "dbd57a30204c6972.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dbd57a30204c6972"
     },
     {
       "id": "apparel-maker-job",
@@ -797,7 +1208,12 @@
       "category": "Work & Occupations",
       "target": "リサさんはアパレルメーカーにつとめています",
       "pronunciation": "risa-san wa aparerumēkā ni tsutomete imasu",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "audio": "b5f43a15656765a8.mp3",
+      "audioOriginal": "b5f43a15656765a8.orig.mp3",
+      "audioAuto": "b5f43a15656765a8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b5f43a15656765a8"
     },
     {
       "id": "ex8a-know-ito-yes",
@@ -815,28 +1231,48 @@
       "english": "Do you also understand Korean?",
       "category": "School & Education",
       "target": "かんこくごもわかりますか",
-      "pronunciation": "kankokugo mo wakarimasu ka"
+      "pronunciation": "kankokugo mo wakarimasu ka",
+      "audio": "de11da5e9e126292.mp3",
+      "audioOriginal": "de11da5e9e126292.orig.mp3",
+      "audioAuto": "de11da5e9e126292.mp3",
+      "audioMarked": true,
+      "audioTextHash": "de11da5e9e126292"
     },
     {
       "id": "ex2-green-shibuya",
       "english": "Green-san lives in Shibuya.",
       "category": "Home & Household",
       "target": "グリーンさんはしぶやにすんでいます",
-      "pronunciation": "gurīn-san wa shibuya ni sunde imasu"
+      "pronunciation": "gurīn-san wa shibuya ni sunde imasu",
+      "audio": "d997d9848f02f435.mp3",
+      "audioOriginal": "d997d9848f02f435.orig.mp3",
+      "audioAuto": "d997d9848f02f435.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d997d9848f02f435"
     },
     {
       "id": "do-you-know-chan",
       "english": "Do you know Chan-san?",
       "category": "Family & People",
       "target": "チャンさんをしっていますか",
-      "pronunciation": "chan-san o shitte imasu ka"
+      "pronunciation": "chan-san o shitte imasu ka",
+      "audio": "62b3a7e5a587487a.mp3",
+      "audioOriginal": "62b3a7e5a587487a.orig.mp3",
+      "audioAuto": "62b3a7e5a587487a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "62b3a7e5a587487a"
     },
     {
       "id": "ex3-q-suzuki-where-live",
       "english": "Where does Suzuki-san live?",
       "category": "Home & Household",
       "target": "すずきさんはどこにすんでいますか",
-      "pronunciation": "suzuki-san wa doko ni sunde imasu ka"
+      "pronunciation": "suzuki-san wa doko ni sunde imasu ka",
+      "audio": "923ffb8e764e5646.mp3",
+      "audioOriginal": "923ffb8e764e5646.orig.mp3",
+      "audioAuto": "923ffb8e764e5646.mp3",
+      "audioMarked": true,
+      "audioTextHash": "923ffb8e764e5646"
     },
     {
       "id": "address-vs-phone-known",
@@ -845,7 +1281,12 @@
       "target": "じゅうしょはしりませんが、でんわばんごうはしっています",
       "pronunciation": "jūsho wa shirimasen ga, denwa bangō wa shitte imasu",
       "aiSuggested": true,
-      "note": "Each half replaces object-marking を with は, the same contrast pattern as \"I snowboard, but I don't ski\" (スノーボードは しますが, sunōbōdo wa shimasu ga — Lesson 23): じゅうしょ (jūsho) and でんわばんごう (denwa bangō) are both objects of しります/しっています (shirimasu/shitte imasu), not topics with an added particle."
+      "note": "Each half replaces object-marking を with は, the same contrast pattern as \"I snowboard, but I don't ski\" (スノーボードは しますが, sunōbōdo wa shimasu ga — Lesson 23): じゅうしょ (jūsho) and でんわばんごう (denwa bangō) are both objects of しります/しっています (shirimasu/shitte imasu), not topics with an added particle.",
+      "audio": "1090be58e9e8a805.mp3",
+      "audioOriginal": "1090be58e9e8a805.orig.mp3",
+      "audioAuto": "1090be58e9e8a805.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1090be58e9e8a805"
     },
     {
       "id": "ex8a2-job-a",
@@ -853,14 +1294,24 @@
       "category": "Work & Occupations",
       "target": "べんごしです",
       "pronunciation": "bengoshi desu",
-      "scene": "answering what your job is"
+      "scene": "answering what your job is",
+      "audio": "7d5c7958f5ea16ca.mp3",
+      "audioOriginal": "7d5c7958f5ea16ca.orig.mp3",
+      "audioAuto": "7d5c7958f5ea16ca.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7d5c7958f5ea16ca"
     },
     {
       "id": "ex4-smith-abcfoods",
       "english": "Smith-san works for ABC Foods.",
       "category": "Work & Occupations",
       "target": "スミスさんはABCフーズにつとめています",
-      "pronunciation": "sumisu-san wa ABC Fūzu ni tsutomete imasu"
+      "pronunciation": "sumisu-san wa ABC Fūzu ni tsutomete imasu",
+      "audio": "57ea67e4603ed583.mp3",
+      "audioOriginal": "57ea67e4603ed583.orig.mp3",
+      "audioAuto": "57ea67e4603ed583.mp3",
+      "audioMarked": true,
+      "audioTextHash": "57ea67e4603ed583"
     }
   ]
 }

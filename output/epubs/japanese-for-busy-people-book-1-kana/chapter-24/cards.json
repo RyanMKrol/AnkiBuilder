@@ -74,7 +74,12 @@
       "target": "おしごと",
       "pronunciation": "oshigoto",
       "sourceOrder": 301,
-      "note": "お (honorific prefix, Lesson 1) + しごと (shigoto, \"work,\" Lesson 3): used to ask about or refer politely to someone else's job."
+      "note": "お (honorific prefix, Lesson 1) + しごと (shigoto, \"work,\" Lesson 3): used to ask about or refer politely to someone else's job.",
+      "audio": "9cc639d33c58d3c5.mp3",
+      "audioOriginal": "9cc639d33c58d3c5.orig.mp3",
+      "audioAuto": "9cc639d33c58d3c5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9cc639d33c58d3c5"
     },
     {
       "id": "dezainaa",
@@ -82,7 +87,12 @@
       "category": "Work & Occupations",
       "target": "デザイナー",
       "pronunciation": "dezainā",
-      "sourceOrder": 310
+      "sourceOrder": 310,
+      "audio": "bdc20ad725371ff0.mp3",
+      "audioOriginal": "bdc20ad725371ff0.orig.mp3",
+      "audioAuto": "bdc20ad725371ff0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bdc20ad725371ff0"
     },
     {
       "id": "aparero",
@@ -90,7 +100,12 @@
       "category": "Clothing",
       "target": "アパレル",
       "pronunciation": "apareru",
-      "sourceOrder": 448
+      "sourceOrder": 448,
+      "audio": "cb7ebf9a9d683cce.mp3",
+      "audioOriginal": "cb7ebf9a9d683cce.orig.mp3",
+      "audioAuto": "cb7ebf9a9d683cce.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cb7ebf9a9d683cce"
     },
     {
       "id": "meekaa",
@@ -98,7 +113,12 @@
       "category": "Work & Occupations",
       "target": "メーカー",
       "pronunciation": "mēkā",
-      "sourceOrder": 452
+      "sourceOrder": 452,
+      "audio": "979c669485033012.mp3",
+      "audioOriginal": "979c669485033012.orig.mp3",
+      "audioAuto": "979c669485033012.mp3",
+      "audioMarked": true,
+      "audioTextHash": "979c669485033012"
     },
     {
       "id": "aparerumeekaa",
@@ -107,7 +127,12 @@
       "target": "アパレルメーカー",
       "pronunciation": "aparerumēkā",
       "sourceOrder": 325,
-      "note": "アパレル (apareru, \"apparel\") + メーカー (mēkā, \"maker\")."
+      "note": "アパレル (apareru, \"apparel\") + メーカー (mēkā, \"maker\").",
+      "audio": "69bc15fc9d9cc888.mp3",
+      "audioOriginal": "69bc15fc9d9cc888.orig.mp3",
+      "audioAuto": "69bc15fc9d9cc888.mp3",
+      "audioMarked": true,
+      "audioTextHash": "69bc15fc9d9cc888"
     },
     {
       "id": "tsutometeimasu",
@@ -117,7 +142,12 @@
       "pronunciation": "tsutomete imasu",
       "sourceOrder": 334,
       "note": "Takes に marking the employer (かいしゃに つとめています, kaisha ni tsutomete imasu, \"work for a company\"); contrast しごとをします (shigoto o shimasu, Lesson 3), which describes doing work or tasks rather than being employed somewhere.",
-      "hint": "the ています form, for where someone works now"
+      "hint": "the ています form, for where someone works now",
+      "audio": "c0a34987fc9d424c.mp3",
+      "audioOriginal": "c0a34987fc9d424c.orig.mp3",
+      "audioAuto": "c0a34987fc9d424c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c0a34987fc9d424c"
     },
     {
       "id": "yume",
@@ -125,7 +155,12 @@
       "category": "Emotions & Feelings",
       "target": "ゆめ",
       "pronunciation": "yume",
-      "sourceOrder": 379
+      "sourceOrder": 379,
+      "audio": "f8af2f30640673ce.mp3",
+      "audioOriginal": "f8af2f30640673ce.orig.mp3",
+      "audioAuto": "f8af2f30640673ce.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f8af2f30640673ce"
     },
     {
       "id": "jibun-no",
@@ -134,7 +169,12 @@
       "target": "じぶんの",
       "pronunciation": "jibun no",
       "sourceOrder": 382,
-      "note": "じぶん (jibun, \"self\") + の (possessive particle, Lesson 1) = \"one's own.\""
+      "note": "じぶん (jibun, \"self\") + の (possessive particle, Lesson 1) = \"one's own.\"",
+      "audio": "19f3a104eb35ce82.mp3",
+      "audioOriginal": "19f3a104eb35ce82.orig.mp3",
+      "audioAuto": "19f3a104eb35ce82.mp3",
+      "audioMarked": true,
+      "audioTextHash": "19f3a104eb35ce82"
     },
     {
       "id": "burando",
@@ -142,7 +182,12 @@
       "category": "Shopping",
       "target": "ブランド",
       "pronunciation": "burando",
-      "sourceOrder": 386
+      "sourceOrder": 386,
+      "audio": "712bb07fd07a6705.mp3",
+      "audioOriginal": "712bb07fd07a6705.orig.mp3",
+      "audioAuto": "712bb07fd07a6705.mp3",
+      "audioMarked": true,
+      "audioTextHash": "712bb07fd07a6705"
     },
     {
       "id": "koto-nominalizer",
@@ -152,7 +197,12 @@
       "pronunciation": "koto",
       "reviewNote": "Possibly premature — こと as a bare nominalizer with no carrier phrase; the item is a grammar-explanation gloss rather than a standalone vocabulary item — reviewer should check it belongs as a card",
       "sourceOrder": 394,
-      "note": "A second nominalizer alongside の (no, Lesson 15, used in patterns like はしるのがすきです); こと (koto) appears especially before です to state what something is, as in じぶんのブランドをつくることです (jibun no burando o tsukuru koto desu, \"[the dream] is to make one's own brand\")."
+      "note": "A second nominalizer alongside の (no, Lesson 15, used in patterns like はしるのがすきです); こと (koto) appears especially before です to state what something is, as in じぶんのブランドをつくることです (jibun no burando o tsukuru koto desu, \"[the dream] is to make one's own brand\").",
+      "audio": "09531c5cb1749596.mp3",
+      "audioOriginal": "09531c5cb1749596.orig.mp3",
+      "audioAuto": "09531c5cb1749596.mp3",
+      "audioMarked": true,
+      "audioTextHash": "09531c5cb1749596"
     },
     {
       "id": "ganbatte-kudasai",
@@ -162,7 +212,12 @@
       "pronunciation": "ganbatte kudasai",
       "reviewNote": "Possibly premature — explicitly taught later in Casual Style 2 (casual/て-form request idiom; the て-form + ください pattern is from an earlier lesson but this fixed expression's casual counterpart territory is close to Casual Style 2 (ch. 53) — flagging as uncertain, reviewer should confirm it is taught here and not only later)",
       "sourceOrder": 409,
-      "note": "The て-form of がんばります (ganbarimasu) below + ください: literally \"please do your best\" — said to encourage or wish someone well, not a request for yourself."
+      "note": "The て-form of がんばります (ganbarimasu) below + ください: literally \"please do your best\" — said to encourage or wish someone well, not a request for yourself.",
+      "audio": "9fcce5715721f0d1.mp3",
+      "audioOriginal": "9fcce5715721f0d1.orig.mp3",
+      "audioAuto": "9fcce5715721f0d1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9fcce5715721f0d1"
     },
     {
       "id": "ganbarimasu",
@@ -171,7 +226,12 @@
       "target": "がんばります",
       "pronunciation": "ganbarimasu",
       "sourceOrder": 1107,
-      "note": "The verb behind がんばってください (ganbatte kudasai): its て-form plus ください."
+      "note": "The verb behind がんばってください (ganbatte kudasai): its て-form plus ください.",
+      "audio": "d6b977c131d790f0.mp3",
+      "audioOriginal": "d6b977c131d790f0.orig.mp3",
+      "audioAuto": "d6b977c131d790f0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d6b977c131d790f0"
     },
     {
       "id": "sundeimasu",
@@ -182,7 +242,12 @@
       "reviewNote": "Possibly already taught — ている-form of ch-17's すむ; the stative ている pattern is already taught (ch-12), so this is the same word in a known inflection.",
       "sourceOrder": 1150,
       "note": "The ています form of すみます (sumimasu, Lesson 17). Where someone lives is a present state, so it is said this way rather than as すみます.",
-      "hint": "the ています form, for where someone lives now"
+      "hint": "the ています form, for where someone lives now",
+      "audio": "848606a2e7fe2ae6.mp3",
+      "audioOriginal": "848606a2e7fe2ae6.orig.mp3",
+      "audioAuto": "848606a2e7fe2ae6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "848606a2e7fe2ae6"
     },
     {
       "id": "shitteimasu",
@@ -191,7 +256,12 @@
       "target": "しっています",
       "pronunciation": "shitte imasu",
       "sourceOrder": 1194,
-      "note": "Used for knowing that a fact, person or thing exists, unlike わかります (wakarimasu, understanding/comprehension, Lesson 8). Its negative is not the expected しっていません but しりません (shirimasen) below — an irregular pattern."
+      "note": "Used for knowing that a fact, person or thing exists, unlike わかります (wakarimasu, understanding/comprehension, Lesson 8). Its negative is not the expected しっていません but しりません (shirimasen) below — an irregular pattern.",
+      "audio": "16e7cc14af93b7d6.mp3",
+      "audioOriginal": "16e7cc14af93b7d6.orig.mp3",
+      "audioAuto": "16e7cc14af93b7d6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "16e7cc14af93b7d6"
     },
     {
       "id": "shumi",
@@ -199,7 +269,12 @@
       "category": "Sports & Hobbies",
       "target": "しゅみ",
       "pronunciation": "shumi",
-      "sourceOrder": 1211
+      "sourceOrder": 1211,
+      "audio": "8a415b986694ded2.mp3",
+      "audioOriginal": "8a415b986694ded2.orig.mp3",
+      "audioAuto": "8a415b986694ded2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8a415b986694ded2"
     },
     {
       "id": "imouto",
@@ -246,7 +321,12 @@
       "category": "Home & Household",
       "target": "すんでいません",
       "pronunciation": "sunde imasen",
-      "sourceOrder": 2606
+      "sourceOrder": 2606,
+      "audio": "a8128ebbb07f092b.mp3",
+      "audioOriginal": "a8128ebbb07f092b.orig.mp3",
+      "audioAuto": "a8128ebbb07f092b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a8128ebbb07f092b"
     },
     {
       "id": "tsutomemasu",
@@ -256,7 +336,12 @@
       "pronunciation": "tsutomemasu",
       "reviewNote": "Possibly premature — つとめます ます-form appears only as a paradigm cell beside つとめています; not used standalone in the lesson",
       "sourceOrder": 2623,
-      "hint": "the plain ます-form, not the ています form"
+      "hint": "the plain ます-form, not the ています form",
+      "audio": "afa3b539b4b0744b.mp3",
+      "audioOriginal": "afa3b539b4b0744b.orig.mp3",
+      "audioAuto": "afa3b539b4b0744b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "afa3b539b4b0744b"
     },
     {
       "id": "tsutometeimasen",
@@ -264,7 +349,12 @@
       "category": "Work & Occupations",
       "target": "つとめていません",
       "pronunciation": "tsutomete imasen",
-      "sourceOrder": 2635
+      "sourceOrder": 2635,
+      "audio": "cc4b1a818fd3e81c.mp3",
+      "audioOriginal": "cc4b1a818fd3e81c.orig.mp3",
+      "audioAuto": "cc4b1a818fd3e81c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cc4b1a818fd3e81c"
     },
     {
       "id": "kodomo",
@@ -353,7 +443,12 @@
       "pronunciation": "musumesan",
       "sourceOrder": 2375,
       "note": "The plain way to say someone else's daughter (むすめ + さん). おじょうさん (ojōsan, Lesson 9) is the more formal word.",
-      "hint": "the plain word, built from むすめ + さん"
+      "hint": "the plain word, built from むすめ + さん",
+      "audio": "f151b244755a122a.mp3",
+      "audioOriginal": "f151b244755a122a.orig.mp3",
+      "audioAuto": "f151b244755a122a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f151b244755a122a"
     },
     {
       "id": "ani",
@@ -426,7 +521,12 @@
       "category": "Travel & Tourism",
       "target": "りょこうがいしゃ",
       "pronunciation": "ryokōgaisha",
-      "sourceOrder": 3839
+      "sourceOrder": 3839,
+      "audio": "da825dad0c7c195a.mp3",
+      "audioOriginal": "da825dad0c7c195a.orig.mp3",
+      "audioAuto": "da825dad0c7c195a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "da825dad0c7c195a"
     },
     {
       "id": "shinagawa",
@@ -434,7 +534,12 @@
       "category": "Travel & Tourism",
       "target": "しながわ",
       "pronunciation": "shinagawa",
-      "sourceOrder": 4049
+      "sourceOrder": 4049,
+      "audio": "e462f823f6f9bf1f.mp3",
+      "audioOriginal": "e462f823f6f9bf1f.orig.mp3",
+      "audioAuto": "e462f823f6f9bf1f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e462f823f6f9bf1f"
     },
     {
       "id": "enjinia",
@@ -468,7 +573,12 @@
       "category": "Work & Occupations",
       "target": "べんごし",
       "pronunciation": "bengoshi",
-      "sourceOrder": 5040
+      "sourceOrder": 5040,
+      "audio": "644c1b92cc3035ae.mp3",
+      "audioOriginal": "644c1b92cc3035ae.orig.mp3",
+      "audioAuto": "644c1b92cc3035ae.mp3",
+      "audioMarked": true,
+      "audioTextHash": "644c1b92cc3035ae"
     },
     {
       "id": "keitai",
@@ -490,7 +600,12 @@
       "target": "ドイツご",
       "pronunciation": "doitsugo",
       "sourceOrder": 5774,
-      "note": "ご (language suffix, Lesson 9: にほんご, えいご, イタリアご) + ドイツ (doitsu, \"Germany,\" Lesson 1) = German language."
+      "note": "ご (language suffix, Lesson 9: にほんご, えいご, イタリアご) + ドイツ (doitsu, \"Germany,\" Lesson 1) = German language.",
+      "audio": "f1cda8f813095da4.mp3",
+      "audioOriginal": "f1cda8f813095da4.orig.mp3",
+      "audioAuto": "f1cda8f813095da4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f1cda8f813095da4"
     },
     {
       "id": "chuugokugo",
@@ -499,7 +614,12 @@
       "target": "ちゅうごくご",
       "pronunciation": "chūgokugo",
       "sourceOrder": 5876,
-      "note": "ご (language suffix, Lesson 9) + ちゅうごく (chūgoku, \"China,\" Lesson 1) = Chinese language."
+      "note": "ご (language suffix, Lesson 9) + ちゅうごく (chūgoku, \"China,\" Lesson 1) = Chinese language.",
+      "audio": "d254f5dfdfceee04.mp3",
+      "audioOriginal": "d254f5dfdfceee04.orig.mp3",
+      "audioAuto": "d254f5dfdfceee04.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d254f5dfdfceee04"
     },
     {
       "id": "kankokugo",
@@ -508,7 +628,12 @@
       "target": "かんこくご",
       "pronunciation": "kankokugo",
       "sourceOrder": 5889,
-      "note": "ご (language suffix, Lesson 9) + かんこく (kankoku, \"Korea,\" Lesson 1) = Korean language."
+      "note": "ご (language suffix, Lesson 9) + かんこく (kankoku, \"Korea,\" Lesson 1) = Korean language.",
+      "audio": "e3a98e07134d5611.mp3",
+      "audioOriginal": "e3a98e07134d5611.orig.mp3",
+      "audioAuto": "e3a98e07134d5611.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e3a98e07134d5611"
     },
     {
       "id": "yone",
@@ -518,7 +643,12 @@
       "pronunciation": "yone",
       "note": "よ (yo, Lesson 12) plus ね (ne, Lesson 6), added to a question when you think the listener has the right information, as in とうきょうだいがくですよね (Tōkyō daigaku desu yo ne, \"You're at the University of Tokyo, right?\").",
       "reviewNote": "Possibly premature — よね as a bare sentence-final particle cluster; no chapter up to 51 formally introduces ね plus よ combined as a taught item, so this may rest on grammar not yet covered",
-      "sourceOrder": 6356
+      "sourceOrder": 6356,
+      "audio": "47bfeb7a155a1113.mp3",
+      "audioOriginal": "47bfeb7a155a1113.orig.mp3",
+      "audioAuto": "47bfeb7a155a1113.mp3",
+      "audioMarked": true,
+      "audioTextHash": "47bfeb7a155a1113"
     },
     {
       "id": "senkou",
@@ -526,7 +656,12 @@
       "category": "School & Education",
       "target": "せんこう",
       "pronunciation": "senkō",
-      "sourceOrder": 6370
+      "sourceOrder": 6370,
+      "audio": "8793eb51a7b2e684.mp3",
+      "audioOriginal": "8793eb51a7b2e684.orig.mp3",
+      "audioAuto": "8793eb51a7b2e684.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8793eb51a7b2e684"
     },
     {
       "id": "baiotekunorojii",
@@ -534,7 +669,12 @@
       "category": "School & Education",
       "target": "バイオテクノロジー",
       "pronunciation": "baiotekunorojī",
-      "sourceOrder": 6385
+      "sourceOrder": 6385,
+      "audio": "6125d88756ebb3b2.mp3",
+      "audioOriginal": "6125d88756ebb3b2.orig.mp3",
+      "audioAuto": "6125d88756ebb3b2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6125d88756ebb3b2"
     },
     {
       "id": "sensei",
@@ -609,7 +749,12 @@
       "pronunciation": "shirimasen",
       "note": "The irregular negative of しっています: the regular ています negative しっていません exists but is marked as not used, so しりません is the form actually said. When someone asks for information you don't have, such as a phone number, the answer is わかりません (wakarimasen) instead.",
       "sourceOrder": 1906,
-      "hint": "not knowing of a person or thing, not failing to understand"
+      "hint": "not knowing of a person or thing, not failing to understand",
+      "audio": "fee19a574c89e642.mp3",
+      "audioOriginal": "fee19a574c89e642.orig.mp3",
+      "audioAuto": "fee19a574c89e642.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fee19a574c89e642"
     },
     {
       "id": "kyouto",

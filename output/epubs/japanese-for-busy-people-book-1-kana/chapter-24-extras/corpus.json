@@ -10,104 +10,112 @@
   },
   "items": [
     {
-      "id": "ex7b-chan-email-a",
-      "target": "いいえ、しりません。",
-      "english": "No, I don't know it.",
-      "category": "Other",
-      "scene": "replying that you don't know the thing just asked about",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex7a-a-know-sasaki-yes",
-      "target": "はい、しっています。",
-      "english": "Yes, I know her.",
-      "category": "Family & People",
-      "scene": "Answering whether you know Sasaki-san."
-    },
-    {
-      "id": "address-vs-phone-known",
-      "target": "じゅうしょはしりませんが、でんわばんごうはしっています。",
-      "english": "I don't know the address, but I know the phone number.",
-      "category": "Technology & Communication",
-      "aiSuggested": true,
-      "note": "Each half replaces object-marking を with は, the same contrast pattern as \"I snowboard, but I don't ski\" (スノーボードは しますが, sunōbōdo wa shimasu ga — Lesson 23): じゅうしょ (jūsho) and でんわばんごう (denwa bangō) are both objects of しります/しっています (shirimasu/shitte imasu), not topics with an added particle."
-    },
-    {
-      "id": "ex3-q-suzuki-where-live",
-      "target": "すずきさんはどこにすんでいますか。",
-      "english": "Where does Suzuki-san live?",
-      "category": "Home & Household"
-    },
-    {
-      "id": "ex6-nakamura-sister-residence",
-      "target": "なかむらさんのいもうとさんはさっぽろにすんでいます。",
-      "english": "Nakamura-san's younger sister lives in Sapporo.",
-      "category": "Home & Household",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex6-chan-sister-employer",
-      "target": "チャンさんのおねえさんはデパートにつとめています。",
-      "english": "Chan-san's older sister works at a department store.",
-      "category": "Work & Occupations",
-      "fillInBlank": true
-    },
-    {
-      "id": "brand-object-known",
-      "target": "そのブランドをしっていますか。",
-      "english": "Do you know that brand?",
-      "category": "Shopping",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex8b1-wang-email-q",
-      "target": "じゃ、ワンさんのメールアドレスをしっていますか。",
-      "english": "Then, do you know Wang-san's e-mail address?",
-      "category": "Other",
-      "fillInBlank": true
-    },
-    {
       "id": "ex7a-brown-q",
       "target": "ブラウンさんをしっていますか。",
       "english": "Do you know Brown-san?",
       "category": "Other",
-      "fillInBlank": true
+      "fillInBlank": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a substitution drill that swaps only the name in a frame other cards already drill. Kept: ex7a-q-know-sasaki and do-you-know-chan."
     },
     {
-      "id": "ex10-eg-a-smith-french-yes",
-      "target": "はい、わかります。",
-      "english": "Yes, I understand it.",
+      "id": "ex10-eg-a-smith-german-no",
+      "target": "いいえ、わかりません。",
+      "english": "No, I don't understand it.",
       "category": "School & Education",
-      "scene": "Answering whether you understand French."
+      "scene": "Answering whether you also understand German."
     },
     {
-      "id": "ex2-green-shibuya",
-      "target": "グリーンさんはしぶやにすんでいます。",
-      "english": "Green-san lives in Shibuya.",
-      "category": "Home & Household",
-      "fillInBlank": true
+      "id": "ex10-eg-q-smith-german-too",
+      "target": "ドイツごもわかりますか。",
+      "english": "Do you also understand German?",
+      "category": "School & Education"
     },
     {
-      "id": "sundeimasen-sentence",
-      "target": "ホワイトさんはとうきょうにすんでいません。おおさかにすんでいます。",
-      "english": "White-san doesn't live in Tokyo. He lives in Osaka.",
-      "category": "Home & Household",
+      "id": "ex9-smith-understands-japanese",
+      "target": "スミスさんはにほんごがわかります。",
+      "english": "Smith-san understands Japanese.",
+      "category": "School & Education"
+    },
+    {
+      "id": "ex8a2-job-q",
+      "target": "こばやしさん、おしごとは?",
+      "english": "Kobayashi-san, what do you do for work?",
+      "category": "Work & Occupations",
+      "fillInBlank": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a substitution drill that swaps only the name in a frame other cards already drill. Kept: ex8a-ask-andos-work."
+    },
+    {
+      "id": "jibun-no-sentence",
+      "target": "すずきさんはじぶんのへやがあります。",
+      "english": "Suzuki-san has his own room.",
+      "category": "Descriptions & Qualities",
       "aiSuggested": true
     },
     {
-      "id": "ex4-yamada-bank",
-      "target": "やまださんはぎんこうにつとめています。",
-      "english": "Yamada-san works for a bank.",
-      "category": "Work & Occupations",
+      "id": "ex8b-ask-know-ito-phone",
+      "target": "じゃ、いとうさんのでんわばんごうをしっていますか。",
+      "english": "Then, do you know Ito-san's phone number?",
+      "category": "Technology & Communication"
+    },
+    {
+      "id": "smiths-hobby-is-reading",
+      "target": "スミスさんの しゅみは ほんを よむことです。",
+      "english": "Smith-san's hobby is reading.",
+      "category": "Sports & Hobbies"
+    },
+    {
+      "id": "ex7b-chan-email-q",
+      "target": "チャンさんのメールアドレスをしっていますか。",
+      "english": "Do you know Chan-san's e-mail address?",
+      "category": "Other",
       "fillInBlank": true
     },
     {
-      "id": "ex5-white-a",
-      "target": "JBPジャパンにつとめています。",
-      "english": "I work for JBP Japan.",
-      "category": "Work & Occupations",
-      "scene": "answering someone who just asked where you work",
+      "id": "ex7b-suzuki-phone-q",
+      "target": "すずきさんのでんわばんごうをしっていますか。",
+      "english": "Do you know Suzuki-san's phone number?",
+      "category": "Other",
       "fillInBlank": true
+    },
+    {
+      "id": "effort-with-object",
+      "target": "あたらしいしごとをがんばります。",
+      "english": "I will do my best at my new job.",
+      "category": "Work & Occupations",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex11-emma-q",
+      "target": "エマさんのしゅみはなんですか。",
+      "english": "What is Emma-san's hobby?",
+      "category": "Sports & Hobbies",
+      "fillInBlank": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a substitution drill that swaps only the name in a frame other cards already drill. Kept: ex11-q-smiths-hobby and ex11-nakamura-q."
+    },
+    {
+      "id": "ex11-a-reading-books",
+      "target": "ほんをよむことです。",
+      "english": "It's reading books.",
+      "category": "Sports & Hobbies",
+      "scene": "Answering what Smith-san's hobby is."
+    },
+    {
+      "id": "ex6-ando-lives-shinagawa",
+      "target": "あんどうさんはしながわにすんでいます。",
+      "english": "Ando-san lives in Shinagawa.",
+      "category": "Home & Household"
+    },
+    {
+      "id": "ex8a-ask-know-ito-yokohama",
+      "target": "そうですか。じゃ、よこはまししゃのいとうさんをしっていますか。",
+      "english": "I see. Then, do you know Ito-san of the Yokohama branch?",
+      "category": "Family & People"
     },
     {
       "id": "ex8a-ando-engineer-jbp",
@@ -117,46 +125,28 @@
       "scene": "Replying to someone who just asked about your work."
     },
     {
-      "id": "ex6-ando-works-jbp-japan",
-      "target": "あんどうさんはJBPジャパンにつとめています。",
-      "english": "Ando-san works for JBP Japan.",
-      "category": "Work & Occupations"
-    },
-    {
-      "id": "hobby-travel-suru-koto",
-      "target": "わたしのしゅみはりょこうをすることです。",
-      "english": "My hobby is traveling.",
-      "category": "Sports & Hobbies",
+      "id": "ganbarimasu-sentence",
+      "target": "わたしはがんばります。",
+      "english": "I will do my best.",
+      "category": "Emotions & Feelings",
       "aiSuggested": true
     },
     {
-      "id": "ex8a2-job-q",
-      "target": "こばやしさん、おしごとは?",
-      "english": "Kobayashi-san, what do you do for work?",
-      "category": "Work & Occupations",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex5-suzuki-brother-a",
-      "target": "りょこうがいしゃにつとめています。",
-      "english": "He works for a travel agency.",
-      "category": "Work & Occupations",
-      "scene": "answering someone who just asked where this person works",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex9-french",
-      "target": "スミスさんはフランスごがわかります。",
-      "english": "Smith-san understands French.",
+      "id": "ex8b1-wang-q",
+      "target": "ワンさんをしっていますか。",
+      "english": "Do you know Wang-san?",
       "category": "Other",
-      "fillInBlank": true
+      "fillInBlank": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a substitution drill that swaps only the name in a frame other cards already drill. Kept: ex7a-q-know-sasaki and do-you-know-chan."
     },
     {
-      "id": "ex5-suzuki-brother-q",
-      "target": "すずきさんのおにいさんはどこにつとめていますか。",
-      "english": "Where does Suzuki-san's older brother work?",
-      "category": "Work & Occupations",
-      "fillInBlank": true
+      "id": "yone-01",
+      "target": "リサさんはデザイナーですよね。",
+      "english": "Lisa-san, you're a designer, right?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
     },
     {
       "id": "shinagawa-bank-exists",
@@ -166,38 +156,11 @@
       "aiSuggested": true
     },
     {
-      "id": "ex10-2-q-sasaki-chinese",
-      "target": "ささきさんはちゅうごくごがわかりますか。",
-      "english": "Does Sasaki-san understand Chinese?",
-      "category": "School & Education",
-      "note": "Answer cued by the chapter's picture: Sasaki-san ○ Chinese ×Korean."
-    },
-    {
-      "id": "ex4-smith-abcfoods",
-      "target": "スミスさんはABCフーズにつとめています。",
-      "english": "Smith-san works for ABC Foods.",
-      "category": "Work & Occupations",
-      "fillInBlank": true
-    },
-    {
-      "id": "apparel-maker-job",
-      "target": "リサさんはアパレルメーカーにつとめています。",
-      "english": "Lisa-san works for an apparel maker.",
-      "category": "Work & Occupations",
+      "id": "yone-03",
+      "target": "すずきさんのおにいさんはりょこうがいしゃにつとめていますよね。",
+      "english": "Suzuki-san's older brother works at a travel agency, right?",
+      "category": "Grammar & Function Words",
       "aiSuggested": true
-    },
-    {
-      "id": "ex11-q-smiths-hobby",
-      "target": "スミスさんのしゅみはなんですか。",
-      "english": "What is Smith-san's hobby?",
-      "category": "Sports & Hobbies"
-    },
-    {
-      "id": "ex9-kanji",
-      "target": "スミスさんはかんじがわかります。",
-      "english": "Smith-san understands kanji.",
-      "category": "Other",
-      "fillInBlank": true
     },
     {
       "id": "nationality-vs-language-a",
@@ -208,240 +171,11 @@
       "aiSuggested": true
     },
     {
-      "id": "ex7a-tanaka-address-q",
-      "target": "たなかさんのじゅうしょをしっていますか。",
-      "english": "Do you know Tanaka-san's address?",
-      "category": "Other",
-      "fillInBlank": true
-    },
-    {
-      "id": "yone-02",
-      "target": "たなかさんはぎんこうにつとめていますよね。",
-      "english": "Tanaka-san works at a bank, right?",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex11-nakamura-q",
-      "target": "なかむらさんのしゅみはなんですか。",
-      "english": "What is Nakamura-san's hobby?",
-      "category": "Sports & Hobbies",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex5-white-q",
-      "target": "ホワイトさんはどこにつとめていますか。",
-      "english": "Where does White-san work?",
-      "category": "Work & Occupations",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex11-a-reading-books",
-      "target": "ほんをよむことです。",
-      "english": "It's reading books.",
-      "category": "Sports & Hobbies",
-      "scene": "Answering what Smith-san's hobby is."
-    },
-    {
-      "id": "ex10-eg-q-smith-french",
-      "target": "スミスさんはフランスごがわかりますか。",
-      "english": "Does Smith-san understand French?",
-      "category": "School & Education"
-    },
-    {
-      "id": "ex8b2-ando-mobile-q",
-      "target": "じゃ、あんどうさんのけいたいのばんごうをしっていますか。",
-      "english": "Then, do you know Ando-san's mobile phone number?",
-      "category": "Other",
-      "fillInBlank": true
-    },
-    {
-      "id": "ganbarimasu-sentence",
-      "target": "わたしはがんばります。",
-      "english": "I will do my best.",
-      "category": "Emotions & Feelings",
-      "aiSuggested": true
-    },
-    {
-      "id": "musumesan-sentence",
-      "target": "たなかさんのむすめさんはデザイナーです。",
-      "english": "Tanaka-san's daughter is a designer.",
-      "category": "Family & People",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex8b-ask-know-ito-jbp",
-      "target": "JBPジャパンのいとうさんをしっていますか。",
-      "english": "Do you know Ito-san of JBP Japan?",
-      "category": "Family & People"
-    },
-    {
-      "id": "senkou-sentence",
-      "target": "わたしのせんこうはにほんごです。",
-      "english": "My major is Japanese.",
-      "category": "School & Education",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex7b-suzuki-phone-q",
-      "target": "すずきさんのでんわばんごうをしっていますか。",
-      "english": "Do you know Suzuki-san's phone number?",
-      "category": "Other",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex10-eg-q-smith-german-too",
-      "target": "ドイツごもわかりますか。",
-      "english": "Do you also understand German?",
-      "category": "School & Education"
-    },
-    {
-      "id": "ex8b-ask-know-ito-phone",
-      "target": "じゃ、いとうさんのでんわばんごうをしっていますか。",
-      "english": "Then, do you know Ito-san's phone number?",
-      "category": "Technology & Communication"
-    },
-    {
-      "id": "ex11-emma-q",
-      "target": "エマさんのしゅみはなんですか。",
-      "english": "What is Emma-san's hobby?",
-      "category": "Sports & Hobbies",
-      "fillInBlank": true
-    },
-    {
-      "id": "yone-03",
-      "target": "すずきさんのおにいさんはりょこうがいしゃにつとめていますよね。",
-      "english": "Suzuki-san's older brother works at a travel agency, right?",
-      "category": "Grammar & Function Words",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex11-suzuki-a",
-      "target": "えをかくことです。",
-      "english": "It's drawing pictures.",
-      "category": "Sports & Hobbies",
-      "fillInBlank": true
-    },
-    {
-      "id": "tsutometeimasen-sentence",
-      "target": "スミスさんはもうABCフーズにつとめていません。",
-      "english": "Smith-san no longer works for ABC Foods.",
-      "category": "Work & Occupations",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex11-suzuki-q",
-      "target": "すずきさんのしゅみはなんですか。",
-      "english": "What is Suzuki-san's hobby?",
-      "category": "Sports & Hobbies",
-      "fillInBlank": true
-    },
-    {
-      "id": "nakamura-son-designer",
-      "target": "なかむらさんのむすこさんはデザイナーです。",
-      "english": "Nakamura-san's son is a designer.",
-      "category": "Family & People",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex8a1-know-q",
-      "target": "そうですか。じゃ、おおさかししゃのやましたさんをしっていますか。",
-      "english": "I see. Well then, do you know Yamashita-san of the Osaka branch?",
-      "category": "Other",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex11-emma-a",
-      "target": "しゃしんをとることです。",
-      "english": "It's taking photos.",
-      "category": "Sports & Hobbies",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex6-ando-lives-shinagawa",
-      "target": "あんどうさんはしながわにすんでいます。",
-      "english": "Ando-san lives in Shinagawa.",
-      "category": "Home & Household"
-    },
-    {
-      "id": "ex11-nakamura-a",
-      "target": "ケーキをつくることです。",
-      "english": "It's making cakes.",
-      "category": "Sports & Hobbies",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex2-nakamura-shinjuku",
-      "target": "なかむらさんはしんじゅくにすんでいます。",
-      "english": "Nakamura-san lives in Shinjuku.",
+      "id": "ex3-yamada-a",
+      "target": "しぶやにすんでいます。",
+      "english": "I live in Shibuya.",
       "category": "Home & Household",
-      "fillInBlank": true
-    },
-    {
-      "id": "smith-knows-chan",
-      "target": "スミスさんは チャンさんを しっています。",
-      "english": "Smith-san knows Chan-san.",
-      "category": "Family & People"
-    },
-    {
-      "id": "ex7b-q-know-white",
-      "target": "ホワイトさんをしっていますか。",
-      "english": "Do you know White-san?",
-      "category": "Family & People"
-    },
-    {
-      "id": "smiths-hobby-is-reading",
-      "target": "スミスさんの しゅみは ほんを よむことです。",
-      "english": "Smith-san's hobby is reading.",
-      "category": "Sports & Hobbies"
-    },
-    {
-      "id": "ex5-a-brown-works-london-bank",
-      "target": "ロンドンぎんこうにつとめています。",
-      "english": "He works at the Bank of London.",
-      "category": "Work & Occupations",
-      "scene": "Answering a question about where Brown-san works."
-    },
-    {
-      "id": "ex8a-ask-know-ito-yokohama",
-      "target": "そうですか。じゃ、よこはまししゃのいとうさんをしっていますか。",
-      "english": "I see. Then, do you know Ito-san of the Yokohama branch?",
-      "category": "Family & People"
-    },
-    {
-      "id": "burando-sentence",
-      "target": "そのブランドはゆうめいです。",
-      "english": "That brand is famous.",
-      "category": "Shopping",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex10-eg-a-smith-german-no",
-      "target": "いいえ、わかりません。",
-      "english": "No, I don't understand it.",
-      "category": "School & Education",
-      "scene": "Answering whether you also understand German."
-    },
-    {
-      "id": "no-i-dont-know-chan",
-      "target": "いいえ、しりません。",
-      "english": "No, I don't know her.",
-      "category": "Family & People",
-      "scene": "Answering someone who just asked whether you know a particular person, when you don't."
-    },
-    {
-      "id": "yone-with-shiru",
-      "target": "いとうさんをしっていますよね。",
-      "english": "You know Ito-san, right?",
-      "category": "Work & Occupations",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex8a2-job-a",
-      "target": "べんごしです。",
-      "english": "I'm a lawyer.",
-      "category": "Work & Occupations",
-      "scene": "answering what your job is",
+      "scene": "answering someone who just asked where you live",
       "fillInBlank": true
     },
     {
@@ -452,28 +186,45 @@
       "fillInBlank": true
     },
     {
-      "id": "ex10-2-q-sasaki-korean-too",
-      "target": "かんこくごもわかりますか。",
-      "english": "Do you also understand Korean?",
-      "category": "School & Education"
+      "id": "brand-object-known",
+      "target": "そのブランドをしっていますか。",
+      "english": "Do you know that brand?",
+      "category": "Shopping",
+      "aiSuggested": true
     },
     {
-      "id": "ex9-smith-understands-japanese",
-      "target": "スミスさんはにほんごがわかります。",
-      "english": "Smith-san understands Japanese.",
-      "category": "School & Education"
+      "id": "ex6-chan-sister-employer",
+      "target": "チャンさんのおねえさんはデパートにつとめています。",
+      "english": "Chan-san's older sister works at a department store.",
+      "category": "Work & Occupations",
+      "fillInBlank": true
     },
     {
-      "id": "ex2-yamamoto-lives-kyoto",
-      "target": "やまもとさんはきょうとにすんでいます。",
-      "english": "Yamamoto-san lives in Kyoto.",
-      "category": "Home & Household"
+      "id": "burando-sentence",
+      "target": "そのブランドはゆうめいです。",
+      "english": "That brand is famous.",
+      "category": "Shopping",
+      "aiSuggested": true
     },
     {
-      "id": "yone-01",
-      "target": "リサさんはデザイナーですよね。",
-      "english": "Lisa-san, you're a designer, right?",
-      "category": "Grammar & Function Words",
+      "id": "ex4-yamada-bank",
+      "target": "やまださんはぎんこうにつとめています。",
+      "english": "Yamada-san works for a bank.",
+      "category": "Work & Occupations",
+      "fillInBlank": true
+    },
+    {
+      "id": "ex10-eg-a-smith-french-yes",
+      "target": "はい、わかります。",
+      "english": "Yes, I understand it.",
+      "category": "School & Education",
+      "scene": "Answering whether you understand French."
+    },
+    {
+      "id": "dezainaa-sentence",
+      "target": "スミスさんのいもうとさんはデザイナーです。",
+      "english": "Smith-san's younger sister is a designer.",
+      "category": "Work & Occupations",
       "aiSuggested": true
     },
     {
@@ -481,27 +232,6 @@
       "target": "ホワイトさんはどこにすんでいますか。",
       "english": "Where does White-san live?",
       "category": "Home & Household",
-      "fillInBlank": true
-    },
-    {
-      "id": "ex8b-dont-know-phone",
-      "target": "すみません。わかりません。",
-      "english": "I'm sorry. I don't know.",
-      "category": "Technology & Communication",
-      "scene": "Answering that you don't know Ito-san's phone number, after being asked."
-    },
-    {
-      "id": "ex10-1-q-kato-english",
-      "target": "かとうさんはえいごがわかりますか。",
-      "english": "Does Kato-san understand English?",
-      "category": "School & Education",
-      "note": "Answer cued by the chapter's picture: Kato-san ○ English ×Chinese."
-    },
-    {
-      "id": "ex6-nakamura-sister-employer",
-      "target": "なかむらさんのいもうとさんはぎんこうにつとめています。",
-      "english": "Nakamura-san's younger sister works for a bank.",
-      "category": "Work & Occupations",
       "fillInBlank": true
     },
     {
@@ -513,18 +243,57 @@
       "fillInBlank": true
     },
     {
-      "id": "ex8a-know-ito-yes",
-      "target": "はい、しっています。",
-      "english": "Yes, I know him.",
-      "category": "Family & People",
-      "scene": "Answering whether you know Ito-san of the Yokohama branch."
+      "id": "ex7a-q-know-sasaki",
+      "target": "ささきさんをしっていますか。",
+      "english": "Do you know Sasaki-san?",
+      "category": "Family & People"
     },
     {
-      "id": "ex8b1-wang-q",
-      "target": "ワンさんをしっていますか。",
-      "english": "Do you know Wang-san?",
+      "id": "ex6-nakamura-sister-employer",
+      "target": "なかむらさんのいもうとさんはぎんこうにつとめています。",
+      "english": "Nakamura-san's younger sister works for a bank.",
+      "category": "Work & Occupations",
+      "fillInBlank": true
+    },
+    {
+      "id": "ex11-suzuki-q",
+      "target": "すずきさんのしゅみはなんですか。",
+      "english": "What is Suzuki-san's hobby?",
+      "category": "Sports & Hobbies",
+      "fillInBlank": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a substitution drill that swaps only the name in a frame other cards already drill. Kept: ex11-q-smiths-hobby and ex11-nakamura-q."
+    },
+    {
+      "id": "ex8b2-ando-q",
+      "target": "あんどうさんをしっていますか。",
+      "english": "Do you know Ando-san?",
+      "category": "Other",
+      "fillInBlank": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a substitution drill that swaps only the name in a frame other cards already drill. Kept: ex7a-q-know-sasaki and do-you-know-chan."
+    },
+    {
+      "id": "ex8a2-know-q",
+      "target": "そうですか。じゃ、ホンコンししゃのワンさんをしっていますか。",
+      "english": "I see. Well then, do you know Wang-san of the Hong Kong branch?",
       "category": "Other",
       "fillInBlank": true
+    },
+    {
+      "id": "no-i-dont-know-chan",
+      "target": "いいえ、しりません。",
+      "english": "No, I don't know her.",
+      "category": "Family & People",
+      "scene": "Answering someone who just asked whether you know a particular person, when you don't."
+    },
+    {
+      "id": "ex11-q-smiths-hobby",
+      "target": "スミスさんのしゅみはなんですか。",
+      "english": "What is Smith-san's hobby?",
+      "category": "Sports & Hobbies"
     },
     {
       "id": "ex4-tanaka-works-department-store",
@@ -533,53 +302,44 @@
       "category": "Work & Occupations"
     },
     {
-      "id": "ex7b-chan-email-q",
-      "target": "チャンさんのメールアドレスをしっていますか。",
-      "english": "Do you know Chan-san's e-mail address?",
-      "category": "Other",
-      "fillInBlank": true
-    },
-    {
-      "id": "nationality-vs-language-q",
-      "target": "すずきさんはちゅうごくじんですか。",
-      "english": "Is Suzuki-san Chinese?",
-      "category": "Nationalities & Countries",
-      "note": "First half of a contrast pair with nationality-vs-language-a.",
-      "aiSuggested": true
-    },
-    {
-      "id": "effort-with-object",
-      "target": "あたらしいしごとをがんばります。",
-      "english": "I will do my best at my new job.",
-      "category": "Work & Occupations",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex3-yamada-q",
-      "target": "やまださんはどこにすんでいますか。",
-      "english": "Where does Yamada-san live?",
-      "category": "Home & Household",
-      "fillInBlank": true
-    },
-    {
-      "id": "smith-lives-in-tokyo",
-      "target": "スミスさんは とうきょうに すんでいます。",
-      "english": "Smith-san lives in Tokyo.",
-      "category": "Home & Household"
-    },
-    {
-      "id": "jibun-no-sentence",
-      "target": "すずきさんはじぶんのへやがあります。",
-      "english": "Suzuki-san has his own room.",
-      "category": "Descriptions & Qualities",
-      "aiSuggested": true
+      "id": "ex10-2-q-sasaki-chinese",
+      "target": "ささきさんはちゅうごくごがわかりますか。",
+      "english": "Does Sasaki-san understand Chinese?",
+      "category": "School & Education",
+      "note": "Answer cued by the chapter's picture: Sasaki-san ○ Chinese ×Korean."
     },
     {
       "id": "ex7b-a-know-white-no",
       "target": "いいえ、しりません。",
       "english": "No, I don't know him.",
       "category": "Family & People",
-      "scene": "Answering whether you know White-san."
+      "scene": "Answering whether you know White-san.",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: the Japanese is identical to the kept card and only the English pronoun differs, which Japanese does not mark. Kept: no-i-dont-know-chan."
+    },
+    {
+      "id": "ex8b-dont-know-phone",
+      "target": "すみません。わかりません。",
+      "english": "I'm sorry. I don't know.",
+      "category": "Technology & Communication",
+      "scene": "Answering that you don't know Ito-san's phone number, after being asked.",
+      "note": "わかりません (wakarimasen), not しりません (shirimasen): when someone asks for a piece of information you don't have, such as a phone number, you answer わかりません. しりません answers whether you know of a person or thing at all."
+    },
+    {
+      "id": "ex5-a-brown-works-london-bank",
+      "target": "ロンドンぎんこうにつとめています。",
+      "english": "He works at the Bank of London.",
+      "category": "Work & Occupations",
+      "scene": "Answering a question about where Brown-san works."
+    },
+    {
+      "id": "ex11-suzuki-a",
+      "target": "えをかくことです。",
+      "english": "It's drawing pictures.",
+      "category": "Sports & Hobbies",
+      "fillInBlank": true,
+      "scene": "Answering what your hobby is."
     },
     {
       "id": "ex8a-ask-andos-work",
@@ -590,10 +350,79 @@
       "note": "おしごとは? (o-shigoto wa?) leaves off ですか (desu ka) — literally \"and your job?\" — は (wa) alone implies the question once the topic is named."
     },
     {
-      "id": "ex10-1-q-kato-chinese-too",
-      "target": "ちゅうごくごもわかりますか。",
-      "english": "Do you also understand Chinese?",
+      "id": "ex8b-ask-know-ito-jbp",
+      "target": "JBPジャパンのいとうさんをしっていますか。",
+      "english": "Do you know Ito-san of JBP Japan?",
+      "category": "Family & People"
+    },
+    {
+      "id": "hobby-travel-suru-koto",
+      "target": "わたしのしゅみはりょこうをすることです。",
+      "english": "My hobby is traveling.",
+      "category": "Sports & Hobbies",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex2-yamamoto-lives-kyoto",
+      "target": "やまもとさんはきょうとにすんでいます。",
+      "english": "Yamamoto-san lives in Kyoto.",
+      "category": "Home & Household"
+    },
+    {
+      "id": "ex6-nakamura-sister-residence",
+      "target": "なかむらさんのいもうとさんはさっぽろにすんでいます。",
+      "english": "Nakamura-san's younger sister lives in Sapporo.",
+      "category": "Home & Household",
+      "fillInBlank": true
+    },
+    {
+      "id": "senkou-sentence",
+      "target": "わたしのせんこうはにほんごです。",
+      "english": "My major is Japanese.",
+      "category": "School & Education",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex3-a-suzuki-lives-yokohama",
+      "target": "よこはまにすんでいます。",
+      "english": "He lives in Yokohama.",
+      "category": "Home & Household",
+      "scene": "Answering a question about where Suzuki-san lives."
+    },
+    {
+      "id": "ex7a-tanaka-address-q",
+      "target": "たなかさんのじゅうしょをしっていますか。",
+      "english": "Do you know Tanaka-san's address?",
+      "category": "Other",
+      "fillInBlank": true
+    },
+    {
+      "id": "ex9-kanji",
+      "target": "スミスさんはかんじがわかります。",
+      "english": "Smith-san understands kanji.",
+      "category": "Other",
+      "fillInBlank": true
+    },
+    {
+      "id": "ex7b-q-know-white",
+      "target": "ホワイトさんをしっていますか。",
+      "english": "Do you know White-san?",
+      "category": "Family & People",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a substitution drill that swaps only the name in a frame other cards already drill. Kept: ex7a-q-know-sasaki and do-you-know-chan."
+    },
+    {
+      "id": "ex10-eg-q-smith-french",
+      "target": "スミスさんはフランスごがわかりますか。",
+      "english": "Does Smith-san understand French?",
       "category": "School & Education"
+    },
+    {
+      "id": "smith-lives-in-tokyo",
+      "target": "スミスさんは とうきょうに すんでいます。",
+      "english": "Smith-san lives in Tokyo.",
+      "category": "Home & Household"
     },
     {
       "id": "tsutomemasu-sentence",
@@ -604,11 +433,41 @@
       "aiSuggested": true
     },
     {
-      "id": "baiotekunorojii-sentence",
-      "target": "ラジャさんのせんこうはバイオテクノロジーですか。",
-      "english": "Is Raja-san's major biotechnology?",
-      "category": "School & Education",
+      "id": "ex7a-a-know-sasaki-yes",
+      "target": "はい、しっています。",
+      "english": "Yes, I know her.",
+      "category": "Family & People",
+      "scene": "Answering whether you know Sasaki-san."
+    },
+    {
+      "id": "yone-with-shiru",
+      "target": "いとうさんをしっていますよね。",
+      "english": "You know Ito-san, right?",
+      "category": "Work & Occupations",
       "aiSuggested": true
+    },
+    {
+      "id": "tsutometeimasen-sentence",
+      "target": "スミスさんはもうABCフーズにつとめていません。",
+      "english": "Smith-san no longer works for ABC Foods.",
+      "category": "Work & Occupations",
+      "aiSuggested": true,
+      "note": "もう (mō) with a negative means \"no longer\" or \"not any more\". It is a different use from もういちど (mō ichido, \"once more\") and もうすこし (mō sukoshi, \"a little more\")."
+    },
+    {
+      "id": "senkou-wa-nan-desu-ka",
+      "english": "What's your major?",
+      "category": "School & Education",
+      "target": "せんこうはなんですか。",
+      "aiSuggested": true,
+      "reviewNote": "Lifted from Speaking Practice 1 at gate 2: the book's own use of せんこう."
+    },
+    {
+      "id": "ex3-yamada-q",
+      "target": "やまださんはどこにすんでいますか。",
+      "english": "Where does Yamada-san live?",
+      "category": "Home & Household",
+      "fillInBlank": true
     },
     {
       "id": "ex8a1-job-a",
@@ -618,29 +477,107 @@
       "scene": "answering what your job is",
       "fillInBlank": true,
       "uncertain": true,
-      "reviewNote": "Possibly already taught — Near-identical to chapter-2-extras' はい、かいしゃいんです — same predicate sentence with only はい dropped, no new content."
+      "reviewNote": "Possibly already taught — Near-identical to chapter-2-extras' はい、かいしゃいんです — same predicate sentence with only はい dropped, no new content.",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: near-identical to chapter-2-extras' はい、かいしゃいんです with only はい dropped."
     },
     {
-      "id": "ganbatte-kudasai-sentence",
-      "target": "リサさん、がんばってください。",
-      "english": "Lisa-san, I hope it works out.",
+      "id": "musumesan-sentence",
+      "target": "たなかさんのむすめさんはデザイナーです。",
+      "english": "Tanaka-san's daughter is a designer.",
+      "category": "Family & People",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex5-suzuki-brother-a",
+      "target": "りょこうがいしゃにつとめています。",
+      "english": "He works for a travel agency.",
+      "category": "Work & Occupations",
+      "scene": "answering someone who just asked where this person works",
+      "fillInBlank": true
+    },
+    {
+      "id": "ex10-1-q-kato-chinese-too",
+      "target": "ちゅうごくごもわかりますか。",
+      "english": "Do you also understand Chinese?",
+      "category": "School & Education"
+    },
+    {
+      "id": "yume-sentence",
+      "target": "わたしのゆめはじぶんのブランドをつくることです。",
+      "english": "My dream is to create my own brand.",
       "category": "Emotions & Feelings",
       "aiSuggested": true,
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — Near-duplicate of the chapter-24 base card がんばってください — only a vocative name (リサさん) is added, no new grammar or content."
+      "reviewNote": "Lifted verbatim from the Target Dialogue at gate 2, replacing an invented variant (\"open my own shop\")."
     },
     {
-      "id": "ex8a2-know-q",
-      "target": "そうですか。じゃ、ホンコンししゃのワンさんをしっていますか。",
-      "english": "I see. Well then, do you know Wang-san of the Hong Kong branch?",
+      "id": "ex8a1-job-q",
+      "target": "こじまさん、おしごとは?",
+      "english": "Kojima-san, what do you do for work?",
+      "category": "Work & Occupations",
+      "fillInBlank": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a substitution drill that swaps only the name in a frame other cards already drill. Kept: ex8a-ask-andos-work."
+    },
+    {
+      "id": "yoku-shitte-imasu",
+      "english": "Yes, I know him well.",
+      "category": "Family & People",
+      "target": "はい、よくしっています。",
+      "scene": "Answering whether you know Professor Mori.",
+      "aiSuggested": true,
+      "reviewNote": "Lifted from Speaking Practice 1 at gate 2: よく with しっています appears nowhere else in the lesson."
+    },
+    {
+      "id": "nationality-vs-language-q",
+      "target": "すずきさんはちゅうごくじんですか。",
+      "english": "Is Suzuki-san Chinese?",
+      "category": "Nationalities & Countries",
+      "note": "First half of a contrast pair with nationality-vs-language-a.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex8b1-wang-email-q",
+      "target": "じゃ、ワンさんのメールアドレスをしっていますか。",
+      "english": "Then, do you know Wang-san's e-mail address?",
       "category": "Other",
       "fillInBlank": true
     },
     {
-      "id": "ex5-q-brown-where-work",
-      "target": "ブラウンさんはどこにつとめていますか。",
-      "english": "Where does Brown-san work?",
-      "category": "Work & Occupations"
+      "id": "ex7b-chan-email-a",
+      "target": "いいえ、しりません。",
+      "english": "No, I don't know it.",
+      "category": "Other",
+      "scene": "replying that you don't know the thing just asked about",
+      "fillInBlank": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: the Japanese is identical to the kept card and only the English pronoun differs, which Japanese does not mark. Kept: no-i-dont-know-chan."
+    },
+    {
+      "id": "ex10-1-q-kato-english",
+      "target": "かとうさんはえいごがわかりますか。",
+      "english": "Does Kato-san understand English?",
+      "category": "School & Education",
+      "note": "Answer cued by the chapter's picture: Kato-san ○ English ×Chinese."
+    },
+    {
+      "id": "sukoshi-wakarimasu-yo",
+      "english": "Yes, she understands a little.",
+      "category": "School & Education",
+      "target": "はい、すこしわかりますよ。",
+      "scene": "Answering whether your younger sister understands Japanese.",
+      "aiSuggested": true,
+      "reviewNote": "Lifted from the Target Dialogue at gate 2: すこし with わかります."
+    },
+    {
+      "id": "ex9-french",
+      "target": "スミスさんはフランスごがわかります。",
+      "english": "Smith-san understands French.",
+      "category": "Other",
+      "fillInBlank": true
     },
     {
       "id": "ex6-green-abcfoods",
@@ -650,18 +587,158 @@
       "fillInBlank": true
     },
     {
-      "id": "ex8b2-ando-q",
-      "target": "あんどうさんをしっていますか。",
-      "english": "Do you know Ando-san?",
+      "id": "ex2-nakamura-shinjuku",
+      "target": "なかむらさんはしんじゅくにすんでいます。",
+      "english": "Nakamura-san lives in Shinjuku.",
+      "category": "Home & Household",
+      "fillInBlank": true
+    },
+    {
+      "id": "ex11-nakamura-q",
+      "target": "なかむらさんのしゅみはなんですか。",
+      "english": "What is Nakamura-san's hobby?",
+      "category": "Sports & Hobbies",
+      "fillInBlank": true
+    },
+    {
+      "id": "ex8a1-know-q",
+      "target": "そうですか。じゃ、おおさかししゃのやましたさんをしっていますか。",
+      "english": "I see. Well then, do you know Yamashita-san of the Osaka branch?",
       "category": "Other",
       "fillInBlank": true
     },
     {
-      "id": "dezainaa-sentence",
-      "target": "スミスさんのいもうとさんはデザイナーです。",
-      "english": "Smith-san's younger sister is a designer.",
+      "id": "baiotekunorojii-sentence",
+      "target": "ラジャさんのせんこうはバイオテクノロジーですか。",
+      "english": "Is Raja-san's major biotechnology?",
+      "category": "School & Education",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex11-emma-a",
+      "target": "しゃしんをとることです。",
+      "english": "It's taking photos.",
+      "category": "Sports & Hobbies",
+      "fillInBlank": true,
+      "scene": "Answering what your hobby is."
+    },
+    {
+      "id": "smith-knows-chan",
+      "target": "スミスさんは チャンさんを しっています。",
+      "english": "Smith-san knows Chan-san.",
+      "category": "Family & People"
+    },
+    {
+      "id": "nakamura-son-designer",
+      "target": "なかむらさんのむすこさんはデザイナーです。",
+      "english": "Nakamura-san's son is a designer.",
+      "category": "Family & People",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex8b2-ando-mobile-q",
+      "target": "じゃ、あんどうさんのけいたいのばんごうをしっていますか。",
+      "english": "Then, do you know Ando-san's mobile phone number?",
+      "category": "Other",
+      "fillInBlank": true
+    },
+    {
+      "id": "yone-02",
+      "target": "たなかさんはぎんこうにつとめていますよね。",
+      "english": "Tanaka-san works at a bank, right?",
+      "category": "Grammar & Function Words",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex5-q-brown-where-work",
+      "target": "ブラウンさんはどこにつとめていますか。",
+      "english": "Where does Brown-san work?",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "ex5-white-a",
+      "target": "JBPジャパンにつとめています。",
+      "english": "I work for JBP Japan.",
+      "category": "Work & Occupations",
+      "scene": "answering someone who just asked where you work",
+      "fillInBlank": true
+    },
+    {
+      "id": "ex5-suzuki-brother-q",
+      "target": "すずきさんのおにいさんはどこにつとめていますか。",
+      "english": "Where does Suzuki-san's older brother work?",
+      "category": "Work & Occupations",
+      "fillInBlank": true
+    },
+    {
+      "id": "ganbatte-kudasai-sentence",
+      "target": "リサさん、がんばってください。",
+      "english": "Lisa-san, I hope it works out.",
+      "category": "Emotions & Feelings",
+      "aiSuggested": true,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — Near-duplicate of the chapter-24 base card がんばってください — only a vocative name (リサさん) is added, no new grammar or content.",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: the base card がんばってください plus a name, which adds nothing to drill."
+    },
+    {
+      "id": "sundeimasen-sentence",
+      "target": "ホワイトさんはとうきょうにすんでいません。おおさかにすんでいます。",
+      "english": "White-san doesn't live in Tokyo. He lives in Osaka.",
+      "category": "Home & Household",
+      "aiSuggested": true
+    },
+    {
+      "id": "ex5-white-q",
+      "target": "ホワイトさんはどこにつとめていますか。",
+      "english": "Where does White-san work?",
+      "category": "Work & Occupations",
+      "fillInBlank": true
+    },
+    {
+      "id": "ex11-nakamura-a",
+      "target": "ケーキをつくることです。",
+      "english": "It's making cakes.",
+      "category": "Sports & Hobbies",
+      "fillInBlank": true,
+      "scene": "Answering what your hobby is."
+    },
+    {
+      "id": "ex6-ando-works-jbp-japan",
+      "target": "あんどうさんはJBPジャパンにつとめています。",
+      "english": "Ando-san works for JBP Japan.",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "apparel-maker-job",
+      "target": "リサさんはアパレルメーカーにつとめています。",
+      "english": "Lisa-san works for an apparel maker.",
       "category": "Work & Occupations",
       "aiSuggested": true
+    },
+    {
+      "id": "ex8a-know-ito-yes",
+      "target": "はい、しっています。",
+      "english": "Yes, I know him.",
+      "category": "Family & People",
+      "scene": "Answering whether you know Ito-san of the Yokohama branch.",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: the Japanese is identical to the kept card and only the English pronoun differs, which Japanese does not mark. Kept: ex7a-a-know-sasaki-yes."
+    },
+    {
+      "id": "ex10-2-q-sasaki-korean-too",
+      "target": "かんこくごもわかりますか。",
+      "english": "Do you also understand Korean?",
+      "category": "School & Education"
+    },
+    {
+      "id": "ex2-green-shibuya",
+      "target": "グリーンさんはしぶやにすんでいます。",
+      "english": "Green-san lives in Shibuya.",
+      "category": "Home & Household",
+      "fillInBlank": true
     },
     {
       "id": "do-you-know-chan",
@@ -670,38 +747,32 @@
       "category": "Family & People"
     },
     {
-      "id": "ex8a1-job-q",
-      "target": "こじまさん、おしごとは?",
-      "english": "Kojima-san, what do you do for work?",
+      "id": "ex3-q-suzuki-where-live",
+      "target": "すずきさんはどこにすんでいますか。",
+      "english": "Where does Suzuki-san live?",
+      "category": "Home & Household"
+    },
+    {
+      "id": "address-vs-phone-known",
+      "target": "じゅうしょはしりませんが、でんわばんごうはしっています。",
+      "english": "I don't know the address, but I know the phone number.",
+      "category": "Technology & Communication",
+      "aiSuggested": true,
+      "note": "Each half replaces object-marking を with は, the same contrast pattern as \"I snowboard, but I don't ski\" (スノーボードは しますが, sunōbōdo wa shimasu ga — Lesson 23): じゅうしょ (jūsho) and でんわばんごう (denwa bangō) are both objects of しります/しっています (shirimasu/shitte imasu), not topics with an added particle."
+    },
+    {
+      "id": "ex8a2-job-a",
+      "target": "べんごしです。",
+      "english": "I'm a lawyer.",
       "category": "Work & Occupations",
+      "scene": "answering what your job is",
       "fillInBlank": true
     },
     {
-      "id": "ex3-a-suzuki-lives-yokohama",
-      "target": "よこはまにすんでいます。",
-      "english": "He lives in Yokohama.",
-      "category": "Home & Household",
-      "scene": "Answering a question about where Suzuki-san lives."
-    },
-    {
-      "id": "yume-sentence",
-      "target": "わたしのゆめはじぶんのみせをつくることです。",
-      "english": "My dream is to open my own shop.",
-      "category": "Emotions & Feelings",
-      "aiSuggested": true
-    },
-    {
-      "id": "ex7a-q-know-sasaki",
-      "target": "ささきさんをしっていますか。",
-      "english": "Do you know Sasaki-san?",
-      "category": "Family & People"
-    },
-    {
-      "id": "ex3-yamada-a",
-      "target": "しぶやにすんでいます。",
-      "english": "I live in Shibuya.",
-      "category": "Home & Household",
-      "scene": "answering someone who just asked where you live",
+      "id": "ex4-smith-abcfoods",
+      "target": "スミスさんはABCフーズにつとめています。",
+      "english": "Smith-san works for ABC Foods.",
+      "category": "Work & Occupations",
       "fillInBlank": true
     },
     {

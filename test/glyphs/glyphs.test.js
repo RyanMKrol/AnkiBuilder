@@ -15,6 +15,7 @@ import {
   ocrVerdict,
   acceptedWithoutSettle,
   foldSmallKana,
+  ocrText,
   renderReadPrompt,
   renderSettlePrompt,
 } from "../../src/glyphs/glyphRead.js";
@@ -167,6 +168,19 @@ test("the OCR's full-size small kana still agree with a correct reading", () => 
   assert.equal(ocrVerdict(ocrOf("去年", "きよねん"), reading), "agrees");
   assert.equal(ocrVerdict(ocrOf("去年", "きよねん"), { ...reading, text: "去月" }), "differs");
   assert.equal(ocrVerdict({ lines: [] }, reading), "silent");
+});
+
+test("a reading the OCR split into pieces is put back together left to right", () => {
+  // 日本語 as Vision returned it: the reading in two pieces at slightly different heights.
+  const ocr = {
+    lines: [
+      { text: "日本語", x: 0, y: 0.3, w: 1, h: 0.7 },
+      { text: "ご", x: 0.74, y: 0.01, w: 0.2, h: 0.29 },
+      { text: "にほん", x: 0, y: -0.01, w: 0.6, h: 0.3 },
+    ],
+  };
+  assert.deepEqual(ocrText(ocr), ["日本語", "にほんご"]);
+  assert.equal(ocrVerdict(ocr, { kind: "text", text: "日本語", reading: "にほんご" }), "agrees");
 });
 
 test("a reading printed above the word reads reading-first and still agrees", () => {

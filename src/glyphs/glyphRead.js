@@ -1,7 +1,6 @@
 import { join, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { renderPromptTemplate } from "../util/promptTemplate.js";
-import { ocrLinesTopDown } from "../remaster/visionOcr.js";
 
 // Reading the pictures, and deciding which readings can be trusted.
 //
@@ -34,9 +33,34 @@ function describeReading(entry) {
   return `text "${entry.text}", reading "${entry.reading}"`;
 }
 
+// How far apart two fragments' vertical centres can be (as a fraction of the picture's height)
+// and still sit on one printed line. Vision often splits the small reading into pieces, and a
+// piece's box can be taller than its neighbour's (に and ほん of 日本語 came back at different
+// heights); the word line and the reading line are about half the picture apart.
+const SAME_ROW = 0.2;
+
+/**
+ * The OCR's text as printed rows, top row first, each row's fragments left to right. Sorting the
+ * fragments by height alone read 日本語's reading as "ご", "にほん".
+ */
 export function ocrText(ocr) {
-  const lines = ocrLinesTopDown(ocr).map((line) => line.text.replace(/\s+/g, ""));
-  return lines.filter(Boolean);
+  const rows = [];
+  const lines = [...(ocr?.lines ?? [])]
+    .map((line) => ({ ...line, centre: line.y + line.h / 2 }))
+    .sort((a, b) => b.centre - a.centre);
+  for (const line of lines) {
+    const row = rows.find((r) => Math.abs(r.centre - line.centre) < SAME_ROW);
+    if (row) row.lines.push(line);
+    else rows.push({ centre: line.centre, lines: [line] });
+  }
+  return rows
+    .map((row) =>
+      row.lines
+        .sort((a, b) => a.x - b.x)
+        .map((line) => line.text.replace(/\s+/g, ""))
+        .join(""),
+    )
+    .filter(Boolean);
 }
 
 export function renderSettlePrompt({ bookTitle, items }) {

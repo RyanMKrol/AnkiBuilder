@@ -144,7 +144,12 @@
       "pronunciation": "fu",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 12,
-      "ttsText": "ふ"
+      "ttsText": "ふ",
+      "audio": "b8d0a6b7412441a2.mp3",
+      "audioOriginal": "b8d0a6b7412441a2.orig.mp3",
+      "audioAuto": "b8d0a6b7412441a2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b8d0a6b7412441a2"
     },
     {
       "id": "r-6be2ed78df56",

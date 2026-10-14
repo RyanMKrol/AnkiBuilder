@@ -632,11 +632,6 @@
       "sourceOrder": 44,
       "pronunciation": "tsurete kaeru",
       "ttsKanji": "連れて帰る",
-      "audio": "1958080315201c3e.mp3",
-      "audioOriginal": "1958080315201c3e.orig.mp3",
-      "audioAuto": "1958080315201c3e.mp3",
-      "audioMarked": true,
-      "audioTextHash": "1958080315201c3e",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 連れる, 帰る."
@@ -776,7 +771,18 @@
       "ttsKanji": "連れる",
       "reviewNote": "Owner ruling 2026-10-14: the reading deck cards single words. Added because a phrase card using this word was cut and the word had no card of its own.",
       "addition": "genki-reading-review-2026-10-14",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "r-29bd54e8b6f1-manual-1c3e7394.mp3",
+      "audioOriginal": "8f88f3375be557f1.orig.mp3",
+      "audioAuto": "8f88f3375be557f1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8f88f3375be557f1",
+      "additionDone": true,
+      "audioManual": "r-29bd54e8b6f1-manual-1c3e7394.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.9
+      }
     }
   ]
 }

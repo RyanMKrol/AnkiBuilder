@@ -677,6 +677,8 @@ What is built, newest last:
   (`scripts/build-kanji-dictionary.mjs`, KANJIDIC2) and checked by a review agent, until the book's own
   kanji table replaces the data. Every kanji card's readings are completed to the official school
   list (常用漢字表, `scripts/build-joyo-readings.mjs`), and a kanji with exactly one reading is voiced.
+  The list's narrow-use readings are kept apart and are never added by default; one already on a card
+  (a deck word uses it) survives a rebuild.
   The operator procedure is the `build-reading-deck` skill.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 

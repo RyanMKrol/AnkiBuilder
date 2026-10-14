@@ -33,7 +33,11 @@ lacks), one review agent per chapter checks what was generated, and when the boo
 kanji its own meaning and readings replace the generated ones on the same card
 (`docs/designs/reading-decks/10-character-cards.md`). A generated card says so in its review note.
 Every kanji card's readings are completed to the official school list (the book's first), and a
-kanji with exactly one official reading (曜, 週) is voiced; the rest stay silent. After a new
+kanji with exactly one official reading (曜, 週) is voiced; the rest stay silent. A dictionary reading
+that is not on that list silences a one-reading kanji, so it comes off unless a word in the deck uses
+it (予 kept あらかじ and went unvoiced until 2026-10-14). The list's narrow-use readings (bracketed in
+the official table) are never added by default, but one a deck word uses belongs on the card (じ for
+除 in 掃除, なの for 七 in 七日), and once it is there the completion keeps it. After a new
 chapter's merge, the book pass does this in place.
 After a change to the character review prompt, raise `CHARACTER_REVIEW_VERSION` and re-run the pass:
 it re-reviews every generated card checked under the older prompt, one call per chapter.

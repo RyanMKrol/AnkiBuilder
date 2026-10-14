@@ -544,7 +544,12 @@
       "pronunciation": "go",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 45,
-      "ttsText": "ご"
+      "ttsText": "ご",
+      "audio": "51cb9ab3eaf67614.mp3",
+      "audioOriginal": "51cb9ab3eaf67614.orig.mp3",
+      "audioAuto": "51cb9ab3eaf67614.mp3",
+      "audioMarked": true,
+      "audioTextHash": "51cb9ab3eaf67614"
     },
     {
       "id": "r-846b2c68221a",
@@ -599,7 +604,12 @@
       "pronunciation": "jutsu",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 51,
-      "ttsText": "じゅつ"
+      "ttsText": "じゅつ",
+      "audio": "3ca4705d319a5820.mp3",
+      "audioOriginal": "3ca4705d319a5820.orig.mp3",
+      "audioAuto": "3ca4705d319a5820.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3ca4705d319a5820"
     },
     {
       "id": "r-a0d91b62adb5",
@@ -722,11 +732,6 @@
       "sourceOrder": 62,
       "pronunciation": "futari zutsu",
       "ttsKanji": "二人ずつ",
-      "audio": "6cb6628fcda6276f.mp3",
-      "audioOriginal": "6cb6628fcda6276f.orig.mp3",
-      "audioAuto": "6cb6628fcda6276f.mp3",
-      "audioMarked": true,
-      "audioTextHash": "6cb6628fcda6276f",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 二人."
@@ -1016,11 +1021,6 @@
       "sourceOrder": 82,
       "pronunciation": "kudaketa iikata",
       "ttsKanji": "くだけた言い方",
-      "audio": "0f658b8cf301856d.mp3",
-      "audioOriginal": "0f658b8cf301856d.orig.mp3",
-      "audioAuto": "0f658b8cf301856d.mp3",
-      "audioMarked": true,
-      "audioTextHash": "0f658b8cf301856d",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 言い方."
@@ -1270,11 +1270,6 @@
       "sourceOrder": 99,
       "pronunciation": "teinei na iikata",
       "ttsKanji": "ていねいな言い方",
-      "audio": "3f0d939e2a838d96.mp3",
-      "audioOriginal": "3f0d939e2a838d96.orig.mp3",
-      "audioAuto": "3f0d939e2a838d96.mp3",
-      "audioMarked": true,
-      "audioTextHash": "3f0d939e2a838d96",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 言い方."
@@ -1436,11 +1431,6 @@
       "sourceOrder": 110,
       "pronunciation": "katai iikata",
       "ttsKanji": "かたい言い方",
-      "audio": "a63b0e5d3d27ba95.mp3",
-      "audioOriginal": "a63b0e5d3d27ba95.orig.mp3",
-      "audioAuto": "a63b0e5d3d27ba95.mp3",
-      "audioMarked": true,
-      "audioTextHash": "a63b0e5d3d27ba95",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 言い方."
@@ -1747,7 +1737,13 @@
       "ttsKanji": "言い方",
       "reviewNote": "Owner ruling 2026-10-14: the reading deck cards single words. Added because a phrase card using this word was cut and the word had no card of its own.",
       "addition": "genki-reading-review-2026-10-14",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "1e101836d4516002.mp3",
+      "audioOriginal": "1e101836d4516002.orig.mp3",
+      "audioAuto": "1e101836d4516002.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1e101836d4516002",
+      "additionDone": true
     }
   ]
 }

@@ -60,6 +60,10 @@ distinct.
 
 **A word and a phrase containing it are distinct**, even when the glosses overlap.
 
+**A change of register is distinct.** A casual-style form and its polite counterpart can share an
+English gloss and still be two cards, because the register is what the card teaches. Return
+`distinct` for them, and say the register is the cue each needs.
+
 **A short answer is one card, however many questions it answers.** When members share an identical
 target and differ only in which question they reply to (the person or thing asked about), the
 learner produces the same words every time. The scenes differ; the card does not. The same holds

@@ -335,7 +335,7 @@
       "target": "六",
       "english": "Six",
       "category": "Other",
-      "pronunciation": "roku, rot- / mut-, mu",
+      "pronunciation": "roku, rot- / mut-, mu, mui",
       "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
       "sourceOrder": 30
     },
@@ -720,7 +720,7 @@
       "target": "七",
       "english": "Seven",
       "category": "Other",
-      "pronunciation": "shichi / nana",
+      "pronunciation": "shichi / nana, nano",
       "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
       "sourceOrder": 66
     },
@@ -782,7 +782,7 @@
       "target": "八",
       "english": "Eight",
       "category": "Other",
-      "pronunciation": "hachi, hat- / yat-, ya",
+      "pronunciation": "hachi, hat- / yat-, ya, yō",
       "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
       "sourceOrder": 71
     },
@@ -896,7 +896,7 @@
       "target": "天",
       "english": "Heaven",
       "category": "Other",
-      "pronunciation": "ten / ame",
+      "pronunciation": "ten / ame, ama",
       "reviewNote": "Meaning and readings from the book (Chapter 19: Reading and Writing 5: Travel).",
       "sourceOrder": 82
     },
@@ -1266,7 +1266,10 @@
       "audioOriginal": "1932c5ca7432e9db.orig.mp3",
       "audioAuto": "1932c5ca7432e9db.mp3",
       "audioMarked": true,
-      "audioTextHash": "1932c5ca7432e9db"
+      "audioTextHash": "1932c5ca7432e9db",
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 二, 週間, 前."
     },
     {
       "id": "r-a6e9f6d97089",
@@ -1371,7 +1374,10 @@
       "audioOriginal": "c8b48ef60326f8c3.orig.mp3",
       "audioAuto": "c8b48ef60326f8c3.mp3",
       "audioMarked": true,
-      "audioTextHash": "c8b48ef60326f8c3"
+      "audioTextHash": "c8b48ef60326f8c3",
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 一人."
     },
     {
       "id": "r-d48124a59f99",
@@ -1416,7 +1422,10 @@
       "audioOriginal": "6ea093ec2b218889.orig.mp3",
       "audioAuto": "6ea093ec2b218889.mp3",
       "audioMarked": true,
-      "audioTextHash": "6ea093ec2b218889"
+      "audioTextHash": "6ea093ec2b218889",
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 二, か月, 前."
     },
     {
       "id": "r-fb5b775c2d04",

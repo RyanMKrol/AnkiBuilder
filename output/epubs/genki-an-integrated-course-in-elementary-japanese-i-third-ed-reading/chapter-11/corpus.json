@@ -663,7 +663,10 @@
       "english": "Next (stop), . . .",
       "category": "Transport",
       "ttsText": "つぎは",
-      "sourceOrder": 81
+      "sourceOrder": 81,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 次."
     },
     {
       "id": "r-e389584bbdad",

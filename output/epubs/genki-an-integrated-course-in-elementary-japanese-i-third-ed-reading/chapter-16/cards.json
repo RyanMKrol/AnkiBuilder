@@ -16,9 +16,10 @@
       "target": "歳",
       "english": "Age; years old",
       "category": "Other",
-      "pronunciation": "sai / toshi",
+      "pronunciation": "sai",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 0
+      "sourceOrder": 0,
+      "ttsText": "さい"
     },
     {
       "id": "r-0d3bc6b0dd4e",

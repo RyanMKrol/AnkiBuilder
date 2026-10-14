@@ -282,7 +282,10 @@
       "english": "Not to come",
       "category": "Travel & Tourism",
       "ttsText": "こない",
-      "sourceOrder": 33
+      "sourceOrder": 33,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 来る."
     },
     {
       "id": "r-7d72598db4ca",
@@ -346,7 +349,10 @@
       "english": "After ...",
       "category": "Grammar & Function Words",
       "ttsText": "のあと",
-      "sourceOrder": 41
+      "sourceOrder": 41,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 後."
     },
     {
       "id": "r-45e061500a82",

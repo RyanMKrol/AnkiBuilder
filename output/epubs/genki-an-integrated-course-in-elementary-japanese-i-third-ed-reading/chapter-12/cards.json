@@ -541,9 +541,10 @@
       "target": "護",
       "english": "Protect",
       "category": "Other",
-      "pronunciation": "go / mamo",
+      "pronunciation": "go",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 45
+      "sourceOrder": 45,
+      "ttsText": "ご"
     },
     {
       "id": "r-846b2c68221a",
@@ -595,9 +596,10 @@
       "target": "術",
       "english": "Art; technique",
       "category": "Other",
-      "pronunciation": "jutsu / sube",
+      "pronunciation": "jutsu",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 51
+      "sourceOrder": 51,
+      "ttsText": "じゅつ"
     },
     {
       "id": "r-a0d91b62adb5",
@@ -724,7 +726,10 @@
       "audioOriginal": "6cb6628fcda6276f.orig.mp3",
       "audioAuto": "6cb6628fcda6276f.mp3",
       "audioMarked": true,
-      "audioTextHash": "6cb6628fcda6276f"
+      "audioTextHash": "6cb6628fcda6276f",
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 二人."
     },
     {
       "id": "r-f5ff67acd4bc",
@@ -1015,7 +1020,10 @@
       "audioOriginal": "0f658b8cf301856d.orig.mp3",
       "audioAuto": "0f658b8cf301856d.mp3",
       "audioMarked": true,
-      "audioTextHash": "0f658b8cf301856d"
+      "audioTextHash": "0f658b8cf301856d",
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 言い方."
     },
     {
       "id": "r-c1dbc93b636f",
@@ -1266,7 +1274,10 @@
       "audioOriginal": "3f0d939e2a838d96.orig.mp3",
       "audioAuto": "3f0d939e2a838d96.mp3",
       "audioMarked": true,
-      "audioTextHash": "3f0d939e2a838d96"
+      "audioTextHash": "3f0d939e2a838d96",
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 言い方."
     },
     {
       "id": "r-cd41014c34e1",
@@ -1429,7 +1440,10 @@
       "audioOriginal": "a63b0e5d3d27ba95.orig.mp3",
       "audioAuto": "a63b0e5d3d27ba95.mp3",
       "audioMarked": true,
-      "audioTextHash": "a63b0e5d3d27ba95"
+      "audioTextHash": "a63b0e5d3d27ba95",
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 言い方."
     },
     {
       "id": "r-e8c9c93cc70e",
@@ -1721,6 +1735,19 @@
       "audioMarked": true,
       "audioTextHash": "67a0de9ec507c4cb",
       "additionDone": true
+    },
+    {
+      "id": "r-20d562bb9014",
+      "target": "言い方",
+      "english": "Way of saying",
+      "category": "School & Education",
+      "ttsText": "いいかた",
+      "sourceOrder": 130,
+      "pronunciation": "iikata",
+      "ttsKanji": "言い方",
+      "reviewNote": "Owner ruling 2026-10-14: the reading deck cards single words. Added because a phrase card using this word was cut and the word had no card of its own.",
+      "addition": "genki-reading-review-2026-10-14",
+      "additionReviewed": true
     }
   ]
 }

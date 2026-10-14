@@ -404,7 +404,10 @@
       "target": "を",
       "english": "Direct object marker",
       "category": "Grammar & Function Words",
-      "sourceOrder": 54
+      "sourceOrder": 54,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14: particles are grammar, not words to read; the reading deck does not card them."
     },
     {
       "id": "r-30515e1a4a4e",
@@ -927,7 +930,10 @@
       "target": "へ",
       "english": "Goal-of-movement marker",
       "category": "Grammar & Function Words",
-      "sourceOrder": 127
+      "sourceOrder": 127,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14: particles are grammar, not words to read; the reading deck does not card them."
     },
     {
       "id": "r-27ed98f4d9b0",
@@ -1221,7 +1227,10 @@
       "target": "にぎやか",
       "english": "Lively",
       "category": "Descriptions & Qualities",
-      "sourceOrder": 169
+      "sourceOrder": 169,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: にぎやかな."
     },
     {
       "id": "r-2ed995113163",
@@ -1242,7 +1251,10 @@
       "target": "よ",
       "english": "Four",
       "category": "Numbers",
-      "sourceOrder": 172
+      "sourceOrder": 172,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14: よ is the form 4 takes inside よじ and よねんせい, not a word; よん is the card."
     },
     {
       "id": "r-58f16b7e1247",
@@ -2222,6 +2234,13 @@
       "english": "Peanuts",
       "category": "Food",
       "sourceOrder": 311
+    },
+    {
+      "id": "r-e8acc67c48f0",
+      "target": "なる",
+      "english": "To become",
+      "category": "Time",
+      "sourceOrder": 312
     }
   ]
 }

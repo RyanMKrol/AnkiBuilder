@@ -335,7 +335,10 @@
       "audioOriginal": "345d2fdf5acc911e.orig.mp3",
       "audioAuto": "345d2fdf5acc911e.mp3",
       "audioMarked": true,
-      "audioTextHash": "345d2fdf5acc911e"
+      "audioTextHash": "345d2fdf5acc911e",
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 人."
     },
     {
       "id": "r-498a60e1125d",

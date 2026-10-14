@@ -887,7 +887,10 @@
       "english": "Two weeks ago",
       "category": "Time",
       "ttsText": "にしゅうかんまえ",
-      "sourceOrder": 109
+      "sourceOrder": 109,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 二, 週間, 前."
     },
     {
       "id": "r-a6e9f6d97089",
@@ -943,7 +946,10 @@
       "english": "Alone",
       "category": "Descriptions & Qualities",
       "ttsText": "ひとりで",
-      "sourceOrder": 116
+      "sourceOrder": 116,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 一人."
     },
     {
       "id": "r-d48124a59f99",
@@ -967,7 +973,10 @@
       "english": "Two months ago",
       "category": "Time",
       "ttsText": "にかげつまえ",
-      "sourceOrder": 119
+      "sourceOrder": 119,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 二, か月, 前."
     },
     {
       "id": "r-fb5b775c2d04",

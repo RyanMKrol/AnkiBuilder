@@ -271,9 +271,10 @@
       "target": "部",
       "english": "Section; department",
       "category": "Other",
-      "pronunciation": "bu / he",
+      "pronunciation": "bu",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 26
+      "sourceOrder": 26,
+      "ttsText": "ぶ"
     },
     {
       "id": "r-922517cc7363",

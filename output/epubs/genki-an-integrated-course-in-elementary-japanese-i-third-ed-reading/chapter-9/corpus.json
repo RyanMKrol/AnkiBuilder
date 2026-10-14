@@ -367,7 +367,10 @@
       "english": "To be late",
       "category": "Time",
       "ttsText": "おそくなる",
-      "sourceOrder": 44
+      "sourceOrder": 44,
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 遅く, なる."
     },
     {
       "id": "r-195cb8caaeed",

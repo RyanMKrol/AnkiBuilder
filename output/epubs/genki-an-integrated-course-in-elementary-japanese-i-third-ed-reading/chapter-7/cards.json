@@ -98,7 +98,7 @@
     {
       "id": "r-9a0fe9c816a8",
       "target": "返",
-      "english": "Return; answer",
+      "english": "Give back; return (something)",
       "category": "Other",
       "pronunciation": "hen / kae",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -107,7 +107,7 @@
     {
       "id": "r-5f413d72c0b1",
       "target": "短",
-      "english": "Short",
+      "english": "Short (length)",
       "category": "Other",
       "pronunciation": "tan / mijika",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -394,7 +394,7 @@
     {
       "id": "r-ab440c8ee491",
       "target": "当",
-      "english": "Right; hit",
+      "english": "Hit; correct",
       "category": "Other",
       "pronunciation": "tō / a, masa",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -453,7 +453,7 @@
     {
       "id": "r-8386bb2637b5",
       "target": "育",
-      "english": "Raise",
+      "english": "Bring up (a child); grow",
       "category": "Other",
       "pronunciation": "iku / soda, haguku",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -498,7 +498,7 @@
     {
       "id": "r-26f3f4e9a1b4",
       "target": "構",
-      "english": "Stance; appearance",
+      "english": "Build; posture",
       "category": "Other",
       "pronunciation": "kō / kama",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -518,7 +518,7 @@
       "target": "道",
       "english": "Way",
       "category": "Other",
-      "pronunciation": "dō / michi",
+      "pronunciation": "dō, tō / michi",
       "reviewNote": "Meaning and readings from the book (Chapter 24: Reading and Writing 10: The Folktale Kasajizo).",
       "sourceOrder": 48
     },
@@ -905,7 +905,7 @@
     {
       "id": "r-fe8e50ef842a",
       "target": "電話する",
-      "english": "To call",
+      "english": "To make a phone call",
       "category": "Technology & Communication",
       "ttsText": "でんわする",
       "sourceOrder": 77,
@@ -1305,7 +1305,7 @@
       "category": "Other",
       "ttsText": "すう",
       "sourceOrder": 103,
-      "pronunciation": "sū",
+      "pronunciation": "suu",
       "ttsKanji": "吸う",
       "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
       "addition": "genki-reading-words-only-2026-10",

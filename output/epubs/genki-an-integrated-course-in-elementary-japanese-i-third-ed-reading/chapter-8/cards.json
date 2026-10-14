@@ -719,7 +719,10 @@
       "audioOriginal": "1f6d6351045cd5cf.orig.mp3",
       "audioAuto": "1f6d6351045cd5cf.mp3",
       "audioMarked": true,
-      "audioTextHash": "1f6d6351045cd5cf"
+      "audioTextHash": "1f6d6351045cd5cf",
+      "excluded": true,
+      "excludedBy": "owner-cut-2026-10-14",
+      "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 元気."
     },
     {
       "id": "r-339883a9e19c",

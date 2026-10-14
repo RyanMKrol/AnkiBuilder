@@ -216,6 +216,26 @@
         "at": "2026-10-12T22:59:56.817Z",
         "message": "chapter-23: \"うんどうをします\" (Do exercise) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "Lesson 23 gate 1: each is a headword the chapter's VOCABULARY boxes gloss as one unit (noun+をします verbs, できます), a filled cell of Exercise I's ています table, or the polite past できました that NOTES 1 teaches. Lexical entries, not sentences."
+      },
+      "chapter-24/ganbarimasu": {
+        "at": "2026-10-13T22:18:08.976Z",
+        "message": "chapter-24: \"がんばります\" (Do one's best.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 24: がんばってください is a fixed expression the book glosses as one vocabulary entry; がんばります, すんでいます and すんでいません are verb forms (dictionary entry and Exercise I paradigm cells), lexical entries rather than sentences."
+      },
+      "chapter-24/ganbatte-kudasai": {
+        "at": "2026-10-13T22:18:08.976Z",
+        "message": "chapter-24: \"がんばってください\" (I hope it works out.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 24: がんばってください is a fixed expression the book glosses as one vocabulary entry; がんばります, すんでいます and すんでいません are verb forms (dictionary entry and Exercise I paradigm cells), lexical entries rather than sentences."
+      },
+      "chapter-24/sundeimasen": {
+        "at": "2026-10-13T22:18:08.976Z",
+        "message": "chapter-24: \"すんでいません\" (Do not live.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 24: がんばってください is a fixed expression the book glosses as one vocabulary entry; がんばります, すんでいます and すんでいません are verb forms (dictionary entry and Exercise I paradigm cells), lexical entries rather than sentences."
+      },
+      "chapter-24/sundeimasu": {
+        "at": "2026-10-13T22:18:08.976Z",
+        "message": "chapter-24: \"すんでいます\" (Live.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "Lesson 24: がんばってください is a fixed expression the book glosses as one vocabulary entry; がんばります, すんでいます and すんでいません are verb forms (dictionary entry and Exercise I paradigm cells), lexical entries rather than sentences."
       }
     }
   }

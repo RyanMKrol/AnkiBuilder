@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 51,
+    "chapterLabel": "Lesson 24: Work and Interests: I Work for an Apparel Maker",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "o-shigoto",
+      "english": "Your work.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "おしごと"
+    },
+    {
+      "id": "dezainaa",
+      "english": "Designer.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "デザイナー"
+    },
+    {
+      "id": "aparero",
+      "english": "Apparel.",
+      "category": "Clothing",
+      "reviewNote": null,
+      "target": "アパレル"
+    },
+    {
+      "id": "meekaa",
+      "english": "Maker.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "メーカー"
+    },
+    {
+      "id": "aparerumeekaa",
+      "english": "Apparel maker.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "アパレルメーカー"
+    },
+    {
+      "id": "tsutometeimasu",
+      "english": "Work for, be employed.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "つとめています"
+    },
+    {
+      "id": "yume",
+      "english": "Dream.",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "ゆめ"
+    },
+    {
+      "id": "jibun-no",
+      "english": "One's own.",
+      "category": "Descriptions & Qualities",
+      "reviewNote": null,
+      "target": "じぶんの"
+    },
+    {
+      "id": "burando",
+      "english": "Brand.",
+      "category": "Shopping",
+      "reviewNote": null,
+      "target": "ブランド"
+    },
+    {
+      "id": "koto-nominalizer",
+      "english": "Nominalizer (turns a verb or sentence into a noun phrase).",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly premature — こと as a bare nominalizer with no carrier phrase; the item is a grammar-explanation gloss rather than a standalone vocabulary item — reviewer should check it belongs as a card",
+      "target": "こと"
+    },
+    {
+      "id": "ganbatte-kudasai",
+      "english": "I hope it works out.",
+      "category": "Emotions & Feelings",
+      "reviewNote": "Possibly premature — explicitly taught later in Casual Style 2 (casual/て-form request idiom; the て-form + ください pattern is from an earlier lesson but this fixed expression's casual counterpart territory is close to Casual Style 2 (ch. 53) — flagging as uncertain, reviewer should confirm it is taught here and not only later)",
+      "target": "がんばってください"
+    },
+    {
+      "id": "ganbarimasu",
+      "english": "Do one's best.",
+      "category": "Emotions & Feelings",
+      "reviewNote": null,
+      "target": "がんばります"
+    },
+    {
+      "id": "sundeimasu",
+      "english": "Live.",
+      "category": "Home & Household",
+      "reviewNote": "Possibly already taught — ている-form of ch-17's すむ; the stative ている pattern is already taught (ch-12), so this is the same word in a known inflection.",
+      "target": "すんでいます"
+    },
+    {
+      "id": "shitteimasu",
+      "english": "Know.",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "しっています"
+    },
+    {
+      "id": "shumi",
+      "english": "Hobby, pastime.",
+      "category": "Sports & Hobbies",
+      "reviewNote": null,
+      "target": "しゅみ"
+    },
+    {
+      "id": "sundeimasen",
+      "english": "Do not live.",
+      "category": "Home & Household",
+      "reviewNote": null,
+      "target": "すんでいません"
+    },
+    {
+      "id": "tsutomemasu",
+      "english": "Work for, be employed.",
+      "category": "Work & Occupations",
+      "reviewNote": "Possibly premature — つとめます ます-form appears only as a paradigm cell beside つとめています; not used standalone in the lesson",
+      "target": "つとめます"
+    },
+    {
+      "id": "tsutometeimasen",
+      "english": "Do not work for, am not employed.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "つとめていません"
+    },
+    {
+      "id": "musumesan",
+      "english": "(Another person's) daughter.",
+      "category": "Family & People",
+      "reviewNote": null,
+      "target": "むすめさん"
+    },
+    {
+      "id": "ryokougaisha",
+      "english": "Travel agency.",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "りょこうがいしゃ"
+    },
+    {
+      "id": "shinagawa",
+      "english": "Shinagawa (district in Tokyo).",
+      "category": "Travel & Tourism",
+      "reviewNote": null,
+      "target": "しながわ"
+    },
+    {
+      "id": "bengoshi",
+      "english": "Lawyer.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "べんごし"
+    },
+    {
+      "id": "doitsugo",
+      "english": "German (language).",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "ドイツご"
+    },
+    {
+      "id": "chuugokugo",
+      "english": "Chinese (language).",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "ちゅうごくご"
+    },
+    {
+      "id": "kankokugo",
+      "english": "Korean (language).",
+      "category": "Nationalities & Countries",
+      "reviewNote": null,
+      "target": "かんこくご"
+    },
+    {
+      "id": "yone",
+      "english": "...right? (confirming expression).",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Possibly premature — よね as a bare sentence-final particle cluster; no chapter up to 51 formally introduces ね plus よ combined as a taught item, so this may rest on grammar not yet covered",
+      "target": "よね"
+    },
+    {
+      "id": "senkou",
+      "english": "Specialty, major.",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "せんこう"
+    },
+    {
+      "id": "baiotekunorojii",
+      "english": "Biotechnology.",
+      "category": "School & Education",
+      "reviewNote": null,
+      "target": "バイオテクノロジー"
+    },
+    {
+      "id": "shirimasen-2",
+      "english": "Doesn't know.",
+      "category": "Other",
+      "reviewNote": null,
+      "target": "しりません"
+    }
+  ]
+}

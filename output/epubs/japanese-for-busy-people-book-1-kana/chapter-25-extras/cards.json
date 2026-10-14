@@ -2,7 +2,6 @@
   "meta": {
     "targetLanguage": "ja",
     "sourceType": "epub",
-    "reviewed": true,
     "chapterNumber": 40,
     "chapterLabel": "Casual Style 1 (Extras)",
     "baseChapterLabel": "Casual Style 1",
@@ -34,55 +33,16 @@
   },
   "items": [
     {
-      "id": "ore-2",
-      "english": "I'm not going. (male speaker)",
-      "category": "Grammar & Function Words",
-      "target": "おれ、いかない",
-      "pronunciation": "ore, ikanai",
+      "id": "kirei-dayo-3",
+      "english": "That beach is pretty, you know!",
+      "category": "Travel & Tourism",
+      "target": "あのビーチ、きれいだよ",
+      "pronunciation": "ano bīchi, kirei da yo",
       "aiSuggested": true,
-      "hint": "casual style"
-    },
-    {
-      "id": "yes-its-mine",
-      "english": "Yeah, it's mine.",
-      "category": "Grammar & Function Words",
-      "target": "うん、ぼくの",
-      "pronunciation": "un, boku no",
-      "scene": "A classmate confirms that a pen found on the floor is his.",
-      "hint": "casual style"
-    },
-    {
-      "id": "boku-2",
-      "english": "I'm going too.",
-      "category": "Grammar & Function Words",
-      "target": "ぼくもいく",
-      "pronunciation": "boku mo iku",
-      "aiSuggested": true,
-      "note": "ぼく (boku) is a casual 'I' used by men; あたしもいく (atashi mo iku) above carries the same English gloss but is said by a woman.",
-      "hint": "spoken by a man, casual",
+      "note": "Minimal pair with きれいだね above: だよ asserts new information.",
       "excluded": true,
       "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: the same sentence as its kept pair with only the gendered pronoun swapped. Kept: あたしもいく."
-    },
-    {
-      "id": "ii-past-neg",
-      "english": "The concert wasn't good.",
-      "category": "Descriptions & Qualities",
-      "target": "コンサート、よくなかった",
-      "pronunciation": "konsāto, yoku nakatta",
-      "aiSuggested": true,
-      "note": "Irregular: built on いい's exceptional stem よ-.",
-      "hint": "casual style"
-    },
-    {
-      "id": "boku-3",
-      "english": "Is this mine?",
-      "category": "Grammar & Function Words",
-      "target": "これ、ぼくの?",
-      "pronunciation": "kore, boku no?",
-      "aiSuggested": true,
-      "note": "ぼくの (boku no) is how a man casually says \"mine\"; a woman would say あたしの (atashi no).",
-      "hint": "asked by a man, casual"
+      "excludedReason": "Trimmed at gate 2: a third subject for the same きれいだね / きれいだよ pair. Kept: このはな、きれいだね and このはな、きれいだよ."
     },
     {
       "id": "suffix-chan-usage",
@@ -90,244 +50,6 @@
       "category": "Family & People",
       "target": "はやしちゃん、これ、だれの?",
       "pronunciation": "hayashi-chan, kore, dare no?",
-      "aiSuggested": true,
-      "hint": "casual style"
-    },
-    {
-      "id": "doko-ni-iru-casual",
-      "english": "Where are you now?",
-      "category": "Grammar & Function Words",
-      "target": "いま、どこにいる?",
-      "pronunciation": "ima, doko ni iru?",
-      "hint": "casual style",
-      "note": "に stays in casual speech when it marks where someone is, even though it is often dropped before a destination.",
-      "aiSuggested": true,
-      "reviewNote": "Authored at gate 2: the chapter's rule that に is kept for a current location had no sentence."
-    },
-    {
-      "id": "atashi-gakusei-dayo",
-      "english": "I'm a student, you know.",
-      "category": "Family & People",
-      "target": "あたし、がくせいだよ",
-      "pronunciation": "atashi, gakusei da yo",
-      "aiSuggested": true,
-      "hint": "casual style"
-    },
-    {
-      "id": "kirei-dane-3",
-      "english": "That beach is pretty, isn't it?",
-      "category": "Travel & Tourism",
-      "target": "あのビーチ、きれいだね",
-      "pronunciation": "ano bīchi, kirei da ne",
-      "aiSuggested": true,
-      "note": "Minimal pair with きれいだよ below: だね seeks agreement.",
-      "excluded": true,
-      "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: a third subject for the same きれいだね / きれいだよ pair. Kept: このはな、きれいだね and このはな、きれいだよ."
-    },
-    {
-      "id": "how-was-party",
-      "english": "How was yesterday's party?",
-      "category": "Grammar & Function Words",
-      "target": "きのうのパーティー、どうだった?",
-      "pronunciation": "kinō no pātī, dō datta?",
-      "hint": "casual style"
-    },
-    {
-      "id": "atashi-2",
-      "english": "I'm going too.",
-      "category": "Grammar & Function Words",
-      "target": "あたしもいく",
-      "pronunciation": "atashi mo iku",
-      "aiSuggested": true,
-      "note": "あたし (atashi) is a casual \"I\" used by women; a man would say ぼく (boku) or おれ (ore).",
-      "hint": "spoken by a woman, casual"
-    },
-    {
-      "id": "casual-statement-tanaka-nihonjin-dane",
-      "english": "Tanaka's Japanese, isn't he?",
-      "category": "Grammar & Function Words",
-      "target": "たなかさんはにほんじんだね",
-      "pronunciation": "tanaka-san wa nihonjin da ne",
-      "hint": "casual style"
-    },
-    {
-      "id": "ii-present-neg",
-      "english": "This movie isn't good.",
-      "category": "Descriptions & Qualities",
-      "target": "このえいが、よくない",
-      "pronunciation": "kono eiga, yoku nai",
-      "aiSuggested": true,
-      "note": "Irregular: いい builds its negative on the stem よ-, not the い- the regular pattern would predict (いくない).",
-      "hint": "casual style"
-    },
-    {
-      "id": "yeah-im-going",
-      "english": "Yeah, I'm going.",
-      "category": "Grammar & Function Words",
-      "target": "うん、いく",
-      "pronunciation": "un, iku",
-      "scene": "On the phone, a friend is asked whether they are going to tomorrow's party.",
-      "hint": "casual style"
-    },
-    {
-      "id": "whose-pen-question",
-      "english": "Whose pen is this? (casual)",
-      "category": "Grammar & Function Words",
-      "target": "これ、だれのペン?",
-      "pronunciation": "kore, dare no pen?",
-      "hint": "casual style"
-    },
-    {
-      "id": "food-was-good",
-      "english": "It was good, you know.",
-      "category": "Grammar & Function Words",
-      "target": "おいしかったよ",
-      "pronunciation": "oishikatta yo",
-      "scene": "Asked how the food at the party was, describing the taste.",
-      "hint": "casual style"
-    },
-    {
-      "id": "boku-sensei-janai",
-      "english": "I'm not a teacher.",
-      "category": "Work & Occupations",
-      "target": "ぼく、せんせいじゃない",
-      "pronunciation": "boku, sensei ja nai",
-      "aiSuggested": true,
-      "hint": "casual style"
-    },
-    {
-      "id": "casual-answer-no-nationality",
-      "english": "Nope, I'm not American.",
-      "category": "Nationalities & Countries",
-      "target": "ううん、アメリカじんじゃない",
-      "pronunciation": "ūn, amerikajin ja nai",
-      "scene": "replying no to a casual yes/no question about someone's nationality",
-      "hint": "casual style"
-    },
-    {
-      "id": "nikko-tte-donna-tokoro",
-      "english": "Nikko, what kind of place is it?",
-      "category": "Travel & Tourism",
-      "target": "にっこうって、どんなところ?",
-      "pronunciation": "Nikkō tte, donna tokoro?",
-      "aiSuggested": true,
-      "hint": "casual style"
-    },
-    {
-      "id": "dou-datta-3",
-      "english": "How was the movie?",
-      "category": "Grammar & Function Words",
-      "target": "えいが、どうだった?",
-      "pronunciation": "eiga, dō datta?",
-      "aiSuggested": true,
-      "hint": "casual style"
-    },
-    {
-      "id": "kirei-dane-1",
-      "english": "Nikko is pretty, isn't it?",
-      "category": "Travel & Tourism",
-      "target": "にっこう、きれいだね",
-      "pronunciation": "Nikkō, kirei da ne",
-      "aiSuggested": true,
-      "note": "Minimal pair with きれいだよ below: だね seeks the listener's agreement.",
-      "excluded": true,
-      "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: a third subject for the same きれいだね / きれいだよ pair. Kept: このはな、きれいだね and このはな、きれいだよ."
-    },
-    {
-      "id": "nikko-kirei-janakatta",
-      "english": "Nikko wasn't pretty.",
-      "category": "Travel & Tourism",
-      "target": "にっこう、きれいじゃなかった",
-      "pronunciation": "Nikkō, kirei ja nakatta",
-      "aiSuggested": true,
-      "note": "Contrasts with the existing にっこう、きれいだね — same place, past tense, negated.",
-      "hint": "casual style"
-    },
-    {
-      "id": "hana-kirei-janai",
-      "english": "This flower isn't pretty.",
-      "category": "Descriptions & Qualities",
-      "target": "このはな、きれいじゃない",
-      "pronunciation": "kono hana, kirei ja nai",
-      "aiSuggested": true,
-      "note": "Contrasts directly with the existing このはな、きれいだね, same flower, opposite polarity.",
-      "hint": "casual style"
-    },
-    {
-      "id": "abe-not-mine",
-      "english": "No, it's not mine.",
-      "category": "Grammar & Function Words",
-      "target": "ううん、おれのじゃない",
-      "pronunciation": "ūn, ore no ja nai",
-      "scene": "A classmate is asked whether a pen found on the floor belongs to him.",
-      "hint": "casual style"
-    },
-    {
-      "id": "party-was-lively",
-      "english": "It was very lively.",
-      "category": "Grammar & Function Words",
-      "target": "すごくにぎやかだった",
-      "pronunciation": "sugoku nigiyaka datta",
-      "scene": "Asked how yesterday's party was, describing the atmosphere.",
-      "hint": "casual style"
-    },
-    {
-      "id": "kirei-dayo-1",
-      "english": "Nikko is pretty, you know!",
-      "category": "Travel & Tourism",
-      "target": "にっこう、きれいだよ",
-      "pronunciation": "Nikkō, kirei da yo",
-      "aiSuggested": true,
-      "note": "Minimal pair with きれいだね above: だよ asserts it as news to the listener.",
-      "excluded": true,
-      "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: a third subject for the same きれいだね / きれいだよ pair. Kept: このはな、きれいだね and このはな、きれいだよ."
-    },
-    {
-      "id": "casual-statement-tanaka-nihonjin",
-      "english": "Tanaka's Japanese.",
-      "category": "Nationalities & Countries",
-      "target": "たなかさんはにほんじん",
-      "pronunciation": "tanaka-san wa nihonjin",
-      "note": "Casual speech can drop です entirely from a noun predicate, with nothing replacing it. Before ね or よ, だ comes back: たなかさんはにほんじんだね (tanaka-san wa nihonjin da ne).",
-      "hint": "casual style"
-    },
-    {
-      "id": "saa-1",
-      "english": "Well... I don't know.",
-      "category": "Grammar & Function Words",
-      "target": "さあ、わからない",
-      "pronunciation": "sā, wakaranai",
-      "aiSuggested": true,
-      "hint": "casual style"
-    },
-    {
-      "id": "ore-3",
-      "english": "This is mine. (casual, male speaker)",
-      "category": "Grammar & Function Words",
-      "target": "これ、おれの",
-      "pronunciation": "kore, ore no",
-      "aiSuggested": true,
-      "hint": "casual style"
-    },
-    {
-      "id": "casual-statement-raja-isha",
-      "english": "Raja's a doctor.",
-      "category": "Work & Occupations",
-      "target": "ラジャさんはいしゃ",
-      "pronunciation": "raja-san wa isha",
-      "excluded": true,
-      "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: the casual noun statement frame repeated with another name. Kept: たなかさんはにほんじん, すずきさんはせんせい, あたし、がくせいだよ."
-    },
-    {
-      "id": "ookii-past-aff",
-      "english": "That dog was big.",
-      "category": "Descriptions & Qualities",
-      "target": "あのいぬ、おおきかった",
-      "pronunciation": "ano inu, ōkikatta",
       "aiSuggested": true,
       "hint": "casual style"
     },
@@ -345,13 +67,39 @@
       "excludedReason": "Trimmed at gate 2: the same sentence as its kept pair with only the gendered pronoun swapped. Kept: これ、ぼくの?."
     },
     {
-      "id": "uchi-ookikunakatta",
-      "english": "That house wasn't big.",
-      "category": "Descriptions & Qualities",
-      "target": "あのうち、おおきくなかった",
-      "pronunciation": "ano uchi, ōkiku nakatta",
+      "id": "saa-1",
+      "english": "Well... I don't know.",
+      "category": "Grammar & Function Words",
+      "target": "さあ、わからない",
+      "pronunciation": "sā, wakaranai",
       "aiSuggested": true,
-      "note": "Completes the i-adjective paradigm alongside the already-used あのうち、おおきくない and あのいぬ、おおきかった.",
+      "hint": "casual style"
+    },
+    {
+      "id": "ii-present-neg",
+      "english": "This movie isn't good.",
+      "category": "Descriptions & Qualities",
+      "target": "このえいが、よくない",
+      "pronunciation": "kono eiga, yoku nai",
+      "aiSuggested": true,
+      "note": "Irregular: いい builds its negative on the stem よ-, not the い- the regular pattern would predict (いくない).",
+      "hint": "casual style"
+    },
+    {
+      "id": "how-about-food",
+      "english": "How about the food?",
+      "category": "Grammar & Function Words",
+      "target": "りょうりは?",
+      "pronunciation": "ryōri wa?",
+      "note": "りょうりは? (ryōri wa?) leaves the rest of the question unsaid — 'what about the food?' — relying on context from the previous question.",
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-statement-suzuki-sensei-dayo",
+      "english": "Suzuki's a teacher, you know.",
+      "category": "Grammar & Function Words",
+      "target": "すずきさんはせんせいだよ",
+      "pronunciation": "suzuki-san wa sensei da yo",
       "hint": "casual style"
     },
     {
@@ -365,63 +113,74 @@
       "hint": "casual style"
     },
     {
-      "id": "kirei-dayo-2",
-      "english": "This flower is pretty, you know!",
-      "category": "Weather & Nature",
-      "target": "このはな、きれいだよ",
-      "pronunciation": "kono hana, kirei da yo",
-      "aiSuggested": true,
-      "note": "Minimal pair with このはな、きれいだね: だよ asserts new information, だね seeks agreement.",
-      "hint": "casual style"
-    },
-    {
-      "id": "dane-3",
-      "english": "This app is convenient, isn't it?",
-      "category": "Grammar & Function Words",
-      "target": "このアプリ、べんりだね",
-      "pronunciation": "kono apuri, benri da ne",
-      "aiSuggested": true,
-      "hint": "casual style"
-    },
-    {
-      "id": "kirei-dayo-3",
-      "english": "That beach is pretty, you know!",
+      "id": "kirei-dane-3",
+      "english": "That beach is pretty, isn't it?",
       "category": "Travel & Tourism",
-      "target": "あのビーチ、きれいだよ",
-      "pronunciation": "ano bīchi, kirei da yo",
+      "target": "あのビーチ、きれいだね",
+      "pronunciation": "ano bīchi, kirei da ne",
       "aiSuggested": true,
-      "note": "Minimal pair with きれいだね above: だよ asserts new information.",
+      "note": "Minimal pair with きれいだよ below: だね seeks agreement.",
       "excluded": true,
       "excludedBy": "gate2-frame-trim",
       "excludedReason": "Trimmed at gate 2: a third subject for the same きれいだね / きれいだよ pair. Kept: このはな、きれいだね and このはな、きれいだよ."
     },
     {
-      "id": "suffix-kun-usage",
-      "english": "Tanaka, how are you doing?",
-      "category": "Family & People",
-      "target": "たなかくん、げんき?",
-      "pronunciation": "tanaka-kun, genki?",
+      "id": "nikko-kirei-janakatta",
+      "english": "Nikko wasn't pretty.",
+      "category": "Travel & Tourism",
+      "target": "にっこう、きれいじゃなかった",
+      "pronunciation": "Nikkō, kirei ja nakatta",
+      "aiSuggested": true,
+      "note": "Contrasts with the existing にっこう、きれいだね — same place, past tense, negated.",
+      "hint": "casual style"
+    },
+    {
+      "id": "atashi-2",
+      "english": "I'm going too.",
+      "category": "Grammar & Function Words",
+      "target": "あたしもいく",
+      "pronunciation": "atashi mo iku",
+      "aiSuggested": true,
+      "note": "あたし (atashi) is a casual \"I\" used by women; a man would say ぼく (boku) or おれ (ore).",
+      "hint": "spoken by a woman, casual"
+    },
+    {
+      "id": "nikko-tte-donna-tokoro",
+      "english": "Nikko, what kind of place is it?",
+      "category": "Travel & Tourism",
+      "target": "にっこうって、どんなところ?",
+      "pronunciation": "Nikkō tte, donna tokoro?",
       "aiSuggested": true,
       "hint": "casual style"
     },
     {
-      "id": "casual-statement-suzuki-sensei-dayo",
-      "english": "Suzuki's a teacher, you know.",
-      "category": "Grammar & Function Words",
-      "target": "すずきさんはせんせいだよ",
-      "pronunciation": "suzuki-san wa sensei da yo",
+      "id": "casual-answer-no-nationality",
+      "english": "Nope, I'm not American.",
+      "category": "Nationalities & Countries",
+      "target": "ううん、アメリカじんじゃない",
+      "pronunciation": "ūn, amerikajin ja nai",
+      "scene": "replying no to a casual yes/no question about someone's nationality",
       "hint": "casual style"
     },
     {
-      "id": "atashi-1",
-      "english": "I'm a student.",
+      "id": "doko-ni-iru-casual",
+      "english": "Where are you now?",
       "category": "Grammar & Function Words",
-      "target": "あたし、がくせい",
-      "pronunciation": "atashi, gakusei",
+      "target": "いま、どこにいる?",
+      "pronunciation": "ima, doko ni iru?",
+      "hint": "casual style",
+      "note": "に stays in casual speech when it marks where someone is, even though it is often dropped before a destination.",
       "aiSuggested": true,
-      "excluded": true,
-      "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: the casual noun statement frame repeated with another name. Kept: たなかさんはにほんじん, すずきさんはせんせい, あたし、がくせいだよ."
+      "reviewNote": "Authored at gate 2: the chapter's rule that に is kept for a current location had no sentence."
+    },
+    {
+      "id": "dayo-3",
+      "english": "This town is lively, you know.",
+      "category": "Grammar & Function Words",
+      "target": "このまち、にぎやかだよ",
+      "pronunciation": "kono machi, nigiyaka da yo",
+      "aiSuggested": true,
+      "hint": "casual style"
     },
     {
       "id": "casual-statement-suzuki-sensei",
@@ -432,13 +191,111 @@
       "hint": "casual style"
     },
     {
-      "id": "dayo-3",
-      "english": "This town is lively, you know.",
-      "category": "Grammar & Function Words",
-      "target": "このまち、にぎやかだよ",
-      "pronunciation": "kono machi, nigiyaka da yo",
+      "id": "heya-kirei-casual",
+      "english": "This room is clean.",
+      "category": "Descriptions & Qualities",
+      "target": "このへや、きれい",
+      "pronunciation": "kono heya, kirei",
+      "hint": "casual style",
+      "note": "A な-adjective also drops です in casual speech, leaving just きれい; だ only comes back before ね or よ (きれいだね).",
       "aiSuggested": true,
+      "reviewNote": "Added after the final review: the casual present affirmative (です dropped) had no sentence once the bare base cells were excluded as already taught."
+    },
+    {
+      "id": "whose-pen-question",
+      "english": "Whose pen is this? (casual)",
+      "category": "Grammar & Function Words",
+      "target": "これ、だれのペン?",
+      "pronunciation": "kore, dare no pen?",
       "hint": "casual style"
+    },
+    {
+      "id": "casual-question-suzuki-sensei-ha-omit",
+      "english": "Suzuki, are you a teacher?",
+      "category": "Grammar & Function Words",
+      "target": "すずきさん、せんせい?",
+      "pronunciation": "suzuki-san, sensei?",
+      "note": "A casual yes/no question can drop は entirely, leaving just the topic plus rising intonation. Compare たなかさんってにほんじん? (tanaka-san tte nihonjin?), where って stands in for は instead.",
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-answer-yes-nationality",
+      "english": "Yeah, he's Japanese.",
+      "category": "Nationalities & Countries",
+      "target": "うん、にほんじん",
+      "pronunciation": "un, nihonjin",
+      "scene": "replying yes to a casual yes/no question about someone's nationality",
+      "hint": "casual style"
+    },
+    {
+      "id": "how-was-party",
+      "english": "How was yesterday's party?",
+      "category": "Grammar & Function Words",
+      "target": "きのうのパーティー、どうだった?",
+      "pronunciation": "kinō no pātī, dō datta?",
+      "hint": "casual style"
+    },
+    {
+      "id": "boku-2",
+      "english": "I'm going too.",
+      "category": "Grammar & Function Words",
+      "target": "ぼくもいく",
+      "pronunciation": "boku mo iku",
+      "aiSuggested": true,
+      "note": "ぼく (boku) is a casual 'I' used by men; あたしもいく (atashi mo iku) above carries the same English gloss but is said by a woman.",
+      "hint": "spoken by a man, casual",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: the same sentence as its kept pair with only the gendered pronoun swapped. Kept: あたしもいく."
+    },
+    {
+      "id": "casual-question-tanaka-nihonjin-tte",
+      "english": "Tanaka, is he Japanese?",
+      "category": "Grammar & Function Words",
+      "target": "たなかさんってにほんじん?",
+      "pronunciation": "tanaka-san tte nihonjin?",
+      "note": "って here is the casual contraction of は; compare すずきさん、せんせい? (suzuki-san, sensei?), which drops は outright instead.",
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-statement-tanaka-nihonjin",
+      "english": "Tanaka's Japanese.",
+      "category": "Nationalities & Countries",
+      "target": "たなかさんはにほんじん",
+      "pronunciation": "tanaka-san wa nihonjin",
+      "note": "Casual speech can drop です entirely from a noun predicate, with nothing replacing it. Before ね or よ, だ comes back: たなかさんはにほんじんだね (tanaka-san wa nihonjin da ne).",
+      "hint": "casual style"
+    },
+    {
+      "id": "kirei-dayo-2",
+      "english": "This flower is pretty, you know!",
+      "category": "Weather & Nature",
+      "target": "このはな、きれいだよ",
+      "pronunciation": "kono hana, kirei da yo",
+      "aiSuggested": true,
+      "note": "Minimal pair with このはな、きれいだね: だよ asserts new information, だね seeks agreement.",
+      "hint": "casual style"
+    },
+    {
+      "id": "going-to-party-tomorrow",
+      "english": "Are you going to tomorrow's party?",
+      "category": "Grammar & Function Words",
+      "target": "あしたのパーティー、いく?",
+      "pronunciation": "ashita no pātī, iku?",
+      "note": "A casual yes/no question can end directly on the plain verb with rising intonation, no か needed: あしたのパーティー、いく? (ashita no pātī, iku?).",
+      "hint": "casual style"
+    },
+    {
+      "id": "kirei-dane-1",
+      "english": "Nikko is pretty, isn't it?",
+      "category": "Travel & Tourism",
+      "target": "にっこう、きれいだね",
+      "pronunciation": "Nikkō, kirei da ne",
+      "aiSuggested": true,
+      "note": "Minimal pair with きれいだよ below: だね seeks the listener's agreement.",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a third subject for the same きれいだね / きれいだよ pair. Kept: このはな、きれいだね and このはな、きれいだよ."
     },
     {
       "id": "tomodachi-to-iku-casual",
@@ -452,61 +309,13 @@
       "reviewNote": "Authored at gate 2: the chapter's rule that と is not omitted had no sentence."
     },
     {
-      "id": "going-to-party-tomorrow",
-      "english": "Are you going to tomorrow's party?",
-      "category": "Grammar & Function Words",
-      "target": "あしたのパーティー、いく?",
-      "pronunciation": "ashita no pātī, iku?",
-      "note": "A casual yes/no question can end directly on the plain verb with rising intonation, no か needed: あしたのパーティー、いく? (ashita no pātī, iku?).",
-      "hint": "casual style"
-    },
-    {
-      "id": "saa-3",
-      "english": "Well, the weather isn't good today.",
-      "category": "Grammar & Function Words",
-      "target": "さあ、きょうはてんきがよくない",
-      "pronunciation": "sā, kyō wa tenki ga yoku nai",
+      "id": "ii-past-neg",
+      "english": "The concert wasn't good.",
+      "category": "Descriptions & Qualities",
+      "target": "コンサート、よくなかった",
+      "pronunciation": "konsāto, yoku nakatta",
       "aiSuggested": true,
-      "excluded": true,
-      "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: さあ hedges a question you cannot answer, so a confident statement after it is unnatural. Kept: さあ、わからない."
-    },
-    {
-      "id": "dou-datta-2",
-      "english": "How was the test?",
-      "category": "Grammar & Function Words",
-      "target": "テスト、どうだった?",
-      "pronunciation": "tesuto, dō datta?",
-      "aiSuggested": true,
-      "excluded": true,
-      "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: a third どうだった question. Kept: the book's きのうのパーティー、どうだった? and えいが、どうだった?."
-    },
-    {
-      "id": "casual-answer-yes-nationality",
-      "english": "Yeah, he's Japanese.",
-      "category": "Nationalities & Countries",
-      "target": "うん、にほんじん",
-      "pronunciation": "un, nihonjin",
-      "scene": "replying yes to a casual yes/no question about someone's nationality",
-      "hint": "casual style"
-    },
-    {
-      "id": "casual-question-suzuki-sensei-ha-omit",
-      "english": "Suzuki, are you a teacher?",
-      "category": "Grammar & Function Words",
-      "target": "すずきさん、せんせい?",
-      "pronunciation": "suzuki-san, sensei?",
-      "note": "A casual yes/no question can drop は entirely, leaving just the topic plus rising intonation. Compare たなかさんってにほんじん? (tanaka-san tte nihonjin?), where って stands in for は instead.",
-      "hint": "casual style"
-    },
-    {
-      "id": "casual-question-tanaka-nihonjin-tte",
-      "english": "Tanaka, is he Japanese?",
-      "category": "Grammar & Function Words",
-      "target": "たなかさんってにほんじん?",
-      "pronunciation": "tanaka-san tte nihonjin?",
-      "note": "って here is the casual contraction of は; compare すずきさん、せんせい? (suzuki-san, sensei?), which drops は outright instead.",
+      "note": "Irregular: built on いい's exceptional stem よ-.",
       "hint": "casual style"
     },
     {
@@ -527,6 +336,64 @@
       "hint": "casual style"
     },
     {
+      "id": "abe-not-mine",
+      "english": "No, it's not mine.",
+      "category": "Grammar & Function Words",
+      "target": "ううん、おれのじゃない",
+      "pronunciation": "ūn, ore no ja nai",
+      "scene": "A classmate is asked whether a pen found on the floor belongs to him.",
+      "hint": "casual style"
+    },
+    {
+      "id": "atashi-1",
+      "english": "I'm a student.",
+      "category": "Grammar & Function Words",
+      "target": "あたし、がくせい",
+      "pronunciation": "atashi, gakusei",
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: the casual noun statement frame repeated with another name. Kept: たなかさんはにほんじん, すずきさんはせんせい, あたし、がくせいだよ."
+    },
+    {
+      "id": "ore-2",
+      "english": "I'm not going. (male speaker)",
+      "category": "Grammar & Function Words",
+      "target": "おれ、いかない",
+      "pronunciation": "ore, ikanai",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "kaban-ookii-casual",
+      "english": "This bag is big.",
+      "category": "Descriptions & Qualities",
+      "target": "このかばん、おおきい",
+      "pronunciation": "kono kaban, ōkii",
+      "hint": "casual style",
+      "note": "An い-adjective ends a casual sentence on its own: このかばんはおおきいです loses は and です.",
+      "aiSuggested": true,
+      "reviewNote": "Added after the final review: the casual present affirmative (です dropped) had no sentence once the bare base cells were excluded as already taught."
+    },
+    {
+      "id": "dane-3",
+      "english": "This app is convenient, isn't it?",
+      "category": "Grammar & Function Words",
+      "target": "このアプリ、べんりだね",
+      "pronunciation": "kono apuri, benri da ne",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "suffix-kun-usage",
+      "english": "Tanaka, how are you doing?",
+      "category": "Family & People",
+      "target": "たなかくん、げんき?",
+      "pronunciation": "tanaka-kun, genki?",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
       "id": "kirei-past-aff",
       "english": "Hakone was beautiful.",
       "category": "Descriptions & Qualities",
@@ -536,12 +403,167 @@
       "hint": "casual style"
     },
     {
-      "id": "how-about-food",
-      "english": "How about the food?",
+      "id": "saa-3",
+      "english": "Well, the weather isn't good today.",
       "category": "Grammar & Function Words",
-      "target": "りょうりは?",
-      "pronunciation": "ryōri wa?",
-      "note": "りょうりは? (ryōri wa?) leaves the rest of the question unsaid — 'what about the food?' — relying on context from the previous question.",
+      "target": "さあ、きょうはてんきがよくない",
+      "pronunciation": "sā, kyō wa tenki ga yoku nai",
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: さあ hedges a question you cannot answer, so a confident statement after it is unnatural. Kept: さあ、わからない."
+    },
+    {
+      "id": "saa-2",
+      "english": "Well, Chiba isn't going.",
+      "category": "Grammar & Function Words",
+      "target": "さあ、ちばさんはいかない",
+      "pronunciation": "sā, chiba-san wa ikanai",
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: さあ hedges a question you cannot answer, so a confident statement after it is unnatural. Kept: さあ、わからない."
+    },
+    {
+      "id": "dou-datta-2",
+      "english": "How was the test?",
+      "category": "Grammar & Function Words",
+      "target": "テスト、どうだった?",
+      "pronunciation": "tesuto, dō datta?",
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a third どうだった question. Kept: the book's きのうのパーティー、どうだった? and えいが、どうだった?."
+    },
+    {
+      "id": "yes-its-mine",
+      "english": "Yeah, it's mine.",
+      "category": "Grammar & Function Words",
+      "target": "うん、ぼくの",
+      "pronunciation": "un, boku no",
+      "scene": "A classmate confirms that a pen found on the floor is his.",
+      "hint": "casual style"
+    },
+    {
+      "id": "uchi-ookikunakatta",
+      "english": "That house wasn't big.",
+      "category": "Descriptions & Qualities",
+      "target": "あのうち、おおきくなかった",
+      "pronunciation": "ano uchi, ōkiku nakatta",
+      "aiSuggested": true,
+      "note": "Completes the i-adjective paradigm alongside the already-used あのうち、おおきくない and あのいぬ、おおきかった.",
+      "hint": "casual style"
+    },
+    {
+      "id": "boku-sensei-janai",
+      "english": "I'm not a teacher.",
+      "category": "Work & Occupations",
+      "target": "ぼく、せんせいじゃない",
+      "pronunciation": "boku, sensei ja nai",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "food-was-good",
+      "english": "It was good, you know.",
+      "category": "Grammar & Function Words",
+      "target": "おいしかったよ",
+      "pronunciation": "oishikatta yo",
+      "scene": "Asked how the food at the party was, describing the taste.",
+      "hint": "casual style"
+    },
+    {
+      "id": "ookii-past-aff",
+      "english": "That dog was big.",
+      "category": "Descriptions & Qualities",
+      "target": "あのいぬ、おおきかった",
+      "pronunciation": "ano inu, ōkikatta",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "kirei-dayo-1",
+      "english": "Nikko is pretty, you know!",
+      "category": "Travel & Tourism",
+      "target": "にっこう、きれいだよ",
+      "pronunciation": "Nikkō, kirei da yo",
+      "aiSuggested": true,
+      "note": "Minimal pair with きれいだね above: だよ asserts it as news to the listener.",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Trimmed at gate 2: a third subject for the same きれいだね / きれいだよ pair. Kept: このはな、きれいだね and このはな、きれいだよ."
+    },
+    {
+      "id": "yeah-im-going",
+      "english": "Yeah, I'm going.",
+      "category": "Grammar & Function Words",
+      "target": "うん、いく",
+      "pronunciation": "un, iku",
+      "scene": "On the phone, a friend is asked whether they are going to tomorrow's party.",
+      "hint": "casual style"
+    },
+    {
+      "id": "hana-kirei-janai",
+      "english": "This flower isn't pretty.",
+      "category": "Descriptions & Qualities",
+      "target": "このはな、きれいじゃない",
+      "pronunciation": "kono hana, kirei ja nai",
+      "aiSuggested": true,
+      "note": "Contrasts directly with the existing このはな、きれいだね, same flower, opposite polarity.",
+      "hint": "casual style"
+    },
+    {
+      "id": "boku-3",
+      "english": "Is this mine?",
+      "category": "Grammar & Function Words",
+      "target": "これ、ぼくの?",
+      "pronunciation": "kore, boku no?",
+      "aiSuggested": true,
+      "note": "ぼくの (boku no) is how a man casually says \"mine\"; a woman would say あたしの (atashi no).",
+      "hint": "asked by a man, casual"
+    },
+    {
+      "id": "dou-datta-3",
+      "english": "How was the movie?",
+      "category": "Grammar & Function Words",
+      "target": "えいが、どうだった?",
+      "pronunciation": "eiga, dō datta?",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "ore-3",
+      "english": "This is mine. (casual, male speaker)",
+      "category": "Grammar & Function Words",
+      "target": "これ、おれの",
+      "pronunciation": "kore, ore no",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "atashi-gakusei-dayo",
+      "english": "I'm a student, you know.",
+      "category": "Family & People",
+      "target": "あたし、がくせいだよ",
+      "pronunciation": "atashi, gakusei da yo",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "party-was-lively",
+      "english": "It was very lively.",
+      "category": "Grammar & Function Words",
+      "target": "すごくにぎやかだった",
+      "pronunciation": "sugoku nigiyaka datta",
+      "scene": "Asked how yesterday's party was, describing the atmosphere.",
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-statement-tanaka-nihonjin-dane",
+      "english": "Tanaka's Japanese, isn't he?",
+      "category": "Grammar & Function Words",
+      "target": "たなかさんはにほんじんだね",
+      "pronunciation": "tanaka-san wa nihonjin da ne",
       "hint": "casual style"
     },
     {
@@ -555,15 +577,14 @@
       "hint": "casual style"
     },
     {
-      "id": "saa-2",
-      "english": "Well, Chiba isn't going.",
-      "category": "Grammar & Function Words",
-      "target": "さあ、ちばさんはいかない",
-      "pronunciation": "sā, chiba-san wa ikanai",
-      "aiSuggested": true,
+      "id": "casual-statement-raja-isha",
+      "english": "Raja's a doctor.",
+      "category": "Work & Occupations",
+      "target": "ラジャさんはいしゃ",
+      "pronunciation": "raja-san wa isha",
       "excluded": true,
       "excludedBy": "gate2-frame-trim",
-      "excludedReason": "Trimmed at gate 2: さあ hedges a question you cannot answer, so a confident statement after it is unnatural. Kept: さあ、わからない."
+      "excludedReason": "Trimmed at gate 2: the casual noun statement frame repeated with another name. Kept: たなかさんはにほんじん, すずきさんはせんせい, あたし、がくせいだよ."
     }
   ]
 }

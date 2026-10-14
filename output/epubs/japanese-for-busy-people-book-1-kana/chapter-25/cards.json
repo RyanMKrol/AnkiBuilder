@@ -1,0 +1,374 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 40,
+    "chapterLabel": "Casual Style 1",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "casual-yeah",
+      "english": "Yeah (casual 'yes').",
+      "category": "Greetings",
+      "target": "うん",
+      "pronunciation": "un",
+      "note": "Casual counterpart to はい; used in place of はい、〜です.",
+      "sourceOrder": 852,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-no",
+      "english": "Nuh-uh (casual 'no').",
+      "category": "Greetings",
+      "target": "ううん",
+      "pronunciation": "uun",
+      "note": "Casual counterpart to いいえ; used in place of いいえ、〜じゃありません.",
+      "sourceOrder": 815,
+      "hint": "casual style"
+    },
+    {
+      "id": "suffix-kun",
+      "english": "Familiar name suffix, used for boys, men, or juniors.",
+      "category": "Family & People",
+      "target": "くん",
+      "pronunciation": "kun",
+      "note": "Replaces さん (san, \"Mr., Mrs., Ms., Miss\") from Lesson 1 in casual speech, used for boys, men, or juniors; signals familiarity rather than politeness.",
+      "sourceOrder": 1361,
+      "hint": "casual style"
+    },
+    {
+      "id": "suffix-chan",
+      "english": "Affectionate name suffix for children or close friends.",
+      "category": "Family & People",
+      "target": "ちゃん",
+      "pronunciation": "chan",
+      "note": "Replaces さん (san, \"Mr., Mrs., Ms., Miss\") from Lesson 1 in casual speech, used affectionately for children and close friends; softer and more intimate than くん.",
+      "sourceOrder": 1365,
+      "hint": "casual style"
+    },
+    {
+      "id": "pronoun-boku",
+      "english": "I (casual, used mainly by men).",
+      "category": "Grammar & Function Words",
+      "target": "ぼく",
+      "pronunciation": "boku",
+      "note": "Casual alternative to わたし.",
+      "sourceOrder": 855,
+      "hint": "casual style"
+    },
+    {
+      "id": "pronoun-ore",
+      "english": "I (casual and rougher, used by men).",
+      "category": "Grammar & Function Words",
+      "target": "おれ",
+      "pronunciation": "ore",
+      "note": "Casual alternative to わたし.",
+      "sourceOrder": 819,
+      "hint": "casual style"
+    },
+    {
+      "id": "pronoun-atashi",
+      "english": "I (casual, used by women).",
+      "category": "Grammar & Function Words",
+      "target": "あたし",
+      "pronunciation": "atashi",
+      "note": "Casual alternative to わたし.",
+      "sourceOrder": 1477,
+      "hint": "casual style"
+    },
+    {
+      "id": "verb-iku-dictionary",
+      "english": "To go (dictionary/plain form).",
+      "category": "Other",
+      "target": "いく",
+      "pronunciation": "iku",
+      "note": "Same dictionary form taught in Lesson 15; here it's used as the casual, plain-style equivalent of いきます (ikimasu), replacing the です/ます endings in everyday conversation.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 15: Talking about Preferences: I Like Japanese Anime (matched on target) | Possibly premature — explicitly taught later in Casual Style 2 (bare dictionary form いく as a standalone card; casual plain-form verb usage is developed further in Casual Style 2, which teaches the casual た-form, て-form request and ない-form invitation — reviewer may prefer it there)",
+      "sourceOrder": 1558,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-15/iku-dict-form (same target and sense). Casual use (いく? / うん、いく) is drilled in the extras unit's sentences."
+    },
+    {
+      "id": "adj-ookii-present-aff",
+      "english": "Is big.",
+      "category": "Descriptions & Qualities",
+      "target": "おおきい",
+      "pronunciation": "ōkii",
+      "note": "い-adjectives don't change between casual and polite speech: おおきい alone is casual, and adding です (おおきいです) makes it polite. This differs from な-adjectives and nouns, which swap だ/だよ for です.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (matched on target)",
+      "sourceOrder": 2238,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-5/big-large (same target and sense). The casual point (no です) only shows in a sentence, which the extras unit drills."
+    },
+    {
+      "id": "adj-ookii-present-neg",
+      "english": "Is not big.",
+      "category": "Descriptions & Qualities",
+      "target": "おおきくない",
+      "pronunciation": "ōkikunai",
+      "note": "い-adjective, present negative (casual).",
+      "sourceOrder": 2244,
+      "hint": "casual style"
+    },
+    {
+      "id": "adj-ookii-past-aff",
+      "english": "Was big.",
+      "category": "Descriptions & Qualities",
+      "target": "おおきかった",
+      "pronunciation": "ōkikatta",
+      "note": "い-adjective, past affirmative (casual).",
+      "sourceOrder": 2254,
+      "hint": "casual style"
+    },
+    {
+      "id": "adj-ookii-past-neg",
+      "english": "Was not big.",
+      "category": "Descriptions & Qualities",
+      "target": "おおきくなかった",
+      "pronunciation": "ōkikunakatta",
+      "note": "い-adjective, past negative (casual).",
+      "sourceOrder": 2264,
+      "hint": "casual style"
+    },
+    {
+      "id": "adj-ii-present-aff",
+      "english": "Is good.",
+      "category": "Descriptions & Qualities",
+      "target": "いい",
+      "pronunciation": "ii",
+      "note": "い-adjective, present affirmative (casual); irregular — negative and past forms use the stem よ- rather than い-.",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on target)",
+      "sourceOrder": 1237,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-10/ii (same target and sense). The casual point (no です) only shows in a sentence, which the extras unit drills."
+    },
+    {
+      "id": "adj-ii-present-neg",
+      "english": "Is not good.",
+      "category": "Descriptions & Qualities",
+      "target": "よくない",
+      "pronunciation": "yokunai",
+      "note": "い-adjective, present negative (casual). Irregular: the regular pattern would give いくない (ikunai), but いい builds on よ-, giving よくない.",
+      "sourceOrder": 2250,
+      "hint": "casual style"
+    },
+    {
+      "id": "adj-ii-past-aff",
+      "english": "Was good.",
+      "category": "Descriptions & Qualities",
+      "target": "よかった",
+      "pronunciation": "yokatta",
+      "note": "い-adjective, past affirmative (casual); irregular form of いい, built on the stem よ-.",
+      "sourceOrder": 2260,
+      "hint": "casual style"
+    },
+    {
+      "id": "adj-ii-past-neg",
+      "english": "Was not good.",
+      "category": "Descriptions & Qualities",
+      "target": "よくなかった",
+      "pronunciation": "yokunakatta",
+      "note": "い-adjective, past negative (casual); irregular form of いい, built on the stem よ-.",
+      "sourceOrder": 2272,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-negative-copula-janai",
+      "english": "Is not (casual negative copula).",
+      "category": "Grammar & Function Words",
+      "target": "じゃない",
+      "pronunciation": "ja nai",
+      "note": "Casual equivalent of じゃありません: noun + じゃない replaces noun + じゃありません in casual speech.",
+      "sourceOrder": 822,
+      "hint": "casual style"
+    },
+    {
+      "id": "adj-kirei-present-aff",
+      "english": "Is pretty / clean.",
+      "category": "Descriptions & Qualities",
+      "target": "きれい",
+      "pronunciation": "kirei",
+      "note": "な-adjective, present affirmative (casual).",
+      "reviewNote": "Source prints this cell as 'きれい *' with an asterisk footnote not included in this table dump; the footnote's text (likely noting だ is usually dropped) could not be verified. | Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on target)",
+      "sourceOrder": 2284,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-10/kirei (same target and sense). The casual point (no です) only shows in a sentence, which the extras unit drills."
+    },
+    {
+      "id": "adj-kirei-present-neg",
+      "english": "Is not pretty / clean.",
+      "category": "Descriptions & Qualities",
+      "target": "きれいじゃない",
+      "pronunciation": "kirei ja nai",
+      "note": "な-adjective, present negative (casual).",
+      "sourceOrder": 2288,
+      "hint": "casual style"
+    },
+    {
+      "id": "adj-kirei-past-aff",
+      "english": "Was pretty / clean.",
+      "category": "Descriptions & Qualities",
+      "target": "きれいだった",
+      "pronunciation": "kirei datta",
+      "note": "な-adjective, past affirmative (casual).",
+      "sourceOrder": 2295,
+      "hint": "casual style"
+    },
+    {
+      "id": "adj-kirei-past-neg",
+      "english": "Was not pretty / clean.",
+      "category": "Descriptions & Qualities",
+      "target": "きれいじゃなかった",
+      "pronunciation": "kirei ja nakatta",
+      "note": "な-adjective, past negative (casual).",
+      "sourceOrder": 2301,
+      "hint": "casual style"
+    },
+    {
+      "id": "pen-cs1",
+      "english": "Pen.",
+      "category": "Everyday Objects",
+      "target": "ペン",
+      "pronunciation": "pen",
+      "reviewNote": "Appears once in the dialogue ('whose pen is this?') with no explicit vocabulary gloss in this chapter; may already be taught in an earlier chapter's object vocabulary. | Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target) | Possibly premature — ペン is ordinary vocabulary from Lesson 2 (possession), not new content taught in this casual-style chapter — likely a duplicate of an earlier chapter's card",
+      "sourceOrder": 780,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-2/pen (same target and sense)."
+    },
+    {
+      "id": "saa",
+      "english": "Well... / I don't know.",
+      "category": "Grammar & Function Words",
+      "target": "さあ",
+      "pronunciation": "sā",
+      "note": "Filler interjection expressing uncertainty before answering a question.",
+      "reviewNote": "Gate 1: kept. Chapter-2-extras uses さあ only inside a sentence; this is its first card.",
+      "sourceOrder": 787,
+      "hint": "casual style"
+    },
+    {
+      "id": "tte-casual-topic",
+      "english": "Casual contraction of は (topic marker in a casual question).",
+      "category": "Grammar & Function Words",
+      "target": "って",
+      "pronunciation": "tte",
+      "note": "In casual speech は is often dropped and sometimes becomes って, as in これって (kore tte), \"is this…?\"",
+      "reviewNote": "Gate 1: kept. The chapter teaches it explicitly (は sometimes becomes って).",
+      "sourceOrder": 839,
+      "hint": "casual style"
+    },
+    {
+      "id": "dane",
+      "english": "..., isn't it? (casual, seeking agreement)",
+      "category": "Grammar & Function Words",
+      "target": "だね",
+      "pronunciation": "da ne",
+      "note": "Formed when ね is added to a noun predicate whose です has been dropped in casual style.",
+      "sourceOrder": 1082,
+      "hint": "casual style"
+    },
+    {
+      "id": "dayo",
+      "english": "..., you know. (casual, adding emphasis)",
+      "category": "Grammar & Function Words",
+      "target": "だよ",
+      "pronunciation": "da yo",
+      "note": "Formed when よ is added to a noun predicate whose です has been dropped in casual style.",
+      "sourceOrder": 1085,
+      "hint": "casual style"
+    },
+    {
+      "id": "sugoku",
+      "english": "Very, extremely.",
+      "category": "Descriptions & Qualities",
+      "target": "すごく",
+      "pronunciation": "sugoku",
+      "sourceOrder": 2038,
+      "note": "Adverb form of すごい (sugoi), glossed \"Amazing!\" in Lesson 15: changing い to く turns the adjective into an adverb meaning \"very, extremely.\"",
+      "hint": "casual style"
+    },
+    {
+      "id": "nigiyaka-cs1",
+      "english": "Lively, bustling.",
+      "category": "Descriptions & Qualities",
+      "target": "にぎやか",
+      "pronunciation": "nigiyaka",
+      "reviewNote": "Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on target) | Possibly premature — uncertain whether にぎやか has been introduced as vocabulary by this point in the book (it is not in the later-chapter index, so it would have to come from chapters 1-39) — reviewer should confirm",
+      "sourceOrder": 2041,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-10/nigiyaka (same target and sense)."
+    },
+    {
+      "id": "dou-datta",
+      "english": "How was it? (casual)",
+      "category": "Grammar & Function Words",
+      "target": "どうだった",
+      "pronunciation": "dō datta",
+      "note": "Casual counterpart of どうでしたか (dō deshita ka, Lesson 11): どう + だった, the casual past of です.",
+      "reviewNote": "Gate 1: kept. A different register from Lesson 11's どうでしたか, cued with (casual).",
+      "sourceOrder": 2027,
+      "hint": "casual style"
+    },
+    {
+      "id": "na-adjective-casual-ne-kirei",
+      "english": "It's pretty, isn't it? (な-adjective + だ before casual ね)",
+      "category": "Grammar & Function Words",
+      "target": "きれいだね",
+      "pronunciation": "kirei da ne",
+      "note": "A な-adjective, like a noun, takes だ before ね in casual speech: きれい + だね. An い-adjective takes ね directly (おおきいね).",
+      "sourceOrder": 2359,
+      "hint": "casual style"
+    },
+    {
+      "id": "na-adjective-casual-yo-kirei",
+      "english": "It's pretty, you know. (な-adjective + だ before casual よ)",
+      "category": "Grammar & Function Words",
+      "target": "きれいだよ",
+      "pronunciation": "kirei da yo",
+      "note": "A な-adjective, like a noun, takes だ before よ in casual speech: きれい + だよ. An い-adjective takes よ directly (おおきいよ).",
+      "sourceOrder": 2367,
+      "hint": "casual style"
+    }
+  ]
+}

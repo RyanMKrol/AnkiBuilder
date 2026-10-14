@@ -10,6 +10,8 @@ import { buildShapeReport } from "./epubShapeReport.js";
 // Three verdicts:
 //   native    the normal path (onboard-epub, then build-anki-deck) can use it as it is
 //   remaster  the content is pictures of pages; scripts/remaster-epub.mjs rebuilds it as text
+//   glyphs    the content is text, but hundreds of its words are printed as pictures inside it;
+//             scripts/glyph-images.mjs reads them and writes the book back with text in their place
 //   blocked   neither path can use it; `reasons` says why
 //
 // Read-only and free, like the shape report it reads.
@@ -22,6 +24,13 @@ import { buildShapeReport } from "./epubShapeReport.js";
 const PAGE_IMAGE_TEXT_PER_IMAGE = 20;
 // Below this many images the ratio means nothing (a two-image cover-and-title book).
 const PAGE_IMAGE_MIN_IMAGES = 10;
+// Distinct pictures inside Japanese text (src/corpus/inlineGlyphs.js) before a book counts as
+// printing its words as pictures. Measured on 2026-10-15: books that are fine have a handful,
+// all bullets, boxed numerals or stroke-order crops (Japanese for Busy People Book 1: 17; the two
+// converted Genki books: 75 and 82). Books whose kanji words are pictures have well over a thousand
+// (Busy People Book 2, 4th edition: 1,556; Busy People II, Revised 3rd edition: 1,794). Until then
+// this check said `native` for both, and every pictured word would have been a silent gap.
+const GLYPH_PICTURES_MIN = 300;
 // A table of contents that names at most one section is only a real problem when there is more
 // than one section's worth of book behind it.
 const SINGLE_ENTRY_MIN_BYTES = 100 * 1024;
@@ -85,11 +94,22 @@ export function judgeShape(report) {
     );
   }
 
+  const glyphPictures = !pageImages && (totals.distinctGlyphImages ?? 0) >= GLYPH_PICTURES_MIN;
+  if (glyphPictures) {
+    findings.push(
+      `${totals.distinctGlyphImages} distinct picture(s) sit inside Japanese text ` +
+        `(${totals.glyphImageRefs} use(s)): words printed as images, which every text reader, ` +
+        `this pipeline included, sees as a gap`,
+    );
+  }
+
   if (pageImages) {
     // The remaster rebuilds the table of contents as well as the text, so a missing or one-entry
     // TOC on a page-image book is covered by the same fix.
     return { verdict: "remaster", reasons: findings };
   }
+  // Pictured words are fixable on their own; a broken table of contents on top of them is not.
+  if (glyphPictures && findings.length === 1) return { verdict: "glyphs", reasons: findings };
   if (findings.length) return { verdict: "blocked", reasons: findings };
   return { verdict: "native", reasons: [] };
 }
@@ -99,6 +119,10 @@ const NEXT_STEP = {
   remaster:
     "next: node scripts/remaster-epub.mjs ocr <book.epub>, then outline, transcribe and build " +
     "(see docs/designs/image-epub-remaster.md). Onboard the EPUB that build writes, not this one.",
+  glyphs:
+    "next: node scripts/glyph-images.mjs scan <book.epub>, then ocr, read --reading a, read " +
+    '--reading b, settle and build (the convert-book skill, section "Words printed as pictures"). ' +
+    "Onboard the EPUB that build writes, not this one.",
   blocked:
     "next: nothing automatic. The remaster only handles books whose pages are images; a text book " +
     "with a broken table of contents needs its TOC fixed at the source.",

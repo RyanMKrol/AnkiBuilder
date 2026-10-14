@@ -46,6 +46,10 @@ Free and read-only. It gives one verdict:
   book has been converted, onboard the EPUB the conversion writes, never the original, and only
   after `node scripts/remaster-epub.mjs verify <original.epub> --book <converted.epub>` passes
   for the whole book. Step 1's probe cannot tell a complete conversion from one missing a lesson.
+- **`glyphs`**: the book is text, but hundreds of its words (usually kanji with their reading) are
+  printed as pictures inside it, so the pipeline would read each one as a gap. **Stop onboarding
+  here** and follow "Words printed as pictures" in the [`convert-book`](../convert-book/SKILL.md)
+  skill. It writes a fixed copy of the book; onboard that copy, never the original.
 - **`blocked`**: neither path can use the book. The check says why. Report it; do not work around it.
 
 ## 1. Will this book work at all?

@@ -19,8 +19,8 @@ process and no visual surface.
   before touching anything user-facing): `.claude/skills/build-anki-deck/SKILL.md`, which is
   normative for procedure. A book that has never been built goes through
   `.claude/skills/onboard-epub/SKILL.md` first, and a book the pipeline cannot read at all (a PDF,
-  or an EPUB whose pages are pictures) goes through `.claude/skills/convert-book/SKILL.md` before
-  that. A READING deck (the written form alone on a silent front, English, romaji and audio on the back) is
+  an EPUB whose pages are pictures, or one whose kanji words are pictures inside the text) goes
+  through `.claude/skills/convert-book/SKILL.md` before that. A READING deck (the written form alone on a silent front, English, romaji and audio on the back) is
   a separate deck kind built by `.claude/skills/build-reading-deck/SKILL.md`; a collection is a book
   plus a deck kind, so the two never share a folder. `docs/PIPELINE.md` covers how the code is wired.
 - **What's planned:** `.harness/tracking/IDEAS.jsonl` is the zero-ceremony inbox for anything not

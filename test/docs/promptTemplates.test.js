@@ -383,6 +383,15 @@ const TEMPLATES = {
     // settlePage parses one <page> element, like the transcriber.
     outputContract: /<page number="\{\{PAGE_NUMBER\}\}"/,
   },
+  "glyph-read-prompt.md": {
+    placeholders: ["BOOK_TITLE", "GLYPH_LIST"],
+    // parseGlyphReply (src/glyphs/glyphRead.js) reads the last <glyphs> list of these fields.
+    outputContract: /<glyphs>[\s\S]*"id"[\s\S]*"kind"[\s\S]*"text"[\s\S]*"reading"/,
+  },
+  "glyph-settle-prompt.md": {
+    placeholders: ["BOOK_TITLE", "ITEMS"],
+    outputContract: /<glyphs>[\s\S]*"id"[\s\S]*"kind"[\s\S]*"text"[\s\S]*"reading"/,
+  },
   "remaster-page-prompt.md": {
     placeholders: ["IMAGE_PATH", "BOOK_TITLE", "PAGE_NUMBER", "PAGE_COUNT", "ENTRY_LABEL"],
     // parsePageReply (src/remaster/pageTranscribe.js) looks for one <page> element, and the
@@ -442,6 +451,11 @@ const NO_CARD_RULES = {
     "a book's own text and never authors content",
   "remaster-settle-prompt.md":
     "decides between two transcriptions of one page, upstream of any card, for the same reason",
+  "glyph-read-prompt.md":
+    "reads a picture of a word verbatim so it can replace the picture in the book, upstream of any " +
+    "card; card rules there would invite it to edit the book",
+  "glyph-settle-prompt.md":
+    "decides between three readings of a picture of a word, upstream of any card, for the same reason",
   "remaster-page-prompt.md":
     "transcribes a page picture verbatim into XHTML, upstream of any card; card rules there " +
     "would invite it to edit the book",

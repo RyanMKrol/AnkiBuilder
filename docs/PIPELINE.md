@@ -190,8 +190,8 @@ The shape report's warnings are advisory, which is right for a book with a few t
 wrong for a book with no text at all. A PDF run through Calibre's "PDF Reflow" becomes an EPUB of
 page pictures with a one-entry table of contents: it parses, warns twice, and would build every page
 as one lesson. `src/corpus/epubEligibility.js` reads the same shape report and gives one verdict:
-`native` (build it), `remaster` (under 20 characters of text per image across at least 10 images)
-or `blocked` (with the reason). Run it with `node scripts/remaster-epub.mjs check <book.epub>`.
+`native` (build it), `remaster` (under 20 characters of text per image across at least 10 images),
+`glyphs` (a text book whose words are printed as pictures, below) or `blocked` (with the reason). Run it with `node scripts/remaster-epub.mjs check <book.epub>`.
 
 **A PDF is also a source.** The pipeline reads EPUBs, so a PDF is never `native`: its pages are
 rendered to images by a compiled PDFKit helper (`src/remaster/pdf-render.swift`, about 17 seconds
@@ -282,6 +282,45 @@ pages by the model that wrote them, so a pin that changed part way through a boo
 Everything lives under `.anki-builder/remaster/<source hash>/`, which is gitignored. Transcripts are
 a commercial book's text and this repository is public, so none of them is ever committed. Design,
 results from the first lesson, and open questions: `docs/designs/image-epub-remaster.md`.
+
+### Words printed as pictures inside a text book
+
+Some publishers' EPUBs are ordinary text books except that every kanji word carrying a reading is a
+small picture (the kanji with its furigana underneath) dropped into a line of kana. The alt text is
+blank or an internal id, so the word is simply missing: 食べもの (tabemono, food) reads "べもの".
+Japanese for Busy People Book 2 (4th edition) and II (Revised 3rd edition) are both like this.
+Until 2026-10-15 the check said `native` for them.
+
+`src/corpus/inlineGlyphs.js` finds these without opening an image: an `<img>` inside a paragraph,
+table cell, list item or heading that also holds Japanese text, or sits inside a `lang="ja"`
+element. `inspectEpubStructure` counts them per file and in `totals.distinctGlyphImages`, and the
+eligibility check says **`glyphs`** at 300 or more distinct ones (ordinary books have at most 82,
+all bullets or stroke-order crops; the two Busy People books have 1,556 and 1,794).
+
+`scripts/glyph-images.mjs` fixes such a book in place rather than converting it page by page,
+because everything except the pictures is already good text:
+
+- `scan` lists every distinct picture (by its bytes, so one file under several names is read once)
+  with up to three sentences it is used in, and copies it to `images/g-NNNN.jpg`. For collecting it
+  widens the net to any picture inside a line with text (`anyText`), because the 4th edition prints
+  a dialogue's speaker as a picture on a line of its own, `<p><img/> :</p>`.
+- `ocr`: Apple Vision on every picture, free. It reads multi-character words well, writes small kana
+  full size, and often reads nothing on a single kanji.
+- `read --reading a` and `--reading b`: two independent Sonnet readings (`GLYPH_READ` pin,
+  `docs/glyph-read-prompt.md`), 20 pictures a call. The readers are not shown the sentence, so they
+  cannot both guess the same word from it. Each picture is `text` (the word and its printed reading)
+  or `other` (a bullet, an icon), and a reading that is not kana is rejected.
+- `settle`: a picture is accepted outright only when A, B and the OCR all agree (small kana folded,
+  `src/glyphs/glyphRead.js`). Everything else, including every picture the OCR could not read, goes
+  to the `GLYPH_SETTLE` pin (Opus) with the picture, all three readings and the sentences it sits in.
+- `build --out <fixed.epub>`: each picture read as `text` is replaced where it stands by
+  `<ruby>食<rt>た</rt></ruby>` (the same markup the page converter writes, which `plainText` already
+  reads), every other byte of the book is kept, and `mimetype` stays first and stored
+  (`src/glyphs/rewriteEpub.js`). It refuses while any picture is unsettled unless told to leave those
+  as pictures, then runs the check on its output, which must say `native`.
+
+The work lives in `.anki-builder/glyphs/<book hash>/` (gitignored, with a `journal.jsonl` and every
+model call under `agent-logs/`), and the book that onboards is the fixed copy, never the original.
 
 ### What the nav parser now refuses to drop quietly
 

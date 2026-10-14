@@ -33,6 +33,16 @@ export const REMASTER_PASS_PINS = Object.freeze({
   // One call over the whole book, deciding what is worth building: a judgement the owner acts on,
   // so the strongest model. It checks no pass, so it declares no `checks`.
   SELECT: { model: "claude-opus-5", effort: "high", timeoutMs: 15 * 60 * 1000 },
+  // The picture-of-a-word transcriber (src/glyphs/, scripts/glyph-images.mjs): readings A and B
+  // of a batch of small word pictures, then the settle pass over every picture the three readers
+  // (A, B and Apple Vision) did not all agree on.
+  GLYPH_READ: { model: "claude-sonnet-5", effort: "high", timeoutMs: 10 * 60 * 1000 },
+  GLYPH_SETTLE: {
+    model: "claude-opus-5",
+    effort: "high",
+    timeoutMs: 15 * 60 * 1000,
+    checks: ["GLYPH_READ"],
+  },
 });
 
 const prefixesFor = (scope) => [`ANKI_BUILDER_REMASTER_${scope}`];
@@ -78,4 +88,16 @@ export const runSettleClaude = (prompt) =>
   runClaudeWithPromptAsync(prompt, {
     scopeEnvPrefix: ["ANKI_BUILDER_REMASTER_SETTLE"],
     defaults: REMASTER_PASS_PINS.SETTLE,
+  });
+
+export const runGlyphReadClaude = (prompt) =>
+  runClaudeWithPromptAsync(prompt, {
+    scopeEnvPrefix: prefixesFor("GLYPH_READ"),
+    defaults: REMASTER_PASS_PINS.GLYPH_READ,
+  });
+
+export const runGlyphSettleClaude = (prompt) =>
+  runClaudeWithPromptAsync(prompt, {
+    scopeEnvPrefix: prefixesFor("GLYPH_SETTLE"),
+    defaults: REMASTER_PASS_PINS.GLYPH_SETTLE,
   });

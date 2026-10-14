@@ -2,6 +2,7 @@ import { readFileSync, mkdirSync, statSync } from "fs";
 import { writeFileAtomic } from "../util/atomicWrite.js";
 import { inflateRawSync } from "zlib";
 import { posix, dirname, join, resolve, sep } from "path";
+import { findInlineGlyphImages } from "./inlineGlyphs.js";
 
 const EOCD_SIGNATURE = 0x06054b50;
 const CENTRAL_DIRECTORY_SIGNATURE = 0x02014b50;
@@ -1166,6 +1167,10 @@ export function inspectEpubStructure(epubPath, { labelDecoding = 1 } = {}) {
       textLength: strippedTextLength(content),
       encoding: detectNonUtf8(content),
       images,
+      // Pictures of words inside Japanese text (inlineGlyphs.js): text the pipeline cannot read.
+      glyphImages: findInlineGlyphImages(content, { chapterHref: chapter.href }).map(
+        (glyph) => glyph.archivePath,
+      ),
     };
   });
 
@@ -1247,6 +1252,10 @@ export function inspectEpubStructure(epubPath, { labelDecoding = 1 } = {}) {
       distinctImages: new Set(allImages.filter((i) => i.present).map((i) => i.archivePath)).size,
       missingImages: allImages.filter((image) => !image.present).length,
       svgImages: allImages.filter((image) => image.isSvg).length,
+      glyphImageRefs: spine.reduce((sum, file) => sum + file.glyphImages.length, 0),
+      distinctGlyphImages: new Set(
+        spine.flatMap((file) => file.glyphImages).filter((path) => byName.has(path)),
+      ).size,
       nonUtf8Files: spine.filter((file) => file.encoding.isNonUtf8).length,
     },
   };

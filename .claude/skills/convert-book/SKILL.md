@@ -1,6 +1,6 @@
 ---
 name: convert-book
-description: Turn a book the deck pipeline cannot read (an EPUB of page images, a scan) into an ordinary EPUB it can, for one purpose (speaking and listening, reading and writing, or everything). Checks eligibility first, has the owner review the outline and choose the chapters, converts with two readings, and verifies the result before handing over to onboard-epub.
+description: Turn a book the deck pipeline cannot read (an EPUB of page images, a scan, or a text EPUB whose kanji words are printed as pictures) into an ordinary EPUB it can, for one purpose (speaking and listening, reading and writing, or everything). Checks eligibility first, has the owner review the outline and choose the chapters, converts with two readings, and verifies the result before handing over to onboard-epub.
 ---
 
 # Convert a book the pipeline cannot read
@@ -29,10 +29,12 @@ Throughout, `$BOOK` is the absolute path of the source file and `$TOOL` is
 $TOOL check "$BOOK"
 ```
 
-Free and read-only. Three verdicts:
+Free and read-only. Four verdicts:
 
 - `native`: stop. The book does not need converting; go to `onboard-epub`.
 - `blocked`: stop, and tell the owner the reason it prints. Do not work around it.
+- `glyphs`: the book is text, but hundreds of its words are pictures. Skip everything below and
+  follow [Words printed as pictures](#words-printed-as-pictures) instead.
 - `remaster`: carry on.
 
 ## 2. Read the pages, then find the lessons
@@ -185,6 +187,41 @@ Deck) and deletes the emptied deck. A normal delivery afterwards creates any mis
 Tell the owner where the converted EPUB is, how many chapters it has, and what it cost, then run
 `onboard-epub` on the **converted** file, never the original. A converted book always carries two
 hints: `vocabularyTableClass` is `vocabulary` and `lessonLabelWords` is `["Chapter"]`.
+
+## Words printed as pictures
+
+For a `glyphs` book. The text, structure and English are already fine, so nothing is converted page
+by page: each pictured word is read and put back as text, and the rest of the book is left exactly
+as it was. `$GLYPHS` is `node scripts/glyph-images.mjs`.
+
+```sh
+$GLYPHS scan "$BOOK"                                  # free: lists every distinct picture
+$GLYPHS ocr  "$BOOK"                                  # free: Apple Vision, about 30 s for 1,650
+$GLYPHS read "$BOOK" --reading a --limit 40           # pilot: look at reading-a.json
+```
+
+**Pilot before the full run.** Open a handful of the pictures in `images/` next to their entries in
+`reading-a.json` and check them yourself, including one read as `other`. Then say the cost and run
+the rest: two Sonnet readings at 20 pictures a call (about 165 calls for 1,650 pictures, about 40
+minutes with both readings running side by side), then Opus on every picture the three readers did
+not all agree on, 10 a call.
+
+```sh
+$GLYPHS read "$BOOK" --reading a --concurrency 5 &    # A and B are independent: run them together
+$GLYPHS read "$BOOK" --reading b --concurrency 5 &
+wait
+$GLYPHS status "$BOOK"
+$GLYPHS settle "$BOOK"                                # exit 1 = stopped (usage limit), re-run it
+$GLYPHS build  "$BOOK" --out <fixed.epub>
+```
+
+`settle` exits 3 when it finished but some pictures have no decision. `build` refuses while any
+picture is unsettled; `--allow-unsettled` leaves those as pictures, and is the owner's call.
+
+`build` runs the check on what it wrote, which must say `native`. Then read a few pictured words in
+the fixed book against the original (a dialogue line and a vocabulary row at least), and hand over
+as in step 7: onboard the **fixed** file, never the original. Unlike a conversion, no chapter
+selection or purpose applies; the fixed book is the same book.
 
 ## What to read when something looks wrong
 

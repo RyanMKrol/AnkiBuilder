@@ -104,6 +104,42 @@ test("buildShapeReport() flags spine files before the first nav entry as unreach
   });
 });
 
+test("a nav that lists the cover first but points it at the last file leaves the lessons reachable", () => {
+  withTempDir((dir) => {
+    const epubPath = buildFixtureEpub(dir, {
+      manifestItems: [
+        { id: "nav", href: "nav.xhtml", properties: "nav" },
+        { id: "title", href: "title.xhtml" },
+        { id: "c1", href: "ch1.xhtml" },
+        { id: "c2", href: "ch2.xhtml" },
+        { id: "cover", href: "cover.xhtml" },
+      ],
+      spineIdrefs: ["title", "c1", "c2", "cover"],
+      extraFiles: [
+        {
+          name: "OEBPS/nav.xhtml",
+          content: navDoc([
+            ["cover.xhtml", "Cover"],
+            ["ch1.xhtml", "Lesson 1: Greetings"],
+            ["ch2.xhtml", "Lesson 2: Numbers"],
+          ]),
+        },
+        { name: "OEBPS/title.xhtml", content: page("Title") },
+        { name: "OEBPS/ch1.xhtml", content: page("Lesson 1") },
+        { name: "OEBPS/ch2.xhtml", content: page("Lesson 2") },
+        { name: "OEBPS/cover.xhtml", content: page("Cover") },
+      ],
+    });
+
+    const report = buildShapeReport(epubPath);
+    assert.deepEqual(
+      report.unreachable.map((f) => f.number),
+      [1],
+      "only the title page sits before every nav range",
+    );
+  });
+});
+
 test("buildShapeReport() reports a nav label colliding with a <title>-tag fallback label", () => {
   withTempDir((dir) => {
     const epubPath = buildFixtureEpub(dir, {

@@ -2,6 +2,7 @@ import { readFileSync, mkdirSync, statSync } from "fs";
 import { writeFileAtomic } from "../util/atomicWrite.js";
 import { inflateRawSync } from "zlib";
 import { posix, dirname, join, resolve, sep } from "path";
+import { findInlineGlyphImages } from "./inlineGlyphs.js";
 
 const EOCD_SIGNATURE = 0x06054b50;
 const CENTRAL_DIRECTORY_SIGNATURE = 0x02014b50;
@@ -1166,6 +1167,10 @@ export function inspectEpubStructure(epubPath, { labelDecoding = 1 } = {}) {
       textLength: strippedTextLength(content),
       encoding: detectNonUtf8(content),
       images,
+      // Pictures of words inside Japanese text (inlineGlyphs.js): text the pipeline cannot read.
+      glyphImages: findInlineGlyphImages(content, { chapterHref: chapter.href }).map(
+        (glyph) => glyph.archivePath,
+      ),
     };
   });
 
@@ -1193,9 +1198,14 @@ export function inspectEpubStructure(epubPath, { labelDecoding = 1 } = {}) {
     };
   });
 
-  // A spine file before the FIRST nav entry is addressable by --chapter-number but by no
-  // --lesson selector at all, because every nav range starts at or after that first entry.
-  const firstCovered = nav.ranges.length ? nav.ranges[0].firstChapterNumber : Infinity;
+  // A spine file before the EARLIEST nav range is addressable by --chapter-number but by no
+  // --lesson selector at all. The earliest, not the first: a Calibre conversion of a Kindle book
+  // (Japanese for Busy People Book 2, 4th edition) lists "Cover" first and points it at the LAST
+  // spine file, and taking that entry's start called 64 of 65 files unreachable when every lesson
+  // resolved to its own file.
+  const firstCovered = nav.ranges.length
+    ? Math.min(...nav.ranges.map((range) => range.firstChapterNumber))
+    : Infinity;
   const unreachable = spine
     .filter((file) => file.number < firstCovered)
     .map((file) => ({
@@ -1247,6 +1257,10 @@ export function inspectEpubStructure(epubPath, { labelDecoding = 1 } = {}) {
       distinctImages: new Set(allImages.filter((i) => i.present).map((i) => i.archivePath)).size,
       missingImages: allImages.filter((image) => !image.present).length,
       svgImages: allImages.filter((image) => image.isSvg).length,
+      glyphImageRefs: spine.reduce((sum, file) => sum + file.glyphImages.length, 0),
+      distinctGlyphImages: new Set(
+        spine.flatMap((file) => file.glyphImages).filter((path) => byName.has(path)),
+      ).size,
       nonUtf8Files: spine.filter((file) => file.encoding.isNonUtf8).length,
     },
   };

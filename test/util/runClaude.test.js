@@ -470,6 +470,8 @@ test("does not mistake an ordinary failure for a quota refusal", () => {
     "connection reset by peer",
     "the model returned an empty response",
     "no output on either stream",
+    // A server-side throttle the CLI explicitly says is not the account's limit: retry it.
+    "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited",
     "",
     null,
     undefined,

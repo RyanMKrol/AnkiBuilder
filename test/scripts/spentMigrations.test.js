@@ -36,6 +36,7 @@ const SPENT = [
 const STANDING = [
   "build-reading.mjs",
   "remaster-epub.mjs",
+  "glyph-images.mjs",
   "rebase-collection.mjs",
   "build-kanji-dictionary.mjs",
   "build-joyo-readings.mjs",

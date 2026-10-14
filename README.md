@@ -643,7 +643,7 @@ What is built, newest last:
       rewritten; that is a stated non-goal. Design and acceptance criteria:
       `docs/designs/v2-goals-2026-09.md`
 - [~] Books of page images (prototype). `node scripts/remaster-epub.mjs check <book.epub>` says
-  whether the pipeline can read a book (`native`, `remaster` or `blocked`). A `remaster` book,
+  whether the pipeline can read a book (`native`, `remaster`, `glyphs` or `blocked`). A `remaster` book,
   such as a PDF converted to EPUB, is rebuilt as a text EPUB: Apple Vision OCR, one outline
   call that rebuilds the table of contents, an agent that recommends which units are worth
   converting (the owner decides), one Claude vision call per page, an OCR cross-check, a second
@@ -656,6 +656,13 @@ What is built, newest last:
   `docs/designs/image-epub-remaster.md`. A book rebuilt after its collection exists (a new
   selection renumbers its chapters) is moved onto with `scripts/rebase-collection.mjs`, which keeps
   the slug, card ids, audio and review state.
+- [x] Text books whose words are pictures. The check says `glyphs` when an otherwise ordinary EPUB
+      prints hundreds of its kanji words as small pictures inside the text (Japanese for Busy People
+      Book 2, 4th edition: 1,650 distinct pictures). `scripts/glyph-images.mjs` reads each picture
+      twice with Sonnet and once with Apple Vision, sends any picture the three did not all agree on to
+      Opus with its sentence, and writes a copy of the book with every pictured word replaced in place
+      by ruby text. Nothing else in the book changes. Procedure: the `convert-book` skill, "Words
+      printed as pictures".
 - [~] Reading decks (in progress; design and build order in `docs/designs/reading-decks/`). A
   second deck kind whose card shows the written form alone on a silent front, with the English, the
   romaji and the audio on the back. Built so far: the `everything` conversion purpose, and the reading note

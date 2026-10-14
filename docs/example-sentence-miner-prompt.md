@@ -24,13 +24,22 @@ fills a unit with things nobody can study alone.
 
 So the door is narrow, and a line only comes through it by earning its way:
 
-- **It demonstrates a form that nothing else in the chapter demonstrates.** Name that form in
-  `demonstrates`. If a Key Sentence or a grammar example shows the same form, use that one instead
-  and leave the dialogue line.
+- **It demonstrates something nothing else in the chapter demonstrates.** Name it in
+  `demonstrates`. That can be a form, or it can be the chapter's only sentence putting one of its
+  approved vocabulary words to work, or a taught word paired with a modifier no other sentence shows
+  (a degree word, an adverb). If a Key Sentence or a grammar example shows the same thing, use that
+  one instead and leave the dialogue line.
 - **At most four lines per dialogue**, however good the rest are. If you are choosing between five,
   the chapter is telling you the dialogue is the wrong source.
 - **Never a reaction, a backchannel, or a recap.** `はい`, `そうですね`, and a line restating what was
   just said are exactly what this door is narrow for.
+
+**Every dialogue in the chapter comes through this door**, not only the one headed Target
+Dialogue. A Speaking Practice section, a numbered practice conversation and a short dialogue are
+dialogues too: account for each, and skip one only for what its lines hold, never for the heading it
+sits under. _Lesson 24's miner skipped its Speaking Practice as "not the Target Dialogue" and passed
+over the dialogue's only sentence using the lesson's word for "dream", so a later role invented a
+variant to cover the word and the book's own line never reached the deck._
 
 A dialogue that yields nothing is a normal outcome, and `mined: 0` with a reason is the right answer
 for one. Reaching for a fifth line is not.

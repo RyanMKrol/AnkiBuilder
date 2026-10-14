@@ -86,12 +86,19 @@ export function underExampledForms(cards, { wanted = EXAMPLES_WANTED, languageCo
  * `cards` is a lesson's worth: the base unit and whatever the extras roles have produced so far.
  * Judging either alone gives the wrong answer for both, since the extras unit is exactly where the
  * base unit's bare words are meant to get used.
+ *
+ * `gapIds`, when given, is the set of ids that CAN be a gap: the base unit's. Every card still
+ * counts as a place a word gets used, but only a base card can be reported as unused. Without it, a
+ * miner's own short answer (a two-word yes/no reply) is shorter than the lesson's median, contained
+ * in nothing, and so reported as a word never used. Lesson 24 handed the gap author ten of those; it
+ * copied them out again verbatim, and the semantic deduplicator had to catch the repeats.
  */
-export function computeGaps(cards, { languageCode, paradigmMisses = null } = {}) {
+export function computeGaps(cards, { languageCode, paradigmMisses = null, gapIds = null } = {}) {
   const shipped = shipping(cards);
+  const eligible = (found) => (gapIds ? found.filter((g) => gapIds.has(g.id)) : found);
   return {
-    neverUsed: findTaughtNeverUsed(shipped),
-    underExampled: underExampledForms(shipped, { languageCode }),
+    neverUsed: eligible(findTaughtNeverUsed(shipped)),
+    underExampled: eligible(underExampledForms(shipped, { languageCode })),
     // null, not [], when no grid was supplied: "nobody checked" and "nothing missing" are different
     // answers, and this file exists because the difference matters.
     paradigm: paradigmMisses ?? null,

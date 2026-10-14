@@ -46,7 +46,11 @@ string proves nothing. Look for the word in any of its forms, and for the inflec
 word of the same kind. Skip only when the word itself is absent, or the inflection appears nowhere
 in what you were given. _An extras pass declined the source's own example for a grammar point,
 calling a past-tense verb untaught because only its present form had a card, though the past tense
-had been taught many lessons earlier. Every card for that point was lost._
+had been taught many lessons earlier. Every card for that point was lost._ The same goes the other
+way for a word's senses: a word the learner has met only inside a set phrase has not been taught in
+its other uses, so a card that needs another sense says so in its note. _An extras sentence used a
+word meaning "no longer" that the deck had shown only inside two fixed phrases meaning "once more"
+and "a little more", and nothing on the card said so._
 
 **A proper name is not a card.** The name of a person, a business, a school, a shop or a club --
 and above all one the source invented to populate an exercise -- teaches the learner nothing about
@@ -80,6 +84,12 @@ undid another pass's correct work.
 **A label describing a table is not taught by it.** Column headers, row labels and the words a chart
 uses to organise itself (`Present form`, `aff.`, `Verbs`) are not vocabulary, whether you are reading
 the table as markup or as a picture. The entries are the cells.
+
+**An answer card carries a scene.** A short reply that leaves out its topic is shuffled and studied
+months later with no question beside it, so it needs a `scene` naming the question it answers,
+without giving the answer away. Without one, its English often fits a different sentence as well as
+the one wanted. _Three hobby answers in one lesson reached review with no scene while a fourth from
+the same drill had one: the role that wrote the three had never been told this rule._
 
 **English reads as natural sentence-case English.** Not a lowercased clip, not a dictionary stub.
 Capitalize it as you would write it in a sentence.

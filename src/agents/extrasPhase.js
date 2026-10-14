@@ -246,6 +246,8 @@ function runExtrasPhaseInner({
   const gaps = computeGaps([...baseItems, ...mined], {
     languageCode: targetLanguage,
     paradigmMisses,
+    // Only a base card can be a gap. The miners' sentences count as uses, never as unused words.
+    gapIds: new Set(baseItems.map((item) => item.id)),
   });
   recordStep(run, {
     step: "gaps",

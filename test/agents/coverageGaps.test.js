@@ -1,6 +1,45 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { underExampledForms, FUNCTION_CATEGORY } from "../../src/agents/coverageGaps.js";
+import {
+  computeGaps,
+  underExampledForms,
+  FUNCTION_CATEGORY,
+} from "../../src/agents/coverageGaps.js";
+
+test("a miner's short answer is a use of a word, never a gap of its own", () => {
+  // Lesson 24: a yes/no reply the exercise miner mined is shorter than the lesson's median and
+  // contained in no other card, so it read as a word never used. The gap author was handed ten of
+  // those and copied each one out again. Only the base unit's cards can be gaps.
+  const base = [
+    { id: "yume", target: "ゆめ", english: "Dream.", category: "Other" },
+    { id: "shumi", target: "しゅみ", english: "Hobby.", category: "Other" },
+  ];
+  const mined = [
+    { id: "ans", target: "はい、わかります", english: "Yes, I understand.", category: "Other" },
+    {
+      id: "s1",
+      target: "スミスさんのしゅみはほんをよむことです",
+      english: "Smith-san's hobby is reading.",
+      category: "Other",
+    },
+    {
+      id: "s2",
+      target: "わたしのしゅみはりょこうをすることです",
+      english: "My hobby is traveling.",
+      category: "Other",
+    },
+  ];
+  const all = [...base, ...mined];
+  assert.ok(
+    computeGaps(all, { languageCode: "ja" }).neverUsed.some((g) => g.id === "ans"),
+    "without gapIds the reply is reported, which is the bug being guarded",
+  );
+  const gaps = computeGaps(all, { languageCode: "ja", gapIds: new Set(base.map((c) => c.id)) });
+  assert.deepEqual(
+    gaps.neverUsed.map((g) => g.id),
+    ["yume"],
+  );
+});
 
 test("a SENTENCE categorised as a function word is not a gap awaiting examples", () => {
   // The chapter-9 failure, in one test. The example-sentence miner categorises a Key Sentence as

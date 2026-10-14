@@ -35,7 +35,7 @@
   "items": [
     {
       "id": "ore-2",
-      "english": "I'm not going.",
+      "english": "I'm not going. (male speaker)",
       "category": "Grammar & Function Words",
       "target": "おれ、いかない",
       "pronunciation": "ore, ikanai",
@@ -81,7 +81,7 @@
       "target": "これ、ぼくの?",
       "pronunciation": "kore, boku no?",
       "aiSuggested": true,
-      "note": "ぼくの (boku no) is how a man casually says 'mine'; これ、あたしの? (kore, atashi no?) above carries the same gloss but is asked by a woman.",
+      "note": "ぼくの (boku no) is how a man casually says \"mine\"; a woman would say あたしの (atashi no).",
       "hint": "asked by a man, casual"
     },
     {
@@ -140,7 +140,7 @@
       "target": "あたしもいく",
       "pronunciation": "atashi mo iku",
       "aiSuggested": true,
-      "note": "あたし (atashi) is a casual 'I' used by women; ぼくもいく (boku mo iku) below carries the same English gloss but is said by a man.",
+      "note": "あたし (atashi) is a casual \"I\" used by women; a man would say ぼく (boku) or おれ (ore).",
       "hint": "spoken by a woman, casual"
     },
     {
@@ -291,7 +291,7 @@
       "category": "Nationalities & Countries",
       "target": "たなかさんはにほんじん",
       "pronunciation": "tanaka-san wa nihonjin",
-      "note": "Casual speech can drop です entirely from a noun predicate, with nothing replacing it. Compare たなかさんはにほんじんだね (tanaka-san wa nihonjin da ne) below, where だ is added back before the sentence-final particle ね.",
+      "note": "Casual speech can drop です entirely from a noun predicate, with nothing replacing it. Before ね or よ, だ comes back: たなかさんはにほんじんだね (tanaka-san wa nihonjin da ne).",
       "hint": "casual style"
     },
     {
@@ -371,7 +371,7 @@
       "target": "このはな、きれいだよ",
       "pronunciation": "kono hana, kirei da yo",
       "aiSuggested": true,
-      "note": "Minimal pair with きれいだね above: だよ asserts new information.",
+      "note": "Minimal pair with このはな、きれいだね: だよ asserts new information, だね seeks agreement.",
       "hint": "casual style"
     },
     {
@@ -497,7 +497,7 @@
       "category": "Grammar & Function Words",
       "target": "すずきさん、せんせい?",
       "pronunciation": "suzuki-san, sensei?",
-      "note": "A casual yes/no question can drop は entirely, leaving just the topic plus rising intonation. Compare たなかさんってにほんじん? (tanaka-san tte nihonjin?) below, where って stands in for は instead of being dropped.",
+      "note": "A casual yes/no question can drop は entirely, leaving just the topic plus rising intonation. Compare たなかさんってにほんじん? (tanaka-san tte nihonjin?), where って stands in for は instead.",
       "hint": "casual style"
     },
     {
@@ -506,7 +506,7 @@
       "category": "Grammar & Function Words",
       "target": "たなかさんってにほんじん?",
       "pronunciation": "tanaka-san tte nihonjin?",
-      "note": "って here is the casual contraction of は; compare すずきさん、せんせい? (suzuki-san, sensei?) above, which drops は outright instead of contracting it.",
+      "note": "って here is the casual contraction of は; compare すずきさん、せんせい? (suzuki-san, sensei?), which drops は outright instead.",
       "hint": "casual style"
     },
     {
@@ -551,7 +551,7 @@
       "target": "このはな、きれいだね",
       "pronunciation": "kono hana, kirei da ne",
       "aiSuggested": true,
-      "note": "Minimal pair with きれいだよ below: だね seeks agreement.",
+      "note": "Minimal pair with このはな、きれいだよ: だね seeks agreement, だよ asserts new information.",
       "hint": "casual style"
     },
     {

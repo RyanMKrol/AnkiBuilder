@@ -49,7 +49,12 @@
       "pronunciation": "un",
       "note": "Casual counterpart to はい; used in place of はい、〜です.",
       "sourceOrder": 852,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "d120f65859d4cf90.mp3",
+      "audioOriginal": "d120f65859d4cf90.orig.mp3",
+      "audioAuto": "d120f65859d4cf90.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d120f65859d4cf90"
     },
     {
       "id": "casual-no",
@@ -59,7 +64,12 @@
       "pronunciation": "uun",
       "note": "Casual counterpart to いいえ; used in place of いいえ、〜じゃありません.",
       "sourceOrder": 815,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "c120eaf31224263f.mp3",
+      "audioOriginal": "c120eaf31224263f.orig.mp3",
+      "audioAuto": "c120eaf31224263f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c120eaf31224263f"
     },
     {
       "id": "suffix-kun",
@@ -69,7 +79,13 @@
       "pronunciation": "kun",
       "note": "Replaces さん (san, \"Mr., Mrs., Ms., Miss\") from Lesson 1 in casual speech, used for boys, men, or juniors; signals familiarity rather than politeness.",
       "sourceOrder": 1361,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "57c6713fe87f449c.mp3",
+      "audioOriginal": "57c6713fe87f449c.orig.mp3",
+      "audioAuto": "57c6713fe87f449c.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "57c6713fe87f449c"
     },
     {
       "id": "suffix-chan",
@@ -79,7 +95,12 @@
       "pronunciation": "chan",
       "note": "Replaces さん (san, \"Mr., Mrs., Ms., Miss\") from Lesson 1 in casual speech, used affectionately for children and close friends; softer and more intimate than くん.",
       "sourceOrder": 1365,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "1217381420dba346.mp3",
+      "audioOriginal": "1217381420dba346.orig.mp3",
+      "audioAuto": "1217381420dba346.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1217381420dba346"
     },
     {
       "id": "pronoun-boku",
@@ -89,7 +110,12 @@
       "pronunciation": "boku",
       "note": "Casual alternative to わたし.",
       "sourceOrder": 855,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "f1d4e7624d74069a.mp3",
+      "audioOriginal": "f1d4e7624d74069a.orig.mp3",
+      "audioAuto": "f1d4e7624d74069a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f1d4e7624d74069a"
     },
     {
       "id": "pronoun-ore",
@@ -99,7 +125,12 @@
       "pronunciation": "ore",
       "note": "Casual alternative to わたし.",
       "sourceOrder": 819,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "7cb581cf06d70919.mp3",
+      "audioOriginal": "7cb581cf06d70919.orig.mp3",
+      "audioAuto": "7cb581cf06d70919.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7cb581cf06d70919"
     },
     {
       "id": "pronoun-atashi",
@@ -109,7 +140,12 @@
       "pronunciation": "atashi",
       "note": "Casual alternative to わたし.",
       "sourceOrder": 1477,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "274f0fdaa01b757f.mp3",
+      "audioOriginal": "274f0fdaa01b757f.orig.mp3",
+      "audioAuto": "274f0fdaa01b757f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "274f0fdaa01b757f"
     },
     {
       "id": "verb-iku-dictionary",
@@ -145,7 +181,12 @@
       "pronunciation": "ōkikunai",
       "note": "い-adjective, present negative (casual).",
       "sourceOrder": 2244,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "b3899aa2980dd055.mp3",
+      "audioOriginal": "b3899aa2980dd055.orig.mp3",
+      "audioAuto": "b3899aa2980dd055.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b3899aa2980dd055"
     },
     {
       "id": "adj-ookii-past-aff",
@@ -155,7 +196,12 @@
       "pronunciation": "ōkikatta",
       "note": "い-adjective, past affirmative (casual).",
       "sourceOrder": 2254,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "fece3d14062f8f00.mp3",
+      "audioOriginal": "fece3d14062f8f00.orig.mp3",
+      "audioAuto": "fece3d14062f8f00.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fece3d14062f8f00"
     },
     {
       "id": "adj-ookii-past-neg",
@@ -165,7 +211,12 @@
       "pronunciation": "ōkikunakatta",
       "note": "い-adjective, past negative (casual).",
       "sourceOrder": 2264,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "b03e4afa74c2097f.mp3",
+      "audioOriginal": "b03e4afa74c2097f.orig.mp3",
+      "audioAuto": "b03e4afa74c2097f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b03e4afa74c2097f"
     },
     {
       "id": "adj-ii-present-aff",
@@ -188,7 +239,13 @@
       "pronunciation": "yokunai",
       "note": "い-adjective, present negative (casual). Irregular: the regular pattern would give いくない (ikunai), but いい builds on よ-, giving よくない.",
       "sourceOrder": 2250,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "90cb3a7d85c4de6f.mp3",
+      "audioOriginal": "90cb3a7d85c4de6f.orig.mp3",
+      "audioAuto": "90cb3a7d85c4de6f.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "90cb3a7d85c4de6f"
     },
     {
       "id": "adj-ii-past-aff",
@@ -198,7 +255,12 @@
       "pronunciation": "yokatta",
       "note": "い-adjective, past affirmative (casual); irregular form of いい, built on the stem よ-.",
       "sourceOrder": 2260,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "57f7378e2f9343cf.mp3",
+      "audioOriginal": "57f7378e2f9343cf.orig.mp3",
+      "audioAuto": "57f7378e2f9343cf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "57f7378e2f9343cf"
     },
     {
       "id": "adj-ii-past-neg",
@@ -208,7 +270,12 @@
       "pronunciation": "yokunakatta",
       "note": "い-adjective, past negative (casual); irregular form of いい, built on the stem よ-.",
       "sourceOrder": 2272,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "8ac070961673be34.mp3",
+      "audioOriginal": "8ac070961673be34.orig.mp3",
+      "audioAuto": "8ac070961673be34.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8ac070961673be34"
     },
     {
       "id": "casual-negative-copula-janai",
@@ -218,7 +285,13 @@
       "pronunciation": "ja nai",
       "note": "Casual equivalent of じゃありません: noun + じゃない replaces noun + じゃありません in casual speech.",
       "sourceOrder": 822,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "f0ff1508decb150d.mp3",
+      "audioOriginal": "f0ff1508decb150d.orig.mp3",
+      "audioAuto": "f0ff1508decb150d.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "f0ff1508decb150d"
     },
     {
       "id": "adj-kirei-present-aff",
@@ -241,7 +314,12 @@
       "pronunciation": "kirei ja nai",
       "note": "な-adjective, present negative (casual).",
       "sourceOrder": 2288,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "09a1a98f2d40f0e4.mp3",
+      "audioOriginal": "09a1a98f2d40f0e4.orig.mp3",
+      "audioAuto": "09a1a98f2d40f0e4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "09a1a98f2d40f0e4"
     },
     {
       "id": "adj-kirei-past-aff",
@@ -251,7 +329,12 @@
       "pronunciation": "kirei datta",
       "note": "な-adjective, past affirmative (casual).",
       "sourceOrder": 2295,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "fb1555c8ea83b020.mp3",
+      "audioOriginal": "fb1555c8ea83b020.orig.mp3",
+      "audioAuto": "fb1555c8ea83b020.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fb1555c8ea83b020"
     },
     {
       "id": "adj-kirei-past-neg",
@@ -261,7 +344,12 @@
       "pronunciation": "kirei ja nakatta",
       "note": "な-adjective, past negative (casual).",
       "sourceOrder": 2301,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "29b233b0c69885a3.mp3",
+      "audioOriginal": "29b233b0c69885a3.orig.mp3",
+      "audioAuto": "29b233b0c69885a3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "29b233b0c69885a3"
     },
     {
       "id": "pen-cs1",
@@ -284,7 +372,12 @@
       "note": "Filler interjection expressing uncertainty before answering a question.",
       "reviewNote": "Gate 1: kept. Chapter-2-extras uses さあ only inside a sentence; this is its first card.",
       "sourceOrder": 787,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "4b0e0a0955458ffd.mp3",
+      "audioOriginal": "4b0e0a0955458ffd.orig.mp3",
+      "audioAuto": "4b0e0a0955458ffd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4b0e0a0955458ffd"
     },
     {
       "id": "tte-casual-topic",
@@ -295,7 +388,12 @@
       "note": "In casual speech は is often dropped and sometimes becomes って, as in これって (kore tte), \"is this…?\"",
       "reviewNote": "Gate 1: kept. The chapter teaches it explicitly (は sometimes becomes って).",
       "sourceOrder": 839,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "5cc45fe830934de0.mp3",
+      "audioOriginal": "5cc45fe830934de0.orig.mp3",
+      "audioAuto": "5cc45fe830934de0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5cc45fe830934de0"
     },
     {
       "id": "dane",
@@ -305,7 +403,12 @@
       "pronunciation": "da ne",
       "note": "Formed when ね is added to a noun predicate whose です has been dropped in casual style.",
       "sourceOrder": 1082,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "320b1853dfe8a14a.mp3",
+      "audioOriginal": "320b1853dfe8a14a.orig.mp3",
+      "audioAuto": "320b1853dfe8a14a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "320b1853dfe8a14a"
     },
     {
       "id": "dayo",
@@ -315,7 +418,12 @@
       "pronunciation": "da yo",
       "note": "Formed when よ is added to a noun predicate whose です has been dropped in casual style.",
       "sourceOrder": 1085,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "70ad3afedbf9fffc.mp3",
+      "audioOriginal": "70ad3afedbf9fffc.orig.mp3",
+      "audioAuto": "70ad3afedbf9fffc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "70ad3afedbf9fffc"
     },
     {
       "id": "sugoku",
@@ -325,7 +433,12 @@
       "pronunciation": "sugoku",
       "sourceOrder": 2038,
       "note": "Adverb form of すごい (sugoi), glossed \"Amazing!\" in Lesson 15: changing い to く turns the adjective into an adverb meaning \"very, extremely.\"",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "db83bfd31a07848d.mp3",
+      "audioOriginal": "db83bfd31a07848d.orig.mp3",
+      "audioAuto": "db83bfd31a07848d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "db83bfd31a07848d"
     },
     {
       "id": "nigiyaka-cs1",
@@ -348,7 +461,12 @@
       "note": "Casual counterpart of どうでしたか (dō deshita ka, Lesson 11): どう + だった, the casual past of です.",
       "reviewNote": "Gate 1: kept. A different register from Lesson 11's どうでしたか, cued with (casual).",
       "sourceOrder": 2027,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "8d8b6c20c5d1a00d.mp3",
+      "audioOriginal": "8d8b6c20c5d1a00d.orig.mp3",
+      "audioAuto": "8d8b6c20c5d1a00d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8d8b6c20c5d1a00d"
     },
     {
       "id": "na-adjective-casual-ne-kirei",
@@ -358,7 +476,12 @@
       "pronunciation": "kirei da ne",
       "note": "A な-adjective, like a noun, takes だ before ね in casual speech: きれい + だね. An い-adjective takes ね directly (おおきいね).",
       "sourceOrder": 2359,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "451defc4eb6abf56.mp3",
+      "audioOriginal": "451defc4eb6abf56.orig.mp3",
+      "audioAuto": "451defc4eb6abf56.mp3",
+      "audioMarked": true,
+      "audioTextHash": "451defc4eb6abf56"
     },
     {
       "id": "na-adjective-casual-yo-kirei",
@@ -368,7 +491,12 @@
       "pronunciation": "kirei da yo",
       "note": "A な-adjective, like a noun, takes だ before よ in casual speech: きれい + だよ. An い-adjective takes よ directly (おおきいよ).",
       "sourceOrder": 2367,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "32f5eda8c9ed13b0.mp3",
+      "audioOriginal": "32f5eda8c9ed13b0.orig.mp3",
+      "audioAuto": "32f5eda8c9ed13b0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "32f5eda8c9ed13b0"
     }
   ]
 }

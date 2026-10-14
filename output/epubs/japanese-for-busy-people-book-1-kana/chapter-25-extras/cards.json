@@ -52,7 +52,12 @@
       "target": "はやしちゃん、これ、だれの?",
       "pronunciation": "hayashi-chan, kore, dare no?",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "72d91688339c28c4.mp3",
+      "audioOriginal": "72d91688339c28c4.orig.mp3",
+      "audioAuto": "72d91688339c28c4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "72d91688339c28c4"
     },
     {
       "id": "atashi-3",
@@ -74,7 +79,12 @@
       "target": "さあ、わからない",
       "pronunciation": "sā, wakaranai",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "1b431180d951d09e.mp3",
+      "audioOriginal": "1b431180d951d09e.orig.mp3",
+      "audioAuto": "1b431180d951d09e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1b431180d951d09e"
     },
     {
       "id": "ii-present-neg",
@@ -84,7 +94,12 @@
       "pronunciation": "kono eiga, yoku nai",
       "aiSuggested": true,
       "note": "Irregular: いい builds its negative on the stem よ-, not the い- the regular pattern would predict (いくない).",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "93065c3a7612471a.mp3",
+      "audioOriginal": "93065c3a7612471a.orig.mp3",
+      "audioAuto": "93065c3a7612471a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "93065c3a7612471a"
     },
     {
       "id": "how-about-food",
@@ -93,7 +108,12 @@
       "target": "りょうりは?",
       "pronunciation": "ryōri wa?",
       "note": "りょうりは? (ryōri wa?) leaves the rest of the question unsaid — 'what about the food?' — relying on context from the previous question.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "de8e853f118ba86d.mp3",
+      "audioOriginal": "de8e853f118ba86d.orig.mp3",
+      "audioAuto": "de8e853f118ba86d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "de8e853f118ba86d"
     },
     {
       "id": "casual-statement-suzuki-sensei-dayo",
@@ -101,7 +121,12 @@
       "category": "Grammar & Function Words",
       "target": "すずきさんはせんせいだよ",
       "pronunciation": "suzuki-san wa sensei da yo",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "9791d2a3d5694bdb.mp3",
+      "audioOriginal": "9791d2a3d5694bdb.orig.mp3",
+      "audioAuto": "9791d2a3d5694bdb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9791d2a3d5694bdb"
     },
     {
       "id": "ii-past-aff",
@@ -111,7 +136,12 @@
       "pronunciation": "tesuto, yokatta",
       "aiSuggested": true,
       "note": "Irregular: built on いい's exceptional stem よ-.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "2ded30ac594a3711.mp3",
+      "audioOriginal": "2ded30ac594a3711.orig.mp3",
+      "audioAuto": "2ded30ac594a3711.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2ded30ac594a3711"
     },
     {
       "id": "kirei-dane-3",
@@ -133,7 +163,12 @@
       "pronunciation": "Nikkō, kirei ja nakatta",
       "aiSuggested": true,
       "note": "Contrasts with the existing にっこう、きれいだね — same place, past tense, negated.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "273d07af6b4b3556.mp3",
+      "audioOriginal": "273d07af6b4b3556.orig.mp3",
+      "audioAuto": "273d07af6b4b3556.mp3",
+      "audioMarked": true,
+      "audioTextHash": "273d07af6b4b3556"
     },
     {
       "id": "atashi-2",
@@ -143,7 +178,12 @@
       "pronunciation": "atashi mo iku",
       "aiSuggested": true,
       "note": "あたし (atashi) is a casual \"I\" used by women; a man would say ぼく (boku) or おれ (ore).",
-      "hint": "spoken by a woman, casual"
+      "hint": "spoken by a woman, casual",
+      "audio": "ed89d8d7a8b8b673.mp3",
+      "audioOriginal": "ed89d8d7a8b8b673.orig.mp3",
+      "audioAuto": "ed89d8d7a8b8b673.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ed89d8d7a8b8b673"
     },
     {
       "id": "nikko-tte-donna-tokoro",
@@ -152,7 +192,12 @@
       "target": "にっこうって、どんなところ?",
       "pronunciation": "Nikkō tte, donna tokoro?",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "1725bd410fe327a8.mp3",
+      "audioOriginal": "1725bd410fe327a8.orig.mp3",
+      "audioAuto": "1725bd410fe327a8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1725bd410fe327a8"
     },
     {
       "id": "casual-answer-no-nationality",
@@ -161,7 +206,12 @@
       "target": "ううん、アメリカじんじゃない",
       "pronunciation": "ūn, amerikajin ja nai",
       "scene": "replying no to a casual yes/no question about someone's nationality",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "c65abba08c126026.mp3",
+      "audioOriginal": "c65abba08c126026.orig.mp3",
+      "audioAuto": "c65abba08c126026.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c65abba08c126026"
     },
     {
       "id": "doko-ni-iru-casual",
@@ -172,7 +222,12 @@
       "hint": "casual style",
       "note": "に stays in casual speech when it marks where someone is, even though it is often dropped before a destination.",
       "aiSuggested": true,
-      "reviewNote": "Authored at gate 2: the chapter's rule that に is kept for a current location had no sentence."
+      "reviewNote": "Authored at gate 2: the chapter's rule that に is kept for a current location had no sentence.",
+      "audio": "315882e170ca7363.mp3",
+      "audioOriginal": "315882e170ca7363.orig.mp3",
+      "audioAuto": "315882e170ca7363.mp3",
+      "audioMarked": true,
+      "audioTextHash": "315882e170ca7363"
     },
     {
       "id": "dayo-3",
@@ -181,7 +236,12 @@
       "target": "このまち、にぎやかだよ",
       "pronunciation": "kono machi, nigiyaka da yo",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "c6413f2d9cc647ec.mp3",
+      "audioOriginal": "c6413f2d9cc647ec.orig.mp3",
+      "audioAuto": "c6413f2d9cc647ec.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c6413f2d9cc647ec"
     },
     {
       "id": "casual-statement-suzuki-sensei",
@@ -189,7 +249,12 @@
       "category": "Work & Occupations",
       "target": "すずきさんはせんせい",
       "pronunciation": "suzuki-san wa sensei",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "af03e58466880ba2.mp3",
+      "audioOriginal": "af03e58466880ba2.orig.mp3",
+      "audioAuto": "af03e58466880ba2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "af03e58466880ba2"
     },
     {
       "id": "heya-kirei-casual",
@@ -200,7 +265,12 @@
       "hint": "casual style",
       "note": "A な-adjective also drops です in casual speech, leaving just きれい; だ only comes back before ね or よ (きれいだね).",
       "aiSuggested": true,
-      "reviewNote": "Added after the final review: the casual present affirmative (です dropped) had no sentence once the bare base cells were excluded as already taught."
+      "reviewNote": "Added after the final review: the casual present affirmative (です dropped) had no sentence once the bare base cells were excluded as already taught.",
+      "audio": "14d1af2794cb147b.mp3",
+      "audioOriginal": "14d1af2794cb147b.orig.mp3",
+      "audioAuto": "14d1af2794cb147b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "14d1af2794cb147b"
     },
     {
       "id": "whose-pen-question",
@@ -208,7 +278,12 @@
       "category": "Grammar & Function Words",
       "target": "これ、だれのペン?",
       "pronunciation": "kore, dare no pen?",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "048c7bbef1800d21.mp3",
+      "audioOriginal": "048c7bbef1800d21.orig.mp3",
+      "audioAuto": "048c7bbef1800d21.mp3",
+      "audioMarked": true,
+      "audioTextHash": "048c7bbef1800d21"
     },
     {
       "id": "casual-question-suzuki-sensei-ha-omit",
@@ -217,7 +292,12 @@
       "target": "すずきさん、せんせい?",
       "pronunciation": "suzuki-san, sensei?",
       "note": "A casual yes/no question can drop は entirely, leaving just the topic plus rising intonation. Compare たなかさんってにほんじん? (tanaka-san tte nihonjin?), where って stands in for は instead.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "8bca5e2c2f981bf6.mp3",
+      "audioOriginal": "8bca5e2c2f981bf6.orig.mp3",
+      "audioAuto": "8bca5e2c2f981bf6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8bca5e2c2f981bf6"
     },
     {
       "id": "casual-answer-yes-nationality",
@@ -226,7 +306,12 @@
       "target": "うん、にほんじん",
       "pronunciation": "un, nihonjin",
       "scene": "replying yes to a casual yes/no question about someone's nationality",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "b73433ea00626f04.mp3",
+      "audioOriginal": "b73433ea00626f04.orig.mp3",
+      "audioAuto": "b73433ea00626f04.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b73433ea00626f04"
     },
     {
       "id": "how-was-party",
@@ -234,7 +319,12 @@
       "category": "Grammar & Function Words",
       "target": "きのうのパーティー、どうだった?",
       "pronunciation": "kinō no pātī, dō datta?",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "2ee6b114fb42f8e0.mp3",
+      "audioOriginal": "2ee6b114fb42f8e0.orig.mp3",
+      "audioAuto": "2ee6b114fb42f8e0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2ee6b114fb42f8e0"
     },
     {
       "id": "boku-2",
@@ -256,7 +346,12 @@
       "target": "たなかさんってにほんじん?",
       "pronunciation": "tanaka-san tte nihonjin?",
       "note": "って here is the casual contraction of は; compare すずきさん、せんせい? (suzuki-san, sensei?), which drops は outright instead.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "8139383c89dccbe5.mp3",
+      "audioOriginal": "8139383c89dccbe5.orig.mp3",
+      "audioAuto": "8139383c89dccbe5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8139383c89dccbe5"
     },
     {
       "id": "casual-statement-tanaka-nihonjin",
@@ -265,7 +360,12 @@
       "target": "たなかさんはにほんじん",
       "pronunciation": "tanaka-san wa nihonjin",
       "note": "Casual speech can drop です entirely from a noun predicate, with nothing replacing it. Before ね or よ, だ comes back: たなかさんはにほんじんだね (tanaka-san wa nihonjin da ne).",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "c85f0ac1ce3057e6.mp3",
+      "audioOriginal": "c85f0ac1ce3057e6.orig.mp3",
+      "audioAuto": "c85f0ac1ce3057e6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c85f0ac1ce3057e6"
     },
     {
       "id": "kirei-dayo-2",
@@ -275,7 +375,12 @@
       "pronunciation": "kono hana, kirei da yo",
       "aiSuggested": true,
       "note": "Minimal pair with このはな、きれいだね: だよ asserts new information, だね seeks agreement.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "c62a2dc5a3d42770.mp3",
+      "audioOriginal": "c62a2dc5a3d42770.orig.mp3",
+      "audioAuto": "c62a2dc5a3d42770.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c62a2dc5a3d42770"
     },
     {
       "id": "going-to-party-tomorrow",
@@ -284,7 +389,12 @@
       "target": "あしたのパーティー、いく?",
       "pronunciation": "ashita no pātī, iku?",
       "note": "A casual yes/no question can end directly on the plain verb with rising intonation, no か needed: あしたのパーティー、いく? (ashita no pātī, iku?).",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "6a7f0fea659a660a.mp3",
+      "audioOriginal": "6a7f0fea659a660a.orig.mp3",
+      "audioAuto": "6a7f0fea659a660a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6a7f0fea659a660a"
     },
     {
       "id": "kirei-dane-1",
@@ -307,7 +417,12 @@
       "hint": "casual style",
       "note": "と is never dropped in casual speech, unlike は, を and a destination に.",
       "aiSuggested": true,
-      "reviewNote": "Authored at gate 2: the chapter's rule that と is not omitted had no sentence."
+      "reviewNote": "Authored at gate 2: the chapter's rule that と is not omitted had no sentence.",
+      "audio": "8c126154f1795fde.mp3",
+      "audioOriginal": "8c126154f1795fde.orig.mp3",
+      "audioAuto": "8c126154f1795fde.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8c126154f1795fde"
     },
     {
       "id": "ii-past-neg",
@@ -317,7 +432,12 @@
       "pronunciation": "konsāto, yoku nakatta",
       "aiSuggested": true,
       "note": "Irregular: built on いい's exceptional stem よ-.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "eacd8d02ba0f6c87.mp3",
+      "audioOriginal": "eacd8d02ba0f6c87.orig.mp3",
+      "audioAuto": "eacd8d02ba0f6c87.mp3",
+      "audioMarked": true,
+      "audioTextHash": "eacd8d02ba0f6c87"
     },
     {
       "id": "ookii-present-neg",
@@ -326,7 +446,12 @@
       "target": "あのうち、おおきくない",
       "pronunciation": "ano uchi, ōkiku nai",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "fd2a98b5f8c42cdc.mp3",
+      "audioOriginal": "fd2a98b5f8c42cdc.orig.mp3",
+      "audioAuto": "fd2a98b5f8c42cdc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fd2a98b5f8c42cdc"
     },
     {
       "id": "is-this-yours-raja",
@@ -334,7 +459,12 @@
       "category": "Grammar & Function Words",
       "target": "ラジャさん、これってラジャさんの?",
       "pronunciation": "raja-san, kore tte raja-san no?",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "07cb1c7f313031f8.mp3",
+      "audioOriginal": "07cb1c7f313031f8.orig.mp3",
+      "audioAuto": "07cb1c7f313031f8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "07cb1c7f313031f8"
     },
     {
       "id": "abe-not-mine",
@@ -343,7 +473,12 @@
       "target": "ううん、おれのじゃない",
       "pronunciation": "ūn, ore no ja nai",
       "scene": "A classmate is asked whether a pen found on the floor belongs to him.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "201594f9f5021328.mp3",
+      "audioOriginal": "201594f9f5021328.orig.mp3",
+      "audioAuto": "201594f9f5021328.mp3",
+      "audioMarked": true,
+      "audioTextHash": "201594f9f5021328"
     },
     {
       "id": "atashi-1",
@@ -363,7 +498,12 @@
       "target": "おれ、いかない",
       "pronunciation": "ore, ikanai",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "8a2398c00e209955.mp3",
+      "audioOriginal": "8a2398c00e209955.orig.mp3",
+      "audioAuto": "8a2398c00e209955.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8a2398c00e209955"
     },
     {
       "id": "kaban-ookii-casual",
@@ -374,7 +514,12 @@
       "hint": "casual style",
       "note": "Casual counterpart of このかばんはおおきいです (Lesson 10): an い-adjective ends a casual sentence on its own, losing は and です.",
       "aiSuggested": true,
-      "reviewNote": "Added after the final review: the casual present affirmative (です dropped) had no sentence once the bare base cells were excluded as already taught."
+      "reviewNote": "Added after the final review: the casual present affirmative (です dropped) had no sentence once the bare base cells were excluded as already taught.",
+      "audio": "be1d8246f3e44840.mp3",
+      "audioOriginal": "be1d8246f3e44840.orig.mp3",
+      "audioAuto": "be1d8246f3e44840.mp3",
+      "audioMarked": true,
+      "audioTextHash": "be1d8246f3e44840"
     },
     {
       "id": "dane-3",
@@ -383,7 +528,12 @@
       "target": "このアプリ、べんりだね",
       "pronunciation": "kono apuri, benri da ne",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "bf776071f0f15320.mp3",
+      "audioOriginal": "bf776071f0f15320.orig.mp3",
+      "audioAuto": "bf776071f0f15320.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bf776071f0f15320"
     },
     {
       "id": "suffix-kun-usage",
@@ -392,7 +542,12 @@
       "target": "たなかくん、げんき?",
       "pronunciation": "tanaka-kun, genki?",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "30e392a52cdb40fd.mp3",
+      "audioOriginal": "30e392a52cdb40fd.orig.mp3",
+      "audioAuto": "30e392a52cdb40fd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "30e392a52cdb40fd"
     },
     {
       "id": "kirei-past-aff",
@@ -401,7 +556,12 @@
       "target": "はこね、きれいだった",
       "pronunciation": "hakone, kirei datta",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "ceb13ac45860c816.mp3",
+      "audioOriginal": "ceb13ac45860c816.orig.mp3",
+      "audioAuto": "ceb13ac45860c816.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ceb13ac45860c816"
     },
     {
       "id": "saa-3",
@@ -443,7 +603,12 @@
       "target": "うん、ぼくの",
       "pronunciation": "un, boku no",
       "scene": "A classmate confirms that a pen found on the floor is his.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "e46d00f051049b84.mp3",
+      "audioOriginal": "e46d00f051049b84.orig.mp3",
+      "audioAuto": "e46d00f051049b84.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e46d00f051049b84"
     },
     {
       "id": "uchi-ookikunakatta",
@@ -453,7 +618,12 @@
       "pronunciation": "ano uchi, ōkiku nakatta",
       "aiSuggested": true,
       "note": "Completes the i-adjective paradigm alongside the already-used あのうち、おおきくない and あのいぬ、おおきかった.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "d2aa06df46bd906c.mp3",
+      "audioOriginal": "d2aa06df46bd906c.orig.mp3",
+      "audioAuto": "d2aa06df46bd906c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d2aa06df46bd906c"
     },
     {
       "id": "boku-sensei-janai",
@@ -462,7 +632,12 @@
       "target": "ぼく、せんせいじゃない",
       "pronunciation": "boku, sensei ja nai",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "f39942298dc639e0.mp3",
+      "audioOriginal": "f39942298dc639e0.orig.mp3",
+      "audioAuto": "f39942298dc639e0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f39942298dc639e0"
     },
     {
       "id": "food-was-good",
@@ -471,7 +646,12 @@
       "target": "おいしかったよ",
       "pronunciation": "oishikatta yo",
       "scene": "Asked how the food at the party was, describing the taste.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "8a7e1237fd4ba07d.mp3",
+      "audioOriginal": "8a7e1237fd4ba07d.orig.mp3",
+      "audioAuto": "8a7e1237fd4ba07d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8a7e1237fd4ba07d"
     },
     {
       "id": "ookii-past-aff",
@@ -480,7 +660,12 @@
       "target": "あのいぬ、おおきかった",
       "pronunciation": "ano inu, ōkikatta",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "e5d54aa56837b2f1.mp3",
+      "audioOriginal": "e5d54aa56837b2f1.orig.mp3",
+      "audioAuto": "e5d54aa56837b2f1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e5d54aa56837b2f1"
     },
     {
       "id": "kirei-dayo-1",
@@ -501,7 +686,12 @@
       "target": "うん、いく",
       "pronunciation": "un, iku",
       "scene": "On the phone, a friend is asked whether they are going to tomorrow's party.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "4fa346e7f658bf10.mp3",
+      "audioOriginal": "4fa346e7f658bf10.orig.mp3",
+      "audioAuto": "4fa346e7f658bf10.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4fa346e7f658bf10"
     },
     {
       "id": "hana-kirei-janai",
@@ -511,7 +701,12 @@
       "pronunciation": "kono hana, kirei ja nai",
       "aiSuggested": true,
       "note": "Contrasts directly with the existing このはな、きれいだね, same flower, opposite polarity.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "2c1910d76b7d8ab5.mp3",
+      "audioOriginal": "2c1910d76b7d8ab5.orig.mp3",
+      "audioAuto": "2c1910d76b7d8ab5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2c1910d76b7d8ab5"
     },
     {
       "id": "boku-3",
@@ -521,7 +716,12 @@
       "pronunciation": "kore, boku no?",
       "aiSuggested": true,
       "note": "ぼくの (boku no) is how a man casually says \"mine\"; a woman would say あたしの (atashi no).",
-      "hint": "asked by a man, casual"
+      "hint": "asked by a man, casual",
+      "audio": "ec370687732ebc1b.mp3",
+      "audioOriginal": "ec370687732ebc1b.orig.mp3",
+      "audioAuto": "ec370687732ebc1b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ec370687732ebc1b"
     },
     {
       "id": "dou-datta-3",
@@ -530,7 +730,12 @@
       "target": "えいが、どうだった?",
       "pronunciation": "eiga, dō datta?",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "36494ae2fc13bbf9.mp3",
+      "audioOriginal": "36494ae2fc13bbf9.orig.mp3",
+      "audioAuto": "36494ae2fc13bbf9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "36494ae2fc13bbf9"
     },
     {
       "id": "ore-3",
@@ -539,7 +744,12 @@
       "target": "これ、おれの",
       "pronunciation": "kore, ore no",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "79dc5ab63dcb0832.mp3",
+      "audioOriginal": "79dc5ab63dcb0832.orig.mp3",
+      "audioAuto": "79dc5ab63dcb0832.mp3",
+      "audioMarked": true,
+      "audioTextHash": "79dc5ab63dcb0832"
     },
     {
       "id": "atashi-gakusei-dayo",
@@ -548,7 +758,12 @@
       "target": "あたし、がくせいだよ",
       "pronunciation": "atashi, gakusei da yo",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "4fa0efa393fddf6d.mp3",
+      "audioOriginal": "4fa0efa393fddf6d.orig.mp3",
+      "audioAuto": "4fa0efa393fddf6d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4fa0efa393fddf6d"
     },
     {
       "id": "party-was-lively",
@@ -557,7 +772,12 @@
       "target": "すごくにぎやかだった",
       "pronunciation": "sugoku nigiyaka datta",
       "scene": "Asked how yesterday's party was, describing the atmosphere.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "c09a52d406e833e0.mp3",
+      "audioOriginal": "c09a52d406e833e0.orig.mp3",
+      "audioAuto": "c09a52d406e833e0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c09a52d406e833e0"
     },
     {
       "id": "casual-statement-tanaka-nihonjin-dane",
@@ -565,7 +785,12 @@
       "category": "Grammar & Function Words",
       "target": "たなかさんはにほんじんだね",
       "pronunciation": "tanaka-san wa nihonjin da ne",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "7f9ffea36fdfc246.mp3",
+      "audioOriginal": "7f9ffea36fdfc246.orig.mp3",
+      "audioAuto": "7f9ffea36fdfc246.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7f9ffea36fdfc246"
     },
     {
       "id": "kirei-dane-2",
@@ -575,7 +800,12 @@
       "pronunciation": "kono hana, kirei da ne",
       "aiSuggested": true,
       "note": "Minimal pair with このはな、きれいだよ: だね seeks agreement, だよ asserts new information.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "f076836bea546fed.mp3",
+      "audioOriginal": "f076836bea546fed.orig.mp3",
+      "audioAuto": "f076836bea546fed.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f076836bea546fed"
     },
     {
       "id": "casual-statement-raja-isha",

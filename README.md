@@ -663,6 +663,12 @@ What is built, newest last:
       Opus with its sentence, and writes a copy of the book with every pictured word replaced in place
       by ruby text. Nothing else in the book changes. Procedure: the `convert-book` skill, "Words
       printed as pictures".
+- [x] Package freshness judged by content (2026-10-15). Every package build writes
+      `<package>.apkg.inputs.json`, a digest of each unit's cards as the build read them, and
+      preflight's `package-freshness` check, the gate 2 watcher and the `packaged` state all compare
+      against it through one function (`src/deck/packageInputs.js`). A checkout or branch switch that
+      only touches file times no longer fails preflight. A package built before the record existed is
+      judged by file times until its next rebuild.
 - [~] Reading decks (in progress; design and build order in `docs/designs/reading-decks/`). A
   second deck kind whose card shows the written form alone on a silent front, with the English, the
   romaji and the audio on the back. Built so far: the `everything` conversion purpose, and the reading note

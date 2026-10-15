@@ -126,11 +126,11 @@ node scripts/await-review.mjs <runDir> --gate 2     # wait for Mark done AND its
 Exit codes, so you know what happened without reading the log: **0** signed off (at gate 2, and the
 collection package really did rebuild), **1** timed out with no sign-off, **2** the unit could not be
 read — a bug, this watch could never have fired, **3** gate 2 only: marked done but the package is
-missing or older than `cards.json`, and still is after two minutes. The wait is there because Mark done
-writes the flag before it rebuilds: on Lesson 20 the watcher polled inside that six-second gap and
-reported a rebuild that had worked as failed. Missing means the rebuild failed. OLDER has two causes the check
-cannot tell apart: a failed rebuild, or a successful one followed by an edit (an exclusion or a trim
-made after Mark done). Rebuild with `deck --book-dir`: if it succeeds, it was the edit, and nothing
+missing or was not built from the current `cards.json`, and still is after two minutes. The wait is
+there because Mark done writes the flag before it rebuilds: on Lesson 20 the watcher polled inside that
+six-second gap and reported a rebuild that had worked as failed. Missing means the rebuild failed. Not
+built from the current cards has two causes the check cannot tell apart: a failed rebuild, or a
+successful one followed by an edit (an exclusion or a trim made after Mark done). Rebuild with `deck --book-dir`: if it succeeds, it was the edit, and nothing
 was wrong. On Lesson 19 it was the edit. To run the next stage the instant the flag
 flips, chain it: `node scripts/await-review.mjs "$RUN" --gate 1 && anki-builder audio --run "$RUN"`.
 
@@ -151,9 +151,14 @@ getting it wrong in a real build:
   reports success on the first even when the second FAILED, because the flag really did flip. That
   has happened: a duplicate card id made the package build refuse, the dashboard showed
   `✓ done — but deck rebuild FAILED`, and the watcher announced the unit was done and moved on. So
-  `--gate 2` compares the package's mtime against `cards.json` and exits 3 when it is older or
-  missing. It derives the package path from the collection directory itself, so a mistyped slug
-  cannot make a stale package look fresh. More generally: when a click triggers work, watch the
+  `--gate 2` checks that the package was built from the unit's current `cards.json` and exits 3
+  when it was not, or is missing. Every package build writes `<package>.apkg.inputs.json` beside it,
+  a digest of each unit's cards as the build read them, so this is a content comparison: a checkout
+  or branch switch that only touches file times no longer reads as stale. A package built before
+  that record existed is still judged by file times until its next rebuild. Preflight's
+  `package-freshness` check and the collection state line use the same function
+  (`src/deck/packageInputs.js`), so the three cannot disagree. It derives the package path from the
+  collection directory itself, so a mistyped slug cannot make a stale package look fresh. More generally: when a click triggers work, watch the
   work's *artifact*, not the click.
 - **It waits for the human; it never replaces them.** The script only reads. Setting a review flag
   yourself to unblock a stage defeats the gate that exists to keep unseen cards out of the deck. If a
@@ -1341,7 +1346,8 @@ skipped as **retired**), so "clean" can never mean "I did not look", and it repo
   to surface only at Mark done), uncued collisions, editorial spacing in a hand-authored unit, a
   schematic `〜` in a shipped target, an `-extras` unit that would overwrite its base chapter's
   dedup-library entry, a reviewed chapter missing from that library, a foreign `.apkg` in a
-  collection folder, and a package older than a done unit's `cards.json`.
+  collection folder, and a package not built from a done unit's current `cards.json` (compared by
+  content through the package's `.inputs.json` record, or by file time for a package older than it).
 - **ACK** blocks only while instances are unreviewed. Marker-audible clips: a clip shipping with the
   TTS end marker still on the end of it. Fix it (re-trim it in the audio review, or run
   `node scripts/audit-marker-stuck.mjs --apply` if the flag is describing a take the card no longer
@@ -1478,7 +1484,8 @@ behind each of those is in [The shape of the workflow](#the-shape-of-the-workflo
 
 For a one-shot answer instead of a wait — "is this unit really shipped?" — `node
 scripts/check-done.mjs <runDir>` runs the same gate-2 check once and exits 0 / 1 (not done yet) /
-3 (done, but the package is missing or older than `cards.json`; see exit 3 above for the two causes).
+3 (done, but the package is missing or not built from the current `cards.json`; see exit 3 above for
+the two causes).
 
 ### Un-ship a unit (undo a Mark done)
 

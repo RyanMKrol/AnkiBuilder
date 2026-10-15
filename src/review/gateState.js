@@ -1,6 +1,7 @@
-import { existsSync, statSync, readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { basename, dirname, join, resolve } from "path";
 import { resolveDeckPathForDir } from "../deck/deckFileName.js";
+import { unitPackageFreshness } from "../deck/packageInputs.js";
 import { isUnitDir } from "../model/unitDir.js";
 
 // What a review gate looks like from the OUTSIDE — the question "has the human signed this unit off
@@ -52,14 +53,6 @@ export function readUnitCards(runDir) {
   }
 }
 
-function mtimeMs(path) {
-  try {
-    return statSync(path).mtimeMs;
-  } catch {
-    return null;
-  }
-}
-
 /**
  * Where a unit stands at `gate` (1 = corpus review / `meta.reviewed`, 2 = audio review /
  * `meta.done`), as `{ status, exitCode, message }`.
@@ -90,27 +83,36 @@ export function gateState(runDir, gate) {
     return { status: "signed-off", exitCode: GATE_EXIT.signedOff, message: "marked reviewed" };
   }
 
-  const packagePath = resolveDeckPathForDir(packageDirForUnit(runDir));
-  const packageAt = mtimeMs(packagePath);
-  if (packageAt === null) {
+  const collectionDir = packageDirForUnit(runDir);
+  const packagePath = resolveDeckPathForDir(collectionDir);
+  // The same judgement preflight's package-freshness check makes (src/deck/packageInputs.js): by
+  // content when the package recorded what it was built from, by file time when it predates that.
+  // Mark done changes cards.json (the flag itself), so until the rebuild lands the recorded digest
+  // cannot match, and this keeps waiting exactly as the mtime comparison did.
+  const verdict = unitPackageFreshness({ packagePath, collectionDir, unitDir: runDir });
+  if (verdict.status === "no-package") {
     return {
       status: "stale-package",
       exitCode: GATE_EXIT.stalePackage,
       message: `marked done, but no package exists at ${packagePath} — the rebuild FAILED`,
     };
   }
-  if (packageAt < mtimeMs(cardsPath)) {
+  if (verdict.status !== "current") {
     // Two causes produce this and the evidence cannot tell them apart: the rebuild that Mark done
     // triggered failed, OR it succeeded and cards.json was edited afterwards, an exclusion or a trim
     // made after the click. This used to assert the first. On Lesson 19 it was the second (a card
     // excluded at 21:45, seven minutes after a successful 21:38 rebuild), and the message sent a
     // session hunting for a build error that did not exist. Exit 3 is still right either way: a
     // stale package must be rebuilt before anything is delivered from it.
+    const what =
+      verdict.basis === "content"
+        ? `was not built from the current cards.json`
+        : `is OLDER than cards.json`;
     return {
       status: "stale-package",
       exitCode: GATE_EXIT.stalePackage,
       message:
-        `marked done, but ${packagePath} is OLDER than cards.json — either the rebuild failed, or ` +
+        `marked done, but ${packagePath} ${what} — either the rebuild failed, or ` +
         `cards.json was edited after it ran (an exclusion or trim after Mark done). Rebuild with ` +
         `\`deck --book-dir\`; if that succeeds, it was the edit.`,
     };

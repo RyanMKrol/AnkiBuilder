@@ -21,86 +21,6 @@
   },
   "items": [
     {
-      "id": "casual-yeah-un",
-      "target": "うん",
-      "english": "Yeah.",
-      "category": "Greetings",
-      "note": "Casual, informal alternative to はい for 'yes'.",
-      "sourceOrder": 130,
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Casual Style 1 (matched on target)",
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-25/casual-yeah (same target and sense)"
-    },
-    {
-      "id": "casual-sure-iiyo",
-      "target": "いいよ",
-      "english": "Sure. / All right.",
-      "category": "Greetings",
-      "note": "Casual way to grant permission or agree to a request. The polite equivalent is はい、どうぞ (hai, dōzo) or いいですよ (ii desu yo).",
-      "sourceOrder": 133,
-      "hint": "casual style"
-    },
-    {
-      "id": "here-you-go-hai",
-      "target": "はい",
-      "english": "Here (you go).",
-      "category": "Greetings",
-      "note": "Same word you know as 'yes'; here used when handing something to someone.",
-      "sourceOrder": 137,
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-21/hai-douzo-permission and chapter-1/hai; the handing-over use is はい、どうぞ"
-    },
-    {
-      "id": "no-good-dame",
-      "target": "だめ",
-      "english": "No. / That's not allowed.",
-      "category": "Greetings",
-      "note": "A firm, flat refusal. えー、ちょっと… (ē, chotto…) is the gentle way to say no.",
-      "sourceOrder": 553,
-      "hint": "casual style"
-    },
-    {
-      "id": "go-ahead-douzo",
-      "target": "どうぞ",
-      "english": "Go ahead. / Please.",
-      "category": "Greetings",
-      "note": "Same どうぞ (dōzo) already met in Frequently Used Expressions and Lesson 10 (おちゃをどうぞ, ocha o dōzo); here it grants permission, like a more formal version of いいよ above.",
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — どうぞ already carded verbatim in chapter-4-extras ('はい、どうぞ') and chapter-21 ('はい、どうぞ'), same meaning 'go ahead/here you go'. | Possibly already taught — already introduced in Frequently Used Expressions (matched on target)",
-      "sourceOrder": 463,
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-21/hai-douzo-permission (same target and sense); granting permission"
-    },
-    {
-      "id": "gentle-refusal-chotto",
-      "target": "えー、ちょっと…",
-      "english": "Well, that's a bit... (casual refusal)",
-      "category": "Greetings",
-      "note": "The casual version of すみませんが、ちょっと… (sumimasen ga, chotto…): trailing off declines without saying no.",
-      "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
-      "sourceOrder": 171,
-      "hint": "casual style"
-    },
-    {
-      "id": "casual-i-atashi",
-      "target": "あたし",
-      "english": "I.",
-      "category": "Grammar & Function Words",
-      "note": "Same あたし (atashi) already met in Casual Style 1, where it's also marked as a casual first-person pronoun used by women.",
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — あたし is already carded in chapter-25-extras ('あたしもいく') as the casual female 'I'; bare form adds nothing new. | Possibly already taught — already introduced in Casual Style 1 (matched on target)",
-      "sourceOrder": 667,
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-25/pronoun-atashi (same target and sense)"
-    },
-    {
       "id": "part-time-job-baito",
       "target": "バイト",
       "english": "Part-time job.",
@@ -108,45 +28,6 @@
       "note": "Casual short form of アルバイト.",
       "sourceOrder": 676,
       "hint": "casual style"
-    },
-    {
-      "id": "coming-konai",
-      "target": "こない",
-      "english": "Aren't you coming?",
-      "category": "Grammar & Function Words",
-      "note": "Plain negative (ない-form) of くる (to come); with rising intonation it becomes a casual invitation.",
-      "sourceOrder": 948,
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 22: Forbidding Actions: Please Don’t Take Photos (matched on target)",
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-22/nai-konai. The casual invitation use is carded as casual-invitation-konai (うちこない?)"
-    },
-    {
-      "id": "kimasenka-polite-invitation",
-      "target": "きませんか",
-      "english": "Won't you come? (polite invitation)",
-      "category": "Grammar & Function Words",
-      "note": "Same きませんか (kimasen ka) already met in Lesson 16 as an invitation; here it's paired with its casual counterpart こない? above.",
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — きませんか as a polite invitation parallels いきませんか already carded in chapter-16 with the same function and gloss pattern. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
-      "sourceOrder": 1066,
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-16/x16r-kimasenka (same target and sense)"
-    },
-    {
-      "id": "next-saturday-kondo",
-      "target": "こんど",
-      "english": "Next time. / This coming.",
-      "category": "Time",
-      "sourceOrder": 938,
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)",
-      "note": "Same こんど (kondo) already met in Lesson 9 ('next, next time') and in Lesson 16's またこんど (mata kondo, 'another time').",
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-9/kondo-next (same target and sense)"
     },
     {
       "id": "saturday-doyou",
@@ -159,17 +40,53 @@
       "hint": "casual style"
     },
     {
-      "id": "home-uchi",
-      "target": "うち",
-      "english": "Home. / My house.",
-      "category": "Home & Household",
-      "sourceOrder": 946,
-      "uncertain": true,
-      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
-      "note": "Same うち (uchi) already met in Lesson 6 ('house, home').",
-      "excluded": true,
-      "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-6/uchi (same target and sense)"
+      "id": "mitemo-ii-casual",
+      "target": "みてもいい?",
+      "english": "May I look at it? (casual)",
+      "category": "Grammar & Function Words",
+      "note": "Casual permission: て-form + もいい with rising intonation, dropping the ですか of みてもいいですか (mite mo ii desu ka).",
+      "sourceOrder": 120,
+      "hint": "casual style"
+    },
+    {
+      "id": "karitemo-ii-casual",
+      "target": "かりてもいい?",
+      "english": "May I borrow it? (casual)",
+      "category": "Grammar & Function Words",
+      "note": "Same casual て-form + もいい pattern, with かりる (kariru).",
+      "sourceOrder": 160,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-sure-iiyo",
+      "target": "いいよ",
+      "english": "Sure. / All right.",
+      "category": "Greetings",
+      "note": "Casual way to grant permission or agree to a request. The polite equivalent is はい、どうぞ (hai, dōzo) or いいですよ (ii desu yo).",
+      "sourceOrder": 133,
+      "hint": "casual style",
+      "scene": "A friend asks if they can borrow your notebook"
+    },
+    {
+      "id": "no-good-dame",
+      "target": "だめ",
+      "english": "No. / That's not allowed.",
+      "category": "Greetings",
+      "note": "A firm, flat refusal. えー、ちょっと… (ē, chotto…) is the gentle way to say no.",
+      "sourceOrder": 553,
+      "hint": "casual style",
+      "scene": "A friend asks if they can read your diary"
+    },
+    {
+      "id": "gentle-refusal-chotto",
+      "target": "えー、ちょっと…",
+      "english": "Well, that's a bit... (casual refusal)",
+      "category": "Greetings",
+      "note": "The casual version of すみませんが、ちょっと… (sumimasen ga, chotto…): trailing off declines without saying no.",
+      "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
+      "sourceOrder": 171,
+      "hint": "casual style",
+      "scene": "A friend asks to borrow something you'd rather not lend"
     },
     {
       "id": "read-it-yonda",
@@ -180,16 +97,6 @@
       "reviewNote": "Kept at gate 1: this chapter is where the book teaches the た-form, so it is neither already taught nor premature.",
       "sourceOrder": 1220,
       "hint": "casual style"
-    },
-    {
-      "id": "ikanakatta-casual-past-neg",
-      "english": "Didn't go (casual past negative)",
-      "category": "Grammar & Function Words",
-      "target": "いかなかった",
-      "hint": "casual style",
-      "note": "The casual past negative: the い of いかない (ikanai) becomes かった, giving いかなかった. The casual equivalent of いきませんでした (ikimasen deshita).",
-      "aiSuggested": true,
-      "reviewNote": "Added at gate 1 after the final review: the chapter states the past-negative rule (ない → なかった) but prints no instance, so this is a concrete one built on いかない."
     },
     {
       "id": "ta-katta",
@@ -274,6 +181,36 @@
       "scene": "Talking about your homework yesterday"
     },
     {
+      "id": "ikanakatta-casual-past-neg",
+      "english": "Didn't go (casual past negative)",
+      "category": "Grammar & Function Words",
+      "target": "いかなかった",
+      "hint": "casual style",
+      "note": "The casual past negative: the い of いかない (ikanai) becomes かった, giving いかなかった. The casual equivalent of いきませんでした (ikimasen deshita).",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 after the final review: the chapter states the past-negative rule (ない → なかった) but prints no instance, so this is a concrete one built on いかない."
+    },
+    {
+      "id": "nakatta-tabenakatta",
+      "english": "Didn't eat (casual past negative)",
+      "category": "Grammar & Function Words",
+      "target": "たべなかった",
+      "hint": "casual style",
+      "note": "Regular 2: the い of たべない (tabenai) becomes かった, the same change as for every verb.",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: one past negative per verb group, as Casual Style 1 did for adjectives."
+    },
+    {
+      "id": "nakatta-konakatta",
+      "english": "Didn't come (casual past negative)",
+      "category": "Grammar & Function Words",
+      "target": "こなかった",
+      "hint": "casual style",
+      "note": "Irregular: built on こない (konai), so it starts with こ, not き.",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: one past negative per verb group, as Casual Style 1 did for adjectives."
+    },
+    {
       "id": "casual-invitation-konai",
       "english": "Why don't you come over to my place? (casual)",
       "category": "Grammar & Function Words",
@@ -292,6 +229,141 @@
       "note": "A casual request is the て-form on its own, dropping the ください of かしてください (kashite kudasai).",
       "aiSuggested": true,
       "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter's request grammar point (て-form alone) had no base card. Built on the chapter's own かして."
+    },
+    {
+      "id": "got-it-wakatta",
+      "target": "わかった",
+      "english": "Got it.",
+      "category": "Greetings",
+      "note": "The た-form (ta-form) of わかる (wakaru), the casual equivalent of わかりました (wakarimashita), used to agree to a request or instruction.",
+      "sourceOrder": 1650,
+      "hint": "casual style",
+      "scene": "A friend asks you to bring their book back tomorrow"
+    },
+    {
+      "id": "dont-want-to-iyada",
+      "target": "いや(だ)",
+      "english": "No way. / I don't want to.",
+      "category": "Emotions & Feelings",
+      "note": "A blunt refusal; the だ (da) is optional. Stronger than だめ (dame), which says something isn't allowed rather than that you don't want to.",
+      "sourceOrder": 1752,
+      "reviewNote": "Possibly premature — いや(だ) as a casual refusal is given only inside this chapter's style-comparison table and is not glossed as vocabulary anywhere in the lessons; flagging as uncertain whether the learner has the grounding for the bare な-adjective plain form",
+      "hint": "casual style",
+      "scene": "A friend asks you to do something"
+    },
+    {
+      "id": "arigatou-thanks",
+      "target": "ありがとう",
+      "english": "Thanks. (casual)",
+      "category": "Greetings",
+      "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
+      "sourceOrder": 962,
+      "note": "The casual form of ありがとうございます (arigatō gozaimasu), with ございます dropped.",
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-yeah-un",
+      "target": "うん",
+      "english": "Yeah.",
+      "category": "Greetings",
+      "note": "Casual, informal alternative to はい for 'yes'.",
+      "sourceOrder": 130,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Casual Style 1 (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-25/casual-yeah (same target and sense)"
+    },
+    {
+      "id": "here-you-go-hai",
+      "target": "はい",
+      "english": "Here (you go).",
+      "category": "Greetings",
+      "note": "Same word you know as 'yes'; here used when handing something to someone.",
+      "sourceOrder": 137,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 1: Meeting: Nice to Meet You (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-21/hai-douzo-permission and chapter-1/hai; the handing-over use is はい、どうぞ"
+    },
+    {
+      "id": "go-ahead-douzo",
+      "target": "どうぞ",
+      "english": "Go ahead. / Please.",
+      "category": "Greetings",
+      "note": "Same どうぞ (dōzo) already met in Frequently Used Expressions and Lesson 10 (おちゃをどうぞ, ocha o dōzo); here it grants permission, like a more formal version of いいよ above.",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — どうぞ already carded verbatim in chapter-4-extras ('はい、どうぞ') and chapter-21 ('はい、どうぞ'), same meaning 'go ahead/here you go'. | Possibly already taught — already introduced in Frequently Used Expressions (matched on target)",
+      "sourceOrder": 463,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-21/hai-douzo-permission (same target and sense); granting permission"
+    },
+    {
+      "id": "casual-i-atashi",
+      "target": "あたし",
+      "english": "I.",
+      "category": "Grammar & Function Words",
+      "note": "Same あたし (atashi) already met in Casual Style 1, where it's also marked as a casual first-person pronoun used by women.",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — あたし is already carded in chapter-25-extras ('あたしもいく') as the casual female 'I'; bare form adds nothing new. | Possibly already taught — already introduced in Casual Style 1 (matched on target)",
+      "sourceOrder": 667,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-25/pronoun-atashi (same target and sense)"
+    },
+    {
+      "id": "coming-konai",
+      "target": "こない",
+      "english": "Aren't you coming?",
+      "category": "Grammar & Function Words",
+      "note": "Plain negative (ない-form) of くる (to come); with rising intonation it becomes a casual invitation.",
+      "sourceOrder": 948,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 22: Forbidding Actions: Please Don’t Take Photos (matched on target)",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-22/nai-konai. The casual invitation use is carded as casual-invitation-konai (うちこない?)"
+    },
+    {
+      "id": "kimasenka-polite-invitation",
+      "target": "きませんか",
+      "english": "Won't you come? (polite invitation)",
+      "category": "Grammar & Function Words",
+      "note": "Same きませんか (kimasen ka) already met in Lesson 16 as an invitation; here it's paired with its casual counterpart こない? above.",
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — きませんか as a polite invitation parallels いきませんか already carded in chapter-16 with the same function and gloss pattern. | Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target)",
+      "sourceOrder": 1066,
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-16/x16r-kimasenka (same target and sense)"
+    },
+    {
+      "id": "next-saturday-kondo",
+      "target": "こんど",
+      "english": "Next time. / This coming.",
+      "category": "Time",
+      "sourceOrder": 938,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target)",
+      "note": "Same こんど (kondo) already met in Lesson 9 ('next, next time') and in Lesson 16's またこんど (mata kondo, 'another time').",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-9/kondo-next (same target and sense)"
+    },
+    {
+      "id": "home-uchi",
+      "target": "うち",
+      "english": "Home. / My house.",
+      "category": "Home & Household",
+      "sourceOrder": 946,
+      "uncertain": true,
+      "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target)",
+      "note": "Same うち (uchi) already met in Lesson 6 ('house, home').",
+      "excluded": true,
+      "excludedBy": "backward-dedup",
+      "excludedReason": "Already taught: chapter-6/uchi (same target and sense)"
     },
     {
       "id": "yomimashita-polite-past",
@@ -358,25 +430,6 @@
       "excludedReason": "Already taught: chapter-23 まだです (not yet). Casual まだ without です is drilled as a sentence in the extras unit (おれはまだ)"
     },
     {
-      "id": "dont-want-to-iyada",
-      "target": "いや(だ)",
-      "english": "No way. / I don't want to.",
-      "category": "Emotions & Feelings",
-      "note": "A blunt refusal; the だ (da) is optional. Stronger than だめ (dame), which says something isn't allowed rather than that you don't want to.",
-      "sourceOrder": 1752,
-      "reviewNote": "Possibly premature — いや(だ) as a casual refusal is given only inside this chapter's style-comparison table and is not glossed as vocabulary anywhere in the lessons; flagging as uncertain whether the learner has the grounding for the bare な-adjective plain form",
-      "hint": "casual style"
-    },
-    {
-      "id": "got-it-wakatta",
-      "target": "わかった",
-      "english": "Got it.",
-      "category": "Greetings",
-      "note": "The た-form (ta-form) of わかる (wakaru), the casual equivalent of わかりました (wakarimashita), used to agree to a request or instruction.",
-      "sourceOrder": 1650,
-      "hint": "casual style"
-    },
-    {
       "id": "sore-that",
       "target": "それ",
       "english": "That.",
@@ -388,15 +441,6 @@
       "excluded": true,
       "excludedBy": "backward-dedup",
       "excludedReason": "Already taught: chapter-4/sore (same target and sense)"
-    },
-    {
-      "id": "mitemo-ii-casual",
-      "target": "みてもいい",
-      "english": "May I look at it? (casual)",
-      "category": "Grammar & Function Words",
-      "note": "Casual permission: て-form + もいい with rising intonation, dropping the ですか of みてもいいですか (mite mo ii desu ka).",
-      "sourceOrder": 120,
-      "hint": "casual style"
     },
     {
       "id": "mitemo-iidesuka-polite",
@@ -423,15 +467,6 @@
       "excluded": true,
       "excludedBy": "backward-dedup",
       "excludedReason": "Already taught: chapter-2/kore (same target and sense)"
-    },
-    {
-      "id": "karitemo-ii-casual",
-      "target": "かりてもいい",
-      "english": "May I borrow it? (casual)",
-      "category": "Grammar & Function Words",
-      "note": "Same casual て-form + もいい pattern, with かりる (kariru).",
-      "sourceOrder": 160,
-      "hint": "casual style"
     },
     {
       "id": "ashita-tomorrow",
@@ -522,16 +557,6 @@
       "excluded": true,
       "excludedBy": "backward-dedup",
       "excludedReason": "Already taught: chapter-16/kara-because (same target and sense)"
-    },
-    {
-      "id": "arigatou-thanks",
-      "target": "ありがとう",
-      "english": "Thanks. (casual)",
-      "category": "Greetings",
-      "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
-      "sourceOrder": 962,
-      "note": "The casual form of ありがとうございます (arigatō gozaimasu), with ございます dropped.",
-      "hint": "casual style"
     },
     {
       "id": "ore-masculine-i",

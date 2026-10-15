@@ -287,12 +287,16 @@
       "note": "Casual equivalent of じゃありません: noun + じゃない replaces noun + じゃありません in casual speech.",
       "sourceOrder": 822,
       "hint": "casual style",
-      "audio": "f0ff1508decb150d.mp3",
+      "audio": "casual-negative-copula-janai-manual-d8c5babc.mp3",
       "audioOriginal": "f0ff1508decb150d.orig.mp3",
       "audioAuto": "f0ff1508decb150d.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "f0ff1508decb150d"
+      "audioTextHash": "f0ff1508decb150d",
+      "audioManual": "casual-negative-copula-janai-manual-d8c5babc.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.6065710616438357
+      }
     },
     {
       "id": "adj-kirei-present-aff",

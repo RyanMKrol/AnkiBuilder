@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": true,
+    "phase": "base",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 53,
+    "chapterLabel": "Casual Style 2",
+    "passes": {
+      "forwardFlags": {
+        "status": "ok"
+      },
+      "taughtIndex": {
+        "status": "ok"
+      },
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2 mines this chapter's drills into its extras unit; a base unit is vocabulary only"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "part-time-job-baito",
+      "english": "Part-time job.",
+      "category": "Work & Occupations",
+      "reviewNote": null,
+      "target": "バイト"
+    },
+    {
+      "id": "saturday-doyou",
+      "english": "Saturday (casual)",
+      "category": "Time",
+      "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
+      "target": "どよう"
+    },
+    {
+      "id": "mitemo-ii-casual",
+      "english": "May I look at it? (casual)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "みてもいい?"
+    },
+    {
+      "id": "karitemo-ii-casual",
+      "english": "May I borrow it? (casual)",
+      "category": "Grammar & Function Words",
+      "reviewNote": null,
+      "target": "かりてもいい?"
+    },
+    {
+      "id": "casual-sure-iiyo",
+      "english": "Sure. / All right.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "いいよ"
+    },
+    {
+      "id": "no-good-dame",
+      "english": "No. / That's not allowed.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "だめ"
+    },
+    {
+      "id": "gentle-refusal-chotto",
+      "english": "Well, that's a bit... (casual refusal)",
+      "category": "Greetings",
+      "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
+      "target": "えー、ちょっと…"
+    },
+    {
+      "id": "read-it-yonda",
+      "english": "Read (casual past)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Kept at gate 1: this chapter is where the book teaches the た-form, so it is neither already taught nor premature.",
+      "target": "よんだ"
+    },
+    {
+      "id": "ta-katta",
+      "english": "Bought (casual past)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "target": "かった",
+      "aiSuggested": true
+    },
+    {
+      "id": "ta-kaita",
+      "english": "Wrote (casual past)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "target": "かいた",
+      "aiSuggested": true
+    },
+    {
+      "id": "ta-oyoida",
+      "english": "Swam (casual past)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "target": "およいだ",
+      "aiSuggested": true
+    },
+    {
+      "id": "ta-hanashita",
+      "english": "Spoke (casual past)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "target": "はなした",
+      "aiSuggested": true
+    },
+    {
+      "id": "ta-itta",
+      "english": "Went (casual past)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "target": "いった",
+      "aiSuggested": true
+    },
+    {
+      "id": "ta-tabeta",
+      "english": "Ate (casual past)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "target": "たべた",
+      "aiSuggested": true
+    },
+    {
+      "id": "ta-kita",
+      "english": "Came (casual past)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "target": "きた",
+      "aiSuggested": true
+    },
+    {
+      "id": "ta-shita",
+      "english": "Did (casual past)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "target": "した",
+      "aiSuggested": true
+    },
+    {
+      "id": "ikanakatta-casual-past-neg",
+      "english": "Didn't go (casual past negative)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 after the final review: the chapter states the past-negative rule (ない → なかった) but prints no instance, so this is a concrete one built on いかない.",
+      "target": "いかなかった",
+      "aiSuggested": true
+    },
+    {
+      "id": "nakatta-tabenakatta",
+      "english": "Didn't eat (casual past negative)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: one past negative per verb group, as Casual Style 1 did for adjectives.",
+      "target": "たべなかった",
+      "aiSuggested": true
+    },
+    {
+      "id": "nakatta-konakatta",
+      "english": "Didn't come (casual past negative)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: one past negative per verb group, as Casual Style 1 did for adjectives.",
+      "target": "こなかった",
+      "aiSuggested": true
+    },
+    {
+      "id": "casual-invitation-konai",
+      "english": "Why don't you come over to my place? (casual)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter's invitation grammar point (ない-form + rising intonation) had no base card. Built on the chapter's own line, こんどのどよう、うちこない?",
+      "target": "うちこない?",
+      "aiSuggested": true
+    },
+    {
+      "id": "casual-request-kashite",
+      "english": "Lend me this. (casual)",
+      "category": "Grammar & Function Words",
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter's request grammar point (て-form alone) had no base card. Built on the chapter's own かして.",
+      "target": "これ、かして",
+      "aiSuggested": true
+    },
+    {
+      "id": "got-it-wakatta",
+      "english": "Got it.",
+      "category": "Greetings",
+      "reviewNote": null,
+      "target": "わかった"
+    },
+    {
+      "id": "dont-want-to-iyada",
+      "english": "No way. / I don't want to.",
+      "category": "Emotions & Feelings",
+      "reviewNote": "Possibly premature — いや(だ) as a casual refusal is given only inside this chapter's style-comparison table and is not glossed as vocabulary anywhere in the lessons; flagging as uncertain whether the learner has the grounding for the bare な-adjective plain form",
+      "target": "いや(だ)"
+    },
+    {
+      "id": "arigatou-thanks",
+      "english": "Thanks. (casual)",
+      "category": "Greetings",
+      "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
+      "target": "ありがとう"
+    }
+  ]
+}

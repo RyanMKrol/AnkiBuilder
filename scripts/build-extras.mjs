@@ -147,7 +147,9 @@ if (result.unteachable.length) {
 if (result.unfillable.length)
   console.log(`${result.unfillable.length} gap(s) left open for want of taught vocabulary.`);
 if (result.reinvented.length)
-  console.log(`${result.reinvented.length} invented sentence(s) repeat a mined one.`);
+  console.log(
+    `${result.reinvented.length} invented sentence(s) repeat a mined sentence or a base card.`,
+  );
 if (result.senseCollisions.length) {
   console.log(`${result.senseCollisions.length} target(s) carry more than one sense and are KEPT.`);
 }

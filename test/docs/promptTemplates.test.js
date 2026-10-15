@@ -106,7 +106,7 @@ const TEMPLATES = {
       "CATEGORY_LIST",
       "CARD_FACES",
       "EXISTING_SENTENCES",
-      "BASE_VOCABULARY",
+      "BASE_CARDS",
       "EARLIER_VOCABULARY",
     ],
     // `usedAllowance` keeps the ceiling in the role's own answer rather than only in the checker.

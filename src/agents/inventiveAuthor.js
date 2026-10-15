@@ -21,6 +21,7 @@ import { renderCardFacesBlock } from "../deck/cardFaces.js";
 import { CATEGORIES } from "../model/categories.js";
 import { teachableVocabulary, findUnteachable, vocabularyForPrompt } from "./extrasVocabulary.js";
 import { candidateKey } from "../cards/unionReconciler.js";
+import { targetKey } from "../cards/itemSetDiff.js";
 import { runRole } from "./runRole.js";
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
@@ -39,6 +40,24 @@ export const ROLE_ID = "inventiveAuthor";
 export const ALLOWANCE_SHARE = 0.2;
 
 const NO_EARLIER = "(this is the book's first lesson — there is no earlier vocabulary)";
+
+/**
+ * The base unit's approved cards, shown as the cards they are rather than as a word list.
+ *
+ * Scene and hint go with them because their absence is what this role reads as a gap. On Casual
+ * Style 2 it saw the base replies as bare vocabulary, decided they "lacked a scene", and spent four
+ * of its five slots re-carding them; the duplicate check then cut all four.
+ */
+export function baseCardsForPrompt(items) {
+  return (items ?? [])
+    .filter((item) => !item.excluded && typeof item.target === "string")
+    .map((item) => {
+      const card = { target: item.target, english: item.english ?? null };
+      if (item.scene) card.scene = item.scene;
+      if (item.hint) card.hint = item.hint;
+      return card;
+    });
+}
 
 /** How many items the role may return, given what the others produced. */
 export function allowanceFor(priorCount) {
@@ -65,7 +84,7 @@ export function renderInventiveAuthorPrompt({
       null,
       2,
     ),
-    BASE_VOCABULARY: JSON.stringify(vocabularyForPrompt(baseItems), null, 2),
+    BASE_CARDS: JSON.stringify(baseCardsForPrompt(baseItems), null, 2),
     EARLIER_VOCABULARY: earlier.length
       ? ["```json", JSON.stringify(earlier, null, 2), "```"].join("\n")
       : NO_EARLIER,
@@ -85,18 +104,29 @@ export function assertWithinAllowance(items, allowance) {
 }
 
 /**
- * Items that repeat something the other roles already produced.
+ * Items that repeat something the other roles already produced, or a base card as it stands.
  *
  * Reported rather than refused. The role is told not to reinvent and mostly will not, but a
  * near-duplicate is a judgement about whether two sentences teach the same thing, and that belongs
- * to the reviewer. Matching uses the reconciler's own key so this cannot disagree with the merge
- * that happens next.
+ * to the reviewer. Sentences match on the reconciler's own key so this cannot disagree with the
+ * merge that happens next. A base card matches on its target alone: a re-carded one usually comes
+ * back with a shorter gloss ("Sure." for "Sure. / All right."), and the duplicate check that later
+ * cuts it compares targets too.
  */
-export function findReinvented(items, existingItems, { languageCode } = {}) {
+export function findReinvented(items, existingItems, { languageCode, baseItems = [] } = {}) {
   const existing = new Set(
     (existingItems ?? []).map((item) => candidateKey(item, languageCode)).filter(Boolean),
   );
-  return (items ?? []).filter((item) => existing.has(candidateKey(item, languageCode)));
+  const base = new Set(
+    (baseItems ?? [])
+      .filter((item) => !item.excluded)
+      .map((item) => targetKey(item, languageCode))
+      .filter(Boolean),
+  );
+  return (items ?? []).filter(
+    (item) =>
+      existing.has(candidateKey(item, languageCode)) || base.has(targetKey(item, languageCode)),
+  );
 }
 
 /** Invents practice within its allowance. Returns `{ items, allowance, reinvented, unteachable }`. */
@@ -135,7 +165,7 @@ export function authorInventedPractice({
   return {
     items,
     allowance,
-    reinvented: findReinvented(items, existingItems, { languageCode: targetLanguage }),
+    reinvented: findReinvented(items, existingItems, { languageCode: targetLanguage, baseItems }),
     unteachable: findUnteachable(items, taught, { languageCode: targetLanguage }),
   };
 }

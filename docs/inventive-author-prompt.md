@@ -19,7 +19,8 @@ up twice the size with no more teaching in it.
 
 ## The vocabulary rule, which is absolute and matters most here
 
-**Every word and construction must already be taught**, from the approved vocabulary below. You are
+**Every word and construction must already be taught**, from the base unit's cards below or the
+earlier lessons. You are
 the role most likely to break this, because you are writing freely rather than copying, and a natural
 sentence is exactly where an untaught word slips in. A sentence using one word the learner has not
 met is not a slightly worse card, it is an unstudiable one.
@@ -40,6 +41,9 @@ you have not checked.
 
 - **Anything already in the list of existing sentences below.** You have them all. Reinventing one
   wastes your allowance and produces a duplicate for a reviewer to find.
+- **A base card as it stands.** The base unit's cards below are already in the deck, with whatever
+  scene and hint they carry. Writing one again, even to give it a scene or a context, makes a
+  duplicate that will be cut. A longer sentence that uses one is fine; that is what they are for.
 - **A variation on an existing sentence with one noun swapped.** That is padding wearing a new noun.
 - **A sentence that is only grammatical.** If you cannot say what a learner gets from it that they do
   not already have, it is not worth one of your {{ALLOWANCE}}.
@@ -76,10 +80,13 @@ Every sentence the other roles produced. Do not reinvent any of them.
 {{EXISTING_SENTENCES}}
 ```
 
-## The approved vocabulary
+## The base unit's cards
+
+This chapter's base unit, approved by a human. They are cards already, and they are also the
+approved vocabulary you build sentences from.
 
 ```json
-{{BASE_VOCABULARY}}
+{{BASE_CARDS}}
 ```
 
 ## Vocabulary from earlier lessons

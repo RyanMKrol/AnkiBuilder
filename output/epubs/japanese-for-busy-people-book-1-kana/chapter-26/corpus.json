@@ -120,7 +120,7 @@
       "reviewNote": "Possibly already taught — already introduced in Lesson 22: Forbidding Actions: Please Don’t Take Photos (matched on target)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-22/nai-konai. The casual invitation use (うち、こない?) is drilled as a sentence in the extras unit"
+      "excludedReason": "Already taught: chapter-22/nai-konai. The casual invitation use is carded as casual-invitation-konai (うちこない?)"
     },
     {
       "id": "kimasenka-polite-invitation",
@@ -192,6 +192,108 @@
       "reviewNote": "Added at gate 1 after the final review: the chapter states the past-negative rule (ない → なかった) but prints no instance, so this is a concrete one built on いかない."
     },
     {
+      "id": "ta-katta",
+      "english": "Bought (casual past)",
+      "category": "Grammar & Function Words",
+      "target": "かった",
+      "hint": "casual style",
+      "note": "Regular 1 verbs ending in う, つ or る make the た-form like their て-form: かって → かった (kau).",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+    },
+    {
+      "id": "ta-kaita",
+      "english": "Wrote (casual past)",
+      "category": "Grammar & Function Words",
+      "target": "かいた",
+      "hint": "casual style",
+      "note": "Regular 1 verbs ending in く: かいて → かいた (kaku).",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+    },
+    {
+      "id": "ta-oyoida",
+      "english": "Swam (casual past)",
+      "category": "Grammar & Function Words",
+      "target": "およいだ",
+      "hint": "casual style",
+      "note": "Regular 1 verbs ending in ぐ: およいで → およいだ (oyogu); the で of the て-form becomes だ.",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+    },
+    {
+      "id": "ta-hanashita",
+      "english": "Spoke (casual past)",
+      "category": "Grammar & Function Words",
+      "target": "はなした",
+      "hint": "casual style",
+      "note": "Regular 1 verbs ending in す: はなして → はなした (hanasu).",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+    },
+    {
+      "id": "ta-itta",
+      "english": "Went (casual past)",
+      "category": "Grammar & Function Words",
+      "target": "いった",
+      "hint": "casual style",
+      "note": "The one exception among Regular 1 verbs: いく (iku) ends in く but makes いった, not いいた, just as its て-form is いって.",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+    },
+    {
+      "id": "ta-tabeta",
+      "english": "Ate (casual past)",
+      "category": "Grammar & Function Words",
+      "target": "たべた",
+      "hint": "casual style",
+      "note": "Regular 2 verbs drop る and add た: たべる → たべた (taberu).",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+    },
+    {
+      "id": "ta-kita",
+      "english": "Came (casual past)",
+      "category": "Grammar & Function Words",
+      "target": "きた",
+      "hint": "casual style",
+      "note": "Irregular: くる (kuru) becomes きた, like its て-form きて.",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "scene": "Talking about a friend and yesterday's party"
+    },
+    {
+      "id": "ta-shita",
+      "english": "Did (casual past)",
+      "category": "Grammar & Function Words",
+      "target": "した",
+      "hint": "casual style",
+      "note": "Irregular: する (suru) becomes した, like its て-form して.",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "scene": "Talking about your homework yesterday"
+    },
+    {
+      "id": "casual-invitation-konai",
+      "english": "Why don't you come over to my place? (casual)",
+      "category": "Grammar & Function Words",
+      "target": "うちこない?",
+      "hint": "casual style",
+      "note": "A casual invitation is the ない-form with rising intonation, the casual equivalent of きませんか (kimasen ka). Casual speech also drops the particle: うちにこない becomes うちこない.",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter's invitation grammar point (ない-form + rising intonation) had no base card. Built on the chapter's own line, こんどのどよう、うちこない?"
+    },
+    {
+      "id": "casual-request-kashite",
+      "english": "Lend me this. (casual)",
+      "category": "Grammar & Function Words",
+      "target": "これ、かして",
+      "hint": "casual style",
+      "note": "A casual request is the て-form on its own, dropping the ください of かしてください (kashite kudasai).",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter's request grammar point (て-form alone) had no base card. Built on the chapter's own かして."
+    },
+    {
       "id": "yomimashita-polite-past",
       "target": "よみました",
       "english": "Read it. (polite past)",
@@ -215,7 +317,7 @@
       "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on target)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-18/te-form-kasu. The て-form-alone request (かして) is drilled as a sentence in the extras unit"
+      "excludedReason": "Already taught: chapter-18/te-form-kasu. The て-form-alone request is carded as casual-request-kashite (これ、かして)"
     },
     {
       "id": "kashitekudasai-polite-request",

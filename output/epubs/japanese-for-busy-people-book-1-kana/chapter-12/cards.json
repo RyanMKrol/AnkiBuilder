@@ -524,7 +524,8 @@
       "audioOriginal": "8470d272c6782247.orig.mp3",
       "audioAuto": "8470d272c6782247.mp3",
       "audioMarked": true,
-      "audioTextHash": "8470d272c6782247"
+      "audioTextHash": "8470d272c6782247",
+      "scene": "Saying where something is"
     },
     {
       "id": "naka-inside",

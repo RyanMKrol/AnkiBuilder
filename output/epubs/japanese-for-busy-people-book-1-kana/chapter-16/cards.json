@@ -563,7 +563,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.539461044520548
-      }
+      },
+      "scene": "Giving a direction on a map"
     },
     {
       "id": "kitaguchi",

@@ -424,7 +424,7 @@
       "id": "kita",
       "english": "North",
       "category": "Directions",
-      "scene": null,
+      "scene": "Giving a direction on a map",
       "hint": null,
       "note": "Combines with ぐち (opening/exit, from でぐち) to form きたぐち, 'north exit'.",
       "reviewNote": null,

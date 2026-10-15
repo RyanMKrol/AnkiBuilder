@@ -38,7 +38,8 @@
         "status": "ok"
       }
     },
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -177,12 +178,16 @@
       "note": "Regular 1 verbs ending in う, つ or る make the た-form like their て-form: かって → かった (kau).",
       "aiSuggested": true,
       "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
-      "audio": "1fb2889bc4681131.mp3",
+      "audio": "ta-katta-manual-18195c98.mp3",
       "audioOriginal": "1fb2889bc4681131.orig.mp3",
       "audioAuto": "1fb2889bc4681131.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "1fb2889bc4681131"
+      "audioTextHash": "1fb2889bc4681131",
+      "audioManual": "ta-katta-manual-18195c98.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.6058561643835616
+      }
     },
     {
       "id": "ta-kaita",
@@ -242,12 +247,16 @@
       "note": "The one exception among Regular 1 verbs: いく (iku) ends in く but makes いった, not いいた, just as its て-form is いって.",
       "aiSuggested": true,
       "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
-      "audio": "2ed1e0eafc90cc01.mp3",
+      "audio": "ta-itta-manual-1db44dec.mp3",
       "audioOriginal": "2ed1e0eafc90cc01.orig.mp3",
       "audioAuto": "2ed1e0eafc90cc01.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "2ed1e0eafc90cc01"
+      "audioTextHash": "2ed1e0eafc90cc01",
+      "audioManual": "ta-itta-manual-1db44dec.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.7554118150684931
+      }
     },
     {
       "id": "ta-tabeta",

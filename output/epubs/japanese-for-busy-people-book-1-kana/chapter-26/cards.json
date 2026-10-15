@@ -49,7 +49,12 @@
       "pronunciation": "baito",
       "note": "Casual short form of アルバイト.",
       "sourceOrder": 676,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "85eaa490598970fa.mp3",
+      "audioOriginal": "85eaa490598970fa.orig.mp3",
+      "audioAuto": "85eaa490598970fa.mp3",
+      "audioMarked": true,
+      "audioTextHash": "85eaa490598970fa"
     },
     {
       "id": "saturday-doyou",
@@ -60,7 +65,12 @@
       "note": "Casual speech often drops the び (bi) of どようび (doyōbi); the other days shorten the same way.",
       "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
       "sourceOrder": 942,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "149aa2955b8f2b85.mp3",
+      "audioOriginal": "149aa2955b8f2b85.orig.mp3",
+      "audioAuto": "149aa2955b8f2b85.mp3",
+      "audioMarked": true,
+      "audioTextHash": "149aa2955b8f2b85"
     },
     {
       "id": "mitemo-ii-casual",
@@ -70,7 +80,12 @@
       "pronunciation": "mite mo ii",
       "note": "Casual permission: て-form + もいい with rising intonation, dropping the ですか of みてもいいですか (mite mo ii desu ka).",
       "sourceOrder": 120,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "536f8d1930638cbc.mp3",
+      "audioOriginal": "536f8d1930638cbc.orig.mp3",
+      "audioAuto": "536f8d1930638cbc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "536f8d1930638cbc"
     },
     {
       "id": "karitemo-ii-casual",
@@ -80,7 +95,12 @@
       "pronunciation": "karite mo ii",
       "note": "Same casual て-form + もいい pattern, with かりる (kariru).",
       "sourceOrder": 160,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "780ee305160854e9.mp3",
+      "audioOriginal": "780ee305160854e9.orig.mp3",
+      "audioAuto": "780ee305160854e9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "780ee305160854e9"
     },
     {
       "id": "casual-sure-iiyo",
@@ -91,7 +111,12 @@
       "note": "Casual way to grant permission or agree to a request. The polite equivalent is はい、どうぞ (hai, dōzo) or いいですよ (ii desu yo).",
       "sourceOrder": 133,
       "hint": "casual style",
-      "scene": "A friend asks if they can borrow your notebook"
+      "scene": "A friend asks if they can borrow your notebook",
+      "audio": "7a588e5f65f55edd.mp3",
+      "audioOriginal": "7a588e5f65f55edd.orig.mp3",
+      "audioAuto": "7a588e5f65f55edd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7a588e5f65f55edd"
     },
     {
       "id": "no-good-dame",
@@ -102,7 +127,12 @@
       "note": "A firm, flat refusal. えー、ちょっと… (ē, chotto…) is the gentle way to say no.",
       "sourceOrder": 553,
       "hint": "casual style",
-      "scene": "A friend asks if they can read your diary"
+      "scene": "A friend asks if they can read your diary",
+      "audio": "6b737d5761a0f6d8.mp3",
+      "audioOriginal": "6b737d5761a0f6d8.orig.mp3",
+      "audioAuto": "6b737d5761a0f6d8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6b737d5761a0f6d8"
     },
     {
       "id": "gentle-refusal-chotto",
@@ -114,7 +144,12 @@
       "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
       "sourceOrder": 171,
       "hint": "casual style",
-      "scene": "A friend asks to borrow something you'd rather not lend"
+      "scene": "A friend asks to borrow something you'd rather not lend",
+      "audio": "bfc7f05789958ef3.mp3",
+      "audioOriginal": "bfc7f05789958ef3.orig.mp3",
+      "audioAuto": "bfc7f05789958ef3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bfc7f05789958ef3"
     },
     {
       "id": "read-it-yonda",
@@ -125,7 +160,12 @@
       "note": "Regular 1 verbs ending in む, ぬ or ぶ: よんで → よんだ (yomu). The casual equivalent of よみました (yomimashita).",
       "reviewNote": "Kept at gate 1: this chapter is where the book teaches the た-form, so it is neither already taught nor premature.",
       "sourceOrder": 1220,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "e84c333ff5d16dac.mp3",
+      "audioOriginal": "e84c333ff5d16dac.orig.mp3",
+      "audioAuto": "e84c333ff5d16dac.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e84c333ff5d16dac"
     },
     {
       "id": "ta-katta",
@@ -136,7 +176,13 @@
       "hint": "casual style",
       "note": "Regular 1 verbs ending in う, つ or る make the た-form like their て-form: かって → かった (kau).",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "audio": "1fb2889bc4681131.mp3",
+      "audioOriginal": "1fb2889bc4681131.orig.mp3",
+      "audioAuto": "1fb2889bc4681131.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "1fb2889bc4681131"
     },
     {
       "id": "ta-kaita",
@@ -147,7 +193,12 @@
       "hint": "casual style",
       "note": "Regular 1 verbs ending in く: かいて → かいた (kaku).",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "audio": "30f22a41f4c045f0.mp3",
+      "audioOriginal": "30f22a41f4c045f0.orig.mp3",
+      "audioAuto": "30f22a41f4c045f0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "30f22a41f4c045f0"
     },
     {
       "id": "ta-oyoida",
@@ -158,7 +209,12 @@
       "hint": "casual style",
       "note": "Regular 1 verbs ending in ぐ: およいで → およいだ (oyogu); the で of the て-form becomes だ.",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "audio": "068357a5b18fe5b7.mp3",
+      "audioOriginal": "068357a5b18fe5b7.orig.mp3",
+      "audioAuto": "068357a5b18fe5b7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "068357a5b18fe5b7"
     },
     {
       "id": "ta-hanashita",
@@ -169,7 +225,12 @@
       "hint": "casual style",
       "note": "Regular 1 verbs ending in す: はなして → はなした (hanasu).",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "audio": "6f29960232dffeca.mp3",
+      "audioOriginal": "6f29960232dffeca.orig.mp3",
+      "audioAuto": "6f29960232dffeca.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6f29960232dffeca"
     },
     {
       "id": "ta-itta",
@@ -180,7 +241,13 @@
       "hint": "casual style",
       "note": "The one exception among Regular 1 verbs: いく (iku) ends in く but makes いった, not いいた, just as its て-form is いって.",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "audio": "2ed1e0eafc90cc01.mp3",
+      "audioOriginal": "2ed1e0eafc90cc01.orig.mp3",
+      "audioAuto": "2ed1e0eafc90cc01.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "2ed1e0eafc90cc01"
     },
     {
       "id": "ta-tabeta",
@@ -191,7 +258,12 @@
       "hint": "casual style",
       "note": "Regular 2 verbs drop る and add た: たべる → たべた (taberu).",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars."
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
+      "audio": "cfa1e99a3fcefcb8.mp3",
+      "audioOriginal": "cfa1e99a3fcefcb8.orig.mp3",
+      "audioAuto": "cfa1e99a3fcefcb8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cfa1e99a3fcefcb8"
     },
     {
       "id": "ta-kita",
@@ -203,7 +275,12 @@
       "note": "Irregular: くる (kuru) becomes きた, like its て-form きて.",
       "aiSuggested": true,
       "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
-      "scene": "Talking about a friend and yesterday's party"
+      "scene": "Talking about a friend and yesterday's party",
+      "audio": "5e3301c7aac45c54.mp3",
+      "audioOriginal": "5e3301c7aac45c54.orig.mp3",
+      "audioAuto": "5e3301c7aac45c54.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5e3301c7aac45c54"
     },
     {
       "id": "ta-shita",
@@ -215,7 +292,12 @@
       "note": "Irregular: する (suru) becomes した, like its て-form して.",
       "aiSuggested": true,
       "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter teaches the casual past with the た-form and sends the learner to Appendix D (pp. 244-245) for it; one card per way the form is built, plus the irregulars.",
-      "scene": "Talking about your homework yesterday"
+      "scene": "Talking about your homework yesterday",
+      "audio": "8470d272c6782247.mp3",
+      "audioOriginal": "8470d272c6782247.orig.mp3",
+      "audioAuto": "8470d272c6782247.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8470d272c6782247"
     },
     {
       "id": "ikanakatta-casual-past-neg",
@@ -226,7 +308,12 @@
       "hint": "casual style",
       "note": "The casual past negative: the い of いかない (ikanai) becomes かった, giving いかなかった. The casual equivalent of いきませんでした (ikimasen deshita).",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 after the final review: the chapter states the past-negative rule (ない → なかった) but prints no instance, so this is a concrete one built on いかない."
+      "reviewNote": "Added at gate 1 after the final review: the chapter states the past-negative rule (ない → なかった) but prints no instance, so this is a concrete one built on いかない.",
+      "audio": "934057b897e0291e.mp3",
+      "audioOriginal": "934057b897e0291e.orig.mp3",
+      "audioAuto": "934057b897e0291e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "934057b897e0291e"
     },
     {
       "id": "nakatta-tabenakatta",
@@ -237,7 +324,12 @@
       "hint": "casual style",
       "note": "Regular 2: the い of たべない (tabenai) becomes かった, the same change as for every verb.",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: one past negative per verb group, as Casual Style 1 did for adjectives."
+      "reviewNote": "Added at gate 1 on the owner's coverage review: one past negative per verb group, as Casual Style 1 did for adjectives.",
+      "audio": "c9979dff607f0d4a.mp3",
+      "audioOriginal": "c9979dff607f0d4a.orig.mp3",
+      "audioAuto": "c9979dff607f0d4a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c9979dff607f0d4a"
     },
     {
       "id": "nakatta-konakatta",
@@ -248,7 +340,12 @@
       "hint": "casual style",
       "note": "Irregular: built on こない (konai), so it starts with こ, not き.",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: one past negative per verb group, as Casual Style 1 did for adjectives."
+      "reviewNote": "Added at gate 1 on the owner's coverage review: one past negative per verb group, as Casual Style 1 did for adjectives.",
+      "audio": "e16519d12e8b1da4.mp3",
+      "audioOriginal": "e16519d12e8b1da4.orig.mp3",
+      "audioAuto": "e16519d12e8b1da4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e16519d12e8b1da4"
     },
     {
       "id": "casual-invitation-konai",
@@ -259,7 +356,12 @@
       "hint": "casual style",
       "note": "A casual invitation is the ない-form with rising intonation, the casual equivalent of きませんか (kimasen ka). Casual speech also drops the particle: うちにこない becomes うちこない.",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter's invitation grammar point (ない-form + rising intonation) had no base card. Built on the chapter's own line, こんどのどよう、うちこない?"
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter's invitation grammar point (ない-form + rising intonation) had no base card. Built on the chapter's own line, こんどのどよう、うちこない?",
+      "audio": "0527d1aa51e42143.mp3",
+      "audioOriginal": "0527d1aa51e42143.orig.mp3",
+      "audioAuto": "0527d1aa51e42143.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0527d1aa51e42143"
     },
     {
       "id": "casual-request-kashite",
@@ -270,7 +372,12 @@
       "hint": "casual style",
       "note": "A casual request is the て-form on its own, dropping the ください of かしてください (kashite kudasai).",
       "aiSuggested": true,
-      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter's request grammar point (て-form alone) had no base card. Built on the chapter's own かして."
+      "reviewNote": "Added at gate 1 on the owner's coverage review: the chapter's request grammar point (て-form alone) had no base card. Built on the chapter's own かして.",
+      "audio": "49981b2e854f06f8.mp3",
+      "audioOriginal": "49981b2e854f06f8.orig.mp3",
+      "audioAuto": "49981b2e854f06f8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "49981b2e854f06f8"
     },
     {
       "id": "got-it-wakatta",
@@ -281,7 +388,12 @@
       "note": "The た-form (ta-form) of わかる (wakaru), the casual equivalent of わかりました (wakarimashita), used to agree to a request or instruction.",
       "sourceOrder": 1650,
       "hint": "casual style",
-      "scene": "A friend asks you to bring their book back tomorrow"
+      "scene": "A friend asks you to bring their book back tomorrow",
+      "audio": "a9fb55b07771f68f.mp3",
+      "audioOriginal": "a9fb55b07771f68f.orig.mp3",
+      "audioAuto": "a9fb55b07771f68f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a9fb55b07771f68f"
     },
     {
       "id": "dont-want-to-iyada",
@@ -293,7 +405,12 @@
       "reviewNote": "Possibly premature — いや(だ) as a casual refusal is given only inside this chapter's style-comparison table and is not glossed as vocabulary anywhere in the lessons; flagging as uncertain whether the learner has the grounding for the bare な-adjective plain form",
       "sourceOrder": 1752,
       "hint": "casual style",
-      "scene": "A friend asks you to do something"
+      "scene": "A friend asks you to do something",
+      "audio": "dfa9584731dd1e9b.mp3",
+      "audioOriginal": "dfa9584731dd1e9b.orig.mp3",
+      "audioAuto": "dfa9584731dd1e9b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dfa9584731dd1e9b"
     },
     {
       "id": "arigatou-thanks",
@@ -304,7 +421,12 @@
       "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
       "sourceOrder": 962,
       "note": "The casual form of ありがとうございます (arigatō gozaimasu), with ございます dropped.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "5f6cd8e0efa94399.mp3",
+      "audioOriginal": "5f6cd8e0efa94399.orig.mp3",
+      "audioAuto": "5f6cd8e0efa94399.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5f6cd8e0efa94399"
     },
     {
       "id": "casual-yeah-un",

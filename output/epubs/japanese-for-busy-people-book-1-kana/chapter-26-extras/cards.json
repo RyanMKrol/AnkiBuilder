@@ -53,7 +53,12 @@
       "category": "Grammar & Function Words",
       "target": "もうこれ、よんだ?",
       "pronunciation": "mō kore, yonda",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "c7b9d16480d0a3b0.mp3",
+      "audioOriginal": "c7b9d16480d0a3b0.orig.mp3",
+      "audioAuto": "c7b9d16480d0a3b0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c7b9d16480d0a3b0"
     },
     {
       "id": "un-yonda",
@@ -64,7 +69,12 @@
       "scene": "Asked whether you've read the new manga yet",
       "aiSuggested": true,
       "reviewNote": "Added at gate 2: Raja's answer in Sample Dialogue 4, the chapter's one past-tense reply.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "fecbdbdaee6cef08.mp3",
+      "audioOriginal": "fecbdbdaee6cef08.orig.mp3",
+      "audioAuto": "fecbdbdaee6cef08.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fecbdbdaee6cef08"
     },
     {
       "id": "casual-past-oyoida-ocean",
@@ -73,7 +83,12 @@
       "target": "うみでおよいだ",
       "pronunciation": "umi de oyoida",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "7829d821e7449890.mp3",
+      "audioOriginal": "7829d821e7449890.orig.mp3",
+      "audioAuto": "7829d821e7449890.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7829d821e7449890"
     },
     {
       "id": "casual-request-matte",
@@ -82,7 +97,12 @@
       "target": "ちょっとまって",
       "pronunciation": "chotto matte",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "f0d2e371328ae2e9.mp3",
+      "audioOriginal": "f0d2e371328ae2e9.orig.mp3",
+      "audioAuto": "f0d2e371328ae2e9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f0d2e371328ae2e9"
     },
     {
       "id": "casual-permission-suwattemoii",
@@ -91,7 +111,12 @@
       "target": "ここにすわってもいい?",
       "pronunciation": "koko ni suwatte mo ii",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "a3d311bb4d3fe9a7.mp3",
+      "audioOriginal": "a3d311bb4d3fe9a7.orig.mp3",
+      "audioAuto": "a3d311bb4d3fe9a7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a3d311bb4d3fe9a7"
     },
     {
       "id": "casual-permission-karite-pen",
@@ -113,7 +138,12 @@
       "target": "それ、みてもいい?",
       "pronunciation": "sore, mite mo ii",
       "reviewNote": "Possibly already taught — Same casual permission phrase already carded verbatim in chapter-26, just with/without topic comma.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "2e1c34aa3daf7732.mp3",
+      "audioOriginal": "2e1c34aa3daf7732.orig.mp3",
+      "audioAuto": "2e1c34aa3daf7732.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2e1c34aa3daf7732"
     },
     {
       "id": "answer-permission-denied",
@@ -136,7 +166,12 @@
       "target": "コーヒー、かった",
       "pronunciation": "kōhī, katta",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "e27ed236ab515f1f.mp3",
+      "audioOriginal": "e27ed236ab515f1f.orig.mp3",
+      "audioAuto": "e27ed236ab515f1f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e27ed236ab515f1f"
     },
     {
       "id": "casual-permission-tabetemoii",
@@ -145,7 +180,12 @@
       "target": "これ、たべてもいい?",
       "pronunciation": "kore, tabete mo ii",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "4ff94efb371e30db.mp3",
+      "audioOriginal": "4ff94efb371e30db.orig.mp3",
+      "audioAuto": "4ff94efb371e30db.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4ff94efb371e30db"
     },
     {
       "id": "casual-invitation-koen",
@@ -154,7 +194,12 @@
       "target": "どようび、こうえんいかない?",
       "pronunciation": "doyōbi, kōen ikanai",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "4bc1b1131ca1c9db.mp3",
+      "audioOriginal": "4bc1b1131ca1c9db.orig.mp3",
+      "audioAuto": "4bc1b1131ca1c9db.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4bc1b1131ca1c9db"
     },
     {
       "id": "casual-past-tabeta-cake",
@@ -163,7 +208,12 @@
       "target": "ケーキをたべた",
       "pronunciation": "kēki o tabeta",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "42f7e66320d6f05e.mp3",
+      "audioOriginal": "42f7e66320d6f05e.orig.mp3",
+      "audioAuto": "42f7e66320d6f05e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "42f7e66320d6f05e"
     },
     {
       "id": "casual-past-hanashita-phone",
@@ -172,7 +222,12 @@
       "target": "でんわではなした",
       "pronunciation": "denwa de hanashita",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "08d6b3cd41ae8c99.mp3",
+      "audioOriginal": "08d6b3cd41ae8c99.orig.mp3",
+      "audioAuto": "08d6b3cd41ae8c99.mp3",
+      "audioMarked": true,
+      "audioTextHash": "08d6b3cd41ae8c99"
     },
     {
       "id": "casual-permission-karite-camera",
@@ -181,7 +236,12 @@
       "target": "あした、カメラをかりてもいい?",
       "pronunciation": "ashita, kamera o karite mo ii",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "a61bac9ab77044c6.mp3",
+      "audioOriginal": "a61bac9ab77044c6.orig.mp3",
+      "audioAuto": "a61bac9ab77044c6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a61bac9ab77044c6"
     },
     {
       "id": "casual-request-misete",
@@ -190,7 +250,12 @@
       "target": "それ、みせて",
       "pronunciation": "sore, misete",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "20d07b5597a4037d.mp3",
+      "audioOriginal": "20d07b5597a4037d.orig.mp3",
+      "audioAuto": "20d07b5597a4037d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "20d07b5597a4037d"
     },
     {
       "id": "soft-decline-invitation",
@@ -213,7 +278,12 @@
       "target": "こうえんにいった",
       "pronunciation": "kōen ni itta",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "fcb51732d5ea10ad.mp3",
+      "audioOriginal": "fcb51732d5ea10ad.orig.mp3",
+      "audioAuto": "fcb51732d5ea10ad.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fcb51732d5ea10ad"
     },
     {
       "id": "casual-past-neg-ikanakatta-school",
@@ -222,7 +292,12 @@
       "target": "きのう、がっこうにいかなかった",
       "pronunciation": "kinō, gakkō ni ikanakatta",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "2ae68f50d611fe9e.mp3",
+      "audioOriginal": "2ae68f50d611fe9e.orig.mp3",
+      "audioAuto": "2ae68f50d611fe9e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2ae68f50d611fe9e"
     },
     {
       "id": "casual-invitation-eiga",
@@ -231,7 +306,12 @@
       "target": "いっしょにえいがみない?",
       "pronunciation": "issho ni eiga minai",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "9284c69bf6ba83fb.mp3",
+      "audioOriginal": "9284c69bf6ba83fb.orig.mp3",
+      "audioAuto": "9284c69bf6ba83fb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9284c69bf6ba83fb"
     },
     {
       "id": "casual-past-kita-party",
@@ -240,7 +320,12 @@
       "target": "ともだちがパーティーにきた",
       "pronunciation": "tomodachi ga pātī ni kita",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "f5dd435c4d67190a.mp3",
+      "audioOriginal": "f5dd435c4d67190a.orig.mp3",
+      "audioAuto": "f5dd435c4d67190a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f5dd435c4d67190a"
     },
     {
       "id": "casual-past-neg-tabenakatta-breakfast",
@@ -249,7 +334,12 @@
       "target": "あさごはんをたべなかった",
       "pronunciation": "asagohan o tabenakatta",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "f2f5c8dc45ff0e1c.mp3",
+      "audioOriginal": "f2f5c8dc45ff0e1c.orig.mp3",
+      "audioAuto": "f2f5c8dc45ff0e1c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f2f5c8dc45ff0e1c"
     },
     {
       "id": "kore-karitemo-ii",
@@ -258,7 +348,12 @@
       "target": "これ、かりてもいい?",
       "pronunciation": "kore, karite mo ii",
       "reviewNote": "Possibly already taught — Same casual permission phrase already carded verbatim in chapter-26, just with/without topic comma.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "a488a4510e22d9a5.mp3",
+      "audioOriginal": "a488a4510e22d9a5.orig.mp3",
+      "audioAuto": "a488a4510e22d9a5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a488a4510e22d9a5"
     },
     {
       "id": "baito-aru-kara",
@@ -267,7 +362,12 @@
       "target": "バイトあるから",
       "pronunciation": "baito aru kara",
       "hint": "casual style",
-      "scene": "Explaining why you can't go to tomorrow's party"
+      "scene": "Explaining why you can't go to tomorrow's party",
+      "audio": "2bc90efd72a8b0ca.mp3",
+      "audioOriginal": "2bc90efd72a8b0ca.orig.mp3",
+      "audioAuto": "2bc90efd72a8b0ca.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2bc90efd72a8b0ca"
     },
     {
       "id": "casual-past-neg-konakatta-party",
@@ -276,7 +376,12 @@
       "target": "ともだちはパーティーにこなかった",
       "pronunciation": "tomodachi wa pātī ni konakatta",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "a6f9de06826bbfd9.mp3",
+      "audioOriginal": "a6f9de06826bbfd9.orig.mp3",
+      "audioAuto": "a6f9de06826bbfd9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a6f9de06826bbfd9"
     },
     {
       "id": "ore-wa-mada",
@@ -285,7 +390,12 @@
       "target": "おれはまだ",
       "pronunciation": "ore wa mada",
       "scene": "Asked whether you've read the new manga yet",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "2d4f06054724f072.mp3",
+      "audioOriginal": "2d4f06054724f072.orig.mp3",
+      "audioAuto": "2d4f06054724f072.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2d4f06054724f072"
     },
     {
       "id": "casual-past-kaita-letter",
@@ -294,7 +404,12 @@
       "target": "てがみをかいた",
       "pronunciation": "tegami o kaita",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "dcdf794cb122206a.mp3",
+      "audioOriginal": "dcdf794cb122206a.orig.mp3",
+      "audioAuto": "dcdf794cb122206a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dcdf794cb122206a"
     },
     {
       "id": "kondo-no-doyou-uchi-konai",
@@ -302,7 +417,12 @@
       "category": "Grammar & Function Words",
       "target": "こんどのどよう、うちこない?",
       "pronunciation": "kondo no doyō, uchi konai",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "8c8aecff23bdce31.mp3",
+      "audioOriginal": "8c8aecff23bdce31.orig.mp3",
+      "audioAuto": "8c8aecff23bdce31.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8c8aecff23bdce31"
     },
     {
       "id": "casual-request-itte",
@@ -312,7 +432,12 @@
       "pronunciation": "mō ichido, itte",
       "aiSuggested": true,
       "hint": "casual style",
-      "note": "いって here is the て-form of いう (iu, \"say\"), spelled the same as いって from いく (iku, \"go\")."
+      "note": "いって here is the て-form of いう (iu, \"say\"), spelled the same as いって from いく (iku, \"go\").",
+      "audio": "f1c6f96c9f598c64.mp3",
+      "audioOriginal": "f1c6f96c9f598c64.orig.mp3",
+      "audioAuto": "f1c6f96c9f598c64.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f1c6f96c9f598c64"
     },
     {
       "id": "atashi-wa-ikanai",
@@ -320,7 +445,12 @@
       "category": "Grammar & Function Words",
       "target": "あたしはいかない",
       "pronunciation": "atashi wa ikanai",
-      "hint": "casual style"
+      "hint": "casual style",
+      "audio": "c7d56c35995d6051.mp3",
+      "audioOriginal": "c7d56c35995d6051.orig.mp3",
+      "audioAuto": "c7d56c35995d6051.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c7d56c35995d6051"
     },
     {
       "id": "ack-standalone",

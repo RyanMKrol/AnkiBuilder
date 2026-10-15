@@ -29,6 +29,7 @@ import { dirname, join } from "path";
 import { parseTables, annotateWithHints } from "../corpus/chapterTables.js";
 import { parseHeadings } from "../corpus/chapterOutline.js";
 import { resolveChapterImages } from "../corpus/chapterImages.js";
+import { resolveBookReferences } from "../corpus/bookReferences.js";
 import { judgeTables } from "./tableSpecialist.js";
 import { readChapter } from "./chapterReader.js";
 import { judgeImages } from "./imageSpecialist.js";
@@ -71,6 +72,7 @@ export const BASE_PHASE_STEPS = Object.freeze([
   { id: "tables", kind: "deterministic", artifact: "candidates/tables-raw.json" },
   { id: "sections", kind: "deterministic", artifact: "candidates/sections.json" },
   { id: "images", kind: "deterministic", artifact: "candidates/images-raw.json" },
+  { id: "references", kind: "deterministic", artifact: "candidates/references.json" },
   {
     id: "table-specialist",
     kind: "agent",
@@ -177,9 +179,37 @@ function runBasePhaseInner({
     artifact: writeRelative(unitDir, "candidates/images-raw.json", images),
   });
 
+  // Pages the chapter sends the learner to elsewhere in the same book ("see the appendix, pp. 244,
+  // 245"). Their text goes to every reader of the chapter, and their tables and images join the
+  // chapter's own, marked `referencedFrom`, so the specialists judge them the same way and the image
+  // verdicts (which the extras phase reads as figures) carry them too. src/corpus/bookReferences.js.
+  const references = resolveBookReferences({ chapterFilePath, chapterHtml });
+  const referencedImages = references.followed.flatMap((page) =>
+    page.images.map((image) => ({ ...image, referencedFrom: `page ${page.page}` })),
+  );
+  const ownImagePaths = new Set(images.map((i) => i.path));
+  const allImages = [...images, ...referencedImages.filter((i) => !ownImagePaths.has(i.path))];
+  const allTables = [
+    ...tables,
+    ...references.followed.flatMap((page) =>
+      annotateWithHints(page.tables, {
+        vocabularyTableClass: hints.vocabularyTableClass ?? null,
+      }).map((table) => ({ ...table, referencedFrom: `page ${page.page}` })),
+    ),
+  ].map((table, index) => ({ ...table, index }));
+  recordStep(run, {
+    step: "references",
+    reason: references.counts.unresolved
+      ? `${references.counts.unresolved} referenced page(s) not found in the book's chapter cache`
+      : null,
+    status: STEP_STATUS.OK,
+    counts: { in: references.counts.references, out: references.counts.followed },
+    artifact: writeRelative(unitDir, "candidates/references.json", references),
+  });
+
   // --- agents: judgement ---------------------------------------------------------------------
   const tableResult = timed(() =>
-    impl.judgeTables({ tables, targetLanguage, meta, runClaude: agents.runClaude }),
+    impl.judgeTables({ tables: allTables, targetLanguage, meta, runClaude: agents.runClaude }),
   );
   recordStep(run, {
     step: "table-specialist",
@@ -190,7 +220,7 @@ function runBasePhaseInner({
     role: "tableSpecialist",
     status: STEP_STATUS.OK,
     durationMs: tableResult.durationMs,
-    counts: { in: tables.length, out: tableResult.value.items.length },
+    counts: { in: allTables.length, out: tableResult.value.items.length },
     artifact: writeRelative(unitDir, "candidates/tables.json", tableResult.value),
   });
 
@@ -200,6 +230,7 @@ function runBasePhaseInner({
       sections,
       targetLanguage,
       meta,
+      references,
       runClaude: agents.runClaude,
     }),
   );
@@ -217,7 +248,7 @@ function runBasePhaseInner({
   });
 
   const imageResult = timed(() =>
-    impl.judgeImages({ images, targetLanguage, meta, runClaude: agents.runClaude }),
+    impl.judgeImages({ images: allImages, targetLanguage, meta, runClaude: agents.runClaude }),
   );
   writeVerdicts(unitDir, imageResult.value.verdicts);
   recordStep(run, {
@@ -225,7 +256,7 @@ function runBasePhaseInner({
     role: "imageSpecialist",
     status: STEP_STATUS.OK,
     durationMs: imageResult.durationMs,
-    counts: { in: images.length, out: imageResult.value.items.length },
+    counts: { in: allImages.length, out: imageResult.value.items.length },
     artifact: writeRelative(unitDir, "candidates/images.json", imageResult.value),
   });
 
@@ -264,8 +295,9 @@ function runBasePhaseInner({
   const adversary = timed(() =>
     impl.enumerateChapter({
       chapterFilePath,
-      imagePaths: images.map((i) => i.path),
+      imagePaths: allImages.map((i) => i.path),
       targetLanguage,
+      references,
       runClaude: agents.runClaude,
     }),
   );
@@ -299,6 +331,7 @@ function runBasePhaseInner({
       items: merged.items,
       chapterFilePath,
       targetLanguage,
+      references,
       runClaude: agents.runClaude,
     }),
   );

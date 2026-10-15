@@ -351,6 +351,7 @@ worth reaching for only to compare against.
 | Step | Who | What it does |
 | --- | --- | --- |
 | tables / sections / images | scripts | dump every table, heading and image. No script judges what any of them IS. |
+| references | script | follows the chapter's page references ("see the appendix, p. 244") to later pages of the same book and hands their text, tables and images to the agents as taught by this chapter. `candidates/references.json` says what was followed and what could not be found |
 | table specialist | agent | which tables are vocabulary, and why the others are not |
 | chapter reader | agent | vocabulary anywhere in the chapter, independent of markup |
 | image specialist | agent | a verdict per image, **recorded whatever it is**, plus a transcription |

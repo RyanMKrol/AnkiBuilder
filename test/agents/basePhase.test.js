@@ -102,6 +102,7 @@ test("the order is data, so removing a step is a visible edit rather than a path
       "tables",
       "sections",
       "images",
+      "references",
       "table-specialist",
       "chapter-reader",
       "image-specialist",
@@ -144,6 +145,49 @@ test("the ordering invariants: raw material, then the merge, then the baseline, 
   // backward one is never asked about a card that is about to be excluded anyway.
   assert.equal(at("backward-dedup"), BASE_PHASE_STEPS.length - 1);
   assert.ok(at("semantic-dedup") < at("backward-dedup"));
+});
+
+test("a page the chapter points to joins what the specialists and the readers are given", () => {
+  const dir = mkdtempSync(join(tmpdir(), "base-phase-refs-"));
+  try {
+    const chapters = join(dir, "chapters");
+    mkdirSync(join(dir, "images"), { recursive: true });
+    mkdirSync(chapters, { recursive: true });
+    const pb = (n) => `<span epub:type="pagebreak" role="doc-pagebreak" title="${n}"/>`;
+    const html = `${pb(10)}<h2>NOTES</h2><p>See the appendix (p. 90) for the past form.</p>`;
+    writeFileSync(join(chapters, "12.xhtml"), html);
+    writeFileSync(
+      join(chapters, "30.xhtml"),
+      `${pb(90)}<table><tr><td>write</td><td>wrote</td></tr></table><img src="../images/t.jpg"/>`,
+    );
+    writeFileSync(join(dir, "images", "t.jpg"), "x");
+    const unitDir = join(dir, "unit");
+    mkdirSync(unitDir);
+    const seen = {};
+    runBasePhase({
+      unitDir,
+      chapterFilePath: join(chapters, "12.xhtml"),
+      chapterHtml: html,
+      targetLanguage: "ja",
+      agents: {
+        ...agents,
+        judgeTables: (input) => ((seen.tables = input.tables), agents.judgeTables(input)),
+        judgeImages: (input) => ((seen.images = input.images), agents.judgeImages(input)),
+        readChapter: (input) => ((seen.reader = input.references), agents.readChapter(input)),
+        enumerateChapter: (input) => ((seen.adversary = input), agents.enumerateChapter(input)),
+      },
+    });
+    assert.equal(seen.tables.at(-1).referencedFrom, "page 90");
+    assert.equal(seen.images.at(-1).referencedFrom, "page 90");
+    assert.equal(seen.reader.counts.followed, 1);
+    assert.ok(seen.adversary.imagePaths.some((p) => p.endsWith("t.jpg")));
+    const artifact = JSON.parse(
+      readFileSync(join(unitDir, "candidates", "references.json"), "utf-8"),
+    );
+    assert.equal(artifact.followed[0].page, "90");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 test("a full run writes every artifact and verifies clean", () => {

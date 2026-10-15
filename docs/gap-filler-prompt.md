@@ -83,6 +83,15 @@ it actually is. Read the chapter at that point before writing a card you are uns
 
 {{CHAPTER_FILE_PATH}}
 
+## Pages the chapter sends the learner to
+
+A script found the places where this chapter points elsewhere in the same book ("see the appendix,
+p. 244") and pulled those pages out for you. Read them as part of the chapter: what they hold, for the
+point the chapter is teaching, is taught here. A table they hold follows the paradigm rule like any
+other. A row the page itself says belongs to a later volume or lesson is not taught yet.
+
+{{REFERENCED_MATERIAL}}
+
 ## Cards the corpus already has
 
 Do not duplicate these. A gap that is a restatement of one of these should be declined.

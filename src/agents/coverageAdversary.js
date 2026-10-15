@@ -17,6 +17,7 @@
 // the review gate, and `confidence` travels with each one so a reviewer can start where the evidence
 // is strongest. A gap it reports may be a word the corpus deliberately excluded.
 
+import { renderReferencedMaterial } from "../corpus/bookReferences.js";
 import { existsSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
@@ -47,12 +48,14 @@ export function renderCoverageAdversaryPrompt({
   chapterFilePath,
   imagePaths = [],
   targetLanguage,
+  references = null,
 }) {
   return renderPromptTemplate(COVERAGE_ADVERSARY_PROMPT_PATH, {
     TARGET_LANGUAGE: targetLanguage,
     CHAPTER_FILE_PATH: chapterFilePath,
     IMAGE_COUNT: String(imagePaths.length),
     IMAGE_PATHS: imagePaths.length ? ["```", ...imagePaths, "```"].join("\n") : NO_IMAGES,
+    REFERENCED_MATERIAL: renderReferencedMaterial(references),
   });
 }
 
@@ -65,12 +68,18 @@ export function enumerateChapter({
   chapterFilePath,
   imagePaths = [],
   targetLanguage,
+  references = null,
   runClaude,
 } = {}) {
   if (!chapterFilePath || !existsSync(chapterFilePath)) {
     throw new Error(`coverage adversary needs a chapter file that exists: ${chapterFilePath}`);
   }
-  const prompt = renderCoverageAdversaryPrompt({ chapterFilePath, imagePaths, targetLanguage });
+  const prompt = renderCoverageAdversaryPrompt({
+    chapterFilePath,
+    imagePaths,
+    targetLanguage,
+    references,
+  });
   const raw = runRole(ROLE_ID, prompt, runClaude ? { runClaude } : {});
   const parsed = JSON.parse(extractJsonObjectText(raw));
   return {

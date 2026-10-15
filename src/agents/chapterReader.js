@@ -14,6 +14,7 @@
 // role must return a line per heading, and `assertSectionsAccountedFor` rejects a response that does
 // not. `contributed: 0` with a reason is a fine answer; silence is not an answer at all.
 
+import { renderReferencedMaterial } from "../corpus/bookReferences.js";
 import { existsSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
@@ -41,6 +42,7 @@ export function renderChapterReaderPrompt({
   sections,
   targetLanguage,
   meta = null,
+  references = null,
 }) {
   return renderPromptTemplate(CHAPTER_READER_PROMPT_PATH, {
     INFLECTION_SCHEME: describeScheme(targetLanguage),
@@ -49,6 +51,7 @@ export function renderChapterReaderPrompt({
     CATEGORY_LIST: CATEGORIES.map((c) => `- ${c}`).join("\n"),
     CARD_FACES: renderCardFacesBlock(),
     BOOK_HINTS: renderBookHints(meta) ?? NO_HINTS,
+    REFERENCED_MATERIAL: renderReferencedMaterial(references),
     SECTIONS_JSON: JSON.stringify(
       sections.map((s) => ({ title: s.title, level: s.level })),
       null,
@@ -116,12 +119,19 @@ export function readChapter({
   sections,
   targetLanguage,
   meta = null,
+  references = null,
   runClaude,
 } = {}) {
   if (!chapterFilePath || !existsSync(chapterFilePath)) {
     throw new Error(`chapter reader needs a chapter file that exists: ${chapterFilePath}`);
   }
-  const prompt = renderChapterReaderPrompt({ chapterFilePath, sections, targetLanguage, meta });
+  const prompt = renderChapterReaderPrompt({
+    chapterFilePath,
+    sections,
+    targetLanguage,
+    meta,
+    references,
+  });
   const raw = runRole(ROLE_ID, prompt, runClaude ? { runClaude } : {});
   const parsed = JSON.parse(extractJsonObjectText(raw));
 

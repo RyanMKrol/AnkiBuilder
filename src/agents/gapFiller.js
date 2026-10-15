@@ -23,6 +23,7 @@
 // be a sentence belonging to the extras unit, or it may be a name the chapter never taught. But the
 // default is to FILL: an unfilled gap is a card that does not get made, and nobody reads the file.
 
+import { renderReferencedMaterial } from "../corpus/bookReferences.js";
 import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
 import { renderPromptTemplate, extractJsonObjectText } from "../util/promptTemplate.js";
@@ -53,7 +54,13 @@ function corpusForPrompt(items) {
     .map((i) => ({ target: i.target ?? null, english: i.english ?? null }));
 }
 
-export function renderGapFillerPrompt({ gaps, items, chapterFilePath, targetLanguage }) {
+export function renderGapFillerPrompt({
+  gaps,
+  items,
+  chapterFilePath,
+  targetLanguage,
+  references = null,
+}) {
   return renderPromptTemplate(GAP_FILLER_PROMPT_PATH, {
     TARGET_LANGUAGE: targetLanguage,
     CHAPTER_FILE_PATH: chapterFilePath,
@@ -61,6 +68,7 @@ export function renderGapFillerPrompt({ gaps, items, chapterFilePath, targetLang
     GAPS_JSON: JSON.stringify(gaps ?? [], null, 2),
     CATEGORY_LIST: CATEGORIES.join(", "),
     INFLECTION_SCHEME: describeScheme(targetLanguage),
+    REFERENCED_MATERIAL: renderReferencedMaterial(references),
   });
 }
 
@@ -98,6 +106,7 @@ export function fillCoverageGaps({
   items = [],
   chapterFilePath,
   targetLanguage,
+  references = null,
   runClaude,
 } = {}) {
   if (!gaps || gaps.length === 0) {
@@ -106,7 +115,7 @@ export function fillCoverageGaps({
 
   const raw = runRole(
     ROLE_ID,
-    renderGapFillerPrompt({ gaps, items, chapterFilePath, targetLanguage }),
+    renderGapFillerPrompt({ gaps, items, chapterFilePath, targetLanguage, references }),
     runClaude ? { runClaude } : {},
   );
   const parsed = JSON.parse(extractJsonObjectText(raw));

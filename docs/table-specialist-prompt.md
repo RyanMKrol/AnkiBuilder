@@ -107,6 +107,8 @@ say so in that table's `reason`.
 ## The tables
 
 Every table in this chapter, in document order. `index` is what you must account for in `tables`.
+A table with `referencedFrom` sits on a page elsewhere in the book that the chapter sends the
+learner to. Judge it the same way: what it teaches for the chapter's point counts as taught here.
 
 ```json
 {{TABLES_JSON}}

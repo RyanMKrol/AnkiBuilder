@@ -1907,15 +1907,16 @@ constraints here are load-bearing and a test pins each:
   against; the comparison happens in code afterwards, and its prompt has nowhere to put the corpus
   even if the order changed.
 
-| #   | step                     | kind          | artifact                   |
-| --- | ------------------------ | ------------- | -------------------------- |
-| 1-3 | tables, sections, images | deterministic | `candidates/*-raw.json`    |
-| 4   | table specialist         | agent         | `candidates/tables.json`   |
-| 5   | chapter reader           | agent         | `candidates/chapter.json`  |
-| 6   | image specialist         | agent         | `candidates/images.json`   |
-| 7   | reconcile                | deterministic | `corpus.json`              |
-| 8   | snapshot                 | deterministic | `as-generated.json`        |
-| 9   | coverage adversary       | agent         | `candidates/coverage.json` |
+| #   | step                     | kind          | artifact                     |
+| --- | ------------------------ | ------------- | ---------------------------- |
+| 1-3 | tables, sections, images | deterministic | `candidates/*-raw.json`      |
+| 3b  | references               | deterministic | `candidates/references.json` |
+| 4   | table specialist         | agent         | `candidates/tables.json`     |
+| 5   | chapter reader           | agent         | `candidates/chapter.json`    |
+| 6   | image specialist         | agent         | `candidates/images.json`     |
+| 7   | reconcile                | deterministic | `corpus.json`                |
+| 8   | snapshot                 | deterministic | `as-generated.json`          |
+| 9   | coverage adversary       | agent         | `candidates/coverage.json`   |
 
 Four of the nine spend, one of them at a higher pinning. `--dry` says so before you commit to it.
 
@@ -1925,6 +1926,26 @@ than at a review gate, and the script exits 2 rather than handing over a link.
 
 Three things it surfaces before the review rather than after: targets carrying more than one sense
 (kept, and named), coverage gaps the adversary found, and any image that came back `unreadable`.
+
+### Following the chapter's pointers to the rest of the book
+
+`src/corpus/bookReferences.js` runs right after the image dump. A textbook often teaches a point by
+sending the learner elsewhere ("see the appendix, pp. 244, 245, for the past form") and prints one
+example in the chapter itself. Before this step every reader was handed only the chapter, so Busy
+People's Casual Style 2 reached review with the whole casual past carded once.
+
+It finds page references in the chapter text ("p. 12", "pp. 30, 31", "pages 4-6", "12ページ") and
+resolves them through the EPUB page-break markers (`epub:type="pagebreak"`, `role="doc-pagebreak"`)
+in the same book's chapter cache. Both are standards, so nothing here is specific to one publisher.
+A referenced page later in the book is followed: its text goes into the chapter reader's, the
+adversary's and the gap filler's prompts as `{{REFERENCED_MATERIAL}}`, and its tables and images join
+the chapter's own with `referencedFrom` set, so the table and image specialists judge them like any
+other. Because the image verdicts carry them, the extras phase's figures step sees them too.
+
+Every page named is recorded with what happened to it: `followed`, `in-chapter` (the chapter already
+holds it), `earlier` (an earlier part of the book taught it), `over-cap` (more than six pages), or
+`unresolved` (the cache has no such page). An unresolved page also puts a reason on the step. It
+never reads another book.
 
 ### The coverage adversary: enumerate, then diff in code
 

@@ -47,6 +47,7 @@ export function renderImageSpecialistPrompt({ images, targetLanguage, meta = nul
     path: image.path,
     exists: image.exists,
     bytes: image.bytes,
+    ...(image.referencedFrom ? { referencedFrom: image.referencedFrom } : {}),
   }));
   return renderPromptTemplate(IMAGE_SPECIALIST_PROMPT_PATH, {
     TARGET_LANGUAGE: targetLanguage,

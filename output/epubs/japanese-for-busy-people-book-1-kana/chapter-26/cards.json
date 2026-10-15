@@ -67,7 +67,7 @@
       "english": "May I look at it? (casual)",
       "category": "Grammar & Function Words",
       "target": "みてもいい?",
-      "pronunciation": "mite mo ii?",
+      "pronunciation": "mite mo ii",
       "note": "Casual permission: て-form + もいい with rising intonation, dropping the ですか of みてもいいですか (mite mo ii desu ka).",
       "sourceOrder": 120,
       "hint": "casual style"
@@ -77,7 +77,7 @@
       "english": "May I borrow it? (casual)",
       "category": "Grammar & Function Words",
       "target": "かりてもいい?",
-      "pronunciation": "karite mo ii?",
+      "pronunciation": "karite mo ii",
       "note": "Same casual て-form + もいい pattern, with かりる (kariru).",
       "sourceOrder": 160,
       "hint": "casual style"
@@ -122,7 +122,7 @@
       "category": "Grammar & Function Words",
       "target": "よんだ",
       "pronunciation": "yonda",
-      "note": "The た-form (ta-form) of よむ (yomu), the casual equivalent of よみました (yomimashita). It is built the same way as the て-form: よんで → よんだ.",
+      "note": "Regular 1 verbs ending in む, ぬ or ぶ: よんで → よんだ (yomu). The casual equivalent of よみました (yomimashita).",
       "reviewNote": "Kept at gate 1: this chapter is where the book teaches the た-form, so it is neither already taught nor premature.",
       "sourceOrder": 1220,
       "hint": "casual style"
@@ -255,7 +255,7 @@
       "english": "Why don't you come over to my place? (casual)",
       "category": "Grammar & Function Words",
       "target": "うちこない?",
-      "pronunciation": "uchi konai?",
+      "pronunciation": "uchi konai",
       "hint": "casual style",
       "note": "A casual invitation is the ない-form with rising intonation, the casual equivalent of きませんか (kimasen ka). Casual speech also drops the particle: うちにこない becomes うちこない.",
       "aiSuggested": true,

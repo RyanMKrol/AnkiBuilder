@@ -1,0 +1,339 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "epub",
+    "reviewed": false,
+    "chapterNumber": 53,
+    "chapterLabel": "Casual Style 2 (Extras)",
+    "baseChapterLabel": "Casual Style 2",
+    "phase": "extras",
+    "passes": {
+      "romanization": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok",
+        "reason": "completed in an earlier run (notesEnhanced marker set)"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "skipped",
+        "reason": "phase 2's own miners produced this unit's sentences"
+      },
+      "semanticDedup": {
+        "status": "skipped",
+        "reason": "phase 2 dedups its own miners' output"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "answer-permission-granted",
+      "english": "Sure.",
+      "category": "Grammar & Function Words",
+      "target": "いいよ",
+      "pronunciation": "ii yo",
+      "uncertain": true,
+      "aiSuggested": true,
+      "note": "Contrast pair with だめ — same request, opposite answer.",
+      "reviewNote": "Possibly already taught — Identical target いいよ already carded in chapter-26 with the same meaning.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Same target and sense as chapter-26/casual-sure-iiyo"
+    },
+    {
+      "id": "mou-kore-yonda",
+      "english": "Have you already read this?",
+      "category": "Grammar & Function Words",
+      "target": "もうこれ、よんだ?",
+      "pronunciation": "mō kore, yonda",
+      "hint": "casual style"
+    },
+    {
+      "id": "un-yonda",
+      "english": "Yeah, I read it.",
+      "category": "Grammar & Function Words",
+      "target": "うん、よんだ",
+      "pronunciation": "un, yonda",
+      "scene": "Asked whether you've read the new manga yet",
+      "aiSuggested": true,
+      "reviewNote": "Added at gate 2: Raja's answer in Sample Dialogue 4, the chapter's one past-tense reply.",
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-past-oyoida-ocean",
+      "english": "I swam in the ocean.",
+      "category": "Grammar & Function Words",
+      "target": "うみでおよいだ",
+      "pronunciation": "umi de oyoida",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-request-matte",
+      "english": "Wait a moment.",
+      "category": "Grammar & Function Words",
+      "target": "ちょっとまって",
+      "pronunciation": "chotto matte",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-permission-suwattemoii",
+      "english": "May I sit here? (casual)",
+      "category": "Grammar & Function Words",
+      "target": "ここにすわってもいい?",
+      "pronunciation": "koko ni suwatte mo ii",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-permission-karite-pen",
+      "english": "May I borrow a pen?",
+      "category": "Grammar & Function Words",
+      "target": "ペンをかりてもいい?",
+      "pronunciation": "pen o karite mo ii",
+      "uncertain": true,
+      "aiSuggested": true,
+      "reviewNote": "Possibly already taught — Same casual permission phrase かりてもいい? already carded verbatim in chapter-26.",
+      "excluded": true,
+      "excludedBy": "gate2-frame-trim",
+      "excludedReason": "Third かりてもいい? sentence with only the object swapped; the chapter's own これ、かりてもいい? and the camera one stay"
+    },
+    {
+      "id": "sore-mitemo-ii",
+      "english": "Can I have a look at that?",
+      "category": "Grammar & Function Words",
+      "target": "それ、みてもいい?",
+      "pronunciation": "sore, mite mo ii",
+      "reviewNote": "Possibly already taught — Same casual permission phrase already carded verbatim in chapter-26, just with/without topic comma.",
+      "hint": "casual style"
+    },
+    {
+      "id": "answer-permission-denied",
+      "english": "No.",
+      "category": "Grammar & Function Words",
+      "target": "だめ",
+      "pronunciation": "dame",
+      "uncertain": true,
+      "aiSuggested": true,
+      "note": "Contrast pair with いいよ — same request, opposite answer.",
+      "reviewNote": "Possibly already taught — Identical target だめ already carded in chapter-26 with the same meaning.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Same target and sense as chapter-26/no-good-dame"
+    },
+    {
+      "id": "bought-coffee-casual-past",
+      "english": "I bought coffee.",
+      "category": "Food",
+      "target": "コーヒー、かった",
+      "pronunciation": "kōhī, katta",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-permission-tabetemoii",
+      "english": "May I eat this?",
+      "category": "Grammar & Function Words",
+      "target": "これ、たべてもいい?",
+      "pronunciation": "kore, tabete mo ii",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-invitation-koen",
+      "english": "Won't you go to the park on Saturday?",
+      "category": "Grammar & Function Words",
+      "target": "どようび、こうえんいかない?",
+      "pronunciation": "doyōbi, kōen ikanai",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-past-tabeta-cake",
+      "english": "I ate cake.",
+      "category": "Grammar & Function Words",
+      "target": "ケーキをたべた",
+      "pronunciation": "kēki o tabeta",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-past-hanashita-phone",
+      "english": "I talked on the phone.",
+      "category": "Grammar & Function Words",
+      "target": "でんわではなした",
+      "pronunciation": "denwa de hanashita",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-permission-karite-camera",
+      "english": "May I borrow the camera tomorrow?",
+      "category": "Grammar & Function Words",
+      "target": "あした、カメラをかりてもいい?",
+      "pronunciation": "ashita, kamera o karite mo ii",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-request-misete",
+      "english": "Show me that.",
+      "category": "Grammar & Function Words",
+      "target": "それ、みせて",
+      "pronunciation": "sore, misete",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "soft-decline-invitation",
+      "english": "Well, that's a bit...",
+      "category": "Grammar & Function Words",
+      "target": "えー、ちょっと…",
+      "pronunciation": "ē, chotto…",
+      "uncertain": true,
+      "aiSuggested": true,
+      "note": "The same えー、ちょっと… (ē, chotto…) pattern as the gentle refusal card from Casual Style 2; works to decline any invitation politely without saying no outright.",
+      "reviewNote": "Possibly already taught — Identical target えー、ちょっと… already carded in chapter-26 with the same meaning.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Same target and sense as chapter-26/gentle-refusal-chotto"
+    },
+    {
+      "id": "casual-past-itta-park",
+      "english": "I went to the park.",
+      "category": "Grammar & Function Words",
+      "target": "こうえんにいった",
+      "pronunciation": "kōen ni itta",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-past-neg-ikanakatta-school",
+      "english": "I didn't go to school yesterday.",
+      "category": "Grammar & Function Words",
+      "target": "きのう、がっこうにいかなかった",
+      "pronunciation": "kinō, gakkō ni ikanakatta",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-invitation-eiga",
+      "english": "Want to watch a movie together?",
+      "category": "Grammar & Function Words",
+      "target": "いっしょにえいがみない?",
+      "pronunciation": "issho ni eiga minai",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-past-kita-party",
+      "english": "A friend came to the party.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちがパーティーにきた",
+      "pronunciation": "tomodachi ga pātī ni kita",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-past-neg-tabenakatta-breakfast",
+      "english": "I didn't eat breakfast.",
+      "category": "Grammar & Function Words",
+      "target": "あさごはんをたべなかった",
+      "pronunciation": "asagohan o tabenakatta",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "kore-karitemo-ii",
+      "english": "Can I borrow this?",
+      "category": "Grammar & Function Words",
+      "target": "これ、かりてもいい?",
+      "pronunciation": "kore, karite mo ii",
+      "reviewNote": "Possibly already taught — Same casual permission phrase already carded verbatim in chapter-26, just with/without topic comma.",
+      "hint": "casual style"
+    },
+    {
+      "id": "baito-aru-kara",
+      "english": "Because I have a part-time job.",
+      "category": "Work & Occupations",
+      "target": "バイトあるから",
+      "pronunciation": "baito aru kara",
+      "hint": "casual style",
+      "scene": "Explaining why you can't go to tomorrow's party"
+    },
+    {
+      "id": "casual-past-neg-konakatta-party",
+      "english": "My friend didn't come to the party.",
+      "category": "Grammar & Function Words",
+      "target": "ともだちはパーティーにこなかった",
+      "pronunciation": "tomodachi wa pātī ni konakatta",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "ore-wa-mada",
+      "english": "I haven't yet. (male speaker)",
+      "category": "Grammar & Function Words",
+      "target": "おれはまだ",
+      "pronunciation": "ore wa mada",
+      "scene": "Asked whether you've read the new manga yet",
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-past-kaita-letter",
+      "english": "I wrote a letter.",
+      "category": "Grammar & Function Words",
+      "target": "てがみをかいた",
+      "pronunciation": "tegami o kaita",
+      "aiSuggested": true,
+      "hint": "casual style"
+    },
+    {
+      "id": "kondo-no-doyou-uchi-konai",
+      "english": "Want to come over to my place this Saturday?",
+      "category": "Grammar & Function Words",
+      "target": "こんどのどよう、うちこない?",
+      "pronunciation": "kondo no doyō, uchi konai",
+      "hint": "casual style"
+    },
+    {
+      "id": "casual-request-itte",
+      "english": "Say that again. (casual)",
+      "category": "Grammar & Function Words",
+      "target": "もういちど、いって",
+      "pronunciation": "mō ichido, itte",
+      "aiSuggested": true,
+      "hint": "casual style",
+      "note": "いって here is the て-form of いう (iu, \"say\"), spelled the same as いって from いく (iku, \"go\")."
+    },
+    {
+      "id": "atashi-wa-ikanai",
+      "english": "I'm not going. (female speaker)",
+      "category": "Grammar & Function Words",
+      "target": "あたしはいかない",
+      "pronunciation": "atashi wa ikanai",
+      "hint": "casual style"
+    },
+    {
+      "id": "ack-standalone",
+      "english": "Got it.",
+      "category": "Grammar & Function Words",
+      "target": "わかった",
+      "pronunciation": "wakatta",
+      "uncertain": true,
+      "aiSuggested": true,
+      "reviewNote": "Possibly already taught — Identical target わかった already carded in chapter-26 with the same meaning.",
+      "excluded": true,
+      "excludedBy": "extras-duplicate-check",
+      "excludedReason": "Same target and sense as chapter-26/got-it-wakatta"
+    }
+  ]
+}

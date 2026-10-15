@@ -85,6 +85,12 @@ undid another pass's correct work.
 uses to organise itself (`Present form`, `aff.`, `Verbs`) are not vocabulary, whether you are reading
 the table as markup or as a picture. The entries are the cells.
 
+**A page the chapter sends the learner to is part of the chapter.** When a chapter points elsewhere in
+the book for the point it is teaching ("see the appendix for this form"), what that page holds for the
+point counts as taught by this chapter, and a table there follows the paradigm rule. Rows the page
+itself marks for a later lesson do not. _A chapter taught the casual past by pointing at an appendix
+table, every reader stayed inside the chapter, and the whole past tense reached review as one card._
+
 **An answer card carries a scene.** A short reply that leaves out its topic is shuffled and studied
 months later with no question beside it, so it needs a `scene` naming the question it answers,
 without giving the answer away. Without one, its English often fits a different sentence as well as

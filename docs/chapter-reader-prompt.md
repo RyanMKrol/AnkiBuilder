@@ -28,6 +28,15 @@ judgement to make about where to start or stop, only the discipline to reach the
 tool truncates it, issue further reads with an offset until you have seen the last line. A chapter you
 stopped reading looks exactly like a chapter that ended, which is why the accounting below exists.
 
+## Pages the chapter sends the learner to
+
+A script found the places where this chapter points elsewhere in the same book ("see the appendix,
+p. 244") and pulled those pages out for you. Read them as part of the chapter: what they hold, for the
+point the chapter is teaching, is taught here. A table they hold follows the paradigm rule like any
+other. A row the page itself says belongs to a later volume or lesson is not taught yet.
+
+{{REFERENCED_MATERIAL}}
+
 ## Output Format
 
 Respond with ONLY a single JSON object, no markdown fences and no prose around it:

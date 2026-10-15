@@ -35,6 +35,15 @@ pictures, and a chapter's grammar can live entirely in one.
 
 {{IMAGE_PATHS}}
 
+## Pages the chapter sends the learner to
+
+A script found the places where this chapter points elsewhere in the same book ("see the appendix,
+p. 244") and pulled those pages out for you. Read them as part of the chapter: what they hold, for the
+point the chapter is teaching, is taught here. A table they hold follows the paradigm rule like any
+other. A row the page itself says belongs to a later volume or lesson is not taught yet.
+
+{{REFERENCED_MATERIAL}}
+
 ## Output Format
 
 Respond with ONLY a single JSON object, no markdown fences and no prose around it:

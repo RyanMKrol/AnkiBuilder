@@ -90,7 +90,9 @@ wins, and say so in that image's `note`.
 
 ## The images
 
-Every image this chapter references, in document order.
+Every image this chapter references, in document order. An image with `referencedFrom` sits on a
+page elsewhere in the book that the chapter sends the learner to; judge it the same way, because
+what it teaches for the chapter's point counts as taught by this chapter.
 
 ```json
 {{IMAGES_JSON}}

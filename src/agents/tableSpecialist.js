@@ -55,6 +55,7 @@ export function renderTableSpecialistPrompt({ tables, targetLanguage, meta = nul
     rowCount: table.rowCount,
     columnCounts: table.columnCounts,
     rows: table.rows.map((row) => row.map((cell) => cell.text)),
+    ...(table.referencedFrom ? { referencedFrom: table.referencedFrom } : {}),
   }));
   return renderPromptTemplate(TABLE_SPECIALIST_PROMPT_PATH, {
     INFLECTION_SCHEME: describeScheme(targetLanguage),

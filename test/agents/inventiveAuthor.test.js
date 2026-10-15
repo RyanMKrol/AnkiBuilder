@@ -58,6 +58,42 @@ test("the prompt states the exact ceiling and hands over every existing sentence
   assert.doesNotMatch(prompt, /\{\{[A-Z_]+\}\}/);
 });
 
+test("the prompt shows the base unit as cards, scenes and hints included", () => {
+  // Shown as a bare word list, the role read a missing scene as a gap and re-carded four base
+  // replies on Casual Style 2, all of which the duplicate check then cut.
+  const prompt = renderInventiveAuthorPrompt({
+    existingItems: EXISTING,
+    baseItems: [
+      {
+        target: "いいよ",
+        english: "Sure.",
+        scene: "A friend asks to borrow a pen",
+        hint: "casual",
+      },
+      { target: "だめ", english: "No.", excluded: true },
+    ],
+    targetLanguage: ja,
+  });
+  assert.match(prompt, /The base unit's cards/);
+  assert.match(prompt, /A friend asks to borrow a pen/, "the scene travels with the card");
+  assert.match(prompt, /"hint": "casual"/);
+  assert.match(prompt, /A base card as it stands/, "it is told not to re-card one");
+  assert.doesNotMatch(prompt, /だめ/, "an excluded base card is not a card");
+});
+
+test("re-carding a base card is reported on its target alone, whatever the gloss", () => {
+  const base = [{ target: "いいよ", english: "Sure. / All right." }];
+  const invented = [{ target: "いいよ", english: "Sure." }];
+  assert.equal(findReinvented(invented, EXISTING, { languageCode: ja, baseItems: base }).length, 1);
+  assert.equal(findReinvented(invented, EXISTING, { languageCode: ja }).length, 0);
+  assert.equal(
+    findReinvented([{ target: "うん、いいよ" }], EXISTING, { languageCode: ja, baseItems: base })
+      .length,
+    0,
+    "a sentence that uses a base card is not a repeat of it",
+  );
+});
+
 test("items are stamped and badged as authored, so a reviewer sees what was invented", () => {
   const { items, allowance } = authorInventedPractice({
     existingItems: EXISTING,

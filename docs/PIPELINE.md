@@ -2013,7 +2013,13 @@ Two things are reported rather than refused, both because they are judgements: a
 **reinvents** one the miners already produced (matched on the reconciler's own key, so this cannot
 disagree with the merge that follows), and a sentence using an **untaught word**. This role is the
 likeliest to slip there, since it writes freely rather than copying and a natural sentence is exactly
-where an untaught word gets in.
+where an untaught word gets in. A **reinvented** sentence also counts a base card repeated as it
+stands, matched on the target alone since a re-carded one tends to come back with a shorter gloss.
+
+**It sees the base unit as cards, not a word list.** `baseCardsForPrompt` passes each approved base
+card with its scene and hint, and the prompt says they are already in the deck. Shown only the bare
+vocabulary list the other roles get, it read a missing scene as a gap: on Casual Style 2 it spent four
+of its five slots re-carding base replies, and the duplicate check cut all four.
 
 Every item must carry a `why`: what a learner gets from it that the existing sentences do not give
 them. A sentence that cannot be justified in one line is one that should not have been written, and

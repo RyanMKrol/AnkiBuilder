@@ -15,5 +15,12 @@ Method: `qa/README.md`. Prompts: `qa/prompts/`.
 
 ## Chapters
 
-The pilot covered Lesson 6 (`chapter-7`). The full run covers every chapter in book order;
-`findings.jsonl` is the union of `findings/*.jsonl` after verification.
+`chapters.json` lists every chapter in book order with its units and card counts. Six units ship no
+cards (Greetings, Numbers, Lessons 1 and 2, and the two kana chapters: their words were folded into
+the kana unit or cut by the words-only ruling) and are not reviewed. The pilot covered Lesson 6
+(`chapter-7`); the full run covers the other 20. `findings.jsonl` is the union of `findings/*.jsonl`
+after verification.
+
+Pilot result: 7 findings, 2 confirmed, 1 plausible, 4 rejected. Two rejections were design decisions
+the Reader did not know (kana-only words live in the kana unit) and two were collisions the owner
+had already accepted in preflight; the Reader prompt now says to check both.

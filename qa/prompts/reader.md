@@ -45,6 +45,19 @@ job is the book.
 Respect the book. If the book teaches something you would teach differently, that is not a finding.
 If the deck matches the book, it is right, whatever you think of the book.
 
+Respect the deck's own design decisions too, because a finding against one is a finding the owner
+has already rejected:
+
+- Before reporting a collision or a duplicate, check preflight's output for the unit and the
+  collection's `.preflight-accepted.json`. A finding the owner has accepted there is not a finding.
+- The authoring rules (`.claude/skills/build-anki-deck/references/card-authoring-rules.md`) ask for
+  some cards the book does not print, such as a second example of a pattern built from earlier
+  vocabulary. A card that follows one of those rules is not out of the book's bounds.
+- A **reading** collection cards single words only (owner ruling, 2026-10-13): no sentences, no
+  grammar points, and words written in kana alone belong to its one kana unit, chosen by a budget
+  (`docs/designs/reading-decks/09-kana-deck.md`), so a kana-only word with no card in a lesson unit
+  is not a gap. Read `docs/card-rules-reading.md` before you start on a reading unit.
+
 ## What you write
 
 Two files, and nothing else.

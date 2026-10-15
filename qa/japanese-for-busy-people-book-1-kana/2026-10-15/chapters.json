@@ -1,0 +1,272 @@
+[
+  {
+    "order": 1,
+    "key": "chapter-0",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 11,
+    "label": "Frequently Used Expressions",
+    "cards": 18,
+    "units": ["chapter-0"],
+    "reviewed": true
+  },
+  {
+    "order": 2,
+    "key": "chapter-1",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 14,
+    "label": "Lesson 1: Meeting: Nice to Meet You",
+    "cards": 122,
+    "units": ["chapter-1", "chapter-1-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 3,
+    "key": "chapter-2",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 15,
+    "label": "Lesson 2: Possession: Whose Pen Is This?",
+    "cards": 120,
+    "units": ["chapter-2", "chapter-2-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 4,
+    "key": "chapter-3",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 17,
+    "label": "Lesson 3: Asking the Time: What Time Is It?",
+    "cards": 179,
+    "units": ["chapter-3", "chapter-3-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 5,
+    "key": "chapter-4",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 18,
+    "label": "Lesson 4: Shopping (1): How Much Is This?",
+    "cards": 142,
+    "units": ["chapter-4", "chapter-4-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 6,
+    "key": "chapter-5",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 19,
+    "label": "Lesson 5: Shopping (2): Two Bottles of That Wine, Please",
+    "cards": 184,
+    "units": ["chapter-5", "chapter-5-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 7,
+    "key": "chapter-6",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 22,
+    "label": "Lesson 6: Going Places (1): Where Are You Going?",
+    "cards": 153,
+    "units": ["chapter-6", "chapter-6-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 8,
+    "key": "chapter-7",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 23,
+    "label": "Lesson 7: Going Places (2): I’m Going by Shinkansen",
+    "cards": 185,
+    "units": ["chapter-7", "chapter-7-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 9,
+    "key": "chapter-8",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 25,
+    "label": "Lesson 8: Doing Things (1): I’m Going to Eat Tempura",
+    "cards": 166,
+    "units": ["chapter-8", "chapter-8-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 10,
+    "key": "chapter-9",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 26,
+    "label": "Lesson 9: Doing Things (2): Do You Often Come Here?",
+    "cards": 172,
+    "units": ["chapter-9", "chapter-9-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 11,
+    "key": "chapter-10",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 29,
+    "label": "Lesson 10: Describing Things: It’s Delicious",
+    "cards": 145,
+    "units": ["chapter-10", "chapter-10-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 12,
+    "key": "chapter-11",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 30,
+    "label": "Lesson 11: Describing Impressions: It Was Beautiful",
+    "cards": 133,
+    "units": ["chapter-11", "chapter-11-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 13,
+    "key": "chapter-12",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 32,
+    "label": "Lesson 12: Asking about Places: What Is at Nikko?",
+    "cards": 141,
+    "units": ["chapter-12", "chapter-12-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 14,
+    "key": "chapter-13",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 33,
+    "label": "Lesson 13: Asking for a Place: Where Is It?",
+    "cards": 139,
+    "units": ["chapter-13", "chapter-13-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 15,
+    "key": "chapter-14",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 34,
+    "label": "Lesson 14: Giving and Receiving: I Received It from My Friend",
+    "cards": 136,
+    "units": ["chapter-14", "chapter-14-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 16,
+    "key": "chapter-15",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 37,
+    "label": "Lesson 15: Talking about Preferences: I Like Japanese Anime",
+    "cards": 133,
+    "units": ["chapter-15", "chapter-15-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 17,
+    "key": "chapter-16",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 38,
+    "label": "Lesson 16: Making an Invitation: Shall We Go Together?",
+    "cards": 99,
+    "units": ["chapter-16", "chapter-16-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 18,
+    "key": "chapter-17",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 39,
+    "label": "Lesson 17: Stating a Wish: I Want to Buy a Souvenir",
+    "cards": 183,
+    "units": ["chapter-17", "chapter-17-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 19,
+    "key": "chapter-25",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 40,
+    "label": "Casual Style 1",
+    "cards": 71,
+    "units": ["chapter-25", "chapter-25-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 20,
+    "key": "chapter-18",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 42,
+    "label": "Lesson 18: Explaining Plans: I Will Go to Osaka and See Her",
+    "cards": 103,
+    "units": ["chapter-18", "chapter-18-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 21,
+    "key": "chapter-19",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 43,
+    "label": "Lesson 19: Making a Request: Please Give Her My Regards",
+    "cards": 156,
+    "units": ["chapter-19", "chapter-19-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 22,
+    "key": "chapter-20",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 46,
+    "label": "Lesson 20: Going Places (3): How Do You Go There?",
+    "cards": 139,
+    "units": ["chapter-20", "chapter-20-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 23,
+    "key": "chapter-21",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 47,
+    "label": "Lesson 21: Asking Permission: May I Have It?",
+    "cards": 135,
+    "units": ["chapter-21", "chapter-21-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 24,
+    "key": "chapter-22",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 48,
+    "label": "Lesson 22: Forbidding Actions: Please Don’t Take Photos",
+    "cards": 122,
+    "units": ["chapter-22", "chapter-22-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 25,
+    "key": "chapter-23",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 50,
+    "label": "Lesson 23: Explaining Actions: What Are You Doing Now?",
+    "cards": 125,
+    "units": ["chapter-23", "chapter-23-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 26,
+    "key": "chapter-24",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 51,
+    "label": "Lesson 24: Work and Interests: I Work for an Apparel Maker",
+    "cards": 119,
+    "units": ["chapter-24", "chapter-24-extras"],
+    "reviewed": true
+  },
+  {
+    "order": 27,
+    "key": "chapter-26",
+    "epubHash": "1fab0f99d1195ad9",
+    "chapterNumber": 53,
+    "label": "Casual Style 2",
+    "cards": 50,
+    "units": ["chapter-26", "chapter-26-extras"],
+    "reviewed": true
+  }
+]

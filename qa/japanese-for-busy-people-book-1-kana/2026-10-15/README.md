@@ -14,5 +14,9 @@ Method: `qa/README.md`. Prompts: `qa/prompts/`.
 
 ## Chapters
 
-The pilot covered Lesson 8 (`chapter-8`, `chapter-8-extras`). The full run covers every chapter in
-book order; `findings.jsonl` is the union of `findings/*.jsonl` after verification.
+`chapters.json` lists every chapter in book order with its units and card counts. The pilot covered
+Lesson 8 (`chapter-8`, `chapter-8-extras`); the full run covers the other 26. `findings.jsonl` is the
+union of `findings/*.jsonl` after verification.
+
+Pilot result: 17 findings, 11 confirmed, 1 plausible, 4 rejected, 1 merged (both roles caught the
+same wrong note on `nani`).

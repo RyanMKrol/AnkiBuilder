@@ -3,10 +3,11 @@
 This is the full operating procedure for the extras pass summarized in
 [SKILL.md](../SKILL.md) Step 3b. Load it whenever you are about to build an extras unit.
 
-**Run this for every chapter of a book (and every lesson of a course), once the base unit is DONE
-(gate 2).** The audits below diff the new cards against the base unit's card set, and a gate-2
-exclusion changes that set — so extras authored while the lesson is still in review are audited
-against a card set that no longer exists. A textbook chapter always teaches far more than the
+**Run this for every chapter of a book (and every lesson of a course), once the base unit is marked
+reviewed (gate 1).** The audits below diff the new cards against the base unit's card set, and an
+exclusion made at gate 1 changes that set, so extras authored while the base is still in review are
+audited against a card set that no longer exists. The base does not need to be done: audio comes
+after both content gates, and the two units share that last review. A textbook chapter always teaches far more than the
 extraction turns into cards. Two things get lost every time:
 the chapter's own spoken material (Target Dialogue, Speaking Practice, Short Dialogues), which the
 extraction skips while mining the vocabulary tables dry; and any sense of *coverage*, so a lesson ends
@@ -97,10 +98,12 @@ npm run validate:decks        # every corpus.json/cards.json under output/, agai
 ```
 
 Run that before handing over the review link, not after the reviewer hits a wall. It is not part of
-`npm run ci` because `/output` is gitignored, so CI has no deck data to check.
+`npm run ci` because the audio and caches it also reads are gitignored, so CI has no real deck data to
+check.
 
-Everything else works unchanged: the dashboard lists it as its own reviewable unit, it has its own two
-gates, and `deck --book-dir` merges it only once it is `done`.
+Everything else works unchanged: the dashboard lists it as its own reviewable unit, it has its own
+content gate (gate 2), it shares the chapter's audio gate with the base, and `deck --book-dir` merges
+it only once it is `done`.
 
 ## How to run the pass
 

@@ -80,6 +80,15 @@ export function renderCardFaces(card = EXAMPLE_CARD) {
 }
 
 /**
+ * The same rendering against any template set, for a surface that already knows which deck kind it
+ * is looking at (the QA renderer in scripts/qa-render-unit.mjs). `card` is the Anki field shape
+ * (`{ Target, English, … }`), which is what noteFields() produces from a pipeline card.
+ */
+export function renderFacesWith(card, templates) {
+  return templates.map((template) => renderFace(template, card));
+}
+
+/**
  * The `{{CARD_FACES}}` block injected into the authoring prompts: both fronts and both backs, with
  * one example card filled in, so a rule about what a front reveals is checkable rather than
  * imagined.

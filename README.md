@@ -411,6 +411,18 @@ gitignored and untracked, so wiring it into the hook would couple `git push` to 
 state, be a no-op in CI and a fresh clone by construction, and block a README typo behind a deck
 rebuild.
 
+### The learner pass: `qa/`
+
+A read-only review of a finished collection from the learner's side (every card studied in
+isolation, both faces, knowing only what earlier units taught) and from the book's side (every
+chapter checked against its cards). It runs as agent roles whose prompts live in `qa/prompts/`, on
+two scripts that only read: `node scripts/qa-render-unit.mjs <unitDir>` prints a unit's shipping
+cards as the faces Anki renders, and `node scripts/qa-ledger.mjs <unitDir>` prints everything
+taught before that unit in book order (both share `scripts/qa-units.mjs`, which knows a
+collection's units and their study order). The result is a backlog (`qa/<collection>/<date>/
+findings.jsonl`) and a themes file for a fixing agent to work through. The method, the finding
+schema and the run procedure are in `qa/README.md`.
+
 ### Two tools that talk to real Anki
 
 Neither is part of any automatic gate, and both are documented in

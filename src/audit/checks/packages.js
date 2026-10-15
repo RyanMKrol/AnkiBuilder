@@ -2,6 +2,7 @@ import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 import { defineCheck } from "../registry.js";
 import { deckFileNameForDir, resolveDeckPathForDir } from "../../deck/deckFileName.js";
+import { readPackageInputs, unitPackageFreshness } from "../../deck/packageInputs.js";
 
 // The two checks about the `.apkg` on disk: is it the RIGHT one, and is it CURRENT.
 
@@ -64,10 +65,12 @@ export const packageFreshnessCheck = defineCheck({
    * per-card direction suspension exists (WS4 item 6) the package deliberately stops reproducing
    * the delivered deck card-for-card, and that is not staleness.
    *
-   * Compares modification times, which is the only signal available without unpacking and diffing
-   * the package. That has one honest weakness: anything that rewrites a `cards.json` byte-identically
-   * (a checkout, a restore from backup) trips it. The remedy is the same either way — rebuild, which
-   * is cheap and idempotent — so a false positive costs one command and never a wrong belief.
+   * Compares CONTENT: every build records a digest of each unit's cards beside the package
+   * (src/deck/packageInputs.js), and a unit is stale when its current cards no longer match. This
+   * used to compare modification times, which tripped on anything that rewrote a `cards.json`
+   * without changing it (a checkout, a branch switch, a restore); on 2026-10-15 it failed the Genki
+   * reading collection twice over a file identical to git. A package built before the record
+   * existed still gets the old mtime comparison, and the message says so.
    */
   run({ collection, units }) {
     // A template deck has no `done` gate — its single unit is packaged by `deck --run`, so its own
@@ -97,28 +100,42 @@ export const packageFreshnessCheck = defineCheck({
     }
 
     const packageTime = statSync(packagePath).mtimeMs;
+    const inputs = readPackageInputs(packagePath);
+    const basis = inputs ? "content" : "mtime";
     const stale = [];
     for (const unit of done) {
       const cardsPath = unit.files["cards.json"];
       if (!cardsPath?.present) continue;
-      const cardsTime = statSync(cardsPath.path).mtimeMs;
-      if (cardsTime > packageTime) {
-        stale.push({ name: unit.name, cardsTime });
-      }
+      const verdict = unitPackageFreshness({
+        packagePath,
+        collectionDir: collection.dir,
+        unitDir: unit.dir,
+        inputs,
+      });
+      if (verdict.status !== "current") stale.push({ name: unit.name });
     }
 
     if (!stale.length) {
-      return { findings: [], summary: `${done.length} done unit(s), package current` };
+      const how = basis === "content" ? "built from the current cards" : "judged by file times";
+      return {
+        findings: [],
+        summary: `${done.length} done unit(s), package current (${how})`,
+      };
     }
 
+    const names = `${stale.length} done unit(s): ${stale.map((s) => s.name).join(", ")}`;
     return {
       findings: [
         {
           key: "stale-package",
           message:
-            `${packagePath} (${new Date(packageTime).toISOString()}) is older than ` +
-            `${stale.length} done unit(s): ${stale.map((s) => s.name).join(", ")}. ` +
-            `The shipping package does not contain those edits. Rebuild: ${rebuildCommand(collection)}`,
+            basis === "content"
+              ? `${packagePath} was not built from the current cards of ${names}. ` +
+                `The shipping package does not contain those edits. Rebuild: ${rebuildCommand(collection)}`
+              : `${packagePath} (${new Date(packageTime).toISOString()}) is older than ${names}. ` +
+                `The shipping package does not contain those edits. Rebuild: ${rebuildCommand(collection)} ` +
+                `(this package predates the content record, so file times were compared; one ` +
+                `rebuild writes the record and stops a checkout from tripping this)`,
         },
       ],
     };

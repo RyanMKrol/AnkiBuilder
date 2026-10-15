@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, statSync } from "fs";
 import { basename, dirname, join, resolve } from "path";
 import { resolveDeckPathForDir } from "../deck/deckFileName.js";
+import { readPackageInputs, unitPackageFreshness } from "../deck/packageInputs.js";
 import { readDeliveredMarker } from "../anki/deliveredMarker.js";
 import { readUnitCards } from "../review/gateState.js";
 import { isUnitDir } from "../model/unitDir.js";
@@ -13,7 +14,7 @@ import { isUnitDir } from "../model/unitDir.js";
  *   `authored`   a cards.json exists and holds at least one item
  *   `reviewed`   `meta.reviewed` — gate 1, the human signed off the corpus
  *   `done`       `meta.done` — gate 2, the human said it ships
- *   `packaged`   the collection's `.apkg` exists and is not older than this unit's cards.json
+ *   `packaged`   the collection's `.apkg` exists and was built from this unit's current cards
  *   `delivered`  the collection carries a delivered marker, and this unit is in it
  *
  * ── WHY THIS EXISTS ──────────────────────────────────────────────────────────────────────────────
@@ -62,7 +63,7 @@ function mtimeMs(path) {
  * The state of a whole collection, read from disk.
  *
  * `reviewed`/`done` are true when EVERY authored unit is (a collection is only as done as its least
- * finished unit); `packaged` when a package exists and no unit's cards.json is newer than it;
+ * finished unit); `packaged` when a package exists and every unit that ships is in it as it stands;
  * `delivered` when the marker is present. `markerUnreadable` is surfaced separately so a corrupt
  * marker can never read as "never delivered".
  */
@@ -75,7 +76,18 @@ export function collectionState(collectionDir) {
   const unitDirs = listUnitDirsOnDisk(dir);
   const units = unitDirs.map((unitDir) => ({ dir: unitDir, ...readUnitFlags(unitDir) }));
   const authoredUnits = units.filter((unit) => unit.authored);
-  const newestCardsAt = authoredUnits.reduce((max, unit) => Math.max(max, unit.cardsAt ?? 0), 0);
+  // Packaged means every unit that SHIPS is in the package as it stands now: the done units of a
+  // book or course, or the template's own single unit. Judged by the same function preflight and
+  // the gate watcher use (src/deck/packageInputs.js), so this line cannot disagree with them.
+  const inputs = packageAt === null ? null : readPackageInputs(packagePath);
+  const shippedUnits = authoredUnits.filter((unit) => unit.dir === dir || unit.done);
+  const packaged =
+    packageAt !== null &&
+    shippedUnits.every(
+      (unit) =>
+        unitPackageFreshness({ packagePath, collectionDir: dir, unitDir: unit.dir, inputs })
+          .status === "current",
+    );
 
   return {
     dir,
@@ -86,7 +98,7 @@ export function collectionState(collectionDir) {
     authored: authoredUnits.length > 0,
     reviewed: authoredUnits.length > 0 && authoredUnits.every((unit) => unit.reviewed),
     done: authoredUnits.length > 0 && authoredUnits.every((unit) => unit.done),
-    packaged: packageAt !== null && packageAt >= newestCardsAt,
+    packaged,
     // A marker that will not parse is not a delivery record: it is a question. `markerUnreadable`
     // is the flag that matters there, and `assertMutationAllowed` refuses on it before it looks at
     // anything else — so reporting `delivered: true` here would only mislead the state line.

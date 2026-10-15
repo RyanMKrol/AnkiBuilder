@@ -1,10 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdirSync, utimesSync, writeFileSync } from "fs";
+import { mkdirSync, readFileSync, utimesSync, writeFileSync } from "fs";
 import { join } from "path";
 import { ALL_CHECKS, audit } from "../../src/audit/index.js";
 import { CACHE_VERSION } from "../../src/corpus/epubLibrary.js";
 import { makeOutputRoot, writeUnit, writeMarker, writeRaw, card } from "./fixture.js";
+import { writePackageInputs } from "../../src/deck/packageInputs.js";
 
 /** Runs one check by id and returns its result rows. */
 function runOnly(root, id, extra = {}) {
@@ -219,6 +220,29 @@ test("package freshness: a done unit newer than the package blocks and names the
     const found = messages(runOnly(root, "package-freshness"));
     assert.match(found[0], /is older than 1 done unit/);
     assert.match(found[0], /deck --book-dir/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("package freshness: with a content record, a newer file time alone is not staleness", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    const cards = { meta: { done: true }, items: [card("a")] };
+    const unit = writeUnit(root, "courses/nihongo/lesson-1", cards);
+    const pkg = writeRaw(root, "courses/nihongo/nihongo.apkg", "built");
+    const old = new Date("2020-01-01T00:00:00Z");
+    utimesSync(pkg, old, old);
+    const recorded = JSON.parse(readFileSync(join(unit, "cards.json"), "utf-8"));
+    writePackageInputs(pkg, { "lesson-1": recorded });
+    // What a checkout does: same content, newer time. The mtime check failed this.
+    const newer = new Date("2024-01-01T00:00:00Z");
+    utimesSync(join(unit, "cards.json"), newer, newer);
+    assert.deepEqual(messages(runOnly(root, "package-freshness")), []);
+
+    writeUnit(root, "courses/nihongo/lesson-1", { meta: { done: true }, items: [card("b")] });
+    const found = messages(runOnly(root, "package-freshness"));
+    assert.match(found[0], /was not built from the current cards of 1 done unit/);
   } finally {
     cleanup();
   }

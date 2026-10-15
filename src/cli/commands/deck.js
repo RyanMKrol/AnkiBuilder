@@ -6,6 +6,7 @@ import { basename, resolve } from "path";
 import { withClaim } from "../runClaim.js";
 import { deckIdentityForDir, deckPathForDir } from "../../deck/deckFileName.js";
 import { readJson } from "./shared.js";
+import { cardsDigest, writePackageInputs } from "../../deck/packageInputs.js";
 
 async function runBookDeck(flags, ctx) {
   const bookDir = resolve(flags["book-dir"]);
@@ -47,6 +48,7 @@ async function runDeckInner(flags, ctx) {
   }
 
   const cards = readJson(paths.cards);
+  const digest = cardsDigest(cards);
   const result = ctx.buildDeck(cards, {
     outPath: paths.deck,
     audioDir: existsSync(paths.audio) ? paths.audio : null,
@@ -57,6 +59,10 @@ async function runDeckInner(flags, ctx) {
     // the second build's notes would all import as new. See runDirGuidNamespace in ../deck/rebuild.js.
     guidNamespace: deckIdentityForDir(resolve(flags.run)),
   });
+
+  // The same record rebuildRunDir writes, so preflight and the gate watcher judge this package by
+  // content too. Written after the package, never before (see writePackageInputs).
+  writePackageInputs(paths.deck, { ".": digest }, { digested: true });
 
   ctx.log(
     `built deck with ${result.noteCount} note(s), ${result.mediaCount} media file(s) at ${paths.deck}`,

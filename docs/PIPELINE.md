@@ -1001,6 +1001,18 @@ named file but falls back to the legacy `deck.apkg` left by an older build, so a
 convention is still readable. The one-off script that renamed existing packages has been removed now
 that every package on disk uses the new names; the fallback stays because it costs nothing.
 
+**What the package was built from (`src/deck/packageInputs.js`).** Every package build (`deck
+--book-dir`, `deck --run`, and the dashboard's rebuild at Mark done) writes `<package>.apkg.inputs.json`
+after the package itself: a SHA-256 of each unit's parsed cards as the build read them, keyed by unit
+folder (`.` for a run dir that is its own only unit). It is gitignored with the package. Three readers
+ask "is the package current?" and all go through `unitPackageFreshness`: preflight's
+`package-freshness` check, the gate 2 watcher (`src/review/gateState.js`, behind `await-review.mjs` and
+`check-done.mjs`), and the `packaged` flag in `src/audit/state.js`. Comparing content means a checkout
+or branch switch that rewrites a `cards.json` unchanged is not staleness, which the old file-time
+comparison could not tell. A package with no record (built before this existed) falls back to file
+times, and the result says which basis answered. The record is written after the package, never
+before, so a failed write can only make a package look stale, never vouch for content it lacks.
+
 Builds a two-template Anki note type: **Recognition** (ordinal 0 — question shows `Target` and
 autoplays `Audio`, the target-language listening/recall direction; answer reveals `English`) and
 **Production** (ordinal 1 — question shows `English`, answer reveals `Target`/`Pronunciation`/`Audio`

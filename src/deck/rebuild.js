@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "fs";
-import { join, resolve } from "path";
+import { basename, join, resolve } from "path";
 import { buildDeck as defaultBuildDeck, buildBookDeck as defaultBuildBookDeck } from "./index.js";
+import { cardsDigest, writePackageInputs } from "./packageInputs.js";
 import { deckIdentityForDir, deckPathForDir } from "./deckFileName.js";
 import { parseUnitDir } from "../model/unitDir.js";
 import { collectionDeckKind, isReadingKind } from "../model/deckKind.js";
@@ -156,7 +157,13 @@ export async function rebuildBookDir(
     bookNameFallback,
   });
   const deckKind = collectionDeckKind(bookDir);
-  return buildBookDeck(chapterDecks, {
+  // Digest the cards BEFORE the build, which may resolve them in place, so the record is of what
+  // was read rather than of whatever the builder left behind. Written only after the build returns:
+  // see writePackageInputs for why the order matters.
+  const digests = Object.fromEntries(
+    chapterDecks.map((deck) => [basename(deck.dir), cardsDigest(deck.cards)]),
+  );
+  const result = buildBookDeck(chapterDecks, {
     outPath,
     bookName,
     now: now(),
@@ -168,6 +175,8 @@ export async function rebuildBookDir(
       deckKind,
     }),
   });
+  writePackageInputs(outPath, digests, { digested: true });
+  return result;
 }
 
 // The book/course dir's own marker records whether this deck's `.apkg` guids are namespaced
@@ -202,13 +211,18 @@ export function rebuildRunDir(runDir, { buildDeck = defaultBuildDeck, deckName =
     throw new Error(`cards.json not found at ${cardsPath} — run "translate"/"audio" first`);
   }
   const cards = readJson(cardsPath);
+  const digest = cardsDigest(cards);
   const audioDir = join(runDir, "audio");
-  return buildDeck(cards, {
-    outPath: deckPathForDir(runDir),
+  const outPath = deckPathForDir(runDir);
+  const result = buildDeck(cards, {
+    outPath,
     audioDir: existsSync(audioDir) ? audioDir : null,
     deckName,
     guidNamespace: runDirGuidNamespace(runDir),
   });
+  // A run dir is its own package's only unit, recorded under "." (see packageInputKey).
+  writePackageInputs(outPath, { ".": digest }, { digested: true });
+  return result;
 }
 
 /**

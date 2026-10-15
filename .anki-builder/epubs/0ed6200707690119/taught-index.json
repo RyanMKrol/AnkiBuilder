@@ -1,0 +1,510 @@
+{
+  "chapters": [
+    {
+      "chapter": 1,
+      "label": null,
+      "teaches": []
+    },
+    {
+      "chapter": 2,
+      "label": "Verb Conjugation and Sentence Patterns",
+      "teaches": []
+    },
+    {
+      "chapter": 3,
+      "label": "Adjective and Noun + です Conjugation",
+      "teaches": []
+    },
+    {
+      "chapter": 4,
+      "label": "Plain Forms and the Connective Patterns",
+      "teaches": []
+    },
+    {
+      "chapter": 5,
+      "label": "List of Transitive and Intransitive Verbs",
+      "teaches": []
+    },
+    {
+      "chapter": 6,
+      "label": null,
+      "teaches": []
+    },
+    {
+      "chapter": 7,
+      "label": "Copyright",
+      "teaches": []
+    },
+    {
+      "chapter": 8,
+      "label": "Contents",
+      "teaches": []
+    },
+    {
+      "chapter": 9,
+      "label": null,
+      "teaches": []
+    },
+    {
+      "chapter": 10,
+      "label": "Preface to the Revised 4th Edition",
+      "teaches": []
+    },
+    {
+      "chapter": 11,
+      "label": "Introduction",
+      "teaches": [
+        "Introduces the recurring characters by name: Mike Smith, Emma Robert, Daisuke Suzuki, Mayumi Nakamura, Akira Kato, Keiko Sasaki, Frank Green, Naresh Raja, Mei Chan, Lisa Smith, Paul Hudson, Hana Matsui",
+        "Abbreviation key used throughout the book: e.g., aff., neg., い-adj., な-adj., R2 (Regular 2 verb)"
+      ]
+    },
+    {
+      "chapter": 12,
+      "label": "Unit 1: Bus Tours in Tokyo",
+      "teaches": []
+    },
+    {
+      "chapter": 13,
+      "label": "Lesson 1: This Is the Most Popular One",
+      "teaches": [
+        "Grammar: いちばん superlative — '[category]の なかで いちばん...' expressing 'the most/-est' among three or more options",
+        "Grammar: ~たいんですが — stating a wish as a preliminary to a question",
+        "Grammar: noun が いいです — stating/asking about a preference",
+        "Vocabulary: bus-tour/sightseeing nouns — スカイツリー, コース, バスがいしゃ, はんにち, にんきが ある, まず",
+        "Word Power: seasons and weather — はる, なつ, あき, ふゆ, きせつ, はれ, くもり, あめ, ゆき, てんき",
+        "Word Power: adjectives — おおい, すくない, はやい, おそい",
+        "Word Power: words related to sightseeing — かんこう, ツアー, こうつう, りょうきん, さくら, こうよう, こんでいる, すいている"
+      ]
+    },
+    {
+      "chapter": 14,
+      "label": "Lesson 2: I Prefer that T-Shirt",
+      "teaches": [
+        "Grammar: noun1の ほうが noun2より — comparative (comparing two things)",
+        "Grammar: noun1は noun2が adjective — describing characteristics/components of a person or thing",
+        "Grammar: noun に します — expressing a decision after choosing among options",
+        "Word Power: adjectives (size/weight/texture) — ひろい, せまい, ながい, みじかい, ふとい, ほそい, おもい, かるい, あつい, うすい, かたい, やわらかい, 高い, ひくい, べんり(な), ふべん(な)",
+        "Word Power: parts of the body — かお, かみ(のけ), め, はな, みみ, くち, くび"
+      ]
+    },
+    {
+      "chapter": 15,
+      "label": "Lesson 3: In Shibuya, There Are More Young People Than in Ginza",
+      "teaches": [
+        "Grammar: noun1は noun2より.../noun1は noun2の なかで いちばん... — comparison patterns using は",
+        "Grammar: 何か/どこか/だれか/いつか — referring to indefinite things, places, people, or time",
+        "Grammar: verb[ます-stem]に 行きます/来ます/かえります — 'going/coming/returning somewhere to do something'",
+        "Grammar: interrogative + ~ましょうか — consulting together to decide on something",
+        "Word Power: adjectives — きれい(な), きたない, あんぜん(な), きけん(な)",
+        "Word Power: people — わかい ひと, おとしより, かんこうきゃく",
+        "Phrase Power: describing a town — しぜんが おおいです, ふるい たてものが おおいです, おしゃれな みせが おおいです, くうきが きれいです, れきしが ふるいです, かんこうきゃくに にんきが あります"
+      ]
+    },
+    {
+      "chapter": 16,
+      "label": "Quiz 1 (Unit 1)",
+      "teaches": []
+    },
+    {
+      "chapter": 17,
+      "label": "Unit 2: Business Meetings",
+      "teaches": []
+    },
+    {
+      "chapter": 18,
+      "label": "Lesson 4: I Think We Need More Time",
+      "teaches": [
+        "Grammar: plain forms of verbs (dictionary form, ない-form, た-form, ~なかった)",
+        "Grammar: plain forms of い-adjectives, な-adjectives, and 'noun + です'",
+        "Grammar: ~と おもいます (stating an opinion) vs ~と おもっています (an ongoing or third-person opinion)",
+        "Grammar: ~でしょうか — soliciting a suggestion when choosing something",
+        "Word Power: projects — プロジェクト, コスト, リサーチ, アイデア, マーケティング, スケジュール, よさん, けいかく",
+        "Word Power: adjectives — ひつよう(な), たいせつ(な), むり(な)",
+        "Word Power: verbs — ていあんする, へんこうする, けんとうする",
+        "Phrase Power: proceeding with a project — コストが かかる, リサーチが たりない, あたらしい システムを ていあんする, しゅっちょうの けいかくを たてる"
+      ]
+    },
+    {
+      "chapter": 19,
+      "label": "Lesson 5: She Said It Would Be Ready Today",
+      "teaches": [
+        "Grammar: ~と いっていました — direct/indirect quotation of what someone said, vs ~と いいます/いいました",
+        "Grammar: verb[て-form] みます — 'doing something to test it out'",
+        "Grammar: verb[て-form] きます — 'going somewhere to do something and coming back'",
+        "Word Power: weather expressions — はれる, くもる, あめが ふる, ゆきが ふる, かぜが つよい",
+        "Word Power: actions when wearing things — きる, はく, かぶる, かける, する",
+        "Word Power: tastes — あまい, からい, にがい, すっぱい, まずい",
+        "Word Power: things to do — わたす, かえす, とる, さがす, しらべる"
+      ]
+    },
+    {
+      "chapter": 20,
+      "label": "Lesson 6: It's in a Big, Blue Box",
+      "teaches": [
+        "Grammar: ~で/くて — connecting related sentences or adjectives (noun+で and い/な-adjective て-form)",
+        "Grammar: ~ています describing a resulting state in effect (e.g. wearing clothes, an object contained/attached), vs an ongoing action",
+        "Word Power: belongings — スーツケース, かみぶくろ, コート, てぶくろ",
+        "Word Power: material — プラスチック, かわ, ビニール, かみ, ウール, ナイロン",
+        "Word Power: personalities — やさしい, おもしろい, きびしい, しんせつ(な), げんき(な)",
+        "Word Power: colors and shapes — きいろい, ちゃいろい, グレー, ピンク, まるい, しかくい"
+      ]
+    },
+    {
+      "chapter": 21,
+      "label": "Quiz 2 (Unit 2)",
+      "teaches": []
+    },
+    {
+      "chapter": 22,
+      "label": "Casual Style 1",
+      "teaches": [
+        "Casual style: 何か→何(なん)か, どこか→どっか (だれか and いつか stay the same)",
+        "Casual style: どちら→どっち, and by extension こちら/そちら/あちら→こっち/そっち/あっち",
+        "Casual style: ~が いいです→~が いい/いいな (casual preference with sentence-final な)",
+        "Casual style: interrogative + ~ましょうか (deciding together)→dictionary form with rising intonation",
+        "Casual style: connective ~が ('but')→~けど",
+        "Casual style: sentence-final な added after plain form/だ+な to soften a stated opinion or preference",
+        "Casual style: ~と いっていましたよ→~って いってたよ; ~ている/~ていた→~てる/~てた contraction"
+      ]
+    },
+    {
+      "chapter": 23,
+      "label": "Unit 3: Taking a Trip",
+      "teaches": []
+    },
+    {
+      "chapter": 24,
+      "label": "Lesson 7: Have You Ever Been to Hakone?",
+      "teaches": [
+        "Grammar: verb[た-form] ことが あります — talking about past experiences",
+        "Grammar: plain form + んです/んですか — asking for and offering explanations",
+        "Grammar: particle も after a quantity, emphasizing a large amount",
+        "Word Power: experiences in Japan — (お)しろ, きもの, すもう, だいぶつ, (お)みこし, ぼんおどり, なべりょうり, おこのみやき, しょうちゅう, まっちゃ",
+        "Word Power: numbers and counters — ~はい/ばい/ぱい, ~さつ, ~ぶ, ~だい, ~こ"
+      ]
+    },
+    {
+      "chapter": 25,
+      "label": "Lesson 8: I Soaked in a Hot Spring While Gazing at Mount Fuji",
+      "teaches": [
+        "Grammar: verb[た-form]り、verb[た-form]り — giving examples of actions or events",
+        "Grammar: verb[ます-stem]ながら — describing simultaneous actions",
+        "Grammar: verb[ます-stem]ましょうか — offering to do something",
+        "Word Power: things to do over the weekend — うちで のんびりする, せんたくを する, ガーデニングを する, バーベキューを する, ゲームを する, どうがを 見る, オンラインショッピングを する, ドライブを する, ヨガを する, トレーニングを する, えを かく, ピアノを ひく, 友だちと おしゃべりを する, 子どもと あそぶ, キャンプを する, ボランティアを する"
+      ]
+    },
+    {
+      "chapter": 26,
+      "label": "Lesson 9: I Can Join the Meeting",
+      "teaches": [
+        "Grammar: expressing potentiality — noun が できます, and the verb potential form (Regular 1: -u→-eru; Regular 2: -る→-られる; irregular くる→こられる, する→できる)",
+        "Grammar: ~ので giving a reason, softer than ~から",
+        "Word Power: information at shops and restaurants — うりきれ, まんせき, えいぎょうちゅう, じゅんびちゅう, ていきゅうび",
+        "Word Power: services at convenience stores/supermarkets/department stores — くるまいす, ベビーカー, コインロッカー, じゅにゅうしつ, きゅうけいじょ, じゅうでんする, うけとる, あずける, はらう, かえる"
+      ]
+    },
+    {
+      "chapter": 27,
+      "label": "Quiz 3 (Unit 3)",
+      "teaches": []
+    },
+    {
+      "chapter": 28,
+      "label": "Unit 4: Visiting a Branch Office",
+      "teaches": []
+    },
+    {
+      "chapter": 29,
+      "label": "Lesson 10: I Came Here When I Was a Student",
+      "teaches": [
+        "Grammar: 'when' (1) — noun の/adjective とき",
+        "Grammar: verb[て-form]から — expressing a sequence of events, 'after'",
+        "Word Power: life stages — うまれる, にゅうがくする, しけんを うける, しゅうしょくする, てんしょくする, たいしょくする/やめる, こんやくする, けっこんする, こどもが できる, こどもが うまれる, ひっこす, りこんする, しぬ/なくなる",
+        "Word Power: majors — ほうりつ, けいざいがく, ぶんがく, いがく, けいえいがく, ぶつりがく, すうがく, コンピューターサイエンス, バイオテクノロジー, こくさいかんけい",
+        "Word Power: occupations — きょうし, コンサルタント, いしゃ, かんごし, かいけいし, プログラマー, けんちくか, けんきゅうしゃ, がいこうかん, こうむいん",
+        "Word Power: department names — マーケティング, えいぎょう, けいり, そうむ, こうほう, システム, きかく, じんじ, しょうひんかいはつ, しょうひんかんり"
+      ]
+    },
+    {
+      "chapter": 30,
+      "label": "Lesson 11: Your Japanese Will Get Better",
+      "teaches": [
+        "Grammar: い-adjective[く]/な-adjective[に] なります — describing a change of state",
+        "Grammar: 'when' (2) — verb[plain form] とき, contrasting present vs past tense before とき",
+        "Word Power: nature — き, みどり, かわ, いけ, みずうみ, くも, やま, もり, はやし, はたけ",
+        "Word Power: urban life — マンション, アパート, いえ, みち, こうじょう, ガソリンスタンド, おおがたスーパー, えきビル",
+        "Word Power: expressing change — できる, なくなる, ふえる, へる, あがる, さがる"
+      ]
+    },
+    {
+      "chapter": 31,
+      "label": "Lesson 12: A Lounge that Overlooks Osaka Castle",
+      "teaches": [
+        "Grammar: forming modifying (relative) clauses — nouns, adjectives, and verbs (plain form) placed before the noun they modify",
+        "Grammar: 見える/聞こえる — 'visible/audible' (naturally seen or heard)",
+        "Grammar: expressing frequency — [period]に[number]かい ('...times per...')",
+        "Word Power: interests — 山のぼり, スケートボード, さどう, わだいこ",
+        "Word Power: the daily grind — かおを あらう, はを みがく, ひげを そる, いぬの さんぽを する",
+        "Word Power: things to do on days off — 旅行を する, かぞくと 外食を する, びよういんに 行く, かたづける"
+      ]
+    },
+    {
+      "chapter": 32,
+      "label": "Quiz 4 (Unit 4)",
+      "teaches": []
+    },
+    {
+      "chapter": 33,
+      "label": "Casual Style 2",
+      "teaches": [
+        "Casual style: ~んですか→~の? (rising intonation)",
+        "Casual style: ~んです→~んだ/~の",
+        "Casual style: とても→すごく (and とっても/すっごく when spoken with emotion)",
+        "Casual style: sentence-connective ~が→~けど, even following the ですます stem",
+        "Casual style: 来られる/食べられる→来れる/食べれる (dropping ら from Regular 2/irregular potential forms)"
+      ]
+    },
+    {
+      "chapter": 34,
+      "label": "Unit 5: Teamwork",
+      "teaches": []
+    },
+    {
+      "chapter": 35,
+      "label": "Lesson 13: You Should Go Home Early",
+      "teaches": [
+        "Grammar: verb[た-form/ない-form] ほうが いいです — expressing a strong suggestion (should/shouldn't do)",
+        "Grammar: adverbial forms of adjectives modifying verbs (い-adjective→く, な-adjective→に; いい→よく is an exception)",
+        "Word Power: adjectives — はやい, おそい, つよい, よわい, ねむい, あつい, あたたかい, つめたい, ぬるい",
+        "Word Power: symptoms and conditions — かぜ, せき, ふつかよい, けが",
+        "Phrase Power: speaking about symptoms and conditions — かぜを ひきました; せき/くしゃみ/はな(みず)/あくびが 出ます; あしに けがを しました; 手/ゆびに やけどを しました; めが かゆいです; ふつかよい/ねぶそく/じさぼけ/アレルギー/かふんしょうです"
+      ]
+    },
+    {
+      "chapter": 36,
+      "label": "Lesson 14: I Have to Carry Them",
+      "teaches": [
+        "Grammar: ~なければ なりません — expressing obligation (contracted casual form ~なきゃ)",
+        "Grammar: ~なくても いいです — expressing lack of obligation",
+        "Grammar: ~ていません — 'not yet' (haven't done something)",
+        "Word Power: verbs — きめる, えらぶ, なおす, つたえる, そうだんする, 電話を かける, しつもんする, こたえる, たのむ, はこぶ",
+        "Phrase Power: holding an event — イベントの けいかくを はっぴょうする, イベントを えんきする, イベントを 中止する, パーティーの 時間を かくにんする, パーティーに しゅっせきする"
+      ]
+    },
+    {
+      "chapter": 37,
+      "label": "Lesson 15: I'm Relieved It Ended Without Any Problems",
+      "teaches": [
+        "Grammar: giving a reason (2) — ~て/で as a light reason/cause, contrasted with から/ので when the main clause is a request or a controllable result",
+        "Grammar: emotional expressions — speaker-only feeling adjectives (うれしい, かなしい, etc.) vs describing a third party's feeling with ~ています or the ~がる verb form (よろこぶ, さびしがる)",
+        "Word Power: feelings — うれしい, かなしい, くやしい, はずかしい, さびしい, こまる, おどろく/びっくりする, がっかりする, しんぱいする, あんしんする",
+        "Phrase Power: occurrences — しけんに ごうかくする/おちる, 試合に かつ/まける, 電車に かばんを わすれる, さいふを おとす, やくそくの 時間を まちがえる, 会議に おくれる, エアコンが こわれる"
+      ]
+    },
+    {
+      "chapter": 38,
+      "label": "Quiz 5 (Unit 5)",
+      "teaches": []
+    },
+    {
+      "chapter": 39,
+      "label": "Unit 6: Cooking Classes",
+      "teaches": []
+    },
+    {
+      "chapter": 40,
+      "label": "Lesson 16: I'm Thinking of Learning Japanese Cooking",
+      "teaches": [
+        "Grammar: volitional form + と 思っています — expressing volition, 'I am thinking of...'",
+        "Grammar: connecting the particle の to another particle (noun1+まで/から/と/での + noun2) to form a modifying phrase",
+        "Word Power: verbs — しゅうりする, おぼえる, すてる, そだてる",
+        "Phrase Power: New Year's resolution — つぎの もくひょうを きめる, 今の せいかつを 楽しむ, きそくただしい せいかつを する, 毎日 ピアノの れんしゅうを する, 日本語の オンラインレッスンを うける, りゅうがくする, けんきゅうを つづける, アルバイトを 始める, パートナーを 見つける, しょうらいについて かんがえる, じぶんが ただしいと 思う ことを する"
+      ]
+    },
+    {
+      "chapter": 41,
+      "label": "Lesson 17: This Is My First Time Learning Japanese Cooking",
+      "teaches": [
+        "Grammar: nominalizing sentences with の, forming a noun clause used with は/が/を",
+        "Grammar: ~場合は — 'in case'",
+        "Grammar: ~ことも あります — 'it sometimes happens that...'",
+        "Phrase Power: things you enjoy doing — スポーツを 見る, 人や ものを かんさつする, 外で からだを うごかす, いろいろな 人と 出会う, あたらしい ぶんかを しる, どうぶつの せわを する, いろいろな ところに 出かける, はじめての ことに ちょうせんする, しずかに 時間を すごす"
+      ]
+    },
+    {
+      "chapter": 42,
+      "label": "Lesson 18: When the Frying Pan Is Hot, Put in the Chicken",
+      "teaches": [
+        "Grammar: 'when' (3) — ~たら (conditional/temporal), contrasted with ~た とき",
+        "Grammar: ~間に ('while', an action during a limited window) vs ~間 (an action continuing throughout a period)",
+        "Grammar: ~よてい — 'plan to', a mostly-decided schedule or activity",
+        "Grammar: transitive and intransitive verb pairs (e.g. 開ける/開く, 止める/止まる)",
+        "Word Power: transitive verbs — おゆを わかす, 肉を やく, 肉を にる, ごはんを たく",
+        "Word Power: intransitive verbs — おゆが わく, 肉が やける, 肉が にえる, ごはんが たける",
+        "Word Power: seasonings and ingredients — さとう, しお, こしょう, しょうゆ, あぶら/オイル, たまご, ぎゅう肉, ぶた肉, とり肉, さかな"
+      ]
+    },
+    {
+      "chapter": 43,
+      "label": "Quiz 6 (Unit 6)",
+      "teaches": []
+    },
+    {
+      "chapter": 44,
+      "label": "Casual Style 3",
+      "teaches": [
+        "Casual style: すみません→ごめん (apology)",
+        "Casual style: そうですか/そうだったんですか→そっか",
+        "Casual style: ~ましょう ('let's')→volitional form (行きましょう→行こう)",
+        "Casual style: ~なければ なりません→~なきゃ",
+        "Casual style: sentence-final わ with falling intonation, used when stating one's own decision or impression (e.g. 帰るわ)"
+      ]
+    },
+    {
+      "chapter": 45,
+      "label": "Unit 7: Daily Life at the Office",
+      "teaches": []
+    },
+    {
+      "chapter": 46,
+      "label": "Lesson 19: What Will You Do If You Receive a Special Bonus?",
+      "teaches": [
+        "Grammar: ~かもしれません — stating there is a possibility",
+        "Grammar: ~たら — making a hypothetical statement (optionally emphasized with もし)",
+        "Word Power: figures — ~ばい (multiples), ~パーセント, ~分の~ (fractions)",
+        "Phrase Power: business expressions — 売れ行き/せいせきが いい/悪い, ぎょうせき/せいせきが 上がる/下がる, 売り上げが ふえる/へる, ボーナスが 20パーセント ふえる, ボーナスが 3分の1 へる, ボーナスが 半分に なる, きゅうりょうが 上がる/下がる/ばいに なる"
+      ]
+    },
+    {
+      "chapter": 47,
+      "label": "Lesson 20: When I Opened a File, My Computer Got Frozen",
+      "teaches": [
+        "Grammar: ~たら、~ました — stating what the speaker realized as a result of an action",
+        "Grammar: verb[て-form]しまいます — showing the completion of an action/event (casual contraction ~ちゃう/~じゃう)",
+        "Phrase Power: using computers and smartphones — パソコンの でんげんを 入れる/立ち上げる, でんげんを きる/シャットダウンする, さいきどうする, インターネットに せつぞくする, ウェブサイトに アクセスする, メールを ほぞんする/さくじょする/いんさつする, メールに ファイルを てんぷする, ソフト/アプリを インストールする/ダウンロードする, データを にゅうりょくする, ファイルを 開く/開ける, ウイルスに かんせんする, フリーズする, せつぞくが きれる, データが きえる"
+      ]
+    },
+    {
+      "chapter": 48,
+      "label": "Lesson 21: If You Take the Shinkansen, You'll Make It on Time",
+      "teaches": [
+        "Grammar: ~ば conditional form (verbs, adjectives, and nouns)",
+        "Grammar: ~しか ~ない — 'only', showing there is little of something, contrasted with だけ",
+        "Word Power: facilities for members — 会員, かいひ, せつび, ねんじゅうむきゅう, 24時間えいぎょう",
+        "Word Power: adjectives — ほうふ(な), せいけつ(な)",
+        "Word Power: verbs — ぼしゅうする, 入会する, もうしこむ, しはらう",
+        "Phrase Power: joining a sports club — プログラムが ほうふだ, スポーツクラブに 入会する, クラスに もうしこむ, クラスを 見学する, せつびが じゅうじつしている"
+      ]
+    },
+    {
+      "chapter": 49,
+      "label": "Quiz 7 (Unit 7)",
+      "teaches": []
+    },
+    {
+      "chapter": 50,
+      "label": "Unit 8: A Celebration Party",
+      "teaches": []
+    },
+    {
+      "chapter": 51,
+      "label": "Lesson 22: It Looks Delicious",
+      "teaches": [
+        "Grammar: ~そう — 'it looks like' (intuitive appearance; い/な-adjective and verb forms, negative なさそう)",
+        "Grammar: ~なら — 'if it's the case that...' (a suggestion/request based on what the other party just said; それなら)",
+        "Word Power: various parties — 食事会, 飲み会, かんげい会, そうべつ会, 新年会, ぼうねん会, 花見, クリスマスパーティー",
+        "Phrase Power: describing appearances and impressions — からそうです, あまそうです, 高そうです, 安そうです, おもそうです, かるそうです, おもしろそうです, こわそうです, しあわせそうです, もんだいが ありそうです, 雨が ふりそうです, (ロープが)きれそうです, 花が さきそうです"
+      ]
+    },
+    {
+      "chapter": 52,
+      "label": "Lesson 23: Go Up to the Second Floor and It's on Your Right",
+      "teaches": [
+        "Grammar: plain present + と — speaking of natural or habitual results ('if X then Y naturally happens')",
+        "Grammar: ~でしょう(か) — expressing a supposition/conjecture; cannot be used for the speaker's own action",
+        "Word Power: transitive verbs — ドアを 開ける/閉める, 水を 出す, 車を 動かす/止める, 電気を つける/けす, いろを かえる, 人を あつめる, 会議を 始める",
+        "Word Power: intransitive verbs — ドアが 開く/閉まる, 水が 出る, 車が 動く/止まる, 電気が つく/きえる, しんごうが かわる, 人が あつまる, 会議が 始まる",
+        "Phrase Power: moving around town — おうだんほどうを わたる, さかを 上る/下る, ほどうを とおる, かいだんを 上がる/下りる"
+      ]
+    },
+    {
+      "chapter": 53,
+      "label": "Lesson 24: We're Going to Start Thinking of Overseas Markets",
+      "teaches": [
+        "Grammar: ~し、~し — giving more than one reason, listing representative examples",
+        "Grammar: ~てきました — expressing continuation from past to present, or the beginning of a change",
+        "Grammar: ~ていきます — expressing continuation from present to future",
+        "Grammar: noun が ほしいです — stating what you want to obtain (speaker-only, like ~たいです)",
+        "Word Power: adjectives — すばらしい, じょうぶ(な), 下手(な), きらい(な), ふくざつ(な)",
+        "Word Power: verbs — ふやす, へらす, 上げる, 下げる",
+        "Phrase Power: changing situations — 日本の せいかつに なれる, 日本語の 発音が よく なる, ぼうえきが さかんに なる, かがくが はったつする, こうつうじこを ふせぐ ぎじゅつが すすむ"
+      ]
+    },
+    {
+      "chapter": 54,
+      "label": "Quiz 8 (Unit 8)",
+      "teaches": []
+    },
+    {
+      "chapter": 55,
+      "label": "Casual Style 4",
+      "teaches": [
+        "Casual style: ~でしょう(か)→~だろう(か)/~かな (question or conjecture); ~んでしょう(か)+かな→~のかな",
+        "Casual style: ほんとうに→ほんとに (shortening とう→と)",
+        "Casual style: ~かもしれません→~かもしれない/~かも",
+        "Casual style: ~てしまいました→~ちゃった; ~でしまいました→~じゃった",
+        "Casual style: ~たら どうですか→~たら どう?/~たら? (rising intonation)"
+      ]
+    },
+    {
+      "chapter": 56,
+      "label": "Appendix: Target Dialogues (with kanji and kana)",
+      "teaches": []
+    },
+    {
+      "chapter": 57,
+      "label": "Kanji Worksheet",
+      "teaches": []
+    },
+    {
+      "chapter": 58,
+      "label": "Japanese for Busy People II: Answers",
+      "teaches": []
+    },
+    {
+      "chapter": 59,
+      "label": "Unit 4 (Answers, continued)",
+      "teaches": []
+    },
+    {
+      "chapter": 60,
+      "label": "Unit 7 (Answers, continued)",
+      "teaches": []
+    },
+    {
+      "chapter": 61,
+      "label": "Japanese for Busy People II: Audio Script for Listening Task",
+      "teaches": []
+    },
+    {
+      "chapter": 62,
+      "label": "Japanese for Busy People II: Translations of Reading Tasks",
+      "teaches": []
+    },
+    {
+      "chapter": 63,
+      "label": "Japanese-English Glossary",
+      "teaches": []
+    },
+    {
+      "chapter": 64,
+      "label": "English-Japanese Glossary",
+      "teaches": []
+    },
+    {
+      "chapter": 65,
+      "label": null,
+      "teaches": []
+    }
+  ]
+}

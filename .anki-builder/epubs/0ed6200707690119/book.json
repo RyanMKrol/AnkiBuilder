@@ -1,0 +1,14 @@
+{
+  "title": "Japanese for Busy People Book 2",
+  "slug": "japanese-for-busy-people-book-2",
+  "invariants": {
+    "labelDecoding": 2
+  },
+  "hints": {
+    "vocabularyTableClass": "class_s1hf",
+    "lessonLabelWords": [
+      "Lesson",
+      "Unit"
+    ]
+  }
+}

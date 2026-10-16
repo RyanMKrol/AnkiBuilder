@@ -89,8 +89,8 @@ findings.
 
 - Items the chapter teaches: 83 (12 standalone kanji characters, 61 kanji-table words including the
   4 kanji that are also words and いろいろな所, 10 glossed reading words not already in the table).
-- Items carded: 81 (45 in this unit counting 市 and the excluded いろいろな所 covered by its words, 36
-  in earlier units or the kana deck). 2 are kana words the kana budget left out (これから, こと), which
+- Items carded: 81 (45 in this unit: 44 words and 市; 36 in earlier units or the kana deck, with
+  いろいろな所 counted as the word 所). 2 are kana words the kana budget left out (これから, こと), which
   are not gaps. 好きな, 大好きな, 上手な, 手 and 紙 are counted as carded, with the problems above.
-- Cards checked: 57 (56 shipping, 1 excluded), plus the 22 earlier cards this chapter's items map to.
+- Cards checked: 57 (56 shipping, 1 excluded), plus the 36 earlier cards this chapter's items map to.
 - Cards with a finding: 2 in this unit (好きな, 大好きな), plus 3 in earlier units (上手な, 手, 紙).

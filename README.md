@@ -375,10 +375,20 @@ Three things make it a gate rather than a wall of text:
   acknowledged with `preflight --accept`, recorded in the collection's own tracked
   `.preflight-accepted.json`, and still reported afterwards as a standing count. `INFO` never affects
   the exit code. A number that has been non-zero on every run since it was written teaches the
-  operator to skim past it, which is what the ACK tier exists to stop. Nothing is ACK-tier right now;
-  the tier and its acceptance file stay for the checks that will need them. An INFO check's findings
+  operator to skim past it, which is what the ACK tier exists to stop. An INFO check's findings
   are COUNTED in the default report and LISTED under `--verbose`: the list is the whole value of a
   reporting check, and 400 lines of it by default is the wallpaper the tiers exist to prevent.
+
+One ACK check guards the rule that a card the deck wrote works for someone studying the book in
+order (QA rulings 5 and 6, 2026-10-18). `untaught-words` (`src/audit/checks/untaughtWords.js`) takes
+every `aiSuggested` or `addition` sentence card, marks what the book has taught by that card's unit in
+book position (the earlier units by `meta.chapterNumber`, plus its own chapter's base unit and word
+cards), and names any content word left over that the card's note does not gloss. The fix is a gloss
+in the note, a swap for a word the learner has met, or a cut when the grammar is untaught. A word the
+note does gloss is listed by the INFO check `untaught-words-glossed` instead. It is a containment
+test over kana, not a parser, so a finding can be a false match (an unmarked name, an inflection it
+cannot see), which is why it is ACK and not FAIL. Its first run on Busy People Book 1 found 8
+unglossed instances and 5 glossed ones.
 
 Every run opens with a coverage line (collections by kind, units by shape, directories nobody could
 place, checks skipped for want of input), so "clean" can never mean "I did not look".

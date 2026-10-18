@@ -58,7 +58,18 @@ export function findUnteachable(items, taught, { languageCode, maxResidue = 2 } 
 
     const residue = [...sentence].filter((_, i) => !covered[i]).join("");
     if (residue.length > maxResidue) {
-      findings.push({ id: item.id, target: item.target, residue });
+      // `runs` keeps the residue's contiguous pieces apart, so a caller can ask about one word at a
+      // time (is THIS piece glossed in the note?) instead of a string that joins two of them.
+      const runs = [];
+      let run = "";
+      for (let i = 0; i < sentence.length; i++) {
+        if (covered[i]) {
+          if (run) runs.push(run);
+          run = "";
+        } else run += sentence[i];
+      }
+      if (run) runs.push(run);
+      findings.push({ id: item.id, target: item.target, residue, runs });
     }
   }
   return findings;

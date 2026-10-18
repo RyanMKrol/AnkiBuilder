@@ -55,6 +55,8 @@ was carded in, so a verb carded only as `あいます` is still taught as `あ�
 the lists show the polite past. Skipping a sentence because its inflected form is not printed
 character for character in a list is the shared rule on inflections above, broken.
 
+Grammar follows the same rule as words: a sentence uses only grammar frames this chapter or an earlier one teaches. A verb clause modifying a noun, as in ははがくれるおかし (haha ga kureru okashi, "the sweets my mother gives me"), is not taught in this book, so a sentence that needs one is left out.
+
 ## An answer studied alone needs a scene
 
 Chapters are full of question-and-answer exchanges. An answer card is shuffled and studied months

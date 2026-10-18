@@ -14,6 +14,7 @@ import {
 import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js";
 import { vocabCoverageCheck, placeNameCardCheck } from "./vocab.js";
 import { taughtNeverUsedCheck } from "./taughtNeverUsed.js";
+import { untaughtWordsCheck, untaughtGlossedCheck } from "./untaughtWords.js";
 import { baseSplitCheck } from "./baseSplit.js";
 import { carriedFormsCheck } from "./carriedForms.js";
 import { strayPackageCheck, packageFreshnessCheck } from "./packages.js";
@@ -59,6 +60,8 @@ const SPEAKING_ONLY = [
   drillFrameCheck,
   vocabCoverageCheck,
   taughtNeverUsedCheck,
+  untaughtWordsCheck,
+  untaughtGlossedCheck,
   baseSplitCheck,
   carriedFormsCheck,
   extrasLibraryWriteCheck,
@@ -124,6 +127,8 @@ const SPEAKING_AND_SHARED_CHECKS = [
   libraryCompletenessCheck,
   vocabCoverageCheck,
   taughtNeverUsedCheck,
+  untaughtWordsCheck,
+  untaughtGlossedCheck,
   baseSplitCheck,
   carriedFormsCheck,
   strayPackageCheck,

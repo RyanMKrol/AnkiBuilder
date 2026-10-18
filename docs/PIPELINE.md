@@ -2031,6 +2031,21 @@ written after Busy People Lesson 23's example-sentence miner declined the book's
 ni wa aimasen deshita: "I met Tanaka-san, but not Yamada-san") as needing an untaught past tense, and
 every card for the chapter's contrast rule was lost with it.
 
+**Grammar is held to the same rule as words.** The example-sentence miner, the inventive author and
+the gap author are each told that a sentence uses only grammar frames its chapter or an earlier one
+teaches, with the frame this book never teaches as the named example: a verb clause modifying a noun,
+as in ははがくれるおかし (haha ga kureru okashi, "the sweets my mother gives me"). The cross-lesson
+note pass has the matching rule for notes: a note explains a word only with words the learner has
+met, or glosses what it introduces.
+
+**The rule is checked again after the fact, on the finished deck.** The extras roles' own report
+only sees one run's output, and the additions pathway (class-note retrofits) runs no such step at
+all. Preflight's `untaught-words` check (ACK, `src/audit/checks/untaughtWords.js`) runs the same
+`findUnteachable` coverage over every `aiSuggested` or `addition` card in a collection, against what
+the book has taught by that card's unit in book position (`loadEarlierTaughtItems`). A word the
+card's note glosses is reported by the INFO check `untaught-words-glossed` instead, since that is
+ruling 5's default fix already applied.
+
 #### The inventive author (F5), the only capped role
 
 It writes practice the book does not supply, and it is the only phase-2 role with a ceiling:

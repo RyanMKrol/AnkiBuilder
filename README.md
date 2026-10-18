@@ -393,6 +393,23 @@ computed by `src/audit/state.js`, which is also what every mutating tool now ask
 `--force` covers a unit a human signed off, and a separate `--force-delivered` covers a collection
 whose cards are already in Anki with real scheduling.
 
+Four INFO checks come from the 2026-10 QA learner pass. They tell whoever fixes cards where to look,
+and never block:
+
+- `builder-note`: a note, hint or scene that points at something the learner cannot see in a
+  shuffled review, such as `GRAMMAR 2`, "see NOTES", `Exercise 4`, "the card above" or "below",
+  "Member 3 of the set", or "this lesson's dialogue". `reviewNote` is not read, since it is written
+  for the builder.
+- `cue-leak`: a cue that shows the answer on a face it renders on. A `scene` is on both fronts, so
+  it may hold neither the English (Recognition) nor the target or its romaji (Production). A `hint`
+  is on the Production front only, so it may not hold the target or its romaji. A hint holding the
+  English is fine.
+- `polite-form-label`: a note or hint on a ます, ました, ません or でした form that calls the card
+  the "plain" or "dictionary" form. A note naming some other word's dictionary form is not flagged.
+- `romaji-consistency`: across one collection, a kana word romanized two ways (`iie` on one card,
+  `īe` on another), and a doubled `uu`, `ee` or `aa` where the collection otherwise writes macrons.
+  Case and hyphens are ignored, so にほん as `Nihon` and as `ni-hon` (two bottles) are not variants.
+
 ```sh
 npm run preflight                      # every collection under output/
 node scripts/preflight.mjs <dir>       # one book / course / template deck
@@ -494,6 +511,10 @@ What is built, newest last:
       or over 60 characters — split it, or ship it Recognition-only), and `near-siblings` (one
       sentence frame drilled 3+ times with only a name or number swapped). All three detect a shape;
       whether the shape is a defect stays the reviewer's call
+- [x] Four more INFO shapes from the 2026-10 QA learner pass (`src/audit/checks/cardQuality.js` and
+      `romanization.js`): `builder-note`, `cue-leak`, `polite-form-label` and `romaji-consistency`,
+      described under the preflight section above. The `counter-hyphen` lint now also catches a fused
+      minute counter (`gofun`, `yonpun`)
 - [x] Card-face fixes (a note-type SPEC change: reaching a live collection needs
       `deliver --dry` then `--allow-model-change`). Both prompts are wrapped in `.prompt` at the
       answer's 26px/600, so the string the learner has to decode is no longer 20px as a question and

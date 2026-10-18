@@ -39,7 +39,9 @@ export const JA_COUNTER_HYPHEN_RULE =
 // vocabulary, because a fused-counter detector that fires on `nihon` would be teaching the opposite
 // of the rule it enforces. `hon`, `kai` and `ji` are left out for exactly that reason.
 const JA_NUMBER = "(?:ichi|ni|san|yon|shi|go|roku|nana|shichi|hachi|kyū|ku|jū|hyaku|sen|man)";
-const JA_SAFE_COUNTER = "(?:gatsu|nichi|nen|mai|satsu|sai|banme|jikan)";
+// `fun`/`pun` (minutes) are safe here: no word in the deck begins with a number and then `fun`, and
+// the live deck fused them (`gofun`, `yonpun`) beside the hyphenated `go-fun`.
+const JA_SAFE_COUNTER = "(?:gatsu|nichi|nen|mai|satsu|sai|banme|jikan|fun|pun)";
 // The native ひとつ series, which is one word and must NOT be hyphenated. The live deck writes
 // `mit-tsu` beside `futatsu`/`yottsu`/`muttsu`, which is the same rule guessed both ways.
 const HYPHENATED_NATIVE_NUMERAL = /\b(?:hito|futa|mit|yot|itsu|mut|nana|yat|kokono|tō)-tsu\b/i;

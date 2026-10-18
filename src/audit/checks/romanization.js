@@ -71,6 +71,128 @@ export const romajiStyleCheck = defineCheck({
   },
 });
 
+// The cross-card pass. `romaji-style` reads each card against the pinned spec, which cannot see the
+// same word spelled two ways on two cards: `iie` on one card and `īe` on the next are each a
+// plausible romanization alone, and only together do they look like a distinction being taught
+// (QA theme 9). So this pass splits every card at its punctuation, pairs each kana segment with the
+// romaji segment in the same position, and reports a segment this collection spells more than one
+// way. ONE collection only, as everywhere in this file.
+//
+// Only all-kana segments of two or more characters are compared. A kanji string can have two
+// readings (今日 is `kyō` and `konnichi`), and a one-kana segment can be two words: は is the
+// particle `wa` on one card and 歯 "tooth" `ha` on another.
+const KANA_SEGMENT = /^[\p{Script=Hiragana}\p{Script=Katakana}ー]{2,}$/u;
+const JA_BREAK = /[、。？！?!,，]+/;
+const ROMAJI_BREAK = /[,.?!]+/;
+// Case and hyphens are left out of the comparison. Casing is the unlinted proper-noun rule, and a
+// hyphen is the counter rule's business, which `romaji-style` already reports: にほん is `Nihon`
+// (Japan) and `ni-hon` (two bottles), and those are two words, not one word spelled two ways.
+const spelling = (text) => text.trim().toLowerCase().replace(/-/g, "");
+
+function segmentPairs(item, language) {
+  const spoken =
+    typeof item.ttsText === "string" && item.ttsText.trim() ? item.ttsText : item.target;
+  if (typeof spoken !== "string" || typeof item.pronunciation !== "string") return [];
+  const kana = spoken
+    .split(JA_BREAK)
+    .map((part) => normalizeDisplayText(part, language).trim())
+    .filter(Boolean);
+  const roman = item.pronunciation
+    .split(ROMAJI_BREAK)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  // Segments that do not line up one for one cannot be paired, and a guess would invent findings.
+  if (!kana.length || kana.length !== roman.length) return [];
+  return kana
+    .map((segment, i) => [segment, roman[i]])
+    .filter(([segment]) => KANA_SEGMENT.test(segment));
+}
+
+// A doubled vowel where the pinned style writes a macron. `ou`/`oo` are already reported per card
+// by `romaji-style`; `ii` and `ei` are the style's two kept spellings. `uu`, `ee` and `aa` are left
+// out of the per-card lint because a doubled vowel can sit across a morpheme boundary (みずうみ is
+// `mizuumi`), so here they are reported only where the collection itself writes macrons, which is
+// the evidence that its convention is the macron and this spelling is the odd one out.
+const DOUBLED_VOWEL = /(?:uu|ee|aa)/i;
+const MACRON = /[āīūēō]/i;
+
+export const romajiConsistencyCheck = defineCheck({
+  id: "romaji-consistency",
+  title: "romaji consistency",
+  scope: "collection",
+  tier: "INFO",
+  run({ units }) {
+    if (!units.length || !ROMAJI_STYLES[langOf(units[0])]) {
+      return { skipped: "no pinned romanization style for this collection's language" };
+    }
+    const language = langOf(units[0]);
+
+    // kana segment -> spelling -> [where]
+    const spellings = new Map();
+    let usesMacrons = false;
+    for (const unit of units) {
+      for (const item of shipped(unit)) {
+        if (typeof item.pronunciation === "string" && MACRON.test(item.pronunciation)) {
+          usesMacrons = true;
+        }
+        for (const [segment, roman] of segmentPairs(item, language)) {
+          if (!spellings.has(segment)) spellings.set(segment, new Map());
+          const bySpelling = spellings.get(segment);
+          const key = spelling(roman);
+          if (!bySpelling.has(key)) bySpelling.set(key, { shown: roman, where: [] });
+          bySpelling.get(key).where.push(`${unit.name}/${item.id}`);
+        }
+      }
+    }
+
+    const findings = [];
+    for (const [segment, bySpelling] of spellings) {
+      if (bySpelling.size < 2) continue;
+      const variants = [...bySpelling.values()]
+        .sort((a, b) => b.where.length - a.where.length)
+        .map(
+          (v) =>
+            `"${v.shown}" ×${v.where.length} (${v.where.slice(0, 3).join(", ")}${v.where.length > 3 ? ", ..." : ""})`,
+        );
+      findings.push({
+        key: `two-ways::${segment}`,
+        message: `${segment} is romanized ${bySpelling.size} ways: ${variants.join("; ")}`,
+      });
+    }
+
+    let doubled = 0;
+    if (usesMacrons) {
+      for (const unit of units) {
+        for (const item of shipped(unit)) {
+          if (typeof item.pronunciation !== "string") continue;
+          const match = item.pronunciation.match(DOUBLED_VOWEL);
+          if (!match) continue;
+          doubled++;
+          findings.push({
+            key: `doubled-vowel::${unit.name}/${item.id}`,
+            message: `${unit.name}/${item.id}  "${item.pronunciation}" writes "${match[0]}" where this collection writes macrons`,
+          });
+        }
+      }
+    }
+
+    return {
+      findings,
+      summary: `${spellings.size} kana segment(s) romanized one way across the collection`,
+      notes: [
+        ...(doubled
+          ? [
+              `${doubled} doubled uu/ee/aa: a macron unless the vowels straddle two morphemes (mizuumi)`,
+            ]
+          : []),
+        ...(usesMacrons
+          ? []
+          : ["no macron anywhere in this collection, so doubled vowels were not judged"]),
+      ],
+    };
+  },
+});
+
 // A parenthetical romanization inside a learner-facing note: `はじめまして (hajimemashite)`. The
 // extraction prompt MANDATES one whenever a note quotes non-Roman script, and none of them passes
 // through the romanization pipeline — only the `pronunciation` FIELD does. So the deck carries two

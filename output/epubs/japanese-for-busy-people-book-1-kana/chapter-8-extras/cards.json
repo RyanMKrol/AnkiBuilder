@@ -206,7 +206,7 @@
       "pronunciation": "nan-nin desu ka",
       "aiSuggested": true,
       "reviewNote": "Constructed from the WORD POWER counter list, which teaches なんにん but only ever exercises the polite なんめいさまですか. Coverage job 2 (vocabulary): なんにん had no sentence. NOTE FOR REVIEW — this shares its English with the existing nanmeisama-desu-ka card, so that card needs a hint too (something like 'what restaurant staff ask'); I can only supply the hint on my own side.",
-      "hint": "the everyday wording, not the one restaurant staff use",
+      "hint": "the full question with です (desu), in the everyday wording, not the one restaurant staff use",
       "note": "This is the plain counterpart of なんめいさまですか (nanmeisama desu ka) — same question, no honorific dressing, so it is what you would ask a colleague rather than a customer.",
       "audio": "ffcf5090baf67f93.mp3",
       "audioOriginal": "ffcf5090baf67f93.orig.mp3",
@@ -421,17 +421,18 @@
       "audioAuto": "abc8d8aedabae0c8.mp3",
       "audioMarked": true,
       "audioTextHash": "abc8d8aedabae0c8",
-      "additionDone": true
+      "additionDone": true,
+      "note": "かじ (kaji) is housework, another noun that takes をします (o shimasu)."
     },
     {
       "id": "v-asagohan-tabemasen",
       "english": "Smith-san doesn't eat breakfast.",
       "category": "Food",
       "target": "スミスさんはあさごはんをたべません",
-      "pronunciation": "sumisu san wa asagohan o tabemasen",
+      "pronunciation": "Sumisu-san wa asagohan o tabemasen",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job 3 (forms): たべます is the lesson's headline verb but the deck has no sentence in the plain negative — it has past affirmative (Key Sentence 2) and past negative (Key Sentence 3) only. Second あさごはん context as a bonus.",
-      "note": "Contrast with わたしはうちであさごはんをたべます (watashi wa uchi de asagohan o tabemasu) directly above — same object, opposite polarity.",
+      "note": "Contrast with わたしはうちであさごはんをたべます (watashi wa uchi de asagohan o tabemasu): same object, opposite polarity.",
       "audio": "0e7afd5b59a548b4.mp3",
       "audioOriginal": "0e7afd5b59a548b4.orig.mp3",
       "audioAuto": "0e7afd5b59a548b4.mp3",
@@ -1030,7 +1031,8 @@
       "audioAuto": "60571e7d2524ab61.mp3",
       "audioMarked": true,
       "audioTextHash": "60571e7d2524ab61",
-      "additionDone": true
+      "additionDone": true,
+      "hint": "naming it as last week's weekend"
     },
     {
       "id": "p-depaato-de-kasa-kaimashita",

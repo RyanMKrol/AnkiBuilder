@@ -22,8 +22,8 @@
       "id": "nani",
       "english": "What",
       "category": "Grammar & Function Words",
-      "hint": null,
-      "note": "Plain 'what,' distinct from なんの (nan no) 'what kind of' seen with なんじ (nanji, 'what time') and なんにん (nannin, 'how many people') — なに (nani) alone asks about an unspecified thing, as in なにをしますか (nani o shimasu ka), 'what will you do?'",
+      "hint": "the standalone form, before a particle like を (o)",
+      "note": "なに (nani) alone asks about an unspecified thing, as in なにをしますか (nani o shimasu ka, \"what will you do?\"). Before です (desu) and before a counter it becomes なん (nan): なんじ (nan-ji, \"what time\"), なんにん (nan-nin, \"how many people\").",
       "reviewNote": null,
       "target": "なに"
     },
@@ -313,7 +313,7 @@
       "note": null,
       "reviewNote": null,
       "target": "ききます",
-      "scene": "putting on music or a recording"
+      "scene": "music, the radio, the news"
     },
     {
       "id": "benkyou-wo-shimasu",
@@ -419,7 +419,7 @@
       "id": "nannin",
       "english": "How many people",
       "category": "Numbers",
-      "hint": "the plain, everyday way to ask",
+      "hint": "the question word alone, no です (desu); the plain, everyday way to ask",
       "note": "なん (nan, 'how many') + the counter にん (nin, '…people'). Restaurant and hotel staff ask a customer the same question with the polite なんめいさまですか (nanmeisama desu ka) — see that card.",
       "reviewNote": null,
       "target": "なんにん"
@@ -581,7 +581,7 @@
       "id": "tenmasa-degozaimasu",
       "english": "This is Tenmasa.",
       "category": "Food",
-      "note": "でございます (degozaimasu) in use: a business naming itself on the phone. てんまさ (Tenmasa) is the tempura restaurant in this lesson's dialogue. The everyday form would be てんまさです (tenmasa desu) — でございます (degozaimasu) is what staff say to a customer.",
+      "note": "でございます (degozaimasu) in use: a business naming itself on the phone. てんまさ (Tenmasa) is the tempura restaurant in this lesson's phone call to book a table. The everyday form would be てんまさです (tenmasa desu) — でございます (degozaimasu) is what staff say to a customer.",
       "reviewNote": "From this lesson's Speaking Practice dialogue — the only place the chapter actually uses でございます.",
       "target": "てんまさでございます",
       "scene": "a restaurant answering the phone"
@@ -629,7 +629,7 @@
       "english": "Your name",
       "category": "Other",
       "hint": null,
-      "note": "お (o, honorific prefix) + なまえ (namae, 'name') from Lesson 2 — same pattern as おくに (okuni, 'your country') and おでんわばんごう (odenwa bangou) below: always someone else's, never your own.",
+      "note": "お (o, honorific prefix) + なまえ (namae, \"name\") from Lesson 2: the same pattern as おくに (okuni, \"your country\") and おでんわばんごう (odenwa bangō, \"your phone number\"), always someone else's, never your own.",
       "reviewNote": null,
       "target": "おなまえ"
     },
@@ -638,7 +638,7 @@
       "english": "Your phone number",
       "category": "Technology & Communication",
       "hint": null,
-      "note": null,
+      "note": "お (o, honorific prefix) + でんわばんごう (denwa bangō, \"telephone number\"): the same pattern as おなまえ (onamae, \"your name\") and おくに (okuni, \"your country\"), always someone else's, never your own.",
       "reviewNote": null,
       "target": "おでんわばんごう"
     },

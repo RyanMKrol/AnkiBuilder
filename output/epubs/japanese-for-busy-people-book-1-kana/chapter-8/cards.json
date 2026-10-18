@@ -32,13 +32,13 @@
       "category": "Grammar & Function Words",
       "target": "なに",
       "pronunciation": "nani",
-      "note": "Plain 'what,' distinct from なんの (nan no) 'what kind of' seen with なんじ (nanji, 'what time') and なんにん (nannin, 'how many people') — なに (nani) alone asks about an unspecified thing, as in なにをしますか (nani o shimasu ka), 'what will you do?'",
+      "note": "なに (nani) alone asks about an unspecified thing, as in なにをしますか (nani o shimasu ka, \"what will you do?\"). Before です (desu) and before a counter it becomes なん (nan): なんじ (nan-ji, \"what time\"), なんにん (nan-nin, \"how many people\").",
       "audio": "d1cfab64b27944a0.mp3",
       "audioOriginal": "d1cfab64b27944a0.orig.mp3",
       "audioAuto": "d1cfab64b27944a0.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "hint": "the standalone form, as in なにをしますか (nani o shimasu ka, \"what will you do?\")",
+      "hint": "the standalone form, before a particle like を (o)",
       "audioTextHash": "d1cfab64b27944a0"
     },
     {
@@ -481,7 +481,7 @@
       "audioAuto": "6b35b56dbd2561c0.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "putting on music or a recording",
+      "scene": "music, the radio, the news",
       "audioTextHash": "6b35b56dbd2561c0"
     },
     {
@@ -668,7 +668,7 @@
       "audioAuto": "2ac9a58d7c3654ed.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "hint": "the plain, everyday way to ask",
+      "hint": "the question word alone, no です (desu); the plain, everyday way to ask",
       "audioTextHash": "2ac9a58d7c3654ed"
     },
     {
@@ -908,7 +908,7 @@
       "category": "Food",
       "target": "てんまさでございます",
       "pronunciation": "tenmasa de gozaimasu",
-      "note": "でございます (degozaimasu) in use: a business naming itself on the phone. てんまさ (Tenmasa) is the tempura restaurant in this lesson's dialogue. The everyday form would be てんまさです (tenmasa desu) — でございます (degozaimasu) is what staff say to a customer.",
+      "note": "でございます (degozaimasu) in use: a business naming itself on the phone. てんまさ (Tenmasa) is the tempura restaurant in this lesson's phone call to book a table. The everyday form would be てんまさです (tenmasa desu) — でございます (degozaimasu) is what staff say to a customer.",
       "reviewNote": "From this lesson's Speaking Practice dialogue — the only place the chapter actually uses でございます.",
       "audio": "05d3d4ce0e8e4ebb.mp3",
       "audioOriginal": "05d3d4ce0e8e4ebb.orig.mp3",
@@ -982,7 +982,7 @@
       "category": "Other",
       "target": "おなまえ",
       "pronunciation": "onamae",
-      "note": "お (o, honorific prefix) + なまえ (namae, 'name') from Lesson 2 — same pattern as おくに (okuni, 'your country') and おでんわばんごう (odenwa bangou) below: always someone else's, never your own.",
+      "note": "お (o, honorific prefix) + なまえ (namae, \"name\") from Lesson 2: the same pattern as おくに (okuni, \"your country\") and おでんわばんごう (odenwa bangō, \"your phone number\"), always someone else's, never your own.",
       "audio": "641062db9874584a.mp3",
       "audioOriginal": "641062db9874584a.orig.mp3",
       "audioAuto": "641062db9874584a.mp3",
@@ -996,7 +996,7 @@
       "category": "Technology & Communication",
       "target": "おでんわばんごう",
       "pronunciation": "odenwa bangō",
-      "note": null,
+      "note": "お (o, honorific prefix) + でんわばんごう (denwa bangō, \"telephone number\"): the same pattern as おなまえ (onamae, \"your name\") and おくに (okuni, \"your country\"), always someone else's, never your own.",
       "audio": "f57b306a9695c1ac-genkanji-2d393da5.standard.mp3",
       "audioOriginal": "f57b306a9695c1ac-genkanji-2d393da5.mp3",
       "audioAuto": "f57b306a9695c1ac-genkanji-2d393da5.standard.mp3",
@@ -1142,7 +1142,8 @@
       "audioOriginal": "6afb0f7bad41f8cd.orig.mp3",
       "audioAuto": "6afb0f7bad41f8cd.mp3",
       "audioMarked": true,
-      "audioTextHash": "6afb0f7bad41f8cd"
+      "audioTextHash": "6afb0f7bad41f8cd",
+      "hint": "the weekend, not saying which"
     },
     {
       "id": "fib-tomodachi-gorufu-shimashita",

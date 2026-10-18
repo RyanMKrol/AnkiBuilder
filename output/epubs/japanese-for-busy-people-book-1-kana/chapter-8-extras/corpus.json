@@ -108,7 +108,7 @@
       "english": "How many people?",
       "category": "Numbers",
       "target": "なんにんですか",
-      "hint": "the everyday wording, not the one restaurant staff use",
+      "hint": "the full question with です (desu), in the everyday wording, not the one restaurant staff use",
       "note": "This is the plain counterpart of なんめいさまですか (nanmeisama desu ka) — same question, no honorific dressing, so it is what you would ask a colleague rather than a customer.",
       "reviewNote": "Constructed from the WORD POWER counter list, which teaches なんにん but only ever exercises the polite なんめいさまですか. Coverage job 2 (vocabulary): なんにん had no sentence. NOTE FOR REVIEW — this shares its English with the existing nanmeisama-desu-ka card, so that card needs a hint too (something like 'what restaurant staff ask'); I can only supply the hint on my own side.",
       "aiSuggested": true
@@ -228,7 +228,8 @@
       "target": "にちようび、かじをします",
       "scene": "answering what you do on Sundays",
       "reviewNote": "Nihongo 102, Extra questions PDF, question 5 answer. Job: the only sentence かじ (kaji) appears in.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "かじ (kaji) is housework, another noun that takes をします (o shimasu)."
     },
     {
       "id": "v-asagohan-tabemasen",
@@ -236,7 +237,7 @@
       "category": "Food",
       "target": "スミスさんはあさごはんをたべません",
       "hint": null,
-      "note": "Contrast with わたしはうちであさごはんをたべます (watashi wa uchi de asagohan o tabemasu) directly above — same object, opposite polarity.",
+      "note": "Contrast with わたしはうちであさごはんをたべます (watashi wa uchi de asagohan o tabemasu): same object, opposite polarity.",
       "reviewNote": "Constructed. Coverage job 3 (forms): たべます is the lesson's headline verb but the deck has no sentence in the plain negative — it has past affirmative (Key Sentence 2) and past negative (Key Sentence 3) only. Second あさごはん context as a bonus.",
       "aiSuggested": true
     },
@@ -532,7 +533,8 @@
       "target": "せんしゅうまつ、なにをしましたか",
       "note": "せんしゅう (senshū) 'last week' plus まつ (matsu) 'end'. The lesson's own しゅうまつ (shūmatsu) is the weekend without saying which one.",
       "reviewNote": "Nihongo 102, Extra questions PDF, question 4. Job: names a specific past weekend, where the lesson's しゅうまつになにをしましたか (shūmatsu ni nani o shimashita ka) leaves it open.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "naming it as last week's weekend"
     },
     {
       "id": "p-depaato-de-kasa-kaimashita",

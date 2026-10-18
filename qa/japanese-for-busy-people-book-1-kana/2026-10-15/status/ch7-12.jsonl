@@ -33,3 +33,13 @@
 {"id":"chapter-7-extras/w2-sanban-no-basu-ga-ikimasu/note-unverifiable/1","status":"fixed","statusReason":"Note reuses the Lesson 6 wording: a どの…が question is answered with が, never は."}
 {"id":"chapter-7-extras/raishuu-no-getsuyoubi-ni-sochira/missing-info/1","status":"fixed","statusReason":"English now 'I'll go there (where you are) next Monday.'"}
 {"id":"chapter-7-extras/w2-tanjoubi-juugatsu-kokonoka/wrong-content/1","status":"fixed","statusReason":"Dropped the false 'reverse of English order' clause."}
+{"id":"chapter-8/nani/leaks-answer/1","status":"fixed","statusReason":"Hint no longer prints なに; it says 'the standalone form, before a particle like を'."}
+{"id":"chapter-8/nani/wrong-content/1","status":"fixed","statusReason":"Note contrasts なに with なん (before です and counters) and drops the false なんの derivation."}
+{"id":"chapter-8/nannin/ambiguous/1","status":"fixed","statusReason":"Hint says it is the bare question word with no です; v-nannin-desu-ka's hint names the full question."}
+{"id":"chapter-8/fib-shuumatsu-nani-shimashitaka/ambiguous/1","status":"fixed","statusReason":"Hints on both: 'the weekend, not saying which' and 'naming it as last week's weekend'."}
+{"id":"chapter-8/kikimasu/other/1","status":"fixed","statusReason":"Scene reworded to 'music, the radio, the news', keeping the contrast with 'ask'."}
+{"id":"chapter-8/onamae/other/1","status":"fixed","statusReason":"Dropped 'below', named the card by meaning, fixed the romaji to bangō."}
+{"id":"chapter-8/odenwabangou/missing-info/1","status":"fixed","statusReason":"Added the composition note tying it to おなまえ and おくに; no hint, per the verifier."}
+{"id":"chapter-8/tenmasa-degozaimasu/book-mismatch/1","status":"fixed","statusReason":"Note says the phone call to book a table, not the dialogue."}
+{"id":"chapter-8-extras/v-asagohan-tabemasen/other/1","status":"fixed","statusReason":"Dropped 'directly above'; the quoted sentence identifies the card. Also fixed the romaji to Sumisu-san."}
+{"id":"chapter-8-extras/p102-nichiyoubi-kaji-o-shimasu/missing-info/1","status":"fixed","statusReason":"Added a one-line note for かじ (housework)."}

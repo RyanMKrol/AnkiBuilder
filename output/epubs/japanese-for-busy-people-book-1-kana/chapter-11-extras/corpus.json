@@ -13,7 +13,8 @@
       "target": "とてもおいしかったです",
       "scene": "answering how the tempura you ate in Asakusa was",
       "aiSuggested": true,
-      "reviewNote": "Weekend Dialogue Exercise item 1 (おいしいです), Smith's closing line completed on the printed example とてもたのしかったです; the same sentence is printed verbatim in Speaking Practice 3. Elliptical, so it carries a scene."
+      "reviewNote": "Weekend Dialogue Exercise item 1 (おいしいです), Smith's closing line completed on the printed example とてもたのしかったです; the same sentence is printed verbatim in Speaking Practice 3. Elliptical, so it carries a scene.",
+      "hint": "'really' here is the word for 'very'"
     },
     {
       "id": "f11-tesuto-wa-muzukashikunai-desu",
@@ -137,9 +138,10 @@
       "english": "This is a souvenir from Hakone.",
       "category": "Travel & Tourism",
       "target": "これ、はこねのおみやげです",
-      "note": "The comma instead of は (wa) focuses the listener on これ (kore) before you say what it is. これははこねのおみやげです (kore wa hakone no omiyage desu) would be the version used when they are already looking at it.",
+      "note": "The comma instead of は (wa) focuses the listener on これ (kore) before you say what it is. これははこねのおみやげです (kore wa Hakone no omiyage desu) would be the version used when they are already looking at it.",
       "aiSuggested": true,
-      "reviewNote": "Speaking Practice 2, Smith's line, singled out for comment in NOTES 3. おみやげ is carded as bare vocabulary only."
+      "reviewNote": "Speaking Practice 2, Smith's line, singled out for comment in NOTES 3. おみやげ is carded as bare vocabulary only.",
+      "scene": "handing a gift to a colleague"
     },
     {
       "id": "about-ten-minutes-approx",
@@ -216,7 +218,7 @@
       "target": "スミスさん、きのうはおみやげをありがとうございました",
       "aiSuggested": true,
       "reviewNote": "Speaking Practice 3, Nakamura's opening line, and the worked example for NOTES 2 on past-tense thanks. The deck has bare どうもありがとうございました but no sentence showing what you are thanking someone for.",
-      "note": "きのうは (kinō wa) makes \"yesterday\" the topic: \"about yesterday, thank you for the souvenir.\" Naming the occasion as the topic, then thanking with the past ありがとうございました (arigatō gozaimashita), is the usual way to thank someone for something already done, as in きのうはありがとうございました (kinō wa arigatō gozaimashita, \"thanks for yesterday\"). きのうのおみやげ (kinō no omiyage, \"yesterday's souvenir\") is grammatical, but it labels the gift by its day, as if picking it out from other souvenirs."
+      "note": "きのうは (kinō wa) makes \"yesterday\" the topic: \"about yesterday, thank you for the souvenir.\" Naming the occasion as the topic, then thanking with the past ありがとうございました (arigatō gozaimashita), is the usual way to thank someone for something already done, as in きのうはありがとうございました (kinō wa arigatō gozaimashita, \"thanks for yesterday\")."
     },
     {
       "id": "f11-shutchou-wa-taihen-desu",
@@ -248,9 +250,10 @@
       "english": "It really is beautiful, isn't it?",
       "category": "Travel & Tourism",
       "target": "ほんとうにきれいですね",
-      "note": "Sasaki switches to the present ですね (desu ne) because she is looking at the photo now, even though Emma's trip is over.",
+      "note": "The present ですね (desu ne), because the speaker is looking at the photo now, even though the trip is over.",
       "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Sasaki's comment on the photos. Lesson 10 carded ええ、ほんとうにさむいですね but not this one."
+      "reviewNote": "Target Dialogue, Sasaki's comment on the photos. Lesson 10 carded ええ、ほんとうにさむいですね but not this one.",
+      "scene": "looking at a friend's photo of Mt. Fuji"
     },
     {
       "id": "ex11-asakusa-de-tenpura-o-tabemashita",
@@ -321,7 +324,7 @@
     },
     {
       "id": "v11-sou-desu-ka-yokatta-desu",
-      "english": "Really? I'm glad to hear that.",
+      "english": "Oh, is that so? I'm glad to hear that.",
       "category": "Greetings",
       "target": "そうですか、よかったです",
       "scene": "replying to a colleague who has just told you the souvenir you gave her was delicious",
@@ -486,7 +489,8 @@
       "target": "とてもきれいでした",
       "scene": "answering how climbing Mt. Fuji was",
       "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Emma's reply to どうでしたか (dō deshita ka); the same line is also the answer for the ぎんざ・かぶき alternative in the last dialogue exercise. Deck has bare きれいでした (kirei deshita) as vocabulary but not the とても (totemo) reply."
+      "reviewNote": "Target Dialogue, Emma's reply to どうでしたか (dō deshita ka); the same line is also the answer for the ぎんざ・かぶき alternative in the last dialogue exercise. Deck has bare きれいでした (kirei deshita) as vocabulary but not the とても (totemo) reply.",
+      "hint": "'really' here is the word for 'very'"
     },
     {
       "id": "ex11-iie-omoshirokunakatta-desu",

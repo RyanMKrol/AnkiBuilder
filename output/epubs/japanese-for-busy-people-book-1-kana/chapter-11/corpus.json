@@ -23,8 +23,8 @@
       "english": "How (in question)",
       "category": "Grammar & Function Words",
       "scene": null,
-      "hint": null,
-      "note": "Used in どうでしたか (dou deshita ka), \"How was it?\"",
+      "hint": "asking for an impression or opinion, not by what means",
+      "note": "Used in どうでしたか (dō deshita ka), \"How was it?\"",
       "reviewNote": null,
       "target": "どう"
     },
@@ -44,7 +44,7 @@
       "category": "Other",
       "scene": null,
       "hint": null,
-      "note": "きれい (kirei) is a な-adjective; きれいでした is its plain past form. Compare きれいです (kirei desu), \"it is beautiful\" (present).",
+      "note": "きれい (kirei) is a な-adjective; きれいでした is its past form. Compare きれいです (kirei desu), \"it is beautiful\" (present).",
       "reviewNote": null,
       "target": "きれいでした"
     },
@@ -84,7 +84,7 @@
       "category": "Travel & Tourism",
       "scene": null,
       "hint": null,
-      "note": "Dictionary/plain form of the verb; different from あるいて (aruite, \"on foot\") from Lesson 7, the adverbial form used to say how you traveled, e.g. あるいてうちにかえりました (walked home).",
+      "note": "Different from あるいて (aruite, \"on foot\") from Lesson 7, the form used to say how you traveled, e.g. あるいてうちにかえりました (aruite uchi ni kaerimashita, \"walked home\").",
       "reviewNote": null,
       "target": "あるきます"
     },
@@ -92,9 +92,9 @@
       "id": "jikan-suffix",
       "english": "(Number of) hours",
       "category": "Time",
-      "scene": "after a number, as in 2じかん (ni-jikan)",
+      "scene": "after a number, counting a length of time",
       "hint": null,
-      "note": "Suffix — attaches after a number to count hours, e.g. ８じかん (hachi jikan), \"8 hours.\"",
+      "note": "Suffix: attaches after a number to count hours, e.g. ８じかん (hachi-jikan), \"8 hours.\"",
       "reviewNote": "Written 〜じかん in the source | Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (じかん is formally taught as part of the dedicated time-period counters set later, not just incidental vocabulary here)",
       "target": "じかん",
       "uncertain": true
@@ -127,7 +127,7 @@
       "category": "Other",
       "scene": null,
       "hint": null,
-      "note": "な-adjective meaning hard or tough, as in an arduous experience; たいへんでした (taihen deshita) is its plain past form. Contrast むずかしい (muzukashii), \"difficult\" in the sense of intellectually hard.",
+      "note": "な-adjective meaning hard or tough, as in an arduous experience; たいへんでした (taihen deshita) is its past form. Contrast むずかしい (muzukashii), \"difficult\" in the sense of intellectually hard.",
       "reviewNote": null,
       "target": "たいへん"
     },
@@ -158,7 +158,7 @@
       "category": "Emotions & Feelings",
       "scene": null,
       "hint": null,
-      "note": "い-adjective; たのしかったです (tanoshikatta desu) is its plain past form.",
+      "note": "い-adjective; たのしかったです (tanoshikatta desu) is its past form.",
       "reviewNote": null,
       "target": "たのしい"
     },
@@ -260,7 +260,7 @@
       "category": "Other",
       "scene": null,
       "hint": null,
-      "note": "いい (ii) conjugates irregularly — its negative and past forms are built from よく, not いく.",
+      "note": "いい (ii) conjugates irregularly: its other forms are built on よ (yo), not い (i): よくないです (yokunai desu), よかったです (yokatta desu), よくなかったです (yokunakatta desu).",
       "reviewNote": "From the GRAMMAR adjective-conjugation chart",
       "target": "いいです"
     },
@@ -594,7 +594,7 @@
       "english": "You're welcome.",
       "category": "Greetings",
       "scene": null,
-      "hint": "a little stiff; in everyday talk people usually just brush the thanks aside",
+      "hint": null,
       "note": null,
       "reviewNote": null,
       "target": "どういたしまして"

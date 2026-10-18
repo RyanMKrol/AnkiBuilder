@@ -44,7 +44,8 @@
       "audioOriginal": "ca9682082496fcb1.orig.mp3",
       "audioAuto": "ca9682082496fcb1.mp3",
       "audioMarked": true,
-      "audioTextHash": "ca9682082496fcb1"
+      "audioTextHash": "ca9682082496fcb1",
+      "hint": "'really' here is the word for 'very'"
     },
     {
       "id": "f11-tesuto-wa-muzukashikunai-desu",
@@ -315,15 +316,16 @@
       "english": "This is a souvenir from Hakone.",
       "category": "Travel & Tourism",
       "target": "これ、はこねのおみやげです",
-      "pronunciation": "kore, hakone no omiyage desu",
-      "note": "The comma instead of は (wa) focuses the listener on これ (kore) before you say what it is. これははこねのおみやげです (kore wa hakone no omiyage desu) would be the version used when they are already looking at it.",
+      "pronunciation": "kore, Hakone no omiyage desu",
+      "note": "The comma instead of は (wa) focuses the listener on これ (kore) before you say what it is. これははこねのおみやげです (kore wa Hakone no omiyage desu) would be the version used when they are already looking at it.",
       "aiSuggested": true,
       "reviewNote": "Speaking Practice 2, Smith's line, singled out for comment in NOTES 3. おみやげ is carded as bare vocabulary only.",
       "audio": "9bd65f8e791e1fa2.mp3",
       "audioOriginal": "9bd65f8e791e1fa2.orig.mp3",
       "audioAuto": "9bd65f8e791e1fa2.mp3",
       "audioMarked": true,
-      "audioTextHash": "9bd65f8e791e1fa2"
+      "audioTextHash": "9bd65f8e791e1fa2",
+      "scene": "handing a gift to a colleague"
     },
     {
       "id": "about-ten-minutes-approx",
@@ -467,7 +469,7 @@
       "english": "Thank you for the souvenir yesterday, Smith-san.",
       "category": "Greetings",
       "target": "スミスさん、きのうはおみやげをありがとうございました",
-      "pronunciation": "sumisu san, kinō wa omiyage o arigatō gozaimashita",
+      "pronunciation": "Sumisu-san, kinō wa omiyage o arigatō gozaimashita",
       "aiSuggested": true,
       "reviewNote": "Speaking Practice 3, Nakamura's opening line, and the worked example for NOTES 2 on past-tense thanks. The deck has bare どうもありがとうございました but no sentence showing what you are thanking someone for.",
       "audio": "81488743574dbbbd.mp3",
@@ -475,7 +477,7 @@
       "audioAuto": "81488743574dbbbd.mp3",
       "audioMarked": true,
       "audioTextHash": "81488743574dbbbd",
-      "note": "きのうは (kinō wa) makes \"yesterday\" the topic: \"about yesterday, thank you for the souvenir.\" Naming the occasion as the topic, then thanking with the past ありがとうございました (arigatō gozaimashita), is the usual way to thank someone for something already done, as in きのうはありがとうございました (kinō wa arigatō gozaimashita, \"thanks for yesterday\"). きのうのおみやげ (kinō no omiyage, \"yesterday's souvenir\") is grammatical, but it labels the gift by its day, as if picking it out from other souvenirs."
+      "note": "きのうは (kinō wa) makes \"yesterday\" the topic: \"about yesterday, thank you for the souvenir.\" Naming the occasion as the topic, then thanking with the past ありがとうございました (arigatō gozaimashita), is the usual way to thank someone for something already done, as in きのうはありがとうございました (kinō wa arigatō gozaimashita, \"thanks for yesterday\")."
     },
     {
       "id": "f11-shutchou-wa-taihen-desu",
@@ -539,15 +541,16 @@
       "english": "It really is beautiful, isn't it?",
       "category": "Travel & Tourism",
       "target": "ほんとうにきれいですね",
-      "pronunciation": "hontō ni kirei desu ne",
-      "note": "Sasaki switches to the present ですね (desu ne) because she is looking at the photo now, even though Emma's trip is over.",
+      "pronunciation": "hontōni kirei desu ne",
+      "note": "The present ですね (desu ne), because the speaker is looking at the photo now, even though the trip is over.",
       "aiSuggested": true,
       "reviewNote": "Target Dialogue, Sasaki's comment on the photos. Lesson 10 carded ええ、ほんとうにさむいですね but not this one.",
       "audio": "db01692f57df34a4.mp3",
       "audioOriginal": "db01692f57df34a4.orig.mp3",
       "audioAuto": "db01692f57df34a4.mp3",
       "audioMarked": true,
-      "audioTextHash": "db01692f57df34a4"
+      "audioTextHash": "db01692f57df34a4",
+      "scene": "looking at a friend's photo of Mt. Fuji"
     },
     {
       "id": "ex11-asakusa-de-tenpura-o-tabemashita",
@@ -679,7 +682,7 @@
     },
     {
       "id": "v11-sou-desu-ka-yokatta-desu",
-      "english": "Really? I'm glad to hear that.",
+      "english": "Oh, is that so? I'm glad to hear that.",
       "category": "Greetings",
       "target": "そうですか、よかったです",
       "pronunciation": "sō desu ka, yokatta desu",
@@ -982,7 +985,8 @@
       "audioOriginal": "3be712a2a526a1cd.orig.mp3",
       "audioAuto": "3be712a2a526a1cd.mp3",
       "audioMarked": true,
-      "audioTextHash": "3be712a2a526a1cd"
+      "audioTextHash": "3be712a2a526a1cd",
+      "hint": "'really' here is the word for 'very'"
     },
     {
       "id": "ex11-iie-omoshirokunakatta-desu",

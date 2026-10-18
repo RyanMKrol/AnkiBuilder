@@ -75,3 +75,18 @@
 {"id":"chapter-9-extras/-/other/1","status":"fixed","statusReason":"Removed the five book citations (dialogue, notes, Exercise VII, Target Dialogue) and kept the explanations."}
 {"id":"chapter-9-extras/ex9-ee-tokidoki-kimasu/book-mismatch/1","status":"fixed","statusReason":"Note says 'as with a colleague', not restaurant staff."}
 {"id":"chapter-9-extras/fib-tomodachi-ni-meru-o-okurimasu/other/1","status":"fixed","statusReason":"Card ships, so the reviewNote now records that it was restored rather than excluded (no card removed)."}
+{"id":"chapter-11/dou/ambiguous/1","status":"fixed","statusReason":"Hint separates どう from どうやって (impression, not means); book gloss kept."}
+{"id":"chapter-11/jikan-suffix/leaks-answer/1","status":"fixed","statusReason":"Scene no longer prints じかん; kept a scene because Lesson 14's じかん 'Time' shares the target."}
+{"id":"chapter-11/arukimasu/wrong-content/1","status":"fixed","statusReason":"Dropped 'Dictionary/plain form of the verb'; kept the あるいて contrast."}
+{"id":"chapter-11/kirei-deshita/wrong-content/1","status":"fixed","statusReason":"'plain past form' changed to 'past form'."}
+{"id":"chapter-11/taihen-na/wrong-content/1","status":"fixed","statusReason":"'plain past form' changed to 'past form'."}
+{"id":"chapter-11/tanoshii/wrong-content/1","status":"fixed","statusReason":"'plain past form' changed to 'past form'."}
+{"id":"chapter-11/fib-totemo-yokatta-desu-concert/ambiguous/1","status":"fixed","statusReason":"English now 'It was very good.', matching とても and the book's 'very nice'."}
+{"id":"chapter-11/ii-desu/wrong-content/1","status":"fixed","statusReason":"Note says the forms are built on よ and lists them."}
+{"id":"chapter-11/dou-itashimashite/note-unverifiable/1","status":"fixed","statusReason":"Removed the 'a little stiff' hint; no collision needs one."}
+{"id":"chapter-11-extras/ex11-totemo-oishikatta-desu/ambiguous/1","status":"fixed","statusReason":"Kept the book's English; added a hint that 'really' here is the word for 'very'."}
+{"id":"chapter-11-extras/ex11-totemo-kirei-deshita/ambiguous/1","status":"fixed","statusReason":"Kept the book's English; added a hint that 'really' here is the word for 'very'."}
+{"id":"chapter-11-extras/v11-sou-desu-ka-yokatta-desu/ambiguous/1","status":"fixed","statusReason":"English now 'Oh, is that so? I'm glad to hear that.', pointing at そうですか."}
+{"id":"chapter-11-extras/ex11-kore-hakone-no-omiyage-desu/missing-info/1","status":"fixed","statusReason":"Added scene 'handing a gift to a colleague'; Hakone capitalised in the romaji."}
+{"id":"chapter-11-extras/ex11-hontou-ni-kirei-desu-ne/missing-info/1","status":"fixed","statusReason":"Added a photo scene and reworded the note around it, without the dialogue's characters; romaji hontōni."}
+{"id":"chapter-11-extras/ex11-sumisu-san-kinou-wa-omiyage-o-arigatou-gozaimashita/note-unverifiable/1","status":"fixed","statusReason":"Dropped the きのうのおみやげ comparison the book does not make."}

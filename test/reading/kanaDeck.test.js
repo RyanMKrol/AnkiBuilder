@@ -89,6 +89,35 @@ test("the kana unit is a valid reading unit, chapter 00, with its choice reporte
   }
 });
 
+test("a kana form the book teaches twice is one card carrying both senses, in book order", async () => {
+  // Genki teaches さん as "Three" in the numbers and as "Mr./Ms." after a name; keeping only the
+  // first entry shipped a card that could not read the title.
+  const dir = collection([
+    [2, [kana("さん", "Mr./Ms."), kana("ご", "Five")]],
+    [1, [kana("さん", "Three"), kana("ご", "Five.")]],
+  ]);
+  try {
+    const unitDir = join(dir, "chapter-9");
+    await buildKanaUnit({
+      unitDir,
+      collectionDir: dir,
+      targetLanguage: "ja",
+      epubHash: "h",
+      romanize: fakeRomanize,
+    });
+    const cards = JSON.parse(readFileSync(join(unitDir, "cards.json"), "utf-8"));
+    assert.deepEqual(
+      cards.items.map((i) => [i.target, i.english]).sort(),
+      [
+        ["ご", "Five."],
+        ["さん", "Three; Mr./Ms."],
+      ].sort(),
+    );
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("a chapter merged before the kana deck, or a reviewed kana unit, stops the choice", async () => {
   const dir = collection([
     [1, [kana("すし")]],

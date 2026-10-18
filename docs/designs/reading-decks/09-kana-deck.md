@@ -23,6 +23,8 @@ after a few hundred kana words another one teaches nothing new.
   small っ; ー. Every unit the book uses is in at least 3 chosen words, even past a budget. The
   budgets then fill in book order.
 - Phrases count like words. The kana deck is reading practice, not vocabulary.
+- A form the book teaches more than once is one card whose English carries every sense in book
+  order, so さん reads "Three; Mr./Ms." rather than keeping only the first (`src/reading/soundDeck.js`).
 - Its unit is `Chapter 00: Kana` (chapter number 0), so its Anki deck sorts before every chapter.
 - Its cards are studied in a fixed shuffle, not book order (owner, 2026-09-27): in book order the
   numbers ran いち, に, さん and each gave the next away. The shuffle is keyed on each card's id, so it

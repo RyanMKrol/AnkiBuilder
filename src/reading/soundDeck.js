@@ -4,10 +4,13 @@
 // (src/reading/readingSchemes.js) supplies `units` (a word's sound units) and `script` (which budget
 // a word counts against). Japanese's are in src/reading/kanaUnits.js.
 
+import { splitGloss, joinGlosses } from "./glosses.js";
+
 /**
  * Chooses a sound deck from `pool`: every word of the book written only in the language's phonetic
  * script (Japanese: kana), as `{ target, position, ... }`
- * where `position` is book order. Deterministic: the same pool always gives the same deck.
+ * where `position` is book order. Deterministic: the same pool always gives the same deck. A form
+ * that appears more than once is one word whose `english` joins every entry's senses in book order.
  *
  * 1. Coverage: a greedy pass that keeps taking the word meeting the most outstanding need, where a
  *    need is a sound unit seen in fewer than `minPerUnit` chosen words, weighted towards the units the
@@ -21,12 +24,20 @@
  * `minPerUnit` of (the book cannot give more).
  */
 export function selectSoundDeck(pool, { budgets, minPerUnit, units: unitsOf, script: scriptOf }) {
-  const words = [];
-  const seen = new Set();
-  const unselected = [];
+  // One entry per written form, at its first place in the book. A form the book teaches twice keeps
+  // every sense, in book order: さん is "Three" in the numbers and "Mr./Ms." in Lesson 1, and keeping
+  // only the first shipped a card that could not read the title after a name. The rest of the entry
+  // (category, and a reading, which for a kana form is the form itself) is the first one's.
+  const forms = new Map();
   for (const entry of [...pool].sort((a, b) => a.position - b.position)) {
-    if (seen.has(entry.target)) continue;
-    seen.add(entry.target);
+    const first = forms.get(entry.target);
+    if (!first) forms.set(entry.target, { ...entry, senses: splitGloss(entry.english) });
+    else first.senses.push(...splitGloss(entry.english));
+  }
+  const words = [];
+  const unselected = [];
+  for (const { senses, ...form } of forms.values()) {
+    const entry = { ...form, english: joinGlosses(senses) };
     // A digit is not kana to read, and the voice and the romaji cannot say it reliably: Genki's
     // classroom phrase 10ページをみてください held the whole kana deck at the readiness gate.
     if (/\p{Nd}/u.test(entry.target)) {

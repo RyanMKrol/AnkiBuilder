@@ -678,3 +678,80 @@ per-source boolean should become an explicit per-source table.
   output uncommitted because the repository is public; the owner looked at what that exposes (card
   text, no book file, no audio) and chose the backup.
 - **Where it lives:** `.gitignore` (including the `reading/corpora` re-include).
+
+## A deck reads as the book for someone going through it in order
+
+- **What was decided (owner, 2026-10-18):** every card must work for a learner who studies the
+  units in the book's own order, not the order they were built in. "Taught so far" means taught by
+  book position (spine order). A card that assumes build order is fixed, not the order. Casual
+  Style 1 of Busy People, built after Lesson 24 but printed after Lesson 17, is the case that
+  produced the ruling: its two casual negatives get notes, since Lesson 22 teaches the form later.
+- **Why:** the owner built the casual chapters last because they had not planned to study them,
+  then changed their mind; the deck will be shared, and a reader of the book meets Casual Style 1
+  after Lesson 17.
+- **Where it lives:** `qa/README.md` (the learner model), the untaught-word check, the extras
+  authoring passes' notion of taught vocabulary, the build-anki-deck skill.
+
+## When a class convention and the book disagree, the book wins
+
+- **What was decided (owner, 2026-10-18):** a card retrofitted from class notes (the Nihongo 101 and
+  102 absorptions and any later batch) follows the book's conventions: honorifics on other people's
+  names, complete sentences rather than fill-in fragments, the deck's romaji style, and the book's
+  glosses. A retrofitted card whose words the book has not taught by its destination unit's book
+  position either glosses the word in its note or moves to the lesson that teaches the word.
+- **Why:** the deck is a rendering of the book, and the owner wants it to read that way for other
+  learners; the class taught the same material in a different order and register.
+- **Where it lives:** `.claude/skills/build-anki-deck/references/augment-pathway.md`, the
+  untaught-word check (which runs on retrofitted cards as well as authored ones).
+
+## A single kanji the book teaches as a word is the word, across chapters too
+
+- **What was decided (owner, 2026-10-18):** when a later chapter teaches as a word a kanji an earlier
+  chapter carded as a silent character (春 haru, 海 umi, 話 hanashi, 道 michi and 23 more), the
+  earlier card is rewritten in place as the voiced word card, same id. Two exceptions: a kanji with
+  two live word readings (年 nen/toshi, 後 go/ato) stays silent and its English carries both senses,
+  because there is no single authoritative audio for it; and the colour nouns 赤 aka, 青 ao, 白 shiro,
+  黒 kuro, which the book teaches by rule rather than by a vocabulary line, count as taught words.
+- **Why:** `dropCharactersCardedEarlier` (`src/reading/characterGaps.js`) dropped the word as a
+  repeat of the character and logged nothing; 27 kanji across 12 chapters lost their voiced card.
+- **Where it lives:** `docs/card-rules-reading.md` rule 4, `docs/designs/reading-decks/10-character-cards.md`,
+  the function above, a preflight check for a silent single-kanji card whose target a chapter
+  teaches as a word.
+
+## A reading word card lists every reading the book gives, and voices the first
+
+- **What was decided (owner, 2026-10-18):** when the book prints two readings for one word (七人
+  shichinin / nananin, 毎年 mainen / maitoshi, 十歳, 十分, 男の人, 女の人), the card's Says line lists
+  both, the audio speaks the first. This is distinct from a kanji whose reading depends on the word
+  it sits in: that card stays silent.
+- **Why:** the book says both are right for the same word in the same place, so one spoken take is
+  still right, and a learner who reads まいとし should be told that is also correct.
+- **Where it lives:** `docs/card-rules-reading.md`, `docs/designs/reading-decks/04-card-rules.md`,
+  `src/reading/readingSchemes.js`.
+
+## A reading deck cards vocabulary from anywhere in the chapter, in the chapter whose list teaches it
+
+- **What was decided (owner, 2026-10-18):** rule 1 of the reading card rules is widened. Card every
+  word the chapter puts in front of the learner as Japanese to read: vocabulary lists, kanji tables,
+  dialogues, exercises, Culture Notes, reading passages and their word lists. Take the English from
+  the book where it gives one and from the translate pass where it does not, flagged AI-suggested for
+  the review. A word a later chapter's vocabulary list introduces is carded there, not here, so the
+  deck keeps the book's order. Headings, titles and instruction lines are not carded.
+- **Why:** the vocabulary list is one source of vocabulary, not the only one; a Culture Note that
+  prints 生け花 with its reading is teaching it. The owner trusts the translate pass to gloss an
+  un-glossed word, as it already does for every dictated class list. The speaking deck's chapter
+  reader has always worked this way.
+- **Where it lives:** `docs/card-rules-reading.md` rule 1, `docs/designs/reading-decks/04-card-rules.md`,
+  the reading extraction prompt, and a scan of the book for words the old rule left out.
+
+## A proper name is not a card, even when the book lists it as vocabulary
+
+- **What was decided (owner, 2026-10-18):** the existing rule stands and is applied to the units
+  built before it landed. とうきょうタワー, えびすえき and ぎんざどおり (Lesson 19) are excluded; a
+  deck-authored sentence whose answer is the fictitious レストランローマ is rewritten on a common noun.
+  Two clarifications: a name inside a book sentence is fine, and a named facility is a name even
+  when the book's vocabulary list carries it.
+- **Why:** the rule dates from 2026-09-22 and was applied to Lesson 20 only; preflight's
+  missing-headword check listed a fictitious name as uncarded vocabulary, which prompted the card.
+- **Where it lives:** `docs/card-rules-shared.md`, `src/audit/checks/vocab.js`, the missing-headword
+  check (which skips names the book marks fictitious).

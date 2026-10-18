@@ -422,8 +422,10 @@ export function reconcileReading(
     // A character card carries no reading: it is silent by design. A reading an agent attached to a
     // character anyway is dropped here rather than voicing one arbitrary reading of it.
     // A book can print two readings for one form (Genki's 七: しち／なな; 十歳: じゅっさい／じっさい).
-    // Each is its own reading: the audio is spoken from ONE, and the alternatives are named for
-    // review. Kept whole, "しち／なな" would be spoken as both and is not a kana reading at all.
+    // Each is its own reading: the audio is spoken from ONE (the first), and the card's romaji lists
+    // them all, "shichi-nin / nana-nin" (owner ruling, 2026-10-18: a learner who reads the second
+    // should be told it is also right). Kept whole, "しち／なな" would be spoken as both and is not a
+    // kana reading at all.
     const readings = kind === "character" ? [] : wordReadingsOf(wordMembers);
     if (readings.length > 1) readingConflicts.push({ target: form, readings });
     // The English comes from ONE reader: the first in `sources` order that found this form (the
@@ -440,7 +442,7 @@ export function reconcileReading(
     const notes = [];
     if (readings.length > 1) {
       notes.push(
-        `The book gives more than one reading: ${readings.join(", ")}. Audio uses the first.`,
+        `The book gives more than one reading: ${readings.join(", ")}. The romaji lists them all; audio uses the first.`,
       );
     }
     if (scheme?.requiresReading?.(form) && kind !== "character" && !reading) {
@@ -456,6 +458,10 @@ export function reconcileReading(
       // the romaji; the voice is given the written form except where that is ambiguous (see
       // spokenFromWrittenForm and the write-unit step below).
       ...(reading && reading !== form ? { ttsText: reading } : {}),
+      // The readings after the first, for the romaji step only (romanizeReadingItems joins them
+      // into `pronunciation`). Not a schema field: the phase strips it before anything is written,
+      // so neither cards.json nor corpus.json ever carries it.
+      ...(readings.length > 1 ? { alternateReadings: readings.slice(1) } : {}),
       ...(notes.length ? { reviewNote: notes.join(" ") } : {}),
     });
     provenance[id] = [...new Set(members.map((m) => m.producedBy))];
@@ -753,7 +759,13 @@ async function runReadingPhaseInner({
       log,
     },
   );
-  merged.items = romaji.items.slice(0, merged.items.length);
+  // The alternate readings have done their job (they are in the romaji now) and are not a field of
+  // either schema, so they go before the snapshot and the unit are written.
+  merged.items = romaji.items.slice(0, merged.items.length).map((item) => {
+    const rest = { ...item };
+    delete rest.alternateReadings;
+    return rest;
+  });
   const earlierRomaji = new Map(
     romaji.items.slice(merged.items.length).map((item) => [item.id, item.pronunciation ?? ""]),
   );

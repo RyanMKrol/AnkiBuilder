@@ -1876,7 +1876,11 @@ each card's `kind`. There is no `prepare`:
 the phase writes `corpus.json` and `cards.json` itself (`meta.phase: "reading"`, which the readiness
 gate accepts with no speaking passes), and the card id is `r-<sha1 of the written form>`, stable
 across rebuilds. Each agent step reuses its artifact if one is already on disk, so a stop costs only
-the step that was running. The romaji (`src/reading/readingRomaji.js`) is cached per card, but only
+the step that was running. A word the book prints with two readings keeps the first as `ttsText`
+(the audio) and carries the rest as `alternateReadings` into the romaji step only, which romanises
+each and joins them into `pronunciation` (`shichi-nin / nana-nin`); the phase then strips the field,
+so neither schema has it. A cached romaji listing fewer readings than the word has is redone.
+The romaji (`src/reading/readingRomaji.js`) is cached per card, but only
 when its correction pass succeeded: a failed correction leaves the library's romaji on the cards and
 the next run tries again. `--dry` spends nothing, and `--remerge` re-runs the merge of an unreviewed
 chapter from its saved agent output, which is what to do after a merge rule changes. It calls no

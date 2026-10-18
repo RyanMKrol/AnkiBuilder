@@ -19,7 +19,8 @@ has no one pronunciation), and on the romaji line every reading the book's kanji
 (`bun / ki` for 聞); every word containing kanji carries its kana reading, copied
 from the book, which makes the romaji and is never shown. The voice is given the written form, except
 for a single kanji word or a word the book prints with two readings, which are spoken from the kana
-(the review marks those "voice reads the kana"). What earns a card is in
+(the review marks those "voice reads the kana"). A word with two readings is spoken from the first,
+and its romaji line lists them all in the book's order (七人: `shichi-nin / nana-nin`). What earns a card is in
 `docs/card-rules-reading.md`; the Japanese behaviour is `src/reading/readingSchemes.js`.
 
 **Every reading unit is studied in a fixed shuffle, never book order** (`src/reading/studyOrder.js`):

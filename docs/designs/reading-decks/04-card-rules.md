@@ -51,6 +51,11 @@ because of the Production card, and a reading deck has none.
   the word itself. (Owner decision, 2026-09-23 evening: reading is for speaking too, so the back lets
   the learner check they read the word right, not only that they understood it. The first design had
   no romaji.)
+- A word the book prints with more than one reading (七人 しちにん／ななにん, 毎年 まいねん／まいとし):
+  the romaji lists every reading in the book's order, "shichi-nin / nana-nin", and the audio speaks
+  the first. (Owner ruling, 2026-10-18: the book says both are right for the same word, so one spoken
+  take is still right, and a learner who reads the second should be told it is also correct.) This
+  is not the same as a kanji whose reading depends on the word it sits in, which stays silent.
 - A character: the English only. No romaji, no audio, no readings.
 - Never: the kana reading, or the `Note` field. In the speaking decks `Note` carries usage and
   grammar remarks ("polite form of ...", "used with に"), which are about saying a word, not reading

@@ -1,0 +1,272 @@
+[
+  {
+    "order": 1,
+    "key": "chapter-26",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 0,
+    "label": "Chapter 00: Kana",
+    "cards": 299,
+    "units": ["chapter-26"],
+    "reviewed": true
+  },
+  {
+    "order": 2,
+    "key": "chapter-0",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 1,
+    "label": "Chapter 01: Greetings",
+    "cards": 0,
+    "units": ["chapter-0"],
+    "reviewed": false
+  },
+  {
+    "order": 3,
+    "key": "chapter-1",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 2,
+    "label": "Chapter 02: Numbers",
+    "cards": 0,
+    "units": ["chapter-1"],
+    "reviewed": false
+  },
+  {
+    "order": 4,
+    "key": "chapter-2",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 3,
+    "label": "Chapter 03: Lesson 1: New Friends",
+    "cards": 0,
+    "units": ["chapter-2"],
+    "reviewed": false
+  },
+  {
+    "order": 5,
+    "key": "chapter-3",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 4,
+    "label": "Chapter 04: Lesson 2: Shopping",
+    "cards": 0,
+    "units": ["chapter-3"],
+    "reviewed": false
+  },
+  {
+    "order": 6,
+    "key": "chapter-4",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 5,
+    "label": "Chapter 05: Lesson 3: Making a Date",
+    "cards": 83,
+    "units": ["chapter-4"],
+    "reviewed": true
+  },
+  {
+    "order": 7,
+    "key": "chapter-5",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 6,
+    "label": "Chapter 06: Lesson 4: The First Date",
+    "cards": 161,
+    "units": ["chapter-5"],
+    "reviewed": true
+  },
+  {
+    "order": 8,
+    "key": "chapter-6",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 7,
+    "label": "Chapter 07: Lesson 5: A Trip to Okinawa",
+    "cards": 66,
+    "units": ["chapter-6"],
+    "reviewed": true
+  },
+  {
+    "order": 9,
+    "key": "chapter-7",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 8,
+    "label": "Chapter 08: Lesson 6: A Day in Robert's Life",
+    "cards": 97,
+    "units": ["chapter-7"],
+    "reviewed": true
+  },
+  {
+    "order": 10,
+    "key": "chapter-8",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 9,
+    "label": "Chapter 09: Lesson 7: Family Picture",
+    "cards": 99,
+    "units": ["chapter-8"],
+    "reviewed": true
+  },
+  {
+    "order": 11,
+    "key": "chapter-9",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 10,
+    "label": "Chapter 10: Lesson 8: Barbecue",
+    "cards": 82,
+    "units": ["chapter-9"],
+    "reviewed": true
+  },
+  {
+    "order": 12,
+    "key": "chapter-10",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 11,
+    "label": "Chapter 11: Lesson 9: Kabuki",
+    "cards": 93,
+    "units": ["chapter-10"],
+    "reviewed": true
+  },
+  {
+    "order": 13,
+    "key": "chapter-11",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 12,
+    "label": "Chapter 12: Lesson 10: Winter Vacation Plans",
+    "cards": 112,
+    "units": ["chapter-11"],
+    "reviewed": true
+  },
+  {
+    "order": 14,
+    "key": "chapter-12",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 13,
+    "label": "Chapter 13: Lesson 11: After the Vacation",
+    "cards": 116,
+    "units": ["chapter-12"],
+    "reviewed": true
+  },
+  {
+    "order": 15,
+    "key": "chapter-13",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 14,
+    "label": "Chapter 14: Lesson 12: Feeling Sick",
+    "cards": 100,
+    "units": ["chapter-13"],
+    "reviewed": true
+  },
+  {
+    "order": 16,
+    "key": "chapter-14",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 15,
+    "label": "Chapter 15: Reading and Writing 1: Hiragana",
+    "cards": 0,
+    "units": ["chapter-14"],
+    "reviewed": false
+  },
+  {
+    "order": 17,
+    "key": "chapter-15",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 16,
+    "label": "Chapter 16: Reading and Writing 2: Katakana",
+    "cards": 0,
+    "units": ["chapter-15"],
+    "reviewed": false
+  },
+  {
+    "order": 18,
+    "key": "chapter-16",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 17,
+    "label": "Chapter 17: Reading and Writing 3: Daily Life",
+    "cards": 39,
+    "units": ["chapter-16"],
+    "reviewed": true
+  },
+  {
+    "order": 19,
+    "key": "chapter-17",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 18,
+    "label": "Chapter 18: Reading and Writing 4: Mary's Weekend",
+    "cards": 29,
+    "units": ["chapter-17"],
+    "reviewed": true
+  },
+  {
+    "order": 20,
+    "key": "chapter-18",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 19,
+    "label": "Chapter 19: Reading and Writing 5: Travel",
+    "cards": 36,
+    "units": ["chapter-18"],
+    "reviewed": true
+  },
+  {
+    "order": 21,
+    "key": "chapter-19",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 20,
+    "label": "Chapter 20: Reading and Writing 6: My Favorite Restaurant",
+    "cards": 41,
+    "units": ["chapter-19"],
+    "reviewed": true
+  },
+  {
+    "order": 22,
+    "key": "chapter-20",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 21,
+    "label": "Chapter 21: Reading and Writing 7: Mary's Letter",
+    "cards": 30,
+    "units": ["chapter-20"],
+    "reviewed": true
+  },
+  {
+    "order": 23,
+    "key": "chapter-21",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 22,
+    "label": "Chapter 22: Reading and Writing 8: Japanese Office Workers",
+    "cards": 41,
+    "units": ["chapter-21"],
+    "reviewed": true
+  },
+  {
+    "order": 24,
+    "key": "chapter-22",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 23,
+    "label": "Chapter 23: Reading and Writing 9: Sora's Diary",
+    "cards": 43,
+    "units": ["chapter-22"],
+    "reviewed": true
+  },
+  {
+    "order": 25,
+    "key": "chapter-23",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 24,
+    "label": "Chapter 24: Reading and Writing 10: The Folktale Kasajizo",
+    "cards": 26,
+    "units": ["chapter-23"],
+    "reviewed": true
+  },
+  {
+    "order": 26,
+    "key": "chapter-24",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 25,
+    "label": "Chapter 25: Reading and Writing 11: Looking for Friends/Members",
+    "cards": 56,
+    "units": ["chapter-24"],
+    "reviewed": true
+  },
+  {
+    "order": 27,
+    "key": "chapter-25",
+    "epubHash": "af43edd86648b83e",
+    "chapterNumber": 26,
+    "label": "Chapter 26: Reading and Writing 12: Tanabata Festival",
+    "cards": 52,
+    "units": ["chapter-25"],
+    "reviewed": true
+  }
+]

@@ -14,5 +14,27 @@ Method: `qa/README.md`. Prompts: `qa/prompts/`.
 
 ## Chapters
 
-The pilot covered Lesson 8 (`chapter-8`, `chapter-8-extras`). The full run covers every chapter in
-book order; `findings.jsonl` is the union of `findings/*.jsonl` after verification.
+`chapters.json` lists every chapter in book order with its units and card counts. The pilot covered
+Lesson 8 (`chapter-8`, `chapter-8-extras`); the full run covers the other 26. `findings.jsonl` is the
+union of `findings/*.jsonl` after verification.
+
+Pilot result: 17 findings, 11 confirmed, 1 plausible, 4 rejected, 1 merged (both roles caught the
+same wrong note on `nani`).
+
+## Result
+
+Run 2026-10-15 to 2026-10-18 (the agents were cut off by usage limits several times and relaunched;
+a chapter whose agent was cut off was rerun from the start, so no partial report is in the files).
+All 27 chapters, 3,570 cards, reviewed by both roles and verified.
+
+- `findings.jsonl`: 579 lines. 481 CONFIRMED, 43 PLAUSIBLE, 55 REJECTED.
+- The 524 live (non-rejected) findings by severity: 2 blocker, 196 should-fix, 326 polish.
+- By kind: other 119, ambiguous 82, wrong-content 63, missing-info 50, unanswerable 46, book-gap
+  44, book-mismatch 38, leaks-answer 31, untaught-prerequisite 26, note-unverifiable 22,
+  note-restates-card 2, ordering 1.
+- By source: Learner 363, Reader 136, both roles independently 80.
+- `themes.md` groups them into the patterns a fixer should attack first.
+
+Where a Verifier found two agents had used the same finding id for different problems, it
+renumbered one and said so in `verdictReason`. One id that was still duplicated at the merge got
+a `#chapter` suffix.

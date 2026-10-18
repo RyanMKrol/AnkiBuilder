@@ -27,18 +27,16 @@
       "english": "Mr., Mrs., Ms., Miss",
       "category": "Family & People",
       "target": "さん",
-      "reviewNote": "Written 〜さん in the source",
-      "note": "Suffix — attaches after a person's name; cannot be used after one's own name",
+      "note": "Suffix: attaches after a person's name (the 〜 in 〜さん marks where the name goes); cannot be used after one's own name.",
       "hint": "the polite title placed after a name",
       "scene": "attached to a person's name"
     },
     {
       "id": "desu-suffix",
-      "english": "to be (copula)",
+      "english": "To be (copula)",
       "category": "Grammar & Function Words",
       "target": "です",
-      "reviewNote": "Written 〜です in the source",
-      "note": "Suffix — attaches directly after a noun with no space to state what someone or something is; means 'is/am/are'. Example: (わたしは (watashi wa)) スミスです (sumisu desu)。 — '[I am] Smith.'"
+      "note": "Suffix: attaches to the end of a noun to mean 'is/am/are'. Example: (わたしは) スミスです。 (Watashi wa Sumisu desu.), '[I am] Smith.' Attaches directly after the noun with no space, and simply states what someone or something is."
     },
     {
       "id": "ka-particle",
@@ -308,12 +306,10 @@
     },
     {
       "id": "o-prefix",
-      "english": "(honorific prefix)",
+      "english": "(Honorific prefix)",
       "category": "Grammar & Function Words",
       "target": "お",
-      "uncertain": false,
-      "reviewNote": "Written お〜 in the source",
-      "note": "Prefix — attaches before a noun as an honorific. Example, from this chapter's own Target Dialogue: スミスさん (sumisu-san)、おくには (o-kuni wa) どちらですか (dochira desu ka)。 — 'Smith-san, what country are you from?' (お (o) + くに (kuni) = 'your country'.)",
+      "note": "お (o) is not a word on its own: it is a short prefix stuck onto the FRONT of certain nouns to make them sound more polite. On くに (kuni, 'country') it makes おくに (okuni), the polite way to speak of the country of the person you are talking to, heard in this chapter's dialogue: スミスさん、おくには どちらですか。 (Sumisu-san, okuni wa dochira desu ka?, 'Smith-san, what country are you from?').",
       "hint": "the prefix on native words like なまえ (namae, \"name\") and みやげ (miyage, \"souvenir\")"
     },
     {
@@ -340,11 +336,12 @@
     },
     {
       "id": "onegaishimasu-pattern-ch14",
-      "english": "please (I'd like to see Tanaka-san)",
+      "english": "I'd like to see Tanaka-san, please.",
       "category": "Grammar & Function Words",
       "target": "たなかさんをおねがいします",
       "reviewNote": "Placeholder filled with 'たなかさん', the exact example given in the chapter's own NOTES section (source shows only '〜を おねがいします')",
-      "note": "Here おねがいします (onegaishimasu) follows a person's name + を (o) to ask a receptionist to call them over, e.g. たなかさんをおねがいします (Tanaka-san o onegaishimasu); contrast もういちどおねがいします (mou ichido onegaishimasu) from the earlier lesson, where おねがいします stands alone after the request word instead."
+      "note": "を (o) marks the person you are asking for, and おねがいします (onegaishimasu) makes it a polite request: たなかさんをおねがいします (Tanaka-san o onegaishimasu) asks a receptionist to call Tanaka-san over. Contrast もういちどおねがいします (mō ichido onegaishimasu) from the earlier lesson, where おねがいします stands alone after the request word instead.",
+      "hint": "asking at a reception desk"
     },
     {
       "id": "uketsuke",

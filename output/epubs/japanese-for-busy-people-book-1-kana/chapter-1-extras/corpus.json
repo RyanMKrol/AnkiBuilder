@@ -66,9 +66,9 @@
       "english": "Yes, I am.",
       "category": "Grammar & Function Words",
       "target": "はい、そうです",
-      "note": "NOTES 2 explains that そう (sou) stands in for the noun instead of repeating it, so you say はい、そうです (hai, sou desu) rather than はい、たなかです (hai, Tanaka desu).",
-      "reviewNote": "TARGET DIALOGUE, Tanaka's reply, verbatim, and also the answer half of EXERCISE III's model. The deck has はい (hai) and そうです (sou desu) as separate bare vocabulary cards but never the reply itself, so all three confirm-identity question cards in the lesson currently have no answer.",
       "aiSuggested": true,
+      "reviewNote": "TARGET DIALOGUE, Tanaka's reply, verbatim, and also the answer half of EXERCISE III's model. The deck has はい (hai) and そうです (sou desu) as separate bare vocabulary cards but never the reply itself, so all three confirm-identity question cards in the lesson currently have no answer.",
+      "note": "そう (sō) stands in for the noun instead of repeating it, so you say はい、そうです (hai, sō desu) rather than はい、たなかです (hai, Tanaka desu).",
       "scene": "answering when someone asks if you are the person they were looking for"
     },
     {
@@ -83,10 +83,10 @@
     },
     {
       "id": "irl-l1-28",
-      "english": "This is Ryan from England",
+      "english": "This is Ryan from the United Kingdom.",
       "category": "Nationalities & Countries",
       "target": "こちらはイギリスのライアンです",
-      "note": "Here の (no) links country and name ('Ryan of England'); contrast with -じん (jin), which turns the country itself into a nationality noun, as in イギリスじん (igirisu jin).",
+      "note": "Here の (no) links country and name ('Ryan of the United Kingdom'); contrast with -じん (jin), which turns the country itself into a nationality noun, as in イギリスじん (igirisujin). The name has no さん (san) here, which is how you would introduce a friend or someone on your own side; the book's introductions of anyone else keep さん.",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
     },
     {
@@ -198,7 +198,7 @@
     },
     {
       "id": "irl-l1-19",
-      "english": "French Person",
+      "english": "French (person)",
       "category": "Nationalities & Countries",
       "target": "フランスじん",
       "note": "-じん (jin) attached to a country name means 'person from there'; フランス (furansu) alone is just the country.",
@@ -227,11 +227,11 @@
     {
       "id": "fib-watashi-wa-enjinia-desu",
       "english": "I am an engineer.",
-      "category": "School & Education",
+      "category": "Work & Occupations",
       "target": "わたしはエンジニアです",
       "note": null,
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses Lesson 1's introduction frame plus the engineer card routed here",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses Lesson 1's introduction frame plus the engineer card routed here"
     },
     {
       "id": "w2-igirisu-desu",
@@ -308,10 +308,9 @@
       "english": "What country is Harris-san from?",
       "category": "Nationalities & Countries",
       "target": "ハリスさんのおくにはどちらですか",
-      "hint": null,
-      "note": "Asking a third party about someone rather than asking the person directly, so の (no) links the name to おくに (okuni). Every other の (no) in this lesson joins a company to a person; here it is plain possession.",
+      "aiSuggested": true,
       "reviewNote": "Constructed. Particle job: の (no) had ten examples in the deck and all ten were [company] の [person]. This is the first with an ordinary noun after it, and the question half of the pair that puts オーストラリア (Oosutoraria) in a sentence.",
-      "aiSuggested": true
+      "note": "Asking a third party about someone rather than asking the person directly, so の (no) links the name to おくに (okuni). Here の is plain possession (Harris-san's country), not the company-and-person の of the introductions."
     },
     {
       "id": "ex1-chan-chinese",
@@ -328,9 +327,9 @@
       "english": "No, that's not right.",
       "category": "Grammar & Function Words",
       "target": "いいえ、ちがいます",
-      "note": "The negative counterpart of はい、そうです (hai, sou desu). Use it to deny the identification outright. When you want to correct it instead, give the right noun: いいえ、アメリカじんです (iie, amerikajin desu).",
-      "reviewNote": "NOTES 2 teaches this phrase in so many words ('When replying in the negative, say いいえ、ちがいます'), yet ちがいます (chigaimasu) appears nowhere in the deck. The English gloss is mine, as the book prints the phrase untranslated inside the note.",
       "aiSuggested": true,
+      "reviewNote": "NOTES 2 teaches this phrase in so many words ('When replying in the negative, say いいえ、ちがいます'), yet ちがいます (chigaimasu) appears nowhere in the deck. The English gloss is mine, as the book prints the phrase untranslated inside the note.",
+      "note": "ちがいます (chigaimasu) means 'that is different' or 'that's wrong'. The negative counterpart of はい、そうです (hai, sō desu): use it to deny the identification outright. When you want to correct it instead, give the right noun: いいえ、アメリカじんです (īe, amerikajin desu).",
       "scene": "answering no when asked whether you are a particular person"
     },
     {
@@ -383,7 +382,7 @@
     },
     {
       "id": "irl-l1-26",
-      "english": "Is Jack French?",
+      "english": "Is Jack-san French?",
       "category": "Nationalities & Countries",
       "target": "ジャックさんはフランスじんですか？",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
@@ -411,9 +410,9 @@
       "english": "Nice to meet you. I am Tanaka.",
       "category": "Greetings",
       "target": "はじめまして。たなかです",
-      "note": "Note there is no さん (san) on your own name. Tanaka drops the company here because Smith had already named it when asking for him.",
-      "reviewNote": "TARGET DIALOGUE, Tanaka's reply, verbatim. Every self-introduction card in the deck names a company; this is the only place the book shows the short form, and it is also the one a learner outside a business setting would actually use.",
       "aiSuggested": true,
+      "reviewNote": "TARGET DIALOGUE, Tanaka's reply, verbatim. Every self-introduction card in the deck names a company; this is the only place the book shows the short form, and it is also the one a learner outside a business setting would actually use.",
+      "note": "Note there is no さん (san) on your own name. The company can be left out once the other person already knows it.",
       "scene": "introducing yourself with just your name"
     },
     {
@@ -475,7 +474,7 @@
     },
     {
       "id": "irl-l1-21",
-      "english": "Korean Person",
+      "english": "Korean (person)",
       "category": "Nationalities & Countries",
       "target": "かんこくじん",
       "note": "-じん (jin) attached to a country name means 'person from there'; かんこく (kankoku) alone is just the country.",
@@ -513,7 +512,7 @@
       "english": "Teacher",
       "category": "Work & Occupations",
       "target": "せんせい",
-      "note": "Also used directly as a title of address for teachers, doctors, and other professionals (e.g. saying 先生 to or about them instead of their name), not just as the occupation noun.",
+      "note": "Also used directly as a title of address for teachers, doctors, and other professionals (e.g. saying せんせい (sensei) to or about them instead of their name), not just as the occupation noun.",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Occupations, alongside Lesson 1's introductions and workplaces"
     },
     {
@@ -535,7 +534,7 @@
     },
     {
       "id": "irl-l1-27",
-      "english": "Is Ryan English?",
+      "english": "Is Ryan-san British?",
       "category": "Nationalities & Countries",
       "target": "ライアンさんはイギリスじんですか？",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1's own introduction frames (X-san wa Y-jin desu ka)"
@@ -555,9 +554,9 @@
       "english": "It's Harris-san.",
       "category": "Family & People",
       "target": "ハリスさんです",
-      "note": "The same name with さん (san) added is now about somebody else. Compare ハリスです (Harisu desu), which can only mean 'I am Harris'. This one syllable is the whole difference between talking about yourself and talking about another person.",
-      "reviewNote": "Constructed. Vocabulary job: the second half of a minimal pair with w2-harisu-desu, differing only in さん (san). The deck teaches the さん rule in a note on the bare vocabulary card but never shows the two sentences side by side.",
       "aiSuggested": true,
+      "reviewNote": "Constructed. Vocabulary job: the second half of a minimal pair with w2-harisu-desu, differing only in さん (san). The deck teaches the さん rule in a note on the bare vocabulary card but never shows the two sentences side by side.",
+      "note": "The same name with さん (san) added is now about somebody else. Compare ハリスです (Harisu desu), which normally means 'I am Harris'. This one syllable is the usual difference between talking about yourself and talking about another person.",
       "scene": "telling someone which of the people in front of you is the one they were looking for"
     },
     {
@@ -585,10 +584,9 @@
       "english": "I am British.",
       "category": "Nationalities & Countries",
       "target": "わたしはイギリスじんです",
-      "hint": null,
-      "note": "は (wa) after わたし (watashi) makes 'I' the topic, exactly as it does after a name. Japanese drops it once it is obvious who you mean, which is why the Key Sentence prints it in brackets: （わたしは）スミスです (watashi wa Sumisu desu).",
+      "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary job: わたし (watashi) appears in only one sentence card in the deck, and there it sits inside brackets, so the learner never sees it used for real.",
-      "aiSuggested": true
+      "note": "は (wa) after わたし (watashi) makes 'I' the topic, exactly as it does after a name. Japanese drops it once it is obvious who you mean, which is why （わたしは）スミスです (watashi wa Sumisu desu, \"I am Smith\") shows it in brackets."
     },
     {
       "id": "w2-sp2-sasaki-intro",

@@ -5,3 +5,27 @@
 {"id":"chapter-0/gochisousama-deshita/other/1","status":"fixed","statusReason":"Unit's note romaji swept to macrons (gochisōsama, ohayō, sayōnara, mō)."}
 {"id":"chapter-0/konnichiwa/book-mismatch/1","status":"fixed","statusReason":"Note uses the book's 'rather informal'."}
 {"id":"chapter-0/sayounara/book-mismatch/1","status":"fixed","statusReason":"Dropped 'fairly formal' and the 'not for people you will see again' restriction from hint and notes; hint now fits the book's picture and still separates the four Good-bye cards."}
+{"id":"chapter-1/san-suffix-ch14/other/1","status":"fixed","statusReason":"Dropped 'in the source'; the note says what the 〜 means instead."}
+{"id":"chapter-1/desu-suffix/other/1","status":"fixed","statusReason":"Dropped the 'in the source' aside."}
+{"id":"chapter-1/onegaishimasu-pattern-ch14/missing-info/1","status":"fixed","statusReason":"English is the book's 'I'd like to see Tanaka-san, please.', with a reception-desk hint and a clause on what を marks."}
+{"id":"chapter-1/fib-c1-hoffman-not-british/other/1","status":"fixed","statusReason":"Romaji fuses doitsujin like the vocabulary card."}
+{"id":"chapter-1/o-prefix/wrong-content/1","status":"fixed","statusReason":"Note limited to what the book says (お on くに makes it the listener's country); the 'almost entirely yours' generalisation is cut."}
+{"id":"chapter-1-extras/irl-l1-28/book-mismatch/2","status":"fixed","statusReason":"English says 'the United Kingdom', the book's and the igirisu card's gloss (ruling 6, the book wins over the class)."}
+{"id":"chapter-1-extras/w2-harisu-san-desu/note-unverifiable/1","status":"fixed","statusReason":"irl-l1-28 keeps its bare name (hand-curated clip), so 'can only mean' is softened to 'normally means'."}
+{"id":"chapter-1-extras/w2-harris-no-okuni-q/other/1","status":"fixed","statusReason":"Stale 'every other の' claim replaced by the possession contrast."}
+{"id":"chapter-1-extras/irl-l1-26/wrong-content/1","status":"fixed","statusReason":"English keeps '-san' like the target."}
+{"id":"chapter-1-extras/irl-l1-26/other/1","status":"fixed","statusReason":"Romaji fuses furansujin."}
+{"id":"chapter-1-extras/irl-l1-27/wrong-content/1","status":"fixed","statusReason":"English keeps '-san' and says 'British' as the igirisujin card does (ruling 6)."}
+{"id":"chapter-1-extras/irl-l1-27/other/1","status":"fixed","statusReason":"Romaji fuses igirisujin."}
+{"id":"chapter-1-extras/irl-l1-19/other/1","status":"fixed","statusReason":"Romaji fuses furansujin; English matches 'German (person)'."}
+{"id":"chapter-1-extras/irl-l1-21/other/1","status":"fixed","statusReason":"Romaji fuses kankokujin; English matches 'German (person)'."}
+{"id":"chapter-1-extras/fib-hoffman-engineer-a/other/1","status":"fixed","statusReason":"Matched to its unit's 'īe'. The collection-wide iie/īe choice (the style guide's 'いい stays ii' points at iie) is left to the T8 consistency check, not settled here."}
+{"id":"chapter-1-extras/td-hai-sou-desu/other/1","status":"fixed","statusReason":"Dropped the NOTES 2 citation; the point is stated directly."}
+{"id":"chapter-1-extras/w2-watashi-wa-igirisujin/other/1","status":"fixed","statusReason":"Points at the bracketed sentence itself instead of 'the Key Sentence'."}
+{"id":"chapter-1-extras/notes-iie-chigaimasu/missing-info/1","status":"fixed","statusReason":"Note now says what ちがいます itself means."}
+{"id":"chapter-1-extras/irl-l1-34/other/1","status":"fixed","statusReason":"Kanji 先生 replaced by kana せんせい (sensei)."}
+{"id":"chapter-1-extras/td-intro-tanaka-short/other/1","status":"fixed","statusReason":"Note states the general point instead of an unseen dialogue."}
+{"id":"chapter-1-extras/fib-watashi-wa-enjinia-desu/other/1","status":"fixed","statusReason":"Category moved to 'Work & Occupations'."}
+{"id":"chapter-1-extras/irl-l1-28/wrong-content/1","status":"skipped","statusReason":"Adding さん changes the target, and the card ships a picked -gen- clip: hand-curated clip, owner to regenerate. Meanwhile the note says the bare name is how you introduce someone on your own side and that the book keeps さん for anyone else."}
+{"id":"chapter-1-extras/irl-l1-26/other/2","status":"skipped","statusReason":"Dropping ？ changes the target, and the card ships a picked -genkanji- clip: hand-curated clip, owner to regenerate."}
+{"id":"chapter-1-extras/irl-l1-27/other/2","status":"skipped","statusReason":"Dropping ？ changes the target, and the card ships a manual clip: hand-curated clip, owner to regenerate."}

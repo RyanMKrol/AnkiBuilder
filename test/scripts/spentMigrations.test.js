@@ -31,6 +31,7 @@ const SPENT = [
   "migrate-absorption-to-additions.mjs",
   "migrate-mark-inherited-audio.mjs",
   "add-verb-forms-family.mjs",
+  "backfill-reading-word-cards.mjs",
 ];
 
 const STANDING = [

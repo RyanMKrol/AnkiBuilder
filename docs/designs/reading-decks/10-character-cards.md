@@ -98,8 +98,11 @@ Two exceptions, both the Japanese plugin's (`05-japanese-plugin.md`):
   plugin's `wordsByRule` gives each its reading, romaji and English.
 
 The existing Genki units were all done before this rule existed, and the book pass never re-merges a
-done unit, so their 27 cards are rewritten by a one-shot backfill (F3 in
-`docs/designs/qa-fix-pass-2026-10.md`), not by this code. Preflight's `reading-kanji-taught-as-word`
+done unit, so their cards were rewritten by a one-shot backfill (F3 in
+`docs/designs/qa-fix-pass-2026-10.md`), not by this code: `scripts/backfill-reading-word-cards.mjs`
+(SPENT, 2026-10-18) made 39 cards voiced words and joined both senses on 年 and 後. It left 有 silent,
+because the R&W 11 reader gave the bare kanji the reading of 有る, and 十 and 七, whose two readings
+share one English. Preflight's `reading-kanji-taught-as-word`
 (ACK) names any silent kanji card whose kanji a unit's `as-generated.json` records as a word, so a
 case this code misses is still seen.
 

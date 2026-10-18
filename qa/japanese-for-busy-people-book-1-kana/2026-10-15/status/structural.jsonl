@@ -2,3 +2,7 @@
 {"id":"chapter-1/o-prefix/untaught-prerequisite/1","status":"fixed","statusReason":"Hint rebuilt on this chapter's くに; なまえ and みやげ are gone."}
 {"id":"chapter-1/yoroshiku-onegaishimasu/book-gap/1","status":"fixed","statusReason":"Note adds the leave-taking use and the book's gloss of よろしく."}
 {"id":"chapter-1/san-suffix-ch14/book-gap/1","status":"fixed","statusReason":"Note adds: any gender, surname or given name, surname most common at work."}
+{"id":"chapter-2/-/book-gap/1","status":"fixed","statusReason":"Four additions (れい, し, しち, く) in batch qa-fix-2026-10, each hinted against its partner; hints added to num-0, num-4, num-7 and num-9 so both sides are cued."}
+{"id":"chapter-2/-/book-gap/2","status":"fixed","statusReason":"Addition どうもありがとうございます ('Thank you very much.') in batch qa-fix-2026-10, with the casual pair in its note."}
+{"id":"chapter-24/shirimasen-2/ambiguous/1","status":"fixed","statusReason":"Matching hint on chapter-2/wakarimasen ('not having the information or the answer'), so both sides of the pair are cued."}
+{"id":"chapter-2-extras/irl-l1-42/untaught-prerequisite/1","status":"fixed","statusReason":"The card is excluded (F1a, schematic fragment), so ホテル no longer ships here."}

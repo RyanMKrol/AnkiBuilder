@@ -92,7 +92,8 @@
       "audioAuto": "9907ee7488e52360.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "9907ee7488e52360"
+      "audioTextHash": "9907ee7488e52360",
+      "hint": "not having the information or the answer"
     },
     {
       "id": "watashino",
@@ -269,7 +270,8 @@
       "audioAuto": "6b05d7ec351424d0.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "6b05d7ec351424d0"
+      "audioTextHash": "6b05d7ec351424d0",
+      "hint": "the reading other than れい (rei)"
     },
     {
       "id": "num-1",
@@ -327,7 +329,8 @@
       "audioAuto": "cfd158c976ba6112.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "cfd158c976ba6112"
+      "audioTextHash": "cfd158c976ba6112",
+      "hint": "the reading other than し (shi)"
     },
     {
       "id": "num-5",
@@ -372,7 +375,8 @@
       "audioAuto": "9dad19bb3a5d74ae.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "9dad19bb3a5d74ae"
+      "audioTextHash": "9dad19bb3a5d74ae",
+      "hint": "the reading other than しち (shichi)"
     },
     {
       "id": "num-8",
@@ -401,7 +405,8 @@
       "audioAuto": "333e5986c02c0bbb.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "333e5986c02c0bbb"
+      "audioTextHash": "333e5986c02c0bbb",
+      "hint": "the reading other than く (ku)"
     },
     {
       "id": "meishi",
@@ -712,6 +717,66 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "9a9cce579e507253"
+    },
+    {
+      "id": "num-0-rei",
+      "english": "0",
+      "category": "Numbers",
+      "target": "れい",
+      "pronunciation": "rei",
+      "hint": "the reading other than ゼロ (zero)",
+      "note": "The book gives 0 two readings, ゼロ (zero) and れい (rei).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 0.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "num-4-shi",
+      "english": "4",
+      "category": "Numbers",
+      "target": "し",
+      "pronunciation": "shi",
+      "hint": "the reading other than よん (yon)",
+      "note": "The book gives 4 two readings, よん (yon) and し (shi).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 4.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "num-7-shichi",
+      "english": "7",
+      "category": "Numbers",
+      "target": "しち",
+      "pronunciation": "shichi",
+      "hint": "the reading other than なな (nana)",
+      "note": "The book gives 7 two readings, なな (nana) and しち (shichi).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 7.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "num-9-ku",
+      "english": "9",
+      "category": "Numbers",
+      "target": "く",
+      "pronunciation": "ku",
+      "hint": "the reading other than きゅう (kyū)",
+      "note": "The book gives 9 two readings, きゅう (kyū) and く (ku).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 9.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "doumo-arigatou-gozaimasu",
+      "english": "Thank you very much.",
+      "category": "Greetings",
+      "target": "どうもありがとうございます",
+      "pronunciation": "dōmo arigatō gozaimasu.",
+      "hint": "polite, with extra weight",
+      "note": "どうも (dōmo) in front gives the thanks more weight or formality. Between friends it is ありがとう (arigatō) or どうもありがとう (dōmo arigatō).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/2: NOTES 3's どうも ありがとうございます, which no card carried.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

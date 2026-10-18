@@ -13,6 +13,28 @@ const normalizeEnglish = (value) =>
     .replace(/[.?!。]+$/u, "")
     .trim();
 
+/**
+ * The key a card's English groups under on the Production face. Looser than `normalizeEnglish` in
+ * two ways, because the 2026-10 QA learner pass found fronts the exact match let through:
+ *
+ * - Square brackets are dropped and the word inside them kept, so "May I sit [here]?" meets
+ *   "May I sit here?". The learner cannot tell from the brackets whether to say ここに, so the two
+ *   fronts are one question. The bracketed word is NOT removed: in "Take [time]" or "By [specified
+ *   time]" it is what tells the card apart from plain "Take", and dropping it reported those as
+ *   collisions they are not.
+ * - A leading article goes: "A watch" and "Watch" are one front.
+ *
+ * Round brackets are deliberately KEPT. "(casual)", "(male speaker)" and "(て-form)" are the deck's
+ * own disambiguators, and stripping them would report every pair they already resolve.
+ *
+ * Only the GROUPING key loosens. A target group still compares its answers with
+ * `normalizeEnglish`, so target grouping is exactly what it was.
+ */
+export const englishCollisionKey = (value) =>
+  normalizeEnglish(String(value || "").replace(/[[\]]/g, ""))
+    .replace(/\s+/g, " ")
+    .replace(/^(?:a|an|the)\s+/, "");
+
 const normalizeTarget = (value) => String(value || "").trim();
 
 /**
@@ -132,7 +154,7 @@ export function findCollisions(units) {
   return {
     // Production face: the learner sees the English, so either cue is visible before answering.
     byEnglish: collect(
-      (item) => normalizeEnglish(item.english),
+      (item) => englishCollisionKey(item.english),
       (item) => normalizeTarget(item.target),
       (item) => filled(item.hint) || filled(item.scene),
     ),

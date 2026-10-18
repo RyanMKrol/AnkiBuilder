@@ -108,6 +108,58 @@ test("collision audit: trailing punctuation and case never split a group", () =>
   assert.equal(byEnglish.length, 1);
 });
 
+test("collision audit: a square-bracketed word and a leading article never split a group", () => {
+  // The two shapes the 2026-10 QA learner pass found the exact match missing: the brackets do not
+  // tell the learner whether to say ここに, and "A watch" is the same front as "Watch".
+  const { byEnglish } = findCollisions([
+    unit("chapter-21", [card("base", "May I sit [here]?", "すわってもいいですか")]),
+    unit("chapter-21-extras", [card("extra", "May I sit here?", "ここにすわってもいいですか")]),
+    unit("chapter-23", [
+      card("watch", "Watch", "とけい"),
+      card("wristwatch", "A watch", "うでどけい"),
+    ]),
+  ]);
+  assert.deepEqual(
+    byEnglish.map((group) => [group.key, group.members.map((m) => m.id)]),
+    [
+      ["may i sit here", ["base", "extra"]],
+      ["watch", ["watch", "wristwatch"]],
+    ],
+  );
+});
+
+test("collision audit: the word in square brackets is kept, and round-bracketed cues still separate", () => {
+  // "Take [time]" is かかる; the bracketed word is what tells it from plain "Take" (とる), so it
+  // must not be dropped. "(casual)" and "(male speaker)" are the deck's own disambiguators.
+  const { byEnglish } = findCollisions([
+    unit("chapter-20", [
+      card("toru", "Take (dictionary form)", "とる"),
+      card("kakaru", "Take [time] (dictionary form)", "かかる"),
+      card("polite", "Is that so?", "そうですか"),
+      card("casual", "Is that so? (casual)", "そう"),
+      card("boku", "I (male speaker)", "ぼく"),
+      card("watashi", "I", "わたし"),
+    ]),
+  ]);
+  assert.equal(byEnglish.length, 0);
+});
+
+test("collision audit: the looser English key does not change target grouping", () => {
+  // A target group compares its answers with the exact normalization, so the bracket and the
+  // article still count as two glosses there. Only the Production grouping loosened.
+  const { byTarget } = findCollisions([
+    unit("chapter-21", [
+      card("a", "May I sit [here]?", "すわってもいいですか"),
+      card("b", "May I sit here?", "すわってもいいですか"),
+    ]),
+  ]);
+  assert.equal(byTarget.length, 1);
+  assert.deepEqual(
+    byTarget[0].members.map((m) => m.english),
+    ["May I sit [here]?", "May I sit here?"],
+  );
+});
+
 test("ordering: seeded shuffle is stable, and foundations hoist shortest first", () => {
   const items = [
     card("s1", "Please tell me the phone number.", "でんわばんごうをおしえてください"),

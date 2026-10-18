@@ -13,9 +13,10 @@
       "category": "Shopping",
       "target": "ほんやはどこにありますか",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is)."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is).",
+      "aiSuggested": true
     },
     {
       "id": "ga-ramenya-chikaku",
@@ -43,9 +44,10 @@
       "category": "School & Education",
       "target": "はさみはここにあります",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "Minimal pair with はさみは そこに あります and はさみは あそこに あります. ここ is the speaker's own spot, where I am, not just \"close by\".",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a).",
+      "aiSuggested": true
     },
     {
       "id": "kara-kuukou-eki-contrast",
@@ -64,8 +66,9 @@
       "target": "ええ。そばいちがおいしいですよ",
       "scene": "answering \"この ちかくに おいしい おそばやさんが ありますか\" (kono chikaku ni oishii osobayasan ga arimasu ka, \"is there a good soba shop near here?\") by naming a good soba shop",
       "hint": null,
-      "note": "が (not は) marks そばいち because the shop is new information to the listener; そばいちは おいしいです would instead make おいしいです the new part (NOTES 2).",
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+      "note": "が (not は) marks そばいち because the shop is new information to the listener; そばいちは おいしいです would instead make おいしいです the new part.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE.",
+      "aiSuggested": true
     },
     {
       "id": "sp-3ji-ni-kaerimasu-a",
@@ -93,9 +96,10 @@
       "category": "School & Education",
       "target": "はさみはあそこにあります",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "Minimal pair with the ここ and そこ versions. あそこ is the only one of the three that is away from both people: pick it when the thing is near neither you nor the person you are talking to.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a).",
+      "aiSuggested": true
     },
     {
       "id": "sp-nozomi-file-doko-q",
@@ -103,9 +107,10 @@
       "category": "Work & Occupations",
       "target": "のぞみデパートのファイルはどこにありますか",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 1."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 1.",
+      "aiSuggested": true
     },
     {
       "id": "sp-nozomi-file-koko-a",
@@ -113,9 +118,10 @@
       "category": "Work & Occupations",
       "target": "ここにあります。どうぞ",
       "scene": "answering where the Nozomi Department Store file is, while handing it over",
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 1."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 1.",
+      "aiSuggested": true
     },
     {
       "id": "kagi-drawer-arimasendeshita",
@@ -123,9 +129,10 @@
       "category": "Home & Household",
       "target": "かぎはひきだしのなかにありませんでした",
       "scene": null,
-      "hint": null,
+      "hint": "using に (ni) plus the verb, not the contracted です (desu) form",
       "note": "Past negative. Note this is ありませんでした, the verb ending, not じゃありませんでした, which is the negative past of です.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm).",
+      "aiSuggested": true
     },
     {
       "id": "ga-kouban-eki-mae",
@@ -134,8 +141,9 @@
       "target": "えきのまえにこうばんがあります",
       "scene": null,
       "hint": null,
-      "note": "Minimal pair with こうばんは えきの まえに あります, differing only in が versus は. が here introduces the police box as something new to the listener, so this answers \"what is in front of the station?\" (GRAMMAR 2).",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "note": "Minimal pair with こうばんは えきの まえに あります, differing only in が versus は. が here introduces the police box as something new to the listener, so this answers \"what is in front of the station?\"",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "ex-parking-next-to-konbini",
@@ -143,9 +151,10 @@
       "category": "Directions",
       "target": "ちゅうしゃじょうはコンビニのとなりにあります",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES (State where a facility or store is located)."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES (State where a facility or store is located).",
+      "aiSuggested": true
     },
     {
       "id": "ex-basutei-chikai-q",
@@ -164,8 +173,9 @@
       "target": "そばいちはおてらのまえにあります",
       "scene": null,
       "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
-      "note": "The closing line of the dialogue says the same thing as そばいちは あの おてらの まえです — once the location is established, place に あります can be shortened to place です (GRAMMAR 2).",
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+      "note": "Says the same thing as そばいちは あの おてらの まえです (sobaichi wa ano otera no mae desu): once the location is established, place に あります can be shortened to place です.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE.",
+      "aiSuggested": true
     },
     {
       "id": "no-clearfile-tanaka",
@@ -183,9 +193,10 @@
       "category": "Directions",
       "target": "どこにありますか",
       "scene": "asking where the soba shop the salesperson just recommended is",
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE.",
+      "aiSuggested": true
     },
     {
       "id": "pharmacy",
@@ -200,9 +211,10 @@
       "category": "Emergencies",
       "target": "こうばんはえきのまえにあります",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "Minimal pair with えきの まえに こうばんが あります, differing only in は versus が. The police box is already known, so it becomes the topic with は and the location is the new part. Only this は version can be shortened to こうばんは えきの まえです.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "td-asoko-ni-otera",
@@ -220,9 +232,10 @@
       "category": "Food",
       "target": "パンやのパンがおいしいです",
       "scene": null,
-      "hint": null,
-      "note": "が is not only for あります／います. In 〜が おいしいです the part before が is what is new to the listener, so this picks out whose bread is the good one (NOTES 2). の links the shop to what it sells.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "hint": "singling out which shop's bread is the good one, so が (ga), not は (wa)",
+      "note": "が is not only for あります／います. In 〜が おいしいです the part before が is what is new to the listener, so this picks out whose bread is the good one. の links the shop to what it sells.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "ex-cabinet-key-doko-q",
@@ -230,9 +243,10 @@
       "category": "Work & Occupations",
       "target": "キャビネットのかぎはどこにありますか",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is)."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is).",
+      "aiSuggested": true
     },
     {
       "id": "sp-ima-nozomi-ni-imasu",
@@ -240,9 +254,10 @@
       "category": "Work & Occupations",
       "target": "いまのぞみデパートにいます",
       "scene": null,
-      "hint": null,
+      "hint": "using に います (ni imasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 2."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 2.",
+      "aiSuggested": true
     },
     {
       "id": "ex-panya-uchi-chikai",
@@ -260,9 +275,10 @@
       "category": "Work & Occupations",
       "target": "スミスさんはしゃちょうしつにいませんでした",
       "scene": null,
-      "hint": null,
+      "hint": "using に (ni) plus the verb, not the contracted です (desu) form",
       "note": null,
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm).",
+      "aiSuggested": true
     },
     {
       "id": "ex-cups-table-count-q",
@@ -280,9 +296,10 @@
       "category": "Shopping",
       "target": "ラーメンやのとなりにあります",
       "scene": "answering where the bookstore is",
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is)."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is).",
+      "aiSuggested": true
     },
     {
       "id": "kara-yuubinkyoku-kaisha-q",
@@ -300,9 +317,10 @@
       "category": "Work & Occupations",
       "target": "あのひきだしのなかにあります",
       "scene": "answering where the key to the cabinet is",
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is)."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from EXERCISES A (Ask and answer where something is).",
+      "aiSuggested": true
     },
     {
       "id": "ex-plates-table-count-a",
@@ -320,9 +338,10 @@
       "category": "Work & Occupations",
       "target": "はい、ここにいます",
       "scene": "answering \"たなかさんは そこに いますか\" (Tanaka-san wa soko ni imasu ka, a phone question about where Tanaka-san is) on the phone",
-      "hint": null,
+      "hint": "using に います (ni imasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "The same spot is そこ for the person asking and ここ for the person answering. ここ／そこ／あそこ are chosen from whoever is currently speaking, not fixed to the place itself.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a).",
+      "aiSuggested": true
     },
     {
       "id": "ex-basutei-chikai-a",
@@ -340,9 +359,10 @@
       "category": "Transport",
       "target": "ボートのりばはどこですか",
       "scene": null,
-      "hint": null,
-      "note": "The short form of ボートのりばは どこに ありますか. Once you are asking about a known thing's location, に あります can drop to plain です (GRAMMAR 2), the same shortening as いま どこですか.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "hint": "contracted with です (desu, \"is\") instead of に あります (ni arimasu, \"exists at\")",
+      "note": "The short form of ボートのりばは どこに ありますか (bōto noriba wa doko ni arimasu ka). Once you are asking about a known thing's location, に あります can drop to plain です, the same shortening as いま どこですか (ima doko desu ka, \"where are you now?\").",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "hasami-soko",
@@ -350,9 +370,10 @@
       "category": "School & Education",
       "target": "はさみはそこにあります",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "Minimal pair with the ここ and あそこ versions. そこ is not simply \"there\", it means the spot near the LISTENER. This is the one learners get wrong, because English \"there\" covers both そこ and あそこ.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a).",
+      "aiSuggested": true
     },
     {
       "id": "notebook",
@@ -378,9 +399,10 @@
       "category": "School & Education",
       "target": "けしゴムはクリアファイルのしたにあります",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "に attaches to the whole position phrase クリアファイルの した, not to クリアファイル on its own.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "kara-kumano-taki",
@@ -389,8 +411,9 @@
       "target": "くまのじんじゃはたきからとおいです",
       "scene": null,
       "hint": "\"far\" is an adjective here, describing the place, so it ends in です (desu), not にあります (ni arimasu)",
-      "note": "から does not have to be where you are standing. Both points here are landmarks somewhere else (GRAMMAR 3).",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "note": "から does not have to be where you are standing. Both points here are landmarks somewhere else.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "ga-takushii-basu-noriba",
@@ -408,9 +431,10 @@
       "category": "Work & Occupations",
       "target": "ロンドンぎんこうのファイルはあのひきだしのなかにあります",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "Two different jobs for の in one sentence: ロンドンぎんこうの ファイル is which file it is, and ひきだしの なか is a position phrase.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "ex-file-drawer-takusan",
@@ -448,9 +472,10 @@
       "category": "Home & Household",
       "target": "かぎはひきだしのなかにありません",
       "scene": null,
-      "hint": null,
+      "hint": "using に (ni) plus the verb, not the contracted です (desu) form",
       "note": "Negative existence: nothing about the frame changes, あります just takes the ません ending you already use on other verbs. The topic stays は, it does not switch back to が.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm).",
+      "aiSuggested": true
     },
     {
       "id": "ex-park-many-boys",
@@ -476,9 +501,10 @@
       "category": "Shopping",
       "target": "ほんやはえきのまえです。パンやはびょういんのとなりです",
       "scene": null,
-      "hint": null,
+      "hint": "both halves contracted with です (desu, \"is\") instead of に あります (ni arimasu, \"exists at\")",
       "note": "Two は topics in a row set the two shops against each other. This is what は is for, announcing which thing you are about to give information about.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "ex-plates-table-count-q",
@@ -496,9 +522,10 @@
       "category": "Home & Household",
       "target": "かぎはひきだしのなかにありました",
       "scene": null,
-      "hint": null,
+      "hint": "using に (ni) plus the verb, not the contracted です (desu) form",
       "note": "Past existence: あります takes the same ました ending as any other verb.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm).",
+      "aiSuggested": true
     },
     {
       "id": "td-sobaichi-otera-mae-desu",
@@ -516,9 +543,10 @@
       "category": "Work & Occupations",
       "target": "スミスさんはしゃちょうしつにいます",
       "scene": null,
-      "hint": null,
-      "note": "The same four-way set for people. います is used instead of あります because Smith-san is a person; the next three cards change only that verb.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+      "hint": "using に います (ni imasu, \"is/exists at\"), not the contracted です (desu)",
+      "note": "います (imasu) is used instead of あります (arimasu) because Smith-san is a person. It changes the same way: いません (imasen), いました (imashita), いませんでした (imasen deshita).",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm).",
+      "aiSuggested": true
     },
     {
       "id": "tanaka-soko-imasu-q",
@@ -526,9 +554,10 @@
       "category": "Work & Occupations",
       "target": "たなかさんはそこにいますか",
       "scene": null,
-      "hint": null,
+      "hint": "using に います (ni imasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "Over the phone, そこ means wherever the other person is. You could never use ここ here, that would be asking whether Tanaka-san is standing next to yourself.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: ko-so-a).",
+      "aiSuggested": true
     },
     {
       "id": "no-hotel-chikaku-byouin-q",
@@ -556,9 +585,10 @@
       "category": "Home & Household",
       "target": "かぎはひきだしのなかにあります",
       "scene": null,
-      "hint": null,
-      "note": "The base form of a four-way set. The key is already known to both of you, so it is the topic with は and the location is the new part (GRAMMAR 2). The next three cards keep every word the same and change only あります.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
+      "note": "The key is already known to both of you, so it is the topic with は (wa) and the location is the new part. Change only あります (arimasu) to get ありません (arimasen, \"isn't\"), ありました (arimashita, \"was\") and ありませんでした (arimasen deshita, \"wasn't\").",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm).",
+      "aiSuggested": true
     },
     {
       "id": "ni-sasaki-kaigishitsu-q",
@@ -566,9 +596,10 @@
       "category": "Work & Occupations",
       "target": "ささきさんはいまかいぎしつにいますか",
       "scene": null,
-      "hint": null,
+      "hint": "using に います (ni imasu, \"is/exists at\"), not the contracted です (desu)",
       "note": "に marks where someone exists. It is the same に you use for a destination with いきます, but here it goes with います and means \"in / at\", not \"to\".",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "soko-enpitsu-q",
@@ -587,8 +618,9 @@
       "target": "はい、そばいちはおいしいです",
       "scene": "answering \"そばいちは おいしいですか\" (sobaichi wa oishii desu ka, a yes/no question about the shop), where the shop is already under discussion",
       "hint": null,
-      "note": "The flip side of そばいちが おいしいです. With は, the shop is already known and おいしいです is the new information; with が, the shop itself is the news (NOTES 2).",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle)."
+      "note": "The flip side of そばいちが おいしいです. With は, the shop is already known and おいしいです is the new information; with が, the shop itself is the news.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: particle).",
+      "aiSuggested": true
     },
     {
       "id": "td-soba-nearby-q",
@@ -596,9 +628,10 @@
       "category": "Directions",
       "target": "すみません。このちかくにおいしいおそばやさんがありますか",
       "scene": null,
-      "hint": "a \"there is\" sentence: \"near\" is the noun for \"the area near\", so it takes にあります (ni arimasu)",
+      "hint": "a \"there is\" sentence: \"near\" is the noun for \"the area near\", so it takes にあります (ni arimasu); and the soba shop in its softened form, with お (o) in front and さん (san) at the end",
       "note": null,
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE.",
+      "aiSuggested": true
     },
     {
       "id": "ex-boat-dock-chikai-a",
@@ -616,9 +649,10 @@
       "category": "Work & Occupations",
       "target": "スミスさんはしゃちょうしつにいません",
       "scene": null,
-      "hint": null,
-      "note": "Plain negative existence for a person. Different from だれも いません (there is no one), which needs the だれも construction.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+      "hint": "using に (ni) plus the verb, not the contracted です (desu) form",
+      "note": "Negative existence for a person. Different from だれも いません (there is no one), which needs the だれも construction.",
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm).",
+      "aiSuggested": true
     },
     {
       "id": "smith-office-imashita",
@@ -626,9 +660,10 @@
       "category": "Work & Occupations",
       "target": "スミスさんはしゃちょうしつにいました",
       "scene": null,
-      "hint": null,
+      "hint": "using に (ni) plus the verb, not the contracted です (desu) form",
       "note": null,
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: paradigm).",
+      "aiSuggested": true
     },
     {
       "id": "sp-ima-doko-q",
@@ -636,9 +671,10 @@
       "category": "Work & Occupations",
       "target": "すずきさん、いまどこですか",
       "scene": null,
-      "hint": null,
-      "note": "いま どこですか is the short form of いま どこに いますか — with a person, the place +です contraction works the same way it does for things (GRAMMAR 2).",
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 2."
+      "hint": "contracted with です (desu, \"is\") instead of に います (ni imasu, \"exists at\")",
+      "note": "いま どこですか is the short form of いま どこに いますか — with a person, the place +です contraction works the same way it does for things.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from SPEAKING PRACTICE 2.",
+      "aiSuggested": true
     },
     {
       "id": "ex-restaurant-men-count-q",

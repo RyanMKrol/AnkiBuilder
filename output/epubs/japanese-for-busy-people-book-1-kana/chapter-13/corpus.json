@@ -35,8 +35,8 @@
       "english": "Soba shop",
       "category": "Shopping",
       "scene": null,
-      "hint": "polite form, with the honorific お (o) in front and the …さん (san, \"Mr./Ms.\") ending",
-      "note": "そばや (soba shop, already seen bare in Lesson 12) plus さん, which softens the tone (NOTES 1).",
+      "hint": "the softened form, with お (o, an honorific prefix) in front and さん (san, here a softening suffix) at the end",
+      "note": "そばや (sobaya, \"soba shop\", met bare in Lesson 12) plus さん (san), which softens the tone.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
       "target": "おそばやさん",
       "uncertain": true
@@ -47,7 +47,7 @@
       "category": "Directions",
       "scene": null,
       "hint": "everyday form",
-      "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER (the chapter teaches this with a picture, not words): ここ is where the speaker is, そこ is near the listener, あそこ is away from BOTH of you.",
+      "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER: ここ is where the speaker is, そこ is near the listener, あそこ is away from BOTH of you.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (matched on english)",
       "target": "あそこ",
       "uncertain": true
@@ -57,7 +57,7 @@
       "english": "Also",
       "category": "Grammar & Function Words",
       "scene": null,
-      "hint": null,
+      "hint": "the word that starts a second sentence, not the particle も (mo, \"also\")",
       "note": "Connects two separate sentences (\"...です。それから、...\") to add another fact about the same topic, unlike も (also, Lesson 4), which attaches directly onto a single noun within one sentence.",
       "reviewNote": null,
       "target": "それから"
@@ -151,17 +151,17 @@
       "english": "The taxi stand is in front of the station.",
       "category": "Transport",
       "scene": null,
-      "hint": null,
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
       "reviewNote": null,
-      "target": "タクシーのりばはえきのまえです"
+      "target": "タクシーのりばはえきのまえにあります"
     },
     {
       "id": "ks4-smith-floor",
       "english": "Smith-san is on the second floor.",
       "category": "Work & Occupations",
       "scene": null,
-      "hint": null,
+      "hint": "using に います (ni imasu, \"is/exists at\"), not the contracted です (desu)",
       "note": null,
       "reviewNote": null,
       "target": "スミスさんは２かいにいます",
@@ -183,7 +183,7 @@
       "category": "Directions",
       "scene": null,
       "hint": null,
-      "note": "Contrast with \"The restaurant is on the first floor,\" which uses は because the restaurant is already the established topic (see GRAMMAR 2).",
+      "note": "Contrast with \"The restaurant is on the first floor,\" which uses は because the restaurant is already the established topic.",
       "reviewNote": null,
       "target": "1かいにレストランがあります",
       "ttsText": "いっかいにレストランがあります"
@@ -194,7 +194,7 @@
       "category": "Directions",
       "scene": null,
       "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
-      "note": "The restaurant's existence is already known, so the topic marker は replaces が; contrast with the が あります version, which introduces the restaurant as new information. Compare also the shorter contracted version below using です.",
+      "note": "The restaurant's existence is already known, so the topic marker は replaces が; contrast with the が あります version, which introduces the restaurant as new information. Compare レストランは1かいです (resutoran wa ikkai desu), the shorter form with です (desu).",
       "reviewNote": null,
       "target": "レストランは1かいにあります",
       "ttsText": "レストランはいっかいにあります"
@@ -205,7 +205,7 @@
       "category": "Directions",
       "scene": null,
       "hint": "contracted with です (desu, \"is\") instead of に あります (ni arimasu, \"exists at\")",
-      "note": "A shortened version that replaces に あります with です once the restaurant's existence and location are already established; this contraction is not possible for the が あります existence statement (see GRAMMAR 2).",
+      "note": "A shortened version that replaces に あります with です once the restaurant's existence and location are already established; this contraction is not possible for the が あります existence statement.",
       "reviewNote": null,
       "target": "レストランは1かいです",
       "ttsText": "レストランはいっかいです"
@@ -246,7 +246,7 @@
       "category": "Shopping",
       "scene": null,
       "hint": null,
-      "note": "ほん (book) + や (shop suffix, see the や card) = ほんや.",
+      "note": "ほん (hon, \"book\") + や (ya, the \"shop\" suffix) = ほんや.",
       "reviewNote": null,
       "target": "ほんや"
     },
@@ -360,7 +360,7 @@
       "category": "Directions",
       "scene": null,
       "hint": "everyday form",
-      "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER (the chapter teaches this with a picture, not words): ここ is where the speaker is, そこ is near the LISTENER, あそこ is away from both. そこ is not simply \"there\" — it specifically means near the person you are talking to.",
+      "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER: ここ is where the speaker is, そこ is near the LISTENER, あそこ is away from both. そこ is not simply \"there\" — it specifically means near the person you are talking to.",
       "reviewNote": null,
       "target": "そこ"
     },
@@ -389,7 +389,7 @@
       "english": "Child",
       "category": "Family & People",
       "scene": null,
-      "hint": null,
+      "hint": "the one-syllable word, as in \"girl\" and \"boy\"",
       "note": "Combines with おんなの (female) and おとこの (male) to form おんなの こ (girl) and おとこの こ (boy).",
       "reviewNote": null,
       "target": "こ"
@@ -523,7 +523,7 @@
       "category": "Directions",
       "scene": null,
       "hint": "\"near\" is an adjective here, describing the place, so it ends in です (desu), not にあります (ni arimasu)",
-      "note": "Same pattern as \"Smith-san's house is near the station\" (place1は place2から ちかい／とおいです, GRAMMAR 3) applied to a different noun.",
+      "note": "Same pattern as \"Smith-san's house is near the station\" (place1は place2から ちかい／とおいです) applied to a different noun.",
       "reviewNote": null,
       "target": "としょかんはえきからちかいです"
     },

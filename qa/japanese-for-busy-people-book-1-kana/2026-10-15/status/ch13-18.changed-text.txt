@@ -1,1 +1,3 @@
 chapter-14-extras/fib-chichi-itsu-okane-kuremasu-q: target ちちはいつわたしにおかねをくれますか -> おとうさんはいつおかねをくれますか (stage-made clip; re-voice with audio --run)
+chapter-13/ks3-taxi-stand: target タクシーのりばはえきのまえです -> タクシーのりばはえきのまえにあります (stage-made clip; re-voice with audio --run)
+chapter-13/fib-fork-table-count-a: target 10ほんあります -> 10ぽんあります (ttsText unchanged, clip still matches; no re-voice needed)

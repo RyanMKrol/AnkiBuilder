@@ -114,7 +114,7 @@
       "category": "Money",
       "ttsText": "だい",
       "sourceOrder": 10,
-      "pronunciation": "~dai",
+      "pronunciation": "dai",
       "audio": "20aae05cbff03ab1.mp3",
       "audioOriginal": "20aae05cbff03ab1.orig.mp3",
       "audioAuto": "20aae05cbff03ab1.mp3",
@@ -575,7 +575,7 @@
     {
       "id": "r-2a5b14d2199e",
       "target": "お大事に",
-      "english": "Get well soon.",
+      "english": "Get well soon",
       "category": "Greetings",
       "ttsText": "おだいじに",
       "sourceOrder": 51,

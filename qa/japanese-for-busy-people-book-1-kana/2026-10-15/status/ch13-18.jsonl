@@ -1,0 +1,92 @@
+{"id":"chapter-13/sorekara/ambiguous/1","status":"fixed","statusReason":"Hint added: the word that starts a second sentence, not the particle も."}
+{"id":"chapter-13/ko/ambiguous/1","status":"fixed","statusReason":"Hint added: 'the one-syllable word, as in \"girl\" and \"boy\"', which rules out こども without printing こ."}
+{"id":"chapter-13/-/missing-info/1","status":"fixed","statusReason":"Every は-topic location card in the unit now names its form with the grammar2 hint wording (ks4-smith-floor, fib-hanaya-tonari-byouin, fib-tanakasan-doko-q/-a, ks3-taxi-stand); が existence sentences left alone."}
+{"id":"chapter-13/-/other/1","status":"fixed","statusReason":"grammar2-2's 'version below' now names レストランは1かいです; NOTES/GRAMMAR citations and the 'picture' aside removed from osobayasan, asoko, soko, grammar2-1, grammar2-3, toshokan-near-station; honya's pointer to the excluded や card replaced."}
+{"id":"chapter-13/-/other/2","status":"fixed","statusReason":"Outliers normalised to the pinned style: nan-bon to nanbon, 'Basu de' to 'basu de', kumanojinja to Kumano-jinja, sorekara-example to Tanaka-san. roku-mai, jup-pon, nijup-pun and Kumano-jinja on sentence cards were already right and kept."}
+{"id":"chapter-13-extras/fib-sobaya-kouban-tonari/ambiguous/1","status":"fixed","statusReason":"Hint 'contracted with です' added; the にあります counterparts (fib-hanaya-tonari-byouin, ex-parking-next-to-konbini) carry the 'using に あります' hint."}
+{"id":"chapter-13-extras/wa-booto-noriba-doko/ambiguous/1","status":"fixed","statusReason":"Contracted-です hint added here and the にあります hint on ex-honya-doko-q, ex-cabinet-key-doko-q, sp-nozomi-file-doko-q; GRAMMAR 2 citation dropped from the note."}
+{"id":"chapter-13-extras/fib-shachoushitsu-kaigishitsu-tonari/wrong-content/1","status":"fixed","statusReason":"English now 'There is a meeting room next to the president's office.' (the が existence shape)."}
+{"id":"chapter-13-extras/ga-panya-pan-oishii/missing-info/1","status":"fixed","statusReason":"Production hint added (singling out which shop's bread is the good one, so が, not は); used a hint rather than a scene so the Recognition front does not paraphrase the answer. NOTES 2 citation dropped."}
+{"id":"chapter-13-extras/td-soba-nearby-q/missing-info/1","status":"fixed","statusReason":"Hint extended with the softened おそばやさん cue (お in front, さん at the end); romaji osobaya-san normalised to osobayasan."}
+{"id":"chapter-13-extras/-/missing-info/1","status":"fixed","statusReason":"All eleven listed cards now carry the にあります / にいます / です form hint, plus the same-shaped hasami trio, sp-ima-doko-q, td-doko-ni-arimasu-q, tanaka-soko-imasu-q, ni-sasaki-kaigishitsu-q, koko-ni-imasu-a, and the past/negative kagi and smith sets ('using に plus the verb')."}
+{"id":"chapter-13-extras/-/other/1","status":"fixed","statusReason":"'The next three cards' on kagi-drawer-arimasu and smith-office-imasu replaced by the forms themselves; td-sobaichi-otera-mae-ni-arimasu names its twin by its Japanese; NOTES/GRAMMAR citations removed from the seven notes listed."}
+{"id":"chapter-13-extras/-/other/2","status":"fixed","statusReason":"Outliers fixed: honya word card to hon'ya, kumanojinja to Kumano-jinja, ks4-smith-floor to Sumisu-san, td-soba-nearby-q to osobayasan."}
+{"id":"chapter-13/ks3-taxi-stand/book-mismatch/1","status":"fixed","statusReason":"Target restored to the book's タクシーのりばはえきのまえにあります (romaji ...mae ni arimasu) with the にあります hint; clip was stage-made, needs re-voicing."}
+{"id":"chapter-13/osobayasan/book-mismatch/1","status":"fixed","statusReason":"Hint now says お and さん soften the form (さん glossed as a softening suffix, not 'Mr./Ms.'); NOTES 1 citation dropped from the note."}
+{"id":"chapter-13/fib-fork-table-count-a/book-mismatch/1","status":"fixed","statusReason":"Target now 10ぽんあります; ttsText じゅっぽんあります and romaji were already right, so the clip is unaffected."}
+{"id":"chapter-14/iindesuka/note-restates-card/1","status":"fixed","statusReason":"Dropped the note that restated the scene."}
+{"id":"chapter-14/ni-from-particle/other/1","status":"fixed","statusReason":"Removed the 'see GRAMMAR 1–2' pointer."}
+{"id":"chapter-14/ks2-morau-hana/other/1","status":"fixed","statusReason":"'the previous card' replaced with the twin sentence スミスさんはなかむらさんにはなをあげました, romanized and glossed."}
+{"id":"chapter-14/kuremasu-example/ambiguous/1","status":"fixed","statusReason":"Cleared by narrowing mafuraa to 'Muffler (a thick winter scarf)'; 'scarf' now means スカーフ alone."}
+{"id":"chapter-14/kyouto-omiyage/note-restates-card/1","status":"fixed","statusReason":"Dropped the note (it only glossed two known words)."}
+{"id":"chapter-14/fib-suteki-mafuraa/other/1","status":"fixed","statusReason":"Pronunciation now 'suteki na mafurā desu ne'."}
+{"id":"chapter-14-extras/eg-kuroi-beruto/wrong-content/1","status":"fixed","statusReason":"Note rewritten: きいろい and ちゃいろい work like the four, while みどり and ピンク take の; 'those four and no others' removed."}
+{"id":"chapter-14-extras/x14-sukaafu-ga-arimasu-yo/missing-info/1","status":"fixed","statusReason":"Scene 'offering something to a friend who says it is cold' added (does not name the scarf); 'the chapter's first use' removed from the note."}
+{"id":"chapter-14-extras/x14b-suteki-na-baggu-doko-de/ambiguous/1","status":"fixed","statusReason":"Hint added: the loanword for a fashion bag, not かばん."}
+{"id":"chapter-14-extras/x14-ashita-no-yoru-jikan-arimasuka/unanswerable/1","status":"fixed","statusReason":"English now 'Do you have time tomorrow night?' to point at よる."}
+{"id":"chapter-14-extras/x14-dare-ni-moraimashita-q/note-unverifiable/1","status":"fixed","statusReason":"Note now says this lesson marks the giver with に, without calling から wrong."}
+{"id":"chapter-14-extras/fib-emma-douryou-ni-agemasu/other/1","status":"fixed","statusReason":"English now 'to her colleague', so the in-group くれます rule visibly does not apply."}
+{"id":"chapter-14-extras/x14-suteki-na-sukaafu-desune/ambiguous/1","status":"fixed","statusReason":"Cleared by narrowing the mafuraa gloss to 'Muffler (a thick winter scarf)'."}
+{"id":"chapter-14-extras/x14b-okane-kashimasendeshita/other/1","status":"fixed","statusReason":"Base -masendeshita romaji split to '-masen deshita' (7 cards, a note, and the one joined extras card) to match the collection majority and the word-split style."}
+{"id":"chapter-14/mafuraa/book-mismatch/1","status":"fixed","statusReason":"English 'Muffler (a thick winter scarf)'; note contrasts it with スカーフ instead of equating them."}
+{"id":"chapter-14/kara-particle-because/book-mismatch/1","status":"fixed","statusReason":"Note now calls から a particle."}
+{"id":"chapter-14/yoku/book-mismatch/1","status":"fixed","statusReason":"Scene now 'praising how something suits someone' (still separates it from Lesson 9's よく 'Often')."}
+{"id":"chapter-14-extras/fib-tanjoubi-ni-kuremasu/wrong-content/1","status":"fixed","statusReason":"Scene now 'answering when your father gives you money'; the paired question fib-chichi-itsu-okane-kuremasu-q rewritten to おとうさんはいつおかねをくれますか 'When does your father give you money?' (stage-made clip, needs re-voicing)."}
+{"id":"chapter-15/kakimasu-draw/leaks-answer/1","status":"fixed","statusReason":"'drawing a picture' moved into the Production hint. かきます is a target shared with Lesson 17/19's 'Write', so a Recognition scene is mandatory; it is now 'about a picture', which separates the senses without stating the meaning."}
+{"id":"chapter-15/demo-but-vocab/ambiguous/1","status":"fixed","statusReason":"English now 'But (at the start of a sentence)', separate from が 'But (particle)'."}
+{"id":"chapter-15/kaeru-dict-form/wrong-content/1","status":"fixed","statusReason":"Lesson 6 corrected to Lesson 7; note also says the ます form alone cannot tell the group."}
+{"id":"chapter-15/kiku-listen-dict-form/wrong-content/1","status":"fixed","statusReason":"English now 'Listen, hear; also ask (dictionary form)'; note says きく is the dictionary form of ききます in both senses."}
+{"id":"chapter-15/watashi-mo-desu/ambiguous/1","status":"fixed","statusReason":"Dropped 'Same here' (こちらこそ's gloss); English is 'Me too.'"}
+{"id":"chapter-15/-/missing-info/1","status":"fixed","statusReason":"taberu-dict-form-eg now says the ます form does not always show the group and lists the Regular 2 verbs met so far; kaeru-dict-form says the same for -ります verbs."}
+{"id":"chapter-15/-/other/1","status":"fixed","statusReason":"Exercise and grammar-section citations dropped from suki-ja-arimasen, jouzu-ja-arimasen, utau-dict-form, miseru-dict-form and ageru-dict-form; the example sentences kept."}
+{"id":"chapter-15-extras/x15a-itoko-no-pooru/book-mismatch/1","status":"fixed","statusReason":"Note now calls it the apposition の of インターンの ラジャさん, keeping the contrast with the nominalizer."}
+{"id":"chapter-15-extras/x15a-itoko-no-pooru/missing-info/1","status":"fixed","statusReason":"Production hint added: the short form, without こちらは."}
+{"id":"chapter-15-extras/p102-kankou-suru/missing-info/1","status":"fixed","statusReason":"English now 'Go sightseeing (dictionary form)'."}
+{"id":"chapter-15-extras/p102-jitensha-ni-noru/missing-info/1","status":"fixed","statusReason":"English now 'Ride a bicycle (dictionary form)'."}
+{"id":"chapter-15-extras/amazing/ambiguous/1","status":"skipped","statusReason":"A duplicate of sugoi-great, not a sense distinction, so the fix is an exclusion; this field-edit pass may not remove a card. Theme 13 duplicate exclusions are F2's."}
+{"id":"chapter-15-extras/to-swim-2/ambiguous/1","status":"fixed","statusReason":"Hint made concrete: swimming as a sport, the noun plus します like テニスをします."}
+{"id":"chapter-15-extras/haha-ga-kureru-okashi-ga-suki/wrong-content/1","status":"fixed","statusReason":"Deleted the false 'always in the dictionary form' sentence. The card's untaught-structure finding is left to F2."}
+{"id":"chapter-15-extras/x15b-nihon-no-ryouri-suki/unanswerable/1","status":"fixed","statusReason":"Hint added naming りょうり joined with の; p102-kankoku-ryouri is now 'Korean cuisine' to match the 'Italian cuisine' compound."}
+{"id":"chapter-15-extras/p102-kankoku-ryouri/unanswerable/1","status":"fixed","statusReason":"English now 'Korean cuisine', matching イタリアりょうり 'Italian cuisine'; the の card carries a hint."}
+{"id":"chapter-15-extras/-/other/1","status":"fixed","statusReason":"The four citation-plus-restatement notes (ex2-eg-a, ex2-eg-b, ex3-eg, ex7-eg) dropped; x15c-hon-yomu and x15b-supootsu keep their derivation without the EXERCISES/chart pointers."}
+{"id":"chapter-15-extras/fib-chan-robotto-anime-suki-a/book-mismatch/1","status":"fixed","statusReason":"English now 'Yes, (she) likes it.'"}
+{"id":"chapter-16/tsugi-next/ambiguous/1","status":"fixed","statusReason":"Hint now 'the next one in order, as a word on its own; not こんど', separating it from both こんど and つぎの. Gloss kept as the book's."}
+{"id":"chapter-16/dou-desu-ka/unanswerable/1","status":"fixed","statusReason":"Hint added: proposing a plan or a day to someone. The book's gloss 'How about you?' kept."}
+{"id":"chapter-16/taikai/ambiguous/1","status":"fixed","statusReason":"Hint added: a large organised event, like the fireworks one (no Japanese printed)."}
+{"id":"chapter-16/sukoshi/ambiguous/1","status":"fixed","statusReason":"Hint added: the other 'a little' word, not ちょっと (no register claim the book does not make)."}
+{"id":"chapter-16/sou-shimashou/ambiguous/1","status":"fixed","statusReason":"Hints added on both: そうしましょう 'agreeing to a plan someone just suggested', しましょう 'proposing an activity yourself'."}
+{"id":"chapter-16/mimashou/wrong-content/1","status":"fixed","statusReason":"English now 'Let's watch (it).'; みませんか kept as the book's 'Shall we see?' per the verdict."}
+{"id":"chapter-16/shimasenka/other/1","status":"fixed","statusReason":"English now 'Shall we do it?', matching its partner 'Let's do it.'"}
+{"id":"chapter-16/kara-because/other/1","status":"fixed","statusReason":"Note now builds on Lesson 14's 'because' から (わたしは さむくないですから) with the reason clause first."}
+{"id":"chapter-16/yukimatsuri/other/1","status":"fixed","statusReason":"'Key Sentence 1' replaced with 'Lesson 7'."}
+{"id":"chapter-16/-/other/1","status":"fixed","statusReason":"'below' / 'above' replaced with the named cards いきましょう and いきませんか; the drill-grid sentence dropped from mimashou."}
+{"id":"chapter-16-extras/-/other/1","status":"fixed","statusReason":"'the one above' now names おもしろいイベントですから; 'The last of the chapter's four exits' dropped and the exits glossed."}
+{"id":"chapter-16-extras/-/other/2","status":"fixed","statusReason":"GRAMMAR 1 to 4 labels dropped from x16a-tsugi-akihabara-event, ks1-omatsuri, ks2-eiga, ks3-ikimashou, ks4-tenki-kara; explanations kept."}
+{"id":"chapter-16-extras/x16a-tsugi-akihabara-event/unanswerable/1","status":"fixed","statusReason":"Hint added naming つぎ; the book's English kept."}
+{"id":"chapter-16-extras/x16a-pooru-suzuki-event-ikimasu/unanswerable/1","status":"fixed","statusReason":"Hint added naming つぎ, in the same edit as the name-order fix."}
+{"id":"chapter-16/mata-kondo/book-mismatch/1","status":"fixed","statusReason":"Hint now 'the inviter's reply after being turned down'; note says the inviter uses it to accept a refusal."}
+{"id":"chapter-16-extras/x16a-tsugi-akihabara-event/book-mismatch/1","status":"fixed","statusReason":"'Time takes に as always' replaced: days of the week take に here, relative words like らいしゅう take none."}
+{"id":"chapter-16-extras/x16c-onaka-ne-tabemasenka/book-mismatch/1","status":"fixed","statusReason":"English now 'We're hungry, aren't we? Shall we eat something?' (speaker included, matching the book); the three ね invitations now agree."}
+{"id":"chapter-16-extras/fib-nodo-nanika-nomimasenka/book-mismatch/1","status":"fixed","statusReason":"English now 'We're thirsty, aren't we? Shall we drink something?'"}
+{"id":"chapter-16-extras/fib-tsukare-sukoshi-yasumimasenka/book-mismatch/1","status":"fixed","statusReason":"English now 'We're tired, aren't we? Shall we rest a bit?'"}
+{"id":"chapter-16-extras/x16a-pooru-suzuki-event-ikimasu/book-mismatch/1","status":"fixed","statusReason":"Book order restored in target, romaji and English (すずきさんとポールさんは…); stage-made clip, needs re-voicing."}
+{"id":"chapter-16-extras/decline-doyoubi/note-unverifiable/1","status":"fixed","statusReason":"'softens the refusal more than すみません' dropped; the note keeps the book's scheduling-versus-taste contrast."}
+{"id":"chapter-17/ikitai-desu/leaks-answer/1","status":"fixed","statusReason":"Formation rule moved from the Production hint to the back note; the front is now '(I) want to go' like the other たい cards."}
+{"id":"chapter-17-extras/sumimasu-1/wrong-content/1","status":"fixed","statusReason":"Re-glossed as a plan, 'I'm going to live in Tokyo.', with a note that non-past すみます is a move to come, not where you live now. Target and clip unchanged."}
+{"id":"chapter-17-extras/mae-time-go-home/wrong-content/1","status":"fixed","statusReason":"Target now ばんごはんのまえにうちにかえりたいです 'I want to go home before dinner.' (an event noun, as in the book's examples); the invented 'a time word takes の' rule dropped. Stage-made clip, needs re-voicing."}
+{"id":"chapter-17-extras/-/wrong-content/1","status":"fixed","statusReason":"All seven notes now say 'A verb before まえに is in its dictionary form' instead of 'always follows the dictionary form'. (The same sentence in chapters 19, 21 and 22 extras is outside this fixer's units.)"}
+{"id":"chapter-17-extras/eat-at-restaurant-answer/unanswerable/1","status":"fixed","statusReason":"English now 'I want to eat at that restaurant over there.', the deck's あの convention."}
+{"id":"chapter-17-extras/kaitai-x2/missing-info/1","status":"fixed","statusReason":"Note added: Xに here means 'as X' or 'for X', as in おみやげに."}
+{"id":"chapter-17-extras/-/other/1","status":"fixed","statusReason":"'the next item' and 'the previous item' replaced with the other sentence quoted in Japanese."}
+{"id":"chapter-18/yoroshii-2/wrong-content/1","status":"fixed","statusReason":"'Lesson 9' corrected to 'Lesson 10', where the learner's いい card ships."}
+{"id":"chapter-18/chotto-yoroshii-desu-ka/wrong-content/1","status":"fixed","statusReason":"'casual' and the formality comparison dropped; note now says ちょっと here is Lesson 10's 'a little bit', not Lesson 16's polite decline."}
+{"id":"chapter-18/ato/ambiguous/1","status":"fixed","statusReason":"Hints on both: あと 'the bare word, without a particle', あとで 'the form with a particle on the end'. Book glosses kept."}
+{"id":"chapter-18/kaigi-o-shimasu/ambiguous/1","status":"fixed","statusReason":"Hint added: holding one, with します, so かいぎがあります is ruled out."}
+{"id":"chapter-18-extras/yoroshii-ima/missing-info/1","status":"fixed","statusReason":"Production hint 'polite, to a superior or a client' names the register that picks よろしい over いい."}
+{"id":"chapter-18-extras/yoroshii-ashita/missing-info/1","status":"fixed","statusReason":"Production hint 'polite, to a superior or a client' added."}
+{"id":"chapter-18-extras/yoroshii-place/missing-info/1","status":"fixed","statusReason":"Production hint 'polite, as a shop clerk to a customer' added."}
+{"id":"chapter-18-extras/yoroshii-ima/other/1","status":"fixed","statusReason":"Note now says あした picks up は while いま takes none, instead of 'only the time word changes'."}
+{"id":"chapter-18-extras/chain-shite-kiku/wrong-content/1","status":"fixed","statusReason":"Note now credits the 'ask' reading to the object ばしょ and says the に belongs to でんわをして."}
+{"id":"chapter-18-extras/kuruma-karite-doraibu-yesterday/missing-info/1","status":"fixed","statusReason":"Note now says かります covers renting as well as borrowing."}
+{"id":"chapter-18-extras/party-no-ato-bar-whiskey/book-mismatch/1","status":"skipped","statusReason":"hand-curated clip, owner to regenerate: the fix changes the target to のみました, but the card ships a picked variant (e31d19c3213a3add-genkanji-2eb9ef64.mp3). Change the target and English ('After the party, I went to a bar and drank whiskey.') together when re-voicing."}
+{"id":"chapter-18-extras/kiku-ask/other/1","status":"fixed","statusReason":"Note now contrasts with the shipping おんがくをきいて、てがみをかきます instead of the excluded pair; also 'his' to 'her' for Nakamura-san, per the book."}

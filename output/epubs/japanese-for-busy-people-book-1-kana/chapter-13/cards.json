@@ -47,13 +47,13 @@
       "target": "おそばやさん",
       "pronunciation": "osobayasan",
       "uncertain": true,
-      "note": "そばや (soba shop, already seen bare in Lesson 12) plus さん, which softens the tone (NOTES 1).",
+      "note": "そばや (sobaya, \"soba shop\", met bare in Lesson 12) plus さん (san), which softens the tone.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english)",
       "audio": "2d8b08f37ff774f0.mp3",
       "audioOriginal": "2d8b08f37ff774f0.orig.mp3",
       "audioAuto": "2d8b08f37ff774f0.mp3",
       "audioMarked": true,
-      "hint": "polite form, with the honorific お (o) in front and the …さん (san, \"Mr./Ms.\") ending",
+      "hint": "the softened form, with お (o, an honorific prefix) in front and さん (san, here a softening suffix) at the end",
       "audioTextHash": "2d8b08f37ff774f0"
     },
     {
@@ -63,7 +63,7 @@
       "target": "あそこ",
       "pronunciation": "asoko",
       "uncertain": true,
-      "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER (the chapter teaches this with a picture, not words): ここ is where the speaker is, そこ is near the listener, あそこ is away from BOTH of you.",
+      "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER: ここ is where the speaker is, そこ is near the listener, あそこ is away from BOTH of you.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 5: Shopping (2): Two Bottles of That Wine, Please (matched on english)",
       "audio": "522810893f90855c.mp3",
       "audioOriginal": "522810893f90855c.orig.mp3",
@@ -83,14 +83,15 @@
       "audioOriginal": "54faeeb5e90a3faf.orig.mp3",
       "audioAuto": "54faeeb5e90a3faf.mp3",
       "audioMarked": true,
-      "audioTextHash": "54faeeb5e90a3faf"
+      "audioTextHash": "54faeeb5e90a3faf",
+      "hint": "the word that starts a second sentence, not the particle も (mo, \"also\")"
     },
     {
       "id": "sorekara-example",
       "english": "Tanaka-san is Japanese. He is also a student.",
       "category": "Grammar & Function Words",
       "target": "たなかさんはにほんじんです。それから、がくせいです",
-      "pronunciation": "tanaka-san wa nihonjin desu. sorekara, gakusei desu",
+      "pronunciation": "Tanaka-san wa nihonjin desu. sorekara, gakusei desu",
       "aiSuggested": true,
       "reviewNote": "Example demonstrating それから as a connecting word — the chapter's own use of それから appears only inside the TARGET DIALOGUE, which is off-limits dialogue script, and no other section demonstrates it.",
       "audio": "9cf75077858d0001.mp3",
@@ -199,13 +200,14 @@
       "id": "ks3-taxi-stand",
       "english": "The taxi stand is in front of the station.",
       "category": "Transport",
-      "target": "タクシーのりばはえきのまえです",
-      "pronunciation": "takushī noriba wa eki no mae desu",
+      "target": "タクシーのりばはえきのまえにあります",
+      "pronunciation": "takushī noriba wa eki no mae ni arimasu",
       "audio": "cc7b0c812d772272.mp3",
       "audioOriginal": "cc7b0c812d772272.orig.mp3",
       "audioAuto": "cc7b0c812d772272.mp3",
       "audioMarked": true,
-      "audioTextHash": "cc7b0c812d772272"
+      "audioTextHash": "cc7b0c812d772272",
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)"
     },
     {
       "id": "ks4-smith-floor",
@@ -213,13 +215,14 @@
       "category": "Work & Occupations",
       "target": "スミスさんは２かいにいます",
       "ttsText": "スミスさんはにかいにいます",
-      "pronunciation": "sumisu-san wa nikai ni imasu",
+      "pronunciation": "Sumisu-san wa nikai ni imasu",
       "audioOriginal": "49c4face4eae3464-genkanji-200c133e.orig.mp3",
       "audioAuto": "49c4face4eae3464-genkanji-200c133e.mp3",
       "audioMarked": true,
       "audioTextHash": "49c4face4eae3464",
       "audioFilter": "standard",
-      "audio": "49c4face4eae3464-genkanji-200c133e.mp3"
+      "audio": "49c4face4eae3464-genkanji-200c133e.mp3",
+      "hint": "using に います (ni imasu, \"is/exists at\"), not the contracted です (desu)"
     },
     {
       "id": "ks5-house-near",
@@ -242,7 +245,7 @@
       "target": "1かいにレストランがあります",
       "ttsText": "いっかいにレストランがあります",
       "pronunciation": "ikkai ni resutoran ga arimasu",
-      "note": "Contrast with \"The restaurant is on the first floor,\" which uses は because the restaurant is already the established topic (see GRAMMAR 2).",
+      "note": "Contrast with \"The restaurant is on the first floor,\" which uses は because the restaurant is already the established topic.",
       "audio": "4c375f816dd6e0e3.mp3",
       "audioOriginal": "4c375f816dd6e0e3.orig.mp3",
       "audioAuto": "4c375f816dd6e0e3.mp3",
@@ -257,7 +260,7 @@
       "ttsText": "レストランはいっかいにあります",
       "pronunciation": "resutoran wa ikkai ni arimasu",
       "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)",
-      "note": "The restaurant's existence is already known, so the topic marker は replaces が; contrast with the が あります version, which introduces the restaurant as new information. Compare also the shorter contracted version below using です.",
+      "note": "The restaurant's existence is already known, so the topic marker は replaces が; contrast with the が あります version, which introduces the restaurant as new information. Compare レストランは1かいです (resutoran wa ikkai desu), the shorter form with です (desu).",
       "audio": "3fbb719009bf9457.mp3",
       "audioOriginal": "3fbb719009bf9457.orig.mp3",
       "audioAuto": "3fbb719009bf9457.mp3",
@@ -272,7 +275,7 @@
       "ttsText": "レストランはいっかいです",
       "pronunciation": "resutoran wa ikkai desu",
       "hint": "contracted with です (desu, \"is\") instead of に あります (ni arimasu, \"exists at\")",
-      "note": "A shortened version that replaces に あります with です once the restaurant's existence and location are already established; this contraction is not possible for the が あります existence statement (see GRAMMAR 2).",
+      "note": "A shortened version that replaces に あります with です once the restaurant's existence and location are already established; this contraction is not possible for the が あります existence statement.",
       "audio": "d81e3e35d974e8c5.mp3",
       "audioOriginal": "d81e3e35d974e8c5.orig.mp3",
       "audioAuto": "d81e3e35d974e8c5.mp3",
@@ -320,8 +323,8 @@
       "english": "Bookstore",
       "category": "Shopping",
       "target": "ほんや",
-      "pronunciation": "honya",
-      "note": "ほん (book) + や (shop suffix, see the や card) = ほんや.",
+      "pronunciation": "hon'ya",
+      "note": "ほん (hon, \"book\") + や (ya, the \"shop\" suffix) = ほんや.",
       "audio": "5fe4aeaaac9b14a8.mp3",
       "audioOriginal": "5fe4aeaaac9b14a8.orig.mp3",
       "audioAuto": "5fe4aeaaac9b14a8.mp3",
@@ -465,7 +468,7 @@
       "category": "Directions",
       "target": "そこ",
       "pronunciation": "soko",
-      "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER (the chapter teaches this with a picture, not words): ここ is where the speaker is, そこ is near the LISTENER, あそこ is away from both. そこ is not simply \"there\" — it specifically means near the person you are talking to.",
+      "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER: ここ is where the speaker is, そこ is near the LISTENER, あそこ is away from both. そこ is not simply \"there\" — it specifically means near the person you are talking to.",
       "audio": "f53174521c55ff20.mp3",
       "audioOriginal": "f53174521c55ff20.orig.mp3",
       "audioAuto": "f53174521c55ff20.mp3",
@@ -508,7 +511,8 @@
       "audioOriginal": "360856f8a633e54a.orig.mp3",
       "audioAuto": "360856f8a633e54a.mp3",
       "audioMarked": true,
-      "audioTextHash": "360856f8a633e54a"
+      "audioTextHash": "360856f8a633e54a",
+      "hint": "the one-syllable word, as in \"girl\" and \"boy\""
     },
     {
       "id": "onnanoko",
@@ -674,7 +678,7 @@
       "hint": "\"near\" is an adjective here, describing the place, so it ends in です (desu), not にあります (ni arimasu)",
       "target": "としょかんはえきからちかいです",
       "pronunciation": "toshokan wa eki kara chikai desu",
-      "note": "Same pattern as \"Smith-san's house is near the station\" (place1は place2から ちかい／とおいです, GRAMMAR 3) applied to a different noun.",
+      "note": "Same pattern as \"Smith-san's house is near the station\" (place1は place2から ちかい／とおいです) applied to a different noun.",
       "audio": "465ffad4a41cc26d.mp3",
       "audioOriginal": "465ffad4a41cc26d.orig.mp3",
       "audioAuto": "465ffad4a41cc26d.mp3",
@@ -686,7 +690,7 @@
       "english": "Kumano Shrine",
       "category": "Travel & Tourism",
       "target": "くまのじんじゃ",
-      "pronunciation": "kumano jinja",
+      "pronunciation": "Kumano-jinja",
       "audio": "f7635fce61334de9.mp3",
       "audioOriginal": "f7635fce61334de9.orig.mp3",
       "audioAuto": "f7635fce61334de9.mp3",
@@ -828,7 +832,7 @@
       "english": "How many forks are there on the table?",
       "category": "Home & Household",
       "target": "テーブルのうえにフォークがなんぼんありますか",
-      "pronunciation": "tēburu no ue ni fōku ga nan-bon arimasu ka",
+      "pronunciation": "tēburu no ue ni fōku ga nanbon arimasu ka",
       "note": null,
       "scene": null,
       "fillInBlank": true,
@@ -843,7 +847,7 @@
       "id": "fib-fork-table-count-a",
       "english": "There are ten.",
       "category": "Home & Household",
-      "target": "10ほんあります",
+      "target": "10ぽんあります",
       "pronunciation": "jup-pon arimasu",
       "note": null,
       "scene": "answering how many forks are on the table",
@@ -870,7 +874,8 @@
       "audioOriginal": "fb9cb00aebec2718.orig.mp3",
       "audioAuto": "fb9cb00aebec2718.mp3",
       "audioMarked": true,
-      "audioTextHash": "fb9cb00aebec2718"
+      "audioTextHash": "fb9cb00aebec2718",
+      "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)"
     },
     {
       "id": "fib-kouban-asoko",
@@ -899,7 +904,8 @@
       "audioOriginal": "6fb52dfc84f65caf.orig.mp3",
       "audioAuto": "6fb52dfc84f65caf.mp3",
       "audioMarked": true,
-      "audioTextHash": "6fb52dfc84f65caf"
+      "audioTextHash": "6fb52dfc84f65caf",
+      "hint": "using に います (ni imasu, \"is/exists at\"), not the contracted です (desu)"
     },
     {
       "id": "fib-tanakasan-doko-a",
@@ -915,7 +921,8 @@
       "audioOriginal": "8564e7aefdc12a05.orig.mp3",
       "audioAuto": "8564e7aefdc12a05.mp3",
       "audioMarked": true,
-      "audioTextHash": "8564e7aefdc12a05"
+      "audioTextHash": "8564e7aefdc12a05",
+      "hint": "using に います (ni imasu, \"is/exists at\"), not the contracted です (desu)"
     },
     {
       "id": "fib-kumano-chikai-q",
@@ -939,7 +946,7 @@
       "english": "No, it's a little far. It's about 20 minutes by bus.",
       "category": "Travel & Tourism",
       "target": "いいえ、ちょっととおいです。バスで20ぷんぐらいです",
-      "pronunciation": "iie, chotto tōi desu. Basu de nijup-pun gurai desu",
+      "pronunciation": "iie, chotto tōi desu. basu de nijup-pun gurai desu",
       "note": null,
       "scene": "answering whether Kumano Shrine is near here",
       "fillInBlank": true,

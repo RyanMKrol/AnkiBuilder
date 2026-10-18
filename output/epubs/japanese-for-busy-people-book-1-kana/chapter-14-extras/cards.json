@@ -144,7 +144,7 @@
       "english": "Oh, I have a scarf.",
       "category": "Other",
       "target": "あ、スカーフがありますよ",
-      "note": "The chapter's first use of あります as \"have\": the thing owned takes が, not を. よ flags it as news to the listener.",
+      "note": "Here あります (arimasu) means \"have\": the thing owned takes が (ga), not を (o). よ (yo) flags it as news to the listener.",
       "aiSuggested": true,
       "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE.",
       "pronunciation": "a, sukāfu ga arimasu yo",
@@ -152,7 +152,8 @@
       "audioOriginal": "adb8ffcf8bb55e00.orig.mp3",
       "audioAuto": "adb8ffcf8bb55e00.mp3",
       "audioMarked": true,
-      "audioTextHash": "adb8ffcf8bb55e00"
+      "audioTextHash": "adb8ffcf8bb55e00",
+      "scene": "offering something to a friend who says it is cold"
     },
     {
       "id": "fib-nakamura-san-ni-karimasu",
@@ -227,7 +228,8 @@
       "audioOriginal": "643c712eddcb858c.orig.mp3",
       "audioAuto": "643c712eddcb858c.mp3",
       "audioMarked": true,
-      "audioTextHash": "643c712eddcb858c"
+      "audioTextHash": "643c712eddcb858c",
+      "hint": "the loanword for a fashion bag, not かばん (kaban, \"bag\")"
     },
     {
       "id": "x14b-okane-kashimasendeshita",
@@ -426,7 +428,7 @@
       "english": "I didn't have an appointment last month.",
       "category": "Time",
       "target": "せんげつやくそくがありませんでした",
-      "pronunciation": "sengetsu yakusoku ga arimasendeshita",
+      "pronunciation": "sengetsu yakusoku ga arimasen deshita",
       "note": null,
       "scene": null,
       "fillInBlank": true,
@@ -458,7 +460,7 @@
       "category": "Other",
       "target": "だれにもらいましたか",
       "scene": "asking a follow-up question about a gift someone has just mentioned",
-      "note": "だれに, not だれから — with もらいます the giver is marked by に.",
+      "note": "This lesson marks the giver of もらいます (moraimasu, \"receive\") with に (ni), so \"from whom\" is だれに (dare ni).",
       "aiSuggested": true,
       "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES: Listen and answer (2).",
       "pronunciation": "dare ni moraimashita ka",
@@ -687,7 +689,7 @@
     },
     {
       "id": "x14-ashita-no-yoru-jikan-arimasuka",
-      "english": "Do you have time tomorrow evening?",
+      "english": "Do you have time tomorrow night?",
       "category": "Time",
       "target": "あしたのよるじかんがありますか",
       "aiSuggested": true,
@@ -732,10 +734,10 @@
     },
     {
       "id": "fib-chichi-itsu-okane-kuremasu-q",
-      "english": "When does (my) father give me money?",
+      "english": "When does your father give you money?",
       "category": "Money",
-      "target": "ちちはいつわたしにおかねをくれますか",
-      "pronunciation": "chichi wa itsu watashi ni okane o kuremasu ka",
+      "target": "おとうさんはいつおかねをくれますか",
+      "pronunciation": "otōsan wa itsu okane o kuremasu ka",
       "note": null,
       "scene": null,
       "fillInBlank": true,
@@ -748,7 +750,7 @@
     },
     {
       "id": "fib-emma-douryou-ni-agemasu",
-      "english": "(She) will give it to a colleague.",
+      "english": "(She) will give it to her colleague.",
       "category": "Other",
       "target": "どうりょうにあげます",
       "pronunciation": "dōryō ni agemasu",
@@ -846,7 +848,7 @@
       "english": "This is a black belt.",
       "target": "これはくろいベルトです",
       "pronunciation": "kore wa kuroi beruto desu",
-      "note": "くろい (kuroi) is a true い-adjective, so の never appears here. Same for あかい (akai), あおい (aoi) and しろい (shiroi) — those four and no others.",
+      "note": "くろい (kuroi, \"black\") is a true い-adjective, so it goes straight before the noun with no の (no). あかい (akai, \"red\"), あおい (aoi, \"blue\"), しろい (shiroi, \"white\"), きいろい (kiiroi, \"yellow\") and ちゃいろい (chairoi, \"brown\") work the same way, while みどり (midori, \"green\") and ピンク (pinku, \"pink\") are nouns and take の.",
       "category": "Colors",
       "hint": null,
       "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
@@ -921,7 +923,7 @@
       "target": "たんじょうびにくれます",
       "pronunciation": "tanjōbi ni kuremasu",
       "note": null,
-      "scene": "answering when Smith-san's father gives him money",
+      "scene": "answering when your father gives you money",
       "fillInBlank": true,
       "aiSuggested": true,
       "audio": "863d1e4d7ed227f6.mp3",

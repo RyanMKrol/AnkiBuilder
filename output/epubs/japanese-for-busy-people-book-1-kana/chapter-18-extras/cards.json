@@ -101,12 +101,12 @@
     },
     {
       "id": "kiku-ask",
-      "english": "Please ask Nakamura-san for his telephone number.",
+      "english": "Please ask Nakamura-san for her telephone number.",
       "category": "Technology & Communication",
       "target": "なかむらさんにでんわばんごうをきいてください",
       "pronunciation": "Nakamura-san ni denwa bangō o kiite kudasai",
       "aiSuggested": true,
-      "note": "Contrast pair with おんがくをきいてください (ongaku o kiite kudasai). Same て-form, but きいて (kiite) means \"ask\" when a person is marked with に (ni) and \"listen\" when the object is something you hear.",
+      "note": "Compare おんがくをきいて、てがみをかきます (ongaku o kiite, tegami o kakimasu, \"I'll listen to music and write a letter\"). Same て-form, but きいて (kiite) means \"ask\" when the object is information you want from someone, and \"listen\" when it is something you hear.",
       "audio": "a3f92a9cd0583fb6.mp3",
       "audioOriginal": "a3f92a9cd0583fb6.orig.mp3",
       "audioAuto": "a3f92a9cd0583fb6.mp3",
@@ -352,7 +352,8 @@
       "audioOriginal": "5d49f3f1bfc35be6.orig.mp3",
       "audioAuto": "5d49f3f1bfc35be6.mp3",
       "audioMarked": true,
-      "audioTextHash": "5d49f3f1bfc35be6"
+      "audioTextHash": "5d49f3f1bfc35be6",
+      "hint": "polite, to a superior or a client"
     },
     {
       "id": "kasu-kasa",
@@ -374,7 +375,7 @@
       "target": "くるまをかりて、ドライブをしました",
       "pronunciation": "kuruma o karite, doraibu o shimashita",
       "scene": "Answering: What did you do yesterday?",
-      "note": "かりて (karite) is the て-form of かります (karimasu), a Regular 2 verb: just change ます (masu) to て (te).",
+      "note": "かりて (karite) is the て-form of かります (karimasu), a Regular 2 verb: just change ます (masu) to て (te). かります (karimasu) covers renting as well as borrowing.",
       "audio": "1a91cdfd61ce7416.mp3",
       "audioOriginal": "1a91cdfd61ce7416.orig.mp3",
       "audioAuto": "1a91cdfd61ce7416.mp3",
@@ -442,12 +443,13 @@
       "target": "いまよろしいですか",
       "pronunciation": "ima yoroshii desu ka",
       "aiSuggested": true,
-      "note": "Minimal pair with あしたはよろしいですか (ashita wa yoroshii desu ka): only the time word changes.",
+      "note": "Compare あしたはよろしいですか (ashita wa yoroshii desu ka, \"is tomorrow all right?\"): あした (ashita) picks up は (wa), setting tomorrow against other days, while いま (ima) here takes none.",
       "audio": "6cf6c699b8c9c3ee.mp3",
       "audioOriginal": "6cf6c699b8c9c3ee.orig.mp3",
       "audioAuto": "6cf6c699b8c9c3ee.mp3",
       "audioMarked": true,
-      "audioTextHash": "6cf6c699b8c9c3ee"
+      "audioTextHash": "6cf6c699b8c9c3ee",
+      "hint": "polite, to a superior or a client"
     },
     {
       "id": "smith-osaka-meeting-call",
@@ -695,7 +697,7 @@
       "target": "スミスさんにでんわをして、レストランのばしょをききます",
       "pronunciation": "Sumisu-san ni denwa o shite, resutoran no basho o kikimasu",
       "aiSuggested": true,
-      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb. ききます (kikimasu) here means \"ask\" because a person is marked with に (ni).",
+      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb. ききます (kikimasu) here means \"ask\" because its object is a piece of information, ばしょ (basho, \"location\"); the に (ni) on スミスさん belongs to でんわをして, and the person asked is the one just called.",
       "audio": "1de0b1f86da1fe28.mp3",
       "audioOriginal": "1de0b1f86da1fe28.orig.mp3",
       "audioAuto": "1de0b1f86da1fe28.mp3",
@@ -871,7 +873,8 @@
       "audioOriginal": "c7fe86287bb3c662.orig.mp3",
       "audioAuto": "c7fe86287bb3c662.mp3",
       "audioMarked": true,
-      "audioTextHash": "c7fe86287bb3c662"
+      "audioTextHash": "c7fe86287bb3c662",
+      "hint": "polite, as a shop clerk to a customer"
     },
     {
       "id": "miru-terebi",

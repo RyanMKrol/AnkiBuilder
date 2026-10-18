@@ -68,8 +68,10 @@
       "english": "Oh, I have a scarf.",
       "category": "Other",
       "target": "あ、スカーフがありますよ",
-      "note": "The chapter's first use of あります as \"have\": the thing owned takes が, not を. よ flags it as news to the listener.",
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE."
+      "note": "Here あります (arimasu) means \"have\": the thing owned takes が (ga), not を (o). よ (yo) flags it as news to the listener.",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from TARGET DIALOGUE.",
+      "aiSuggested": true,
+      "scene": "offering something to a friend who says it is cold"
     },
     {
       "id": "x14b-emma-chiketto-kuremashita",
@@ -94,7 +96,9 @@
       "target": "すてきなバッグですね。どこでかいましたか",
       "scene": "complimenting something a friend is carrying",
       "note": "The natural follow-up to a compliment. どこで, not どこに: で marks the place where an action happens.",
-      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary)."
+      "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary).",
+      "aiSuggested": true,
+      "hint": "the loanword for a fashion bag, not かばん (kaban, \"bag\")"
     },
     {
       "id": "x14b-okane-kashimasendeshita",
@@ -192,8 +196,9 @@
       "category": "Other",
       "target": "だれにもらいましたか",
       "scene": "asking a follow-up question about a gift someone has just mentioned",
-      "note": "だれに, not だれから — with もらいます the giver is marked by に.",
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES: Listen and answer (2)."
+      "note": "This lesson marks the giver of もらいます (moraimasu, \"receive\") with に (ni), so \"from whom\" is だれに (dare ni).",
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Lifted VERBATIM from EXERCISES: Listen and answer (2).",
+      "aiSuggested": true
     },
     {
       "id": "x14b-kinou-yotei-arimasendeshita",
@@ -297,10 +302,11 @@
     },
     {
       "id": "x14-ashita-no-yoru-jikan-arimasuka",
-      "english": "Do you have time tomorrow evening?",
+      "english": "Do you have time tomorrow night?",
       "category": "Time",
       "target": "あしたのよるじかんがありますか",
-      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from SPEAKING PRACTICE."
+      "reviewNote": "Extras wave 1 (chapter material the base extraction missed). Adapted from SPEAKING PRACTICE.",
+      "aiSuggested": true
     },
     {
       "id": "x14b-senshuu-shucchou-arimashita",
@@ -355,7 +361,7 @@
       "category": "Colors",
       "target": "これはくろいベルトです",
       "hint": null,
-      "note": "くろい (kuroi) is a true い-adjective, so の never appears here. Same for あかい (akai), あおい (aoi) and しろい (shiroi) — those four and no others.",
+      "note": "くろい (kuroi, \"black\") is a true い-adjective, so it goes straight before the noun with no の (no). あかい (akai, \"red\"), あおい (aoi, \"blue\"), しろい (shiroi, \"white\"), きいろい (kiiroi, \"yellow\") and ちゃいろい (chairoi, \"brown\") work the same way, while みどり (midori, \"green\") and ピンク (pinku, \"pink\") are nouns and take の.",
       "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Clothing and accessories, Lesson 14's field (earrings, necklace, blouse, tie)",
       "uncertain": false,
       "aiSuggested": true

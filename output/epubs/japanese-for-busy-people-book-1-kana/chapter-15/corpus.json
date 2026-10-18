@@ -62,8 +62,8 @@
       "id": "kakimasu-draw",
       "english": "Draw",
       "category": "Sports & Hobbies",
-      "scene": "drawing a picture",
-      "hint": "the polite 〜ます (masu) form",
+      "scene": "about a picture",
+      "hint": "drawing a picture, in the polite 〜ます (masu) form",
       "note": "ます-form of かく (kaku, \"draw\"); かく is the dictionary form, used in casual speech and before grammar patterns like のが すきです. The same verb also covers \"write\" (Lesson 17): Japanese uses the one word かきます for drawing and for writing, and both take を.",
       "reviewNote": null,
       "target": "かきます"
@@ -111,7 +111,7 @@
     },
     {
       "id": "watashi-mo-desu",
-      "english": "Me too. / Same here.",
+      "english": "Me too.",
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
@@ -171,11 +171,11 @@
     },
     {
       "id": "kiku-listen-dict-form",
-      "english": "Listen, hear (dictionary form)",
+      "english": "Listen, hear; also ask (dictionary form)",
       "category": "Sports & Hobbies",
       "scene": null,
       "hint": null,
-      "note": "ききます (kikimasu) already covers two different meanings from earlier lessons: \"listen to\" (Lesson 8) and \"ask\" (Lesson 9). きく here is the dictionary form of only the \"listen, hear\" sense, matching this card's gloss.",
+      "note": "The dictionary form of ききます (kikimasu) in both its senses: \"listen to\" (Lesson 8) and \"ask\" (Lesson 9). This lesson uses it for listening, as in おんがくを きく (ongaku o kiku, \"listen to music\").",
       "reviewNote": "From the WORD POWER \"Dictionary form\" illustration (Page_145_Image_0001.jpg), which pairs ききます・きく with no English gloss given anywhere in the chapter; the \"listen, hear\" meaning is inferred from general vocabulary, not confirmed by the source text.",
       "target": "きく",
       "uncertain": true
@@ -226,7 +226,7 @@
       "category": "Descriptions & Qualities",
       "scene": null,
       "hint": null,
-      "note": "Negative present form of すきです (suki desu, \"like\"). Demonstrated in context in Exercise II: かとうさんは コーヒーが すきじゃありません (\"Kato-san doesn't like coffee\").",
+      "note": "Negative present form of すきです (suki desu, \"like\"), as in かとうさんは コーヒーが すきじゃありません (\"Kato-san doesn't like coffee\").",
       "reviewNote": null,
       "target": "すきじゃありません"
     },
@@ -256,7 +256,7 @@
       "category": "Descriptions & Qualities",
       "scene": null,
       "hint": null,
-      "note": "Negative present form of じょうずです (jouzu desu, \"be good at\"). Demonstrated in context: テニスが じょうずじゃありません (\"not good at tennis\", Exercise II) and サッカーが すきです。でも、じょうずじゃありません (\"I like soccer, but I'm not good at it\", Speaking Practice).",
+      "note": "Negative present form of じょうずです (jouzu desu, \"be good at\"), as in テニスが じょうずじゃありません (\"not good at tennis\") and サッカーが すきです。でも、じょうずじゃありません (\"I like soccer, but I'm not good at it\").",
       "reviewNote": null,
       "target": "じょうずじゃありません"
     },
@@ -397,7 +397,7 @@
       "category": "Sports & Hobbies",
       "scene": null,
       "hint": null,
-      "note": "Dictionary form of うたいます (utaimasu, \"sing\"). Used in context in Exercise VII: うたうのも すきです (\"I also like singing\").",
+      "note": "Dictionary form of うたいます (utaimasu, \"sing\"), as in うたうのも すきです (\"I also like singing\").",
       "reviewNote": "From Exercise IV's verb-conjugation reference chart (Page_148_Image_0001.jpg).",
       "target": "うたう"
     },
@@ -427,7 +427,7 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Dictionary form of たべます (tabemasu, \"eat\"); Regular 2 verbs form the dictionary form by changing ます to る.",
+      "note": "Dictionary form of たべます (tabemasu, \"eat\"); Regular 2 verbs form the dictionary form by changing ます to る. The ます form alone does not always show the group, so learn it with each verb. The Regular 2 verbs so far are たべます, みます (mimasu, \"see\"), おしえます (oshiemasu, \"teach\"), みせます (misemasu, \"show\"), います (imasu, \"be\"), あげます (agemasu, \"give\") and かります (karimasu, \"borrow\").",
       "reviewNote": "Exercise V's own worked example for the \"change to dictionary form\" drill (たべます → たべる).",
       "target": "たべる"
     },
@@ -462,7 +462,7 @@
       "id": "kaeru-dict-form",
       "english": "Go home, return (dictionary form)",
       "target": "かえる",
-      "note": "Dictionary form of かえります (kaerimasu, “go home”, Lesson 6). Regular 1: the stem ends in -ri, which becomes -ru. It looks like a Regular 2 verb and is not.",
+      "note": "Dictionary form of かえります (kaerimasu, “go home”, Lesson 7). Regular 1: the stem ends in -ri, which becomes -ru. It looks like a Regular 2 verb and is not: the ます form alone cannot tell you the group of a -ります verb, so learn each one with its group.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
       "reviewNote": "Added at the gate-1 image sweep from the WORD POWER “Dictionary form” chart (Page_145_Image_0001.jpg), which the extraction read but carded only in part. Its ます form is already taught, so the English is the earlier lesson's."
@@ -610,7 +610,7 @@
     },
     {
       "id": "demo-but-vocab",
-      "english": "But",
+      "english": "But (at the start of a sentence)",
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
@@ -650,7 +650,7 @@
       "english": "Show (dictionary form)",
       "category": "Grammar & Function Words",
       "target": "みせる",
-      "note": "Dictionary form of みせます (misemasu, \"show\", Lesson 11), which is also its casual form. Regular 2: ます becomes る. Lesson 15's grammar names みせます among the Regular 2 verbs.",
+      "note": "Dictionary form of みせます (misemasu, \"show\", Lesson 11), which is also its casual form. Regular 2: ます becomes る.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught みせます (Lesson 11), or Lesson 15 where the form itself is taught if the verb came earlier."
     },
@@ -659,7 +659,7 @@
       "english": "Give (dictionary form)",
       "category": "Grammar & Function Words",
       "target": "あげる",
-      "note": "Dictionary form of あげます (agemasu, \"give\", Lesson 14), which is also its casual form. Regular 2: ます becomes る. Lesson 15's grammar names あげます among the Regular 2 verbs.",
+      "note": "Dictionary form of あげます (agemasu, \"give\", Lesson 14), which is also its casual form. Regular 2: ます becomes る.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: Lesson 22's ない-form chart showed this verb with a casual negative and no casual positive anywhere in the deck. The book never prints this dictionary form. Placed in the lesson that taught あげます (Lesson 14), or Lesson 15 where the form itself is taught if the verb came earlier."
     },

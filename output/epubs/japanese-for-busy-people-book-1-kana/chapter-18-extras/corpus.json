@@ -46,9 +46,9 @@
     {
       "id": "kiku-ask",
       "target": "なかむらさんにでんわばんごうをきいてください",
-      "english": "Please ask Nakamura-san for his telephone number.",
+      "english": "Please ask Nakamura-san for her telephone number.",
       "category": "Technology & Communication",
-      "note": "Contrast pair with おんがくをきいてください (ongaku o kiite kudasai). Same て-form, but きいて (kiite) means \"ask\" when a person is marked with に (ni) and \"listen\" when the object is something you hear.",
+      "note": "Compare おんがくをきいて、てがみをかきます (ongaku o kiite, tegami o kakimasu, \"I'll listen to music and write a letter\"). Same て-form, but きいて (kiite) means \"ask\" when the object is information you want from someone, and \"listen\" when it is something you hear.",
       "aiSuggested": true
     },
     {
@@ -219,7 +219,8 @@
       "english": "Is tomorrow all right?",
       "category": "Greetings",
       "note": "Minimal pair with いまよろしいですか (ima yoroshii desu ka): いま (ima) becomes あしたは (ashita wa).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "polite, to a superior or a client"
     },
     {
       "id": "kasu-kasa",
@@ -235,7 +236,7 @@
       "category": "Grammar & Function Words",
       "scene": "Answering: What did you do yesterday?",
       "fillInBlank": true,
-      "note": "かりて (karite) is the て-form of かります (karimasu), a Regular 2 verb: just change ます (masu) to て (te)."
+      "note": "かりて (karite) is the て-form of かります (karimasu), a Regular 2 verb: just change ます (masu) to て (te). かります (karimasu) covers renting as well as borrowing."
     },
     {
       "id": "eat-after-meeting-ato-de",
@@ -272,8 +273,9 @@
       "target": "いまよろしいですか",
       "english": "Is now a good time?",
       "category": "Greetings",
-      "note": "Minimal pair with あしたはよろしいですか (ashita wa yoroshii desu ka): only the time word changes.",
-      "aiSuggested": true
+      "note": "Compare あしたはよろしいですか (ashita wa yoroshii desu ka, \"is tomorrow all right?\"): あした (ashita) picks up は (wa), setting tomorrow against other days, while いま (ima) here takes none.",
+      "aiSuggested": true,
+      "hint": "polite, to a superior or a client"
     },
     {
       "id": "smith-osaka-meeting-call",
@@ -438,7 +440,7 @@
       "english": "I'll call Smith-san and ask where the restaurant is.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb. ききます (kikimasu) here means \"ask\" because a person is marked with に (ni)."
+      "note": "して (shite) is the て-form of します (shimasu), an Irregular verb. ききます (kikimasu) here means \"ask\" because its object is a piece of information, ばしょ (basho, \"location\"); the に (ni) on スミスさん belongs to でんわをして, and the person asked is the one just called."
     },
     {
       "id": "nomu-ocha",
@@ -560,7 +562,8 @@
       "target": "ここでよろしいですか",
       "english": "Is here all right?",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "polite, as a shop clerk to a customer"
     },
     {
       "id": "miru-terebi",

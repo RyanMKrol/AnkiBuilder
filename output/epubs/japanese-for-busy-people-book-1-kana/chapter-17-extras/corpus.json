@@ -20,9 +20,10 @@
     {
       "id": "sumimasu-1",
       "target": "わたしはとうきょうにすみます",
-      "english": "I live in Tokyo.",
+      "english": "I'm going to live in Tokyo.",
       "category": "Home & Household",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "Non-past すみます (sumimasu) describes a move you are going to make, not where you live now."
     },
     {
       "id": "cherry-blossom-good-place-ask",
@@ -52,10 +53,10 @@
     },
     {
       "id": "mae-time-go-home",
-      "target": "ごじのまえにうちにかえりたいです",
-      "english": "I want to go home before 5:00.",
+      "target": "ばんごはんのまえにうちにかえりたいです",
+      "english": "I want to go home before dinner.",
       "category": "Time",
-      "note": "",
+      "note": "A noun takes の (no) before まえに (mae ni): ばんごはんのまえに (bangohan no mae ni), like かいぎのまえに (kaigi no mae ni). A verb attaches directly, as in ねるまえに (neru mae ni).",
       "aiSuggested": true
     },
     {
@@ -424,7 +425,8 @@
       "target": "おみやげにおかしをかいたいです",
       "english": "I want to buy sweets as a souvenir.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "Xに (ni) here means \"as X\" or \"for X\": おみやげに (omiyage ni), as a souvenir."
     },
     {
       "id": "sushi-dont-want-to-eat",
@@ -449,7 +451,7 @@
     {
       "id": "eat-at-restaurant-answer",
       "target": "あのレストランでたべたいです",
-      "english": "I want to eat at that restaurant.",
+      "english": "I want to eat at that restaurant over there.",
       "category": "Food",
       "note": "",
       "aiSuggested": true
@@ -569,7 +571,7 @@
       "target": "えきにいくまえに、ともだちにでんわをします",
       "english": "Before I go to the station, I'll call my friend.",
       "category": "Grammar & Function Words",
-      "note": "Contrast pair with the next item: まえ after a verb means 'before', while after a place it means 'in front'.",
+      "note": "Compare えきのまえでともだちをまちます (eki no mae de tomodachi o machimasu, \"I'll wait for my friend in front of the station\"): まえ after a verb means 'before', while after a place it means 'in front'.",
       "aiSuggested": true
     },
     {
@@ -723,7 +725,7 @@
       "target": "えきのまえでともだちをまちます",
       "english": "I'll wait for my friend in front of the station.",
       "category": "Grammar & Function Words",
-      "note": "Contrast pair with the previous item: compare えきのまえ (in front of the station) with えきにいくまえに (before going to the station).",
+      "note": "Compare えきのまえ (in front of the station) with えきにいくまえに (before going to the station), from えきにいくまえに、ともだちにでんわをします (eki ni iku mae ni, tomodachi ni denwa o shimasu).",
       "aiSuggested": true
     },
     {
@@ -807,7 +809,7 @@
       "english": "Before I take ikebana lessons, I want to read a book about it.",
       "category": "Grammar & Function Words",
       "target": "いけばなをならうまえに、ほんをよみたいです",
-      "note": "ならう (learn). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "note": "ならう (learn). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ならう, the dictionary form added to the base unit in the same batch."
     },
@@ -816,7 +818,7 @@
       "english": "I want to have lunch before I wash the car.",
       "category": "Grammar & Function Words",
       "target": "くるまをあらうまえに、ひるごはんをたべたいです",
-      "note": "あらう (wash). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "note": "あらう (wash). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あらう, the dictionary form added to the base unit in the same batch."
     },
@@ -825,7 +827,7 @@
       "english": "In the morning, I want to have a coffee before I take a shower.",
       "category": "Grammar & Function Words",
       "target": "あさ、シャワーをあびるまえに、コーヒーをのみたいです",
-      "note": "あびる (take, of a shower). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "note": "あびる (take, of a shower). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あびる, the dictionary form added to the base unit in the same batch."
     },
@@ -834,7 +836,7 @@
       "english": "I'd like to have a coffee before we start the meeting.",
       "category": "Grammar & Function Words",
       "target": "かいぎをはじめるまえに、コーヒーをのみたいです",
-      "note": "はじめる (start). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "note": "はじめる (start). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using はじめる, the dictionary form added to the base unit in the same batch."
     },
@@ -843,7 +845,7 @@
       "english": "Before I live in Tokyo, I want to see the house.",
       "category": "Grammar & Function Words",
       "target": "とうきょうにすむまえに、うちをみたいです",
-      "note": "すむ (live). The place you live takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17.",
+      "note": "すむ (live). The place you live takes に. A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに from Lesson 17.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using すむ, the dictionary form added to the base unit in the same batch."
     },
@@ -852,7 +854,7 @@
       "english": "I want to take a quick look before I download it.",
       "category": "Grammar & Function Words",
       "target": "ダウンロードするまえに、ちょっとみたいです",
-      "note": "ダウンロードする (download). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then みたいです (want to see).",
+      "note": "ダウンロードする (download). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに from Lesson 17. Then みたいです (want to see).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ダウンロードする, the dictionary form added to the base unit in the same batch."
     },
@@ -861,7 +863,7 @@
       "english": "I want to eat breakfast before I check my e-mail.",
       "category": "Grammar & Function Words",
       "target": "メールをチェックするまえに、あさごはんをたべたいです",
-      "note": "チェックする (check). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
+      "note": "チェックする (check). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using チェックする, the dictionary form added to the base unit in the same batch."
     }

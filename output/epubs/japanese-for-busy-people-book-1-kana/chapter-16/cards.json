@@ -53,7 +53,7 @@
       "audioAuto": "3f5887e764898dee.mp3",
       "audioMarked": true,
       "audioTextHash": "3f5887e764898dee",
-      "hint": "the word on its own"
+      "hint": "the next one in order, as a word on its own; not こんど (kondo, \"next time\")"
     },
     {
       "id": "akihabara",
@@ -103,7 +103,7 @@
       "target": "から",
       "pronunciation": "kara",
       "uncertain": true,
-      "note": "This から means \"because, so\" — a different job from the から you already know for \"from\" (Lesson 3's なんじからなんじまで, Lesson 6's アメリカからきました). It attaches to the end of the reason clause: clause1から、clause2, as in いいてんきですから、こうえんでひるごはんをたべませんか, \"The weather is nice, so shall we have lunch in the park?\"",
+      "note": "The same \"because\" から as Lesson 14's わたしは さむくないですから (watashi wa samukunai desu kara, \"because I'm not cold\"), now with the reason first and what follows from it after: clause1から、clause2, as in いいてんきですから、こうえんでひるごはんをたべませんか, \"The weather is nice, so shall we have lunch in the park?\"",
       "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
       "scene": "the reason first, then what follows from it",
       "audio": "59e2dbcc834bc889.mp3",
@@ -132,7 +132,7 @@
       "category": "Grammar & Function Words",
       "target": "いきませんか",
       "pronunciation": "ikimasen ka",
-      "note": "ませんか makes a soft invitation that leaves room for the listener to decline; contrast いきましょう below, which assumes agreement and suits a moment once both sides are already on board.",
+      "note": "ませんか makes a soft invitation that leaves room for the listener to decline; contrast いきましょう (ikimashō, \"let's go\"), which assumes agreement and suits a moment once both sides are already on board.",
       "audio": "46fbcd24d1892657.mp3",
       "audioOriginal": "46fbcd24d1892657.orig.mp3",
       "audioAuto": "46fbcd24d1892657.mp3",
@@ -176,7 +176,8 @@
       "audioOriginal": "235b773db859fc9a.orig.mp3",
       "audioAuto": "235b773db859fc9a.mp3",
       "audioMarked": true,
-      "audioTextHash": "235b773db859fc9a"
+      "audioTextHash": "235b773db859fc9a",
+      "hint": "proposing a plan or a day to someone"
     },
     {
       "id": "ha-dou-desu-ka",
@@ -222,11 +223,11 @@
     },
     {
       "id": "mimashou",
-      "english": "Let's see.",
+      "english": "Let's watch (it).",
       "category": "Grammar & Function Words",
       "target": "みましょう",
       "pronunciation": "mimashō",
-      "note": "みます → みましょう. The chapter drills all four verbs (いく・みる・する・あう) across ます / ませんか / ましょう; this is the cell for みる.",
+      "note": "みます (mimasu) → みましょう (mimashō): ます becomes ましょう.",
       "aiSuggested": true,
       "reviewNote": "Added at gate 1: WORD POWER IV lists this cell (V ましょう for 'see') and the extraction produced no card for it. Its eleven sibling cells were all carded.",
       "audio": "554b50e38f4fba01.mp3",
@@ -241,7 +242,7 @@
       "category": "Grammar & Function Words",
       "target": "いきましょう",
       "pronunciation": "ikimashō",
-      "note": "ましょう assumes agreement and moves straight to action — more decisive than いきませんか above, which politely asks first before assuming a yes.",
+      "note": "ましょう assumes agreement and moves straight to action — more decisive than いきませんか (ikimasen ka, \"shall we go?\"), which politely asks first before assuming a yes.",
       "uncertain": true,
       "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
       "audio": "28feac91725157f2.mp3",
@@ -343,7 +344,7 @@
     },
     {
       "id": "shimasenka",
-      "english": "Shall we do?",
+      "english": "Shall we do it?",
       "category": "Grammar & Function Words",
       "target": "しませんか",
       "pronunciation": "shimasen ka",
@@ -363,7 +364,8 @@
       "audioOriginal": "f1f7ee5b9febf31f.orig.mp3",
       "audioAuto": "f1f7ee5b9febf31f.mp3",
       "audioMarked": true,
-      "audioTextHash": "f1f7ee5b9febf31f"
+      "audioTextHash": "f1f7ee5b9febf31f",
+      "hint": "proposing an activity yourself"
     },
     {
       "id": "aimasu",
@@ -428,7 +430,8 @@
       "audioOriginal": "75a7b3b937ce2253.orig.mp3",
       "audioAuto": "75a7b3b937ce2253.mp3",
       "audioMarked": true,
-      "audioTextHash": "75a7b3b937ce2253"
+      "audioTextHash": "75a7b3b937ce2253",
+      "hint": "a large organised event, like the fireworks one"
     },
     {
       "id": "hanabi-taikai",
@@ -464,7 +467,7 @@
       "category": "Travel & Tourism",
       "target": "ゆきまつり",
       "pronunciation": "yukimatsuri",
-      "note": "ゆき (snow) + まつり (festival, as in おまつり from Key Sentence 1) = ゆきまつり (snow festival).",
+      "note": "ゆき (snow) + まつり (festival, as in おまつり (omatsuri) from Lesson 7) = ゆきまつり (snow festival).",
       "audio": "3af93e2040a24d73.mp3",
       "audioOriginal": "3af93e2040a24d73.orig.mp3",
       "audioAuto": "3af93e2040a24d73.mp3",
@@ -720,10 +723,10 @@
       "id": "mata-kondo",
       "english": "Next time. Another time.",
       "category": "Greetings",
-      "hint": "a soft way to turn down an invitation, often without a real plan to meet",
+      "hint": "the inviter's reply after being turned down",
       "target": "またこんど",
       "pronunciation": "mata kondo",
-      "note": "Built from こんど (Lesson 9, \"next, next time\") plus また (\"again\"); used to gently defer an invitation to some future occasion.",
+      "note": "Built from こんど (Lesson 9, \"next, next time\") plus また (\"again\"). The person who invited says it to accept a refusal: maybe another time.",
       "audio": "9ae42a61ed7766c7.mp3",
       "audioOriginal": "9ae42a61ed7766c7.orig.mp3",
       "audioAuto": "9ae42a61ed7766c7.mp3",
@@ -850,7 +853,8 @@
       "audioOriginal": "b9177f0a5fbd5552.orig.mp3",
       "audioAuto": "b9177f0a5fbd5552.mp3",
       "audioMarked": true,
-      "audioTextHash": "b9177f0a5fbd5552"
+      "audioTextHash": "b9177f0a5fbd5552",
+      "hint": "agreeing to a plan someone just suggested"
     },
     {
       "id": "sukoshi",
@@ -863,7 +867,8 @@
       "audioOriginal": "78841ab85b7a5c02.orig.mp3",
       "audioAuto": "78841ab85b7a5c02.mp3",
       "audioMarked": true,
-      "audioTextHash": "78841ab85b7a5c02"
+      "audioTextHash": "78841ab85b7a5c02",
+      "hint": "the other \"a little\" word, not ちょっと (chotto)"
     },
     {
       "id": "yasumimasu",

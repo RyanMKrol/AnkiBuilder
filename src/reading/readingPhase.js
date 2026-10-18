@@ -39,6 +39,7 @@ import { startRun, recordStep, finishRun, verifyRun, STEP_STATUS } from "../agen
 import { readingScheme, silentCardPredicate } from "./readingSchemes.js";
 import { romanizeReadingItems } from "./readingRomaji.js";
 import { readingStudyOrder } from "./studyOrder.js";
+import { splitGloss, joinGlosses } from "./glosses.js";
 import { characterReadingsIn, withCharacterReadings } from "./characterReadings.js";
 import {
   ITEM_KINDS,
@@ -126,29 +127,6 @@ export const targetKey = (target, languageCode = null) =>
  * between rebuilds, and one card per written form makes the form a unique key in the collection. */
 export const readingCardId = (target) =>
   `r-${createHash("sha1").update(targetKey(target)).digest("hex").slice(0, 12)}`;
-
-function splitGloss(english) {
-  return String(english ?? "")
-    .split(/\s*;\s*/)
-    .map((part) => part.trim())
-    .filter(Boolean);
-}
-
-// Several glosses are joined with "; ", and a full stop inside that list reads as "Excuse me.; I'm
-// sorry.", so a joined gloss loses its trailing full stops. A single gloss is kept as written.
-function joinGlosses(glosses) {
-  const seen = new Set();
-  const out = [];
-  for (const gloss of glosses) {
-    // "Good-bye" and "Goodbye", "Good morning." and "Good morning" are one gloss.
-    const dedupeKey = gloss.toLowerCase().replace(/[\s.,;:!?'"-]+/g, "");
-    if (seen.has(dedupeKey)) continue;
-    seen.add(dedupeKey);
-    out.push(gloss);
-  }
-  if (out.length === 1) return out[0];
-  return out.map((gloss) => gloss.replace(/\.+$/, "")).join("; ");
-}
 
 function kindOf(item) {
   if (ITEM_KINDS.includes(item.kind)) return item.kind;

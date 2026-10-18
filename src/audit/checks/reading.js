@@ -13,6 +13,8 @@ import { defineCheck } from "../registry.js";
 import { unitLanguage } from "../units.js";
 import { isReadingKind } from "../../model/deckKind.js";
 import { readingScheme, isSilentReadingCard } from "../../reading/readingSchemes.js";
+import { wordReadingsInUnit } from "../../reading/characterGaps.js";
+import { SNAPSHOT_FILE } from "../../agents/snapshot.js";
 
 const shipped = (unit) => unit.items.filter((item) => !item.excluded);
 const isReading = (collection) => isReadingKind(collection?.deckKind);
@@ -408,6 +410,71 @@ export const readingSilentCheck = readingCheck({
   },
 });
 
+export const readingKanjiTaughtAsWordCheck = readingCheck({
+  id: "reading-kanji-taught-as-word",
+  title: "a kanji the book teaches as a word is the word's card",
+  scope: "collection",
+  tier: "ACK",
+  /**
+   * A single kanji a chapter teaches as a word is ONE card, the voiced word, in whichever chapter
+   * cards it (card rules 4; owner ruling, 2026-10-18). A silent kanji card whose kanji any unit's
+   * as-generated.json recorded as a word is the failure the book pass used to make: the word was
+   * dropped as a repeat of an earlier character card, and 27 Genki kanji lost their voice. A snapshot
+   * written before it recorded `kind` counts an item with a reading as a word, since the merge gives
+   * a reading to words only. The colour nouns the plugin's `wordsByRule` names are words wherever
+   * they are carded. Not a finding: a kanji the book reads more than one way as a word (年 nen and
+   * toshi), which stays silent by the same ruling.
+   */
+  run({ units }) {
+    const taught = new Map();
+    const bookReadings = new Map();
+    for (const unit of units) {
+      const scheme = readingScheme(unitLanguage(unit));
+      if (!scheme?.characterCards) continue;
+      wordReadingsInUnit(unit.dir, scheme, bookReadings);
+      let snapshot = null;
+      try {
+        snapshot = JSON.parse(readFileSync(join(unit.dir, SNAPSHOT_FILE), "utf-8"));
+      } catch {
+        continue;
+      }
+      for (const item of snapshot?.items ?? []) {
+        if (!scheme.isCharacterTarget(item.target)) continue;
+        const asWord = item.kind ? item.kind === "word" : Boolean(item.ttsText);
+        if (!asWord) continue;
+        if (item.ttsText) {
+          if (!bookReadings.has(item.target)) bookReadings.set(item.target, new Set());
+          bookReadings.get(item.target).add(item.ttsText);
+        }
+        if (!taught.has(item.target)) taught.set(item.target, unit.name);
+      }
+    }
+    const findings = [];
+    for (const unit of units) {
+      const scheme = readingScheme(unitLanguage(unit));
+      if (!scheme?.characterCards) continue;
+      for (const item of shipped(unit)) {
+        if (!isSilentReadingCard(item, scheme)) continue;
+        const rule = scheme.wordsByRule?.[item.target];
+        const where = taught.get(item.target);
+        if (!where && !rule) continue;
+        const readings = bookReadings.get(item.target);
+        if (readings && readings.size > 1) continue;
+        const word = rule
+          ? `the word ${rule.reading} (taught by rule)`
+          : `a word in ${where}${readings?.size ? ` (${[...readings][0]})` : ""}`;
+        findings.push({
+          key: `${unit.name}/${item.id}`,
+          message:
+            `${unit.name}/${item.id} "${item.target}" is a silent kanji card, and the book teaches ` +
+            `it as ${word}: the card should be the voiced word (card rules 4)`,
+        });
+      }
+    }
+    return { findings, summary: "every kanji the book teaches as a word is the word's card" };
+  },
+});
+
 /**
  * The speaking checks a reading collection does not run, reported so their absence is visible. Built
  * by src/audit/checks/index.js from the checks it marks speaking-only.
@@ -440,6 +507,7 @@ export const READING_CHECKS = [
   readingEnglishCheck,
   readingRomajiCheck,
   readingSilentCheck,
+  readingKanjiTaughtAsWordCheck,
   readingOneCardPerFrontCheck,
   readingDistinctEnglishCheck,
 ];

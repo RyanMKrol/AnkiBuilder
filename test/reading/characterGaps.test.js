@@ -10,9 +10,11 @@ import {
   dropCharactersCardedEarlier,
   CHARACTERS_FILE,
   reReviewCharacters,
+  bookWordReadings,
 } from "../../src/reading/characterGaps.js";
 import { readingScheme } from "../../src/reading/readingSchemes.js";
 import { readingCardId } from "../../src/reading/readingPhase.js";
+import { validateCards, validateCorpus } from "../../src/model/index.js";
 
 // Character cards a chapter needs before the book teaches them (src/reading/characterGaps.js).
 
@@ -136,7 +138,12 @@ test("when the book teaches a generated character, its data replaces the card's,
       reviewCharacters: async () => new Map(),
     };
     await fillCharacterGaps(early, { scheme: ja, cardId: readingCardId, agents });
-    assert.deepEqual(dropCharactersCardedEarlier(late, new Set(["聞"]), { scheme: ja }), ["聞"]);
+    assert.deepEqual(dropCharactersCardedEarlier(late, new Set(["聞"]), { scheme: ja }), {
+      removed: ["聞"],
+      rewritten: [],
+    });
+    // The drop is logged where the merge logs its own.
+    assert.match(json(join(late, "reading-report.json")).dropped[0].reason, /already carded/);
     assert.equal(json(join(late, "cards.json")).items.length, 0);
     const book = new Map([
       [
@@ -223,4 +230,179 @@ test("a character reviewer that answers in prose is asked once more", async () =
   assert.equal(calls, 2);
   assert.equal(corrections.size, 0);
   assert.deepEqual(unreviewed, []);
+});
+
+// ---- a kanji a later chapter teaches as a word (owner ruling, 2026-10-18) ---------------------
+
+// One reading collection on disk, each chapter a valid unit (the rewrite validates what it writes).
+function collection(chapters) {
+  const root = mkdtempSync(join(tmpdir(), "word-wins-"));
+  const dirs = {};
+  chapters.forEach(({ name, items, record = null, report = {} }, index) => {
+    const dir = join(root, name);
+    mkdirSync(join(dir, "candidates"), { recursive: true });
+    const meta = {
+      targetLanguage: "ja",
+      sourceType: "epub",
+      reviewed: true,
+      epubHash: "h",
+      chapterNumber: 10 + index,
+      chapterLabel: `Chapter 0${index + 1}`,
+      phase: "reading",
+    };
+    writeFileSync(
+      join(dir, "cards.json"),
+      JSON.stringify({ meta: { ...meta, kanjiTts: true, done: index === 0 }, items }),
+    );
+    const corpusItems = items.map((item) => {
+      const rest = { ...item };
+      delete rest.pronunciation;
+      return rest;
+    });
+    writeFileSync(join(dir, "corpus.json"), JSON.stringify({ meta, items: corpusItems }));
+    writeFileSync(join(dir, "reading-report.json"), JSON.stringify(report));
+    if (record) writeFileSync(join(dir, CHARACTERS_FILE), JSON.stringify(record));
+    dirs[name] = dir;
+  });
+  return { root, dirs };
+}
+
+const silent = (target, english) => ({
+  id: readingCardId(target),
+  target,
+  english,
+  category: "Other",
+  pronunciation: "shun / haru",
+  reviewNote: "Not taught by the book yet: meaning and readings from KANJIDIC2.",
+});
+
+test("a kanji carded as a character in chapter A and taught as a word in chapter B: A's card becomes the word", () => {
+  const { root, dirs } = collection([
+    {
+      name: "chapter-1",
+      items: [silent("春", "Spring (season)"), word("春休み", "はるやすみ")],
+      record: {
+        generated: [
+          { target: "春", english: "Spring (season)", readings: { on: ["しゅん"], kun: ["はる"] } },
+        ],
+        cards: { 春: { readings: { on: ["しゅん"], kun: ["はる"] }, voiced: false } },
+      },
+    },
+    {
+      name: "chapter-2",
+      items: [
+        { ...word("春", "はる"), english: "Spring", category: "Time", pronunciation: "haru" },
+      ],
+    },
+  ]);
+  try {
+    const A = dirs["chapter-1"];
+    const B = dirs["chapter-2"];
+    const result = dropCharactersCardedEarlier(B, new Set(["春"]), {
+      scheme: ja,
+      cardedIn: new Map([["春", A]]),
+      chapterLabel: "Chapter 02",
+      bookReadings: bookWordReadings(root, ja),
+    });
+    assert.deepEqual(result, {
+      removed: ["春"],
+      rewritten: [{ target: "春", unitDir: A, fate: "word" }],
+    });
+
+    // Chapter A: the same card, under the same id, is now the voiced word, in BOTH files.
+    const cards = json(join(A, "cards.json"));
+    assert.doesNotThrow(() => validateCards(cards));
+    const card = cards.items.find((i) => i.target === "春");
+    assert.equal(card.id, readingCardId("春"));
+    assert.equal(card.ttsText, "はる");
+    assert.equal(card.english, "Spring");
+    assert.equal(card.category, "Time");
+    assert.equal(card.pronunciation, "haru");
+    assert.match(card.reviewNote, /Taught as a word in Chapter 02/);
+    // A field edit: a done, reviewed unit keeps its sign-off.
+    assert.equal(cards.meta.done, true);
+    assert.equal(cards.meta.reviewed, true);
+    const corpus = json(join(A, "corpus.json"));
+    assert.doesNotThrow(() => validateCorpus(corpus));
+    const corpusCard = corpus.items.find((i) => i.target === "春");
+    assert.equal(corpusCard.id, card.id);
+    assert.equal(corpusCard.ttsText, "はる");
+    assert.equal(corpusCard.english, "Spring");
+    assert.equal("pronunciation" in corpusCard, false);
+    // ...and the book pass no longer treats it as a character card.
+    const record = json(join(A, CHARACTERS_FILE));
+    assert.equal(record.cards["春"], undefined);
+    assert.equal(record.generated[0].taughtAsWord, "Chapter 02");
+
+    // Chapter B: the repeat is gone, and the drop is logged with its reason.
+    assert.deepEqual(json(join(B, "cards.json")).items, []);
+    const [logged] = json(join(B, "reading-report.json")).dropped;
+    assert.equal(logged.target, "春");
+    assert.deepEqual(logged.wordReadings, ["はる"]);
+    assert.match(logged.reason, /character card in Chapter 01 is rewritten in place as this word/);
+
+    // Running the pass again changes nothing: the repeat is already gone.
+    assert.deepEqual(dropCharactersCardedEarlier(B, new Set(["春"]), { scheme: ja }), {
+      removed: [],
+      rewritten: [],
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("a kanji the book reads two ways as a word stays silent, with both senses in its English", () => {
+  const { root, dirs } = collection([
+    { name: "chapter-1", items: [{ ...silent("年", "Year"), pronunciation: "nen / toshi" }] },
+    {
+      name: "chapter-2",
+      items: [],
+      // An earlier drop recorded 年 read とし.
+      report: { dropped: [{ target: "年", reason: "x", wordReadings: ["とし"] }] },
+    },
+    {
+      name: "chapter-3",
+      items: [{ ...word("年", "ねん"), english: "... years", pronunciation: "nen" }],
+    },
+  ]);
+  try {
+    const A = dirs["chapter-1"];
+    const result = dropCharactersCardedEarlier(dirs["chapter-3"], new Set(["年"]), {
+      scheme: ja,
+      cardedIn: new Map([["年", A]]),
+      chapterLabel: "Chapter 03",
+      bookReadings: bookWordReadings(root, ja),
+    });
+    assert.equal(result.rewritten[0].fate, "both-senses");
+    const card = json(join(A, "cards.json")).items[0];
+    assert.equal(card.ttsText, undefined);
+    assert.equal(card.english, "Year; ... years");
+    assert.equal(card.pronunciation, "nen / toshi");
+    assert.match(card.reviewNote, /more than one way \(ねん, とし\)/);
+    const logged = json(join(dirs["chapter-3"], "reading-report.json")).dropped[0];
+    assert.match(logged.reason, /stays silent, with every sense/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("a colour noun the book teaches by rule counts as a taught word", () => {
+  const { root, dirs } = collection([
+    { name: "chapter-1", items: [{ ...silent("赤", "Red"), pronunciation: "seki / aka" }] },
+    { name: "chapter-2", items: [{ ...silent("赤", "Red"), pronunciation: "seki / aka" }] },
+  ]);
+  try {
+    const A = dirs["chapter-1"];
+    const result = dropCharactersCardedEarlier(dirs["chapter-2"], new Set(["赤"]), {
+      scheme: ja,
+      cardedIn: new Map([["赤", A]]),
+    });
+    assert.equal(result.rewritten[0].fate, "word");
+    const card = json(join(A, "cards.json")).items[0];
+    assert.equal(card.ttsText, "あか");
+    assert.equal(card.pronunciation, "aka");
+    assert.equal(card.category, "Colors");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });

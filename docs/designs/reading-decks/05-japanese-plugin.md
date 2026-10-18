@@ -52,7 +52,15 @@ exemption in 02 lets it ship without one. Decided from the target alone (one cha
 ideograph range, or `々`), so neither schema gains a field and nothing has to be remembered.
 
 The exception from rule 4 in 04 applies: a single kanji the book also teaches as a word on its own
-(日 as ひ, "day") is a word card, and has audio.
+(日 as ひ, "day") is a word card, and has audio. Since 2026-10-18 that holds across chapters: a kanji
+an earlier chapter carded as a character becomes the word card when a later chapter teaches the word
+(`10-character-cards.md`), with two exceptions that are Japanese and so live here:
+
+- a kanji the book reads more than one way as a word (年 ねん and とし, 後 ご and あと) stays a silent
+  card, with every sense in its English, since no single clip is right;
+- `wordsByRule` names the words the book teaches by a rule rather than a vocabulary line, so the
+  readers only ever see the character: the colour nouns 赤 あか, 青 あお, 白 しろ and 黒 くろ (an
+  adjective drops its い). Each entry gives the reading, romaji, English and category the card takes.
 
 ### 4. Kanji words carry a kana reading
 

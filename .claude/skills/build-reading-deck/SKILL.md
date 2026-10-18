@@ -174,7 +174,9 @@ letter of the syllabary), Latin letters on a front (Ｔシャツ is right,
 romaji is not), a front over 16 characters (right for a long set phrase the book teaches), a front
 that reads as a phrase (`reading-phrase`: cut it and card its words, unless it is a fixed greeting), a word
 carded in kana where the chapter prints its kanji, and two different words or two kanji with the same
-English (`reading-distinct-english`, card rules 9).
+English (`reading-distinct-english`, card rules 9), and a silent kanji card the book teaches as a
+word (`reading-kanji-taught-as-word`, card rules 4: the card should be the voiced word; the build
+now rewrites it itself, so a finding means a card built before that rule or a case it missed).
 
 **`reading-distinct-english` is the one to fix rather than accept.** The English is the whole answer,
 so two cards that share it teach the learner nothing about how they differ: in the Genki deck 洗 and

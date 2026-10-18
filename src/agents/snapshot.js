@@ -46,13 +46,17 @@ export function hasSnapshot(unitDir) {
  * the chapter reader both found this" is a real and useful state. An item with no entry is recorded
  * as unattributed rather than guessed at.
  *
+ * `kinds`, optional, maps a card id to the kind a phase gave it (the reading phase's word, phrase or
+ * character) and is recorded on that item as `kind`. It is passed through and nothing here reads it;
+ * preflight does (src/audit/checks/reading.js, reading-kanji-taught-as-word).
+ *
  * Refuses to overwrite. Pass `force` only to repair a snapshot you have decided is wrong, never to
  * make a re-run succeed: a re-run that overwrites its own baseline reports that the reviewer
  * changed nothing.
  */
 export function writeSnapshot(
   unitDir,
-  { phase, items, provenance = {} },
+  { phase, items, provenance = {}, kinds = null },
   { force = false, now = () => new Date().toISOString() } = {},
 ) {
   const path = snapshotPath(unitDir);
@@ -78,7 +82,9 @@ export function writeSnapshot(
     capturedAt: now(),
     counts: { items: items.length, attributed: Object.keys(provenance).length },
     provenance,
-    items,
+    items: kinds
+      ? items.map((item) => (kinds[item.id] ? { ...item, kind: kinds[item.id] } : item))
+      : items,
   };
   writeFileAtomic(path, `${JSON.stringify(snapshot, null, 2)}\n`);
   return path;

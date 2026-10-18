@@ -32,7 +32,9 @@ for it.
    form only is carded exactly as printed.
 3. **One card per written form.** Two cards with the same `target` would be the same question with
    two answers. When the chapter teaches one written form with two readings or meanings, write ONE
-   item whose `english` carries both ("Today; this day").
+   item whose `english` carries both ("Today; this day"). When the book gives one word two readings
+   (七人 read shichinin or nananin), keep both readings on that item, in the book's order: the
+   card's romaji lists them all ("shichi-nin / nana-nin") and the audio speaks the first.
 4. **A single character is a card only when the language rules say so** and the book teaches it as a
    character (a character table). A character that only appears inside a word is not a card of its
    own. A single character the book also teaches as a word in its own right is one card: the word.

@@ -23,6 +23,7 @@ import {
   sectionsToAccountFor,
   containersNotReached,
 } from "../../src/reading/readingAgents.js";
+import { romanizeReadingItems } from "../../src/reading/readingRomaji.js";
 import { lessonReadiness } from "../../src/cards/readiness.js";
 import { validateCards } from "../../src/model/index.js";
 
@@ -381,6 +382,57 @@ test("a failed romaji correction is not cached, so the next run corrects it", as
     const again = [];
     await runReadingPhase({ ...options, agents: fakeAgents(again) });
     assert.deepEqual(again, ["romaji"]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("a word the book reads two ways says both on the card and voices the first", async () => {
+  // Genki prints 七人 as しちにん／ななにん (owner ruling, 2026-10-18).
+  const dir = mkdtempSync(join(tmpdir(), "reading-two-readings-"));
+  try {
+    const unitDir = join(dir, "chapter-0");
+    const chapterFilePath = join(dir, "chapter.xhtml");
+    writeFileSync(chapterFilePath, "<html><body><p>七人</p></body></html>");
+    const agents = fakeAgents([]);
+    agents.readTables = () => ({
+      items: [
+        {
+          target: "七人",
+          reading: "しちにん／ななにん",
+          english: "Seven people",
+          kind: "word",
+          producedBy: "readingTableReader",
+        },
+      ],
+      tables: [{ index: 0, verdict: "vocabulary" }],
+    });
+    // The real romaji step, with the library and the correction pass faked.
+    const ROMAJI = { しちにん: "shichi-nin", ななにん: "nana-nin" };
+    agents.romanizeReadingItems = (items, opts) =>
+      romanizeReadingItems(items, {
+        ...opts,
+        libraryEntry: { load: async () => ({ romanize: async (text) => ROMAJI[text] }) },
+        runClaude: () => "[]",
+      });
+    await runReadingPhase({
+      unitDir,
+      chapterFilePath,
+      targetLanguage: "ja",
+      unit: { epubHash: "abc", chapterNumber: 3, chapterLabel: "Chapter 02: Numbers" },
+      agents,
+    });
+    const cards = JSON.parse(readFileSync(join(unitDir, "cards.json"), "utf-8"));
+    assert.doesNotThrow(() => validateCards(cards));
+    const card = cards.items.find((i) => i.target === "七人");
+    assert.equal(card.pronunciation, "shichi-nin / nana-nin");
+    // Voiced from the first reading, not from the written form (which could be read either way).
+    assert.equal(card.ttsText, "しちにん");
+    assert.equal(card.ttsKanji, undefined);
+    // The alternates were for the romaji step only: neither file carries them.
+    assert.equal(card.alternateReadings, undefined);
+    const corpus = JSON.parse(readFileSync(join(unitDir, "corpus.json"), "utf-8"));
+    assert.equal(corpus.items.find((i) => i.target === "七人").alternateReadings, undefined);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

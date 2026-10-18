@@ -121,7 +121,9 @@ const JAPANESE = Object.freeze({
   kana column of the vocabulary table, or the reading printed beside an example word. Never work a
   reading out yourself. A kanji's reading depends on the word it sits in, and a guessed reading is
   exactly the error this field exists to prevent. A kanji word the book prints with no reading
-  anywhere in the chapter is left out.
+  anywhere in the chapter is left out. When the book prints two readings for one word (\`七人\`
+  しちにん／ななにん, \`毎年\` まいねん／まいとし), give both in \`reading\`, separated by ／, in the
+  book's order: the card lists every reading and the audio speaks the first.
 - **Kanji cards.** A kanji the chapter teaches AS A CHARACTER (an entry in a kanji table, with its
   meaning and readings) is its own item: \`target\` is the single kanji, \`english\` is the meanings
   the book gives ("Day; sun"), and there is NO \`reading\`. That card has no audio, because a kanji

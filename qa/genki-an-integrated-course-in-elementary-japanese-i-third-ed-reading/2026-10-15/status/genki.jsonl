@@ -1,0 +1,68 @@
+{"id":"chapter-26/r-36cbc6b98422/wrong-content/1","status":"fixed","statusReason":"Pronunciation \"gōrudenwīku\"."}
+{"id":"chapter-26/r-0d0fd2531ac7/book-mismatch/1","status":"fixed","statusReason":"English \"Three; Mr./Ms. (after a name)\", merged by hand."}
+{"id":"chapter-26/r-27a87259d93f/book-mismatch/1","status":"fixed","statusReason":"English \"Five; ... language\", merged by hand."}
+{"id":"chapter-26/r-1cd72882c51d/book-mismatch/1","status":"fixed","statusReason":"English \"To raise (a hand)\"."}
+{"id":"chapter-26/r-f76f81e7a0e6/book-mismatch/1","status":"fixed","statusReason":"Target おたんじょうびおめでとう, pronunciation \"otanjōbi omedetō\", same id; needs new audio."}
+{"id":"chapter-26/r-2b8c515b4475/book-mismatch/1","status":"fixed","statusReason":"Target きれいな, pronunciation \"kirei na\", same id; needs new audio."}
+{"id":"chapter-4/r-44bf896f470f/missing-info/1","status":"skipped","statusReason":"Moving or copying the 々 card to chapter-4 is an owner migration: a copy would share r-2af09592503a's id (delivered, chapter-25) and a second card per written form fails reading-one-card-per-front."}
+{"id":"chapter-4/r-4a2f5c2aed74/missing-info/1","status":"fixed","statusReason":"English \"Not at all (with a negative)\"."}
+{"id":"chapter-5/r-09558b2cc685/wrong-content/1","status":"fixed","statusReason":"Pronunciation \"jikan\"."}
+{"id":"chapter-5/-/book-gap/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 時 toki \"When; at the time of\" (chapter-4 r-2fdc2b012a91)."}
+{"id":"chapter-5/-/other/1","status":"wont-fix","statusReason":"Ruling 7 (2026-10-18) widened rule 1 to exercises, maps and picture labels, so the six Lesson 4 words and their character cards are correct as they are."}
+{"id":"chapter-6/-/book-gap/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 海 umi \"Sea\" (chapter-5 r-b188c5e30da5)."}
+{"id":"chapter-6/-/book-gap/2","status":"fixed","statusReason":"chapter-4 r-abb639bc774f 聞く English \"To listen; to hear; to ask\"."}
+{"id":"chapter-7/-/book-gap/1","status":"fixed","statusReason":"Added 一つ目 \"First (in order)\" and 二つ目 \"Second (in order)\" to chapter-7 as qa-fix-2026-10 additions, at the content gate."}
+{"id":"chapter-7/-/book-gap/2","status":"skipped","statusReason":"Moving 右側 here is an owner migration: a new 右側 card would share r-ed9d988c2f60's id (a delivered Anki note). Done instead: the 道の右側 exclusion names Chapter 20 (R&W 6), where 右側 is carded."}
+{"id":"chapter-7/-/book-gap/4","status":"skipped","statusReason":"Ruling 7 brings culture notes in; 短大, 義務教育, 夏休み, 冬休み and 春休み are left to the T4 vocab scan, which knows which later chapter's list teaches each, for the owner to approve into the qa-fix-2026-10 batch."}
+{"id":"chapter-8/r-276330ed9702/missing-info/1","status":"fixed","statusReason":"English \"(My) younger brother\", matching 兄 and 姉."}
+{"id":"chapter-8/r-28f894973975/missing-info/1","status":"fixed","statusReason":"English \"(My) younger sister\", matching 兄 and 姉."}
+{"id":"chapter-8/r-ffb5060bdee1/missing-info/1","status":"fixed","statusReason":"English \"(My) husband (informal)\": the table's informal cell for one's own husband."}
+{"id":"chapter-8/r-715a30074c48/missing-info/1","status":"fixed","statusReason":"English \"Not particularly; nothing in particular (with a negative)\", marked like 何も."}
+{"id":"chapter-8/r-f27a36c8d505/book-gap/1","status":"skipped","statusReason":"Moving 高い here is an owner migration: a new 高い card would share r-e9d57f21b007's id (a delivered Anki note). Done instead: the exclusion now says 高い is carded in Chapter 21 (R&W 7), whose English is now \"Expensive; high; tall\"."}
+{"id":"chapter-8/r-8dfa494661bc/book-mismatch/1","status":"fixed","statusReason":"English \"Someone else's wife; (my) wife (informal)\", worded with the kinship set."}
+{"id":"chapter-8/r-25e914fe05f6/book-mismatch/1","status":"fixed","statusReason":"English \"(My) child\": the book's cell spans formal and informal."}
+{"id":"chapter-8/r-e9d3dae7d71d/book-mismatch/1","status":"fixed","statusReason":"Pronunciation \"shichi-nin / nana-nin\" (ruling 3); audio stays しちにん. Also 十歳, 十分, 毎年. Not 男の人 or 女の人: their second reading (おとこひと, おんなひと) came from per-kanji furigana in an image, not a reading of the word."}
+{"id":"chapter-9/r-cc98544dbc8a/book-mismatch/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 袋 fukuro \"Bag\"."}
+{"id":"chapter-10/r-244232298a54/missing-info/1","status":"fixed","statusReason":"English \"Green light (literally \\\"blue signal\\\")\", which bridges it to 青 \"Blue\"."}
+{"id":"chapter-10/-/book-gap/1","status":"fixed","statusReason":"Added 生け花 ikebana \"Flower arrangement\" to chapter-10 as a qa-fix-2026-10 addition; 華道 is now \"Flower arrangement (the formal art)\"."}
+{"id":"chapter-10/r-c54e6deec071/book-gap/1","status":"fixed","statusReason":"The finding's second option: the exclusion now says 人気 is carded in Chapter 19 (R&W 5). Moving the card is not possible as an addition: the id is a hash of the written form, so a 人気 card here would share r-8c824404672f, a delivered Anki note."}
+{"id":"chapter-10/-/book-gap/2","status":"fixed","statusReason":"chapter-4 r-c3da86d447f2 お茶 English \"Green tea; tea ceremony\"."}
+{"id":"chapter-10/r-b9a0bbca64df/book-mismatch/1","status":"fixed","statusReason":"English \"(Something) ends\", matching 始まる."}
+{"id":"chapter-10/r-72776ab68f81/book-mismatch/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 赤 aka \"Red\"; 黒, 青 and 白 too (ruling 2: colour nouns count as taught words)."}
+{"id":"chapter-10/r-c12a2fd19822/other/1","status":"fixed","statusReason":"English \"Speech; dialect; distinguish\" (and candidates/characters.json)."}
+{"id":"chapter-10/r-619113f21dd1/other/1","status":"fixed","statusReason":"English \"Dance; jump\" (and candidates/characters.json)."}
+{"id":"chapter-10/r-b7f5f9032c7e/other/1","status":"fixed","statusReason":"English \"Splendor; flower (literary)\" (and candidates/characters.json)."}
+{"id":"chapter-11/-/other/1","status":"fixed","statusReason":"Tilde dropped from 方面, 番線, 週間, 行き and か月's pronunciation."}
+{"id":"chapter-11/-/book-gap/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 春 haru \"Spring (season)\" (chapter-5 r-3e450648252d)."}
+{"id":"chapter-11/-/book-gap/2","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 秋 aki \"Fall (autumn)\" (chapter-5 r-8d8f4aeca850)."}
+{"id":"chapter-11/-/book-gap/3","status":"fixed","statusReason":"Ruling 2 exception (nen and toshi): chapter-5 r-6f14c2641c25 stays silent, English now \"Year; ... years\"."}
+{"id":"chapter-11/-/book-gap/4","status":"fixed","statusReason":"Ruling 2 exception (go and ato): chapter-5 r-a1a8cfd1dec3 stays silent, English now \"After; in ... time\"."}
+{"id":"chapter-12/r-8baf85e00cb0/other/1","status":"fixed","statusReason":"Pronunciation \"uchū hikōshi\"."}
+{"id":"chapter-12/r-df96a6e9ec65/wrong-content/1","status":"fixed","statusReason":"English \"Taste; flavor\" (and candidates/characters.json)."}
+{"id":"chapter-12/r-1832f9e9d247/wrong-content/1","status":"fixed","statusReason":"English \"Eaves; heaven\" (KANJIDIC2's own senses; and candidates/characters.json)."}
+{"id":"chapter-12/-/book-gap/1","status":"skipped","statusReason":"Moving 出す here is an owner migration: a new 出す card would share r-94c7b5d5e878's id (a delivered Anki note). Done instead: the exclusion names Chapter 20 (R&W 6), whose 出す is now \"To take something out; to hand in\"."}
+{"id":"chapter-13/r-b5a9258cf7d9/wrong-content/1","status":"fixed","statusReason":"Pronunciation \"dai\"."}
+{"id":"chapter-17/r-482dccb7367c/unanswerable/1","status":"fixed","statusReason":"English \"The 3rd (day of the month); three days\", in the deck's date style."}
+{"id":"chapter-17/-/book-gap/1","status":"fixed","statusReason":"Added 日本 nihon \"Japan\" to chapter-17 as a qa-fix-2026-10 addition, at the content gate."}
+{"id":"chapter-17/-/book-gap/2","status":"fixed","statusReason":"Added 中国 chūgoku \"China\" to chapter-17 as a qa-fix-2026-10 addition, at the content gate."}
+{"id":"chapter-17/-/other/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 月 tsuki, 火 hi, 木 ki, 土 tsuchi, 本 hon."}
+{"id":"chapter-18/r-b27790d8cdf7/other/1","status":"fixed","statusReason":"English \"Talent; years old\" (and candidates/characters.json)."}
+{"id":"chapter-18/-/book-gap/1","status":"fixed","statusReason":"Added 様 sama \"Mr./Ms. (in letters)\" to chapter-18 as a qa-fix-2026-10 addition, voiced, at the content gate."}
+{"id":"chapter-17/r-482dccb7367c/book-gap/1","status":"fixed","statusReason":"English \"The 3rd (day of the month); three days\" (same card as the unanswerable finding)."}
+{"id":"chapter-18/-/other/2","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 今 ima, 山 yama."}
+{"id":"chapter-18/r-31825d8efb50/other/1","status":"fixed","statusReason":"English \"Take care\" (full stop dropped; お大事に in chapter-13 likewise)."}
+{"id":"chapter-19/r-8090dd787fc2/other/1","status":"fixed","statusReason":"Pronunciation \"go-fun\"."}
+{"id":"chapter-20/r-4d564a3bda7f/book-mismatch/1","status":"fixed","statusReason":"Pronunciation \"mainen / maitoshi\" (ruling 3); audio stays まいねん."}
+{"id":"chapter-21/-/book-gap/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 話 hanashi \"Story; talk\" (chapter-4 r-2f78e3a989f0)."}
+{"id":"chapter-21/-/other/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 事 koto \"Thing (abstract); matter\", 車 kuruma, 何 nani."}
+{"id":"chapter-22/-/book-gap/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 話 hanashi \"Story; talk\" (same card as chapter-21/-/book-gap/1)."}
+{"id":"chapter-22/r-97cd3b2ec4e3/wrong-content/1","status":"fixed","statusReason":"English \"Pierce; stab\" (and candidates/characters.json)."}
+{"id":"chapter-22/-/book-mismatch/1","status":"fixed","statusReason":"chapter-5 r-073d8528405e 前 English \"Front; before\"."}
+{"id":"chapter-22/-/other/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 白 shiro \"White\", 昼 hiru \"Daytime; noon\" (午 is \"Noon\")."}
+{"id":"chapter-23/r-2ea8aba2d5fc/other/1","status":"fixed","statusReason":"English \"Sell; trade\" (and candidates/characters.json)."}
+{"id":"chapter-23/r-c59a75dc9cf3/other/1","status":"fixed","statusReason":"English \"Shift; move (to another place)\" (and candidates/characters.json)."}
+{"id":"chapter-7/r-a33670427c5d/book-mismatch/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 道 michi \"Way; road\"."}
+{"id":"chapter-5/r-6f14c2641c25/book-mismatch/1","status":"fixed","statusReason":"Ruling 2 exception, not the suggested word card: 年 has two word readings (nen, toshi), so it stays silent with both senses, \"Year; ... years\"."}
+{"id":"chapter-24/-/other/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 手 te, 紙 kami."}
+{"id":"chapter-25/-/other/1","status":"fixed","statusReason":"scripts/backfill-reading-word-cards.mjs rewrote the earlier card in place, same id, as the voiced word: 牛 ushi, 赤 aka \"Red\", 青 ao \"Blue\", 天 ten \"The heavens; the sky\". The colour nouns answer as wordsByRule does, without \"(color)\", like 黒 and 白."}
+{"id":"chapter-9/r-304fce687a69/book-mismatch/1","status":"fixed","statusReason":"English \"Degrees (temperature); time (occurrence)\"."}

@@ -29,9 +29,10 @@
       "id": "r-4a1ae3cda4be",
       "target": "白",
       "english": "White",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 2
+      "category": "Colors",
+      "reviewNote": "Taught as a word in Chapter 23: Reading and Writing 9: Sora's Diary: this is the word's card, voiced.",
+      "sourceOrder": 2,
+      "ttsText": "しろ"
     },
     {
       "id": "r-e94720352f3c",
@@ -108,10 +109,11 @@
     {
       "id": "r-79b38a8ca7b9",
       "target": "夫",
-      "english": "Husband; man",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 12
+      "english": "Husband",
+      "category": "Family & People",
+      "reviewNote": "Taught as a word in Chapter 09: Lesson 7: Family Picture: this is the word's card, voiced.",
+      "sourceOrder": 12,
+      "ttsText": "おっと"
     },
     {
       "id": "r-ec5dc229294b",

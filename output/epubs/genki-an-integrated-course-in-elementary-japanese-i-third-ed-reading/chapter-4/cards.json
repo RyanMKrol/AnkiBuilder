@@ -77,10 +77,11 @@
       "id": "r-d2130d70a08e",
       "target": "今",
       "english": "Now",
-      "category": "Other",
-      "pronunciation": "kon, kin / ima",
-      "reviewNote": "Meaning and readings from the book (Chapter 19: Reading and Writing 5: Travel).",
-      "sourceOrder": 5
+      "category": "Time",
+      "pronunciation": "ima",
+      "reviewNote": "Taught as a word in Chapter 19: Reading and Writing 5: Travel: this is the word's card, voiced.",
+      "sourceOrder": 5,
+      "ttsText": "いま"
     },
     {
       "id": "r-8ffbf192934a",
@@ -216,10 +217,11 @@
       "id": "r-56c5ea57375b",
       "target": "昼",
       "english": "Daytime; noon",
-      "category": "Other",
-      "pronunciation": "chū / hiru",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 18
+      "category": "Time",
+      "pronunciation": "hiru",
+      "reviewNote": "Taught as a word in Chapter 23: Reading and Writing 9: Sora's Diary: this is the word's card, voiced.",
+      "sourceOrder": 18,
+      "ttsText": "ひる"
     },
     {
       "id": "r-370fea522051",
@@ -290,11 +292,12 @@
     {
       "id": "r-2f78e3a989f0",
       "target": "話",
-      "english": "To speak",
+      "english": "Story; talk",
       "category": "Other",
-      "pronunciation": "wa / hana, hanashi",
-      "reviewNote": "Meaning and readings from the book (Chapter 23: Reading and Writing 9: Sora's Diary).",
-      "sourceOrder": 25
+      "pronunciation": "hanashi",
+      "reviewNote": "Taught as a word in Chapter 22: Reading and Writing 8: Japanese Office Workers: this is the word's card, voiced.",
+      "sourceOrder": 25,
+      "ttsText": "はなし"
     },
     {
       "id": "r-ea9fad1aad62",
@@ -417,20 +420,22 @@
     {
       "id": "r-2fdc2b012a91",
       "target": "時",
-      "english": "Time",
-      "category": "Other",
-      "pronunciation": "ji / toki",
-      "reviewNote": "Meaning and readings from the book (Chapter 17: Reading and Writing 3: Daily Life).",
-      "sourceOrder": 38
+      "english": "When; at the time of",
+      "category": "Time",
+      "pronunciation": "toki",
+      "reviewNote": "Taught as a word in Chapter 06: Lesson 4: The First Date: this is the word's card, voiced.",
+      "sourceOrder": 38,
+      "ttsText": "とき"
     },
     {
       "id": "r-90fbc9b1ac2e",
       "target": "土",
       "english": "Soil",
-      "category": "Other",
-      "pronunciation": "do, to / tsuchi",
-      "reviewNote": "Meaning and readings from the book (Chapter 18: Reading and Writing 4: Mary's Weekend).",
-      "sourceOrder": 39
+      "category": "Weather & Nature",
+      "pronunciation": "tsuchi",
+      "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
+      "sourceOrder": 39,
+      "ttsText": "つち"
     },
     {
       "id": "r-7ac94c1ab970",
@@ -534,7 +539,7 @@
     {
       "id": "r-c3da86d447f2",
       "target": "お茶",
-      "english": "Green tea",
+      "english": "Green tea; tea ceremony",
       "category": "Food",
       "ttsText": "おちゃ",
       "sourceOrder": 49,
@@ -549,7 +554,7 @@
     {
       "id": "r-4a2f5c2aed74",
       "target": "全然",
-      "english": "Not at all",
+      "english": "Not at all (with a negative)",
       "category": "Grammar & Function Words",
       "ttsText": "ぜんぜん",
       "sourceOrder": 50,
@@ -654,7 +659,7 @@
     {
       "id": "r-abb639bc774f",
       "target": "聞く",
-      "english": "To listen; to hear",
+      "english": "To listen; to hear; to ask",
       "category": "Other",
       "ttsText": "きく",
       "sourceOrder": 57,

@@ -169,7 +169,7 @@
     {
       "id": "r-27a87259d93f",
       "target": "ご",
-      "english": "Five",
+      "english": "Five; ... language",
       "category": "Numbers",
       "sourceOrder": 22
     },
@@ -777,7 +777,7 @@
     },
     {
       "id": "r-f76f81e7a0e6",
-      "target": "たんじょうびおめでとう",
+      "target": "おたんじょうびおめでとう",
       "english": "Happy birthday",
       "category": "Greetings",
       "sourceOrder": 106
@@ -1084,7 +1084,7 @@
     },
     {
       "id": "r-2b8c515b4475",
-      "target": "きれい",
+      "target": "きれいな",
       "english": "Beautiful; clean",
       "category": "Descriptions & Qualities",
       "sourceOrder": 149
@@ -1847,7 +1847,7 @@
     {
       "id": "r-0d0fd2531ac7",
       "target": "さん",
-      "english": "Three",
+      "english": "Three; Mr./Ms. (after a name)",
       "category": "Numbers",
       "sourceOrder": 257
     },
@@ -2112,9 +2112,10 @@
     {
       "id": "r-1cd72882c51d",
       "target": "あげる",
-      "english": "To give; to raise (a hand)",
+      "english": "To raise (a hand)",
       "category": "Other",
-      "sourceOrder": 294
+      "sourceOrder": 294,
+      "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own."
     },
     {
       "id": "r-46b255d3a847",

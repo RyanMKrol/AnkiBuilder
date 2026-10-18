@@ -53,10 +53,11 @@
       "id": "r-2c80764518ce",
       "target": "黒",
       "english": "Black",
-      "category": "Other",
-      "pronunciation": "koku / kuro",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 3
+      "category": "Colors",
+      "pronunciation": "kuro",
+      "reviewNote": "Taught as a word in Chapter 11: Lesson 9: Kabuki: this is the word's card, voiced.",
+      "sourceOrder": 3,
+      "ttsText": "くろ"
     },
     {
       "id": "r-542d34678c0a",
@@ -119,10 +120,11 @@
       "id": "r-845d1da87f89",
       "target": "青",
       "english": "Blue",
-      "category": "Other",
-      "pronunciation": "sei / ao",
-      "reviewNote": "Meaning and readings from the book (Chapter 26: Reading and Writing 12: Tanabata Festival).",
-      "sourceOrder": 9
+      "category": "Colors",
+      "pronunciation": "ao",
+      "reviewNote": "Taught as a word in Chapter 26: Reading and Writing 12: Tanabata Festival: this is the word's card, voiced.",
+      "sourceOrder": 9,
+      "ttsText": "あお"
     },
     {
       "id": "r-30160a21b92a",
@@ -183,7 +185,7 @@
     {
       "id": "r-c12a2fd19822",
       "target": "弁",
-      "english": "Speech; dialect; boxed lunch",
+      "english": "Speech; dialect; distinguish",
       "category": "Other",
       "pronunciation": "ben",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -227,7 +229,7 @@
     {
       "id": "r-b7f5f9032c7e",
       "target": "華",
-      "english": "Flower; splendor",
+      "english": "Splendor; flower (literary)",
       "category": "Other",
       "pronunciation": "ka / hana",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -265,7 +267,7 @@
     {
       "id": "r-619113f21dd1",
       "target": "踊",
-      "english": "Dance",
+      "english": "Dance; jump",
       "category": "Other",
       "pronunciation": "yō / odo",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
@@ -302,10 +304,11 @@
       "id": "r-c899fb51e356",
       "target": "紙",
       "english": "Paper",
-      "category": "Other",
-      "pronunciation": "shi / gami, kami",
-      "reviewNote": "Meaning and readings from the book (Chapter 25: Reading and Writing 11: Looking for Friends/Members).",
-      "sourceOrder": 25
+      "category": "Everyday Objects",
+      "pronunciation": "kami",
+      "reviewNote": "Taught as a word in Chapter 25: Reading and Writing 11: Looking for Friends/Members: this is the word's card, voiced.",
+      "sourceOrder": 25,
+      "ttsText": "かみ"
     },
     {
       "id": "r-c010838dd8fa",
@@ -459,10 +462,11 @@
       "id": "r-72776ab68f81",
       "target": "赤",
       "english": "Red",
-      "category": "Other",
-      "pronunciation": "seki / aka",
-      "reviewNote": "Meaning and readings from the book (Chapter 26: Reading and Writing 12: Tanabata Festival).",
-      "sourceOrder": 40
+      "category": "Colors",
+      "pronunciation": "aka",
+      "reviewNote": "Taught as a word in Chapter 26: Reading and Writing 12: Tanabata Festival: this is the word's card, voiced.",
+      "sourceOrder": 40,
+      "ttsText": "あか"
     },
     {
       "id": "r-d0dc22224c0b",
@@ -525,7 +529,7 @@
       "audioTextHash": "f6fa368fcee44b82",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
-      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 人気."
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 人気 in Chapter 19: Reading and Writing 5: Travel."
     },
     {
       "id": "r-f9fe70b5c2d8",
@@ -695,7 +699,7 @@
     {
       "id": "r-ae5d54c4c826",
       "target": "華道",
-      "english": "Flower arrangement",
+      "english": "Flower arrangement (the formal art)",
       "category": "Other",
       "ttsText": "かどう",
       "sourceOrder": 56,
@@ -755,7 +759,7 @@
     {
       "id": "r-b9a0bbca64df",
       "target": "終わる",
-      "english": "To end",
+      "english": "(Something) ends",
       "category": "Other",
       "ttsText": "おわる",
       "sourceOrder": 60,
@@ -1193,7 +1197,7 @@
     {
       "id": "r-244232298a54",
       "target": "青信号",
-      "english": "Green light",
+      "english": "Green light (literally \"blue signal\")",
       "category": "Colors",
       "ttsText": "あおしんごう",
       "sourceOrder": 89,
@@ -1279,6 +1283,18 @@
       "audioAuto": "1c96c09365ab2e1d.mp3",
       "audioMarked": true,
       "audioTextHash": "1c96c09365ab2e1d"
+    },
+    {
+      "id": "r-f46f38bf91a3",
+      "target": "生け花",
+      "english": "Flower arrangement",
+      "category": "Other",
+      "ttsText": "いけばな",
+      "pronunciation": "ikebana",
+      "ttsKanji": "生け花",
+      "reviewNote": "QA fix pass 2026-10: the Culture Notes print 生け花（華道） Flower arrangement; only the bracketed 華道 was carded.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 95
     }
   ]
 }

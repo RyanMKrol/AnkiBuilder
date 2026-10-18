@@ -28,7 +28,7 @@
     {
       "id": "r-c59a75dc9cf3",
       "target": "移",
-      "english": "Move",
+      "english": "Shift; move (to another place)",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 2
@@ -44,10 +44,11 @@
     {
       "id": "r-2ea8aba2d5fc",
       "target": "販",
-      "english": "Sell",
+      "english": "Sell; trade",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 4
+      "sourceOrder": 4,
+      "ttsText": "はん"
     },
     {
       "id": "r-6771993f14db",

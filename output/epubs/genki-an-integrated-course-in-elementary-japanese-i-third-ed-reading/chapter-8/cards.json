@@ -287,10 +287,11 @@
       "id": "r-4a9efaa77fc2",
       "target": "何",
       "english": "What",
-      "category": "Other",
-      "pronunciation": "ka / nani, nan",
-      "reviewNote": "Meaning and readings from the book (Chapter 22: Reading and Writing 8: Japanese Office Workers).",
-      "sourceOrder": 22
+      "category": "Grammar & Function Words",
+      "pronunciation": "nani",
+      "reviewNote": "Taught as a word in Chapter 22: Reading and Writing 8: Japanese Office Workers: this is the word's card, voiced.",
+      "sourceOrder": 22,
+      "ttsText": "なに"
     },
     {
       "id": "r-ab420126abcb",
@@ -304,7 +305,7 @@
     {
       "id": "r-276330ed9702",
       "target": "弟",
-      "english": "Younger brother",
+      "english": "(My) younger brother",
       "category": "Family & People",
       "ttsText": "おとうと",
       "sourceOrder": 24,
@@ -382,7 +383,7 @@
     {
       "id": "r-28f894973975",
       "target": "妹",
-      "english": "Younger sister",
+      "english": "(My) younger sister",
       "category": "Family & People",
       "ttsText": "いもうと",
       "sourceOrder": 31,
@@ -584,7 +585,7 @@
       "ttsKanji": "背が高い",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
-      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 背, 高い."
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 背 here, 高い in Chapter 21: Reading and Writing 7: Mary's Letter."
     },
     {
       "id": "r-d57207655b68",
@@ -649,7 +650,7 @@
     {
       "id": "r-8dfa494661bc",
       "target": "奥さん",
-      "english": "Someone else's wife",
+      "english": "Someone else's wife; (my) wife (informal)",
       "category": "Family & People",
       "ttsText": "おくさん",
       "sourceOrder": 53,
@@ -837,7 +838,7 @@
     {
       "id": "r-ffb5060bdee1",
       "target": "うちの人",
-      "english": "Husband (informal)",
+      "english": "(My) husband (informal)",
       "category": "Family & People",
       "ttsText": "うちのひと",
       "sourceOrder": 65,
@@ -897,7 +898,7 @@
     {
       "id": "r-25e914fe05f6",
       "target": "うちの子",
-      "english": "My child (informal)",
+      "english": "(My) child",
       "category": "Family & People",
       "ttsText": "うちのこ",
       "sourceOrder": 69,
@@ -932,7 +933,7 @@
       "ttsText": "しちにん",
       "reviewNote": "The book gives more than one reading: しちにん, ななにん. Audio uses the first.",
       "sourceOrder": 71,
-      "pronunciation": "shichi-nin",
+      "pronunciation": "shichi-nin / nana-nin",
       "audio": "4ca8a81a6db15fb4.mp3",
       "audioOriginal": "4ca8a81a6db15fb4.orig.mp3",
       "audioAuto": "4ca8a81a6db15fb4.mp3",
@@ -1000,7 +1001,7 @@
     {
       "id": "r-715a30074c48",
       "target": "別に",
-      "english": "Nothing in particular",
+      "english": "Not particularly; nothing in particular (with a negative)",
       "category": "Grammar & Function Words",
       "ttsText": "べつに",
       "sourceOrder": 76,

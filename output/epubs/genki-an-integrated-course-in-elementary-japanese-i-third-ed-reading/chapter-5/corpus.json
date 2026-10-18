@@ -69,9 +69,10 @@
       "id": "r-efb2620838c4",
       "target": "火",
       "english": "Fire",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 7
+      "category": "Weather & Nature",
+      "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
+      "sourceOrder": 7,
+      "ttsText": "ひ"
     },
     {
       "id": "r-8f0005d18f7e",
@@ -84,10 +85,11 @@
     {
       "id": "r-d274eee8a175",
       "target": "一",
-      "english": "One; one radical (no.1)",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 9
+      "english": "One",
+      "category": "Numbers",
+      "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
+      "sourceOrder": 9,
+      "ttsText": "いち"
     },
     {
       "id": "r-577cfff2988c",
@@ -124,17 +126,18 @@
     {
       "id": "r-d9b59879f3b8",
       "target": "月",
-      "english": "Month; moon",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 14
+      "english": "Moon",
+      "category": "Weather & Nature",
+      "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
+      "sourceOrder": 14,
+      "ttsText": "つき"
     },
     {
       "id": "r-6f14c2641c25",
       "target": "年",
-      "english": "Year; counter for years",
+      "english": "Year; ... years",
       "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "reviewNote": "Taught as a word in Chapter 12: Lesson 10: Winter Vacation Plans, which the book reads more than one way (ねん, とし): left silent, with every sense in the English.",
       "sourceOrder": 15
     },
     {
@@ -148,10 +151,11 @@
     {
       "id": "r-8294db3a2006",
       "target": "木",
-      "english": "Tree; wood",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 17
+      "english": "Tree",
+      "category": "Weather & Nature",
+      "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
+      "sourceOrder": 17,
+      "ttsText": "き"
     },
     {
       "id": "r-0d73d884a9f3",
@@ -205,22 +209,24 @@
       "id": "r-b188c5e30da5",
       "target": "海",
       "english": "Sea",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 24
+      "category": "Weather & Nature",
+      "reviewNote": "Taught as a word in Chapter 07: Lesson 5: A Trip to Okinawa: this is the word's card, voiced.",
+      "sourceOrder": 24,
+      "ttsText": "うみ"
     },
     {
       "id": "r-bea55d0635be",
       "target": "物",
-      "english": "Thing (physical)",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 25
+      "english": "Thing (concrete object)",
+      "category": "Everyday Objects",
+      "reviewNote": "Taught as a word in Chapter 14: Lesson 12: Feeling Sick: this is the word's card, voiced.",
+      "sourceOrder": 25,
+      "ttsText": "もの"
     },
     {
       "id": "r-073d8528405e",
       "target": "前",
-      "english": "Front",
+      "english": "Front; before",
       "category": "Directions",
       "ttsText": "まえ",
       "sourceOrder": 26
@@ -229,9 +235,10 @@
       "id": "r-0e248e5603d3",
       "target": "山",
       "english": "Mountain",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 27
+      "category": "Weather & Nature",
+      "reviewNote": "Taught as a word in Chapter 13: Lesson 11: After the Vacation: this is the word's card, voiced.",
+      "sourceOrder": 27,
+      "ttsText": "やま"
     },
     {
       "id": "r-ba9358753016",
@@ -253,17 +260,19 @@
       "id": "r-3d72c724e03b",
       "target": "六",
       "english": "Six",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 30
+      "category": "Numbers",
+      "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
+      "sourceOrder": 30,
+      "ttsText": "ろく"
     },
     {
       "id": "r-f4bba5643a36",
       "target": "国",
-      "english": "Country",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 31
+      "english": "Country; place of origin",
+      "category": "Nationalities & Countries",
+      "reviewNote": "Taught as a word in Chapter 08: Lesson 6: A Day in Robert's Life: this is the word's card, voiced.",
+      "sourceOrder": 31,
+      "ttsText": "くに"
     },
     {
       "id": "r-7f2c11c7950a",
@@ -380,10 +389,11 @@
     {
       "id": "r-1d5639f716b6",
       "target": "二",
-      "english": "Two; two radical (no. 7)",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 46
+      "english": "Two",
+      "category": "Numbers",
+      "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
+      "sourceOrder": 46,
+      "ttsText": "に"
     },
     {
       "id": "r-c9bd4c71a44e",
@@ -397,9 +407,10 @@
       "id": "r-27a2b9f17bea",
       "target": "九",
       "english": "Nine",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 48
+      "category": "Numbers",
+      "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
+      "sourceOrder": 48,
+      "ttsText": "きゅう"
     },
     {
       "id": "r-3aca6391ccb2",
@@ -549,9 +560,10 @@
       "id": "r-3e450648252d",
       "target": "春",
       "english": "Spring (season)",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 67
+      "category": "Weather & Nature",
+      "reviewNote": "Taught as a word in Chapter 12: Lesson 10: Winter Vacation Plans: this is the word's card, voiced.",
+      "sourceOrder": 67,
+      "ttsText": "はる"
     },
     {
       "id": "r-13d060362fff",
@@ -580,10 +592,11 @@
     {
       "id": "r-2142fb62fd47",
       "target": "八",
-      "english": "Eight; eight radical (no. 12)",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 71
+      "english": "Eight",
+      "category": "Numbers",
+      "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
+      "sourceOrder": 71,
+      "ttsText": "はち"
     },
     {
       "id": "r-835872d37309",
@@ -620,18 +633,19 @@
     {
       "id": "r-a1a8cfd1dec3",
       "target": "後",
-      "english": "Behind; back; later",
+      "english": "After; in ... time",
       "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "reviewNote": "Taught as a word in Chapter 12: Lesson 10: Winter Vacation Plans, which the book reads more than one way (ご, あと): left silent, with every sense in the English.",
       "sourceOrder": 76
     },
     {
       "id": "r-4f88740b3480",
       "target": "四",
       "english": "Four",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 77
+      "category": "Numbers",
+      "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
+      "sourceOrder": 77,
+      "ttsText": "よん"
     },
     {
       "id": "r-93c323048753",
@@ -668,18 +682,20 @@
     {
       "id": "r-c3304d1e49e3",
       "target": "天",
-      "english": "Heavens; sky; imperial",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 82
+      "english": "The heavens; the sky",
+      "category": "Weather & Nature",
+      "reviewNote": "Taught as a word in Chapter 26: Reading and Writing 12: Tanabata Festival: this is the word's card, voiced.",
+      "sourceOrder": 82,
+      "ttsText": "てん"
     },
     {
       "id": "r-8f07f53d63e1",
       "target": "五",
       "english": "Five",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 83
+      "category": "Numbers",
+      "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
+      "sourceOrder": 83,
+      "ttsText": "ご"
     },
     {
       "id": "r-0889c349726f",
@@ -693,17 +709,19 @@
       "id": "r-49ddb069d5b8",
       "target": "三",
       "english": "Three",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 85
+      "category": "Numbers",
+      "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
+      "sourceOrder": 85,
+      "ttsText": "さん"
     },
     {
       "id": "r-8d8f4aeca850",
       "target": "秋",
-      "english": "Autumn",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 86
+      "english": "Fall (autumn)",
+      "category": "Weather & Nature",
+      "reviewNote": "Taught as a word in Chapter 12: Lesson 10: Winter Vacation Plans: this is the word's card, voiced.",
+      "sourceOrder": 86,
+      "ttsText": "あき"
     },
     {
       "id": "r-1cf3b2f84e7f",
@@ -716,10 +734,11 @@
     {
       "id": "r-d3cc0cab9c63",
       "target": "本",
-      "english": "Book; present; main",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 88
+      "english": "Book",
+      "category": "Everyday Objects",
+      "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
+      "sourceOrder": 88,
+      "ttsText": "ほん"
     },
     {
       "id": "r-0869071c92c0",

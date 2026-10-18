@@ -307,29 +307,32 @@ node scripts/build-reading.mjs --output-root output --book <slug> --book-pass --
 
 ## Checklist
 
+Wave A finished 2026-10-18. Notes from it: T7 leaves preflight with 4 FAIL collisions (2 groups, both theme-1 findings) until F1d adds hints; T6 ships `untaught-words` as ACK with 8 live instances to judge in F1/F2; T2 ships `reading-kanji-taught-as-word` as ACK with 38 Genki instances cleared by F3; READING_MERGE_VERSION is now 4, so the book pass reports every reviewed Genki unit as out of date (none is re-merged).
+
 Updated by the orchestrating session as tasks land. Status: todo, running, merged, skipped.
 
-| Task                                         | Branch                                | Status | Merge         |
-| -------------------------------------------- | ------------------------------------- | ------ | ------------- |
-| 0 design doc                                 | docs/qa-fix-pass-design               | merged | (this commit) |
-| T1 taught by book order                      | fix/taught-by-book-order              | todo   |               |
-| T2 reading word wins across chapters         | fix/reading-word-wins-across-chapters | todo   |               |
-| T3 reading alternate readings                | feat/reading-alternate-readings       | todo   |               |
-| T3b kana deck merged English                 | fix/kana-deck-merged-english          | todo   |               |
-| T4 reading vocab from anywhere (+T9 prompts) | feat/reading-vocab-from-anywhere      | todo   |               |
-| T5 proper-name checks                        | fix/proper-name-checks                | todo   |               |
-| T6 untaught-word check                       | feat/untaught-word-check              | todo   |               |
-| T7 fuzzier collision match                   | fix/collision-match-is-fuzzier        | todo   |               |
-| T8 card quality checks                       | feat/card-quality-checks              | todo   |               |
-| F1a Busy People chapters 0 to 6              | qa-fix/jfbp-ch0-6                     | todo   |               |
-| F1b Busy People chapters 7 to 12             | qa-fix/jfbp-ch7-12                    | todo   |               |
-| F1c Busy People chapters 13 to 18            | qa-fix/jfbp-ch13-18                   | todo   |               |
-| F1d Busy People chapters 19 to 26            | qa-fix/jfbp-ch19-26                   | todo   |               |
-| F3 Genki field edits and backfill            | qa-fix/genki                          | todo   |               |
-| F2 Busy People structural and additions      | qa-fix/jfbp-structural                | todo   |               |
-| T4 vocab scan run                            | (read-only, writes qa/)               | todo   |               |
-| F4 audio                                     | (main checkout)                       | todo   |               |
-| F5 close-out                                 | qa-fix/close-out                      | todo   |               |
+| Task                                                                                                                                                          | Branch                                | Status | Merge         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ------ | ------------- |
+| 0 design doc                                                                                                                                                  | docs/qa-fix-pass-design               | merged | (this commit) |
+| backups: tag `pre-qa-fix-2026-10-18`, tarballs in `anki-backups/pre-qa-fix-2026-10-18/`, live Anki export `anki-backups/2026-10-18T22-40-29-011Z-pre-qa-fix/` | feat/backup-anki-decks                | merged | e32ca99       |
+| T1 taught by book order                                                                                                                                       | fix/taught-by-book-order              | todo   |               |
+| T2 reading word wins across chapters                                                                                                                          | fix/reading-word-wins-across-chapters | todo   |               |
+| T3 reading alternate readings                                                                                                                                 | feat/reading-alternate-readings       | todo   |               |
+| T3b kana deck merged English                                                                                                                                  | fix/kana-deck-merged-english          | todo   |               |
+| T4 reading vocab from anywhere (+T9 prompts)                                                                                                                  | feat/reading-vocab-from-anywhere      | todo   |               |
+| T5 proper-name checks                                                                                                                                         | fix/proper-name-checks                | todo   |               |
+| T6 untaught-word check                                                                                                                                        | feat/untaught-word-check              | todo   |               |
+| T7 fuzzier collision match                                                                                                                                    | fix/collision-match-is-fuzzier        | todo   |               |
+| T8 card quality checks                                                                                                                                        | feat/card-quality-checks              | todo   |               |
+| F1a Busy People chapters 0 to 6                                                                                                                               | qa-fix/jfbp-ch0-6                     | todo   |               |
+| F1b Busy People chapters 7 to 12                                                                                                                              | qa-fix/jfbp-ch7-12                    | todo   |               |
+| F1c Busy People chapters 13 to 18                                                                                                                             | qa-fix/jfbp-ch13-18                   | todo   |               |
+| F1d Busy People chapters 19 to 26                                                                                                                             | qa-fix/jfbp-ch19-26                   | todo   |               |
+| F3 Genki field edits and backfill                                                                                                                             | qa-fix/genki                          | todo   |               |
+| F2 Busy People structural and additions                                                                                                                       | qa-fix/jfbp-structural                | todo   |               |
+| T4 vocab scan run                                                                                                                                             | (read-only, writes qa/)               | todo   |               |
+| F4 audio                                                                                                                                                      | (main checkout)                       | todo   |               |
+| F5 close-out                                                                                                                                                  | qa-fix/close-out                      | todo   |               |
 
 ## Orphan notes for the owner to delete in Anki
 

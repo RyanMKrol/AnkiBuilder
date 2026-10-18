@@ -782,13 +782,13 @@
       "category": "Grammar & Function Words",
       "target": "いきたいです",
       "pronunciation": "ikitai desu",
-      "hint": "Drop ます from いきます, add たいです",
       "audio": "4fdc055ee839708e.mp3",
       "audioOriginal": "4fdc055ee839708e.orig.mp3",
       "audioAuto": "4fdc055ee839708e.mp3",
       "audioMarked": true,
       "audioTextHash": "4fdc055ee839708e",
-      "sourceOrder": 1192
+      "sourceOrder": 1192,
+      "note": "Drop ます from いきます (ikimasu), add たいです (tai desu)."
     },
     {
       "id": "ikitakunai-desu",

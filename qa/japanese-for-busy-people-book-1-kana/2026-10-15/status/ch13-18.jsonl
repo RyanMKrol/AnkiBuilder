@@ -71,3 +71,10 @@
 {"id":"chapter-16-extras/fib-tsukare-sukoshi-yasumimasenka/book-mismatch/1","status":"fixed","statusReason":"English now 'We're tired, aren't we? Shall we rest a bit?'"}
 {"id":"chapter-16-extras/x16a-pooru-suzuki-event-ikimasu/book-mismatch/1","status":"fixed","statusReason":"Book order restored in target, romaji and English (すずきさんとポールさんは…); stage-made clip, needs re-voicing."}
 {"id":"chapter-16-extras/decline-doyoubi/note-unverifiable/1","status":"fixed","statusReason":"'softens the refusal more than すみません' dropped; the note keeps the book's scheduling-versus-taste contrast."}
+{"id":"chapter-17/ikitai-desu/leaks-answer/1","status":"fixed","statusReason":"Formation rule moved from the Production hint to the back note; the front is now '(I) want to go' like the other たい cards."}
+{"id":"chapter-17-extras/sumimasu-1/wrong-content/1","status":"fixed","statusReason":"Re-glossed as a plan, 'I'm going to live in Tokyo.', with a note that non-past すみます is a move to come, not where you live now. Target and clip unchanged."}
+{"id":"chapter-17-extras/mae-time-go-home/wrong-content/1","status":"fixed","statusReason":"Target now ばんごはんのまえにうちにかえりたいです 'I want to go home before dinner.' (an event noun, as in the book's examples); the invented 'a time word takes の' rule dropped. Stage-made clip, needs re-voicing."}
+{"id":"chapter-17-extras/-/wrong-content/1","status":"fixed","statusReason":"All seven notes now say 'A verb before まえに is in its dictionary form' instead of 'always follows the dictionary form'. (The same sentence in chapters 19, 21 and 22 extras is outside this fixer's units.)"}
+{"id":"chapter-17-extras/eat-at-restaurant-answer/unanswerable/1","status":"fixed","statusReason":"English now 'I want to eat at that restaurant over there.', the deck's あの convention."}
+{"id":"chapter-17-extras/kaitai-x2/missing-info/1","status":"fixed","statusReason":"Note added: Xに here means 'as X' or 'for X', as in おみやげに."}
+{"id":"chapter-17-extras/-/other/1","status":"fixed","statusReason":"'the next item' and 'the previous item' replaced with the other sentence quoted in Japanese."}

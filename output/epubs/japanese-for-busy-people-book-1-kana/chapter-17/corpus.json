@@ -696,8 +696,8 @@
       "target": "いきたいです",
       "english": "(I) want to go",
       "category": "Grammar & Function Words",
-      "hint": "Drop ます from いきます, add たいです",
-      "sourceOrder": 1192
+      "sourceOrder": 1192,
+      "note": "Drop ます from いきます (ikimasu), add たいです (tai desu)."
     },
     {
       "id": "ikitakunai-desu",

@@ -86,7 +86,7 @@
       "id": "onsen-tte-nandesuka",
       "english": "What is an onsen?",
       "category": "Grammar & Function Words",
-      "scene": null,
+      "scene": "repeating a word you just heard and do not understand",
       "hint": null,
       "note": "〜って なんですか repeats part of what you just heard to ask what it means.",
       "reviewNote": "Placeholder 〜って なんですか filled with おんせん — this is literally how the chapter's own dialogue uses the pattern.",
@@ -114,7 +114,7 @@
     },
     {
       "id": "nihon-no-supa-desu-yo",
-      "english": "It's a Japanese spa.",
+      "english": "It's a Japanese spa, you know.",
       "category": "Grammar & Function Words",
       "scene": "pointing at a photo of an onsen on a smartphone",
       "hint": null,
@@ -437,7 +437,7 @@
       "english": "Vicinity, near",
       "category": "Directions",
       "scene": null,
-      "hint": "the noun for \"the area near\", so it is followed by に (ni) and あります (arimasu), not です (desu)",
+      "hint": "the noun for \"the area near\", followed by に (ni) and あります (arimasu) in a \"there is\" sentence",
       "note": null,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 13: Asking for a Place: Where Is It? (ちかく reappears in a dedicated vicinity/location vocabulary list (as この ちかく), suggesting it's formally retaught rather than just reused)",
       "target": "ちかく",
@@ -499,7 +499,7 @@
       "english": "Soba shop",
       "category": "Food",
       "scene": null,
-      "hint": "plain form",
+      "hint": "the bare word, without お (o) or さん (san)",
       "note": "そば (soba, buckwheat noodle) + や (shop suffix) = そばや. This や is a different word from the や (ya) particle meaning \"and, and so on\" taught earlier in this lesson — here it attaches to a food name to mean \"the shop that sells it.\"",
       "reviewNote": null,
       "target": "そばや"
@@ -527,7 +527,7 @@
     },
     {
       "id": "ookii-mizuumi-ya-taki",
-      "english": "There are a big lake, waterfall, and other things.",
+      "english": "There are a big lake, a waterfall, and other things.",
       "category": "Travel & Tourism",
       "scene": "answering what is near the Japanese inn",
       "hint": null,
@@ -604,7 +604,7 @@
       "category": "Grammar & Function Words",
       "scene": "answering who is in the next room",
       "hint": null,
-      "note": "だれも (dare mo) with a negative verb means \"no one.\" Same frame as なにもありません (nani mo arimasen, \"there is nothing\"), with なに (nani) in place of だれ (dare).",
+      "note": "だれも (dare mo) with a negative verb means \"no one.\" Same frame as なにもありません (nani mo arimasen, \"there is nothing\"), with だれ (dare) in place of なに (nani), and いません (imasen) because it is about people.",
       "reviewNote": null,
       "target": "だれもいません"
     },

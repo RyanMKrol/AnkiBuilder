@@ -1,2 +1,3 @@
 chapter-7-extras	w2-sanban-no-basu-ga-ikimasu	target: 3ばんのバスがいきます -> 8ばんのバスがいきます
 chapter-7-extras	w2-sanban-no-basu-ga-ikimasu	ttsText: さんばんのバスがいきます -> はちばんのバスがいきます
+chapter-12	fib-raja-uchi-indo-doko-desuka	target: らじゃさんのうちはインドのどこですか -> ラジャさんのうちはインドのどこですか

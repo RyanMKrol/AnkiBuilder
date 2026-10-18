@@ -343,7 +343,7 @@
       "english": "What is there at Kamakura?",
       "category": "Travel & Tourism",
       "target": "かまくらになにがありますか",
-      "note": "かまくら (kamakura) was Japan's capital in the 12th and 13th centuries and is an easy day trip from Tokyo.",
+      "note": "かまくら (Kamakura) is a historic area south of Tokyo, an easy day trip from the city.",
       "aiSuggested": true,
       "reviewNote": "EXERCISE 7 dialogue 1, Smith's line."
     },
@@ -511,7 +511,7 @@
       "english": "Side",
       "category": "Directions",
       "target": "よこ",
-      "note": "A position word: ~の よこ (no yoko) = 'beside ~'. いすの よこ (isu no yoko) = 'next to the chair'.",
+      "note": "A position word: ~の よこ (no yoko) = 'beside ~'. いすの よこ (isu no yoko) = 'beside the chair'.",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 12's position words (ue/shita/tonari/chikaku)"
     },
     {
@@ -526,9 +526,10 @@
       "english": "What is tempura?",
       "category": "Food",
       "target": "てんぷらってなんですか",
-      "note": "って (tte) is a casual contraction that picks up a word you have just heard and marks it as the thing you are asking about. It stands in for は (wa) here; the formal equivalent is とはなんですか (to wa nan desu ka).",
+      "note": "って (tte) picks up a word you have just heard to ask what it means.",
       "aiSuggested": true,
-      "reviewNote": "Pattern job: a second instance of the chapter's ってなんですか frame, on てんぷら from Lesson 8, so the pattern reads as a slot rather than being welded to おんせん. Constructed."
+      "reviewNote": "Pattern job: a second instance of the chapter's ってなんですか frame, on てんぷら from Lesson 8, so the pattern reads as a slot rather than being welded to おんせん. Constructed.",
+      "scene": "repeating a word you just heard and do not understand"
     },
     {
       "id": "ear",

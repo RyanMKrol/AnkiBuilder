@@ -125,7 +125,8 @@
       "audioOriginal": "255be213164a836b.orig.mp3",
       "audioAuto": "255be213164a836b.mp3",
       "audioMarked": true,
-      "audioTextHash": "255be213164a836b"
+      "audioTextHash": "255be213164a836b",
+      "scene": "repeating a word you just heard and do not understand"
     },
     {
       "id": "supa-spa",
@@ -154,7 +155,7 @@
     },
     {
       "id": "nihon-no-supa-desu-yo",
-      "english": "It's a Japanese spa.",
+      "english": "It's a Japanese spa, you know.",
       "category": "Grammar & Function Words",
       "target": "にほんのスパですよ",
       "pronunciation": "nihon no supa desu yo",
@@ -581,7 +582,7 @@
       "id": "chikaku-near",
       "english": "Vicinity, near",
       "category": "Directions",
-      "hint": "the noun for \"the area near\", so it is followed by に (ni) and あります (arimasu), not です (desu)",
+      "hint": "the noun for \"the area near\", followed by に (ni) and あります (arimasu) in a \"there is\" sentence",
       "target": "ちかく",
       "pronunciation": "chikaku",
       "uncertain": true,
@@ -669,8 +670,8 @@
       "audioOriginal": "df327afa582d17c3.orig.mp3",
       "audioAuto": "df327afa582d17c3.mp3",
       "audioMarked": true,
-      "hint": "plain form",
-      "audioTextHash": "df327afa582d17c3"
+      "audioTextHash": "df327afa582d17c3",
+      "hint": "the bare word, without お (o) or さん (san)"
     },
     {
       "id": "soba-noodle",
@@ -703,7 +704,7 @@
     },
     {
       "id": "ookii-mizuumi-ya-taki",
-      "english": "There are a big lake, waterfall, and other things.",
+      "english": "There are a big lake, a waterfall, and other things.",
       "category": "Travel & Tourism",
       "target": "おおきいみずうみやたきがあります",
       "pronunciation": "ōkii mizuumi ya taki ga arimasu",
@@ -804,7 +805,7 @@
       "target": "だれもいません",
       "pronunciation": "dare mo imasen",
       "scene": "answering who is in the next room",
-      "note": "だれも (dare mo) with a negative verb means \"no one.\" Same frame as なにもありません (nani mo arimasen, \"there is nothing\"), with なに (nani) in place of だれ (dare).",
+      "note": "だれも (dare mo) with a negative verb means \"no one.\" Same frame as なにもありません (nani mo arimasen, \"there is nothing\"), with だれ (dare) in place of なに (nani), and いません (imasen) because it is about people.",
       "audio": "211f99317861dfd0.mp3",
       "audioOriginal": "211f99317861dfd0.orig.mp3",
       "audioAuto": "211f99317861dfd0.mp3",
@@ -945,7 +946,7 @@
       "id": "fib-raja-uchi-indo-doko-desuka",
       "english": "Where in India is Raja-san's home?",
       "category": "Nationalities & Countries",
-      "target": "らじゃさんのうちはインドのどこですか",
+      "target": "ラジャさんのうちはインドのどこですか",
       "pronunciation": "Raja-san no uchi wa Indo no doko desu ka",
       "note": null,
       "scene": null,
@@ -1008,10 +1009,10 @@
     },
     {
       "id": "fib-nani-ga-yuumei-desuka",
-      "english": "What is famous?",
+      "english": "What is it famous for?",
       "category": "Food",
       "target": "なにがゆうめいですか",
-      "pronunciation": "nani ga yuumei desu ka",
+      "pronunciation": "nani ga yūmei desu ka",
       "note": null,
       "scene": null,
       "fillInBlank": true,
@@ -1027,7 +1028,7 @@
       "english": "Cashew nuts are famous.",
       "category": "Food",
       "target": "カシューナッツがゆうめいです",
-      "pronunciation": "kashuunattsu ga yuumei desu",
+      "pronunciation": "kashū nattsu ga yūmei desu",
       "note": null,
       "scene": "answering what is famous about Goa",
       "fillInBlank": true,

@@ -90,3 +90,19 @@
 {"id":"chapter-11-extras/ex11-kore-hakone-no-omiyage-desu/missing-info/1","status":"fixed","statusReason":"Added scene 'handing a gift to a colleague'; Hakone capitalised in the romaji."}
 {"id":"chapter-11-extras/ex11-hontou-ni-kirei-desu-ne/missing-info/1","status":"fixed","statusReason":"Added a photo scene and reworded the note around it, without the dialogue's characters; romaji hontōni."}
 {"id":"chapter-11-extras/ex11-sumisu-san-kinou-wa-omiyage-o-arigatou-gozaimashita/note-unverifiable/1","status":"fixed","statusReason":"Dropped the きのうのおみやげ comparison the book does not make."}
+{"id":"chapter-12/onsen-tte-nandesuka/missing-info/1","status":"fixed","statusReason":"Added scene 'repeating a word you just heard and do not understand', which asks for って."}
+{"id":"chapter-12/nihon-no-supa-desu-yo/missing-info/1","status":"fixed","statusReason":"English now 'It's a Japanese spa, you know.', the deck's よ convention. Target and clip unchanged."}
+{"id":"chapter-12/chikaku-near/note-unverifiable/1","status":"fixed","statusReason":"Dropped 'not です'; hint names the 'there is' structure only. The other four cards were already correct."}
+{"id":"chapter-12/fib-raja-uchi-indo-doko-desuka/book-mismatch/1","status":"fixed","statusReason":"Target now ラジャさん in katakana; stage-owned clip, needs regenerating."}
+{"id":"chapter-12/dare-mo-imasen/other/1","status":"fixed","statusReason":"Substitution now the right way round, and the いません change is named."}
+{"id":"chapter-12/sobaya-soba-shop/other/1","status":"fixed","statusReason":"Replaced the 'plain form' label with 'the bare word, without お or さん'; a cue must stay because Lesson 13's おそばやさん shares the English."}
+{"id":"chapter-12/ookii-mizuumi-ya-taki/wrong-content/1","status":"fixed","statusReason":"English now 'There are a big lake, a waterfall, and other things.'"}
+{"id":"chapter-12/fib-cashew-nuts-yuumei/wrong-content/1","status":"fixed","statusReason":"Romaji now 'kashū nattsu ga yūmei desu'."}
+{"id":"chapter-12/fib-nani-ga-yuumei-desuka/wrong-content/1","status":"fixed","statusReason":"Romaji now 'nani ga yūmei desu ka'."}
+{"id":"chapter-12/fib-nani-ga-yuumei-desuka/book-mismatch/1","status":"fixed","statusReason":"English now the book's 'What is it famous for?'"}
+{"id":"chapter-12-extras/fib-teemapaaku-tte-nan-desu-ka/missing-info/1","status":"fixed","statusReason":"Added the って scene and a short note on って."}
+{"id":"chapter-12-extras/fib-teemapaaku-tte-nan-desu-ka/wrong-content/1","status":"fixed","statusReason":"Romaji now 'tēma pāku tte nan desu ka', matching the word card."}
+{"id":"chapter-12-extras/p12-tenpura-tte-nan-desu-ka/missing-info/1","status":"fixed","statusReason":"Added the って scene."}
+{"id":"chapter-12-extras/side/ambiguous/1","status":"fixed","statusReason":"Example glossed 'beside the chair', leaving 'next to' for となり."}
+{"id":"chapter-12-extras/p12-tenpura-tte-nan-desu-ka/note-unverifiable/1","status":"fixed","statusReason":"Note trimmed to the book's point; the 'casual contraction' and とは claims are gone."}
+{"id":"chapter-12-extras/ex12-kamakura-ni-nani-ga-arimasu-ka/note-unverifiable/1","status":"fixed","statusReason":"Note keeps only the book's 'historic area south of Tokyo' and the day-trip remark."}

@@ -25,8 +25,19 @@ import {
   unitMarkerCheck,
 } from "./state.js";
 import { templateExemptionsCheck, sourceTypeCheck, unmatchedDirsCheck } from "./templates.js";
-import { romajiStyleCheck, inlineRomanizationCheck } from "./romanization.js";
-import { answerableAloneCheck, productionLengthCheck, nearSiblingsCheck } from "./cardQuality.js";
+import {
+  romajiStyleCheck,
+  inlineRomanizationCheck,
+  romajiConsistencyCheck,
+} from "./romanization.js";
+import {
+  answerableAloneCheck,
+  productionLengthCheck,
+  nearSiblingsCheck,
+  builderNoteCheck,
+  cueLeakCheck,
+  politeFormLabelCheck,
+} from "./cardQuality.js";
 import { noteClaimsCheck } from "./noteClaims.js";
 import { drillFrameCheck } from "./drillShape.js";
 import { passLedgerCheck } from "./passLedger.js";
@@ -43,6 +54,7 @@ const SPEAKING_ONLY = [
   answerableAloneCheck,
   productionLengthCheck,
   nearSiblingsCheck,
+  cueLeakCheck,
   noteClaimsCheck,
   drillFrameCheck,
   vocabCoverageCheck,
@@ -91,6 +103,9 @@ const SPEAKING_AND_SHARED_CHECKS = [
   romajiStyleCheck,
   answerableAloneCheck,
   productionLengthCheck,
+  builderNoteCheck,
+  cueLeakCheck,
+  politeFormLabelCheck,
   noteClaimsCheck,
   drillFrameCheck,
   placeNameCardCheck,
@@ -102,6 +117,7 @@ const SPEAKING_AND_SHARED_CHECKS = [
   cardIdsCheck,
   collisionsCheck,
   inlineRomanizationCheck,
+  romajiConsistencyCheck,
   nearSiblingsCheck,
   chapterNumberCheck,
   extrasLibraryWriteCheck,

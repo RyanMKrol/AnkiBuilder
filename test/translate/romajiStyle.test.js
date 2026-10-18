@@ -99,6 +99,8 @@ test("lint: each detectable rule fires on its own counter-example and not on a c
     ["honorific-hyphen", "tanaka san wa", "Tanaka-san wa"],
     ["counter-hyphen", "gomai arimasu", "go-mai arimasu"],
     ["counter-hyphen", "mit-tsu", "mittsu"],
+    ["counter-hyphen", "aruite gofun gurai desu", "aruite go-fun gurai desu"],
+    ["counter-hyphen", "yonpun", "yon-pun"],
   ];
   for (const [id, bad, good] of cases) {
     assert.ok(

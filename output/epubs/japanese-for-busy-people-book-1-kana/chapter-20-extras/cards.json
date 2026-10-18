@@ -961,7 +961,8 @@
       "audioAuto": "d3e505b48c718502.mp3",
       "audioMarked": true,
       "audioTextHash": "d3e505b48c718502",
-      "additionDone": true
+      "additionDone": true,
+      "hint": "use the verb for oversleeping"
     }
   ]
 }

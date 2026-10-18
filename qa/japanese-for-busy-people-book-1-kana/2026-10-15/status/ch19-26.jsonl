@@ -45,3 +45,10 @@
 {"id":"chapter-19-extras/taxi-turn-beyond-school/book-mismatch/1","status":"fixed","statusReason":"English now 'Please turn beyond the school.'"}
 {"id":"chapter-19-extras/taxi-stop-beyond-traffic-light/book-mismatch/1","status":"fixed","statusReason":"English now 'Please stop beyond the traffic light.' (English only; the curated clip is untouched)."}
 {"id":"chapter-19/houkoku-shimasu/note-unverifiable/1","status":"fixed","statusReason":"Note keeps only the verb-versus-noun contrast with レポート; 'spoken' and 'to a superior' dropped."}
+{"id":"chapter-20/ikitai-n-desu-ga/ambiguous/1","status":"fixed","statusReason":"Hint 'opening a request for directions, leaving the question unsaid' added, so the front asks for いきたいんですが, not Lesson 17's いきたいです."}
+{"id":"chapter-20/ka-nichi/unanswerable/1","status":"fixed","statusReason":"Production hint 'two to ten days, not にち (nichi)' added."}
+{"id":"chapter-20-extras/yasumi-ni-nebou-suru-no-ga-suki/missing-info/1","status":"fixed","statusReason":"Hint 'use the verb for oversleeping' added; the English stays natural. The untaught ひ is F2's finding."}
+{"id":"chapter-20/yokka/other/1","status":"fixed","statusReason":"Duplicate hint dropped on futsuka, yokka, mikka, itsuka and muika; the scene 'a length of time' still cues both fronts."}
+{"id":"chapter-20/neboushimasu/other/1","status":"fixed","statusReason":"Romaji spaced on both headword cards: nebō shimasu, nebō shimashita, matching the rest of the chapter."}
+{"id":"chapter-20/kan-period-suffix/other/1","status":"fixed","statusReason":"'The chart writes it in brackets.' dropped; the quoted kana romanized."}
+{"id":"chapter-20/noru-dict/other/1","status":"fixed","statusReason":"All ten 'R1/R2 verb' notes now name Regular 1 or 2 and show the derivation (のります → のる → のって and so on)."}

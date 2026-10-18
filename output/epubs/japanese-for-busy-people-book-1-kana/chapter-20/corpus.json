@@ -71,7 +71,7 @@
       "target": "かん",
       "english": "Optional suffix for a period of time",
       "category": "Grammar & Function Words",
-      "note": "The chart writes it in brackets. Add it when you want to state a period of time clearly, as in ごふんかん. It is not added before はん (いちねんはん).",
+      "note": "Add it when you want to state a period of time clearly, as in ごふんかん (go-fun kan). It is not added before はん (han): いちねんはん (ichi-nen han).",
       "sourceOrder": 629
     },
     {
@@ -254,7 +254,7 @@
       "english": "Get on, take (dictionary form)",
       "category": "Transport",
       "sourceOrder": 3120,
-      "note": "R1 verb"
+      "note": "Regular 1: のります (norimasu) → のる (noru) → のって (notte)."
     },
     {
       "id": "norimasu-dict",
@@ -273,14 +273,14 @@
       "category": "Transport",
       "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3122,
-      "note": "R1 verb"
+      "note": "Regular 1: のります (norimasu) → のる (noru) → のって (notte)."
     },
     {
       "id": "oriru-dict",
       "target": "おりる",
       "english": "Get off (dictionary form)",
       "category": "Transport",
-      "note": "R2 verb",
+      "note": "Regular 2: おります (orimasu) → おりる (oriru) → おりて (orite).",
       "sourceOrder": 3135
     },
     {
@@ -298,7 +298,7 @@
       "target": "おりて",
       "english": "Get off (て-form)",
       "category": "Transport",
-      "note": "R2 verb",
+      "note": "Regular 2: おります (orimasu) → おりる (oriru) → おりて (orite).",
       "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3138
     },
@@ -307,7 +307,7 @@
       "target": "でる",
       "english": "Leave (dictionary form)",
       "category": "Transport",
-      "note": "R2 verb",
+      "note": "Regular 2: でます (demasu) → でる (deru) → でて (dete).",
       "sourceOrder": 3149
     },
     {
@@ -325,7 +325,7 @@
       "target": "でて",
       "english": "Leave (て-form)",
       "category": "Transport",
-      "note": "R2 verb",
+      "note": "Regular 2: でます (demasu) → でる (deru) → でて (dete).",
       "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3151
     },
@@ -335,7 +335,7 @@
       "english": "Arrive (dictionary form)",
       "category": "Transport",
       "sourceOrder": 3163,
-      "note": "R1 verb"
+      "note": "Regular 1: つきます (tsukimasu) → つく (tsuku) → ついて (tsuite)."
     },
     {
       "id": "tsuku-dict-2",
@@ -354,7 +354,7 @@
       "category": "Transport",
       "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3165,
-      "note": "R1 verb"
+      "note": "Regular 1: つきます (tsukimasu) → つく (tsuku) → ついて (tsuite)."
     },
     {
       "id": "kakaru-dict",
@@ -362,7 +362,7 @@
       "english": "Take [time] (dictionary form)",
       "category": "Time",
       "sourceOrder": 3183,
-      "note": "R1 verb"
+      "note": "Regular 1: かかります (kakarimasu) → かかる (kakaru) → かかって (kakatte)."
     },
     {
       "id": "kakaru-dict-2",
@@ -381,7 +381,7 @@
       "category": "Time",
       "reviewNote": "Kept: Exercise I tells the learner to memorize the dictionary and て-forms, and card-rules-shared cards every cell of such a table.",
       "sourceOrder": 3186,
-      "note": "R1 verb"
+      "note": "Regular 1: かかります (kakarimasu) → かかる (kakaru) → かかって (kakatte)."
     },
     {
       "id": "chikatetsu",
@@ -804,7 +804,8 @@
       "english": "I'd like to go",
       "category": "Travel & Tourism",
       "note": "A polite opener that asks for advice. The question itself is left unsaid: とうきょうドームに いきたいんですが implies \"which train should I take?\"",
-      "sourceOrder": 5189
+      "sourceOrder": 5189,
+      "hint": "opening a request for directions, leaving the question unsaid"
     },
     {
       "id": "doko-dono-kurai",
@@ -928,7 +929,8 @@
       "category": "Time",
       "note": "Also 〜にち, depending on the number. Can take かん to state the length clearly.",
       "sourceOrder": 2929,
-      "scene": "after a number, counting days"
+      "scene": "after a number, counting days",
+      "hint": "two to ten days, not にち (nichi)"
     },
     {
       "id": "ka-nichi-suffix",
@@ -965,7 +967,6 @@
       "sourceOrder": 2497,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
-      "hint": "a length of time, not a date",
       "scene": "a length of time"
     },
     {
@@ -977,7 +978,6 @@
       "sourceOrder": 2436,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
-      "hint": "a length of time, not a date",
       "scene": "a length of time"
     },
     {
@@ -989,7 +989,6 @@
       "sourceOrder": 2557,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
-      "hint": "a length of time, not a date",
       "scene": "a length of time"
     },
     {
@@ -1010,7 +1009,6 @@
       "sourceOrder": 2528,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
-      "hint": "a length of time, not a date",
       "scene": "a length of time"
     },
     {
@@ -1022,7 +1020,6 @@
       "sourceOrder": 2465,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 7: Going Places (2): I’m Going by Shinkansen (matched on target)",
-      "hint": "a length of time, not a date",
       "scene": "a length of time"
     },
     {

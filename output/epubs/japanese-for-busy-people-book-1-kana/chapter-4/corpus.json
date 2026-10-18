@@ -48,7 +48,7 @@
       "english": "…yen",
       "category": "Money",
       "target": "えん",
-      "note": "Suffix — attaches directly after a number (written 〜えん (en) in the source), e.g. 3,000えん (3,000en)"
+      "note": "Suffix: written 〜えん (en) directly after a number, e.g. 3,000えん (sanzen en, \"3,000 yen\")."
     },
     {
       "id": "are",
@@ -68,18 +68,18 @@
     },
     {
       "id": "ja",
-      "english": "well then",
+      "english": "Well then",
       "category": "Grammar & Function Words",
       "target": "じゃ",
-      "note": "This じゃ (ja, 'well then') is a filler word marking a conclusion — not the same じゃ in じゃありません (ja arimasen) from an earlier lesson, which is a contraction of では (dewa) plus the negative; same sound, different job.",
-      "hint": "the casual contraction"
+      "note": "This じゃ (ja) is the casual form of では (dewa); both mean 'well then' and mark a conclusion (では arrives in Lesson 6). It is a different word from the じゃ in じゃありません (ja arimasen) from an earlier lesson, the negative of です (desu): same sound, different job.",
+      "hint": "the casual form of では (dewa)"
     },
     {
       "id": "kudasai",
-      "english": "please give me",
+      "english": "Please give me",
       "category": "Grammar & Function Words",
       "target": "ください",
-      "note": "\"noun を (o) ください (kudasai)\" used when shopping or ordering; compare おねがいします (onegaishimasu), which can also be used to request an action or service"
+      "note": "\"noun を (o) ください (kudasai)\" asks for a thing, used when shopping or ordering; compare おねがいします (onegaishimasu), which can also be used to request an action or service. On this deck's ordering cards, 'I'll take ...' and 'X, please.' answer with ください, 'I would like ..., please.' with おねがいします, and the front's hint names which."
     },
     {
       "id": "tablet",
@@ -116,7 +116,8 @@
       "id": "ks3-kore-kudasai",
       "english": "I would like this one, please.",
       "category": "Shopping",
-      "target": "これをください"
+      "target": "これをください",
+      "hint": "the request that only asks for a thing"
     },
     {
       "id": "curry",
@@ -142,7 +143,8 @@
       "id": "ks4-curry-salad",
       "english": "I would like curry and salad, please.",
       "category": "Food",
-      "target": "カレーとサラダをおねがいします"
+      "target": "カレーとサラダをおねがいします",
+      "hint": "the wider-use request, the one that also works for asking a favour"
     },
     {
       "id": "mo-example-umbrella",
@@ -485,10 +487,10 @@
     },
     {
       "id": "mechanical-pencil",
-      "english": "mechanical pencil",
+      "english": "Mechanical pencil",
       "category": "School & Education",
       "target": "シャーペン",
-      "note": "Colloquial shortening of シャープペンシル (shāpupenshiru)"
+      "note": "Colloquial shortening of シャープペンシル (shāpu penshiru)"
     },
     {
       "id": "toaster",

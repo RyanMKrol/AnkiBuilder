@@ -63,3 +63,22 @@
 {"id":"chapter-3-extras/yasumi-itsu-q/other/1","status":"fixed","statusReason":"Reworded the pair to the Lesson 3 sense, 'time off' (the book's gloss), rather than widening the word card toward Lesson 7's 'day off'."}
 {"id":"chapter-3-extras/asagohan/other/1","status":"skipped","statusReason":"The swap needs chapter-8 (F1b's unit) and would ship a new Lesson 3 note in place of the delivered, scheduled Lesson 8 one: owner to decide. The false excludedReason (\"duplicate of the established Lesson 8 card\") is rewritten to say the book teaches it here first."}
 {"id":"chapter-3-extras/bangohan/other/1","status":"skipped","statusReason":"The swap needs chapter-8 (F1b's unit) and would ship a new Lesson 3 note in place of the delivered, scheduled Lesson 8 one: owner to decide. The false excludedReason is rewritten to say the book teaches it here first."}
+{"id":"chapter-4-extras/-/unanswerable/1","status":"fixed","statusReason":"Every ordering card in Lesson 4 and its extras now carries the kohi-pair hint naming its form (ください 'only asks for a thing', おねがいします 'also works for a favour'), and the ください note states the English convention once."}
+{"id":"chapter-4/ks3-kore-kudasai/ambiguous/1","status":"fixed","statusReason":"Kept the book's KS3 English and added the kohi-o-kudasai hint ('the request that only asks for a thing'), so the front picks ください."}
+{"id":"chapter-4/ks4-curry-salad/unanswerable/1","status":"fixed","statusReason":"Added the kohi-o-onegaishimasu hint, so the front picks おねがいします."}
+{"id":"chapter-4/en-suffix/other/1","status":"fixed","statusReason":"Dropped 'in the source'; kept the example."}
+{"id":"chapter-4/ja/book-mismatch/1","status":"fixed","statusReason":"Note says this じゃ is the casual form of では, both 'well then', as the book pairs them; the hint names では and stays as the collision cue against Lesson 6's dewa."}
+{"id":"chapter-4/num-1trillion/other/1","status":"fixed","statusReason":"Note romaji 'chō' with a macron."}
+{"id":"chapter-4/mechanical-pencil/other/1","status":"fixed","statusReason":"Note romaji 'shāpu penshiru' with macrons."}
+{"id":"chapter-4-extras/ja-kore-to-sore-o-kudasai/other/1","status":"fixed","statusReason":"Dropped 'GRAMMAR 4's rule'; the point is said directly."}
+{"id":"chapter-4-extras/kohi-o-kudasai/wrong-content/1","status":"fixed","statusReason":"Note narrowed to the noun を ください pattern on the card."}
+{"id":"chapter-4-extras/kohi-o-kudasai/note-unverifiable/1","status":"fixed","statusReason":"Hint keeps the book's scope distinction and drops 'blunter'; 'softer' dropped from kohi-o-onegaishimasu's note and 'polite' from its hint."}
+{"id":"chapter-4-extras/are-wa-sumaho-ja-arimasen/other/1","status":"fixed","statusReason":"Dropped 'the スマホ distance set'; kept the deny-then-correct point."}
+{"id":"chapter-4-extras/kore-wa-hassen-en-desu-ka/other/1","status":"fixed","statusReason":"Dropped the 'Member 3 of the 8,000えん set' label (and its 'hassen'en' romaji)."}
+{"id":"chapter-4-extras/kore-wa-hassen-en-ja-arimasen/other/1","status":"fixed","statusReason":"Dropped the 'Member 2' label."}
+{"id":"chapter-4-extras/kore-wa-anata-no-kasa-desu-ka/other/1","status":"fixed","statusReason":"Dropped 'Completes the かさ set'."}
+{"id":"chapter-4-extras/sore-mo-watashi-no-desu/other/1","status":"fixed","statusReason":"Dropped 'the point GRAMMAR 2 makes'."}
+{"id":"chapter-4-extras/kore-wa-watashi-no-kasa-desu/other/1","status":"fixed","statusReason":"Kept the affirmative pointer, dropped the GRAMMAR 2 reference."}
+{"id":"chapter-4-extras/tokei-o-misete-kudasai/ambiguous/1","status":"fixed","statusReason":"Hint names とけい as the general word, against うでどけい (the wristwatch)."}
+{"id":"chapter-4-extras/kore-mo-sore-mo-tokei/ambiguous/1","status":"fixed","statusReason":"Hint names とけい as the general word, against うでどけい (the wristwatch)."}
+{"id":"chapter-4-extras/fib-iie-rimokon-desu/wrong-content/1","status":"skipped","statusReason":"The collection is split 'iie' / 'īe' and the style guide's 'いい stays ii' favours this card's spelling, so a one-card change fixes nothing: the owner picks one spelling and it is swept collection-wide (T8's consistency check will list them)."}

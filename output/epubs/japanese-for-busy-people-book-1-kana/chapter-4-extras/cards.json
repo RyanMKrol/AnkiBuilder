@@ -40,7 +40,8 @@
       "audioOriginal": "0326eb270bbfebba.orig.mp3",
       "audioAuto": "0326eb270bbfebba.mp3",
       "audioMarked": true,
-      "audioTextHash": "0326eb270bbfebba"
+      "audioTextHash": "0326eb270bbfebba",
+      "hint": "the request that only asks for a thing"
     },
     {
       "id": "mouse-computer",
@@ -103,7 +104,8 @@
       "audioOriginal": "a8cbf3c6a3588ac8.orig.mp3",
       "audioAuto": "a8cbf3c6a3588ac8.mp3",
       "audioMarked": true,
-      "audioTextHash": "a8cbf3c6a3588ac8"
+      "audioTextHash": "a8cbf3c6a3588ac8",
+      "hint": "the request that only asks for a thing"
     },
     {
       "id": "to-sandwich-coffee-ikura-q",
@@ -128,7 +130,7 @@
       "pronunciation": "are wa sumaho ja arimasen. taburetto desu.",
       "aiSuggested": true,
       "reviewNote": "Constructed on the noun pair EXERCISE 7's worked example uses. Coverage job: form — the only negative built on あれ (are) anywhere in the lesson; every じゃありません card in the deck starts with これ (kore) or それ (sore).",
-      "note": "Closes the スマホ (sumaho) distance set with a negative, and shows the deny-then-correct move in full.",
+      "note": "Shows the deny-then-correct move in full: say what it is not, then what it is.",
       "audio": "f8c7b9097111d3a2.mp3",
       "audioOriginal": "f8c7b9097111d3a2.orig.mp3",
       "audioAuto": "f8c7b9097111d3a2.mp3",
@@ -203,7 +205,7 @@
       "pronunciation": "kore wa hassen'en desu ka.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: form — completes the です / じゃありません / ですか triad on one price. The deck has no card asking whether a specific amount is correct; every price question in it is an open いくら (ikura) question.",
-      "note": "Member 3 of the 8,000えん (hassen'en) set. Use this when you already suspect the price and want it confirmed; use いくらですか (ikura desu ka) when you have no idea at all.",
+      "note": "Use this when you already suspect the price and want it confirmed; use いくらですか (ikura desu ka, \"How much is it?\") when you have no idea at all.",
       "ttsText": "これははっせんえんですか",
       "audio": "2564320925e83838.mp3",
       "audioOriginal": "2564320925e83838.orig.mp3",
@@ -235,8 +237,8 @@
       "pronunciation": "kōhī o kudasai.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: form — member 1 of a ください / おねがいします minimal pair on identical wording. GRAMMAR 3 draws the distinction between the two but the deck has no pair that isolates it. Hinted because the pair is reachable from similar English.",
-      "hint": "the blunter of the two requests, the one that asks for the thing itself",
-      "note": "ください (kudasai) literally asks for something to be given to you, so it fits a drink or a purchase but cannot ask for a service.",
+      "hint": "the request that only asks for a thing",
+      "note": "Noun を ください (kudasai) asks for a thing to be given to you, so it fits a drink or a purchase; to ask for a service, use おねがいします (onegaishimasu).",
       "audio": "b4ca6db9b8784848.mp3",
       "audioOriginal": "b4ca6db9b8784848.orig.mp3",
       "audioAuto": "b4ca6db9b8784848.mp3",
@@ -325,7 +327,8 @@
       "audioOriginal": "510caccb91d65c50.orig.mp3",
       "audioAuto": "510caccb91d65c50.mp3",
       "audioMarked": true,
-      "audioTextHash": "510caccb91d65c50"
+      "audioTextHash": "510caccb91d65c50",
+      "hint": "the wider-use request, the one that also works for asking a favour"
     },
     {
       "id": "terebi-wa-nanaman-hassen-en-desu",
@@ -448,7 +451,8 @@
       "audioOriginal": "9ef471429b98bb8a.orig.mp3",
       "audioAuto": "9ef471429b98bb8a.mp3",
       "audioMarked": true,
-      "audioTextHash": "9ef471429b98bb8a"
+      "audioTextHash": "9ef471429b98bb8a",
+      "hint": "the general word for a watch or clock"
     },
     {
       "id": "fib-mausu-wa-gohyaku-en-desu",
@@ -582,7 +586,8 @@
       "audioOriginal": "6c8c52a1fbc9bdbe.orig.mp3",
       "audioAuto": "6c8c52a1fbc9bdbe.mp3",
       "audioMarked": true,
-      "audioTextHash": "6c8c52a1fbc9bdbe"
+      "audioTextHash": "6c8c52a1fbc9bdbe",
+      "hint": "the request that only asks for a thing"
     },
     {
       "id": "pasokon-mo-goman-en-desu-ka",
@@ -658,7 +663,7 @@
       "pronunciation": "sore mo watashi no desu.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: particle も (mo) in the possessive slot. GRAMMAR 2 states も works in both affirmative and negative sentences but the book only prints the negative, and the deck copied that gap.",
-      "note": "The affirmative twin of それもわたしのじゃありません (sore mo watashi no ja arimasen) — も (mo) behaves identically in positive and negative sentences, which is the point GRAMMAR 2 makes.",
+      "note": "The affirmative twin of それもわたしのじゃありません (sore mo watashi no ja arimasen, \"That one isn't mine either.\"): も (mo) behaves identically in positive and negative sentences.",
       "audio": "812cec6e6f8a8b51.mp3",
       "audioOriginal": "812cec6e6f8a8b51.orig.mp3",
       "audioAuto": "812cec6e6f8a8b51.mp3",
@@ -775,7 +780,8 @@
       "audioOriginal": "eea6016c2e92c96e.orig.mp3",
       "audioAuto": "eea6016c2e92c96e.mp3",
       "audioMarked": true,
-      "audioTextHash": "eea6016c2e92c96e"
+      "audioTextHash": "eea6016c2e92c96e",
+      "hint": "the wider-use request, the one that also works for asking a favour"
     },
     {
       "id": "remote-control",
@@ -810,7 +816,8 @@
       "audioAuto": "5caf4cfe26003686.mp3",
       "audioMarked": true,
       "scene": "pointing out that a second item is the same thing",
-      "audioTextHash": "5caf4cfe26003686"
+      "audioTextHash": "5caf4cfe26003686",
+      "hint": "the general word for a watch or clock"
     },
     {
       "id": "fib-mausu-o-kudasai",
@@ -836,12 +843,13 @@
       "pronunciation": "ja, kore to sore o kudasai.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: particle と (to), fourth example and the only one joining これ (kore) and それ (sore) rather than two named items. Also the lesson's most realistic closing line when buying more than one thing.",
-      "note": "と (to) joins pronouns as readily as nouns — GRAMMAR 4's rule is about nouns generally, not just names of things.",
+      "note": "と (to) joins これ (kore) and それ (sore) just as it joins names of things.",
       "audio": "0b56fa354a318490.mp3",
       "audioOriginal": "0b56fa354a318490.orig.mp3",
       "audioAuto": "0b56fa354a318490.mp3",
       "audioMarked": true,
-      "audioTextHash": "0b56fa354a318490"
+      "audioTextHash": "0b56fa354a318490",
+      "hint": "the request that only asks for a thing"
     },
     {
       "id": "kohi-o-onegaishimasu",
@@ -851,8 +859,8 @@
       "pronunciation": "kōhī o onegaishimasu.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: form — member 2 of the ください / おねがいします minimal pair. Also gives コーヒー (kōhī) a sentence where it is not buried in a two-item order.",
-      "hint": "the wider-use polite request, the one that also works for asking a favour",
-      "note": "Same order, softer and broader. おねがいします (onegaishimasu) stretches to requests ください (kudasai) cannot make, such as たなかさんをおねがいします (tanaka san o onegaishimasu) in Lesson 1.",
+      "hint": "the wider-use request, the one that also works for asking a favour",
+      "note": "Same order, broader: おねがいします (onegaishimasu) stretches to requests that noun を ください (kudasai) cannot make, such as たなかさんをおねがいします (Tanaka-san o onegaishimasu, \"I'd like to see Tanaka-san, please.\") in Lesson 1.",
       "audio": "95771c659b27ab62.mp3",
       "audioOriginal": "95771c659b27ab62.orig.mp3",
       "audioAuto": "95771c659b27ab62.mp3",
@@ -969,7 +977,7 @@
       "pronunciation": "kore wa anata no kasa desu ka.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: form — member 3 of the かさ (kasa) set, and the deck's only question using あなた (anata), which has been a bare vocabulary card since Lesson 1.",
-      "note": "Completes the かさ (kasa) set. In real speech the あなたの (anata no) is usually dropped once it is obvious whose umbrella is meant.",
+      "note": "In real speech the あなたの (anata no) is usually dropped once it is obvious whose umbrella is meant.",
       "audio": "150922cc85cf343c.mp3",
       "audioOriginal": "150922cc85cf343c.orig.mp3",
       "audioAuto": "150922cc85cf343c.mp3",
@@ -989,7 +997,8 @@
       "audioOriginal": "21a44f01e5ad4bf8.orig.mp3",
       "audioAuto": "21a44f01e5ad4bf8.mp3",
       "audioMarked": true,
-      "audioTextHash": "21a44f01e5ad4bf8"
+      "audioTextHash": "21a44f01e5ad4bf8",
+      "hint": "the wider-use request, the one that also works for asking a favour"
     },
     {
       "id": "ja-kore-o-kudasai",
@@ -1003,7 +1012,8 @@
       "audioOriginal": "8e57ed1363d1f4a4.orig.mp3",
       "audioAuto": "8e57ed1363d1f4a4.mp3",
       "audioMarked": true,
-      "audioTextHash": "8e57ed1363d1f4a4"
+      "audioTextHash": "8e57ed1363d1f4a4",
+      "hint": "the request that only asks for a thing"
     },
     {
       "id": "hyakunanajuu-en-desu",
@@ -1029,7 +1039,7 @@
       "pronunciation": "kore wa hassen'en ja arimasen.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: form. Until wave 1 nothing in the deck denied a price at all — じゃありません was learned in Lesson 2 and only ever applied to objects and owners. This is the bare negative, with no correction attached, so the learner meets the form on its own.",
-      "note": "Member 2 of the 8,000えん (hassen'en) set. A price behaves like any other noun, so じゃありません (ja arimasen) simply replaces です (desu).",
+      "note": "A price behaves like any other noun, so じゃありません (ja arimasen) simply replaces です (desu).",
       "ttsText": "これははっせんえんじゃありません",
       "audio": "9e865aa87ecb02f7.mp3",
       "audioOriginal": "9e865aa87ecb02f7.orig.mp3",
@@ -1045,7 +1055,7 @@
       "pronunciation": "kore wa watashi no kasa desu.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: form — member 1 of a です / じゃありません / ですか set on かさ (kasa), built around the negative the deck already holds. Also gives the particle の (no) an affirmative example; both existing の sentences in this lesson are negative.",
-      "note": "The affirmative of これはわたしのかさじゃありません (kore wa watashi no kasa ja arimasen), the sentence GRAMMAR 2 builds its も (mo) example on.",
+      "note": "The affirmative of これはわたしのかさじゃありません (kore wa watashi no kasa ja arimasen, \"This isn't my umbrella.\").",
       "audio": "fe2de3dd571acade.mp3",
       "audioOriginal": "fe2de3dd571acade.orig.mp3",
       "audioAuto": "fe2de3dd571acade.mp3",
@@ -1095,7 +1105,8 @@
       "audioOriginal": "2866b8803627a1a2.orig.mp3",
       "audioAuto": "2866b8803627a1a2.mp3",
       "audioMarked": true,
-      "audioTextHash": "2866b8803627a1a2"
+      "audioTextHash": "2866b8803627a1a2",
+      "hint": "the wider-use request, the one that also works for asking a favour"
     }
   ]
 }

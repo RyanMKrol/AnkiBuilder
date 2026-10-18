@@ -236,10 +236,11 @@
     {
       "id": "r-1832f9e9d247",
       "target": "宇",
-      "english": "Universe",
+      "english": "Eaves; heaven",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 28
+      "sourceOrder": 28,
+      "ttsText": "う"
     },
     {
       "id": "r-d2e4839a3345",
@@ -364,7 +365,7 @@
     {
       "id": "r-df96a6e9ec65",
       "target": "味",
-      "english": "Meaning; taste",
+      "english": "Taste; flavor",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 44
@@ -485,9 +486,10 @@
       "id": "r-0e0faa1d8332",
       "target": "外",
       "english": "Outside",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 59
+      "category": "Directions",
+      "reviewNote": "Taught as a word in Chapter 20: Reading and Writing 6: My Favorite Restaurant: this is the word's card, voiced.",
+      "sourceOrder": 59,
+      "ttsText": "そと"
     },
     {
       "id": "r-2353efbc3e76",
@@ -998,7 +1000,7 @@
       "sourceOrder": 118,
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
-      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 宿題, 出す."
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 宿題 here, 出す in Chapter 20: Reading and Writing 6: My Favorite Restaurant."
     },
     {
       "id": "r-1d4ebd368cf4",

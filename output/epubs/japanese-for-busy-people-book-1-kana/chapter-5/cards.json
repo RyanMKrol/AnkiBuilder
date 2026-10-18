@@ -1253,7 +1253,8 @@
       "audioAuto": "18a6698052e8c040.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "18a6698052e8c040"
+      "audioTextHash": "18a6698052e8c040",
+      "hint": "used on its own, not before a noun"
     },
     {
       "id": "dore-example",

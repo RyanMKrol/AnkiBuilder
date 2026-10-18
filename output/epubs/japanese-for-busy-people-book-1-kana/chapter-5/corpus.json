@@ -580,7 +580,8 @@
       "english": "Which one (of three or more things)",
       "category": "Grammar & Function Words",
       "target": "どれ",
-      "note": "どちら (dochira) is used instead when choosing between only two items."
+      "note": "Which one (of three or more things). どちら (dochira) is used instead when choosing between only two items.",
+      "hint": "used on its own, not before a noun"
     },
     {
       "id": "dore-example",

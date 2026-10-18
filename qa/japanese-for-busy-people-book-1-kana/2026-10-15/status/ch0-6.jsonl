@@ -106,3 +106,21 @@
 {"id":"chapter-5-extras/sore-wa-itaria-no-kutsu-ka/other/1","status":"fixed","statusReason":"Set numbering dropped from all six notes, each keeping its explanatory clause."}
 {"id":"chapter-5-extras/fukuro-mo-ni-mai-kudasai/other/1","status":"fixed","statusReason":"The dialogue reference now names the wine sentence it meant."}
 {"id":"chapter-5-extras/rooftop/wrong-content/1","status":"fixed","statusReason":"Replaced the false shared-じょう claim (and the untaught ちゅうしゃじょう) with a true note."}
+{"id":"chapter-6/dono/ambiguous/1","status":"fixed","statusReason":"Production hint says どの goes before a noun; Lesson 5's どれ got the mirror hint 'used on its own'."}
+{"id":"chapter-6/e-particle/wrong-content/1","status":"fixed","statusReason":"Hint glosses に as 'to', the sense this lesson teaches."}
+{"id":"chapter-6/sochira/other/1","status":"fixed","statusReason":"Note now says こちら is also 'this way / here', as in どうぞこちらへ."}
+{"id":"chapter-6/party-e-sentence/missing-info/1","status":"fixed","statusReason":"Added the he-eki-e-ikimasu hint naming へ."}
+{"id":"chapter-6/ks3-restaurant-friend/ordering/1","status":"fixed","statusReason":"Glossed きのう in the note here and on form-kuukou-ikimashita (ruling 5: gloss by default); the excluded base kinou card now has an excludedReason. Un-excluding kinou would ship a new card, which belongs to the additions gate, not a field edit."}
+{"id":"chapter-6/kyonen/wrong-content/1","status":"fixed","statusReason":"Note says only きょねん and ことし are irregular and らいねん is regular; senshuu's 'but not the year words' became 'only partly'."}
+{"id":"chapter-6-extras/he-ginza-no-depaato-e-ikimashita/missing-info/1","status":"fixed","statusReason":"Added the he-eki-e-ikimasu hint naming へ."}
+{"id":"chapter-6-extras/he-kouen-e-ikimasu-ka/missing-info/1","status":"fixed","statusReason":"Added the he-eki-e-ikimasu hint naming へ."}
+{"id":"chapter-6-extras/ga-dore-ga-sumisu-san-no-kaban-desu-ka/ambiguous/1","status":"fixed","statusReason":"Production hint asks for the どれが order."}
+{"id":"chapter-6-extras/td-tokyo-shisha-no-sumisu/missing-info/1","status":"fixed","statusReason":"Production hint gives the phone context, so it no longer reads as introducing someone else."}
+{"id":"chapter-6-extras/td-dewa-ashita/ambiguous/1","status":"fixed","statusReason":"Production hint carries the base dewa card's 'fuller, more formal' cue."}
+{"id":"chapter-6-extras/to-koohii-to-koucha-o-onegaishimasu/ambiguous/1","status":"fixed","statusReason":"English follows the deck's おねがいします wording ('I would like ..., please.'), with Lesson 4's おねがいします hint."}
+{"id":"chapter-6-extras/td-hitori-de-kimasu-ka/other/1","status":"fixed","statusReason":"Note states the viewpoint rule without the dialogue's 'her' and 'his'."}
+{"id":"chapter-6-extras/hai-hitori-de-ikimasu/note-unverifiable/1","status":"fixed","statusReason":"Dropped the 'a bare はい would sound abrupt' claim."}
+{"id":"chapter-6-extras/vocab-tokyo-eki-ni-ikimasu-ka/note-unverifiable/1","status":"fixed","statusReason":"'never とうきょうのえき' replaced by what each form means."}
+{"id":"chapter-6-extras/-/other/1","status":"fixed","statusReason":"Dropped the GRAMMAR / WORD POWER / EXERCISE labels from all seven notes, keeping each rule; form-tokyo-shisha-kimasen-deshita got a real note."}
+{"id":"chapter-6-extras/-/other/2","status":"fixed","statusReason":"Member numbering removed from all nine notes; each now names its form (present, negative, past, past negative)."}
+{"id":"chapter-6/tachi-example/other/1","status":"skipped","statusReason":"ともだちたち is attested, ordinary spoken Japanese, so nothing is wrong. Rebuilding the deck's たち example on the book's かいしゃのひとたち would change a target and two notes together; that is the owner's call, not a field fix."}

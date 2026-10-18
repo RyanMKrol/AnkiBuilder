@@ -145,6 +145,9 @@ function normalizeCardTarget(target) {
   return String(target || "").replace(/[\s\u3000]+/g, "");
 }
 
+// The gloss a book gives a name it invented for an exercise: "(fictitious company)".
+const FICTITIOUS_GLOSS = /\(fictitious\b/i;
+
 /**
  * Vocabulary entries whose headword appears in no card's `target`.
  *
@@ -152,7 +155,8 @@ function normalizeCardTarget(target) {
  * exists. That is what turns the expected false positives into a five-second check instead of a
  * re-read: a real miss has no neighbour at all, while `(お)てら` vs `おてら` shows its twin
  * immediately. Excluded cards still count as coverage — the word IS in the deck, and whether to
- * ship it is a separate decision.
+ * ship it is a separate decision. An entry whose gloss marks it fictitious is skipped: it is a name,
+ * and a name is not a card.
  */
 export function findUncoveredVocab(entries, cards, { includeSubRows = true } = {}) {
   const targets = (cards || []).map((card) => normalizeCardTarget(card.target)).filter(Boolean);
@@ -160,6 +164,10 @@ export function findUncoveredVocab(entries, cards, { includeSubRows = true } = {
   const misses = [];
   for (const entry of entries) {
     if (entry.sub && !includeSubRows) continue;
+    // A name the book itself marks as invented ("(fictitious company)") is not vocabulary, and a
+    // proper name is not a card (docs/card-rules-shared.md). Reporting it as uncarded is what got
+    // one carded in the first place, so it is not reported at all.
+    if (FICTITIOUS_GLOSS.test(entry.english || "")) continue;
     const variants = vocabTargetVariants(entry.target);
     if (variants.length === 0) continue;
     if (variants.some((v) => targets.some((t) => t.includes(v)))) continue;

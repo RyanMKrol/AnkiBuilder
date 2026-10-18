@@ -12,7 +12,7 @@ import {
   chapterNumberCheck,
 } from "./collection.js";
 import { extrasLibraryWriteCheck, libraryCompletenessCheck } from "./library.js";
-import { vocabCoverageCheck } from "./vocab.js";
+import { vocabCoverageCheck, placeNameCardCheck } from "./vocab.js";
 import { taughtNeverUsedCheck } from "./taughtNeverUsed.js";
 import { baseSplitCheck } from "./baseSplit.js";
 import { carriedFormsCheck } from "./carriedForms.js";
@@ -93,6 +93,7 @@ const SPEAKING_AND_SHARED_CHECKS = [
   productionLengthCheck,
   noteClaimsCheck,
   drillFrameCheck,
+  placeNameCardCheck,
   // collection scope
   collectionStateCheck,
   guidNamespaceCheck,

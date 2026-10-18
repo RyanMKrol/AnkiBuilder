@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from "fs";
 import { defineCheck } from "../registry.js";
-import { unitChapterNumber } from "../units.js";
+import { unitChapterNumber, unitLanguage } from "../units.js";
 import {
   chapterCachePath,
   chapterRangeCachePath,
@@ -119,5 +119,60 @@ export const vocabCoverageCheck = defineCheck({
         ? [`${uncached} unit(s) had no cached chapter file and were not checked`]
         : [],
     };
+  },
+});
+
+// A place name carded as a word: とうきょうタワー, えびすえき, ぎんざどおり.
+//
+// A proper name is not a card, and a named facility is a name even when the book's vocabulary list
+// carries it (docs/card-rules-shared.md; DECISIONS.md, "A proper name is not a card"). Lesson 19
+// shipped three such cards because the book listed them and nothing looked again. The shape is easy
+// to spot: a name in kana followed by the common noun it is built on.
+//
+// INFO, because the shape is not proof. ビジネスホテル is built the same way and is a common noun,
+// and only a human can tell the two apart. The finding names the common noun to card instead.
+//
+// Japanese only, and only cards the book's vocabulary put there: a base unit's word card that no
+// agent authored. A name inside a sentence is fine, which is why sentences are not looked at, and an
+// extras unit is drills, not the book's list.
+const PLACE_SUFFIXES = ["タワー", "えき", "どおり", "デパート", "ホテル", "こうえん"];
+const PLACE_NAME = new RegExp(`^[\\u3041-\\u309f\\u30a0-\\u30ff]+?(${PLACE_SUFFIXES.join("|")})$`);
+// A word card has no space and no sentence punctuation in its target.
+const NOT_A_WORD = /[\s\u3000。、？！?!.,]/;
+
+/** The place suffix a card's target ends in after a name, or null. */
+export function placeNameSuffix(target) {
+  const text = String(target ?? "");
+  if (NOT_A_WORD.test(text)) return null;
+  const match = PLACE_NAME.exec(text);
+  return match ? match[1] : null;
+}
+
+export const placeNameCardCheck = defineCheck({
+  id: "place-name-card",
+  title: "place name carded as a word",
+  scope: "unit",
+  tier: "INFO",
+  run({ unit }) {
+    if (unitLanguage(unit) !== "ja") return { findings: [], summary: "not a Japanese unit" };
+    if (unit.extras) return { findings: [], summary: "extras unit: not the book's vocabulary" };
+
+    const findings = [];
+    let checked = 0;
+    for (const item of unit.items ?? []) {
+      if (item.excluded || item.aiSuggested || item.fillInBlank) continue;
+      checked++;
+      const suffix = placeNameSuffix(item.target);
+      if (!suffix) continue;
+      findings.push({
+        key: `${unit.name}/${item.id}`,
+        message:
+          `${unit.name}/${item.id}: "${item.target}" (${item.english}) looks like a place name ` +
+          `carded as vocabulary. A named facility is a name even when the book lists it: card ` +
+          `the common noun ${suffix} instead and exclude this one, or accept it if it is a ` +
+          `common noun`,
+      });
+    }
+    return { findings, summary: `${checked} vocabulary card(s) checked for place names` };
   },
 });

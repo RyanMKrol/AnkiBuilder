@@ -867,7 +867,8 @@ because a word re-taught in a new role is a legitimate card and only someone rea
 Run `npm run preflight` before you hand over the link. Its INFO checks name what the columns cannot:
 `answerable-alone` (a reply-shaped English with no scene), `production-length` (a Production face
 over 60 characters), `near-siblings` (one sentence frame drilled three times with a swapped name),
-`romaji-style` and `inline-romaji`. Each names a shape and leaves the verdict to you; re-run with
+`romaji-style`, `inline-romaji` and `place-name-card` (a word card like えびすえき, a name plus a
+place noun, which should be excluded in favour of the common noun). Each names a shape and leaves the verdict to you; re-run with
 `--verbose` to see the actual cards.
 
 **Read every note the `note-claims` check lists, and decide whether it is TRUE.** This is a required

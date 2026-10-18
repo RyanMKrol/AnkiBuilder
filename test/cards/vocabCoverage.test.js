@@ -67,6 +67,20 @@ test("findUncoveredVocab reports only the headwords no card target contains", ()
   );
 });
 
+// A name the book marks as invented is not vocabulary. Listing it as uncarded is what got
+// レストランローマ carded, so it is skipped, while an ordinary uncarded word still reports.
+test("findUncoveredVocab skips a headword whose gloss marks it fictitious", () => {
+  const entries = [
+    { target: "レストランローマ", english: "Restaurant Roma (fictitious restaurant)", sub: false },
+    { target: "ぎんこう", english: "bank", sub: false },
+  ];
+  const misses = findUncoveredVocab(entries, []);
+  assert.deepEqual(
+    misses.map((m) => m.target),
+    ["ぎんこう"],
+  );
+});
+
 // The whole point of the nearest-match: a reviewer can dismiss a false positive without opening
 // the deck, and a real miss is visibly different because it has no neighbour at all.
 test("findUncoveredVocab names the nearest card target when there is one", () => {

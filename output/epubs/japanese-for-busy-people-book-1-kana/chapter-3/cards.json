@@ -97,7 +97,7 @@
       "audioAuto": "59e2dbcc834bc889.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "a starting time",
+      "scene": "a particle used with clock times",
       "audioTextHash": "59e2dbcc834bc889"
     },
     {
@@ -108,7 +108,7 @@
       "pronunciation": "han",
       "audio": "71f4e6e1699a206c.mp3",
       "altAudio": "1871c098ed228f77.mp3",
-      "note": "Suffix — attaches after an hour to mean 'half past' (written 〜はん (han) in the source). さんじはん (sanjihan, '3:30') is the natural way to say the half hour, more idiomatic than spelling it out as さんじさんじゅっぷん (sanji sanjuppun) with ふん/ぷん (fun/pun).",
+      "note": "Suffix: attaches after an hour to mean 'half past'. さんじはん (sanjihan, '3:30') is the natural way to say the half hour, more idiomatic than spelling it out as さんじさんじゅっぷん (sanji sanjuppun) with ふん/ぷん (fun/pun).",
       "audioOriginal": "71f4e6e1699a206c.orig.mp3",
       "audioAuto": "71f4e6e1699a206c.mp3",
       "audioFilter": "standard",
@@ -143,7 +143,7 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "3d3a4b969adcb136",
-      "scene": "marking a point in time that something runs until"
+      "scene": "a particle used with clock times"
     },
     {
       "id": "ni-ji-han",
@@ -167,7 +167,7 @@
       "pronunciation": "rasuto ōdā",
       "audio": "e61831d133e48245-gen-3e4176d7.standard.mp3",
       "altAudio": "5dc307981ff21660.mp3",
-      "note": "Katakana loanword from English 'last order' - the deadline for placing a food or drink order before a restaurant's kitchen or bar closes, often stated with まで (made, 'until').",
+      "note": "Katakana loanword from English 'last order': the deadline for placing a food or drink order before a restaurant's kitchen or bar closes.",
       "audioOriginal": "e61831d133e48245-gen-3e4176d7.mp3",
       "audioAuto": "e61831d133e48245-gen-3e4176d7.standard.mp3",
       "audioFilter": "standard",
@@ -896,7 +896,7 @@
       "pronunciation": "shichi-ji",
       "audio": "bfc661452062eeb9.mp3",
       "altAudio": "073fdac2d098646f.mp3",
-      "note": "Uses しち (shichi), not なな (nana) from Lesson 2's number card - 7:00 keeps an older reading of 7 instead of the everyday cardinal number used elsewhere.",
+      "note": "7 has two readings, なな (nana) and しち (shichi), as in じゅうしち (jū-shichi, \"17\"); the hour always uses しち.",
       "audioOriginal": "bfc661452062eeb9.orig.mp3",
       "audioAuto": "bfc661452062eeb9.mp3",
       "audioFilter": "standard",
@@ -1003,7 +1003,7 @@
     },
     {
       "id": "san-ji-sanjuppun-han",
-      "english": "3:30",
+      "english": "3:30, half past three",
       "category": "Time",
       "target": "さんじはん",
       "pronunciation": "sanjihan",
@@ -1107,7 +1107,7 @@
       "pronunciation": "ji",
       "audio": "d7e253c2c5731781.mp3",
       "altAudio": "bfb06973c3079797.mp3",
-      "note": "Suffix — attaches after a number to form the hour (written 〜じ (ji) in the source)",
+      "note": "Suffix: attaches after a number to form the hour.",
       "audioOriginal": "d7e253c2c5731781.orig.mp3",
       "audioAuto": "d7e253c2c5731781.mp3",
       "audioFilter": "standard",
@@ -1123,7 +1123,7 @@
       "audio": "fun-pun-suffix-custom.standard.mp3",
       "altAudio": "9d91cdc7879a5e27.mp3",
       "reviewNote": "Possibly premature — explicitly re-taught later in Lesson 20: Going Places (3): How Do You Go There?, as a dedicated WORD POWER 'Periods' vocabulary entry (〜ふん／ぷん(かん)) in the duration sense, distinct from ch17's clock-time sense",
-      "note": "Suffix — attaches after a number to form minutes; alternates between ふん (fun) and ぷん (pun) depending on the preceding sound (written 〜ふん (fun)／ぷん (pun) in the source)",
+      "note": "Suffix: attaches after a number to form minutes. It is ふん (fun) after most numbers and ぷん (pun) after 1, 3, 4, 6, 8, 10 and the tens; いち (ichi, \"1\"), ろく (roku, \"6\"), はち (hachi, \"8\") and じゅう (jū, \"10\") shorten before it, as in じゅっぷん (juppun, \"ten minutes\"), while さん (san, \"3\") and よん (yon, \"4\") stay as they are.",
       "audioOriginal": "fun-pun-suffix-custom.mp3",
       "audioAuto": "fun-pun-suffix-custom.standard.mp3",
       "audioFilter": "standard"
@@ -1271,7 +1271,8 @@
       "audioAuto": "c4d831617fabb533.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "c4d831617fabb533"
+      "audioTextHash": "c4d831617fabb533",
+      "hint": "at a hotel"
     },
     {
       "id": "ban",
@@ -1311,7 +1312,7 @@
       "pronunciation": "sō desu ka.",
       "audio": "14d227c4940d6269.mp3",
       "altAudio": "62c8cc972798b48c.mp3",
-      "note": "Comments on what someone just told you, rather than confirming your own statement like そうです (sou desu) does. Falling intonation = 'I see' (acknowledging what you heard); rising intonation = 'Is that so? / Really?' (a genuine question).",
+      "note": "A comment on what someone else has just said, meaning 'I see' or 'Is that so?'. The book says it is spoken with falling intonation.",
       "audioOriginal": "14d227c4940d6269.orig.mp3",
       "audioAuto": "14d227c4940d6269.mp3",
       "audioFilter": "standard",
@@ -1472,7 +1473,7 @@
     },
     {
       "id": "fib-c3-presentation-a",
-      "english": "It's at 3:00 today.",
+      "english": "It's from 3:00 today.",
       "category": "Time",
       "target": "きょうのさんじからです",
       "pronunciation": "kyō no san-ji kara desu.",
@@ -1507,7 +1508,7 @@
     },
     {
       "id": "fib-c3-party-a",
-      "english": "It's at 5:00 tomorrow.",
+      "english": "It's from 5:00 tomorrow.",
       "category": "Time",
       "target": "あしたのごじからです",
       "pronunciation": "ashita no go-ji kara desu.",

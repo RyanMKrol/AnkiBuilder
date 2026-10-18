@@ -42,3 +42,24 @@
 {"id":"chapter-2-extras/kore-wa-sasaki-san-no-saifu-desu-ka/other/1","status":"fixed","statusReason":"Note names the two answers instead of 'Member 3' and 'below'; the unit's other 'Member N of the set' labels swept the same way."}
 {"id":"chapter-2-extras/irl-l1-42/other/1","status":"fixed","statusReason":"Excluded: a schematic fragment the book never prints. A delivered note, so it shows as orphaned in Anki for the owner."}
 {"id":"chapter-2-extras/irl-l1-41/other/1","status":"fixed","statusReason":"Excluded: a schematic fragment, covered by kore-wa-watashi-no-juusho-desu. A delivered note, so it shows as orphaned in Anki for the owner."}
+{"id":"chapter-3/sou-desu-ka/book-mismatch/1","status":"fixed","statusReason":"Note follows the book: one expression, 'I see' or 'Is that so?', falling intonation; the rising-intonation split and the wrong そうです comparison are gone."}
+{"id":"chapter-3/fib-c3-presentation-a/book-mismatch/1","status":"fixed","statusReason":"English keeps から as 'from'."}
+{"id":"chapter-3/fib-c3-party-a/book-mismatch/1","status":"fixed","statusReason":"English keeps から as 'from'."}
+{"id":"chapter-3/rasuto-oodaa/book-mismatch/1","status":"fixed","statusReason":"Dropped 'often stated with まで', which the book does not say."}
+{"id":"chapter-3/shichi-ji/note-unverifiable/1","status":"fixed","statusReason":"Note says 7 has two readings and the hour uses しち, instead of 'an older reading'."}
+{"id":"chapter-3/made-particle/leaks-answer/1","status":"fixed","statusReason":"Scene no longer contains 'until'; it still separates this まで from the route まで of Lesson 19."}
+{"id":"chapter-3/kara-particle/leaks-answer/1","status":"fixed","statusReason":"Scene no longer paraphrases 'from'; it still separates this から from the 'because' から cards."}
+{"id":"chapter-3/furonto/ambiguous/1","status":"fixed","statusReason":"Hints added on both sides of the 'Reception desk' collision: 'at a hotel' here, 'an office or building, not a hotel' on うけつけ."}
+{"id":"chapter-3/san-ji-sanjuppun-han/missing-info/1","status":"fixed","statusReason":"English says 'half past three', like the other はん cards."}
+{"id":"chapter-3/fun-pun-suffix/missing-info/1","status":"fixed","statusReason":"Note states which numbers take ぷん and which shorten; dropped the 'in the source' aside."}
+{"id":"chapter-3-extras/shigoto-goji-made/wrong-content/1","status":"fixed","statusReason":"Note says the two cards are the start and end halves, not 'one thing changed'."}
+{"id":"chapter-3-extras/kaigi-itsu-q/book-mismatch/1","status":"fixed","statusReason":"Note says いつ asks when in general (day, time or both), as the book models it."}
+{"id":"chapter-3-extras/furonto-q/ambiguous/1","status":"fixed","statusReason":"English says 'the hotel front desk', so it no longer cues うけつけ; furonto-a's scene matches."}
+{"id":"chapter-3-extras/three-minutes/missing-info/1","status":"fixed","statusReason":"Note says ぷん follows さん unchanged."}
+{"id":"chapter-3-extras/four-minutes/missing-info/1","status":"fixed","statusReason":"Note says ぷん follows よん unchanged."}
+{"id":"chapter-3-extras/ima-kuji-desu/other/1","status":"fixed","statusReason":"Note is about the sentence itself; the 'Member N' clauses on its two siblings are gone too."}
+{"id":"chapter-3-extras/kaigi-ashita-kuji-a/other/1","status":"fixed","statusReason":"Dropped 'GRAMMAR 3:'; the same label swept from toukyou-ima-gogo-yoji-han."}
+{"id":"chapter-3-extras/ima-nanji-q/other/1","status":"fixed","statusReason":"Dropped the 'GRAMMAR 1 notes' citation; the rule is stated directly."}
+{"id":"chapter-3-extras/yasumi-itsu-q/other/1","status":"fixed","statusReason":"Reworded the pair to the Lesson 3 sense, 'time off' (the book's gloss), rather than widening the word card toward Lesson 7's 'day off'."}
+{"id":"chapter-3-extras/asagohan/other/1","status":"skipped","statusReason":"The swap needs chapter-8 (F1b's unit) and would ship a new Lesson 3 note in place of the delivered, scheduled Lesson 8 one: owner to decide. The false excludedReason (\"duplicate of the established Lesson 8 card\") is rewritten to say the book teaches it here first."}
+{"id":"chapter-3-extras/bangohan/other/1","status":"skipped","statusReason":"The swap needs chapter-8 (F1b's unit) and would ship a new Lesson 3 note in place of the delivered, scheduled Lesson 8 one: owner to decide. The false excludedReason is rewritten to say the book teaches it here first."}

@@ -157,7 +157,7 @@
       "category": "Grammar & Function Words",
       "target": "ちょっとまってください",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (explicitly re-taught as a dedicated KEY SENTENCES entry (\"Please wait a moment.\"))",
-      "note": "ちょっと (chotto, 'a little') softens the request; まって is the て-form of まつ (matsu, 'to wait') plus ください (kudasai). ください attaches directly onto a verb's て-form for a fairly direct ask; contrast もういちどおねがいします (mō ichido onegaishimasu), which uses the standalone, slightly softer おねがいします instead."
+      "note": "ちょっと (chotto, 'a little') softens the request, and ください (kudasai) makes it a polite ask."
     },
     {
       "id": "mou-ichido-onegaishimasu",
@@ -166,7 +166,7 @@
       "target": "もういちどおねがいします",
       "uncertain": true,
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (explicitly re-taught as a dedicated VOCABULARY entry (\"One more time, please.\"))",
-      "note": "もういちど (mō ichido, 'one more time') + おねがいします (onegaishimasu) politely asks for something to be repeated. おねがいします stands alone as a somewhat softer, more general request word than ください (kudasai) in ちょっとまってください (chotto matte kudasai), which attaches directly to a verb's て-form."
+      "note": "もういちど (mō ichido, 'one more time') + おねがいします (onegaishimasu, 'please'): a polite way to ask someone to say or do something again."
     }
   ]
 }

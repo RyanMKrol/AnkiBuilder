@@ -24,7 +24,7 @@
       "english": "Next",
       "category": "Time",
       "scene": null,
-      "hint": "the word on its own",
+      "hint": "the next one in order, as a word on its own; not こんど (kondo, \"next time\")",
       "note": null,
       "reviewNote": "Vocabulary table shows 'つき、' glossed 'next' — likely an OCR misread of つぎ ('next'), the word actually used in this chapter's dialogue ('つぎの にちようびに', 'next Sunday'). Preserved verbatim as printed rather than silently corrected; つき itself would mean 'moon/month', a different word — flagging for review. | Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
       "target": "つぎ",
@@ -67,7 +67,7 @@
       "category": "Grammar & Function Words",
       "scene": "the reason first, then what follows from it",
       "hint": null,
-      "note": "This から means \"because, so\" — a different job from the から you already know for \"from\" (Lesson 3's なんじからなんじまで, Lesson 6's アメリカからきました). It attaches to the end of the reason clause: clause1から、clause2, as in いいてんきですから、こうえんでひるごはんをたべませんか, \"The weather is nice, so shall we have lunch in the park?\"",
+      "note": "The same \"because\" から as Lesson 14's わたしは さむくないですから (watashi wa samukunai desu kara, \"because I'm not cold\"), now with the reason first and what follows from it after: clause1から、clause2, as in いいてんきですから、こうえんでひるごはんをたべませんか, \"The weather is nice, so shall we have lunch in the park?\"",
       "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
       "target": "から",
       "uncertain": true
@@ -89,7 +89,7 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "ませんか makes a soft invitation that leaves room for the listener to decline; contrast いきましょう below, which assumes agreement and suits a moment once both sides are already on board.",
+      "note": "ませんか makes a soft invitation that leaves room for the listener to decline; contrast いきましょう (ikimashō, \"let's go\"), which assumes agreement and suits a moment once both sides are already on board.",
       "reviewNote": null,
       "target": "いきませんか"
     },
@@ -119,7 +119,7 @@
       "english": "How about you?",
       "category": "Grammar & Function Words",
       "scene": null,
-      "hint": null,
+      "hint": "proposing a plan or a day to someone",
       "note": "Used to ask the listener's intention or preference.",
       "reviewNote": null,
       "target": "どうですか"
@@ -161,9 +161,9 @@
     },
     {
       "id": "mimashou",
-      "english": "Let's see.",
+      "english": "Let's watch (it).",
       "category": "Grammar & Function Words",
-      "note": "みます → みましょう. The chapter drills all four verbs (いく・みる・する・あう) across ます / ませんか / ましょう; this is the cell for みる.",
+      "note": "みます (mimasu) → みましょう (mimashō): ます becomes ましょう.",
       "reviewNote": "Added at gate 1: WORD POWER IV lists this cell (V ましょう for 'see') and the extraction produced no card for it. Its eleven sibling cells were all carded.",
       "target": "みましょう",
       "aiSuggested": true
@@ -174,7 +174,7 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "ましょう assumes agreement and moves straight to action — more decisive than いきませんか above, which politely asks first before assuming a yes.",
+      "note": "ましょう assumes agreement and moves straight to action — more decisive than いきませんか (ikimasen ka, \"shall we go?\"), which politely asks first before assuming a yes.",
       "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
       "target": "いきましょう",
       "uncertain": true
@@ -256,7 +256,7 @@
     },
     {
       "id": "shimasenka",
-      "english": "Shall we do?",
+      "english": "Shall we do it?",
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
@@ -269,7 +269,7 @@
       "english": "Let's do it.",
       "category": "Grammar & Function Words",
       "scene": null,
-      "hint": null,
+      "hint": "proposing an activity yourself",
       "note": null,
       "reviewNote": null,
       "target": "しましょう"
@@ -324,7 +324,7 @@
       "english": "Festival, event",
       "category": "Travel & Tourism",
       "scene": null,
-      "hint": null,
+      "hint": "a large organised event, like the fireworks one",
       "note": "Combines with はなび (fireworks) to form はなびたいかい, 'fireworks festival'.",
       "reviewNote": null,
       "target": "たいかい"
@@ -356,7 +356,7 @@
       "category": "Travel & Tourism",
       "scene": null,
       "hint": null,
-      "note": "ゆき (snow) + まつり (festival, as in おまつり from Key Sentence 1) = ゆきまつり (snow festival).",
+      "note": "ゆき (snow) + まつり (festival, as in おまつり (omatsuri) from Lesson 7) = ゆきまつり (snow festival).",
       "reviewNote": null,
       "target": "ゆきまつり"
     },
@@ -572,8 +572,8 @@
       "english": "Next time. Another time.",
       "category": "Greetings",
       "scene": null,
-      "hint": "a soft way to turn down an invitation, often without a real plan to meet",
-      "note": "Built from こんど (Lesson 9, \"next, next time\") plus また (\"again\"); used to gently defer an invitation to some future occasion.",
+      "hint": "the inviter's reply after being turned down",
+      "note": "Built from こんど (Lesson 9, \"next, next time\") plus また (\"again\"). The person who invited says it to accept a refusal: maybe another time.",
       "reviewNote": null,
       "target": "またこんど"
     },
@@ -700,7 +700,7 @@
       "english": "Let's do that.",
       "category": "Grammar & Function Words",
       "scene": null,
-      "hint": null,
+      "hint": "agreeing to a plan someone just suggested",
       "note": null,
       "reviewNote": null,
       "target": "そうしましょう"
@@ -710,7 +710,7 @@
       "english": "A bit, a little",
       "category": "Descriptions & Qualities",
       "scene": null,
-      "hint": null,
+      "hint": "the other \"a little\" word, not ちょっと (chotto)",
       "note": "A more neutral, slightly formal synonym of ちょっと (Lesson 10) — both mean \"a bit, a little,\" but ちょっと is the everyday casual choice.",
       "reviewNote": null,
       "target": "すこし"

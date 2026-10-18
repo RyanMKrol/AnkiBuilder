@@ -50,3 +50,24 @@
 {"id":"chapter-15-extras/p102-kankoku-ryouri/unanswerable/1","status":"fixed","statusReason":"English now 'Korean cuisine', matching イタリアりょうり 'Italian cuisine'; the の card carries a hint."}
 {"id":"chapter-15-extras/-/other/1","status":"fixed","statusReason":"The four citation-plus-restatement notes (ex2-eg-a, ex2-eg-b, ex3-eg, ex7-eg) dropped; x15c-hon-yomu and x15b-supootsu keep their derivation without the EXERCISES/chart pointers."}
 {"id":"chapter-15-extras/fib-chan-robotto-anime-suki-a/book-mismatch/1","status":"fixed","statusReason":"English now 'Yes, (she) likes it.'"}
+{"id":"chapter-16/tsugi-next/ambiguous/1","status":"fixed","statusReason":"Hint now 'the next one in order, as a word on its own; not こんど', separating it from both こんど and つぎの. Gloss kept as the book's."}
+{"id":"chapter-16/dou-desu-ka/unanswerable/1","status":"fixed","statusReason":"Hint added: proposing a plan or a day to someone. The book's gloss 'How about you?' kept."}
+{"id":"chapter-16/taikai/ambiguous/1","status":"fixed","statusReason":"Hint added: a large organised event, like the fireworks one (no Japanese printed)."}
+{"id":"chapter-16/sukoshi/ambiguous/1","status":"fixed","statusReason":"Hint added: the other 'a little' word, not ちょっと (no register claim the book does not make)."}
+{"id":"chapter-16/sou-shimashou/ambiguous/1","status":"fixed","statusReason":"Hints added on both: そうしましょう 'agreeing to a plan someone just suggested', しましょう 'proposing an activity yourself'."}
+{"id":"chapter-16/mimashou/wrong-content/1","status":"fixed","statusReason":"English now 'Let's watch (it).'; みませんか kept as the book's 'Shall we see?' per the verdict."}
+{"id":"chapter-16/shimasenka/other/1","status":"fixed","statusReason":"English now 'Shall we do it?', matching its partner 'Let's do it.'"}
+{"id":"chapter-16/kara-because/other/1","status":"fixed","statusReason":"Note now builds on Lesson 14's 'because' から (わたしは さむくないですから) with the reason clause first."}
+{"id":"chapter-16/yukimatsuri/other/1","status":"fixed","statusReason":"'Key Sentence 1' replaced with 'Lesson 7'."}
+{"id":"chapter-16/-/other/1","status":"fixed","statusReason":"'below' / 'above' replaced with the named cards いきましょう and いきませんか; the drill-grid sentence dropped from mimashou."}
+{"id":"chapter-16-extras/-/other/1","status":"fixed","statusReason":"'the one above' now names おもしろいイベントですから; 'The last of the chapter's four exits' dropped and the exits glossed."}
+{"id":"chapter-16-extras/-/other/2","status":"fixed","statusReason":"GRAMMAR 1 to 4 labels dropped from x16a-tsugi-akihabara-event, ks1-omatsuri, ks2-eiga, ks3-ikimashou, ks4-tenki-kara; explanations kept."}
+{"id":"chapter-16-extras/x16a-tsugi-akihabara-event/unanswerable/1","status":"fixed","statusReason":"Hint added naming つぎ; the book's English kept."}
+{"id":"chapter-16-extras/x16a-pooru-suzuki-event-ikimasu/unanswerable/1","status":"fixed","statusReason":"Hint added naming つぎ, in the same edit as the name-order fix."}
+{"id":"chapter-16/mata-kondo/book-mismatch/1","status":"fixed","statusReason":"Hint now 'the inviter's reply after being turned down'; note says the inviter uses it to accept a refusal."}
+{"id":"chapter-16-extras/x16a-tsugi-akihabara-event/book-mismatch/1","status":"fixed","statusReason":"'Time takes に as always' replaced: days of the week take に here, relative words like らいしゅう take none."}
+{"id":"chapter-16-extras/x16c-onaka-ne-tabemasenka/book-mismatch/1","status":"fixed","statusReason":"English now 'We're hungry, aren't we? Shall we eat something?' (speaker included, matching the book); the three ね invitations now agree."}
+{"id":"chapter-16-extras/fib-nodo-nanika-nomimasenka/book-mismatch/1","status":"fixed","statusReason":"English now 'We're thirsty, aren't we? Shall we drink something?'"}
+{"id":"chapter-16-extras/fib-tsukare-sukoshi-yasumimasenka/book-mismatch/1","status":"fixed","statusReason":"English now 'We're tired, aren't we? Shall we rest a bit?'"}
+{"id":"chapter-16-extras/x16a-pooru-suzuki-event-ikimasu/book-mismatch/1","status":"fixed","statusReason":"Book order restored in target, romaji and English (すずきさんとポールさんは…); stage-made clip, needs re-voicing."}
+{"id":"chapter-16-extras/decline-doyoubi/note-unverifiable/1","status":"fixed","statusReason":"'softens the refusal more than すみません' dropped; the note keeps the book's scheduling-versus-taste contrast."}

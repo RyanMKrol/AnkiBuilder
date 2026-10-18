@@ -67,12 +67,13 @@
     },
     {
       "id": "x16a-pooru-suzuki-event-ikimasu",
-      "english": "Paul-san and Suzuki-san will go to the anime event next Sunday.",
+      "english": "Suzuki-san and Paul-san will go to the anime event next Sunday.",
       "category": "Sports & Hobbies",
       "note": "Here the event takes に, because they GO to it. Contrast あきはばらでイベントがあります, where で marks where it happens.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue closing summary; job: the に/で contrast on the same noun, which is GRAMMAR 1's real difficulty).",
-      "target": "ポールさんとすずきさんはつぎのにちようびにアニメのイベントにいきます",
-      "aiSuggested": true
+      "target": "すずきさんとポールさんはつぎのにちようびにアニメのイベントにいきます",
+      "aiSuggested": true,
+      "hint": "using つぎ (tsugi, \"next, in order\") for \"next\""
     },
     {
       "id": "x16b-doyoubi-wa-dou-desu-ka",
@@ -140,10 +141,11 @@
       "id": "x16a-tsugi-akihabara-event",
       "english": "Next Sunday there is an anime event in Akihabara.",
       "category": "Sports & Hobbies",
-      "note": "The lesson's GRAMMAR 1 frame: the place an event HAPPENS takes で, not に. Time takes に as always.",
+      "note": "The place an event happens takes で (de), not に (ni). Days of the week take に here (つぎのにちようびに); relative words like らいしゅう (raishū, \"next week\") take none.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue, Suzuki's opening line; job: the sentence that introduces つぎ, あきはばら and イベント, none of which appeared in any sentence).",
       "target": "つぎのにちようびにあきはばらでアニメのイベントがあります",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "using つぎ (tsugi, \"next, in order\") for \"next\""
     },
     {
       "id": "x16b-shinjuku-hoomu-aimashou",
@@ -260,14 +262,14 @@
       "id": "x16a-event-nanji-kara",
       "english": "What time does the event start?",
       "category": "Time",
-      "note": "A DIFFERENT から from the one above: this is から \"from\", marking a starting time (Lesson 3). Same particle, and only the sentence tells you which.",
+      "note": "A DIFFERENT から from the one in おもしろいイベントですから (omoshiroi ibento desu kara, \"it's an interesting event, so\"): this is から \"from\", marking a starting time (Lesson 3). Same particle, and only the sentence tells you which.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: the から/から contrast, in the one chapter that uses both).",
       "target": "イベントはなんじからですか",
       "aiSuggested": true
     },
     {
       "id": "x16c-onaka-ne-tabemasenka",
-      "english": "You're hungry, aren't you? Shall we eat something?",
+      "english": "We're hungry, aren't we? Shall we eat something?",
       "category": "Food",
       "note": "ね invites agreement about the situation before the invitation — a softer opening than から, which asserts the reason outright.",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VI worked example — the whole exercise was missed on my first read; job: the ね opening, which the deck had for のど and つかれ but not for おなか).",
@@ -396,7 +398,7 @@
       "id": "x16c-kitaguchi-aimasenka",
       "english": "Shall we meet at the north exit of Tokyo Station?",
       "category": "Transport",
-      "note": "The last of the chapter's four exits. にし・ひがし・きた・みなみ each take ぐち the same way, so once one is clear all four are.",
+      "note": "にし・ひがし・きた・みなみ (nishi, higashi, kita, minami: west, east, north, south) each take ぐち (guchi, \"exit\") the same way, so once one is clear all four are.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — きたぐち and きた appeared in no sentence, and the book's own exercises never use them).",
       "target": "とうきょうえきのきたぐちであいませんか",
       "aiSuggested": true
@@ -451,7 +453,7 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Demonstrates place + で + event + が + あります, 'an event takes place somewhere' (GRAMMAR 1).",
+      "note": "Demonstrates place + で + event + が + あります, 'an event takes place somewhere'.",
       "reviewNote": null,
       "target": "どようびにあさくさでおまつりがあります"
     },
@@ -461,7 +463,7 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Demonstrates verb[ます-stem]+ませんか, used to invite someone to do something (GRAMMAR 2).",
+      "note": "Demonstrates verb[ます-stem]+ませんか, used to invite someone to do something.",
       "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
       "target": "しゅうまつにいっしょにえいがをみませんか",
       "uncertain": true
@@ -472,7 +474,7 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Demonstrates verb[ます-stem]+ましょう, used when inviting the listener to do something together (GRAMMAR 3).",
+      "note": "Demonstrates verb[ます-stem]+ましょう, used when inviting the listener to do something together.",
       "reviewNote": "Corrected at gate 1: the EPUB prints this with OCR damage (large よ/ゆ for small ょ/ゅ, or a wrong kana). Confirmed against the chapter itself — check it reads right.",
       "target": "いっしょにいきましょう",
       "uncertain": true
@@ -483,7 +485,7 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Demonstrates clause1から、clause2 (reason) combined with an invitation (GRAMMAR 4).",
+      "note": "Demonstrates clause1から、clause2 (reason) combined with an invitation.",
       "reviewNote": null,
       "target": "いいてんきですから、こうえんでひるごはんをたべませんか"
     },
@@ -503,7 +505,7 @@
       "category": "Grammar & Function Words",
       "scene": "declining an invitation",
       "hint": null,
-      "note": "ざんねんですが (unfortunately) softens the refusal more than すみません — used especially for a scheduling conflict rather than a taste mismatch.",
+      "note": "ざんねんですが (zannen desu ga, \"unfortunately\") is for something that does not suit you, such as a day you are busy; すみません (sumimasen) before ちょっと (chotto) says it is not really to your taste.",
       "reviewNote": "Source GRAMMAR table gives the pattern 'ざんねんですが、 noun は ちょっと…。'; filled with どようび (Saturday) for variety from the previous card. The trailing ellipsis was resolved into a closed sentence.",
       "target": "ざんねんですが、どようびはちょっと"
     },
@@ -573,7 +575,7 @@
     },
     {
       "id": "fib-nodo-nanika-nomimasenka",
-      "english": "You're thirsty, aren't you? Shall we drink something?",
+      "english": "We're thirsty, aren't we? Shall we drink something?",
       "category": "Grammar & Function Words",
       "target": "のどがかわきましたね。なにかのみませんか",
       "note": "なにか (something) plus ませんか invites without naming the drink.",
@@ -582,7 +584,7 @@
     },
     {
       "id": "fib-tsukare-sukoshi-yasumimasenka",
-      "english": "You're tired, aren't you? Shall we rest a bit?",
+      "english": "We're tired, aren't we? Shall we rest a bit?",
       "category": "Body & Health",
       "target": "つかれましたね。すこしやすみませんか",
       "note": "すこし (a bit) softens the suggestion to rest.",

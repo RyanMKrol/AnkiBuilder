@@ -213,9 +213,10 @@
       "id": "r-c08a56997a21",
       "target": "手",
       "english": "Hand",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 25
+      "category": "Body & Health",
+      "reviewNote": "Taught as a word in Chapter 09: Lesson 7: Family Picture: this is the word's card, voiced.",
+      "sourceOrder": 25,
+      "ttsText": "て"
     },
     {
       "id": "r-869fd80b7f2f",
@@ -349,17 +350,19 @@
       "id": "r-47782cc9bccb",
       "target": "車",
       "english": "Car",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 42
+      "category": "Transport",
+      "reviewNote": "Taught as a word in Chapter 09: Lesson 7: Family Picture: this is the word's card, voiced.",
+      "sourceOrder": 42,
+      "ttsText": "くるま"
     },
     {
       "id": "r-3a0ea34a22f0",
       "target": "目",
       "english": "Eye",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 43
+      "category": "Body & Health",
+      "reviewNote": "Taught as a word in Chapter 09: Lesson 7: Family Picture: this is the word's card, voiced.",
+      "sourceOrder": 43,
+      "ttsText": "め"
     },
     {
       "id": "r-99529c90aed3",
@@ -396,10 +399,11 @@
     {
       "id": "r-a33670427c5d",
       "target": "道",
-      "english": "Road; street",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 48
+      "english": "Way; road",
+      "category": "Directions",
+      "reviewNote": "Taught as a word in Chapter 24: Reading and Writing 10: The Folktale Kasajizo: this is the word's card, voiced.",
+      "sourceOrder": 48,
+      "ttsText": "みち"
     },
     {
       "id": "r-6c71e31e2aad",
@@ -442,7 +446,7 @@
       "sourceOrder": 53,
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
-      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 道, 右側."
+      "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 道 here, 右側 in Chapter 20: Reading and Writing 6: My Favorite Restaurant."
     },
     {
       "id": "r-bbd9c5c83d29",
@@ -916,6 +920,24 @@
       "category": "Other",
       "ttsText": "けっこう",
       "sourceOrder": 108
+    },
+    {
+      "id": "r-edb065c8a1a2",
+      "target": "一つ目",
+      "english": "First (in order)",
+      "category": "Directions",
+      "ttsText": "ひとつめ",
+      "reviewNote": "QA fix pass 2026-10: the Useful Expressions print 一つ目の信号を右に曲がる; the words-only cut carded the phrase's other words and missed this one.",
+      "sourceOrder": 109
+    },
+    {
+      "id": "r-503adf9ba77c",
+      "target": "二つ目",
+      "english": "Second (in order)",
+      "category": "Directions",
+      "ttsText": "ふたつめ",
+      "reviewNote": "QA fix pass 2026-10: the Useful Expressions print 二つ目の角を左に曲がる; the words-only cut carded the phrase's other words and missed this one.",
+      "sourceOrder": 110
     }
   ]
 }

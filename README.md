@@ -621,7 +621,10 @@ What is built, newest last:
 - [x] Build lessons in order — `assemble` warns when an earlier lesson of the same book hasn't been
       marked reviewed, since the backward-dedup library is written by that sign-off; and `prepare`
       leaves its enrichment markers unset when the earlier lessons it reads aren't built yet, so a
-      re-run repairs the result instead of freezing a thin one in
+      re-run repairs the result instead of freezing a thin one in. "Earlier" is the book's order:
+      the phase builds' prior art and taught vocabulary (`src/cards/earlierUnits.js`) order units by
+      `meta.chapterNumber` (spine index) with base before extras, not by folder number, so a
+      supplement built late is judged where the book puts it
 - [x] Atomic artifact writes — every file written while something else may be reading it (`cards.json`,
       `corpus.json`, the TTS cache, the EPUB copies, the dedup library, the markers) is published by
       writing a temp file beside it and renaming into place. The dashboard (`serve`) runs for the whole

@@ -151,15 +151,16 @@ test("the phase's backward judge is handed every earlier unit, extras included",
   return withTempDir(async (root) => {
     const unitDir = join(root, "chapter-3");
     mkdirSync(unitDir, { recursive: true });
-    for (const [unit, id] of [
-      ["chapter-1", "bus"],
-      ["chapter-1-extras", "five-minutes"],
-      ["chapter-4", "later"],
+    // Book positions are spine indices; "earlier" is decided by them, not by the folder number.
+    for (const [unit, id, chapterNumber] of [
+      ["chapter-1", "bus", 14],
+      ["chapter-1-extras", "five-minutes", 14],
+      ["chapter-4", "later", 17],
     ]) {
       mkdirSync(join(root, unit), { recursive: true });
       writeFileSync(
         join(root, unit, "cards.json"),
-        JSON.stringify({ meta: {}, items: [{ id, target: id, english: id }] }),
+        JSON.stringify({ meta: { chapterNumber }, items: [{ id, target: id, english: id }] }),
       );
     }
     let seen = null;
@@ -168,6 +169,7 @@ test("the phase's backward judge is handed every earlier unit, extras included",
       chapterFilePath: join(unitDir, "ch.xhtml"),
       chapterHtml: "",
       targetLanguage: "ja",
+      chapterNumber: 16,
       runPhase: (opts) => {
         seen = opts.priorItems;
         writeFileSync(join(unitDir, PHASE_CORPUS_FILE), JSON.stringify({ meta: {}, items: [] }));

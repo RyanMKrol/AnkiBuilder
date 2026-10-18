@@ -92,7 +92,8 @@ const result = runBasePhase({
   meta: { hints },
   // Every earlier unit of this collection, extras included. That inclusion is the point: the dedup
   // library cannot hold extras units, so they are invisible to the string matcher in `assemble`.
-  priorItems: loadEarlierUnitItems(dirname(unitDir), unitDir.split("/").pop()),
+  // Ordered by book position (`chapterNumber`, the spine index), not by folder number.
+  priorItems: loadEarlierUnitItems(dirname(unitDir), unitDir.split("/").pop(), { chapterNumber }),
 });
 
 for (const step of result.run.steps) {

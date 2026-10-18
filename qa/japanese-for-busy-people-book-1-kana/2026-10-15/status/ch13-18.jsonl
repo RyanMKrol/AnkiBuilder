@@ -78,3 +78,15 @@
 {"id":"chapter-17-extras/eat-at-restaurant-answer/unanswerable/1","status":"fixed","statusReason":"English now 'I want to eat at that restaurant over there.', the deck's あの convention."}
 {"id":"chapter-17-extras/kaitai-x2/missing-info/1","status":"fixed","statusReason":"Note added: Xに here means 'as X' or 'for X', as in おみやげに."}
 {"id":"chapter-17-extras/-/other/1","status":"fixed","statusReason":"'the next item' and 'the previous item' replaced with the other sentence quoted in Japanese."}
+{"id":"chapter-18/yoroshii-2/wrong-content/1","status":"fixed","statusReason":"'Lesson 9' corrected to 'Lesson 10', where the learner's いい card ships."}
+{"id":"chapter-18/chotto-yoroshii-desu-ka/wrong-content/1","status":"fixed","statusReason":"'casual' and the formality comparison dropped; note now says ちょっと here is Lesson 10's 'a little bit', not Lesson 16's polite decline."}
+{"id":"chapter-18/ato/ambiguous/1","status":"fixed","statusReason":"Hints on both: あと 'the bare word, without a particle', あとで 'the form with a particle on the end'. Book glosses kept."}
+{"id":"chapter-18/kaigi-o-shimasu/ambiguous/1","status":"fixed","statusReason":"Hint added: holding one, with します, so かいぎがあります is ruled out."}
+{"id":"chapter-18-extras/yoroshii-ima/missing-info/1","status":"fixed","statusReason":"Production hint 'polite, to a superior or a client' names the register that picks よろしい over いい."}
+{"id":"chapter-18-extras/yoroshii-ashita/missing-info/1","status":"fixed","statusReason":"Production hint 'polite, to a superior or a client' added."}
+{"id":"chapter-18-extras/yoroshii-place/missing-info/1","status":"fixed","statusReason":"Production hint 'polite, as a shop clerk to a customer' added."}
+{"id":"chapter-18-extras/yoroshii-ima/other/1","status":"fixed","statusReason":"Note now says あした picks up は while いま takes none, instead of 'only the time word changes'."}
+{"id":"chapter-18-extras/chain-shite-kiku/wrong-content/1","status":"fixed","statusReason":"Note now credits the 'ask' reading to the object ばしょ and says the に belongs to でんわをして."}
+{"id":"chapter-18-extras/kuruma-karite-doraibu-yesterday/missing-info/1","status":"fixed","statusReason":"Note now says かります covers renting as well as borrowing."}
+{"id":"chapter-18-extras/party-no-ato-bar-whiskey/book-mismatch/1","status":"skipped","statusReason":"hand-curated clip, owner to regenerate: the fix changes the target to のみました, but the card ships a picked variant (e31d19c3213a3add-genkanji-2eb9ef64.mp3). Change the target and English ('After the party, I went to a bar and drank whiskey.') together when re-voicing."}
+{"id":"chapter-18-extras/kiku-ask/other/1","status":"fixed","statusReason":"Note now contrasts with the shipping おんがくをきいて、てがみをかきます instead of the excluded pair; also 'his' to 'her' for Nakamura-san, per the book."}

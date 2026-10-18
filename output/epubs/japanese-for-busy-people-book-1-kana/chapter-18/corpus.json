@@ -35,7 +35,7 @@
       "target": "よろしい",
       "english": "Be all right (polite form of いい)",
       "category": "Grammar & Function Words",
-      "note": "A politeness step up from いい (ii, \"Nice, good\") from Lesson 9. You hear it in ちょっと よろしいですか (chotto yoroshii desu ka), used to a busy superior.",
+      "note": "A politeness step up from いい (ii, \"Nice, good\") from Lesson 10. You hear it in ちょっと よろしいですか (chotto yoroshii desu ka), used to a busy superior.",
       "sourceOrder": 894
     },
     {
@@ -44,7 +44,7 @@
       "english": "May I have a moment of your time?",
       "category": "Greetings",
       "hint": "to a busy boss or someone senior, before you interrupt them",
-      "note": "Use it to approach someone of higher status who is busy. It is more formal than the casual ちょっと (chotto) \"Well, it's a bit...\" from Lesson 16, which here means \"a moment\", not a polite refusal.",
+      "note": "Use it to approach someone of higher status who is busy. ちょっと (chotto) here is Lesson 10's \"a little bit\" (a moment of your time), not Lesson 16's polite way of declining.",
       "sourceOrder": 136
     },
     {
@@ -75,7 +75,8 @@
       "english": "After",
       "category": "Time",
       "sourceOrder": 199,
-      "note": "The counterpart of まえ (mae) \"Before\" from Lesson 17. After a noun it takes の (no): かいぎのあと (kaigi no ato), like かいぎのまえに (kaigi no mae ni)."
+      "note": "The counterpart of まえ (mae) \"Before\" from Lesson 17. After a noun it takes の (no): かいぎのあと (kaigi no ato), like かいぎのまえに (kaigi no mae ni).",
+      "hint": "the bare word, without a particle"
     },
     {
       "id": "no-ato",
@@ -124,7 +125,8 @@
       "note": "あと (ato) alone is \"after\". Adding で (de) stresses that the second action comes after the first: かいぎのあとで (kaigi no ato de).",
       "uncertain": true,
       "reviewNote": "Named in grammar prose 3 and used in the Smith and Nakamura dialogue.",
-      "sourceOrder": 5114
+      "sourceOrder": 5114,
+      "hint": "the form with a particle on the end"
     },
     {
       "id": "asatte",
@@ -390,7 +392,8 @@
       "target": "かいぎをします",
       "english": "Have a meeting",
       "category": "Work & Occupations",
-      "sourceOrder": 4281
+      "sourceOrder": 4281,
+      "hint": "holding one, with します (shimasu)"
     },
     {
       "id": "uchiawase-o-shimasu",

@@ -3,3 +3,6 @@ chapter-13/ks3-taxi-stand: target タクシーのりばはえきのまえです 
 chapter-13/fib-fork-table-count-a: target 10ほんあります -> 10ぽんあります (ttsText unchanged, clip still matches; no re-voice needed)
 chapter-16-extras/x16a-pooru-suzuki-event-ikimasu: target ポールさんとすずきさんは… -> すずきさんとポールさんはつぎのにちようびにアニメのイベントにいきます (stage-made clip; re-voice with audio --run)
 chapter-17-extras/mae-time-go-home: target ごじのまえにうちにかえりたいです -> ばんごはんのまえにうちにかえりたいです (stage-made clip; re-voice with audio --run)
+
+Owner list (not changed, hand-curated clip):
+chapter-18-extras/party-no-ato-bar-whiskey: wants target パーティーのあと、バーにいって、ウイスキーをのみました and English 'After the party, I went to a bar and drank whiskey.'; ships a picked variant clip, so the owner changes it and regenerates.

@@ -48,7 +48,7 @@
       "category": "Grammar & Function Words",
       "target": "よろしい",
       "pronunciation": "yoroshii",
-      "note": "A politeness step up from いい (ii, \"Nice, good\") from Lesson 9. You hear it in ちょっと よろしいですか (chotto yoroshii desu ka), used to a busy superior.",
+      "note": "A politeness step up from いい (ii, \"Nice, good\") from Lesson 10. You hear it in ちょっと よろしいですか (chotto yoroshii desu ka), used to a busy superior.",
       "audio": "da56bd0b84c9787a.mp3",
       "audioOriginal": "da56bd0b84c9787a.orig.mp3",
       "audioAuto": "da56bd0b84c9787a.mp3",
@@ -63,7 +63,7 @@
       "hint": "to a busy boss or someone senior, before you interrupt them",
       "target": "ちょっとよろしいですか",
       "pronunciation": "chotto yoroshii desu ka",
-      "note": "Use it to approach someone of higher status who is busy. It is more formal than the casual ちょっと (chotto) \"Well, it's a bit...\" from Lesson 16, which here means \"a moment\", not a polite refusal.",
+      "note": "Use it to approach someone of higher status who is busy. ちょっと (chotto) here is Lesson 10's \"a little bit\" (a moment of your time), not Lesson 16's polite way of declining.",
       "audio": "b359e06932546ced.mp3",
       "audioOriginal": "b359e06932546ced.orig.mp3",
       "audioAuto": "b359e06932546ced.mp3",
@@ -123,7 +123,8 @@
       "audioAuto": "a35afaadbb33e7ca.mp3",
       "audioMarked": true,
       "audioTextHash": "a35afaadbb33e7ca",
-      "sourceOrder": 199
+      "sourceOrder": 199,
+      "hint": "the bare word, without a particle"
     },
     {
       "id": "no-ato",
@@ -168,7 +169,8 @@
       "audioAuto": "dd09d22a5522400d.mp3",
       "audioMarked": true,
       "audioTextHash": "dd09d22a5522400d",
-      "sourceOrder": 5114
+      "sourceOrder": 5114,
+      "hint": "the form with a particle on the end"
     },
     {
       "id": "asatte",
@@ -563,7 +565,8 @@
       "audioAuto": "85caf3d56be0e363.mp3",
       "audioMarked": true,
       "audioTextHash": "85caf3d56be0e363",
-      "sourceOrder": 4281
+      "sourceOrder": 4281,
+      "hint": "holding one, with します (shimasu)"
     },
     {
       "id": "uchiawase-o-shimasu",

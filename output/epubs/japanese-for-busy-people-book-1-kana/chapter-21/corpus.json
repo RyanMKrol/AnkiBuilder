@@ -74,7 +74,7 @@
       "sourceOrder": 148,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 2: Possession: Whose Pen Is This? (matched on target)",
-      "scene": "marking where you put, write or park something"
+      "scene": "used with おきます (okimasu) or すわります (suwarimasu)"
     },
     {
       "id": "suwarimasu",
@@ -88,7 +88,7 @@
       "target": "すわって",
       "english": "Sit down (て-form)",
       "category": "Other",
-      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission: すわってもいいですか (suwatte mo ii desu ka, \"may I sit?\").",
       "sourceOrder": 892
     },
     {
@@ -96,7 +96,8 @@
       "target": "すわってもいいですか",
       "english": "May I sit [here]?",
       "category": "Grammar & Function Words",
-      "sourceOrder": 378
+      "sourceOrder": 378,
+      "hint": "just the verb: no place word"
     },
     {
       "id": "shashin-wo-tottemo-iidesu-ka",
@@ -229,7 +230,7 @@
       "target": "つかって",
       "english": "Use (て-form)",
       "category": "Other",
-      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission.",
       "sourceOrder": 2182
     },
     {
@@ -244,7 +245,7 @@
       "target": "はいって",
       "english": "Enter (て-form)",
       "category": "Other",
-      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission.",
       "sourceOrder": 2212
     },
     {
@@ -252,7 +253,7 @@
       "target": "おきます",
       "english": "Put, place",
       "category": "Other",
-      "note": "Also named in GRAMMAR 2's prose as an example of an action taking place/thing + に.",
+      "note": "The place you put something takes に (ni): ここに おきます (koko ni okimasu, \"put it here\").",
       "sourceOrder": 1291
     },
     {
@@ -260,7 +261,7 @@
       "target": "おいて",
       "english": "Put, place (て-form)",
       "category": "Other",
-      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission.",
       "sourceOrder": 2229
     },
     {
@@ -268,7 +269,7 @@
       "target": "あけます",
       "english": "Open",
       "category": "Home & Household",
-      "note": "Marked (R2) in the book: a ru-verb (Regular II).",
+      "note": "Regular 2: て-form あけて (akete), dictionary form あける (akeru).",
       "sourceOrder": 1770
     },
     {
@@ -276,7 +277,7 @@
       "target": "あけて",
       "english": "Open (て-form)",
       "category": "Home & Household",
-      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission.",
       "sourceOrder": 2240
     },
     {
@@ -284,7 +285,7 @@
       "target": "しめます",
       "english": "Close",
       "category": "Home & Household",
-      "note": "Marked (R2) in the book: a ru-verb (Regular II).",
+      "note": "Regular 2: て-form しめて (shimete), dictionary form しめる (shimeru).",
       "sourceOrder": 1775
     },
     {
@@ -292,7 +293,7 @@
       "target": "しめて",
       "english": "Close (て-form)",
       "category": "Home & Household",
-      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission.",
       "sourceOrder": 2252
     },
     {
@@ -300,7 +301,7 @@
       "target": "つけます",
       "english": "Turn on",
       "category": "Home & Household",
-      "note": "Marked (R2) in the book: a ru-verb (Regular II).",
+      "note": "Regular 2: て-form つけて (tsukete), dictionary form つける (tsukeru).",
       "sourceOrder": 1780
     },
     {
@@ -308,7 +309,7 @@
       "target": "つけて",
       "english": "Turn on (て-form)",
       "category": "Home & Household",
-      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission.",
       "sourceOrder": 2265
     },
     {
@@ -317,14 +318,14 @@
       "english": "Turn off",
       "category": "Home & Household",
       "sourceOrder": 1785,
-      "note": "R1 verb (ends in す, conjugates like はなします), unlike あけます/しめます/つけます above which are R2."
+      "note": "Regular 1, like はなします (hanashimasu, \"speak\"): て-form けして (keshite), as はなして (hanashite). Unlike this lesson's あけます (akemasu), しめます (shimemasu) and つけます (tsukemasu), which are Regular 2."
     },
     {
       "id": "keshite-turn-off-te-form",
       "target": "けして",
       "english": "Turn off (て-form)",
       "category": "Home & Household",
-      "note": "Te-form, used before も いいですか to ask permission; drilled in the chapter's conjugation table.",
+      "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission.",
       "sourceOrder": 2279
     },
     {
@@ -359,7 +360,7 @@
       "sourceOrder": 2446,
       "uncertain": false,
       "reviewNote": "Possibly already taught — already introduced in Lesson 16: Making an Invitation: Shall We Go Together? (matched on target) | Kept as a sense this chapter adds: chapter-16/yasumimasu teaches \"Rest\". New id, since yasumimasu is chapter 16's note guid.",
-      "scene": "missing a day of work or school"
+      "scene": "used with しごとを (shigoto o, \"work\" as the object)"
     },
     {
       "id": "kopii-shimasu",
@@ -533,7 +534,7 @@
       "uncertain": false,
       "reviewNote": "Possibly already taught — とめます already taught in chapter-19 as 'stop'; 'park (a car)' is the same verb/meaning (to bring to a stop), not a distinct sense worth its own card. | Kept as a sense this chapter adds: chapter-19/tomemasu teaches \"Stop\" (telling a driver where to stop). Target had the book's (R2) verb-class tag, removed.",
       "sourceOrder": 3619,
-      "scene": "leaving a car in a parking space"
+      "scene": "used with ちゅうしゃじょうに (chūshajō ni)"
     },
     {
       "id": "kakimasu",

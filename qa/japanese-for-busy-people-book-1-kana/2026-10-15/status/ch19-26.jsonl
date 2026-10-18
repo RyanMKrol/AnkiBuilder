@@ -1,0 +1,13 @@
+{"id":"chapter-21/suwattemo-iidesu-ka/ambiguous/1","status":"fixed","statusReason":"Collision cue on both sides: hint 'just the verb: no place word' here, 'say the place as well' on chapter-21-extras/ks-sit-permission."}
+{"id":"chapter-21-extras/toshokan-de-shiryou-copy/ambiguous/1","status":"fixed","statusReason":"English now 'materials' for しりょう, as the unit's other しりょう card reads."}
+{"id":"chapter-21-extras/suwaru-mae-ni-nimotsu-oite/unanswerable/1","status":"fixed","statusReason":"English 'my bag' changed to 'my luggage' for にもつ."}
+{"id":"chapter-21-extras/travel-pay-by-card/missing-info/1","status":"fixed","statusReason":"English now 'May I use a card?', which leads to つかって."}
+{"id":"chapter-21-extras/charge-my-phone/ambiguous/1","status":"fixed","statusReason":"English says 'smartphone' for スマホ."}
+{"id":"chapter-21-extras/sumaho-wo-juuden-suru-mae-ni-denwa/ambiguous/1","status":"fixed","statusReason":"English says 'smartphone' for スマホ (English only; the curated clip is untouched)."}
+{"id":"chapter-21/ni-particle-put-place/leaks-answer/1","status":"fixed","statusReason":"Scene replaced with a frame cue, 'used with おきます (okimasu) or すわります (suwarimasu)', that picks this に without defining it."}
+{"id":"chapter-21/tomemasu-park/leaks-answer/1","status":"fixed","statusReason":"Scene replaced with the frame cue 'used with ちゅうしゃじょうに (chūshajō ni)', romaji only so it does not gloss the answer."}
+{"id":"chapter-21/yasumimasu-day-off/leaks-answer/1","status":"fixed","statusReason":"Scene replaced with the frame cue 'used with しごとを (shigoto o)'."}
+{"id":"chapter-21/okimasu/other/1","status":"fixed","statusReason":"GRAMMAR 2 pointer replaced with the rule itself: the place you put something takes に, with ここに おきます."}
+{"id":"chapter-21/suwatte-sit-down-te-form/other/1","status":"fixed","statusReason":"'drilled in the chapter's conjugation table' dropped from all eight て-form notes; もいいですか romanized."}
+{"id":"chapter-21/akemasu/other/1","status":"fixed","statusReason":"akemasu, shimemasu, tsukemasu notes now 'Regular 2: て-form X, dictionary form Y' with each verb's forms."}
+{"id":"chapter-21/keshimasu/other/1","status":"fixed","statusReason":"Note now says Regular 1 like はなします, unlike this lesson's Regular 2 verbs; no 'above', no R1/R2."}

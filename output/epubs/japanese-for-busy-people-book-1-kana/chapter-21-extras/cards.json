@@ -304,7 +304,7 @@
     },
     {
       "id": "toshokan-de-shiryou-copy",
-      "english": "I make a copy of the documents at the library.",
+      "english": "I make a copy of the materials at the library.",
       "category": "Technology & Communication",
       "target": "としょかんでしりょうをコピーします",
       "pronunciation": "toshokan de shiryō o kopī shimasu",
@@ -524,7 +524,8 @@
       "audioOriginal": "898755812cb55b12.orig.mp3",
       "audioAuto": "898755812cb55b12.mp3",
       "audioMarked": true,
-      "audioTextHash": "898755812cb55b12"
+      "audioTextHash": "898755812cb55b12",
+      "hint": "say the place as well"
     },
     {
       "id": "senaka-ga-itai",
@@ -837,7 +838,7 @@
     },
     {
       "id": "charge-my-phone",
-      "english": "May I charge my phone?",
+      "english": "May I charge my smartphone?",
       "category": "Technology & Communication",
       "target": "スマホをじゅうでんしてもいいですか",
       "pronunciation": "sumaho o jūden shite mo ii desu ka",
@@ -903,7 +904,7 @@
     },
     {
       "id": "travel-pay-by-card",
-      "english": "May I pay by card?",
+      "english": "May I use a card?",
       "category": "Shopping",
       "target": "カードをつかってもいいですか",
       "pronunciation": "kādo o tsukatte mo ii desu ka",
@@ -952,7 +953,7 @@
     },
     {
       "id": "suwaru-mae-ni-nimotsu-oite",
-      "english": "May I put my bag here before I sit down?",
+      "english": "May I put my luggage here before I sit down?",
       "category": "Grammar & Function Words",
       "target": "すわるまえに、にもつをここにおいてもいいですか",
       "pronunciation": "suwaru mae ni, nimotsu o koko ni oite mo ii desu ka",
@@ -1078,7 +1079,7 @@
     },
     {
       "id": "sumaho-wo-juuden-suru-mae-ni-denwa",
-      "english": "May I make a call before I charge my phone?",
+      "english": "May I make a call before I charge my smartphone?",
       "category": "Grammar & Function Words",
       "target": "スマホをじゅうでんするまえに、でんわをしてもいいですか",
       "pronunciation": "sumaho o jūden suru mae ni, denwa o shite mo ii desu ka",

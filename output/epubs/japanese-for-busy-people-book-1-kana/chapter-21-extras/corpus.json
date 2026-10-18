@@ -160,7 +160,7 @@
     {
       "id": "toshokan-de-shiryou-copy",
       "target": "としょかんでしりょうをコピーします",
-      "english": "I make a copy of the documents at the library.",
+      "english": "I make a copy of the materials at the library.",
       "category": "Technology & Communication",
       "aiSuggested": true
     },
@@ -275,7 +275,8 @@
       "english": "May I sit here?",
       "category": "Grammar & Function Words",
       "uncertain": true,
-      "reviewNote": "Possibly already taught — chapter-21's すわってもいいですか already glosses as \"May I sit [here]?\"; this just spells out ここに with no new content."
+      "reviewNote": "Possibly already taught — chapter-21's すわってもいいですか already glosses as \"May I sit [here]?\"; this just spells out ここに with no new content.",
+      "hint": "say the place as well"
     },
     {
       "id": "senaka-ga-itai",
@@ -450,7 +451,7 @@
     {
       "id": "charge-my-phone",
       "target": "スマホをじゅうでんしてもいいですか。",
-      "english": "May I charge my phone?",
+      "english": "May I charge my smartphone?",
       "category": "Technology & Communication",
       "aiSuggested": true
     },
@@ -486,7 +487,7 @@
     {
       "id": "travel-pay-by-card",
       "target": "カードをつかってもいいですか。",
-      "english": "May I pay by card?",
+      "english": "May I use a card?",
       "category": "Shopping",
       "aiSuggested": true
     },
@@ -529,7 +530,7 @@
     },
     {
       "id": "suwaru-mae-ni-nimotsu-oite",
-      "english": "May I put my bag here before I sit down?",
+      "english": "May I put my luggage here before I sit down?",
       "category": "Grammar & Function Words",
       "target": "すわるまえに、にもつをここにおいてもいいですか",
       "note": "すわる (sit down). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's てもいいですか (may I).",
@@ -592,7 +593,7 @@
     },
     {
       "id": "sumaho-wo-juuden-suru-mae-ni-denwa",
-      "english": "May I make a call before I charge my phone?",
+      "english": "May I make a call before I charge my smartphone?",
       "category": "Grammar & Function Words",
       "target": "スマホをじゅうでんするまえに、でんわをしてもいいですか",
       "note": "じゅうでんする (recharge). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てもいいですか (may I).",

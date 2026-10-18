@@ -1,0 +1,49 @@
+# Genki reading collection, QA fix pass F3: cards whose spoken text changed or that are newly voiced.
+# unit	id	target	what
+chapter-4	r-d2130d70a08e	今	newly voiced word card, needs audio: いま
+chapter-4	r-56c5ea57375b	昼	newly voiced word card, needs audio: ひる
+chapter-4	r-2f78e3a989f0	話	newly voiced word card, needs audio: はなし
+chapter-4	r-2fdc2b012a91	時	newly voiced word card, needs audio: とき
+chapter-4	r-90fbc9b1ac2e	土	newly voiced word card, needs audio: つち
+chapter-5	r-efb2620838c4	火	newly voiced word card, needs audio: ひ
+chapter-5	r-d274eee8a175	一	newly voiced word card, needs audio: いち
+chapter-5	r-d9b59879f3b8	月	newly voiced word card, needs audio: つき
+chapter-5	r-8294db3a2006	木	newly voiced word card, needs audio: き
+chapter-5	r-b188c5e30da5	海	newly voiced word card, needs audio: うみ
+chapter-5	r-bea55d0635be	物	newly voiced word card, needs audio: もの
+chapter-5	r-0e248e5603d3	山	newly voiced word card, needs audio: やま
+chapter-5	r-3d72c724e03b	六	newly voiced word card, needs audio: ろく
+chapter-5	r-f4bba5643a36	国	newly voiced word card, needs audio: くに
+chapter-5	r-1d5639f716b6	二	newly voiced word card, needs audio: に
+chapter-5	r-27a2b9f17bea	九	newly voiced word card, needs audio: きゅう
+chapter-5	r-3e450648252d	春	newly voiced word card, needs audio: はる
+chapter-5	r-2142fb62fd47	八	newly voiced word card, needs audio: はち
+chapter-5	r-4f88740b3480	四	newly voiced word card, needs audio: よん
+chapter-5	r-c3304d1e49e3	天	newly voiced word card, needs audio: てん
+chapter-5	r-8f07f53d63e1	五	newly voiced word card, needs audio: ご
+chapter-5	r-49ddb069d5b8	三	newly voiced word card, needs audio: さん
+chapter-5	r-8d8f4aeca850	秋	newly voiced word card, needs audio: あき
+chapter-5	r-d3cc0cab9c63	本	newly voiced word card, needs audio: ほん
+chapter-6	r-4a1ae3cda4be	白	newly voiced word card, needs audio: しろ
+chapter-6	r-79b38a8ca7b9	夫	newly voiced word card, needs audio: おっと
+chapter-7	r-c08a56997a21	手	newly voiced word card, needs audio: て
+chapter-7	r-47782cc9bccb	車	newly voiced word card, needs audio: くるま
+chapter-7	r-3a0ea34a22f0	目	newly voiced word card, needs audio: め
+chapter-7	r-a33670427c5d	道	newly voiced word card, needs audio: みち
+chapter-7	r-edb065c8a1a2	一つ目	new addition (qa-fix-2026-10), audio after the content gate: ひとつめ
+chapter-7	r-503adf9ba77c	二つ目	new addition (qa-fix-2026-10), audio after the content gate: ふたつめ
+chapter-8	r-4a9efaa77fc2	何	newly voiced word card, needs audio: なに
+chapter-9	r-cc98544dbc8a	袋	newly voiced word card, needs audio: ふくろ
+chapter-9	r-bf9b3e9c32c4	牛	newly voiced word card, needs audio: うし
+chapter-9	r-aae488416289	事	newly voiced word card, needs audio: こと
+chapter-10	r-2c80764518ce	黒	newly voiced word card, needs audio: くろ
+chapter-10	r-845d1da87f89	青	newly voiced word card, needs audio: あお
+chapter-10	r-c899fb51e356	紙	newly voiced word card, needs audio: かみ
+chapter-10	r-72776ab68f81	赤	newly voiced word card, needs audio: あか
+chapter-10	r-f46f38bf91a3	生け花	new addition (qa-fix-2026-10), audio after the content gate: いけばな
+chapter-12	r-0e0faa1d8332	外	newly voiced word card, needs audio: そと
+chapter-17	r-44da6bbcf285	日本	new addition (qa-fix-2026-10), audio after the content gate: にほん
+chapter-17	r-101806f57c32	中国	new addition (qa-fix-2026-10), audio after the content gate: ちゅうごく
+chapter-18	r-74a252dd437c	様	new addition (qa-fix-2026-10), audio after the content gate: さま
+chapter-26	r-f76f81e7a0e6	おたんじょうびおめでとう	text changed (was たんじょうびおめでとう), needs new audio; has an earlier clip
+chapter-26	r-2b8c515b4475	きれいな	text changed (was きれい), needs new audio; has an earlier clip

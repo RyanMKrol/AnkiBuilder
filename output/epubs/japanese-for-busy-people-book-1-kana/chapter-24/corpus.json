@@ -87,7 +87,7 @@
       "english": "Work for, be employed.",
       "category": "Work & Occupations",
       "sourceOrder": 334,
-      "note": "Takes に marking the employer (かいしゃに つとめています, kaisha ni tsutomete imasu, \"work for a company\"); contrast しごとをします (shigoto o shimasu, Lesson 3), which describes doing work or tasks rather than being employed somewhere.",
+      "note": "Takes に marking the employer (かいしゃに つとめています, kaisha ni tsutomete imasu, \"work for a company\"); contrast しごとをします (shigoto o shimasu, Lesson 8), which describes doing work or tasks rather than being employed somewhere.",
       "hint": "the ています form, for where someone works now"
     },
     {
@@ -128,7 +128,7 @@
       "category": "Emotions & Feelings",
       "sourceOrder": 409,
       "reviewNote": "Possibly premature — explicitly taught later in Casual Style 2 (casual/て-form request idiom; the て-form + ください pattern is from an earlier lesson but this fixed expression's casual counterpart territory is close to Casual Style 2 (ch. 53) — flagging as uncertain, reviewer should confirm it is taught here and not only later)",
-      "note": "The て-form of がんばります (ganbarimasu) below + ください: literally \"please do your best\" — said to encourage or wish someone well, not a request for yourself."
+      "note": "The て-form of がんばります (ganbarimasu, \"do one's best\") + ください: literally \"please do your best\". Said to encourage or wish someone well, not a request for yourself."
     },
     {
       "id": "ganbarimasu",
@@ -146,7 +146,7 @@
       "reviewNote": "Possibly already taught — ている-form of ch-17's すむ; the stative ている pattern is already taught (ch-12), so this is the same word in a known inflection.",
       "sourceOrder": 1150,
       "hint": "the ています form, for where someone lives now",
-      "note": "The ています form of すみます (sumimasu, Lesson 17). Where someone lives is a present state, so it is said this way rather than as すみます."
+      "note": "The ています form of すみます (sumimasu, Lesson 17). Where someone lives now is a present state, which the book says with すんでいます (sunde imasu)."
     },
     {
       "id": "shitteimasu",
@@ -154,7 +154,7 @@
       "english": "Know.",
       "category": "Other",
       "sourceOrder": 1194,
-      "note": "Used for knowing that a fact, person or thing exists, unlike わかります (wakarimasu, understanding/comprehension, Lesson 8). Its negative is not the expected しっていません but しりません (shirimasen) below — an irregular pattern."
+      "note": "Used for knowing that a fact, person or thing exists, unlike わかります (wakarimasu, understanding/comprehension, Lesson 8). Its negative is not the expected しっていません but しりません (shirimasen), an irregular pattern."
     },
     {
       "id": "shumi",
@@ -313,7 +313,7 @@
       "category": "Family & People",
       "sourceOrder": 2375,
       "note": "The plain way to say someone else's daughter (むすめ + さん). おじょうさん (ojōsan, Lesson 9) is the more formal word.",
-      "hint": "the plain word, built from むすめ + さん"
+      "hint": "the everyday word, not the more formal おじょうさん (ojōsan)"
     },
     {
       "id": "ani",
@@ -463,7 +463,8 @@
       "category": "Grammar & Function Words",
       "note": "よ (yo, Lesson 12) plus ね (ne, Lesson 6), added to a question when you think the listener has the right information, as in とうきょうだいがくですよね (Tōkyō daigaku desu yo ne, \"You're at the University of Tokyo, right?\").",
       "sourceOrder": 6356,
-      "reviewNote": "Possibly premature — よね as a bare sentence-final particle cluster; no chapter up to 51 formally introduces ね plus よ combined as a taught item, so this may rest on grammar not yet covered"
+      "reviewNote": "Possibly premature — よね as a bare sentence-final particle cluster; no chapter up to 51 formally introduces ね plus よ combined as a taught item, so this may rest on grammar not yet covered",
+      "hint": "checking something you are fairly sure of, not the plain ね (ne)"
     },
     {
       "id": "senkou",

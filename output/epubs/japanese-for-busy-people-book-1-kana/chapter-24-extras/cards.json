@@ -259,7 +259,8 @@
       "audioOriginal": "7a10ae2334960311.orig.mp3",
       "audioAuto": "7a10ae2334960311.mp3",
       "audioMarked": true,
-      "audioTextHash": "7a10ae2334960311"
+      "audioTextHash": "7a10ae2334960311",
+      "hint": "checking something you are fairly sure of"
     },
     {
       "id": "shinagawa-bank-exists",
@@ -285,7 +286,8 @@
       "audioOriginal": "d5d88e3683c5cfdd.orig.mp3",
       "audioAuto": "d5d88e3683c5cfdd.mp3",
       "audioMarked": true,
-      "audioTextHash": "d5d88e3683c5cfdd"
+      "audioTextHash": "d5d88e3683c5cfdd",
+      "hint": "checking something you are fairly sure of"
     },
     {
       "id": "nationality-vs-language-a",
@@ -294,7 +296,7 @@
       "target": "いいえ、ちゅうごくじんじゃありませんが、ちゅうごくごがわかります",
       "pronunciation": "īe, chūgokujin ja arimasen ga, chūgokugo ga wakarimasu",
       "aiSuggested": true,
-      "note": "Second half of the pair with nationality-vs-language-q.",
+      "note": "Answers すずきさんはちゅうごくじんですか (Suzuki-san wa chūgokujin desu ka, a yes/no question about nationality). じん (jin) is the person, ご (go) the language.",
       "audio": "nationality-vs-language-a-manual-2f570711.mp3",
       "audioOriginal": "b85dab312f6e6f99.orig.mp3",
       "audioAuto": "b85dab312f6e6f99.mp3",
@@ -531,12 +533,12 @@
       "category": "School & Education",
       "target": "ささきさんはちゅうごくごがわかりますか",
       "pronunciation": "sasaki-san wa chūgokugo ga wakarimasu ka",
-      "note": "Answer cued by the chapter's picture: Sasaki-san ○ Chinese ×Korean.",
       "audio": "52554971d32ee561.mp3",
       "audioOriginal": "52554971d32ee561.orig.mp3",
       "audioAuto": "52554971d32ee561.mp3",
       "audioMarked": true,
-      "audioTextHash": "52554971d32ee561"
+      "audioTextHash": "52554971d32ee561",
+      "reviewNote": "Answer cued by the chapter's picture: Sasaki-san ○ Chinese ×Korean."
     },
     {
       "id": "ex7b-a-know-white-no",
@@ -596,7 +598,7 @@
       "target": "あんどうさん、おしごとは?",
       "pronunciation": "andō-san, oshigoto wa",
       "scene": "Smith is making small talk with someone new at a party.",
-      "note": "おしごとは? (o-shigoto wa?) leaves off ですか (desu ka) — literally \"and your job?\" — は (wa) alone implies the question once the topic is named.",
+      "note": "おしごとは? (o-shigoto wa?) leaves the rest of the question unsaid, such as なんですか (nan desu ka): literally \"and your job?\". は (wa) alone implies the question once the topic is named.",
       "audio": "50db9f0bbb5dfa68.mp3",
       "audioOriginal": "50db9f0bbb5dfa68.orig.mp3",
       "audioAuto": "50db9f0bbb5dfa68.mp3",
@@ -738,12 +740,12 @@
     },
     {
       "id": "tsutomemasu-sentence",
-      "english": "Starting next month, I will work for ABC Foods.",
+      "english": "Next month, I will work for ABC Foods.",
       "category": "Work & Occupations",
       "target": "らいげつ、ABCフーズにつとめます",
       "pronunciation": "raigetsu, ABC Fūzu ni tsutomemasu",
       "aiSuggested": true,
-      "note": "The plain ます-form, used for a change taking effect from a future point; つとめています describes the ongoing state once it has started.",
+      "note": "The ます form, here for something in the future. つとめています (tsutomete imasu) is where someone works now.",
       "audio": "7e86b0d46f5cec7d.mp3",
       "audioOriginal": "7e86b0d46f5cec7d.orig.mp3",
       "audioAuto": "7e86b0d46f5cec7d.mp3",
@@ -774,7 +776,8 @@
       "audioOriginal": "36656ef19be26964.orig.mp3",
       "audioAuto": "36656ef19be26964.mp3",
       "audioMarked": true,
-      "audioTextHash": "36656ef19be26964"
+      "audioTextHash": "36656ef19be26964",
+      "hint": "checking something you are fairly sure of"
     },
     {
       "id": "tsutometeimasen-sentence",
@@ -913,7 +916,7 @@
       "target": "すずきさんはちゅうごくじんですか",
       "pronunciation": "suzuki-san wa chūgokujin desu ka",
       "aiSuggested": true,
-      "note": "First half of a contrast pair with nationality-vs-language-a.",
+      "note": "ちゅうごくじん (chūgokujin) is the person; ちゅうごくご (chūgokugo, \"Chinese\") is the language.",
       "audio": "64464c8ccac1f044.mp3",
       "audioOriginal": "64464c8ccac1f044.orig.mp3",
       "audioAuto": "64464c8ccac1f044.mp3",
@@ -949,12 +952,12 @@
       "category": "School & Education",
       "target": "かとうさんはえいごがわかりますか",
       "pronunciation": "katō-san wa eigo ga wakarimasu ka",
-      "note": "Answer cued by the chapter's picture: Kato-san ○ English ×Chinese.",
       "audio": "f2e59f28fc0d584b.mp3",
       "audioOriginal": "f2e59f28fc0d584b.orig.mp3",
       "audioAuto": "f2e59f28fc0d584b.mp3",
       "audioMarked": true,
-      "audioTextHash": "f2e59f28fc0d584b"
+      "audioTextHash": "f2e59f28fc0d584b",
+      "reviewNote": "Answer cued by the chapter's picture: Kato-san ○ English ×Chinese."
     },
     {
       "id": "sukoshi-wakarimasu-yo",
@@ -1092,7 +1095,8 @@
       "audioOriginal": "86c5358a508f5ee3.orig.mp3",
       "audioAuto": "86c5358a508f5ee3.mp3",
       "audioMarked": true,
-      "audioTextHash": "86c5358a508f5ee3"
+      "audioTextHash": "86c5358a508f5ee3",
+      "note": "けいたいのばんごう (keitai no bangō) and けいたいばんごう (keitai bangō, Lesson 2) mean the same: a mobile phone number."
     },
     {
       "id": "yone-02",
@@ -1105,7 +1109,8 @@
       "audioOriginal": "612223bb6ba1c9d7.orig.mp3",
       "audioAuto": "612223bb6ba1c9d7.mp3",
       "audioMarked": true,
-      "audioTextHash": "612223bb6ba1c9d7"
+      "audioTextHash": "612223bb6ba1c9d7",
+      "hint": "checking something you are fairly sure of"
     },
     {
       "id": "ex5-q-brown-where-work",

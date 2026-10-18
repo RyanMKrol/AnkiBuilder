@@ -146,7 +146,8 @@
       "target": "リサさんはデザイナーですよね。",
       "english": "Lisa-san, you're a designer, right?",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "checking something you are fairly sure of"
     },
     {
       "id": "shinagawa-bank-exists",
@@ -160,14 +161,15 @@
       "target": "すずきさんのおにいさんはりょこうがいしゃにつとめていますよね。",
       "english": "Suzuki-san's older brother works at a travel agency, right?",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "checking something you are fairly sure of"
     },
     {
       "id": "nationality-vs-language-a",
       "target": "いいえ、ちゅうごくじんじゃありませんが、ちゅうごくごがわかります。",
       "english": "No, he's not Chinese, but he understands Chinese.",
       "category": "Nationalities & Countries",
-      "note": "Second half of the pair with nationality-vs-language-q.",
+      "note": "Answers すずきさんはちゅうごくじんですか (Suzuki-san wa chūgokujin desu ka, a yes/no question about nationality). じん (jin) is the person, ご (go) the language.",
       "aiSuggested": true
     },
     {
@@ -306,7 +308,7 @@
       "target": "ささきさんはちゅうごくごがわかりますか。",
       "english": "Does Sasaki-san understand Chinese?",
       "category": "School & Education",
-      "note": "Answer cued by the chapter's picture: Sasaki-san ○ Chinese ×Korean."
+      "reviewNote": "Answer cued by the chapter's picture: Sasaki-san ○ Chinese ×Korean."
     },
     {
       "id": "ex7b-a-know-white-no",
@@ -347,7 +349,7 @@
       "english": "Ando-san, what do you do?",
       "category": "Work & Occupations",
       "scene": "Smith is making small talk with someone new at a party.",
-      "note": "おしごとは? (o-shigoto wa?) leaves off ですか (desu ka) — literally \"and your job?\" — は (wa) alone implies the question once the topic is named."
+      "note": "おしごとは? (o-shigoto wa?) leaves the rest of the question unsaid, such as なんですか (nan desu ka): literally \"and your job?\". は (wa) alone implies the question once the topic is named."
     },
     {
       "id": "ex8b-ask-know-ito-jbp",
@@ -427,9 +429,9 @@
     {
       "id": "tsutomemasu-sentence",
       "target": "らいげつ、ABCフーズにつとめます。",
-      "english": "Starting next month, I will work for ABC Foods.",
+      "english": "Next month, I will work for ABC Foods.",
       "category": "Work & Occupations",
-      "note": "The plain ます-form, used for a change taking effect from a future point; つとめています describes the ongoing state once it has started.",
+      "note": "The ます form, here for something in the future. つとめています (tsutomete imasu) is where someone works now.",
       "aiSuggested": true
     },
     {
@@ -444,7 +446,8 @@
       "target": "いとうさんをしっていますよね。",
       "english": "You know Ito-san, right?",
       "category": "Work & Occupations",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "checking something you are fairly sure of"
     },
     {
       "id": "tsutometeimasen-sentence",
@@ -535,7 +538,7 @@
       "target": "すずきさんはちゅうごくじんですか。",
       "english": "Is Suzuki-san Chinese?",
       "category": "Nationalities & Countries",
-      "note": "First half of a contrast pair with nationality-vs-language-a.",
+      "note": "ちゅうごくじん (chūgokujin) is the person; ちゅうごくご (chūgokugo, \"Chinese\") is the language.",
       "aiSuggested": true
     },
     {
@@ -561,7 +564,7 @@
       "target": "かとうさんはえいごがわかりますか。",
       "english": "Does Kato-san understand English?",
       "category": "School & Education",
-      "note": "Answer cued by the chapter's picture: Kato-san ○ English ×Chinese."
+      "reviewNote": "Answer cued by the chapter's picture: Kato-san ○ English ×Chinese."
     },
     {
       "id": "sukoshi-wakarimasu-yo",
@@ -640,14 +643,16 @@
       "target": "じゃ、あんどうさんのけいたいのばんごうをしっていますか。",
       "english": "Then, do you know Ando-san's mobile phone number?",
       "category": "Other",
-      "fillInBlank": true
+      "fillInBlank": true,
+      "note": "けいたいのばんごう (keitai no bangō) and けいたいばんごう (keitai bangō, Lesson 2) mean the same: a mobile phone number."
     },
     {
       "id": "yone-02",
       "target": "たなかさんはぎんこうにつとめていますよね。",
       "english": "Tanaka-san works at a bank, right?",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "checking something you are fairly sure of"
     },
     {
       "id": "ex5-q-brown-where-work",

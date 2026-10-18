@@ -69,3 +69,21 @@
 {"id":"chapter-23-extras/smith-explains-project/missing-info/1","status":"fixed","statusReason":"Note added explaining X の せつめいをします: the thing explained goes in front with の."}
 {"id":"chapter-23-extras/moshi-moshi-1/ambiguous/1","status":"fixed","statusReason":"Hint 'the phone greeting, not はい (hai)' added."}
 {"id":"chapter-23-extras/mousugu-kaigi-hajimemasu/other/1","status":"fixed","statusReason":"Stays excluded (restoring would add a card) with a true reason (もうすぐ already has three sentences here; はじめます is Lesson 17's) and the romaji corrected to mōsugu kaigi o hajimemasu."}
+{"id":"chapter-24/yone/ambiguous/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of, not the plain ね (ne)' added. The matching cue on chapter-6/ne-particle is outside this fixer's units."}
+{"id":"chapter-24/musumesan/leaks-answer/1","status":"fixed","statusReason":"Hint now 'the everyday word, not the more formal おじょうさん (ojōsan)'; it no longer spells むすめ + さん."}
+{"id":"chapter-24/sundeimasu/other/1","status":"fixed","statusReason":"Note softened: residence is a present state the book says with すんでいます; it no longer marks すみます wrong. The Lesson 17 card itself is outside this fixer's units."}
+{"id":"chapter-24/tsutometeimasu/wrong-content/1","status":"fixed","statusReason":"Citation for しごとをします changed from Lesson 3 to Lesson 8."}
+{"id":"chapter-24/ganbatte-kudasai/other/1","status":"fixed","statusReason":"'below' dropped; がんばります glossed in place; em-dash removed."}
+{"id":"chapter-24/shitteimasu/other/1","status":"fixed","statusReason":"'below' dropped; em-dash removed."}
+{"id":"chapter-24/shirimasen-2/ambiguous/1","status":"skipped","statusReason":"The fix is a hint on chapter-2/wakarimasen, which is outside F1d's units (F1a owns chapter-2). This card already carries its own cue."}
+{"id":"chapter-24-extras/yone-01/unanswerable/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of' asks for よね over ね."}
+{"id":"chapter-24-extras/yone-02/unanswerable/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of' added."}
+{"id":"chapter-24-extras/yone-03/unanswerable/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of' added."}
+{"id":"chapter-24-extras/yone-with-shiru/unanswerable/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of' added."}
+{"id":"chapter-24-extras/nationality-vs-language-a/other/1","status":"fixed","statusReason":"Card id replaced with the question it answers and the point of the pair: じん is the person, ご the language."}
+{"id":"chapter-24-extras/nationality-vs-language-q/other/1","status":"fixed","statusReason":"Card id replaced with the contrast: ちゅうごくじん the person, ちゅうごくご the language."}
+{"id":"chapter-24-extras/ex10-2-q-sasaki-chinese/other/1","status":"fixed","statusReason":"Picture note moved to reviewNote."}
+{"id":"chapter-24-extras/ex10-1-q-kato-english/other/1","status":"fixed","statusReason":"Picture note moved to reviewNote."}
+{"id":"chapter-24-extras/ex8b2-ando-mobile-q/missing-info/1","status":"fixed","statusReason":"Note added: けいたいのばんごう and Lesson 2's けいたいばんごう mean the same."}
+{"id":"chapter-24-extras/ex8a-ask-andos-work/wrong-content/1","status":"fixed","statusReason":"Note now says it leaves the rest of the question unsaid, such as なんですか; em-dashes removed."}
+{"id":"chapter-24-extras/tsutomemasu-sentence/note-unverifiable/1","status":"fixed","statusReason":"English now 'Next month, I will work for ABC Foods.' so it matches らいげつ without から (no target change, no audio); note trimmed to the ます form for the future versus つとめています, and 'plain' dropped."}

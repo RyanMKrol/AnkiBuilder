@@ -19,3 +19,29 @@
 {"id":"chapter-22-extras/travel-dont-worry/ambiguous/1","status":"fixed","statusReason":"Hint 'with しんぱい (shinpai, \"worry\")' here and 'with きにします (ki ni shimasu, \"worry about\")' on chapter-22/ki-ni-shinaide-kudasai."}
 {"id":"chapter-22-extras/-/other/1","status":"fixed","statusReason":"The three builder notes moved to reviewNote; nai-nomanai-ex1 gets the scene 'a doctor to a patient'."}
 {"id":"chapter-22/osake/note-unverifiable/1","status":"fixed","statusReason":"Note now says お is the optional polite prefix and both forms mean alcohol in general or sake; the rice-wine split is gone."}
+{"id":"chapter-19/made/leaks-answer/1","status":"fixed","statusReason":"Scene shortened to 'with a place, not a time': keeps the Lesson 3 contrast without defining 'as far as'."}
+{"id":"chapter-19/wo-place-particle/leaks-answer/1","status":"fixed","statusReason":"Scene now the frame cue 'used with まがります (magarimasu) or まっすぐいきます (massugu ikimasu)'."}
+{"id":"chapter-19/de-means-particle/leaks-answer/1","status":"fixed","statusReason":"Scene now the frame cue 'used with メール (mēru) or ゆうびん (yūbin)', which rules out the place and payment で without defining this one."}
+{"id":"chapter-19/torimasu/leaks-answer/1","status":"fixed","statusReason":"Scene now 'not a photo', which separates it from Lesson 11 without naming the answer."}
+{"id":"chapter-19/tomemasu/leaks-answer/1","status":"fixed","statusReason":"Scene kept (chapter-21/tomemasu-park is a target collision, so a scene is required) but reworded to 'said to a taxi driver', which no longer says 'stop'."}
+{"id":"chapter-19/kakimasu-l19/leaks-answer/1","status":"fixed","statusReason":"Scene now 'used with なまえ (namae) or じゅうしょ (jūsho)', no 'writing'."}
+{"id":"chapter-19/kakimasu-l19/ambiguous/1","status":"skipped","statusReason":"The fix is to exclude the card, and it was kept at the owner's explicit request (reviewNote, commit f163f47). Field-edit pass never removes a card; owner to decide."}
+{"id":"chapter-19/temae/ambiguous/1","status":"fixed","statusReason":"Hint 'the near side of a landmark, not a time' added."}
+{"id":"chapter-19/magarimasu/other/1","status":"fixed","statusReason":"'this chapter's third grammar point' dropped; the example sentence gets a gloss and the romaji shingō."}
+{"id":"chapter-19/okurimashita/leaks-answer/1","status":"fixed","statusReason":"Hint 'Past of おくります' removed from the Production front and moved to the note on the back."}
+{"id":"chapter-19/yuubin/ambiguous/1","status":"fixed","statusReason":"Hint 'by post, not e-mail' added."}
+{"id":"chapter-19/nimotsu/ambiguous/1","status":"fixed","statusReason":"Contrast note on にもつ: a parcel or luggage, while パッケージ is a product's packaging. The matching note on chapter-18/package is outside this fixer's units."}
+{"id":"chapter-19/shorui/ambiguous/1","status":"fixed","statusReason":"Hint 'paperwork' and the しょるい / しりょう contrast note (moved from the excluded chapter-19/shiryou card)."}
+{"id":"chapter-19-extras/motte-kite-meeting/ambiguous/1","status":"fixed","statusReason":"English 'documents' changed to 'materials' for しりょう."}
+{"id":"chapter-19-extras/request-bring-meeting-documents/ambiguous/1","status":"fixed","statusReason":"English 'documents' changed to 'materials' for しりょう."}
+{"id":"chapter-19-extras/chotto-matte-documents/ambiguous/1","status":"fixed","statusReason":"English now 'I'll take the documents', so the front points at とります (take) and しょるい (documents)."}
+{"id":"chapter-19-extras/yes-certainly-hotel/ambiguous/1","status":"fixed","statusReason":"Hint 'with はい (hai)' added, mirroring the base card's 'without はい'."}
+{"id":"chapter-19-extras/heading-to-osaka-branch/missing-info/1","status":"fixed","statusReason":"Note added explaining いまから and place + ですか standing in for いきます."}
+{"id":"chapter-19-extras/douryou-ni-iu-mae-ni-denwa/unanswerable/1","status":"fixed","statusReason":"English now 'before you say it to your colleagues', which points at いう."}
+{"id":"chapter-19-extras/nimotsu-wo-azukaru-mae-ni-namae/unanswerable/1","status":"fixed","statusReason":"English now 'before we look after your luggage', which points at あずかる."}
+{"id":"chapter-19-extras/straight-next-intersection/other/1","status":"fixed","statusReason":"Note reworded: the を place is what you go straight through with まっすぐいきます and what you turn at with まがります; no denial of 'at'."}
+{"id":"chapter-19-extras/-/wrong-content/1","status":"fixed","statusReason":"All eight notes now say 'a verb before まえに is in its dictionary form'. The same false 'always follows' claim was also fixed on 8 notes in chapter-21-extras and 4 in chapter-22-extras."}
+{"id":"chapter-19/tsugi-no/other/1","status":"skipped","statusReason":"The fix is to exclude the card; the pair was cued deliberately at gate 1. Field-edit pass never removes a card; owner to decide."}
+{"id":"chapter-19-extras/taxi-turn-beyond-school/book-mismatch/1","status":"fixed","statusReason":"English now 'Please turn beyond the school.'"}
+{"id":"chapter-19-extras/taxi-stop-beyond-traffic-light/book-mismatch/1","status":"fixed","statusReason":"English now 'Please stop beyond the traffic light.' (English only; the curated clip is untouched)."}
+{"id":"chapter-19/houkoku-shimasu/note-unverifiable/1","status":"fixed","statusReason":"Note keeps only the verb-versus-noun contrast with レポート; 'spoken' and 'to a superior' dropped."}

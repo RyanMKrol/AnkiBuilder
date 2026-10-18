@@ -52,3 +52,20 @@
 {"id":"chapter-20/neboushimasu/other/1","status":"fixed","statusReason":"Romaji spaced on both headword cards: nebō shimasu, nebō shimashita, matching the rest of the chapter."}
 {"id":"chapter-20/kan-period-suffix/other/1","status":"fixed","statusReason":"'The chart writes it in brackets.' dropped; the quoted kana romanized."}
 {"id":"chapter-20/noru-dict/other/1","status":"fixed","statusReason":"All ten 'R1/R2 verb' notes now name Regular 1 or 2 and show the derivation (のります → のる → のって and so on)."}
+{"id":"chapter-23/check-noun/ambiguous/1","status":"fixed","statusReason":"Hint now starts 'the noun', as download-loanword and benkyou-study do."}
+{"id":"chapter-23/kai-floor-counter/wrong-content/1","status":"fixed","statusReason":"'Only 3 voices it' replaced: of the numbers 3 voices it (さんがい), and the question word is なんがい."}
+{"id":"chapter-23/ima-ii-desu-ka/ambiguous/1","status":"fixed","statusReason":"Hint now also says 'the everyday いい (ii), not the politer よろしい (yoroshii)'."}
+{"id":"chapter-23/souji-shimasu-clean/ambiguous/1","status":"fixed","statusReason":"Hint 'the verb: do the cleaning' added so the front does not read as きれい."}
+{"id":"chapter-23/dekimasu-be-done-2/other/1","status":"fixed","statusReason":"Note now 'Regular 2: its dictionary form is できる (dekiru).'"}
+{"id":"chapter-23/-/other/1","status":"fixed","statusReason":"'above' and 'below' dropped from all eight notes; quoted kana romanized; em-dashes removed in the touched notes."}
+{"id":"chapter-23-extras/kato-guitar-weekly/ambiguous/1","status":"fixed","statusReason":"English now 'is taking guitar lessons every week', the book's KS2 shape for ならっています."}
+{"id":"chapter-23-extras/shodou-calligraphy-1/ambiguous/1","status":"fixed","statusReason":"English now 'is taking calligraphy lessons every week'."}
+{"id":"chapter-23-extras/nakamura-flower-arrangement-weekly/ambiguous/1","status":"fixed","statusReason":"English now 'is taking flower arrangement lessons every week'."}
+{"id":"chapter-23-extras/suzuki-french-weekly/ambiguous/1","status":"fixed","statusReason":"English now 'is taking French lessons every week'."}
+{"id":"chapter-23-extras/shodou-calligraphy-1/other/1","status":"fixed","statusReason":"EXERCISES III note replaced with what the sentence shows: ならっています with まいしゅう, ています for an action repeated over a period."}
+{"id":"chapter-23-extras/jogging-o-shimasu-1/unanswerable/1","status":"fixed","statusReason":"Target is the book's line, so it stays; hint 'the ています form, for an action repeated over a period' added."}
+{"id":"chapter-23-extras/report-check-shimasu/ambiguous/1","status":"fixed","statusReason":"Hint 'with the noun チェック (chekku, \"check\") joined by の (no)' added."}
+{"id":"chapter-23-extras/check-noun-1/unanswerable/1","status":"fixed","statusReason":"Hint 'asking with おねがいします (onegai shimasu)' added."}
+{"id":"chapter-23-extras/smith-explains-project/missing-info/1","status":"fixed","statusReason":"Note added explaining X の せつめいをします: the thing explained goes in front with の."}
+{"id":"chapter-23-extras/moshi-moshi-1/ambiguous/1","status":"fixed","statusReason":"Hint 'the phone greeting, not はい (hai)' added."}
+{"id":"chapter-23-extras/mousugu-kaigi-hajimemasu/other/1","status":"fixed","statusReason":"Stays excluded (restoring would add a card) with a true reason (もうすぐ already has three sentences here; はじめます is Lesson 17's) and the romaji corrected to mōsugu kaigi o hajimemasu."}

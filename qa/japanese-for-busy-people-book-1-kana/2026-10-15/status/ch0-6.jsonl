@@ -29,3 +29,16 @@
 {"id":"chapter-1-extras/irl-l1-28/wrong-content/1","status":"skipped","statusReason":"Adding さん changes the target, and the card ships a picked -gen- clip: hand-curated clip, owner to regenerate. Meanwhile the note says the bare name is how you introduce someone on your own side and that the book keeps さん for anyone else."}
 {"id":"chapter-1-extras/irl-l1-26/other/2","status":"skipped","statusReason":"Dropping ？ changes the target, and the card ships a picked -genkanji- clip: hand-curated clip, owner to regenerate."}
 {"id":"chapter-1-extras/irl-l1-27/other/2","status":"skipped","statusReason":"Dropping ？ changes the target, and the card ships a manual clip: hand-curated clip, owner to regenerate."}
+{"id":"chapter-2/kore/ambiguous/1","status":"fixed","statusReason":"Production hint says it is a thing, not a person, which separates it from こちら."}
+{"id":"chapter-2/wakarimasen/note-unverifiable/1","status":"fixed","statusReason":"Dropped the 'soft, humble' and 'avoid a refusal' claims; the note now agrees with saa-wakarimasen, which carries the register point."}
+{"id":"chapter-2-extras/nan/leaks-answer/1","status":"fixed","statusReason":"Hint keeps its job without quoting なんじ (which contained the answer) or untaught counters."}
+{"id":"chapter-2-extras/tanaka-san-kore-wa-tanaka-san-no-pen-desu-ka/missing-info/1","status":"fixed","statusReason":"Production hint says to use the name, not あなた."}
+{"id":"chapter-2-extras/sumisu-san-no-desu-ka/missing-info/1","status":"fixed","statusReason":"Production hint says to use the name, not あなた (same call as the たなかさん pen card)."}
+{"id":"chapter-2-extras/kaisha-no-namae-o-oshiete-kudasai/missing-info/1","status":"fixed","statusReason":"Note says there is no word for 'your' because the listener is understood."}
+{"id":"chapter-2-extras/meeru-adoresu-o-oshiete-kudasai/missing-info/1","status":"fixed","statusReason":"Note says there is no word for 'your' because the listener is understood."}
+{"id":"chapter-2-extras/namae-o-oshiete-kudasai/other/1","status":"fixed","statusReason":"Target is now おなまえをおしえてください, the form its own note calls normal; needs new audio."}
+{"id":"chapter-2-extras/fib-kagi-wa-dare-no-desu-ka/unanswerable/1","status":"fixed","statusReason":"English leads with the topic, as the unit's other は possessive cards do."}
+{"id":"chapter-2-extras/hai-sasaki-san-no-desu/other/1","status":"fixed","statusReason":"Dropped the 'GRAMMAR 3' citation; the explanation stands on its own."}
+{"id":"chapter-2-extras/kore-wa-sasaki-san-no-saifu-desu-ka/other/1","status":"fixed","statusReason":"Note names the two answers instead of 'Member 3' and 'below'; the unit's other 'Member N of the set' labels swept the same way."}
+{"id":"chapter-2-extras/irl-l1-42/other/1","status":"fixed","statusReason":"Excluded: a schematic fragment the book never prints. A delivered note, so it shows as orphaned in Anki for the owner."}
+{"id":"chapter-2-extras/irl-l1-41/other/1","status":"fixed","statusReason":"Excluded: a schematic fragment, covered by kore-wa-watashi-no-juusho-desu. A delivered note, so it shows as orphaned in Anki for the owner."}

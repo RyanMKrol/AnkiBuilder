@@ -12,10 +12,10 @@
       "english": "What",
       "category": "Grammar & Function Words",
       "target": "なん",
-      "hint": "the form used before です (desu, \"is\") and counters, as in なんじ (nan-ji, \"what time\")",
-      "note": "The question word that fills the same slot as a noun: これはとけいです (kore wa tokei desu) becomes これはなんですか (kore wa nan desu ka). Sits alongside だれ (dare, 'who') from this lesson.",
+      "aiSuggested": true,
       "reviewNote": "From the VOCABULARY block after EXERCISE III (p. 13), where the book introduces なん = 'what'. The deck already has だれ and だれの but this word is missing entirely, even though the exercise built on it is a whole section.",
-      "aiSuggested": true
+      "note": "The question word that fills the same slot as a noun: これはとけいです (kore wa tokei desu) becomes これはなんですか (kore wa nan desu ka). Sits alongside だれ (dare, 'who') from this lesson.",
+      "hint": "the form used right before です (desu, \"is\")"
     },
     {
       "id": "mobile-phone",
@@ -79,10 +79,9 @@
       "english": "This is a key.",
       "category": "Home & Household",
       "target": "これはかぎです",
-      "hint": null,
-      "note": "Member 1 of a three-way set on one word: swap です (desu) for じゃありません (ja arimasen) to deny it, or add か (ka) to ask it.",
+      "aiSuggested": true,
       "reviewNote": "Constructed, though かぎ is the book's own substitution word in EXERCISE I-A. Coverage job: form — supplies the です / じゃありません / ですか transformation on a single noun. Also the first sentence anywhere in the deck to use かぎ.",
-      "aiSuggested": true
+      "note": "Swap です (desu) for じゃありません (ja arimasen) to deny it, or add か (ka) to ask it."
     },
     {
       "id": "kore-wa-hon-desu-ka",
@@ -129,10 +128,10 @@
       "english": "Tanaka-san, is this your pen?",
       "category": "Other",
       "target": "たなかさん、これはたなかさんのペンですか",
-      "hint": null,
-      "note": "The name is repeated rather than replaced by 'you' — see the スミスさんのですか (sumisu san no desu ka) card for why あなた (anata) is avoided.",
+      "aiSuggested": true,
       "reviewNote": "Target Dialogue, Nakamura's line to Tanaka (p. 9). Book wording verbatim, vocative included. Pairs with the だれの question as the named-owner version of the same pattern; the deck has neither.",
-      "aiSuggested": true
+      "note": "The name is repeated rather than replaced by 'you' — see the スミスさんのですか (sumisu san no desu ka) card for why あなた (anata) is avoided.",
+      "hint": "use the person's name, not a word for \"you\""
     },
     {
       "id": "kore-wa-sasaki-san-no-sumaho-desu-ka",
@@ -149,10 +148,9 @@
       "english": "Please tell me the name of your company.",
       "category": "Work & Occupations",
       "target": "かいしゃのなまえをおしえてください",
-      "hint": null,
-      "note": "を (o) marks what you are asking for; the の (no) inside かいしゃのなまえ (kaisha no namae) just links the two nouns.",
+      "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE VII-B pattern (p. 14), swapping the phone number for another item from the same business-card list. Coverage jobs: vocabulary (かいしゃのなまえ had no sentence) and particle (を, which had a single example).",
-      "aiSuggested": true
+      "note": "を (o) marks what you are asking for; the の (no) inside かいしゃのなまえ (kaisha no namae) just links the two nouns. There is no word for 'your': asking the person directly, their company is understood."
     },
     {
       "id": "kore-wa-nozomi-depaato-no-meishi-desu",
@@ -209,10 +207,9 @@
       "english": "This isn't Sasaki-san's wallet.",
       "category": "Money",
       "target": "これはささきさんのさいふじゃありません",
-      "hint": null,
-      "note": "Member 2 of the possessive set — the negative lands on です (desu) at the very end, never on の (no).",
+      "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: form — no card in the deck negates a possessive noun phrase in full (the wave-1 いいえ、わたしのじゃありません is the elliptical version).",
-      "aiSuggested": true
+      "note": "The negative lands on です (desu) at the very end, never on の (no)."
     },
     {
       "id": "watch",
@@ -353,7 +350,10 @@
       "english": "The hotel address is",
       "category": "Travel & Tourism",
       "target": "ホテルのじゅうしょは",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "A frame with its value missing (ホテルのじゅうしょは, \"The hotel address is\"), which the shared rules forbid; the book prints only complete sentences for this pattern."
     },
     {
       "id": "iie-watashi-no-desu",
@@ -390,10 +390,9 @@
       "english": "This is Sasaki-san's wallet.",
       "category": "Money",
       "target": "これはささきさんのさいふです",
-      "hint": null,
-      "note": "Member 1 of a set built on [owner] の [thing]. The whole possessive phrase behaves like a single noun, so です (desu), じゃありません (ja arimasen) and か (ka) attach to it exactly as they do to かぎ (kagi).",
+      "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE V pattern (これはスミスさんのほんです). Coverage jobs: vocabulary (さいふ had no sentence) and form (opens the possessive contrast set).",
-      "aiSuggested": true
+      "note": "Built on [owner] の [thing]. The whole possessive phrase behaves like a single noun, so です (desu), じゃありません (ja arimasen) and か (ka) attach to it exactly as they do to かぎ (kagi)."
     },
     {
       "id": "kore-wa-sasaki-san-no-meeru-adoresu-desu",
@@ -418,9 +417,9 @@
       "english": "Yes, it's Sasaki-san's.",
       "category": "Money",
       "target": "はい、ささきさんのです",
-      "note": "さいふ (saifu) vanishes from the answer and の (no) carries the possession by itself — this is GRAMMAR 3's noun-omission rule in its most common shape.",
-      "reviewNote": "Lifted from the EXERCISE VI-A model answer (p. 14), with さいふ substituted for めがね to keep the contrast set on one noun. Coverage job: form — the affirmative elliptical possessive answer.",
       "aiSuggested": true,
+      "reviewNote": "Lifted from the EXERCISE VI-A model answer (p. 14), with さいふ substituted for めがね to keep the contrast set on one noun. Coverage job: form — the affirmative elliptical possessive answer.",
+      "note": "さいふ (saifu) vanishes from the answer and の (no) carries the possession by itself. This is the most common shape of leaving out a noun the listener already knows.",
       "scene": "answering whether the wallet is Sasaki-san's"
     },
     {
@@ -516,20 +515,18 @@
       "english": "This isn't a key.",
       "category": "Home & Household",
       "target": "これはかぎじゃありません",
-      "hint": null,
-      "note": "Member 2 of the set. Only です (desu) changes — nothing else in the sentence moves.",
+      "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE I-B pattern. Coverage job: form — the negative member of the かぎ contrast set.",
-      "aiSuggested": true
+      "note": "Only です (desu) changes to じゃありません (ja arimasen); nothing else in the sentence moves."
     },
     {
       "id": "kore-wa-sasaki-san-no-saifu-desu-ka",
       "english": "Is this Sasaki-san's wallet?",
       "category": "Money",
       "target": "これはささきさんのさいふですか",
-      "hint": null,
-      "note": "Member 3 of the possessive set. Both short answers below reply to this one.",
+      "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE VI-B pattern (これはスミスさんのさいふですか, p. 14). Coverage job: form — the question member of the possessive contrast set.",
-      "aiSuggested": true
+      "note": "Answered with はい、ささきさんのです (hai, Sasaki-san no desu, \"Yes, it's Sasaki-san's\") or いいえ、ささきさんのじゃありません (īe, Sasaki-san no ja arimasen, \"No, it isn't Sasaki-san's\"). Like any question, it is the statement with か (ka) added."
     },
     {
       "id": "nozomi-depaato-desu",
@@ -641,17 +638,19 @@
       "english": "My address is...",
       "category": "Home & Household",
       "target": "わたしのじゅうしょは",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 2 teaches juusho (address)",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "A frame with its value missing (わたしのじゅうしょは, \"My address is...\"); kore-wa-watashi-no-juusho-desu already carries わたしのじゅうしょ in a complete sentence."
     },
     {
       "id": "kore-wa-kagi-desu-ka",
       "english": "Is this a key?",
       "category": "Home & Household",
       "target": "これはかぎですか",
-      "hint": null,
-      "note": "Member 3 of the set, and a minimal pair with これはかぎです (kore wa kagi desu): か (ka) is the only difference. Japanese does not reorder words to ask a question.",
+      "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE II-A pattern. Coverage job: form — the question member of the かぎ set, and the clearest possible demonstration of the か particle.",
-      "aiSuggested": true
+      "note": "A minimal pair with これはかぎです (kore wa kagi desu, \"This is a key.\"): か (ka) is the only difference. Japanese does not reorder words to ask a question."
     },
     {
       "id": "hai-hon-desu",
@@ -678,20 +677,19 @@
       "english": "Is it yours, Smith-san?",
       "category": "Other",
       "target": "スミスさんのですか",
-      "hint": null,
-      "note": "Japanese has a word for 'you' — あなた (anata) — but it is rarely used outside the family and never with someone of higher status. Address people by surname + さん (san) or by job title instead, which is why 'yours' comes out as スミスさんの (sumisu san no).",
+      "aiSuggested": true,
       "reviewNote": "Target Dialogue, Suzuki's second line (p. 9), with the あなた point from NOTES 2. Nothing in the deck teaches the you-becomes-a-name substitution, which is one of the two things this chapter's NOTES section exists to explain. Also the deck's only 〜のです example is a statement, never a question.",
-      "aiSuggested": true
+      "note": "Japanese has a word for 'you' — あなた (anata) — but it is rarely used outside the family and never with someone of higher status. Address people by surname + さん (san) or by job title instead, which is why 'yours' comes out as スミスさんの (sumisu san no).",
+      "hint": "use the person's name, not a word for \"you\""
     },
     {
       "id": "namae-o-oshiete-kudasai",
       "english": "Please tell me your name.",
       "category": "Other",
-      "target": "なまえをおしえてください",
-      "hint": null,
-      "note": "Asking about someone else's name you would normally add the polite お (o) prefix — おなまえ (onamae) — the same prefix seen in おくに (okuni) and おかし (okashi).",
+      "target": "おなまえをおしえてください",
+      "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE VII-B pattern (p. 14). Coverage jobs: vocabulary (なまえ appears only inside かいしゃのなまえ, never in a sentence) and particle (を with a bare noun object).",
-      "aiSuggested": true
+      "note": "Asking for someone else's name, you add the polite お (o) prefix: おなまえ (onamae), the same prefix seen in おくに (okuni, \"your country\"). Your own name is just なまえ (namae)."
     },
     {
       "id": "kore-wa-dare-no-pen-desu-ka",
@@ -708,10 +706,9 @@
       "english": "Please tell me your email address.",
       "category": "Technology & Communication",
       "target": "メールアドレスをおしえてください",
-      "hint": null,
-      "note": null,
+      "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE VII-B pattern (p. 14) with another item from the same business-card list. Coverage jobs: vocabulary (メールアドレス had no sentence) and particle (を, fourth example).",
-      "aiSuggested": true
+      "note": "There is no word for 'your': asking the person directly, it is understood whose email address you mean."
     }
   ]
 }

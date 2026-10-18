@@ -283,7 +283,7 @@
       "id": "nande-ikimasuka",
       "english": "How will you go?",
       "category": "Transport",
-      "hint": null,
+      "hint": "use なんで (nande), not どうやって (dō yatte)",
       "note": "なんで (nande) also means \"why\" in colloquial speech; なにで (nani de) can be used instead when asking about means of transportation, to avoid confusion.",
       "reviewNote": null,
       "target": "なんでいきますか"
@@ -503,7 +503,7 @@
       "english": "Day (suffix)",
       "category": "Time",
       "hint": null,
-      "note": "Suffix — attaches after a number to name a day of the month (from the 11th onward), e.g. じゅういちにち (juuichinichi, \"the 11th\"). This chapter spells days out in hiragana, but elsewhere in the book they're written with numerals, e.g. 11にち for the eleventh.",
+      "note": "Suffix: attaches after a number to name a day of the month (from the 11th onward, except the 14th, 20th and 24th), e.g. じゅういちにち (jūichi-nichi, \"the 11th\"). This chapter spells days out in hiragana, but elsewhere in the book they're written with numerals, e.g. 11にち for the eleventh.",
       "reviewNote": null,
       "target": "にち"
     },
@@ -521,7 +521,7 @@
       "english": "1st (of the month)",
       "category": "Time",
       "hint": null,
-      "note": "Days 1st–10th of the month have irregular readings that must be memorized individually; from the 11th onward the pattern becomes regular: number + にち (nichi, \"day\").",
+      "note": "Days 1st–10th of the month have irregular readings that must be memorized individually. From the 11th onward the pattern is regular, number + にち (nichi, \"day\"), except the 14th じゅうよっか (jūyokka), the 20th はつか (hatsuka) and the 24th にじゅうよっか (nijūyokka).",
       "reviewNote": null,
       "target": "ついたち"
     },
@@ -792,7 +792,7 @@
     },
     {
       "id": "nannichi",
-      "english": "What day",
+      "english": "What day (of the month)",
       "category": "Time",
       "hint": null,
       "note": null,
@@ -834,7 +834,7 @@
       "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target)",
       "target": "やすみ",
       "uncertain": true,
-      "scene": "a longer stretch away from work"
+      "scene": "planning a trip in August"
     },
     {
       "id": "natsuyasumi",

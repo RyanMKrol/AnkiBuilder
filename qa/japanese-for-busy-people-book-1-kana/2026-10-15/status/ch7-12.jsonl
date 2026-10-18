@@ -10,3 +10,26 @@
 {"id":"chapter-10-extras/f10-wain-yasukunai/leaks-answer/1","status":"fixed","statusReason":"Hint no longer prints やすい; it names the move without the word."}
 {"id":"chapter-10-extras/f10-apuri-yokunai/note-unverifiable/1","status":"fixed","statusReason":"This card's note is correct and kept; the かっこいい card's note now says it negates like いい (かっこよくない), as the verifier suggested."}
 {"id":"chapter-10-extras/ex10-hontou-ni-ii-tenki-ne/other/1","status":"fixed","statusReason":"Romaji now 'ē, hontōni ii tenki desu ne', matching the base cards."}
+{"id":"chapter-7/nande-ikimasuka/unanswerable/1","status":"fixed","statusReason":"Hint names なんで over どうやって; the どうやって cards carry the mirror hint."}
+{"id":"chapter-7/nannichi/ambiguous/1","status":"fixed","statusReason":"English now 'What day (of the month)', matching the date cards."}
+{"id":"chapter-7/tsuitachi-1st/book-mismatch/1","status":"fixed","statusReason":"Note names the 14th, 20th and 24th as the exceptions after the 10th."}
+{"id":"chapter-7/nichi-suffix/book-mismatch/1","status":"fixed","statusReason":"Note adds the 14th/20th/24th exception; romaji in the note set to the pinned style."}
+{"id":"chapter-7/yasumi-vacation/leaks-answer/1","status":"fixed","statusReason":"Scene is now situational ('planning a trip in August') instead of a definition."}
+{"id":"chapter-7/fib-smith-taxi-kaerimashita/wrong-content/1","status":"fixed","statusReason":"Note names the ました (mashita) past ending."}
+{"id":"chapter-7-extras/smith-nande-osaka-ni-ikimasu-ka/unanswerable/1","status":"fixed","statusReason":"Hint names なんで over どうやって."}
+{"id":"chapter-7-extras/fib-tanaka-nande-kaigi-q/unanswerable/1","status":"fixed","statusReason":"Hint names なんで over どうやって."}
+{"id":"chapter-7-extras/w2-katou-nande-kaisha-ni-kimasu-ka/unanswerable/1","status":"fixed","statusReason":"Hint names なんで over どうやって."}
+{"id":"chapter-7-extras/p102-douyatte-jimu-ni-ikimasu-ka/unanswerable/1","status":"fixed","statusReason":"Hint names どうやって over なんで."}
+{"id":"chapter-7-extras/p102-douyatte-shigoto-ni-ikimasu-ka/unanswerable/1","status":"fixed","statusReason":"Hint names どうやって over なんで."}
+{"id":"chapter-7-extras/w2-smith-tokyo-eki-ni-ikimasu/wrong-content/1","status":"fixed","statusReason":"Hint glosses the destination に as \"to\"."}
+{"id":"chapter-7-extras/w2-paku-mokuyoubi-kimasen/wrong-content/1","status":"fixed","statusReason":"False 'appears on no other card' sentence and set pointer removed; note now states the ます→ません change."}
+{"id":"chapter-7-extras/w2-smith-doyoubi-kaerimasu/other/1","status":"fixed","statusReason":"Dropped the 'Member 1 of a set' sentence."}
+{"id":"chapter-7-extras/w2-smith-doyoubi-kaerimasen/other/1","status":"fixed","statusReason":"Dropped 'Member 2 of the set:'."}
+{"id":"chapter-7-extras/w2-smith-doyoubi-kaerimasu-ka/other/1","status":"fixed","statusReason":"Dropped 'Member 3 of the set:'."}
+{"id":"chapter-7-extras/w2-paku-mokuyoubi-kimasu/other/1","status":"fixed","statusReason":"Dropped the 'Member 1 of a set' sentence."}
+{"id":"chapter-7-extras/w2-paku-mokuyoubi-kimasen/other/1","status":"fixed","statusReason":"Dropped 'Member 2 of the set.'"}
+{"id":"chapter-7-extras/w2-paku-mokuyoubi-kimasu-ka/other/1","status":"fixed","statusReason":"Note now says what the card shows: a yes/no question made by adding か."}
+{"id":"chapter-7-extras/w2-sanban-no-basu-ga-ikimasu/ambiguous/1","status":"fixed","statusReason":"Number changed from 3 to 8 so the target no longer repeats the Lesson 6 card; stage-owned clip, needs regenerating."}
+{"id":"chapter-7-extras/w2-sanban-no-basu-ga-ikimasu/note-unverifiable/1","status":"fixed","statusReason":"Note reuses the Lesson 6 wording: a どの…が question is answered with が, never は."}
+{"id":"chapter-7-extras/raishuu-no-getsuyoubi-ni-sochira/missing-info/1","status":"fixed","statusReason":"English now 'I'll go there (where you are) next Monday.'"}
+{"id":"chapter-7-extras/w2-tanjoubi-juugatsu-kokonoka/wrong-content/1","status":"fixed","statusReason":"Dropped the false 'reverse of English order' clause."}

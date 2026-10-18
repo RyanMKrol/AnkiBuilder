@@ -1,0 +1,2 @@
+chapter-7-extras	w2-sanban-no-basu-ga-ikimasu	target: 3ばんのバスがいきます -> 8ばんのバスがいきます
+chapter-7-extras	w2-sanban-no-basu-ga-ikimasu	ttsText: さんばんのバスがいきます -> はちばんのバスがいきます

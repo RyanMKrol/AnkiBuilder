@@ -438,7 +438,8 @@
       "audioAuto": "5d8c11d73923fb97.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "5d8c11d73923fb97"
+      "audioTextHash": "5d8c11d73923fb97",
+      "hint": "use なんで (nande), not どうやって (dō yatte)"
     },
     {
       "id": "basu-de-ikimasu",
@@ -751,7 +752,7 @@
       "category": "Time",
       "target": "にち",
       "pronunciation": "nichi",
-      "note": "Suffix — attaches after a number to name a day of the month (from the 11th onward), e.g. じゅういちにち (juuichinichi, \"the 11th\"). This chapter spells days out in hiragana, but elsewhere in the book they're written with numerals, e.g. 11にち for the eleventh.",
+      "note": "Suffix: attaches after a number to name a day of the month (from the 11th onward, except the 14th, 20th and 24th), e.g. じゅういちにち (jūichi-nichi, \"the 11th\"). This chapter spells days out in hiragana, but elsewhere in the book they're written with numerals, e.g. 11にち for the eleventh.",
       "audio": "274877f9553fcc46.mp3",
       "audioOriginal": "274877f9553fcc46.orig.mp3",
       "audioAuto": "274877f9553fcc46.mp3",
@@ -778,7 +779,7 @@
       "category": "Time",
       "target": "ついたち",
       "pronunciation": "tsuitachi",
-      "note": "Days 1st–10th of the month have irregular readings that must be memorized individually; from the 11th onward the pattern becomes regular: number + にち (nichi, \"day\").",
+      "note": "Days 1st–10th of the month have irregular readings that must be memorized individually. From the 11th onward the pattern is regular, number + にち (nichi, \"day\"), except the 14th じゅうよっか (jūyokka), the 20th はつか (hatsuka) and the 24th にじゅうよっか (nijūyokka).",
       "audio": "68a771d45cd9370d.mp3",
       "audioOriginal": "68a771d45cd9370d.orig.mp3",
       "audioAuto": "68a771d45cd9370d.mp3",
@@ -1173,7 +1174,7 @@
     },
     {
       "id": "nannichi",
-      "english": "What day",
+      "english": "What day (of the month)",
       "category": "Time",
       "target": "なんにち",
       "pronunciation": "nan-nichi",
@@ -1238,7 +1239,7 @@
       "audioAuto": "7a04cc386a15ec42.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "a longer stretch away from work",
+      "scene": "planning a trip in August",
       "audioTextHash": "7a04cc386a15ec42"
     },
     {
@@ -1470,7 +1471,7 @@
       "category": "Travel & Tourism",
       "target": "スミスさんはタクシーでうちにかえりました",
       "pronunciation": "Sumisu-san wa takushī de uchi ni kaerimashita",
-      "note": "The まし past-tense pattern from いきました／きました extends to かえります too.",
+      "note": "The ました (mashita) past ending from いきました／きました (ikimashita / kimashita) works on かえります (kaerimasu) too.",
       "fillInBlank": true,
       "aiSuggested": true,
       "audio": "40a457fecbcda540.mp3",

@@ -32,3 +32,21 @@
 {"id":"chapter-14/kara-particle-because/book-mismatch/1","status":"fixed","statusReason":"Note now calls から a particle."}
 {"id":"chapter-14/yoku/book-mismatch/1","status":"fixed","statusReason":"Scene now 'praising how something suits someone' (still separates it from Lesson 9's よく 'Often')."}
 {"id":"chapter-14-extras/fib-tanjoubi-ni-kuremasu/wrong-content/1","status":"fixed","statusReason":"Scene now 'answering when your father gives you money'; the paired question fib-chichi-itsu-okane-kuremasu-q rewritten to おとうさんはいつおかねをくれますか 'When does your father give you money?' (stage-made clip, needs re-voicing)."}
+{"id":"chapter-15/kakimasu-draw/leaks-answer/1","status":"fixed","statusReason":"'drawing a picture' moved into the Production hint. かきます is a target shared with Lesson 17/19's 'Write', so a Recognition scene is mandatory; it is now 'about a picture', which separates the senses without stating the meaning."}
+{"id":"chapter-15/demo-but-vocab/ambiguous/1","status":"fixed","statusReason":"English now 'But (at the start of a sentence)', separate from が 'But (particle)'."}
+{"id":"chapter-15/kaeru-dict-form/wrong-content/1","status":"fixed","statusReason":"Lesson 6 corrected to Lesson 7; note also says the ます form alone cannot tell the group."}
+{"id":"chapter-15/kiku-listen-dict-form/wrong-content/1","status":"fixed","statusReason":"English now 'Listen, hear; also ask (dictionary form)'; note says きく is the dictionary form of ききます in both senses."}
+{"id":"chapter-15/watashi-mo-desu/ambiguous/1","status":"fixed","statusReason":"Dropped 'Same here' (こちらこそ's gloss); English is 'Me too.'"}
+{"id":"chapter-15/-/missing-info/1","status":"fixed","statusReason":"taberu-dict-form-eg now says the ます form does not always show the group and lists the Regular 2 verbs met so far; kaeru-dict-form says the same for -ります verbs."}
+{"id":"chapter-15/-/other/1","status":"fixed","statusReason":"Exercise and grammar-section citations dropped from suki-ja-arimasen, jouzu-ja-arimasen, utau-dict-form, miseru-dict-form and ageru-dict-form; the example sentences kept."}
+{"id":"chapter-15-extras/x15a-itoko-no-pooru/book-mismatch/1","status":"fixed","statusReason":"Note now calls it the apposition の of インターンの ラジャさん, keeping the contrast with the nominalizer."}
+{"id":"chapter-15-extras/x15a-itoko-no-pooru/missing-info/1","status":"fixed","statusReason":"Production hint added: the short form, without こちらは."}
+{"id":"chapter-15-extras/p102-kankou-suru/missing-info/1","status":"fixed","statusReason":"English now 'Go sightseeing (dictionary form)'."}
+{"id":"chapter-15-extras/p102-jitensha-ni-noru/missing-info/1","status":"fixed","statusReason":"English now 'Ride a bicycle (dictionary form)'."}
+{"id":"chapter-15-extras/amazing/ambiguous/1","status":"skipped","statusReason":"A duplicate of sugoi-great, not a sense distinction, so the fix is an exclusion; this field-edit pass may not remove a card. Theme 13 duplicate exclusions are F2's."}
+{"id":"chapter-15-extras/to-swim-2/ambiguous/1","status":"fixed","statusReason":"Hint made concrete: swimming as a sport, the noun plus します like テニスをします."}
+{"id":"chapter-15-extras/haha-ga-kureru-okashi-ga-suki/wrong-content/1","status":"fixed","statusReason":"Deleted the false 'always in the dictionary form' sentence. The card's untaught-structure finding is left to F2."}
+{"id":"chapter-15-extras/x15b-nihon-no-ryouri-suki/unanswerable/1","status":"fixed","statusReason":"Hint added naming りょうり joined with の; p102-kankoku-ryouri is now 'Korean cuisine' to match the 'Italian cuisine' compound."}
+{"id":"chapter-15-extras/p102-kankoku-ryouri/unanswerable/1","status":"fixed","statusReason":"English now 'Korean cuisine', matching イタリアりょうり 'Italian cuisine'; the の card carries a hint."}
+{"id":"chapter-15-extras/-/other/1","status":"fixed","statusReason":"The four citation-plus-restatement notes (ex2-eg-a, ex2-eg-b, ex3-eg, ex7-eg) dropped; x15c-hon-yomu and x15b-supootsu keep their derivation without the EXERCISES/chart pointers."}
+{"id":"chapter-15-extras/fib-chan-robotto-anime-suki-a/book-mismatch/1","status":"fixed","statusReason":"English now 'Yes, (she) likes it.'"}

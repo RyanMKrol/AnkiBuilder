@@ -106,7 +106,7 @@
     },
     {
       "id": "p102-kankou-suru",
-      "english": "To go sightseeing",
+      "english": "Go sightseeing (dictionary form)",
       "category": "Travel & Tourism",
       "target": "かんこうする",
       "note": "A noun plus する (suru), the dictionary form of します (shimasu). The polite form is かんこうします (kankō shimasu).",
@@ -185,7 +185,7 @@
       "id": "x15c-hon-yomu-no-ga-suki",
       "english": "I like reading books.",
       "category": "Sports & Hobbies",
-      "note": "よみます → よむ, one of the forms EXERCISES V asks you to make.",
+      "note": "よみます (yomimasu) → よむ (yomu): Regular 1, so the み before ます becomes む.",
       "reviewNote": "Extras wave 2b (constructed for systematic coverage; job: forms — よむ was carded bare only).",
       "target": "ほんをよむのがすきです",
       "aiSuggested": true
@@ -250,10 +250,11 @@
       "id": "x15a-itoko-no-pooru",
       "english": "This is my cousin, Paul.",
       "category": "Family & People",
-      "note": "This の joins two nouns: いとこ の ポール, \"Paul, [who is] my cousin.\" It is the same の as にほんのアニメ, and NOT the nominalizer の of かくのがすきです — that one only ever follows a verb.",
+      "note": "This の joins two nouns: いとこ の ポール, \"Paul, [who is] my cousin.\" It is the apposition の of インターンの ラジャさん (intān no Raja-san, \"Raja-san, the intern\"), and NOT the nominalizer の of かくのがすきです — that one only ever follows a verb.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: possessive/appositive の, and the contrast with this lesson's nominalizer の).",
       "target": "いとこのポールです",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "the short form, without こちらは (kochira wa, \"this person\")"
     },
     {
       "id": "x15a-piza-ga-suki",
@@ -269,7 +270,7 @@
     },
     {
       "id": "p102-jitensha-ni-noru",
-      "english": "To ride a bicycle",
+      "english": "Ride a bicycle (dictionary form)",
       "category": "Transport",
       "target": "じてんしゃにのる",
       "note": "のる (noru) takes に (ni), not を (o): じてんしゃにのる (jitensha ni noru), never じてんしゃをのる (jitensha o noru).",
@@ -291,7 +292,7 @@
     },
     {
       "id": "p102-kankoku-ryouri",
-      "english": "Korean food",
+      "english": "Korean cuisine",
       "category": "Food",
       "target": "かんこくりょうり",
       "note": "Built the same way as this lesson's イタリアりょうり (itaria ryōri): a country in front of りょうり (ryōri).",
@@ -345,7 +346,7 @@
       "english": "To swim",
       "category": "Sports & Hobbies",
       "target": "すいえいをします",
-      "hint": "the pursuit you take up",
+      "hint": "swimming as a sport: the noun plus します (shimasu), like テニスをします (tenisu o shimasu, \"play tennis\")",
       "note": "すいえい (suiei) is a NOUN meaning swimming as a sport or discipline, so it needs します to become something you do: まいしゅう すいえいを します (maishū suiei o shimasu), 'I swim every week'. しゅみは すいえい です (shumi wa suiei desu) = 'my hobby is swimming'. For the physical act, use およぐ (oyogu).",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 15 teaches suiei and the sport/hobby set"
     },
@@ -386,7 +387,7 @@
       "id": "x15b-supootsu-o-suru-no-ga-suki",
       "english": "Tanaka-san likes playing sports.",
       "category": "Sports & Hobbies",
-      "note": "します → する is Irregular, the third class in the chart along with きます → くる.",
+      "note": "します (shimasu) → する (suru) is Irregular, along with きます (kimasu) → くる (kuru).",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: forms — のが on an Irregular verb, completing the chart's three classes).",
       "target": "たなかさんはスポーツをするのがすきです",
       "aiSuggested": true
@@ -418,7 +419,8 @@
       "note": "りょうり on its own is \"cooking\" or \"cuisine\"; にほんの narrows it, the same way イタリアりょうり does.",
       "reviewNote": "Extras wave 2 (constructed for systematic coverage; job: vocabulary — the only sentence the bare りょうり appears in).",
       "target": "にほんのりょうりがすきです",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "りょうり (ryōri, \"cooking, cuisine\") joined to the country with の (no)"
     },
     {
       "id": "x15a-yakyuu-ga-suki",
@@ -586,7 +588,6 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Exercise II's worked example for stating what someone likes and is skilled at, combining grammar points 1's two patterns in one exchange.",
       "reviewNote": "にほんしゅ (nihonshu, \"Japanese sake\") is not glossed in any VOCABULARY box in this chapter; it appears only as part of this exercise's own worked example.",
       "target": "かとうさんはにほんしゅがすきです。ゴルフがじょうずです"
     },
@@ -596,7 +597,6 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Exercise II's worked example for stating what someone dislikes and is unskilled at.",
       "reviewNote": null,
       "target": "かとうさんはコーヒーがすきじゃありません。テニスがじょうずじゃありません"
     },
@@ -606,7 +606,6 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Exercise III's worked example for asking someone whether they like something.",
       "reviewNote": null,
       "target": "すずきさんはスポーツがすきですか"
     },
@@ -616,7 +615,6 @@
       "category": "Grammar & Function Words",
       "scene": null,
       "hint": null,
-      "note": "Exercise VII's worked example for talking about what you like to do.",
       "reviewNote": null,
       "target": "グリーンさんはおんがくをきくのがすきですか"
     },
@@ -779,7 +777,7 @@
       "english": "I like the sweets my mother gives me.",
       "category": "Grammar & Function Words",
       "target": "ははがくれるおかしがすきです",
-      "note": "くれる (give to me) sits in front of おかし (sweets) and describes it: \"the sweets my mother gives me\". A verb describing a noun is always in the dictionary form.",
+      "note": "くれる (give to me) sits in front of おかし (sweets) and describes it: \"the sweets my mother gives me\".",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using くれる, the dictionary form added to the base unit in the same batch."
     },

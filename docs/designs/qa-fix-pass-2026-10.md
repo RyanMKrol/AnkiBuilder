@@ -334,6 +334,14 @@ Updated by the orchestrating session as tasks land. Status: todo, running, merge
 | F4 audio                                                                                                                                                      | (main checkout)                       | todo   |               |
 | F5 close-out                                                                                                                                                  | qa-fix/close-out                      | todo   |               |
 
+## Wave B notes (2026-10-19)
+
+Busy People: 456 of 466 field-edit findings fixed, 10 skipped (statuses in `qa/<slug>/2026-10-15/status/*.jsonl`, to be folded into findings.jsonl by F5). Genki: 62 of 68 fixed, 5 skipped, 1 wont-fix; 39 silent kanji cards became voiced words (backfill script, SPENT); six additions appended in batch `qa-fix-2026-10`. Cards needing audio are listed in `status/*.changed-text.txt` (58 lines). Preflight after the wave: Busy People has no collision FAIL left, 12 untaught-words ACK instances for F2 to judge, and the stale-package FAIL until F5 rebuilds; Genki has the 39 new voiced cards without clips (F4) and one ACK (有, whose reading the reader gave as 有る).
+
+For the owner, from the fixers: three target changes on hand-trimmed clips were skipped (chapter-1-extras irl-l1-28 needs さん added; irl-l1-26 and irl-l1-27 need a ？), plus chapter-18-extras party-no-ato-bar-whiskey; the iie/īe spelling is a collection-wide choice (deck style rule says iie); あさごはん/ばんごはん and 高い/出す/右側/々 cannot move to an earlier chapter without replacing a delivered note (a card id is its written form), so their exclusion reasons were corrected instead; four duplicate or fragment cards were excluded in chapters 1 and 5 (irl-l1-41, irl-l1-42, 5th-floor, 1st-floor) and will appear as orphans.
+
+Session-review items: corpus.json and cards.json already differed in chapters 13 to 18 before the pass (fill-in-the-blank cards exist only in cards.json; chapters 17 and 18 have corpus items with no card); the shared scratchpad folder let two agents overwrite each other's helper scripts; the pre-push hook failed and then passed with no change for two agents.
+
 ## Orphan notes for the owner to delete in Anki
 
 Filled in by F5 from the delivery dry run.

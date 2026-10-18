@@ -36,7 +36,7 @@
       "pronunciation": "ashita no ku-ji kara desu.",
       "aiSuggested": true,
       "reviewNote": "EXERCISES V model answer, lifted verbatim, split from kaigi-itsu-q. Particle job: の (no) linking a day to an hour, the pattern GRAMMAR 3 exists to teach.",
-      "note": "GRAMMAR 3: the larger unit leads. あした (ashita) comes first, then the hour, joined by の (no).",
+      "note": "The larger unit leads: あした (ashita) comes first, then the hour, joined by の (no).",
       "audio": "040de7bf05058a7d.mp3",
       "audioOriginal": "040de7bf05058a7d.orig.mp3",
       "audioAuto": "040de7bf05058a7d.mp3",
@@ -76,7 +76,7 @@
       "audioOriginal": "8e20b82e5bee4220.orig.mp3",
       "audioAuto": "8e20b82e5bee4220.mp3",
       "audioMarked": true,
-      "scene": "answering when the day off is",
+      "scene": "answering when the time off is",
       "audioTextHash": "8e20b82e5bee4220"
     },
     {
@@ -153,7 +153,7 @@
       "pronunciation": "ima ku-ji ja arimasen.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form job: member 2 of the contrast set. No card in the deck negates a time, so the learner has no model for saying a clock reading is wrong.",
-      "note": "じゃありません (ja arimasen) negates a time exactly as it negates a noun in これはとけいじゃありません (kore wa tokei ja arimasen) from Lesson 2. Member 2 of the set begun by いまくじです (ima ku-ji desu).",
+      "note": "じゃありません (ja arimasen) negates a time exactly as it negates a noun in これはとけいじゃありません (kore wa tokei ja arimasen, \"This isn't a watch.\") from Lesson 2.",
       "audio": "8e0dbe240461539d.mp3",
       "audioOriginal": "8e0dbe240461539d.orig.mp3",
       "audioAuto": "8e0dbe240461539d.mp3",
@@ -200,7 +200,7 @@
       "pronunciation": "kaigi wa itsu desu ka.",
       "aiSuggested": true,
       "reviewNote": "EXERCISES V model dialogue, lifted verbatim rather than constructed. Particle job: いつ (itsu) has two examples in the deck and the book's own model sentence is not among them.",
-      "note": "いつ (itsu) asks which day the meeting is; なんじ (nan-ji) asks for the clock hour instead, as in きょうのかいぎはなんじですか (kyō no kaigi wa nan-ji desu ka), 'What time is today's meeting?' — that one already assumes you know the day.",
+      "note": "いつ (itsu) asks when in general, and can be answered with a day, a time or both, as in あしたのくじからです (ashita no ku-ji kara desu, 'It's from 9:00 tomorrow.'). なんじ (nan-ji) asks only for the clock hour, as in きょうのかいぎはなんじですか (kyō no kaigi wa nan-ji desu ka), 'What time is today's meeting?'",
       "audio": "e1792621ca8b80ff.mp3",
       "audioOriginal": "e1792621ca8b80ff.orig.mp3",
       "audioAuto": "e1792621ca8b80ff.mp3",
@@ -406,7 +406,8 @@
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
       "additionAudioInherited": true,
-      "additionDone": true
+      "additionDone": true,
+      "note": "さん (san, \"3\") takes ぷん (pun) with no change to the number, the same as よん (yon, \"4\") in よんぷん (yonpun, \"four minutes\")."
     },
     {
       "id": "sumisu-purezen-itsu-q",
@@ -526,7 +527,7 @@
       "pronunciation": "tōkyō wa ima gogo yo-ji han desu.",
       "aiSuggested": true,
       "reviewNote": "Constructed from SPEAKING PRACTICE 1, where Tokyo is 4:30 and London is 8:30 A.M. Particle job: は (wa) over a geographical topic had a single example, and this gives it a ごぜん/ごご minimal pair on the same clock moment.",
-      "note": "GRAMMAR 1: naming another place makes it the topic with は (wa), as in ロンドンはいまなんじですか (rondon wa ima nan-ji desu ka) earlier in this lesson. That question's answer, ごぜんはちじはんです (gozen hachi-ji han desu, '8:30 A.M.'), is the same moment as this one but the opposite half of the day.",
+      "note": "Naming another place makes it the topic with は (wa), as in ロンドンはいまなんじですか (rondon wa ima nan-ji desu ka, 'What time is it in London now?') earlier in this lesson. That question's answer, ごぜんはちじはんです (gozen hachi-ji han desu, '8:30 A.M.'), is the same moment as this one but the opposite half of the day.",
       "audioOriginal": "ebde9df2e25b7651-genkanji-1f4f7d73.orig.mp3",
       "audioAuto": "ebde9df2e25b7651-genkanji-1f4f7d73.mp3",
       "audioMarked": true,
@@ -627,7 +628,7 @@
     },
     {
       "id": "yasumi-itsu-q",
-      "english": "When is your day off?",
+      "english": "When is your time off?",
       "category": "Time",
       "target": "やすみはいつですか",
       "pronunciation": "yasumi wa itsu desu ka.",
@@ -698,7 +699,7 @@
       "audioOriginal": "1bae30ecdc3f470e.orig.mp3",
       "audioAuto": "1bae30ecdc3f470e.mp3",
       "audioMarked": true,
-      "scene": "answering the reception desk's opening hours",
+      "scene": "answering the hotel front desk's opening hours",
       "audioTextHash": "1bae30ecdc3f470e"
     },
     {
@@ -709,7 +710,7 @@
       "pronunciation": "shigoto wa go-ji made desu.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Particle job: the second half of the から/まで minimal pair. Every other から card and まで card in the deck uses a different topic, so the particle itself was never the variable.",
-      "note": "The same sentence as しごとはくじからです (shigoto wa ku-ji kara desu) with one thing changed: から (kara) marks where a stretch of time begins, まで (made) where it ends.",
+      "note": "The end half of the working day: しごとはくじからです (shigoto wa ku-ji kara desu, \"Work starts at 9:00.\") gives the start with から (kara), and this one gives the end with まで (made).",
       "audio": "b29042d31c737a8f.mp3",
       "audioOriginal": "b29042d31c737a8f.orig.mp3",
       "audioAuto": "b29042d31c737a8f.mp3",
@@ -738,7 +739,7 @@
       "pronunciation": "ima nan-ji desu ka.",
       "aiSuggested": true,
       "reviewNote": "EXERCISES II model dialogue (also SPEAKING PRACTICE 1). This is the question the lesson is named after and it is missing from the deck entirely — the deck has いまさんじです (the answer) but never the question.",
-      "note": "No topic is needed when asking the current time — GRAMMAR 1 notes that the present time takes no subject, and いま (ima) is simply added adverbially.",
+      "note": "No topic is needed when asking the current time: いま (ima) is simply added in front.",
       "audio": "fb73dd301f03ae4c.mp3",
       "audioOriginal": "fb73dd301f03ae4c.orig.mp3",
       "audioAuto": "fb73dd301f03ae4c.mp3",
@@ -830,7 +831,7 @@
     },
     {
       "id": "furonto-q",
-      "english": "What time is the reception desk open, from and to?",
+      "english": "What time is the hotel front desk open, from and to?",
       "category": "Time",
       "target": "フロントはなんじからなんじまでですか",
       "pronunciation": "furonto wa nan-ji kara nan-ji made desu ka.",
@@ -938,7 +939,8 @@
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
       "additionAudioInherited": true,
-      "additionDone": true
+      "additionDone": true,
+      "note": "よん (yon, \"4\") takes ぷん (pun) with no change to the number, the same as さん (san, \"3\") in さんぷん (sanpun, \"three minutes\")."
     },
     {
       "id": "ima-kuji-desu-ka",
@@ -948,7 +950,7 @@
       "pronunciation": "ima ku-ji desu ka.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form job: member 3 of the contrast set, and the deck's only yes/no か question in this lesson — every other か card is an information question.",
-      "note": "Member 3 of the set: か (ka) turns いまくじです (ima ku-ji desu) into a yes/no question, unlike なんじですか (nan-ji desu ka), which asks for the time itself.",
+      "note": "か (ka) turns いまくじです (ima ku-ji desu) into a yes/no question, unlike なんじですか (nan-ji desu ka), which asks for the time itself.",
       "audio": "7631da123c87634b.mp3",
       "audioOriginal": "7631da123c87634b.orig.mp3",
       "audioAuto": "7631da123c87634b.mp3",
@@ -978,7 +980,7 @@
       "pronunciation": "ima ku-ji desu.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form job: opens the affirmative / negative / question contrast set. The negative and the yes/no question come from Lessons 1–2, and this lesson never re-applies them to a time, so the set is assembled here.",
-      "note": "Member 1 of a です / じゃありません / ですか set built on one time, so the change is in the ending and nothing else.",
+      "note": "いま (ima) goes first, and です (desu) follows the time.",
       "audio": "473bf9d6dbc9b0b8.mp3",
       "audioOriginal": "473bf9d6dbc9b0b8.orig.mp3",
       "audioAuto": "473bf9d6dbc9b0b8.mp3",
@@ -1180,7 +1182,8 @@
       "aiSuggested": true,
       "reviewNote": "Duplicate of the established ばんごはん (bangohan) card in Lesson 8. The Lesson 3 sentences that use the word still teach it.",
       "note": "ばん (ban), evening, + ごはん (gohan), meal. Pairs with あさごはん (asagohan), breakfast.",
-      "excluded": true
+      "excluded": true,
+      "excludedReason": "Carded in Lesson 8 (chapter-8/bangohan), which was built and delivered first. The book teaches the word here in Lesson 3, so by book order this is the earlier card; it stays excluded only to keep the delivered Lesson 8 note and its scheduling, pending the owner."
     },
     {
       "id": "happii-awaa-a",
@@ -1206,7 +1209,8 @@
       "aiSuggested": true,
       "reviewNote": "Duplicate of the established あさごはん (asagohan) card in Lesson 8. The Lesson 3 sentences that use the word still teach it.",
       "note": "あさ (asa), morning, + ごはん (gohan), meal — the same compounding as ひるやすみ (hiruyasumi) from this lesson.",
-      "excluded": true
+      "excluded": true,
+      "excludedReason": "Carded in Lesson 8 (chapter-8/asagohan), which was built and delivered first. The book teaches the word here in Lesson 3, so by book order this is the earlier card; it stays excluded only to keep the delivered Lesson 8 note and its scheduling, pending the owner."
     },
     {
       "id": "td-last-order-q",

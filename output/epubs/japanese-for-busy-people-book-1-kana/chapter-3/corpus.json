@@ -45,18 +45,18 @@
     },
     {
       "id": "kara-particle",
-      "english": "from (particle)",
+      "english": "From (particle)",
       "category": "Grammar & Function Words",
       "target": "から",
       "note": "Marks a starting point in time or place ('from'); pairs with まで (made, 'until') to state a range, as in しごとはくじからごじまでです (shigoto wa kuji kara goji made desu), 'work is from 9:00 to 5:00.'",
-      "scene": "a starting time"
+      "scene": "a particle used with clock times"
     },
     {
       "id": "han-suffix",
       "english": "…thirty, half past (hour)",
       "category": "Time",
       "target": "はん",
-      "note": "Suffix — attaches after an hour to mean 'half past' (written 〜はん (han) in the source). さんじはん (sanjihan, '3:30') is the natural way to say the half hour, more idiomatic than spelling it out as さんじさんじゅっぷん (sanji sanjuppun) with ふん/ぷん (fun/pun)."
+      "note": "Suffix: attaches after an hour to mean 'half past'. さんじはん (sanjihan, '3:30') is the natural way to say the half hour, more idiomatic than spelling it out as さんじさんじゅっぷん (sanji sanjuppun) with ふん/ぷん (fun/pun)."
     },
     {
       "id": "juuichi-ji-han",
@@ -66,11 +66,11 @@
     },
     {
       "id": "made-particle",
-      "english": "until (particle)",
+      "english": "Until (particle)",
       "category": "Grammar & Function Words",
       "target": "まで",
       "note": "Marks an ending point in time or place ('until'); pairs with から (kara, 'from') to state a range, as in しごとはくじからごじまでです (shigoto wa kuji kara goji made desu), 'work is from 9:00 to 5:00.'",
-      "scene": "marking a point in time that something runs until"
+      "scene": "a particle used with clock times"
     },
     {
       "id": "ni-ji-han",
@@ -80,10 +80,10 @@
     },
     {
       "id": "rasuto-oodaa",
-      "english": "last order",
+      "english": "Last order",
       "category": "Food",
       "target": "ラストオーダー",
-      "note": "Katakana loanword from English 'last order' - the deadline for placing a food or drink order before a restaurant's kitchen or bar closes, often stated with まで (made, 'until')."
+      "note": "Katakana loanword from English 'last order': the deadline for placing a food or drink order before a restaurant's kitchen or bar closes."
     },
     {
       "id": "ni-ji",
@@ -405,7 +405,7 @@
       "english": "7:00",
       "category": "Time",
       "target": "しちじ",
-      "note": "Uses しち (shichi), not なな (nana) from Lesson 2's number card - 7:00 keeps an older reading of 7 instead of the everyday cardinal number used elsewhere."
+      "note": "7 has two readings, なな (nana) and しち (shichi), as in じゅうしち (jū-shichi, \"17\"); the hour always uses しち."
     },
     {
       "id": "juuichi-ji-time",
@@ -451,7 +451,7 @@
     },
     {
       "id": "san-ji-sanjuppun-han",
-      "english": "3:30",
+      "english": "3:30, half past three",
       "category": "Time",
       "target": "さんじはん"
     },
@@ -496,16 +496,15 @@
       "english": "…o'clock",
       "category": "Time",
       "target": "じ",
-      "note": "Suffix — attaches after a number to form the hour (written 〜じ (ji) in the source)"
+      "note": "Suffix: attaches after a number to form the hour."
     },
     {
       "id": "fun-pun-suffix",
       "english": "…minute(s)",
       "category": "Time",
       "target": "ふん",
-      "uncertain": true,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 20: Going Places (3): How Do You Go There? (re-taught as a dedicated WORD POWER 'Periods' vocabulary entry (〜ふん／ぷん(かん)) in the duration sense, distinct from ch17's clock-time sense)",
-      "note": "Suffix — attaches after a number to form minutes; alternates between ふん (fun) and ぷん (pun) depending on the preceding sound (written 〜ふん／ぷん (fun/pun) in the source)"
+      "reviewNote": "Possibly premature — explicitly re-taught later in Lesson 20: Going Places (3): How Do You Go There?, as a dedicated WORD POWER 'Periods' vocabulary entry (〜ふん／ぷん(かん)) in the duration sense, distinct from ch17's clock-time sense",
+      "note": "Suffix: attaches after a number to form minutes. It is ふん (fun) after most numbers and ぷん (pun) after 1, 3, 4, 6, 8, 10 and the tens; いち (ichi, \"1\"), ろく (roku, \"6\"), はち (hachi, \"8\") and じゅう (jū, \"10\") shorten before it, as in じゅっぷん (juppun, \"ten minutes\"), while さん (san, \"3\") and よん (yon, \"4\") stay as they are."
     },
     {
       "id": "gozen",
@@ -568,10 +567,11 @@
     },
     {
       "id": "furonto",
-      "english": "reception desk",
+      "english": "Reception desk",
       "category": "Travel & Tourism",
       "target": "フロント",
-      "note": "Used specifically for a hotel's front desk (from English 'front'); うけつけ (uketsuke) is the more general word for a reception desk elsewhere."
+      "note": "Used specifically for a hotel's front desk (from English 'front'); うけつけ (uketsuke) is the more general word for a reception desk elsewhere.",
+      "hint": "at a hotel"
     },
     {
       "id": "ban",
@@ -593,7 +593,7 @@
       "english": "I see. / Is that so?",
       "category": "Greetings",
       "target": "そうですか",
-      "note": "Comments on what someone just told you, rather than confirming your own statement like そうです (sou desu) does. Falling intonation = 'I see' (acknowledging what you heard); rising intonation = 'Is that so? / Really?' (a genuine question)."
+      "note": "A comment on what someone else has just said, meaning 'I see' or 'Is that so?'. The book says it is spoken with falling intonation."
     },
     {
       "id": "doumo-arigatou",

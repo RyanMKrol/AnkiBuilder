@@ -30,10 +30,9 @@
       "id": "sochira",
       "english": "There (where you are)",
       "category": "Directions",
-      "hint": "polite form",
-      "note": "Same polite set as あちら (achira, 'over there', Lesson 5) and どちら (dochira, 'where', Lesson 1). Careful with こちら (kochira): so far this book teaches it only as 'this is …' for introducing a person (Lesson 1), not as a place.",
-      "reviewNote": null,
-      "target": "そちら"
+      "target": "そちら",
+      "note": "Same polite set as あちら (achira, 'over there', Lesson 5) and どちら (dochira, 'where', Lesson 1). Its partner こちら (kochira) is 'this way / here', as in どうぞこちらへ (dōzo kochira e, 'Please come in.'), as well as the 'this is …' of introductions.",
+      "hint": "polite form"
     },
     {
       "id": "douzo-kochira-e",
@@ -167,10 +166,8 @@
       "id": "senshuu",
       "english": "Last week",
       "category": "Time",
-      "hint": null,
-      "note": "First of a three-way time prefix: せん〜 (sen-, 'last'), こん〜 (kon-, 'this'), らい〜 (rai-, 'next'), here + しゅう (shuu, 'week') — the same prefixes regularly build こんげつ／らいげつ (kongetsu/raigetsu, 'this/next month'), but not the year words (see きょねん, kyonen).",
-      "reviewNote": null,
-      "target": "せんしゅう"
+      "target": "せんしゅう",
+      "note": "First of a three-way time prefix: せん〜 (sen-, 'last'), こん〜 (kon-, 'this'), らい〜 (rai-, 'next'), here + しゅう (shū, 'week'). The same prefixes regularly build こんげつ／らいげつ (kongetsu/raigetsu, 'this/next month'), and only partly the year words (see きょねん, kyonen)."
     },
     {
       "id": "ikimashita",
@@ -194,11 +191,12 @@
       "id": "kinou",
       "english": "Yesterday",
       "category": "Time",
-      "hint": null,
+      "target": "きのう",
+      "uncertain": true,
+      "excluded": true,
       "note": "Extends the day words from Lesson 3: おととい (ototoi, 'day before yesterday') → きのう (kinou, 'yesterday') → きょう (kyou, 'today') → あした (ashita, 'tomorrow') → あさって (asatte, 'day after tomorrow').",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (explicitly re-taught as a dedicated Key Sentence item (recurs again in ch. 30's Key Sentences too))",
-      "target": "きのう",
-      "uncertain": true
+      "excludedReason": "Carded once, as chapter-6-extras/yesterday; the base sentences that use きのう (ks3-restaurant-friend, form-kuukou-ikimashita) gloss it in their notes."
     },
     {
       "id": "tomodachi",
@@ -213,19 +211,15 @@
       "id": "ks3-restaurant-friend",
       "english": "Smith-san went to a restaurant with a friend yesterday.",
       "category": "Travel & Tourism",
-      "hint": null,
-      "note": null,
-      "reviewNote": null,
-      "target": "スミスさんはきのうともだちとレストランにいきました"
+      "target": "スミスさんはきのうともだちとレストランにいきました",
+      "note": "きのう (kinō) means 'yesterday'."
     },
     {
       "id": "kyonen",
       "english": "Last year",
       "category": "Time",
-      "hint": null,
-      "note": "Breaks this lesson's せん／こん／らい pattern: きょねん (kyonen, 'last year'), ことし (kotoshi, 'this year'), and らいねん (rainen, 'next year') don't follow the regular せんげつ／こんげつ／らいげつ (sengetsu/kongetsu/raigetsu) pattern used for weeks and months.",
-      "reviewNote": null,
-      "target": "きょねん"
+      "target": "きょねん",
+      "note": "Last year and this year are irregular, きょねん (kyonen) and ことし (kotoshi), where the week and month rows use せん〜 (sen-, 'last') and こん〜 (kon-, 'this'); next year, らいねん (rainen), keeps the regular らい〜 (rai-, 'next')."
     },
     {
       "id": "kara-particle-place",
@@ -602,10 +596,9 @@
       "id": "dono",
       "english": "Which (of three or more things)",
       "category": "Grammar & Function Words",
-      "hint": null,
+      "target": "どの",
       "note": "どれ (dore) is used alone to mean 'which one'; どの (dono) is used instead when 'which' is followed by a noun, e.g. どの バス (dono basu) 'which bus'.",
-      "reviewNote": null,
-      "target": "どの"
+      "hint": "before a noun, as in \"which bus\""
     },
     {
       "id": "ga-particle",

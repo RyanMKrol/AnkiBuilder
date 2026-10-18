@@ -10,10 +10,11 @@
   "items": [
     {
       "id": "kore",
-      "english": "this one",
+      "english": "This one",
       "category": "Grammar & Function Words",
       "target": "これ",
-      "note": "Used for physical objects ('this one'); to politely introduce a person, use こちら (kochira) instead."
+      "note": "Used for physical objects ('this one'); to politely introduce a person, use こちら (kochira) instead.",
+      "hint": "a thing near you, not a person"
     },
     {
       "id": "dareno",
@@ -40,7 +41,7 @@
       "english": "I don't know",
       "category": "Other",
       "target": "わかりません",
-      "note": "A soft, humble way to say you don't know — often used to avoid a flat, direct refusal or when genuinely unsure."
+      "note": "The plain 'I don't know'. To show you are hesitating before admitting it, put さあ (sā) in front: さあ、わかりません (sā, wakarimasen, \"Well, I don't know\")."
     },
     {
       "id": "watashino",

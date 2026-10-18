@@ -63,7 +63,8 @@
       "category": "Directions",
       "target": "１かい",
       "ttsText": "いっかい",
-      "note": null
+      "reviewNote": "Sub-entry of ちか１かい (first-floor basement).",
+      "note": "Japanese counts from street level, so いっかい (ik-kai) is the British ground floor. The British 'first floor' is にかい (ni-kai)."
     },
     {
       "id": "sono",
@@ -84,7 +85,7 @@
       "category": "Numbers",
       "target": "２ほん",
       "ttsText": "にほん",
-      "note": "Counter ほん (hon)/ぼん (bon)/ぽん (pon) for long, slender objects like bottles. Watch this one by ear: にほん (ni-hon) here is 'two long objects', identical in sound to にほん (nihon, 'Japan') from Lesson 1."
+      "note": "Counter ほん (hon)/ぼん (bon)/ぽん (pon) for long, slender objects like bottles. Watch this one: にほん (ni-hon) here is 'two long objects', spelled the same as にほん (nihon, 'Japan') from Lesson 1."
     },
     {
       "id": "fifth-floor",
@@ -306,7 +307,8 @@
       "english": "Eight (long objects)",
       "category": "Numbers",
       "target": "はっぽん",
-      "reviewNote": "From the numbers/counters reference chart (WORD POWER II)."
+      "reviewNote": "From the numbers/counters reference chart (WORD POWER II).",
+      "note": null
     },
     {
       "id": "counter-tsu-4",
@@ -578,7 +580,8 @@
       "english": "Which one (of three or more things)",
       "category": "Grammar & Function Words",
       "target": "どれ",
-      "note": "どちら (dochira) is used instead when choosing between only two items."
+      "note": "Which one (of three or more things). どちら (dochira) is used instead when choosing between only two items.",
+      "hint": "used on its own, not before a noun"
     },
     {
       "id": "dore-example",
@@ -630,7 +633,8 @@
       "english": "Thanks.",
       "category": "Greetings",
       "target": "どうも",
-      "note": "A casual, shortened 'thanks' dropped from どうもありがとう (doumo arigatou) — the fuller どうもありがとう or the more formal ありがとうございます (arigatou gozaimasu) from Frequently Used Expressions are better in polite settings."
+      "note": "A casual, shortened 'thanks' cut down from どうもありがとう (dōmo arigatō, \"Thank you.\"); the fuller どうもありがとう or the more formal ありがとうございます (arigatō gozaimasu) from Frequently Used Expressions are better in polite settings.",
+      "hint": "the one-word thanks"
     }
   ]
 }

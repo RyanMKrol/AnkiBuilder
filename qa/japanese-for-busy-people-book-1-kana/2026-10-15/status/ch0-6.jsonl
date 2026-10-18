@@ -1,0 +1,126 @@
+{"id":"chapter-0/shitsurei-shimasu-leaving/ambiguous/1","status":"fixed","statusReason":"Scene now names the leaving, so it no longer fits the entering card."}
+{"id":"chapter-0/iie-not-at-all/missing-info/1","status":"fixed","statusReason":"Note says this USE deflects thanks and that the word's plain meaning is 'no'."}
+{"id":"chapter-0/arigatou-gozaimasu/missing-info/1","status":"fixed","statusReason":"Note names the short form the hint implies; hint kept as the collision cue."}
+{"id":"chapter-0/osaki-ni-shitsurei-shimasu/missing-info/1","status":"fixed","statusReason":"Added a plain-words gloss of おさきに, no grammar needed."}
+{"id":"chapter-0/gochisousama-deshita/other/1","status":"fixed","statusReason":"Unit's note romaji swept to macrons (gochisōsama, ohayō, sayōnara, mō)."}
+{"id":"chapter-0/konnichiwa/book-mismatch/1","status":"fixed","statusReason":"Note uses the book's 'rather informal'."}
+{"id":"chapter-0/sayounara/book-mismatch/1","status":"fixed","statusReason":"Dropped 'fairly formal' and the 'not for people you will see again' restriction from hint and notes; hint now fits the book's picture and still separates the four Good-bye cards."}
+{"id":"chapter-1/san-suffix-ch14/other/1","status":"fixed","statusReason":"Dropped 'in the source'; the note says what the 〜 means instead."}
+{"id":"chapter-1/desu-suffix/other/1","status":"fixed","statusReason":"Dropped the 'in the source' aside."}
+{"id":"chapter-1/onegaishimasu-pattern-ch14/missing-info/1","status":"fixed","statusReason":"English is the book's 'I'd like to see Tanaka-san, please.', with a reception-desk hint and a clause on what を marks."}
+{"id":"chapter-1/fib-c1-hoffman-not-british/other/1","status":"fixed","statusReason":"Romaji fuses doitsujin like the vocabulary card."}
+{"id":"chapter-1/o-prefix/wrong-content/1","status":"fixed","statusReason":"Note limited to what the book says (お on くに makes it the listener's country); the 'almost entirely yours' generalisation is cut."}
+{"id":"chapter-1-extras/irl-l1-28/book-mismatch/2","status":"fixed","statusReason":"English says 'the United Kingdom', the book's and the igirisu card's gloss (ruling 6, the book wins over the class)."}
+{"id":"chapter-1-extras/w2-harisu-san-desu/note-unverifiable/1","status":"fixed","statusReason":"irl-l1-28 keeps its bare name (hand-curated clip), so 'can only mean' is softened to 'normally means'."}
+{"id":"chapter-1-extras/w2-harris-no-okuni-q/other/1","status":"fixed","statusReason":"Stale 'every other の' claim replaced by the possession contrast."}
+{"id":"chapter-1-extras/irl-l1-26/wrong-content/1","status":"fixed","statusReason":"English keeps '-san' like the target."}
+{"id":"chapter-1-extras/irl-l1-26/other/1","status":"fixed","statusReason":"Romaji fuses furansujin."}
+{"id":"chapter-1-extras/irl-l1-27/wrong-content/1","status":"fixed","statusReason":"English keeps '-san' and says 'British' as the igirisujin card does (ruling 6)."}
+{"id":"chapter-1-extras/irl-l1-27/other/1","status":"fixed","statusReason":"Romaji fuses igirisujin."}
+{"id":"chapter-1-extras/irl-l1-19/other/1","status":"fixed","statusReason":"Romaji fuses furansujin; English matches 'German (person)'."}
+{"id":"chapter-1-extras/irl-l1-21/other/1","status":"fixed","statusReason":"Romaji fuses kankokujin; English matches 'German (person)'."}
+{"id":"chapter-1-extras/fib-hoffman-engineer-a/other/1","status":"fixed","statusReason":"Matched to its unit's 'īe'. The collection-wide iie/īe choice (the style guide's 'いい stays ii' points at iie) is left to the T8 consistency check, not settled here."}
+{"id":"chapter-1-extras/td-hai-sou-desu/other/1","status":"fixed","statusReason":"Dropped the NOTES 2 citation; the point is stated directly."}
+{"id":"chapter-1-extras/w2-watashi-wa-igirisujin/other/1","status":"fixed","statusReason":"Points at the bracketed sentence itself instead of 'the Key Sentence'."}
+{"id":"chapter-1-extras/notes-iie-chigaimasu/missing-info/1","status":"fixed","statusReason":"Note now says what ちがいます itself means."}
+{"id":"chapter-1-extras/irl-l1-34/other/1","status":"fixed","statusReason":"Kanji 先生 replaced by kana せんせい (sensei)."}
+{"id":"chapter-1-extras/td-intro-tanaka-short/other/1","status":"fixed","statusReason":"Note states the general point instead of an unseen dialogue."}
+{"id":"chapter-1-extras/fib-watashi-wa-enjinia-desu/other/1","status":"fixed","statusReason":"Category moved to 'Work & Occupations'."}
+{"id":"chapter-1-extras/irl-l1-28/wrong-content/1","status":"skipped","statusReason":"Adding さん changes the target, and the card ships a picked -gen- clip: hand-curated clip, owner to regenerate. Meanwhile the note says the bare name is how you introduce someone on your own side and that the book keeps さん for anyone else."}
+{"id":"chapter-1-extras/irl-l1-26/other/2","status":"skipped","statusReason":"Dropping ？ changes the target, and the card ships a picked -genkanji- clip: hand-curated clip, owner to regenerate."}
+{"id":"chapter-1-extras/irl-l1-27/other/2","status":"skipped","statusReason":"Dropping ？ changes the target, and the card ships a manual clip: hand-curated clip, owner to regenerate."}
+{"id":"chapter-2/kore/ambiguous/1","status":"fixed","statusReason":"Production hint says it is a thing, not a person, which separates it from こちら."}
+{"id":"chapter-2/wakarimasen/note-unverifiable/1","status":"fixed","statusReason":"Dropped the 'soft, humble' and 'avoid a refusal' claims; the note now agrees with saa-wakarimasen, which carries the register point."}
+{"id":"chapter-2-extras/nan/leaks-answer/1","status":"fixed","statusReason":"Hint keeps its job without quoting なんじ (which contained the answer) or untaught counters."}
+{"id":"chapter-2-extras/tanaka-san-kore-wa-tanaka-san-no-pen-desu-ka/missing-info/1","status":"fixed","statusReason":"Production hint says to use the name, not あなた."}
+{"id":"chapter-2-extras/sumisu-san-no-desu-ka/missing-info/1","status":"fixed","statusReason":"Production hint says to use the name, not あなた (same call as the たなかさん pen card)."}
+{"id":"chapter-2-extras/kaisha-no-namae-o-oshiete-kudasai/missing-info/1","status":"fixed","statusReason":"Note says there is no word for 'your' because the listener is understood."}
+{"id":"chapter-2-extras/meeru-adoresu-o-oshiete-kudasai/missing-info/1","status":"fixed","statusReason":"Note says there is no word for 'your' because the listener is understood."}
+{"id":"chapter-2-extras/namae-o-oshiete-kudasai/other/1","status":"fixed","statusReason":"Target is now おなまえをおしえてください, the form its own note calls normal; needs new audio."}
+{"id":"chapter-2-extras/fib-kagi-wa-dare-no-desu-ka/unanswerable/1","status":"fixed","statusReason":"English leads with the topic, as the unit's other は possessive cards do."}
+{"id":"chapter-2-extras/hai-sasaki-san-no-desu/other/1","status":"fixed","statusReason":"Dropped the 'GRAMMAR 3' citation; the explanation stands on its own."}
+{"id":"chapter-2-extras/kore-wa-sasaki-san-no-saifu-desu-ka/other/1","status":"fixed","statusReason":"Note names the two answers instead of 'Member 3' and 'below'; the unit's other 'Member N of the set' labels swept the same way."}
+{"id":"chapter-2-extras/irl-l1-42/other/1","status":"fixed","statusReason":"Excluded: a schematic fragment the book never prints. A delivered note, so it shows as orphaned in Anki for the owner."}
+{"id":"chapter-2-extras/irl-l1-41/other/1","status":"fixed","statusReason":"Excluded: a schematic fragment, covered by kore-wa-watashi-no-juusho-desu. A delivered note, so it shows as orphaned in Anki for the owner."}
+{"id":"chapter-3/sou-desu-ka/book-mismatch/1","status":"fixed","statusReason":"Note follows the book: one expression, 'I see' or 'Is that so?', falling intonation; the rising-intonation split and the wrong そうです comparison are gone."}
+{"id":"chapter-3/fib-c3-presentation-a/book-mismatch/1","status":"fixed","statusReason":"English keeps から as 'from'."}
+{"id":"chapter-3/fib-c3-party-a/book-mismatch/1","status":"fixed","statusReason":"English keeps から as 'from'."}
+{"id":"chapter-3/rasuto-oodaa/book-mismatch/1","status":"fixed","statusReason":"Dropped 'often stated with まで', which the book does not say."}
+{"id":"chapter-3/shichi-ji/note-unverifiable/1","status":"fixed","statusReason":"Note says 7 has two readings and the hour uses しち, instead of 'an older reading'."}
+{"id":"chapter-3/made-particle/leaks-answer/1","status":"fixed","statusReason":"Scene no longer contains 'until'; it still separates this まで from the route まで of Lesson 19."}
+{"id":"chapter-3/kara-particle/leaks-answer/1","status":"fixed","statusReason":"Scene no longer paraphrases 'from'; it still separates this から from the 'because' から cards."}
+{"id":"chapter-3/furonto/ambiguous/1","status":"fixed","statusReason":"Hints added on both sides of the 'Reception desk' collision: 'at a hotel' here, 'an office or building, not a hotel' on うけつけ."}
+{"id":"chapter-3/san-ji-sanjuppun-han/missing-info/1","status":"fixed","statusReason":"English says 'half past three', like the other はん cards."}
+{"id":"chapter-3/fun-pun-suffix/missing-info/1","status":"fixed","statusReason":"Note states which numbers take ぷん and which shorten; dropped the 'in the source' aside."}
+{"id":"chapter-3-extras/shigoto-goji-made/wrong-content/1","status":"fixed","statusReason":"Note says the two cards are the start and end halves, not 'one thing changed'."}
+{"id":"chapter-3-extras/kaigi-itsu-q/book-mismatch/1","status":"fixed","statusReason":"Note says いつ asks when in general (day, time or both), as the book models it."}
+{"id":"chapter-3-extras/furonto-q/ambiguous/1","status":"fixed","statusReason":"English says 'the hotel front desk', so it no longer cues うけつけ; furonto-a's scene matches."}
+{"id":"chapter-3-extras/three-minutes/missing-info/1","status":"fixed","statusReason":"Note says ぷん follows さん unchanged."}
+{"id":"chapter-3-extras/four-minutes/missing-info/1","status":"fixed","statusReason":"Note says ぷん follows よん unchanged."}
+{"id":"chapter-3-extras/ima-kuji-desu/other/1","status":"fixed","statusReason":"Note is about the sentence itself; the 'Member N' clauses on its two siblings are gone too."}
+{"id":"chapter-3-extras/kaigi-ashita-kuji-a/other/1","status":"fixed","statusReason":"Dropped 'GRAMMAR 3:'; the same label swept from toukyou-ima-gogo-yoji-han."}
+{"id":"chapter-3-extras/ima-nanji-q/other/1","status":"fixed","statusReason":"Dropped the 'GRAMMAR 1 notes' citation; the rule is stated directly."}
+{"id":"chapter-3-extras/yasumi-itsu-q/other/1","status":"fixed","statusReason":"Reworded the pair to the Lesson 3 sense, 'time off' (the book's gloss), rather than widening the word card toward Lesson 7's 'day off'."}
+{"id":"chapter-3-extras/asagohan/other/1","status":"skipped","statusReason":"The swap needs chapter-8 (F1b's unit) and would ship a new Lesson 3 note in place of the delivered, scheduled Lesson 8 one: owner to decide. The false excludedReason (\"duplicate of the established Lesson 8 card\") is rewritten to say the book teaches it here first."}
+{"id":"chapter-3-extras/bangohan/other/1","status":"skipped","statusReason":"The swap needs chapter-8 (F1b's unit) and would ship a new Lesson 3 note in place of the delivered, scheduled Lesson 8 one: owner to decide. The false excludedReason is rewritten to say the book teaches it here first."}
+{"id":"chapter-4-extras/-/unanswerable/1","status":"fixed","statusReason":"Every ordering card in Lesson 4 and its extras now carries the kohi-pair hint naming its form (ください 'only asks for a thing', おねがいします 'also works for a favour'), and the ください note states the English convention once."}
+{"id":"chapter-4/ks3-kore-kudasai/ambiguous/1","status":"fixed","statusReason":"Kept the book's KS3 English and added the kohi-o-kudasai hint ('the request that only asks for a thing'), so the front picks ください."}
+{"id":"chapter-4/ks4-curry-salad/unanswerable/1","status":"fixed","statusReason":"Added the kohi-o-onegaishimasu hint, so the front picks おねがいします."}
+{"id":"chapter-4/en-suffix/other/1","status":"fixed","statusReason":"Dropped 'in the source'; kept the example."}
+{"id":"chapter-4/ja/book-mismatch/1","status":"fixed","statusReason":"Note says this じゃ is the casual form of では, both 'well then', as the book pairs them; the hint names では and stays as the collision cue against Lesson 6's dewa."}
+{"id":"chapter-4/num-1trillion/other/1","status":"fixed","statusReason":"Note romaji 'chō' with a macron."}
+{"id":"chapter-4/mechanical-pencil/other/1","status":"fixed","statusReason":"Note romaji 'shāpu penshiru' with macrons."}
+{"id":"chapter-4-extras/ja-kore-to-sore-o-kudasai/other/1","status":"fixed","statusReason":"Dropped 'GRAMMAR 4's rule'; the point is said directly."}
+{"id":"chapter-4-extras/kohi-o-kudasai/wrong-content/1","status":"fixed","statusReason":"Note narrowed to the noun を ください pattern on the card."}
+{"id":"chapter-4-extras/kohi-o-kudasai/note-unverifiable/1","status":"fixed","statusReason":"Hint keeps the book's scope distinction and drops 'blunter'; 'softer' dropped from kohi-o-onegaishimasu's note and 'polite' from its hint."}
+{"id":"chapter-4-extras/are-wa-sumaho-ja-arimasen/other/1","status":"fixed","statusReason":"Dropped 'the スマホ distance set'; kept the deny-then-correct point."}
+{"id":"chapter-4-extras/kore-wa-hassen-en-desu-ka/other/1","status":"fixed","statusReason":"Dropped the 'Member 3 of the 8,000えん set' label (and its 'hassen'en' romaji)."}
+{"id":"chapter-4-extras/kore-wa-hassen-en-ja-arimasen/other/1","status":"fixed","statusReason":"Dropped the 'Member 2' label."}
+{"id":"chapter-4-extras/kore-wa-anata-no-kasa-desu-ka/other/1","status":"fixed","statusReason":"Dropped 'Completes the かさ set'."}
+{"id":"chapter-4-extras/sore-mo-watashi-no-desu/other/1","status":"fixed","statusReason":"Dropped 'the point GRAMMAR 2 makes'."}
+{"id":"chapter-4-extras/kore-wa-watashi-no-kasa-desu/other/1","status":"fixed","statusReason":"Kept the affirmative pointer, dropped the GRAMMAR 2 reference."}
+{"id":"chapter-4-extras/tokei-o-misete-kudasai/ambiguous/1","status":"fixed","statusReason":"Hint names とけい as the general word, against うでどけい (the wristwatch)."}
+{"id":"chapter-4-extras/kore-mo-sore-mo-tokei/ambiguous/1","status":"fixed","statusReason":"Hint names とけい as the general word, against うでどけい (the wristwatch)."}
+{"id":"chapter-4-extras/fib-iie-rimokon-desu/wrong-content/1","status":"skipped","statusReason":"The collection is split 'iie' / 'īe' and the style guide's 'いい stays ii' favours this card's spelling, so a one-card change fixes nothing: the owner picks one spelling and it is swept collection-wide (T8's consistency check will list them)."}
+{"id":"chapter-5/doumo/ambiguous/1","status":"fixed","statusReason":"Production hint 'the one-word thanks' separates it from the two 'Thank you.' cards; note romaji swept to macrons."}
+{"id":"chapter-5/fib-c5-coffee-cup-quantity/wrong-content/1","status":"fixed","statusReason":"Dropped 'Then', which the target has no じゃ for."}
+{"id":"chapter-5/fib-c5-coffee-cup-origin-a/ambiguous/1","status":"fixed","statusReason":"English 'It's a British one.' asks for the の, like iie-doitsu-no-desu."}
+{"id":"chapter-5/fib-c5-coffee-cup-origin-a/book-mismatch/1","status":"fixed","statusReason":"England replaced by British/UK, the book's and the igirisu card's gloss; kore-wa-igirisu-no-kaban too."}
+{"id":"chapter-5/counter-hon-8/other/1","status":"fixed","statusReason":"Romaji 'hap-pon'; the floor cards swept to the same hyphenated style (ik-kai, rok-kai, hak-kai, nana-kai, kyū-kai, juk-kai, chika ik-kai)."}
+{"id":"chapter-5-extras/1st-floor/ambiguous/1","status":"fixed","statusReason":"Excluded the absorbed duplicate and moved its ground-floor note onto chapter-5/ikkai-sub. A delivered note, so it shows as orphaned in Anki for the owner."}
+{"id":"chapter-5-extras/sono-wain-doko-no/ambiguous/1","status":"fixed","statusReason":"Hint names the shape; the two どこの[noun] cards with the same English frame got 'starting from それ / これ' hints."}
+{"id":"chapter-5-extras/ano-kamera-wa-doko-no/ambiguous/1","status":"fixed","statusReason":"Hint names the shape; the two どこの[noun] cards with the same English frame got 'starting from それ / これ' hints."}
+{"id":"chapter-5/two-hon/note-unverifiable/1","status":"fixed","statusReason":"'identical in sound' became 'spelled the same'."}
+{"id":"chapter-5-extras/furansu-no-desu/ambiguous/1","status":"fixed","statusReason":"English 'It's a French one.' asks for the の."}
+{"id":"chapter-5-extras/dore-desu-ka/wrong-content/1","status":"fixed","statusReason":"Note says どちら's 'which of two' sense is new here instead of pointing back to the 'where' card."}
+{"id":"chapter-5-extras/5th-floor/ambiguous/1","status":"fixed","statusReason":"Excluded the absorbed duplicate, keeping the base card. A delivered note, so it shows as orphaned in Anki for the owner."}
+{"id":"chapter-5-extras/hai-sore-mo-nihon-no/wrong-content/1","status":"fixed","statusReason":"Note explains それ as pointing back to the thing just mentioned, not as 'the near one'."}
+{"id":"chapter-5-extras/kore-wa-igirisu-no-kaban/wrong-content/1","status":"fixed","statusReason":"'never' softened to 'usually' for a country before の."}
+{"id":"chapter-5-extras/akawain-o-ippon-kudasai/wrong-content/1","status":"fixed","statusReason":"Added はち / はっぽん to the list."}
+{"id":"chapter-5-extras/koppu-futatsu-to-osara-sanmai/wrong-content/1","status":"fixed","statusReason":"Glasses take つ as the general counter, matching the base note, not 'because they are round'."}
+{"id":"chapter-5-extras/eg-kiiro-no-kutsushita/unanswerable/1","status":"fixed","statusReason":"Production hint asks for the の form."}
+{"id":"chapter-5-extras/eg-kiiroi-kasa/unanswerable/1","status":"fixed","statusReason":"Production hint asks for the い form."}
+{"id":"chapter-5-extras/irl-l1-29/ambiguous/1","status":"fixed","statusReason":"Production hint names しゅっしん and the hometown sense."}
+{"id":"chapter-5-extras/irl-l1-29/book-mismatch/1","status":"fixed","statusReason":"Dropped the false 'in this lesson' example and glossed しゅっしん in the note."}
+{"id":"chapter-5-extras/irl-l1-40/wrong-content/1","status":"fixed","statusReason":"English is natural ('What is the hotel's address?'); a note says the Japanese uses どこ."}
+{"id":"chapter-5-extras/sore-wa-itaria-no-kutsu-ka/other/1","status":"fixed","statusReason":"Set numbering dropped from all six notes, each keeping its explanatory clause."}
+{"id":"chapter-5-extras/fukuro-mo-ni-mai-kudasai/other/1","status":"fixed","statusReason":"The dialogue reference now names the wine sentence it meant."}
+{"id":"chapter-5-extras/rooftop/wrong-content/1","status":"fixed","statusReason":"Replaced the false shared-じょう claim (and the untaught ちゅうしゃじょう) with a true note."}
+{"id":"chapter-6/dono/ambiguous/1","status":"fixed","statusReason":"Production hint says どの goes before a noun; Lesson 5's どれ got the mirror hint 'used on its own'."}
+{"id":"chapter-6/e-particle/wrong-content/1","status":"fixed","statusReason":"Hint glosses に as 'to', the sense this lesson teaches."}
+{"id":"chapter-6/sochira/other/1","status":"fixed","statusReason":"Note now says こちら is also 'this way / here', as in どうぞこちらへ."}
+{"id":"chapter-6/party-e-sentence/missing-info/1","status":"fixed","statusReason":"Added the he-eki-e-ikimasu hint naming へ."}
+{"id":"chapter-6/ks3-restaurant-friend/ordering/1","status":"fixed","statusReason":"Glossed きのう in the note here and on form-kuukou-ikimashita (ruling 5: gloss by default); the excluded base kinou card now has an excludedReason. Un-excluding kinou would ship a new card, which belongs to the additions gate, not a field edit."}
+{"id":"chapter-6/kyonen/wrong-content/1","status":"fixed","statusReason":"Note says only きょねん and ことし are irregular and らいねん is regular; senshuu's 'but not the year words' became 'only partly'."}
+{"id":"chapter-6-extras/he-ginza-no-depaato-e-ikimashita/missing-info/1","status":"fixed","statusReason":"Added the he-eki-e-ikimasu hint naming へ."}
+{"id":"chapter-6-extras/he-kouen-e-ikimasu-ka/missing-info/1","status":"fixed","statusReason":"Added the he-eki-e-ikimasu hint naming へ."}
+{"id":"chapter-6-extras/ga-dore-ga-sumisu-san-no-kaban-desu-ka/ambiguous/1","status":"fixed","statusReason":"Production hint asks for the どれが order."}
+{"id":"chapter-6-extras/td-tokyo-shisha-no-sumisu/missing-info/1","status":"fixed","statusReason":"Production hint gives the phone context, so it no longer reads as introducing someone else."}
+{"id":"chapter-6-extras/td-dewa-ashita/ambiguous/1","status":"fixed","statusReason":"Production hint carries the base dewa card's 'fuller, more formal' cue."}
+{"id":"chapter-6-extras/to-koohii-to-koucha-o-onegaishimasu/ambiguous/1","status":"fixed","statusReason":"English follows the deck's おねがいします wording ('I would like ..., please.'), with Lesson 4's おねがいします hint."}
+{"id":"chapter-6-extras/td-hitori-de-kimasu-ka/other/1","status":"fixed","statusReason":"Note states the viewpoint rule without the dialogue's 'her' and 'his'."}
+{"id":"chapter-6-extras/hai-hitori-de-ikimasu/note-unverifiable/1","status":"fixed","statusReason":"Dropped the 'a bare はい would sound abrupt' claim."}
+{"id":"chapter-6-extras/vocab-tokyo-eki-ni-ikimasu-ka/note-unverifiable/1","status":"fixed","statusReason":"'never とうきょうのえき' replaced by what each form means."}
+{"id":"chapter-6-extras/-/other/1","status":"fixed","statusReason":"Dropped the GRAMMAR / WORD POWER / EXERCISE labels from all seven notes, keeping each rule; form-tokyo-shisha-kimasen-deshita got a real note."}
+{"id":"chapter-6-extras/-/other/2","status":"fixed","statusReason":"Member numbering removed from all nine notes; each now names its form (present, negative, past, past negative)."}
+{"id":"chapter-6/tachi-example/other/1","status":"skipped","statusReason":"ともだちたち is attested, ordinary spoken Japanese, so nothing is wrong. Rebuilding the deck's たち example on the book's かいしゃのひとたち would change a target and two notes together; that is the owner's call, not a field fix."}

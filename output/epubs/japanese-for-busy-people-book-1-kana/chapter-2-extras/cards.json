@@ -37,7 +37,7 @@
       "aiSuggested": true,
       "reviewNote": "From the VOCABULARY block after EXERCISE III (p. 13), where the book introduces なん = 'what'. The deck already has だれ and だれの but this word is missing entirely, even though the exercise built on it is a whole section.",
       "note": "The question word that fills the same slot as a noun: これはとけいです (kore wa tokei desu) becomes これはなんですか (kore wa nan desu ka). Sits alongside だれ (dare, 'who') from this lesson.",
-      "hint": "the form used before です (desu, \"is\") and counters, as in なんじ (nan-ji, \"what time\")",
+      "hint": "the form used right before です (desu, \"is\")",
       "audio": "nan-manual-1c1e3f0b.mp3",
       "audioOriginal": "5a9ce8de39ab8884.orig.mp3",
       "audioAuto": "5a9ce8de39ab8884.mp3",
@@ -153,7 +153,7 @@
       "pronunciation": "kore wa kagi desu.",
       "aiSuggested": true,
       "reviewNote": "Constructed, though かぎ is the book's own substitution word in EXERCISE I-A. Coverage job: form — supplies the です / じゃありません / ですか transformation on a single noun. Also the first sentence anywhere in the deck to use かぎ.",
-      "note": "Member 1 of a three-way set on one word: swap です (desu) for じゃありません (ja arimasen) to deny it, or add か (ka) to ask it.",
+      "note": "Swap です (desu) for じゃありません (ja arimasen) to deny it, or add か (ka) to ask it.",
       "audio": "eb44dd5904a5bf63.mp3",
       "audioOriginal": "eb44dd5904a5bf63.orig.mp3",
       "audioAuto": "eb44dd5904a5bf63.mp3",
@@ -231,7 +231,8 @@
       "audioOriginal": "3588a469cf49f46e.orig.mp3",
       "audioAuto": "3588a469cf49f46e.mp3",
       "audioMarked": true,
-      "audioTextHash": "3588a469cf49f46e"
+      "audioTextHash": "3588a469cf49f46e",
+      "hint": "use the person's name, not a word for \"you\""
     },
     {
       "id": "kore-wa-sasaki-san-no-sumaho-desu-ka",
@@ -255,7 +256,7 @@
       "pronunciation": "kaisha no namae o oshiete kudasai.",
       "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE VII-B pattern (p. 14), swapping the phone number for another item from the same business-card list. Coverage jobs: vocabulary (かいしゃのなまえ had no sentence) and particle (を, which had a single example).",
-      "note": "を (o) marks what you are asking for; the の (no) inside かいしゃのなまえ (kaisha no namae) just links the two nouns.",
+      "note": "を (o) marks what you are asking for; the の (no) inside かいしゃのなまえ (kaisha no namae) just links the two nouns. There is no word for 'your': asking the person directly, their company is understood.",
       "audio": "01cccd16618cc78e.mp3",
       "audioOriginal": "01cccd16618cc78e.orig.mp3",
       "audioAuto": "01cccd16618cc78e.mp3",
@@ -364,7 +365,7 @@
       "pronunciation": "kore wa sasaki san no saifu ja arimasen.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Coverage job: form — no card in the deck negates a possessive noun phrase in full (the wave-1 いいえ、わたしのじゃありません is the elliptical version).",
-      "note": "Member 2 of the possessive set — the negative lands on です (desu) at the very end, never on の (no).",
+      "note": "The negative lands on です (desu) at the very end, never on の (no).",
       "audio": "9a9891644b3dce37.mp3",
       "audioOriginal": "9a9891644b3dce37.orig.mp3",
       "audioAuto": "9a9891644b3dce37.mp3",
@@ -656,7 +657,10 @@
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
       "additionAudioInherited": true,
-      "additionDone": true
+      "additionDone": true,
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "A frame with its value missing (ホテルのじゅうしょは, \"The hotel address is\"), which the shared rules forbid; the book prints only complete sentences for this pattern."
     },
     {
       "id": "iie-watashi-no-desu",
@@ -732,7 +736,7 @@
       "pronunciation": "kore wa sasaki san no saifu desu.",
       "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE V pattern (これはスミスさんのほんです). Coverage jobs: vocabulary (さいふ had no sentence) and form (opens the possessive contrast set).",
-      "note": "Member 1 of a set built on [owner] の [thing]. The whole possessive phrase behaves like a single noun, so です (desu), じゃありません (ja arimasen) and か (ka) attach to it exactly as they do to かぎ (kagi).",
+      "note": "Built on [owner] の [thing]. The whole possessive phrase behaves like a single noun, so です (desu), じゃありません (ja arimasen) and か (ka) attach to it exactly as they do to かぎ (kagi).",
       "audio": "029dc3899c20d355.mp3",
       "audioOriginal": "029dc3899c20d355.orig.mp3",
       "audioAuto": "029dc3899c20d355.mp3",
@@ -778,7 +782,7 @@
       "pronunciation": "hai, sasaki san no desu.",
       "aiSuggested": true,
       "reviewNote": "Lifted from the EXERCISE VI-A model answer (p. 14), with さいふ substituted for めがね to keep the contrast set on one noun. Coverage job: form — the affirmative elliptical possessive answer.",
-      "note": "さいふ (saifu) vanishes from the answer and の (no) carries the possession by itself — this is GRAMMAR 3's noun-omission rule in its most common shape.",
+      "note": "さいふ (saifu) vanishes from the answer and の (no) carries the possession by itself. This is the most common shape of leaving out a noun the listener already knows.",
       "audio": "08f2f8b7d5938ef6.mp3",
       "audioOriginal": "08f2f8b7d5938ef6.orig.mp3",
       "audioAuto": "08f2f8b7d5938ef6.mp3",
@@ -963,7 +967,7 @@
       "pronunciation": "kore wa kagi ja arimasen.",
       "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE I-B pattern. Coverage job: form — the negative member of the かぎ contrast set.",
-      "note": "Member 2 of the set. Only です (desu) changes — nothing else in the sentence moves.",
+      "note": "Only です (desu) changes to じゃありません (ja arimasen); nothing else in the sentence moves.",
       "audio": "kore-wa-kagi-ja-arimasen-manual-a0f9c94c.mp3",
       "audioOriginal": "81cbbd0da42365b2.orig.mp3",
       "audioAuto": "81cbbd0da42365b2.mp3",
@@ -977,7 +981,7 @@
     },
     {
       "id": "fib-kagi-wa-dare-no-desu-ka",
-      "english": "Whose key is it?",
+      "english": "Whose is the key?",
       "category": "Home & Household",
       "target": "かぎはだれのですか",
       "pronunciation": "kagi wa dare no desu ka",
@@ -1003,7 +1007,7 @@
       "pronunciation": "kore wa sasaki san no saifu desu ka.",
       "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE VI-B pattern (これはスミスさんのさいふですか, p. 14). Coverage job: form — the question member of the possessive contrast set.",
-      "note": "Member 3 of the possessive set. Both short answers below reply to this one.",
+      "note": "Answered with はい、ささきさんのです (hai, Sasaki-san no desu, \"Yes, it's Sasaki-san's\") or いいえ、ささきさんのじゃありません (īe, Sasaki-san no ja arimasen, \"No, it isn't Sasaki-san's\"). Like any question, it is the statement with か (ka) added.",
       "audio": "dd61e1814fe52115.mp3",
       "audioOriginal": "dd61e1814fe52115.orig.mp3",
       "audioAuto": "dd61e1814fe52115.mp3",
@@ -1267,7 +1271,10 @@
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
       "additionAudioInherited": true,
-      "additionDone": true
+      "additionDone": true,
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "A frame with its value missing (わたしのじゅうしょは, \"My address is...\"); kore-wa-watashi-no-juusho-desu already carries わたしのじゅうしょ in a complete sentence."
     },
     {
       "id": "kore-wa-kagi-desu-ka",
@@ -1277,7 +1284,7 @@
       "pronunciation": "kore wa kagi desu ka.",
       "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE II-A pattern. Coverage job: form — the question member of the かぎ set, and the clearest possible demonstration of the か particle.",
-      "note": "Member 3 of the set, and a minimal pair with これはかぎです (kore wa kagi desu): か (ka) is the only difference. Japanese does not reorder words to ask a question.",
+      "note": "A minimal pair with これはかぎです (kore wa kagi desu, \"This is a key.\"): か (ka) is the only difference. Japanese does not reorder words to ask a question.",
       "audio": "7bce29cac9d35545.mp3",
       "audioOriginal": "7bce29cac9d35545.orig.mp3",
       "audioAuto": "7bce29cac9d35545.mp3",
@@ -1337,17 +1344,18 @@
         "start": 0,
         "end": 1.455714897260274
       },
-      "audioTextHash": "304809bf4a3c332d"
+      "audioTextHash": "304809bf4a3c332d",
+      "hint": "use the person's name, not a word for \"you\""
     },
     {
       "id": "namae-o-oshiete-kudasai",
       "english": "Please tell me your name.",
       "category": "Other",
-      "target": "なまえをおしえてください",
-      "pronunciation": "namae o oshiete kudasai.",
+      "target": "おなまえをおしえてください",
+      "pronunciation": "onamae o oshiete kudasai.",
       "aiSuggested": true,
       "reviewNote": "Constructed on the EXERCISE VII-B pattern (p. 14). Coverage jobs: vocabulary (なまえ appears only inside かいしゃのなまえ, never in a sentence) and particle (を with a bare noun object).",
-      "note": "Asking about someone else's name you would normally add the polite お (o) prefix — おなまえ (onamae) — the same prefix seen in おくに (okuni) and おかし (okashi).",
+      "note": "Asking for someone else's name, you add the polite お (o) prefix: おなまえ (onamae), the same prefix seen in おくに (okuni, \"your country\"). Your own name is just なまえ (namae).",
       "audio": "6290b90d769a2001.mp3",
       "audioOriginal": "6290b90d769a2001.orig.mp3",
       "audioAuto": "6290b90d769a2001.mp3",
@@ -1385,7 +1393,8 @@
       "audioOriginal": "eea73c1f35808a1d.orig.mp3",
       "audioAuto": "eea73c1f35808a1d.mp3",
       "audioMarked": true,
-      "audioTextHash": "eea73c1f35808a1d"
+      "audioTextHash": "eea73c1f35808a1d",
+      "note": "There is no word for 'your': asking the person directly, it is understood whose email address you mean."
     }
   ]
 }

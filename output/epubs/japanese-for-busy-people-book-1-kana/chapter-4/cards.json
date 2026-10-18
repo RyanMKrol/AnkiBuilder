@@ -90,7 +90,7 @@
       "pronunciation": "en",
       "audio": "86bcc51214d84ed2.mp3",
       "altAudio": "60c32b9062ceca95.mp3",
-      "note": "Suffix — attaches directly after a number (written 〜えん (en) in the source), e.g. 3,000えん (en)",
+      "note": "Suffix: written 〜えん (en) directly after a number, e.g. 3,000えん (sanzen en, \"3,000 yen\").",
       "audioOriginal": "86bcc51214d84ed2.orig.mp3",
       "audioAuto": "86bcc51214d84ed2.mp3",
       "audioFilter": "standard",
@@ -136,12 +136,12 @@
       "pronunciation": "ja",
       "audio": "40ff36c17f1db83d.mp3",
       "altAudio": "f1d96fe279d03c2b.mp3",
-      "note": "This じゃ (ja, 'well then') is a filler word marking a conclusion — not the same じゃ in じゃありません (ja arimasen) from an earlier lesson, which is a contraction of では (dewa) plus the negative; same sound, different job.",
+      "note": "This じゃ (ja) is the casual form of では (dewa); both mean 'well then' and mark a conclusion (では arrives in Lesson 6). It is a different word from the じゃ in じゃありません (ja arimasen) from an earlier lesson, the negative of です (desu): same sound, different job.",
       "audioOriginal": "40ff36c17f1db83d.orig.mp3",
       "audioAuto": "40ff36c17f1db83d.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "hint": "the casual contraction",
+      "hint": "the casual form of では (dewa)",
       "audioTextHash": "40ff36c17f1db83d"
     },
     {
@@ -152,7 +152,7 @@
       "pronunciation": "kudasai",
       "audio": "c51cb90f29f2e9f0.mp3",
       "altAudio": "54065d292cb7d38e.mp3",
-      "note": "\"noun を (o) ください (kudasai)\" used when shopping or ordering; compare おねがいします (onegaishimasu), which can also be used to request an action or service",
+      "note": "\"noun を (o) ください (kudasai)\" asks for a thing, used when shopping or ordering; compare おねがいします (onegaishimasu), which can also be used to request an action or service. On this deck's ordering cards, 'I'll take ...' and 'X, please.' answer with ください, 'I would like ..., please.' with おねがいします, and the front's hint names which.",
       "audioOriginal": "c51cb90f29f2e9f0.orig.mp3",
       "audioAuto": "c51cb90f29f2e9f0.mp3",
       "audioFilter": "standard",
@@ -242,7 +242,8 @@
       "audioAuto": "eff8027a9673cb6f.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "eff8027a9673cb6f"
+      "audioTextHash": "eff8027a9673cb6f",
+      "hint": "the request that only asks for a thing"
     },
     {
       "id": "curry",
@@ -305,7 +306,8 @@
       "audioAuto": "b87a9d2e7fae2beb.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "b87a9d2e7fae2beb"
+      "audioTextHash": "b87a9d2e7fae2beb",
+      "hint": "the wider-use request, the one that also works for asking a favour"
     },
     {
       "id": "mo-example-umbrella",
@@ -896,7 +898,7 @@
       "audio": "c2cde6c3904c41f8.mp3",
       "altAudio": "fbbf77cfb4dc6f45.mp3",
       "reviewNote": "From the PLUS ONE large-number chart",
-      "note": "ちょう (chou) is the counting unit for one trillion",
+      "note": "ちょう (chō) is the counting unit for one trillion",
       "audioOriginal": "c2cde6c3904c41f8.orig.mp3",
       "audioAuto": "c2cde6c3904c41f8.mp3",
       "audioFilter": "standard",
@@ -1086,7 +1088,7 @@
       "pronunciation": "shāpen",
       "audio": "fe3394528fe84e3a.mp3",
       "altAudio": "10c72d629c9c2dc7.mp3",
-      "note": "Colloquial shortening of シャープペンシル (shaapupenshiru)",
+      "note": "Colloquial shortening of シャープペンシル (shāpu penshiru)",
       "audioOriginal": "fe3394528fe84e3a.orig.mp3",
       "audioAuto": "fe3394528fe84e3a.mp3",
       "audioFilter": "standard",

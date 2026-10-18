@@ -42,7 +42,7 @@
       "target": "そちら",
       "pronunciation": "sochira",
       "audio": "6bca0266fbb08a7b.mp3",
-      "note": "Same polite set as あちら (achira, 'over there', Lesson 5) and どちら (dochira, 'where', Lesson 1). Careful with こちら (kochira): so far this book teaches it only as 'this is …' for introducing a person (Lesson 1), not as a place.",
+      "note": "Same polite set as あちら (achira, 'over there', Lesson 5) and どちら (dochira, 'where', Lesson 1). Its partner こちら (kochira) is 'this way / here', as in どうぞこちらへ (dōzo kochira e, 'Please come in.'), as well as the 'this is …' of introductions.",
       "audioOriginal": "6bca0266fbb08a7b.orig.mp3",
       "audioAuto": "6bca0266fbb08a7b.mp3",
       "audioFilter": "standard",
@@ -249,7 +249,7 @@
       "target": "せんしゅう",
       "pronunciation": "senshū",
       "audio": "f496f0f4be84e157.mp3",
-      "note": "First of a three-way time prefix: せん〜 (sen-, 'last'), こん〜 (kon-, 'this'), らい〜 (rai-, 'next'), here + しゅう (shuu, 'week') — the same prefixes regularly build こんげつ／らいげつ (kongetsu/raigetsu, 'this/next month'), but not the year words (see きょねん, kyonen).",
+      "note": "First of a three-way time prefix: せん〜 (sen-, 'last'), こん〜 (kon-, 'this'), らい〜 (rai-, 'next'), here + しゅう (shū, 'week'). The same prefixes regularly build こんげつ／らいげつ (kongetsu/raigetsu, 'this/next month'), and only partly the year words (see きょねん, kyonen).",
       "audioOriginal": "f496f0f4be84e157.orig.mp3",
       "audioAuto": "f496f0f4be84e157.mp3",
       "audioFilter": "standard",
@@ -291,7 +291,8 @@
       "uncertain": true,
       "excluded": true,
       "note": "Extends the day words from Lesson 3: おととい (ototoi, 'day before yesterday') → きのう (kinou, 'yesterday') → きょう (kyou, 'today') → あした (ashita, 'tomorrow') → あさって (asatte, 'day after tomorrow').",
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (explicitly re-taught as a dedicated Key Sentence item (recurs again in ch. 30's Key Sentences too))"
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (explicitly re-taught as a dedicated Key Sentence item (recurs again in ch. 30's Key Sentences too))",
+      "excludedReason": "Carded once, as chapter-6-extras/yesterday; the base sentences that use きのう (ks3-restaurant-friend, form-kuukou-ikimashita) gloss it in their notes."
     },
     {
       "id": "tomodachi",
@@ -320,7 +321,8 @@
       "audioTrim": {
         "start": 0,
         "end": 4.234944804152398
-      }
+      },
+      "note": "きのう (kinō) means 'yesterday'."
     },
     {
       "id": "kyonen",
@@ -329,7 +331,7 @@
       "target": "きょねん",
       "pronunciation": "kyonen",
       "audio": "0fdf09c71adb4673.mp3",
-      "note": "Breaks this lesson's せん／こん／らい pattern: きょねん (kyonen, 'last year'), ことし (kotoshi, 'this year'), and らいねん (rainen, 'next year') don't follow the regular せんげつ／こんげつ／らいげつ (sengetsu/kongetsu/raigetsu) pattern used for weeks and months.",
+      "note": "Last year and this year are irregular, きょねん (kyonen) and ことし (kotoshi), where the week and month rows use せん〜 (sen-, 'last') and こん〜 (kon-, 'this'); next year, らいねん (rainen), keeps the regular らい〜 (rai-, 'next').",
       "audioOriginal": "0fdf09c71adb4673.orig.mp3",
       "audioAuto": "0fdf09c71adb4673.mp3",
       "audioFilter": "standard",
@@ -448,7 +450,7 @@
       "target": "へ",
       "ttsText": "え",
       "pronunciation": "e",
-      "hint": "the alternative to に (ni, \"in/on/at\")",
+      "hint": "the alternative to に (ni, \"to\")",
       "note": "Interchangeable with に (ni) after a place or event noun with motion verbs like いきます (ikimasu). Written へ but pronounced え (e) when it is doing this job, not the usual \"he.\"",
       "reviewNote": "Was the textbook's grammar-note line スミスさんはパーティーに／へいきます, where ／ meant \"either particle works\" — not a speakable sentence. Recast as a particle card mirroring に (row 5).",
       "audio": "a3ac531b8a5da55a.mp3",
@@ -470,7 +472,8 @@
       "audioAuto": "358240b9c953537f.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "358240b9c953537f"
+      "audioTextHash": "358240b9c953537f",
+      "hint": "the direction particle written へ but read \"e\" (\"to/toward\")"
     },
     {
       "id": "kuukou",
@@ -912,7 +915,8 @@
       "audioAuto": "7e78b00b85647453.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "7e78b00b85647453"
+      "audioTextHash": "7e78b00b85647453",
+      "hint": "before a noun, as in \"which bus\""
     },
     {
       "id": "ga-particle",

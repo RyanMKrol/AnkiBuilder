@@ -60,10 +60,10 @@
       "category": "Grammar & Function Words",
       "target": "ええ、ときどききます",
       "scene": "Answering whether you often come to this restaurant",
-      "hint": "Uses the softer ええ (ē) for 'yes', as in the dialogue",
+      "hint": "Uses the softer ええ (ē) for 'yes'",
       "aiSuggested": true,
       "reviewNote": "Target Dialogue, Suzuki's reply ええ、ときどき きます. The frequency adverb ときどき is carded only as bare vocabulary; this is the book's printed answer to the title question and was never carded. Hint added because 'yes' would otherwise produce はい (hai).",
-      "note": "ええ (ē) is a softer, more casual 'yes' than はい (hai) — natural in relaxed conversation with restaurant staff you know."
+      "note": "ええ (ē) is a softer, more casual 'yes' than はい (hai), natural in relaxed conversation, as with a colleague."
     },
     {
       "id": "ex9-ginko-ni-shimasu",
@@ -91,7 +91,7 @@
       "english": "Drink",
       "category": "Food",
       "target": "のみもの",
-      "hint": "the noun, a thing you drink",
+      "hint": "the noun, a thing you drink; plain, without お (o)",
       "note": "The noun built from のみます (nomimasu) 'to drink'. A restaurant says it with the polite お (o): おのみもの (onomimono).",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 9 already teaches nomimono. Needs a hint on merge, because the English gloss \"Drink\" also reaches のみます (nomimasu), the verb: \"the noun, a thing you drink\". The book card nomimasu (chapter-8) takes \"the verb, what you do with a drink\"."
     },
@@ -145,7 +145,7 @@
       "english": "We would like to pay separately.",
       "category": "Money",
       "target": "べつべつにおねがいします",
-      "note": "べつべつで おねがいします (betsubetsu de onegaishimasu) is also used, per the lesson's notes.",
+      "note": "べつべつでおねがいします (betsubetsu de onegaishimasu) is also used.",
       "aiSuggested": true,
       "reviewNote": "Speaking Practice 2, Suzuki's line べつべつに おねがいします, which also gets its own NOTES entry in the book. Only the bare adverb べつべつに was carded; the printed expression is missing."
     },
@@ -163,9 +163,10 @@
       "english": "Last week, I met Green-san here.",
       "category": "Family & People",
       "target": "せんしゅうはここでグリーンさんにあいました",
-      "note": "The は (wa) after せんしゅう (senshū) singles out last week as the topic from among the times the speaker has come here, as explained in the lesson's notes.",
+      "note": "The は (wa) after せんしゅう (senshū) singles out last week as the topic from among the times the speaker has come here.",
       "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Suzuki's line せんしゅうは ここで グリーンさんに あいました, also the subject of the lesson's NOTES section on topical は. It combines new に + あいます with ここ and was never carded."
+      "reviewNote": "Target Dialogue, Suzuki's line せんしゅうは ここで グリーンさんに あいました, also the subject of the lesson's NOTES section on topical は. It combines new に + あいます with ここ and was never carded.",
+      "hint": "mark last week as the topic with は (wa)"
     },
     {
       "id": "p102-kyou-douyatte-koko-ni-kimashita-ka",
@@ -199,7 +200,7 @@
       "target": "にほんはどうですか",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form coverage for どうですか, taught in this lesson but absent from the deck; present-tense slot, asking a newcomer's impression.",
-      "note": "どう asks for an impression rather than a fact — what you think of something, not what state it is in. Compare どうでしたか (Lesson 11) for the same question in the past. The word is formally introduced in Lesson 11."
+      "note": "どう (dō) asks for an impression rather than a fact: what you think of something, not what state it is in. Compare りょこうはどうでしたか (ryokō wa dō deshita ka, \"How was the trip?\") for the same question in the past."
     },
     {
       "id": "p102-mainichi-nanji-ni-okimasu-ka",
@@ -214,10 +215,10 @@
       "english": "My wife sometimes goes shopping in Shibuya.",
       "category": "Family & People",
       "target": "かないはときどきしぶやでかいものをします",
-      "hint": "'My wife' here is かない (kanai), not つま (tsuma)",
+      "hint": "'my wife': the older, more traditional word",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for かない, the book's alternative to つま, which appears in no card at all; also adds a ときどき statement slot. Collision with v9-tsuma-to-kabuki over 'my wife', hence the hint on each.",
-      "note": "つま (tsuma) and かない (kanai) are two readings of the same word for 'my wife' — see つま (tsuma) card. This sentence uses かない."
+      "note": "つま (tsuma) and かない (kanai) are two words for 'my wife'; this sentence uses the older かない."
     },
     {
       "id": "p9-iie-amari-mimasen",
@@ -225,7 +226,7 @@
       "category": "Grammar & Function Words",
       "target": "いいえ、あまりみません",
       "scene": "Answering whether Emma-san often watches movies",
-      "note": "よく (yoku) from the question cannot simply be negated; the natural negative reply downgrades to あまり (amari) plus the negative みません (mimasen), as in the book's Exercise VII dialogues.",
+      "note": "よく (yoku) from the question cannot simply be negated; the natural negative reply downgrades to あまり (amari) plus the negative みません (mimasen).",
       "aiSuggested": true,
       "reviewNote": "Constructed. Frequency-adverb coverage: あまり in its Q&A answer slot (the deck's only あまり card is a standalone statement). Elliptical, so it carries a scene naming the question."
     },
@@ -243,17 +244,17 @@
       "english": "My husband watches the news every evening.",
       "category": "Family & People",
       "target": "しゅじんはまいばんニュースをみます",
-      "hint": "'My husband' here is しゅじん (shujin), not おっと (otto)",
+      "hint": "'my husband': the more traditional word",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for しゅじん (the book's alternative to おっと, in no card at all) and for まいばん, also sentence-less. Collision with v9-otto-wa-jimu over 'my husband', hence the hint on each.",
-      "note": "しゅじん (shujin) and おっと (otto) are two readings of the same word for 'my husband' — see おっと (otto) card. This sentence uses しゅじん."
+      "note": "しゅじん (shujin) and おっと (otto) are two words for 'my husband'; this sentence uses the traditional しゅじん."
     },
     {
       "id": "v9-gurasu-o-futatsu",
       "english": "Two wine glasses, please.",
       "category": "Shopping",
       "target": "グラスをふたつください",
-      "hint": "The word is グラス (gurasu), the stemware word, not コップ (koppu, an everyday tumbler)",
+      "hint": "the stemware word, not the tumbler; with ください (kudasai)",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for グラス (no sentence anywhere), in the Lesson 5 counter-order frame. Hint added because English 'glass' could otherwise produce the Lesson 5 word コップ.",
       "note": "グラス (gurasu) is a stemmed wine glass, distinct from the everyday tumbler コップ (koppu) from Lesson 5 — see グラス (gurasu) card."
@@ -273,7 +274,8 @@
       "target": "じゃ、それを２つおねがいします",
       "ttsText": "じゃ、それをふたつおねがいします",
       "aiSuggested": true,
-      "reviewNote": "Speaking Practice 1, Suzuki's line じゃ、それを ２つ おねがいします. The deck's closest cards use ください with counters (Lesson 5); this printed ordering line with おねがいします plus the general counter was never carded."
+      "reviewNote": "Speaking Practice 1, Suzuki's line じゃ、それを ２つ おねがいします. The deck's closest cards use ください with counters (Lesson 5); this printed ordering line with おねがいします plus the general counter was never carded.",
+      "hint": "with おねがいします (onegaishimasu), not ください (kudasai)"
     },
     {
       "id": "p102-eigo",
@@ -298,10 +300,10 @@
       "english": "My husband goes to the gym every week.",
       "category": "Family & People",
       "target": "おっとはまいしゅうジムにいきます",
-      "hint": "'My husband' here is おっと (otto), not しゅじん (shujin)",
+      "hint": "'my husband': the neutral modern word",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for おっと (bare vocab card only). Collision: おっと and しゅじん both translate as 'my husband', so this card and v9-shujin-wa-nyusu each carry a hint naming which synonym to produce.",
-      "note": "おっと (otto) and しゅじん (shujin) are two readings of the same word for 'my husband' — see おっと (otto) card. This sentence uses おっと."
+      "note": "おっと (otto) and しゅじん (shujin) are two words for 'my husband'; this sentence uses the neutral おっと."
     },
     {
       "id": "p9-kaisha-ni-meru-o-okurimasu",
@@ -318,7 +320,7 @@
       "category": "Food",
       "target": "なまビールを２つおねがいします",
       "ttsText": "なまビールをふたつおねがいします",
-      "hint": "Draft beer, ordered with the general counter",
+      "hint": "Draft beer, ordered with the general counter and おねがいします (onegaishimasu)",
       "aiSuggested": true,
       "reviewNote": "Speaking Practice 1, Suzuki's line なまビールを ２つ おねがいします. Only the vocabulary item なまビール was carded. Hint added because the existing card ビールを２ほんおねがいします ('Two bottles of beer, please.') has a very close English gloss.",
       "note": "Draft beer takes the general counter つ (tsu), not the long-object counter ほん (hon) used for bottled beer in ビールを２ほんおねがいします — it's measured by glass, not by bottle."
@@ -362,10 +364,10 @@
       "english": "Yesterday I saw kabuki with my wife.",
       "category": "Family & People",
       "target": "きのうつまとかぶきをみました",
-      "hint": "'My wife' here is つま (tsuma), not かない (kanai)",
+      "hint": "'my wife': the everyday modern word",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for つま (bare vocab card only, no sentence). Collision: つま and かない both translate as 'my wife', so this card and v9-kanai-wa-kaimono each carry a hint naming which synonym to produce.",
-      "note": "つま (tsuma) and かない (kanai) are two readings of the same word for 'my wife' — see つま (tsuma) card. This sentence uses つま."
+      "note": "つま (tsuma) and かない (kanai) are two words for 'my wife'; this sentence uses the everyday つま."
     },
     {
       "id": "v9-yoguruto-o-kaimasu",
@@ -405,7 +407,7 @@
       "english": "As for today, I'm eating dinner at home.",
       "category": "Grammar & Function Words",
       "target": "きょうはうちでばんごはんをたべます",
-      "note": "The は (wa) after きょう (kyō) makes today the topic and implies contrast with other days, the same use as せんしゅうは (senshū wa) in this lesson's Target Dialogue.",
+      "note": "The は (wa) after きょう (kyō) makes today the topic and implies contrast with other days, the same use as せんしゅうは (senshū wa) in せんしゅうはここでグリーンさんにあいました (senshū wa koko de Gurīn-san ni aimashita, \"Last week, I met Green-san here.\").",
       "aiSuggested": true,
       "reviewNote": "Constructed. Particle coverage for topical は on a time expression, this lesson's NOTES point; only wave 1's せんしゅうは card exists. Affirmative statement slot."
     },
@@ -491,7 +493,8 @@
       "category": "School & Education",
       "target": "にほんごをべんきょうします",
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF vocabulary. Job: the only sentence にほんご (nihongo), taught bare in this lesson, appears in.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "With an object (にほんごを, nihongo o), the verb is べんきょうします (benkyō shimasu) without its own を (o), so the sentence has only one を."
     },
     {
       "id": "ex9-suzuki-sama-desu-ne",
@@ -646,7 +649,7 @@
       "category": "Family & People",
       "target": "こども",
       "hint": "the word for your own child, and the general word for a child",
-      "note": "Used for your own child, opposite おこさん (okosan) for someone else's — the same humble/honorific split as ちち (chichi, \"my father\") against おとうさん (otōsan). こども is also the ordinary general word for \"child\" in any other context. こ (ko, \"child\") from Lesson 13 is the shorter root that builds おんなのこ (onna no ko, \"girl\") and おとこのこ (otoko no ko, \"boy\").",
+      "note": "Used for your own child, opposite おこさん (okosan) for someone else's — the same humble/honorific split as ちち (chichi, \"my father\") against おとうさん (otōsan). こども is also the ordinary general word for \"child\" in any other context.",
       "reviewNote": "Family batch (2026-09). Book-sourced but taught later: Lesson 24's WORD POWER family table. Glossed \"(My) child\" rather than \"Child\" because こ already carries \"Child\" in Lesson 13 — see the collision rule in card-authoring-rules.md. Hint added because the gloss narrows a word that is also general.",
       "aiSuggested": true
     },

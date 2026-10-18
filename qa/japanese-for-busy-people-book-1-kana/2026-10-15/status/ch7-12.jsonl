@@ -43,3 +43,35 @@
 {"id":"chapter-8/tenmasa-degozaimasu/book-mismatch/1","status":"fixed","statusReason":"Note says the phone call to book a table, not the dialogue."}
 {"id":"chapter-8-extras/v-asagohan-tabemasen/other/1","status":"fixed","statusReason":"Dropped 'directly above'; the quoted sentence identifies the card. Also fixed the romaji to Sumisu-san."}
 {"id":"chapter-8-extras/p102-nichiyoubi-kaji-o-shimasu/missing-info/1","status":"fixed","statusReason":"Added a one-line note for かじ (housework)."}
+{"id":"chapter-9/meet-monday-4/wrong-content/1","status":"fixed","statusReason":"Note says two に (time and person met), not three; romaji set to the pinned style."}
+{"id":"chapter-9/tsuma-wife/wrong-content/1","status":"fixed","statusReason":"Note calls かない an older word with the same meaning, not another reading."}
+{"id":"chapter-9/otto-husband/wrong-content/1","status":"fixed","statusReason":"Note calls しゅじん a more traditional word with the same meaning, not another reading."}
+{"id":"chapter-9/onomimono/ambiguous/1","status":"fixed","statusReason":"Hint 'the polite form a restaurant uses'; the のみもの card's hint adds 'plain, without お'."}
+{"id":"chapter-9/dare-ni-denwa-a/missing-info/1","status":"fixed","statusReason":"Added the same hint as ex9-ginko-ni-shimasu (reply keeps only します)."}
+{"id":"chapter-9/beer-order/unanswerable/1","status":"fixed","statusReason":"Hint names おねがいします over ください; romaji fixed to ni-hon onegaishimasu."}
+{"id":"chapter-9/ya-suffix/leaks-answer/1","status":"fixed","statusReason":"Scene replaced by an example frame (てんぷら＿); kept a scene because Lesson 12's や particle shares the target."}
+{"id":"chapter-9/go-language-suffix/leaks-answer/1","status":"fixed","statusReason":"Scene replaced by an example frame (にほん＿) that does not state 'language'."}
+{"id":"chapter-9/ni-particle-target/leaks-answer/1","status":"fixed","statusReason":"Scene replaced by the frame たなかさん＿あいます."}
+{"id":"chapter-9/kikimasu-ask/other/1","status":"fixed","statusReason":"Hint shortened to 'not listening to audio' so it no longer repeats the scene; the scene stays for the Recognition collision with Lesson 8's ききます."}
+{"id":"chapter-9/-/other/1","status":"fixed","statusReason":"Removed every positional pointer (previous card, above, below, the earlier example) from the nine notes named."}
+{"id":"chapter-9/aimasu-meet/wrong-content/1","status":"fixed","statusReason":"Dropped the 'not と' clause the book does not make."}
+{"id":"chapter-9/ask-phone-number/book-mismatch/1","status":"fixed","statusReason":"'his' changed to 'her'."}
+{"id":"chapter-9/tell-phone-number/book-mismatch/1","status":"fixed","statusReason":"'his' changed to 'her'."}
+{"id":"chapter-9-extras/v9-kanai-wa-kaimono/wrong-content/1","status":"fixed","statusReason":"Note says two words, not two readings of one word."}
+{"id":"chapter-9-extras/v9-tsuma-to-kabuki/wrong-content/1","status":"fixed","statusReason":"Note says two words, not two readings of one word."}
+{"id":"chapter-9-extras/v9-shujin-wa-nyusu/wrong-content/1","status":"fixed","statusReason":"Note says two words, not two readings of one word."}
+{"id":"chapter-9-extras/v9-otto-wa-jimu/wrong-content/1","status":"fixed","statusReason":"Note says two words, not two readings of one word."}
+{"id":"chapter-9-extras/v9-kanai-wa-kaimono/leaks-answer/1","status":"fixed","statusReason":"Hint cues by register ('the older, more traditional word') without printing かない."}
+{"id":"chapter-9-extras/v9-tsuma-to-kabuki/leaks-answer/1","status":"fixed","statusReason":"Hint cues by register ('the everyday modern word') without printing つま."}
+{"id":"chapter-9-extras/v9-shujin-wa-nyusu/leaks-answer/1","status":"fixed","statusReason":"Hint cues by register ('the more traditional word') without printing しゅじん."}
+{"id":"chapter-9-extras/v9-otto-wa-jimu/leaks-answer/1","status":"fixed","statusReason":"Hint cues by register ('the neutral modern word') without printing おっと."}
+{"id":"chapter-9-extras/v9-gurasu-o-futatsu/leaks-answer/1","status":"fixed","statusReason":"Hint reduced to 'the stemware word, not the tumbler', plus 'with ください' for the おねがいします pairs."}
+{"id":"chapter-9-extras/ex9-senshu-wa-koko-de-aimashita/missing-info/1","status":"fixed","statusReason":"Added hint naming the topic は; the book's English is kept. Dropped the 'lesson's notes' citation."}
+{"id":"chapter-9-extras/p102-nihongo-o-benkyou-shimasu/missing-info/1","status":"fixed","statusReason":"Added a note that with an object the verb is べんきょうします without its own を."}
+{"id":"chapter-9-extras/ex9-nama-biru-o-futatsu/unanswerable/1","status":"fixed","statusReason":"Hint now names おねがいします."}
+{"id":"chapter-9-extras/ex9-sore-o-futatsu-onegaishimasu/unanswerable/1","status":"fixed","statusReason":"Added hint naming おねがいします over ください."}
+{"id":"chapter-9-extras/f9-nihon-wa-do-desu-ka/other/1","status":"fixed","statusReason":"Note points to the りょこうはどうでしたか card and drops the Lesson 11 references."}
+{"id":"chapter-9-extras/x9f-kodomo/other/1","status":"fixed","statusReason":"Dropped the forward reference to Lesson 13's こ."}
+{"id":"chapter-9-extras/-/other/1","status":"fixed","statusReason":"Removed the five book citations (dialogue, notes, Exercise VII, Target Dialogue) and kept the explanations."}
+{"id":"chapter-9-extras/ex9-ee-tokidoki-kimasu/book-mismatch/1","status":"fixed","statusReason":"Note says 'as with a colleague', not restaurant staff."}
+{"id":"chapter-9-extras/fib-tomodachi-ni-meru-o-okurimasu/other/1","status":"fixed","statusReason":"Card ships, so the reviewNote now records that it was restored rather than excluded (no card removed)."}

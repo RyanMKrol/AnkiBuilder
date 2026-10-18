@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Restore deck(s) into a running Anki from an anki-backups/<stamp>/ snapshot (written by
-// deliver-to-anki.mjs before every real delivery, WITH scheduling).
+// Restore deck(s) into a running Anki from an anki-backups/<stamp>/ snapshot (written WITH scheduling
+// by deliver-to-anki.mjs before every real delivery, or on demand by backup-anki-decks.mjs).
 //
 // A restore must DELETE the live deck first, then import the backup .apkg. Importing over a live
 // deck does NOT overwrite existing notes' scheduling or content — it looks like it worked and

@@ -44,6 +44,7 @@ const STANDING = [
   "validate-decks.mjs",
   "deliver-to-anki.mjs",
   "restore-anki-backup.mjs",
+  "backup-anki-decks.mjs",
   "extras-duplicate-check.mjs",
   "extras-collision-audit.mjs",
   "extras-order.mjs",

@@ -367,10 +367,28 @@ Before any real delivery (never on `--dry`), the tool snapshots every managed de
 `.apkg` per deck, a `models.json` note-type snapshot, and a `manifest.json` describing the snapshot.
 The backup is fail-closed: if any deck's backup fails, the delivery aborts before making changes.
 
-Snapshots are pruned automatically after each backup: the newest 10 are kept
+Snapshots are pruned automatically after each delivery's backup: the newest 10 are kept
 (`ANKI_BUILDER_BACKUP_KEEP` overrides the count) plus the newest snapshot of each older week. Recent
 history is what a panic restore reaches for; older history only needs coarse granularity. Before
-pruning existed the backup dir had grown to ~780 MB across 41 runs.
+pruning existed the backup dir had grown to ~780 MB across 41 runs. Only plain stamps are pruned. A
+folder whose name carries anything after the stamp (`<stamp>-pre-qa-fix`, or a folder you made by
+hand) is never touched.
+
+### Backing up without delivering
+
+Before a change you might want to undo, such as a card fix pass, take a snapshot on its own:
+
+```sh
+node scripts/backup-anki-decks.mjs --label pre-qa-fix
+```
+
+It writes the same layout a delivery writes, into `anki-backups/<stamp>-<label>/`, so
+`restore-anki-backup.mjs` restores it the same way. The decks are the `ankiParent` of every book's
+and course's `anki-delivered.json`; retired and never-delivered collections are skipped, and a marker
+that will not parse stops the run rather than leaving a deck out. It refuses when Anki is open on a
+probe profile (`Testing` or `Claude Test Profile`), because a backup of scratch decks looks like
+success; `--allow-test-profile` overrides that. `--backup-root <dir>` writes somewhere else. It never
+prunes and never syncs with AnkiWeb. Anki must be open on the real profile.
 
 ## Restoring from a backup
 

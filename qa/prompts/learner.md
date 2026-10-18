@@ -58,6 +58,20 @@ Use exactly these kinds:
   the shuffle makes painful (rare; most order is fine because every card teaches on its back).
 - `other`: anything else real, with a clear sentence saying what.
 
+Three things about a **reading** card that are the design, not findings:
+
+- A reading card has no note field. Its back shows the written form, the English, the romaji line and
+  the audio, and nothing else. The only things a fix can change are the target, the English and the
+  romaji, so write your `fix` as a change to one of those, never as "add a note".
+- A compound's reading is taught on the compound's own back. A silent kanji card is graded on meaning
+  alone, with its readings as a reference, so "I could not build 今日's reading from the kanji cards"
+  is the deck working as designed. It is a finding only when the reading on the compound's back is
+  wrong.
+- A gloss narrower than you expected is a finding only if a right answer would be marked wrong: when
+  a meaning this written form really has would count as a miss on this card (三日 is both "the third
+  of the month" and "three days", so a card with only one of them marks the other wrong). A faithful
+  card whose English just looks narrow or odd is the book's choice, and not a finding.
+
 Severity:
 
 - `blocker`: the card teaches something false, or cannot be studied (the front cannot be answered

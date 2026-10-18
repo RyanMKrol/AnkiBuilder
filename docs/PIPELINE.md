@@ -1867,7 +1867,14 @@ The merge (`reconcileReading`) is where the reading rules the code can see are e
 written form (English joined, two readings noted), a kana word printed with an optional ending in
 brackets (`おやすみ(なさい)`) is carded as the full form, the word wins over a single character, no
 kana taught as a letter (a kana a reader calls a word, like に "Two", is kept), a character card carries no reading, and a written form already carded earlier in the
-collection is dropped. Every drop is in `reading-report.json` with its reason. One drop does more:
+collection is dropped. Card rules 1 cards a word from anywhere in the chapter (owner ruling,
+2026-10-18), so the chapter reader says `where` it saw each item and whether the book `glossed` it.
+A word this chapter only uses (outside a list or kanji table) that a later chapter's vocabulary list
+introduces is dropped with `laterChapter` set: `build-reading.mjs` passes `laterTaught`, which
+`laterVocabulary` (`src/reading/laterVocabulary.js`) reads from the collection's own later chapters
+(a built chapter's table reader verdicts, else the cached chapter file's vocabulary tables). A card
+whose English the book does not give carries `aiSuggested`, and so does a kana deck card from such a
+word. Every drop is in `reading-report.json` with its reason. One drop does more:
 a single kanji taught here as a word that an earlier chapter carded as a character comes back as
 `earlierWords`, and after the romaji step the phase rewrites that earlier card in place as the word,
 same id, in `cards.json` and `corpus.json` (`rewriteEarlierCard`, `src/reading/characterGaps.js`;

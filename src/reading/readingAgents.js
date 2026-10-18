@@ -30,6 +30,23 @@ export const READING_PROMPTS = Object.freeze({
 export const ITEM_KINDS = Object.freeze(["word", "phrase", "character"]);
 export const TABLE_VERDICTS = Object.freeze(["vocabulary", "characters", "other"]);
 export const IMAGE_VERDICTS = Object.freeze(["teaches", "decorative", "unreadable"]);
+/**
+ * Where in the chapter the chapter reader saw an item (its `where` field). Card rules 1 cards a word
+ * from anywhere in the chapter (owner ruling, 2026-10-18), but a word that only turns up in running
+ * text and that a LATER chapter's vocabulary list introduces is carded there instead, so the merge
+ * needs to know which items this chapter presents as something to learn. Those are the first two.
+ */
+export const ITEM_PLACES = Object.freeze([
+  "vocabulary list",
+  "kanji table",
+  "dialogue",
+  "exercise",
+  "example sentence",
+  "culture note",
+  "reading passage",
+  "other",
+]);
+export const TEACHING_PLACES = Object.freeze(["vocabulary list", "kanji table"]);
 
 const NO_HINTS = "(no conventions recorded for this book: read it on its own terms)";
 const NO_IMAGES = "(this chapter has no images)";
@@ -120,6 +137,7 @@ export function renderReadingChapterPrompt({ chapterFilePath, sections, targetLa
   return renderPromptTemplate(READING_PROMPTS.chapter, {
     ...shared(targetLanguage, meta),
     CHAPTER_FILE_PATH: chapterFilePath,
+    ITEM_PLACES: ITEM_PLACES.map((place) => `\`${place}\``).join(", "),
     SECTIONS_JSON: JSON.stringify(
       sections.map((s) => ({ title: s.title, level: s.level })),
       null,

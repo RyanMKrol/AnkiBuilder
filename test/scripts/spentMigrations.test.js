@@ -79,6 +79,7 @@ const STANDING = [
   "verify-apkg-import.mjs",
   "anki-behaviour-probe.mjs",
   "absorption-crosscheck.mjs",
+  "reading-vocab-scan.mjs",
 ];
 
 const read = (name) => readFileSync(join(SCRIPTS, name), "utf-8");

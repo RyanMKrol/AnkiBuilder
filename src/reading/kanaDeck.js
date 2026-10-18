@@ -119,6 +119,8 @@ export async function buildKanaUnit({
       target: entry.target,
       english: entry.english,
       category: entry.category,
+      // English the book does not give (a kana word only used in running text), for the review.
+      ...(entry.aiSuggested ? { aiSuggested: true } : {}),
     })),
   );
 

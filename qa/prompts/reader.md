@@ -49,7 +49,8 @@ Respect the deck's own design decisions too, because a finding against one is a 
 has already rejected:
 
 - Before reporting a collision or a duplicate, check preflight's output for the unit and the
-  collection's `.preflight-accepted.json`. A finding the owner has accepted there is not a finding.
+  collection's accepted list, `output/epubs/<slug>/.preflight-accepted.json`. Open that file and
+  search it for both cards: a pair the owner has accepted there is not a finding.
 - The authoring rules (`.claude/skills/build-anki-deck/references/card-authoring-rules.md`) ask for
   some cards the book does not print, such as a second example of a pattern built from earlier
   vocabulary. A card that follows one of those rules is not out of the book's bounds.
@@ -57,6 +58,12 @@ has already rejected:
   grammar points, and words written in kana alone belong to its one kana unit, chosen by a budget
   (`docs/designs/reading-decks/09-kana-deck.md`), so a kana-only word with no card in a lesson unit
   is not a gap. Read `docs/card-rules-reading.md` before you start on a reading unit.
+- **A kanji card and a word card may share an English answer.** Card rules 9 forbids two WORDS or two
+  KANJI sharing one, and preflight's `reading-distinct-english` compares kanji cards with kanji cards
+  and word cards with word cards only, by owner decision (2026-10-14): a kanji's own meaning is
+  naturally shared by the word built on it (字 and 文字, 火 and 火事). A sense one card contains and the
+  other narrows is not a shared answer either. File a shared answer only when both cards are the same
+  kind, and check `.preflight-accepted.json` first.
 
 ## What you write
 

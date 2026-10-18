@@ -16,9 +16,18 @@ because of the Production card, and a reading deck has none.
 
 ## The rules
 
-1. **Card what the chapter teaches you to read: all of it, and nothing it has not reached.** A
-   vocabulary table, a list of set expressions, a kanji table. Not a word that only appears in a
-   dialogue or an exercise, and not a word the book has not taught yet.
+1. **Card every word the chapter puts in front of the learner to read, wherever it appears**:
+   vocabulary lists, kanji tables, dialogues, exercises, Culture Notes, reading passages and their
+   word lists. The English comes from the book where it gives one; where it does not, the reader
+   writes it and the card is flagged AI-suggested for the review (the reading phase has no separate
+   translate pass, so the reader's own English plays that part). A word a later chapter's vocabulary
+   list introduces is carded there, not here, so the deck keeps the book's order: the readers say
+   where they saw each word, and the merge holds back a word this chapter only uses when one of the
+   collection's own later chapters lists it (`src/reading/laterVocabulary.js`, reading the later
+   chapters' vocabulary tables from the chapter cache). Headings, titles and instruction lines are
+   not carded. (Owner ruling, 2026-10-18, which widened the first version: that one carded only the
+   vocabulary tables and lists, and left out 生け花 from a Culture Note that prints it with its
+   reading. The speaking deck's chapter reader has always worked this way.)
 2. **One card per word, in the fullest written form the book prints.** When a book prints a word in
    more than one script, the language plugin says which form is the card (05). For Japanese it is the
    kanji spelling: Genki's tables print `えいが | 映画 | movie`, and the card is `映画`. A word printed

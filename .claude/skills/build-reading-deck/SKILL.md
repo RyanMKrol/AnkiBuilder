@@ -46,6 +46,13 @@ it re-reviews every generated card checked under the older prompt, one call per 
 **Japanese kana words are carded once per book, not per chapter**: in one kana deck chosen in a
 single pass (step 1), so the chapters card kanji only.
 
+**A chapter cards every word it puts in front of the learner, wherever it appears**: vocabulary
+lists, kanji tables, dialogues, exercises, Culture Notes and reading passages (card rules 1, owner
+ruling 2026-10-18). Two limits: a word this chapter only uses and a later chapter's vocabulary list
+introduces is carded in that later chapter, so the deck keeps the book's order; and headings, titles
+and instruction lines are not carded. A word the book gives no English for gets the reader's English,
+flagged AI-suggested with a review note saying so: read those at the gate.
+
 **What is left out on purpose**: sentences, grammar, drills, kana taught as letters (the owner studies
 kana in a separate deck; a single kana the book teaches as a word, like に "Two", IS a card), proper
 names, and the whole extras phase. There are two gates per chapter, content
@@ -136,7 +143,8 @@ The run prints:
 - the number of cards written;
 - **what the rules left out**, with the reason for each (`reading-report.json` has the full list):
   a kana taught as a letter, a single character the language does not card, a word already carded in an earlier
-  chapter of this collection;
+  chapter of this collection, and a word this chapter only uses (a dialogue, a Culture Note) that a
+  later chapter's vocabulary list introduces, which is carded there;
 - **words the book gives more than one reading for**: the audio uses the first; check it at the gate;
 - **coverage**: how many items the adversary listed on its own, and every one the unit lacks. A gap
   is evidence that a reader missed something, not a suggestion. Look at each at the gate.
@@ -157,6 +165,24 @@ Build chapters in book order. A written form is carded once per collection, in t
 teaches it, and the merge only knows about chapters built before it. A chapter built out of order says so
 at the end of its run and prints the `--remerge` command for each later chapter; run them in book
 order. Preflight's `one card per written form` names any repeat that is left.
+
+## 1c. A collection built before rule 1 widened
+
+Chapters built before 2026-10-18 carded the vocabulary lists only. To see what the wider rule would
+add, scan the collection; it changes no deck data.
+
+```sh
+node scripts/reading-vocab-scan.mjs output/epubs/<slug>-reading --dry          # the plan, spends nothing
+node scripts/reading-vocab-scan.mjs output/epubs/<slug>-reading [--date YYYY-MM-DD]
+```
+
+**Say the cost first**: one Sonnet call per chapter (26 for Genki). Run it only when the owner has
+approved the spend. It writes `qa/<slug>/<date>/vocab-scan.jsonl`, one line per word the chapter
+reader found: the chapter, where it appeared, whether the book glossed it, the later chapter whose
+list introduces it, whether a card exists, and a `decision` (`card exists`, `skip, carded there` or
+`candidate`). Each chapter's reply is saved under `vocab-scan/` as it returns, so a stop costs only
+the running chapter. The owner chooses which candidates become cards, and those go through the
+additions gates like any new card; never write them into a done unit directly.
 
 ## 2. Gate 1: content
 

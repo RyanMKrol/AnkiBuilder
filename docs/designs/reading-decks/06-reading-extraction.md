@@ -25,15 +25,15 @@ It refuses a collection whose `deckKind` is not `reading` (01), before any paid 
 `READING_PHASE_STEPS`, beside `BASE_PHASE_STEPS` in `src/agents/basePhase.js` or in its own module
 next to it.
 
-| #   | step                     | kind          | artifact                   | notes                                             |
-| --- | ------------------------ | ------------- | -------------------------- | ------------------------------------------------- |
-| 1-3 | tables, sections, images | deterministic | `candidates/*-raw.json`    | the same raw material phase 1 uses                |
-| 4   | table reader             | agent         | `candidates/tables.json`   | vocabulary and kanji tables                       |
-| 5   | chapter reader           | agent         | `candidates/chapter.json`  | set phrases and lists outside a table (greetings) |
-| 6   | image reader             | agent         | `candidates/images.json`   | only when the chapter has images with text        |
-| 7   | reconcile                | deterministic | `corpus.json`              | merge, one card per front, backward dedup         |
-| 8   | snapshot                 | deterministic | `as-generated.json`        | the pre-review baseline                           |
-| 9   | coverage adversary       | agent         | `candidates/coverage.json` | enumerates independently; the diff is code        |
+| #   | step                     | kind          | artifact                   | notes                                            |
+| --- | ------------------------ | ------------- | -------------------------- | ------------------------------------------------ |
+| 1-3 | tables, sections, images | deterministic | `candidates/*-raw.json`    | the same raw material phase 1 uses               |
+| 4   | table reader             | agent         | `candidates/tables.json`   | vocabulary and kanji tables                      |
+| 5   | chapter reader           | agent         | `candidates/chapter.json`  | every word outside a vocabulary table, see below |
+| 6   | image reader             | agent         | `candidates/images.json`   | only when the chapter has images with text       |
+| 7   | reconcile                | deterministic | `corpus.json`              | merge, one card per front, backward dedup        |
+| 8   | snapshot                 | deterministic | `as-generated.json`        | the pre-review baseline                          |
+| 9   | coverage adversary       | agent         | `candidates/coverage.json` | enumerates independently; the diff is code       |
 
 The three orderings phase 1 pins with tests hold here too, and get the same tests: raw material before
 judgement, the merge before the snapshot, and the adversary last and never shown the corpus.
@@ -47,7 +47,10 @@ Each agent is a reading variant of the phase 1 role with the same name (`tableSp
 plugin's block (05).
 
 Each returns items with `target`, `english`, and `reading` where the plugin requires one. Nothing
-else: no scene, hint, category, note or pronunciation.
+else: no scene, hint, category, note or pronunciation. The chapter reader also says `where` it saw
+each item (a vocabulary list, a kanji table, a dialogue, an exercise, a Culture Note, a reading
+passage) and whether the book `glossed` it, because card rules 1 cards a word from anywhere in the
+chapter (owner ruling, 2026-10-18) and the merge needs both to apply the rest of that rule.
 
 They are registered in the role registry and pinned like every other pass, with the coverage
 adversary pinned above the roles it checks, for the reasons PIPELINE.md gives for phase 1's adversary.
@@ -62,6 +65,12 @@ Deterministic, and where three of the rules in 04 are enforced rather than hoped
 - A target already carded in an earlier chapter of this collection is dropped, using the reading
   collection's own dedup corpora (01). Dropped items are listed in the run report, never discarded
   silently.
+- A word this chapter only uses (the chapter reader saw it outside a list or kanji table) and a later
+  chapter's vocabulary list introduces is dropped as "carded there" (rule 1). The later lists come
+  from the collection's own later chapters (`src/reading/laterVocabulary.js`): a built chapter's table
+  reader verdicts, otherwise the cached chapter file's vocabulary tables.
+- A word whose English the book does not give (`glossed: false`) is flagged `aiSuggested`, with a
+  review note saying so.
 
 ### After extraction
 

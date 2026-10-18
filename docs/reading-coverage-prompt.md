@@ -25,8 +25,12 @@ something to read:
 ## What to do
 
 List every item the rules above would card from this chapter: words, set phrases and, where the
-language rules allow, characters. Be exhaustive: a vocabulary table of forty rows is forty items.
-Leave out what the rules leave out (sentences, drills, proper names, a kana taught as a letter rather than as a word).
+language rules allow, characters. Be exhaustive: a vocabulary table of forty rows is forty items, and
+the words of the dialogues, exercises, Culture Notes and reading passages count too (rule 1), each
+in its dictionary form. Leave out what the rules leave out (headings, titles and instruction lines,
+sentences as wholes, particles and endings, proper names, a kana taught as a letter rather than as a
+word). A word a later chapter's list introduces is held back for that chapter by the code, and so is
+never counted as missing here; list it anyway.
 
 ## Output
 

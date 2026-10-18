@@ -67,6 +67,7 @@ import {
   readingCardId,
 } from "../src/reading/readingPhase.js";
 import { readingScheme } from "../src/reading/readingSchemes.js";
+import { laterVocabulary } from "../src/reading/laterVocabulary.js";
 import { buildKanaUnit, collectKanaPool, KANA_CHAPTER_NUMBER } from "../src/reading/kanaDeck.js";
 import { selectSoundDeck } from "../src/reading/soundDeck.js";
 import {
@@ -172,6 +173,45 @@ const readJsonOrNull = (path) => {
   }
 };
 
+/**
+ * The book's chapters after `lesson`, in book order, as `laterVocabulary` takes them: each one's
+ * cached chapter file (extracted if missing, which is free) and its unit folder in this collection
+ * when it is built. A word this chapter only uses and one of these lists introduces is carded there
+ * (card rules 1).
+ */
+function laterChaptersOf(lesson, collectionDir) {
+  const unitByNumber = new Map();
+  if (existsSync(collectionDir)) {
+    for (const name of readdirSync(collectionDir)) {
+      if (!/^chapter-\d+$/.test(name)) continue;
+      const meta = readJsonOrNull(join(collectionDir, name, "corpus.json"))?.meta;
+      if (typeof meta?.chapterNumber === "number") {
+        unitByNumber.set(meta.chapterNumber, join(collectionDir, name));
+      }
+    }
+  }
+  return listLessons(epubPath, { labelDecoding })
+    .filter((later) => later.firstChapterNumber > lesson.lastChapterNumber)
+    .map((later) => {
+      const chapterFilePath = cachePathFor(later);
+      if (!existsSync(chapterFilePath)) {
+        if (later.lastChapterNumber > later.firstChapterNumber) {
+          extractChapterRangeToFile(
+            epubPath,
+            later.firstChapterNumber,
+            later.lastChapterNumber,
+            chapterFilePath,
+          );
+        } else extractChapterToFile(epubPath, later.firstChapterNumber, chapterFilePath);
+      }
+      return {
+        label: later.label,
+        chapterFilePath,
+        unitDir: unitByNumber.get(later.firstChapterNumber) ?? null,
+      };
+    });
+}
+
 /** Deletes what the merge and the adversary diff wrote, keeping the agents' own output. */
 function clearMerge(unitDir) {
   for (const file of ["cards.json", "corpus.json", "reading-report.json", "as-generated.json"]) {
@@ -245,6 +285,10 @@ async function buildChapter(
         },
         hints: hints(),
         earlier,
+        laterTaught: laterVocabulary(laterChaptersOf(lesson, collectionDir), {
+          targetLanguage: lang,
+          vocabularyTableClass: hints().vocabularyTableClass ?? null,
+        }),
         log: (line) => console.log(line),
       }),
     // A failed run keeps its claim so the retry reclaims this folder rather than allocating another.

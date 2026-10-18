@@ -32,7 +32,11 @@ export function selectSoundDeck(pool, { budgets, minPerUnit, units: unitsOf, scr
   for (const entry of [...pool].sort((a, b) => a.position - b.position)) {
     const first = forms.get(entry.target);
     if (!first) forms.set(entry.target, { ...entry, senses: splitGloss(entry.english) });
-    else first.senses.push(...splitGloss(entry.english));
+    else {
+      first.senses.push(...splitGloss(entry.english));
+      // AI-suggested English only while no entry carries the book's own (card rules 1).
+      if (!entry.aiSuggested) delete first.aiSuggested;
+    }
   }
   const words = [];
   const unselected = [];

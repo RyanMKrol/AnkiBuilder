@@ -44,7 +44,7 @@
       "category": "Time",
       "sourceOrder": 621,
       "note": "Attached directly to a span of time (number + counter), まえ means \"...ago\" — みっかまえ \"three days ago.\" This is different from the まえ already met for \"before [verb]-ing\" (ねるまえに, Lesson 17) or \"in front of\" (Lesson 12/19) — here there's no に and no verb, just a duration.",
-      "scene": "after a length of time, as in 300 years ago"
+      "scene": "placed right behind a length of time (number + counter)"
     },
     {
       "id": "imouto-younger-sister",
@@ -65,7 +65,8 @@
       "english": "Please don't take [photos].",
       "category": "Other",
       "sourceOrder": 234,
-      "note": "Negative request: the ない-form of とります (take a photo) plus でください — \"please don't do X,\" the mirror of てください \"please do X\" (Lesson 18/19). とる is a Regular I verb: とる→とらない. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: とらないで."
+      "note": "Negative request: the ない-form of とります (take a photo) plus でください — \"please don't do X,\" the mirror of てください \"please do X\" (Lesson 18/19). とる is a Regular 1 verb: とる→とらない. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: とらないで.",
+      "hint": "the verb alone, no object"
     },
     {
       "id": "tomenaide-kudasai",
@@ -73,7 +74,7 @@
       "english": "Please don't park.",
       "category": "Transport",
       "sourceOrder": 710,
-      "note": "Same ないでください pattern as とらないでください this lesson, here with とめます (park). とめる is Regular II: とめる→とめない. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: とめないで."
+      "note": "Same ないでください pattern as とらないでください this lesson, here with とめます (park). とめる is Regular 2: とめる→とめない. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: とめないで."
     },
     {
       "id": "wasabi",
@@ -87,7 +88,7 @@
       "target": "いれます",
       "english": "Put in, add",
       "category": "Food",
-      "note": "Marked (R2) in the book: a ru-verb (Regular II).",
+      "note": "Regular 2: ない-form いれない (irenai), dictionary form いれる (ireru).",
       "sourceOrder": 1865
     },
     {
@@ -96,7 +97,7 @@
       "english": "Please don't add/put in.",
       "category": "Food",
       "sourceOrder": 726,
-      "note": "いれます (put in) is Regular II: ない-form いれない + でください, the same \"please don't\" pattern as とらないでください and とめないでください this lesson. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: いれないで."
+      "note": "いれます (put in) is Regular 2: ない-form いれない + でください, the same \"please don't\" pattern as とらないでください and とめないでください this lesson. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: いれないで."
     },
     {
       "id": "tachimasu-stand-up",
@@ -233,7 +234,8 @@
       "english": "Please don't worry about it.",
       "category": "Emotions & Feelings",
       "sourceOrder": 4166,
-      "note": "きにします (worry about) in its ない-form plus でください — the same negative-request pattern as とらないでください and とめないでください this lesson. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: きにしないで."
+      "note": "きにします (worry about) in its ない-form plus でください — the same negative-request pattern as とらないでください and とめないでください this lesson. The ない-form inside is casual, but ください makes the whole request polite. Between friends, drop ください: きにしないで.",
+      "hint": "with きにします (ki ni shimasu, \"worry about\")"
     },
     {
       "id": "osake",
@@ -241,7 +243,7 @@
       "english": "Alcoholic drink, sake",
       "category": "Food",
       "sourceOrder": 4576,
-      "note": "The お is optional, and is usual when talking about alcohol in general. Without it, さけ often means Japanese rice wine in particular."
+      "note": "The お (o) is the polite prefix and is optional: おさけ (osake) and さけ (sake) both mean alcohol in general or sake."
     },
     {
       "id": "deguchi",
@@ -554,7 +556,7 @@
       "target": "かわない",
       "english": "Does not buy",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is かいません. ない-form of かいます (buy), a Regular I verb: the final う becomes わ before ない (かう→かわない).",
+      "note": "Casual: for friends and family. The polite equivalent is かいません. ない-form of かいます (buy), a Regular 1 verb: the final う becomes わ before ない (かう→かわない).",
       "hint": "casual form"
     },
     {
@@ -573,7 +575,7 @@
       "target": "いかない",
       "english": "Does not go",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is いきません. ない-form of いきます (go), Regular I: く→か before ない (いく→いかない).",
+      "note": "Casual: for friends and family. The polite equivalent is いきません. ない-form of いきます (go), Regular 1: く→か before ない (いく→いかない).",
       "hint": "casual form"
     },
     {
@@ -593,7 +595,7 @@
       "target": "およがない",
       "english": "Does not swim",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is およぎません. ない-form of およぎます (swim), Regular I: ぐ→が before ない (およぐ→およがない).",
+      "note": "Casual: for friends and family. The polite equivalent is およぎません. ない-form of およぎます (swim), Regular 1: ぐ→が before ない (およぐ→およがない).",
       "hint": "casual form"
     },
     {
@@ -612,7 +614,7 @@
       "target": "かさない",
       "english": "Does not lend",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is かしません. ない-form of かします (lend), Regular I: す→さ before ない (かす→かさない).",
+      "note": "Casual: for friends and family. The polite equivalent is かしません. ない-form of かします (lend), Regular 1: す→さ before ない (かす→かさない).",
       "hint": "casual form"
     },
     {
@@ -631,7 +633,7 @@
       "target": "またない",
       "english": "Does not wait",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is まちません. ない-form of まちます (wait), Regular I: つ→た before ない (まつ→またない).",
+      "note": "Casual: for friends and family. The polite equivalent is まちません. ない-form of まちます (wait), Regular 1: つ→た before ない (まつ→またない).",
       "hint": "casual form"
     },
     {
@@ -651,7 +653,7 @@
       "english": "Does not drink",
       "category": "Grammar & Function Words",
       "sourceOrder": 4374,
-      "note": "Casual: for friends and family. The polite equivalent is のみません. ない-form of のみます (drink), Regular I: む→ま before ない (のむ→のまない).",
+      "note": "Casual: for friends and family. The polite equivalent is のみません. ない-form of のみます (drink), Regular 1: む→ま before ない (のむ→のまない).",
       "hint": "casual form"
     },
     {
@@ -670,7 +672,7 @@
       "target": "かえらない",
       "english": "Does not return home",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is かえりません. ない-form of かえります (return home). Despite ending in -eru, かえる is a Regular I verb, not Regular II, so its ない-form is かえらない, not かえない — one of the few -eru verbs that breaks the Regular II pattern.",
+      "note": "Casual: for friends and family. The polite equivalent is かえりません. ない-form of かえります (return home). Despite ending in -eru, かえる is a Regular 1 verb, not Regular 2, so its ない-form is かえらない, not かえない — one of the few -eru verbs that breaks the Regular 2 pattern.",
       "hint": "casual form"
     },
     {
@@ -689,7 +691,7 @@
       "target": "みない",
       "english": "Does not see",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is みません. ない-form of みます (see), Regular II: drop る and add ない (みる→みない).",
+      "note": "Casual: for friends and family. The polite equivalent is みません. ない-form of みます (see), Regular 2: drop る and add ない (みる→みない).",
       "hint": "casual form"
     },
     {
@@ -709,7 +711,7 @@
       "target": "いない",
       "english": "Is not there (for a person or animal)",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is いません. ない-form of います (be, for a person/animal), Regular II: いる→いない.",
+      "note": "Casual: for friends and family. The polite equivalent is いません. ない-form of います (be, for a person/animal), Regular 2: いる→いない.",
       "hint": "casual form"
     },
     {
@@ -728,7 +730,7 @@
       "target": "たべない",
       "english": "Does not eat",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is たべません. ない-form of たべます (eat), Regular II: たべる→たべない.",
+      "note": "Casual: for friends and family. The polite equivalent is たべません. ない-form of たべます (eat), Regular 2: たべる→たべない.",
       "hint": "casual form"
     },
     {
@@ -747,7 +749,7 @@
       "target": "おしえない",
       "english": "Does not teach or tell",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is おしえません. ない-form of おしえます (teach), Regular II: おしえる→おしえない.",
+      "note": "Casual: for friends and family. The polite equivalent is おしえません. ない-form of おしえます (teach), Regular 2: おしえる→おしえない.",
       "hint": "casual form"
     },
     {
@@ -798,7 +800,7 @@
       "target": "すわない",
       "english": "Does not smoke",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is たばこをすいません. ない-form of たばこをすいます (smoke) above, Regular I: う→わ before ない (すう→すわない). Not to be confused with すわります \"sit\" (Lesson 21), whose ない-form would instead be すわらない.",
+      "note": "Casual: for friends and family. The polite equivalent is たばこをすいません. ない-form of たばこをすいます (smoke) above, Regular 1: う→わ before ない (すう→すわない). Not to be confused with すわります \"sit\" (Lesson 21), whose ない-form would instead be すわらない.",
       "hint": "casual form"
     },
     {
@@ -818,7 +820,7 @@
       "target": "かかない",
       "english": "Does not write",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is かきません. ない-form of かきます (write), Regular I: く→か before ない (かく→かかない).",
+      "note": "Casual: for friends and family. The polite equivalent is かきません. ない-form of かきます (write), Regular 1: く→か before ない (かく→かかない).",
       "hint": "casual form"
     },
     {
@@ -838,7 +840,7 @@
       "target": "はなさない",
       "english": "Does not speak",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is はなしません. ない-form of はなします (speak), Regular I: す→さ before ない (はなす→はなさない).",
+      "note": "Casual: for friends and family. The polite equivalent is はなしません. ない-form of はなします (speak), Regular 1: す→さ before ない (はなす→はなさない).",
       "hint": "casual form"
     },
     {
@@ -846,7 +848,7 @@
       "target": "たたない",
       "english": "Does not stand",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is たちません. ない-form of たちます (stand up), Regular I: つ→た before ない (たつ→たたない).",
+      "note": "Casual: for friends and family. The polite equivalent is たちません. ない-form of たちます (stand up), Regular 1: つ→た before ない (たつ→たたない).",
       "hint": "casual form"
     },
     {
@@ -867,7 +869,7 @@
       "english": "Does not take",
       "category": "Grammar & Function Words",
       "sourceOrder": 649,
-      "note": "Casual: for friends and family. The polite equivalent is とりません. ない-form of とります (take a photo), Regular I: る→ら before ない (とる→とらない).",
+      "note": "Casual: for friends and family. The polite equivalent is とりません. ない-form of とります (take a photo), Regular 1: る→ら before ない (とる→とらない).",
       "hint": "casual form"
     },
     {
@@ -888,7 +890,7 @@
       "english": "Does not open",
       "category": "Grammar & Function Words",
       "sourceOrder": 2378,
-      "note": "Casual: for friends and family. The polite equivalent is あけません. ない-form of あけます (open), Regular II: あける→あけない.",
+      "note": "Casual: for friends and family. The polite equivalent is あけません. ない-form of あけます (open), Regular 2: あける→あけない.",
       "hint": "casual form"
     },
     {
@@ -896,7 +898,7 @@
       "target": "しめない",
       "english": "Does not close",
       "category": "Grammar & Function Words",
-      "note": "Casual: for friends and family. The polite equivalent is しめません. ない-form of しめます (close), Regular II: しめる→しめない.",
+      "note": "Casual: for friends and family. The polite equivalent is しめません. ない-form of しめます (close), Regular 2: しめる→しめない.",
       "hint": "casual form"
     },
     {
@@ -917,7 +919,7 @@
       "english": "Does not stop or park",
       "category": "Grammar & Function Words",
       "sourceOrder": 1803,
-      "note": "Casual: for friends and family. The polite equivalent is とめません. ない-form of とめます (park), Regular II: とめる→とめない.",
+      "note": "Casual: for friends and family. The polite equivalent is とめません. ない-form of とめます (park), Regular 2: とめる→とめない.",
       "hint": "casual form"
     },
     {
@@ -938,7 +940,7 @@
       "english": "Does not meet",
       "category": "Other",
       "sourceOrder": 2158,
-      "note": "Casual: for friends and family. The polite equivalent is あいません. ない-form of あいます (meet), Regular I: う→わ before ない (あう→あわない).",
+      "note": "Casual: for friends and family. The polite equivalent is あいません. ない-form of あいます (meet), Regular 1: う→わ before ない (あう→あわない).",
       "hint": "casual form"
     },
     {
@@ -947,7 +949,7 @@
       "english": "Does not show",
       "category": "Grammar & Function Words",
       "sourceOrder": 2159,
-      "note": "Casual: for friends and family. The polite equivalent is みせません. ない-form of みせます (show), Regular II: みせる→みせない.",
+      "note": "Casual: for friends and family. The polite equivalent is みせません. ない-form of みせます (show), Regular 2: みせる→みせない.",
       "aiSuggested": true,
       "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
       "hint": "casual form"
@@ -958,7 +960,7 @@
       "english": "Does not touch",
       "category": "Grammar & Function Words",
       "sourceOrder": 2160,
-      "note": "Casual: for friends and family. The polite equivalent is さわりません. ない-form of さわります (touch), Regular I: る→ら before ない (さわる→さわらない).",
+      "note": "Casual: for friends and family. The polite equivalent is さわりません. ない-form of さわります (touch), Regular 1: る→ら before ない (さわる→さわらない).",
       "aiSuggested": true,
       "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
       "hint": "casual form"
@@ -969,7 +971,7 @@
       "english": "Does not give",
       "category": "Grammar & Function Words",
       "sourceOrder": 2161,
-      "note": "Casual: for friends and family. The polite equivalent is あげません. ない-form of あげます (give), Regular II: あげる→あげない.",
+      "note": "Casual: for friends and family. The polite equivalent is あげません. ない-form of あげます (give), Regular 2: あげる→あげない.",
       "aiSuggested": true,
       "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
       "hint": "casual form"
@@ -980,7 +982,7 @@
       "english": "Does not listen or ask",
       "category": "Grammar & Function Words",
       "sourceOrder": 2162,
-      "note": "Casual: for friends and family. The polite equivalent is ききません. ない-form of ききます (listen, ask), Regular I: く→か before ない (きく→きかない).",
+      "note": "Casual: for friends and family. The polite equivalent is ききません. ない-form of ききます (listen, ask), Regular 1: く→か before ない (きく→きかない).",
       "aiSuggested": true,
       "reviewNote": "Exercise I asks for this ない-form without printing it. Added at gate 1 after the base-mode final review, so every verb the chapter drills has its ない-form.",
       "hint": "casual form"

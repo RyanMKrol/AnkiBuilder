@@ -1,0 +1,124 @@
+{"id":"chapter-21/suwattemo-iidesu-ka/ambiguous/1","status":"fixed","statusReason":"Collision cue on both sides: hint 'just the verb: no place word' here, 'say the place as well' on chapter-21-extras/ks-sit-permission."}
+{"id":"chapter-21-extras/toshokan-de-shiryou-copy/ambiguous/1","status":"fixed","statusReason":"English now 'materials' for しりょう, as the unit's other しりょう card reads."}
+{"id":"chapter-21-extras/suwaru-mae-ni-nimotsu-oite/unanswerable/1","status":"fixed","statusReason":"English 'my bag' changed to 'my luggage' for にもつ."}
+{"id":"chapter-21-extras/travel-pay-by-card/missing-info/1","status":"fixed","statusReason":"English now 'May I use a card?', which leads to つかって."}
+{"id":"chapter-21-extras/charge-my-phone/ambiguous/1","status":"fixed","statusReason":"English says 'smartphone' for スマホ."}
+{"id":"chapter-21-extras/sumaho-wo-juuden-suru-mae-ni-denwa/ambiguous/1","status":"fixed","statusReason":"English says 'smartphone' for スマホ (English only; the curated clip is untouched)."}
+{"id":"chapter-21/ni-particle-put-place/leaks-answer/1","status":"fixed","statusReason":"Scene replaced with a frame cue, 'used with おきます (okimasu) or すわります (suwarimasu)', that picks this に without defining it."}
+{"id":"chapter-21/tomemasu-park/leaks-answer/1","status":"fixed","statusReason":"Scene replaced with the frame cue 'used with ちゅうしゃじょうに (chūshajō ni)', romaji only so it does not gloss the answer."}
+{"id":"chapter-21/yasumimasu-day-off/leaks-answer/1","status":"fixed","statusReason":"Scene replaced with the frame cue 'used with しごとを (shigoto o)'."}
+{"id":"chapter-21/okimasu/other/1","status":"fixed","statusReason":"GRAMMAR 2 pointer replaced with the rule itself: the place you put something takes に, with ここに おきます."}
+{"id":"chapter-21/suwatte-sit-down-te-form/other/1","status":"fixed","statusReason":"'drilled in the chapter's conjugation table' dropped from all eight て-form notes; もいいですか romanized."}
+{"id":"chapter-21/akemasu/other/1","status":"fixed","statusReason":"akemasu, shimemasu, tsukemasu notes now 'Regular 2: て-form X, dictionary form Y' with each verb's forms."}
+{"id":"chapter-21/keshimasu/other/1","status":"fixed","statusReason":"Note now says Regular 1 like はなします, unlike this lesson's Regular 2 verbs; no 'above', no R1/R2."}
+{"id":"chapter-22-extras/please-dont-photo/ambiguous/1","status":"fixed","statusReason":"Collision cue on both sides: chapter-22/toranaide-kudasai hint 'the verb alone, no object', this card 'say what is not to be taken'."}
+{"id":"chapter-22/mae-ago/leaks-answer/1","status":"fixed","statusReason":"Scene now 'placed right behind a length of time (number + counter)': no 'ago' for Recognition, and no example containing まえ, which would have printed the answer on the Production front."}
+{"id":"chapter-22/mae-ago/other/1","status":"fixed","statusReason":"Same rewrite: the scene no longer opens with 'after'."}
+{"id":"chapter-22/iremasu-put-in/other/1","status":"fixed","statusReason":"Note now 'Regular 2: ない-form いれない (irenai), dictionary form いれる (ireru).'"}
+{"id":"chapter-22/-/other/1","status":"fixed","statusReason":"Every 'Regular I/II' in chapter-22 and chapter-22-extras notes (29 cards) normalised to 'Regular 1/2'."}
+{"id":"chapter-22-extras/travel-dont-worry/ambiguous/1","status":"fixed","statusReason":"Hint 'with しんぱい (shinpai, \"worry\")' here and 'with きにします (ki ni shimasu, \"worry about\")' on chapter-22/ki-ni-shinaide-kudasai."}
+{"id":"chapter-22-extras/-/other/1","status":"fixed","statusReason":"The three builder notes moved to reviewNote; nai-nomanai-ex1 gets the scene 'a doctor to a patient'."}
+{"id":"chapter-22/osake/note-unverifiable/1","status":"fixed","statusReason":"Note now says お is the optional polite prefix and both forms mean alcohol in general or sake; the rice-wine split is gone."}
+{"id":"chapter-19/made/leaks-answer/1","status":"fixed","statusReason":"Scene shortened to 'with a place, not a time': keeps the Lesson 3 contrast without defining 'as far as'."}
+{"id":"chapter-19/wo-place-particle/leaks-answer/1","status":"fixed","statusReason":"Scene now the frame cue 'used with まがります (magarimasu) or まっすぐいきます (massugu ikimasu)'."}
+{"id":"chapter-19/de-means-particle/leaks-answer/1","status":"fixed","statusReason":"Scene now the frame cue 'used with メール (mēru) or ゆうびん (yūbin)', which rules out the place and payment で without defining this one."}
+{"id":"chapter-19/torimasu/leaks-answer/1","status":"fixed","statusReason":"Scene now 'not a photo', which separates it from Lesson 11 without naming the answer."}
+{"id":"chapter-19/tomemasu/leaks-answer/1","status":"fixed","statusReason":"Scene kept (chapter-21/tomemasu-park is a target collision, so a scene is required) but reworded to 'said to a taxi driver', which no longer says 'stop'."}
+{"id":"chapter-19/kakimasu-l19/leaks-answer/1","status":"fixed","statusReason":"Scene now 'used with なまえ (namae) or じゅうしょ (jūsho)', no 'writing'."}
+{"id":"chapter-19/kakimasu-l19/ambiguous/1","status":"skipped","statusReason":"The fix is to exclude the card, and it was kept at the owner's explicit request (reviewNote, commit f163f47). Field-edit pass never removes a card; owner to decide."}
+{"id":"chapter-19/temae/ambiguous/1","status":"fixed","statusReason":"Hint 'the near side of a landmark, not a time' added."}
+{"id":"chapter-19/magarimasu/other/1","status":"fixed","statusReason":"'this chapter's third grammar point' dropped; the example sentence gets a gloss and the romaji shingō."}
+{"id":"chapter-19/okurimashita/leaks-answer/1","status":"fixed","statusReason":"Hint 'Past of おくります' removed from the Production front and moved to the note on the back."}
+{"id":"chapter-19/yuubin/ambiguous/1","status":"fixed","statusReason":"Hint 'by post, not e-mail' added."}
+{"id":"chapter-19/nimotsu/ambiguous/1","status":"fixed","statusReason":"Contrast note on にもつ: a parcel or luggage, while パッケージ is a product's packaging. The matching note on chapter-18/package is outside this fixer's units."}
+{"id":"chapter-19/shorui/ambiguous/1","status":"fixed","statusReason":"Hint 'paperwork' and the しょるい / しりょう contrast note (moved from the excluded chapter-19/shiryou card)."}
+{"id":"chapter-19-extras/motte-kite-meeting/ambiguous/1","status":"fixed","statusReason":"English 'documents' changed to 'materials' for しりょう."}
+{"id":"chapter-19-extras/request-bring-meeting-documents/ambiguous/1","status":"fixed","statusReason":"English 'documents' changed to 'materials' for しりょう."}
+{"id":"chapter-19-extras/chotto-matte-documents/ambiguous/1","status":"fixed","statusReason":"English now 'I'll take the documents', so the front points at とります (take) and しょるい (documents)."}
+{"id":"chapter-19-extras/yes-certainly-hotel/ambiguous/1","status":"fixed","statusReason":"Hint 'with はい (hai)' added, mirroring the base card's 'without はい'."}
+{"id":"chapter-19-extras/heading-to-osaka-branch/missing-info/1","status":"fixed","statusReason":"Note added explaining いまから and place + ですか standing in for いきます."}
+{"id":"chapter-19-extras/douryou-ni-iu-mae-ni-denwa/unanswerable/1","status":"fixed","statusReason":"English now 'before you say it to your colleagues', which points at いう."}
+{"id":"chapter-19-extras/nimotsu-wo-azukaru-mae-ni-namae/unanswerable/1","status":"fixed","statusReason":"English now 'before we look after your luggage', which points at あずかる."}
+{"id":"chapter-19-extras/straight-next-intersection/other/1","status":"fixed","statusReason":"Note reworded: the を place is what you go straight through with まっすぐいきます and what you turn at with まがります; no denial of 'at'."}
+{"id":"chapter-19-extras/-/wrong-content/1","status":"fixed","statusReason":"All eight notes now say 'a verb before まえに is in its dictionary form'. The same false 'always follows' claim was also fixed on 8 notes in chapter-21-extras and 4 in chapter-22-extras."}
+{"id":"chapter-19/tsugi-no/other/1","status":"skipped","statusReason":"The fix is to exclude the card; the pair was cued deliberately at gate 1. Field-edit pass never removes a card; owner to decide."}
+{"id":"chapter-19-extras/taxi-turn-beyond-school/book-mismatch/1","status":"fixed","statusReason":"English now 'Please turn beyond the school.'"}
+{"id":"chapter-19-extras/taxi-stop-beyond-traffic-light/book-mismatch/1","status":"fixed","statusReason":"English now 'Please stop beyond the traffic light.' (English only; the curated clip is untouched)."}
+{"id":"chapter-19/houkoku-shimasu/note-unverifiable/1","status":"fixed","statusReason":"Note keeps only the verb-versus-noun contrast with レポート; 'spoken' and 'to a superior' dropped."}
+{"id":"chapter-20/ikitai-n-desu-ga/ambiguous/1","status":"fixed","statusReason":"Hint 'opening a request for directions, leaving the question unsaid' added, so the front asks for いきたいんですが, not Lesson 17's いきたいです."}
+{"id":"chapter-20/ka-nichi/unanswerable/1","status":"fixed","statusReason":"Production hint 'two to ten days, not にち (nichi)' added."}
+{"id":"chapter-20-extras/yasumi-ni-nebou-suru-no-ga-suki/missing-info/1","status":"fixed","statusReason":"Hint 'use the verb for oversleeping' added; the English stays natural. The untaught ひ is F2's finding."}
+{"id":"chapter-20/yokka/other/1","status":"fixed","statusReason":"Duplicate hint dropped on futsuka, yokka, mikka, itsuka and muika; the scene 'a length of time' still cues both fronts."}
+{"id":"chapter-20/neboushimasu/other/1","status":"fixed","statusReason":"Romaji spaced on both headword cards: nebō shimasu, nebō shimashita, matching the rest of the chapter."}
+{"id":"chapter-20/kan-period-suffix/other/1","status":"fixed","statusReason":"'The chart writes it in brackets.' dropped; the quoted kana romanized."}
+{"id":"chapter-20/noru-dict/other/1","status":"fixed","statusReason":"All ten 'R1/R2 verb' notes now name Regular 1 or 2 and show the derivation (のります → のる → のって and so on)."}
+{"id":"chapter-23/check-noun/ambiguous/1","status":"fixed","statusReason":"Hint now starts 'the noun', as download-loanword and benkyou-study do."}
+{"id":"chapter-23/kai-floor-counter/wrong-content/1","status":"fixed","statusReason":"'Only 3 voices it' replaced: of the numbers 3 voices it (さんがい), and the question word is なんがい."}
+{"id":"chapter-23/ima-ii-desu-ka/ambiguous/1","status":"fixed","statusReason":"Hint now also says 'the everyday いい (ii), not the politer よろしい (yoroshii)'."}
+{"id":"chapter-23/souji-shimasu-clean/ambiguous/1","status":"fixed","statusReason":"Hint 'the verb: do the cleaning' added so the front does not read as きれい."}
+{"id":"chapter-23/dekimasu-be-done-2/other/1","status":"fixed","statusReason":"Note now 'Regular 2: its dictionary form is できる (dekiru).'"}
+{"id":"chapter-23/-/other/1","status":"fixed","statusReason":"'above' and 'below' dropped from all eight notes; quoted kana romanized; em-dashes removed in the touched notes."}
+{"id":"chapter-23-extras/kato-guitar-weekly/ambiguous/1","status":"fixed","statusReason":"English now 'is taking guitar lessons every week', the book's KS2 shape for ならっています."}
+{"id":"chapter-23-extras/shodou-calligraphy-1/ambiguous/1","status":"fixed","statusReason":"English now 'is taking calligraphy lessons every week'."}
+{"id":"chapter-23-extras/nakamura-flower-arrangement-weekly/ambiguous/1","status":"fixed","statusReason":"English now 'is taking flower arrangement lessons every week'."}
+{"id":"chapter-23-extras/suzuki-french-weekly/ambiguous/1","status":"fixed","statusReason":"English now 'is taking French lessons every week'."}
+{"id":"chapter-23-extras/shodou-calligraphy-1/other/1","status":"fixed","statusReason":"EXERCISES III note replaced with what the sentence shows: ならっています with まいしゅう, ています for an action repeated over a period."}
+{"id":"chapter-23-extras/jogging-o-shimasu-1/unanswerable/1","status":"fixed","statusReason":"Target is the book's line, so it stays; hint 'the ています form, for an action repeated over a period' added."}
+{"id":"chapter-23-extras/report-check-shimasu/ambiguous/1","status":"fixed","statusReason":"Hint 'with the noun チェック (chekku, \"check\") joined by の (no)' added."}
+{"id":"chapter-23-extras/check-noun-1/unanswerable/1","status":"fixed","statusReason":"Hint 'asking with おねがいします (onegai shimasu)' added."}
+{"id":"chapter-23-extras/smith-explains-project/missing-info/1","status":"fixed","statusReason":"Note added explaining X の せつめいをします: the thing explained goes in front with の."}
+{"id":"chapter-23-extras/moshi-moshi-1/ambiguous/1","status":"fixed","statusReason":"Hint 'the phone greeting, not はい (hai)' added."}
+{"id":"chapter-23-extras/mousugu-kaigi-hajimemasu/other/1","status":"fixed","statusReason":"Stays excluded (restoring would add a card) with a true reason (もうすぐ already has three sentences here; はじめます is Lesson 17's) and the romaji corrected to mōsugu kaigi o hajimemasu."}
+{"id":"chapter-24/yone/ambiguous/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of, not the plain ね (ne)' added. The matching cue on chapter-6/ne-particle is outside this fixer's units."}
+{"id":"chapter-24/musumesan/leaks-answer/1","status":"fixed","statusReason":"Hint now 'the everyday word, not the more formal おじょうさん (ojōsan)'; it no longer spells むすめ + さん."}
+{"id":"chapter-24/sundeimasu/other/1","status":"fixed","statusReason":"Note softened: residence is a present state the book says with すんでいます; it no longer marks すみます wrong. The Lesson 17 card itself is outside this fixer's units."}
+{"id":"chapter-24/tsutometeimasu/wrong-content/1","status":"fixed","statusReason":"Citation for しごとをします changed from Lesson 3 to Lesson 8."}
+{"id":"chapter-24/ganbatte-kudasai/other/1","status":"fixed","statusReason":"'below' dropped; がんばります glossed in place; em-dash removed."}
+{"id":"chapter-24/shitteimasu/other/1","status":"fixed","statusReason":"'below' dropped; em-dash removed."}
+{"id":"chapter-24/shirimasen-2/ambiguous/1","status":"skipped","statusReason":"The fix is a hint on chapter-2/wakarimasen, which is outside F1d's units (F1a owns chapter-2). This card already carries its own cue."}
+{"id":"chapter-24-extras/yone-01/unanswerable/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of' asks for よね over ね."}
+{"id":"chapter-24-extras/yone-02/unanswerable/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of' added."}
+{"id":"chapter-24-extras/yone-03/unanswerable/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of' added."}
+{"id":"chapter-24-extras/yone-with-shiru/unanswerable/1","status":"fixed","statusReason":"Hint 'checking something you are fairly sure of' added."}
+{"id":"chapter-24-extras/nationality-vs-language-a/other/1","status":"fixed","statusReason":"Card id replaced with the question it answers and the point of the pair: じん is the person, ご the language."}
+{"id":"chapter-24-extras/nationality-vs-language-q/other/1","status":"fixed","statusReason":"Card id replaced with the contrast: ちゅうごくじん the person, ちゅうごくご the language."}
+{"id":"chapter-24-extras/ex10-2-q-sasaki-chinese/other/1","status":"fixed","statusReason":"Picture note moved to reviewNote."}
+{"id":"chapter-24-extras/ex10-1-q-kato-english/other/1","status":"fixed","statusReason":"Picture note moved to reviewNote."}
+{"id":"chapter-24-extras/ex8b2-ando-mobile-q/missing-info/1","status":"fixed","statusReason":"Note added: けいたいのばんごう and Lesson 2's けいたいばんごう mean the same."}
+{"id":"chapter-24-extras/ex8a-ask-andos-work/wrong-content/1","status":"fixed","statusReason":"Note now says it leaves the rest of the question unsaid, such as なんですか; em-dashes removed."}
+{"id":"chapter-24-extras/tsutomemasu-sentence/note-unverifiable/1","status":"fixed","statusReason":"English now 'Next month, I will work for ABC Foods.' so it matches らいげつ without から (no target change, no audio); note trimmed to the ます form for the future versus つとめています, and 'plain' dropped."}
+{"id":"chapter-25/saa/ambiguous/1","status":"fixed","statusReason":"Hints now differ: 'casual style; the hesitation word alone' here, 'casual style; the whole sentence' on saa-1."}
+{"id":"chapter-25/dane/ambiguous/1","status":"fixed","statusReason":"Hint now 'casual style; after a noun or な-adjective', which rules out bare ね."}
+{"id":"chapter-25/dayo/ambiguous/1","status":"fixed","statusReason":"Hint now 'casual style; after a noun or な-adjective', which rules out bare よ."}
+{"id":"chapter-25/tte-casual-topic/note-unverifiable/1","status":"fixed","statusReason":"English now 'Casual stand-in for は', not 'contraction'; the extras note on casual-question-tanaka-nihonjin-tte reworded the same way. The chapter-12-extras card is outside this fixer's units."}
+{"id":"chapter-25/na-adjective-casual-ne-kirei/leaks-answer/1","status":"fixed","statusReason":"Bracketed rule removed from the English ('It's pretty, isn't it?'); the note already states it."}
+{"id":"chapter-25/na-adjective-casual-yo-kirei/leaks-answer/1","status":"fixed","statusReason":"Bracketed rule removed from the English ('It's pretty, you know.'); the note already states it."}
+{"id":"chapter-25-extras/suffix-chan-usage/unanswerable/1","status":"fixed","statusReason":"Scene 'talking to a little girl named Hayashi' picks ちゃん; romaji name capitalised."}
+{"id":"chapter-25-extras/suffix-kun-usage/unanswerable/1","status":"fixed","statusReason":"Scene 'greeting a younger male colleague named Tanaka' picks くん; romaji name capitalised."}
+{"id":"chapter-25-extras/ore-2/unanswerable/1","status":"fixed","statusReason":"Hint 'rough, not modest' added beside the English '(male speaker)', which picks おれ over ぼく."}
+{"id":"chapter-25-extras/ore-3/unanswerable/1","status":"fixed","statusReason":"Hint 'rough, not modest' picks おれ over ぼく."}
+{"id":"chapter-25-extras/boku-3/unanswerable/1","status":"fixed","statusReason":"Hint now 'male speaker, modest, casual', which picks ぼく over おれ."}
+{"id":"chapter-25-extras/abe-not-mine/unanswerable/1","status":"fixed","statusReason":"Scene now names 'a rough-spoken classmate' (おれ); targets stay as the book has them."}
+{"id":"chapter-25-extras/yes-its-mine/unanswerable/1","status":"fixed","statusReason":"Scene now names 'a modest-spoken classmate' (ぼく)."}
+{"id":"chapter-25-extras/boku-sensei-janai/unanswerable/1","status":"fixed","statusReason":"Hint 'male speaker, modest, casual' added."}
+{"id":"chapter-25-extras/atashi-gakusei-dayo/unanswerable/1","status":"fixed","statusReason":"Hint 'spoken by a woman, casual' added, as atashi-2 has."}
+{"id":"chapter-25-extras/nikko-tte-donna-tokoro/unanswerable/1","status":"fixed","statusReason":"Hint 'casual, with って (tte)' added."}
+{"id":"chapter-25-extras/casual-question-tanaka-nihonjin-tte/unanswerable/1","status":"fixed","statusReason":"Hint 'casual, with って (tte)' here and 'casual, は (wa) dropped' on the Suzuki partner."}
+{"id":"chapter-25-extras/is-this-yours-raja/unanswerable/1","status":"fixed","statusReason":"Hint 'casual, with って (tte)' added; romaji names capitalised."}
+{"id":"chapter-25-extras/nikko-kirei-janakatta/other/1","status":"fixed","statusReason":"Note no longer points at the excluded にっこう、きれいだね card; it contrasts the past negative with the bare きれいだね."}
+{"id":"chapter-25-extras/uchi-ookikunakatta/other/1","status":"fixed","statusReason":"Build-language note replaced with the form: くない becomes くなかった."}
+{"id":"chapter-25-extras/party-was-lively/unanswerable/1","status":"fixed","statusReason":"Hint 'casual style, with the casual word for very' picks すごく over とても."}
+{"id":"chapter-25-extras/-/other/1","status":"fixed","statusReason":"ううん is ūn on all three cards; adjective negatives joined (yokunai, ōkikunai, yokunakatta, ōkikunakatta) as in the base unit and the collection; Hakone and the personal names in this unit's romaji capitalised per the pinned proper-noun rule."}
+{"id":"chapter-25-extras/casual-question-suzuki-sensei-ha-omit/wrong-content/1","status":"fixed","statusReason":"English now 'Is Suzuki a teacher?', matching the note's topic reading and the Tanaka sibling."}
+{"id":"chapter-25-extras/casual-question-tanaka-nihonjin-tte/wrong-content/1","status":"fixed","statusReason":"English now 'Is Tanaka Japanese?'."}
+{"id":"chapter-25/casual-no/wrong-content/1","status":"fixed","statusReason":"Pronunciation now ūn."}
+{"id":"chapter-25/casual-no/book-mismatch/1","status":"fixed","statusReason":"English now 'Nope (casual 'no').', the plainer gloss the extras already use, parallel to 'Yeah (casual 'yes')'."}
+{"id":"chapter-26/arigatou-thanks/ambiguous/1","status":"fixed","statusReason":"Hint now 'casual style; not どうも (dōmo)'."}
+{"id":"chapter-26/gentle-refusal-chotto/ambiguous/1","status":"fixed","statusReason":"Hint now 'casual style; start with a drawn-out \"eh\"', which asks for the えー the book prints."}
+{"id":"chapter-26/ta-itta/unanswerable/1","status":"fixed","statusReason":"Scene 'Talking about last weekend's trip to the sea' added, as ta-kita and ta-shita have, so いった reads as went, not said (scene only; the curated clip is untouched)."}
+{"id":"chapter-26/dont-want-to-iyada/note-unverifiable/1","status":"fixed","statusReason":"'Stronger than だめ' ranking dropped; the book's don't-want-to versus not-allowed contrast kept."}
+{"id":"chapter-26-extras/ore-wa-mada/unanswerable/1","status":"fixed","statusReason":"Hint now 'casual style; rough, not modest', which picks おれ over ぼく."}
+{"id":"chapter-26-extras/atashi-wa-ikanai/missing-info/1","status":"fixed","statusReason":"Hint 'casual style; keep は (wa) for contrast' and a note explaining the contrastive は; the book's target stays."}
+{"id":"chapter-26-extras/kondo-no-doyou-uchi-konai/book-mismatch/1","status":"fixed","statusReason":"English now 'next Saturday', as the book and the こんど card say."}
+{"id":"chapter-26-extras/casual-invitation-koen/wrong-content/1","status":"fixed","statusReason":"English now 'Want to go to the park on Saturday?', matching the chapter's other invitation glosses."}
+{"id":"chapter-26/saturday-doyou/note-unverifiable/1","status":"fixed","statusReason":"Unsourced 'the other days shorten the same way' dropped."}

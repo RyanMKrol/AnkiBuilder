@@ -59,7 +59,8 @@
       "audioOriginal": "2bd5faa5040134d1.orig.mp3",
       "audioAuto": "2bd5faa5040134d1.mp3",
       "audioMarked": true,
-      "audioTextHash": "2bd5faa5040134d1"
+      "audioTextHash": "2bd5faa5040134d1",
+      "hint": "say what is not to be taken"
     },
     {
       "id": "please-dont-touch-vase",
@@ -142,7 +143,7 @@
       "target": "たつまえに、にもつをとってください",
       "pronunciation": "tatsu mae ni, nimotsu o totte kudasai",
       "aiSuggested": true,
-      "note": "たつ (stand up) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "note": "たつ (stand up) is the dictionary form, the form a verb takes before まえに (mae ni, \"before\"), as in ねるまえに (neru mae ni) from Lesson 17.",
       "reviewNote": "Rewritten by the operator before gate 2: was あさ、たつまえに、みずをのみます.",
       "audio": "f6a04e5131578afd.mp3",
       "audioOriginal": "f6a04e5131578afd.orig.mp3",
@@ -446,7 +447,7 @@
       "target": "さわるまえに、てをあらってください",
       "pronunciation": "sawaru mae ni, te o aratte kudasai",
       "aiSuggested": true,
-      "note": "さわる (touch) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "note": "さわる (touch) is the dictionary form, the form a verb takes before まえに (mae ni, \"before\"), as in ねるまえに (neru mae ni) from Lesson 17.",
       "reviewNote": "Rewritten by the operator before gate 2: was さわるまえに、てをあらいます.",
       "audio": "08e65814514cb842.mp3",
       "audioOriginal": "08e65814514cb842.orig.mp3",
@@ -476,7 +477,7 @@
       "target": "たばこをすうまえに、まどをあけてください",
       "pronunciation": "tabako o sū mae ni, mado o akete kudasai",
       "aiSuggested": true,
-      "note": "すう (smoke) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "note": "すう (smoke) is the dictionary form, the form a verb takes before まえに (mae ni, \"before\"), as in ねるまえに (neru mae ni) from Lesson 17.",
       "reviewNote": "Rewritten by the operator before gate 2: was すうまえに、ドアをあけます.",
       "audio": "519f9eb7247a9a74.mp3",
       "audioOriginal": "519f9eb7247a9a74.orig.mp3",
@@ -528,7 +529,7 @@
       "target": "わすれないでください",
       "english": "Please don't forget.",
       "category": "Travel & Tourism",
-      "note": "わすれます means forget, a Regular II verb: わすれる→わすれない.",
+      "note": "わすれます means forget, a Regular 2 verb: わすれる→わすれない.",
       "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. わすれます (forget) is not taught by the book yet.",
       "aiSuggested": true,
       "pronunciation": "wasurenaide kudasai",
@@ -664,12 +665,12 @@
       "target": "たかいですから、それをかわないでください",
       "pronunciation": "takai desu kara, sore o kawanaide kudasai",
       "aiSuggested": true,
-      "note": "An inflected ない-form, not a function word: one sentence, delivered inside this chapter's verb[ない-form]でください pattern rather than as a bare plain-form ending.",
       "audio": "8bd412426c5f74e1.mp3",
       "audioOriginal": "8bd412426c5f74e1.orig.mp3",
       "audioAuto": "8bd412426c5f74e1.mp3",
       "audioMarked": true,
-      "audioTextHash": "8bd412426c5f74e1"
+      "audioTextHash": "8bd412426c5f74e1",
+      "reviewNote": "An inflected ない-form, not a function word: one sentence, delivered inside this chapter's verb[ない-form]でください pattern rather than as a bare plain-form ending."
     },
     {
       "id": "ask-nearby-parking-lot",
@@ -818,7 +819,8 @@
       "audioOriginal": "0a28c3529bbfd4dd.orig.mp3",
       "audioAuto": "0a28c3529bbfd4dd.mp3",
       "audioMarked": true,
-      "audioTextHash": "0a28c3529bbfd4dd"
+      "audioTextHash": "0a28c3529bbfd4dd",
+      "hint": "with しんぱい (shinpai, \"worry\")"
     },
     {
       "id": "nai-nomanai-ex1",
@@ -827,12 +829,13 @@
       "target": "きょうはおさけをのまないでください",
       "pronunciation": "kyō wa osake o nomanaide kudasai",
       "aiSuggested": true,
-      "note": "Reuses the chapter's own Speaking Practice line (the doctor's instruction).",
       "audio": "738f6fbab5fe4154.mp3",
       "audioOriginal": "738f6fbab5fe4154.orig.mp3",
       "audioAuto": "738f6fbab5fe4154.mp3",
       "audioMarked": true,
-      "audioTextHash": "738f6fbab5fe4154"
+      "audioTextHash": "738f6fbab5fe4154",
+      "reviewNote": "Reuses the chapter's own Speaking Practice line (the doctor's instruction).",
+      "scene": "a doctor to a patient"
     },
     {
       "id": "nai-kaeranai-ex1",
@@ -859,12 +862,12 @@
       "target": "かびんにさわります",
       "pronunciation": "kabin ni sawarimasu",
       "aiSuggested": true,
-      "note": "Reuses the book's own Exercise 2 stimulus sentence (item 4, before its transformation into the ないでください drill).",
       "audio": "ddb0d835238bc3b8.mp3",
       "audioOriginal": "ddb0d835238bc3b8.orig.mp3",
       "audioAuto": "ddb0d835238bc3b8.mp3",
       "audioMarked": true,
-      "audioTextHash": "ddb0d835238bc3b8"
+      "audioTextHash": "ddb0d835238bc3b8",
+      "reviewNote": "Reuses the book's own Exercise 2 stimulus sentence (item 4, before its transformation into the ないでください drill)."
     },
     {
       "id": "shinai-study-holiday",
@@ -903,7 +906,7 @@
       "category": "Grammar & Function Words",
       "target": "わさびをいれるまえに、たべないでください",
       "pronunciation": "wasabi o ireru mae ni, tabenaide kudasai",
-      "note": "いれる (put in). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's ないでください (please don't).",
+      "note": "いれる (put in). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then this lesson's ないでください (please don't).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いれる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",

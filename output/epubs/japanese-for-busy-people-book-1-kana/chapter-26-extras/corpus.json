@@ -115,7 +115,7 @@
     {
       "id": "casual-invitation-koen",
       "target": "どようび、こうえんいかない?",
-      "english": "Won't you go to the park on Saturday?",
+      "english": "Want to go to the park on Saturday?",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
       "hint": "casual style"
@@ -235,7 +235,7 @@
       "english": "I haven't yet. (male speaker)",
       "category": "Grammar & Function Words",
       "scene": "Asked whether you've read the new manga yet",
-      "hint": "casual style"
+      "hint": "casual style; rough, not modest"
     },
     {
       "id": "casual-past-kaita-letter",
@@ -248,7 +248,7 @@
     {
       "id": "kondo-no-doyou-uchi-konai",
       "target": "こんどの どよう、うち こない?",
-      "english": "Want to come over to my place this Saturday?",
+      "english": "Want to come over to my place next Saturday?",
       "category": "Grammar & Function Words",
       "hint": "casual style"
     },
@@ -266,7 +266,8 @@
       "target": "あたしは いかない。",
       "english": "I'm not going. (female speaker)",
       "category": "Grammar & Function Words",
-      "hint": "casual style"
+      "hint": "casual style; keep は (wa) for contrast",
+      "note": "は (wa) stays here for contrast: the others are going, but as for me, I'm not."
     },
     {
       "id": "ack-standalone",

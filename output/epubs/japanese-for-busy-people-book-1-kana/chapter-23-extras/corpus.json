@@ -118,7 +118,8 @@
       "target": "スミスさんは プロジェクトの せつめいを しています。",
       "english": "Smith-san is explaining the project.",
       "category": "Work & Occupations",
-      "fillInBlank": true
+      "fillInBlank": true,
+      "note": "With a noun + をします (o shimasu) verb, the thing explained goes in front with の (no): プロジェクトのせつめいをします (purojekuto no setsumei o shimasu, \"explain the project\")."
     },
     {
       "id": "dekiru-dict-form-1",
@@ -137,16 +138,16 @@
     {
       "id": "kato-guitar-weekly",
       "target": "かとうさんは まいしゅう ギターを ならっています。",
-      "english": "Kato-san takes guitar lessons every week.",
+      "english": "Kato-san is taking guitar lessons every week.",
       "category": "Sports & Hobbies",
       "fillInBlank": true
     },
     {
       "id": "shodou-calligraphy-1",
       "target": "エマさんは まいしゅう しょどうを ならっています。",
-      "english": "Emma-san takes calligraphy lessons every week.",
+      "english": "Emma-san is taking calligraphy lessons every week.",
       "category": "School & Education",
-      "note": "Follows the chapter's EXERCISES III drill pattern directly.",
+      "note": "ならっています (naratte imasu) with まいしゅう (maishū, \"every week\"): the ています form for an action repeated over a period.",
       "aiSuggested": true
     },
     {
@@ -168,7 +169,8 @@
       "target": "レポートのチェックをします。",
       "english": "I will check the report.",
       "category": "Work & Occupations",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "with the noun チェック (chekku, \"check\") joined by の (no)"
     },
     {
       "id": "meeting-materials-ready-a",
@@ -196,7 +198,8 @@
       "target": "もしもし、たなかです。",
       "english": "Hello, this is Tanaka.",
       "category": "Greetings",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "the phone greeting, not はい (hai)"
     },
     {
       "id": "hanashite-imasen-2-1",
@@ -232,7 +235,7 @@
     {
       "id": "nakamura-flower-arrangement-weekly",
       "target": "なかむらさんは まいしゅう いけばなを ならっています。",
-      "english": "Nakamura-san takes flower arrangement lessons every week.",
+      "english": "Nakamura-san is taking flower arrangement lessons every week.",
       "category": "Sports & Hobbies",
       "fillInBlank": true
     },
@@ -436,7 +439,7 @@
     {
       "id": "suzuki-french-weekly",
       "target": "すずきさんは まいしゅう フランスごを ならっています。",
-      "english": "Suzuki-san takes French lessons every week.",
+      "english": "Suzuki-san is taking French lessons every week.",
       "category": "Sports & Hobbies",
       "fillInBlank": true
     },
@@ -447,8 +450,8 @@
       "category": "Work & Occupations",
       "aiSuggested": true,
       "excluded": true,
-      "excludedBy": "untaught-vocabulary",
-      "excludedReason": "はじめます (begin) is not taught in this book yet; only はじめまして is"
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "もうすぐ (mōsugu) already has three sentences in this unit (mousugu-soon-1, -2, -3). Re-excluded with a true reason: はじめます is taught in Lesson 17, so the earlier 'untaught' reason was wrong."
     },
     {
       "id": "owaru-dict-form-1",
@@ -522,7 +525,8 @@
       "target": "スミスさんは ときどき ジョギングを しています。",
       "english": "Smith-san sometimes goes jogging.",
       "category": "Sports & Hobbies",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "the ています form, for an action repeated over a period"
     },
     {
       "id": "yoyakushimasu-make-reservation-1",
@@ -557,7 +561,8 @@
       "target": "しりょうの チェックを おねがいします。",
       "english": "Please check over the materials.",
       "category": "Travel & Tourism",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "asking with おねがいします (onegai shimasu)"
     },
     {
       "id": "ima-ii-desu-ka-1",

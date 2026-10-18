@@ -23,7 +23,8 @@
       "category": "Grammar & Function Words",
       "fillInBlank": true,
       "uncertain": true,
-      "reviewNote": "Possibly already taught — Chapter-22's とらないでください card already covers 'please don't take [photos]'; this is the same sentence completed with しゃしん."
+      "reviewNote": "Possibly already taught — Chapter-22's とらないでください card already covers 'please don't take [photos]'; this is the same sentence completed with しゃしん.",
+      "hint": "say what is not to be taken"
     },
     {
       "id": "please-dont-touch-vase",
@@ -70,7 +71,7 @@
       "target": "たつまえに、にもつをとってください。",
       "english": "Please take your luggage before you stand up.",
       "category": "Grammar & Function Words",
-      "note": "たつ (stand up) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "note": "たつ (stand up) is the dictionary form, the form a verb takes before まえに (mae ni, \"before\"), as in ねるまえに (neru mae ni) from Lesson 17.",
       "aiSuggested": true,
       "reviewNote": "Rewritten by the operator before gate 2: was あさ、たつまえに、みずを のみます."
     },
@@ -236,7 +237,7 @@
       "target": "さわるまえに、てをあらってください。",
       "english": "Please wash your hands before you touch it.",
       "category": "Grammar & Function Words",
-      "note": "さわる (touch) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "note": "さわる (touch) is the dictionary form, the form a verb takes before まえに (mae ni, \"before\"), as in ねるまえに (neru mae ni) from Lesson 17.",
       "aiSuggested": true,
       "reviewNote": "Rewritten by the operator before gate 2: was さわるまえに、てを あらいます."
     },
@@ -254,7 +255,7 @@
       "target": "たばこをすうまえに、まどをあけてください。",
       "english": "Please open the window before you smoke.",
       "category": "Grammar & Function Words",
-      "note": "すう (smoke) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "note": "すう (smoke) is the dictionary form, the form a verb takes before まえに (mae ni, \"before\"), as in ねるまえに (neru mae ni) from Lesson 17.",
       "aiSuggested": true,
       "reviewNote": "Rewritten by the operator before gate 2: was すうまえに、ドアを あけます."
     },
@@ -285,7 +286,7 @@
       "target": "わすれないでください。",
       "english": "Please don't forget.",
       "category": "Travel & Tourism",
-      "note": "わすれます means forget, a Regular II verb: わすれる→わすれない.",
+      "note": "わすれます means forget, a Regular 2 verb: わすれる→わすれない.",
       "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. わすれます (forget) is not taught by the book yet.",
       "aiSuggested": true
     },
@@ -358,8 +359,8 @@
       "target": "たかいですから、それを かわないでください。",
       "english": "It's expensive, so please don't buy that one.",
       "category": "Grammar & Function Words",
-      "note": "An inflected ない-form, not a function word: one sentence, delivered inside this chapter's verb[ない-form]でください pattern rather than as a bare plain-form ending.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "reviewNote": "An inflected ない-form, not a function word: one sentence, delivered inside this chapter's verb[ない-form]でください pattern rather than as a bare plain-form ending."
     },
     {
       "id": "ask-nearby-parking-lot",
@@ -443,15 +444,17 @@
       "category": "Emotions & Feelings",
       "note": "しんぱい means worry. A general \"don't worry\", where きにしないでください from this lesson is \"don't let it bother you\".",
       "reviewNote": "Owner request 2026-10-12: travel phrases in this lesson's ないでください pattern. しんぱい (worry) is not taught by the book yet.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "with しんぱい (shinpai, \"worry\")"
     },
     {
       "id": "nai-nomanai-ex1",
       "target": "きょうは おさけを のまないでください。",
       "english": "Please don't drink alcohol today.",
       "category": "Grammar & Function Words",
-      "note": "Reuses the chapter's own Speaking Practice line (the doctor's instruction).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "reviewNote": "Reuses the chapter's own Speaking Practice line (the doctor's instruction).",
+      "scene": "a doctor to a patient"
     },
     {
       "id": "nai-kaeranai-ex1",
@@ -465,8 +468,8 @@
       "target": "かびんに さわります。",
       "english": "I touch the vase.",
       "category": "Body & Health",
-      "note": "Reuses the book's own Exercise 2 stimulus sentence (item 4, before its transformation into the ないでください drill).",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "reviewNote": "Reuses the book's own Exercise 2 stimulus sentence (item 4, before its transformation into the ないでください drill)."
     },
     {
       "id": "shinai-study-holiday",
@@ -496,7 +499,7 @@
       "english": "Please don't eat it before I put the wasabi in.",
       "category": "Grammar & Function Words",
       "target": "わさびをいれるまえに、たべないでください",
-      "note": "いれる (put in). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's ないでください (please don't).",
+      "note": "いれる (put in). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then this lesson's ないでください (please don't).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いれる, the dictionary form added to the base unit in the same batch."
     },

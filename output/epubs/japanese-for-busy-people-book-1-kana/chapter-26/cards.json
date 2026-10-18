@@ -63,7 +63,7 @@
       "category": "Time",
       "target": "どよう",
       "pronunciation": "doyō",
-      "note": "Casual speech often drops the び (bi) of どようび (doyōbi); the other days shorten the same way.",
+      "note": "Casual speech often drops the び (bi) of どようび (doyōbi).",
       "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
       "sourceOrder": 942,
       "hint": "casual style",
@@ -144,7 +144,7 @@
       "note": "The casual version of すみませんが、ちょっと… (sumimasen ga, chotto…): trailing off declines without saying no.",
       "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
       "sourceOrder": 171,
-      "hint": "casual style",
+      "hint": "casual style; start with a drawn-out \"eh\"",
       "scene": "A friend asks to borrow something you'd rather not lend",
       "audio": "bfc7f05789958ef3.mp3",
       "audioOriginal": "bfc7f05789958ef3.orig.mp3",
@@ -256,7 +256,8 @@
       "audioTrim": {
         "start": 0,
         "end": 0.7554118150684931
-      }
+      },
+      "scene": "Talking about last weekend's trip to the sea"
     },
     {
       "id": "ta-tabeta",
@@ -410,7 +411,7 @@
       "category": "Emotions & Feelings",
       "target": "いや(だ)",
       "pronunciation": "iya (da)",
-      "note": "A blunt refusal; the だ (da) is optional. Stronger than だめ (dame), which says something isn't allowed rather than that you don't want to.",
+      "note": "A blunt refusal; the だ (da) is optional. It says you don't want to, where だめ (dame) says something isn't allowed.",
       "reviewNote": "Possibly premature — いや(だ) as a casual refusal is given only inside this chapter's style-comparison table and is not glossed as vocabulary anywhere in the lessons; flagging as uncertain whether the learner has the grounding for the bare な-adjective plain form",
       "sourceOrder": 1752,
       "hint": "casual style",
@@ -430,7 +431,7 @@
       "reviewNote": "Kept at gate 1: the earlier card is a different form or register; this chapter teaches the casual one.",
       "sourceOrder": 962,
       "note": "The casual form of ありがとうございます (arigatō gozaimasu), with ございます dropped.",
-      "hint": "casual style",
+      "hint": "casual style; not どうも (dōmo)",
       "audio": "5f6cd8e0efa94399.mp3",
       "audioOriginal": "5f6cd8e0efa94399.orig.mp3",
       "audioAuto": "5f6cd8e0efa94399.mp3",

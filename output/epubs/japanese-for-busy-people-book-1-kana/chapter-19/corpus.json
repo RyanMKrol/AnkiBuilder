@@ -30,7 +30,7 @@
       "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
       "note": "Same まで (made) as \"Until (particle)\" from Lesson 3, where it marked the end of a time span. Here it also covers distance: \"as far as\" a place.",
       "hint": "a place you go as far as, not a time",
-      "scene": "marking how far along a route you are travelling"
+      "scene": "with a place, not a time"
     },
     {
       "id": "made-2",
@@ -62,7 +62,7 @@
       "sourceOrder": 197,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
-      "scene": "marking a space that is moved along or through"
+      "scene": "used with まがります (magarimasu) or まっすぐいきます (massugu ikimasu)"
     },
     {
       "id": "de-means-particle",
@@ -73,7 +73,7 @@
       "sourceOrder": 159,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
-      "scene": "naming what something is sent by, or travelled by"
+      "scene": "used with メール (mēru) or ゆうびん (yūbin)"
     },
     {
       "id": "ni-tsuite",
@@ -181,7 +181,8 @@
       "english": "Just before",
       "category": "Directions",
       "sourceOrder": 1699,
-      "note": "The opposite of さき (saki) \"Beyond\": てまえ (temae) is the near side of a landmark, before you reach it."
+      "note": "The opposite of さき (saki) \"Beyond\": てまえ (temae) is the near side of a landmark, before you reach it.",
+      "hint": "the near side of a landmark, not a time"
     },
     {
       "id": "tonari",
@@ -355,7 +356,7 @@
       "target": "まがります",
       "english": "Turn",
       "category": "Directions",
-      "note": "Takes を (o) for the place you turn at, which is this chapter's third grammar point: つぎのしんごうをみぎにまがってください (tsugi no shingou o migi ni magatte kudasai).",
+      "note": "Takes を (o) for the place you turn at: つぎのしんごうをみぎにまがってください (tsugi no shingō o migi ni magatte kudasai, \"please turn right at the next traffic light\").",
       "sourceOrder": 1510
     },
     {
@@ -374,7 +375,7 @@
       "uncertain": true,
       "reviewNote": "Kept at the owner's request. Chapter 11 already teaches とります as \"Take (a photo)\"; this card carries the general sense the chapter glosses as just \"take\". The scenes separate them on the Recognition front, but note this chapter's only concrete use (しゃしんをとります) is itself a photo, so the distinction is in the glosses rather than in the book's example.",
       "sourceOrder": 2198,
-      "scene": "picking something up or taking it with you"
+      "scene": "not a photo"
     },
     {
       "id": "te-form-totte",
@@ -455,7 +456,7 @@
       "sourceOrder": 1516,
       "uncertain": true,
       "reviewNote": "Forward flag cleared at gate 1: とめます is glossed in this chapter's WORD POWER I vocabulary box and is a row of its own conjugation table. Lesson 21 reuses it rather than introducing it.",
-      "scene": "telling a driver where to stop"
+      "scene": "said to a taxi driver"
     },
     {
       "id": "te-form-tomete",
@@ -539,7 +540,7 @@
       "sourceOrder": 360,
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on english)",
-      "note": "A formal, spoken or business report to a superior. It is a verb, unlike レポート (repōto) \"Report\" from Lesson 18, the written document.",
+      "note": "A verb, unlike レポート (repōto) \"Report\" from Lesson 18, which is the noun.",
       "hint": "to report to someone (verb)"
     },
     {
@@ -558,8 +559,8 @@
       "target": "おくりました",
       "english": "Sent",
       "category": "Work & Occupations",
-      "hint": "Past of おくります",
-      "sourceOrder": 214
+      "sourceOrder": 214,
+      "note": "Past of おくります (okurimasu, \"send\")."
     },
     {
       "id": "kakimasu-l19",
@@ -569,7 +570,7 @@
       "uncertain": true,
       "sourceOrder": 2157,
       "reviewNote": "Kept at the owner's request with a distinct id. NOTE: chapter-17/kakimasu already ships かきます \"Write\" with its own scene and a note distinguishing it from かきます \"Draw\" (Lesson 15). This card adds no new sense — the scene below is drawn from this chapter's exercises (なまえ/じゅうしょ) rather than a real difference in meaning. Exclude it if it reads as repetition.",
-      "scene": "writing your name or address on a form"
+      "scene": "used with なまえ (namae) or じゅうしょ (jūsho)"
     },
     {
       "id": "azukarimasu",
@@ -659,21 +660,25 @@
       "target": "ゆうびん",
       "english": "Mail",
       "category": "Technology & Communication",
-      "sourceOrder": 1738
+      "sourceOrder": 1738,
+      "hint": "by post, not e-mail"
     },
     {
       "id": "nimotsu",
       "target": "にもつ",
       "english": "Package, luggage",
       "category": "Everyday Objects",
-      "sourceOrder": 2636
+      "sourceOrder": 2636,
+      "note": "Something you carry or send: a parcel or luggage. パッケージ (pakkēji, \"package\") from Lesson 18 is a product's packaging."
     },
     {
       "id": "shorui",
       "target": "しょるい",
       "english": "Documents",
       "category": "Work & Occupations",
-      "sourceOrder": 2599
+      "sourceOrder": 2599,
+      "hint": "paperwork",
+      "note": "しょるい (shorui) are paperwork like forms; しりょう (shiryō, \"materials\") from Lesson 17 are reference materials."
     },
     {
       "id": "shiryou",

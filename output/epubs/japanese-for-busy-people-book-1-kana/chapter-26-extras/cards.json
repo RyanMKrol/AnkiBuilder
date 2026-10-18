@@ -190,7 +190,7 @@
     },
     {
       "id": "casual-invitation-koen",
-      "english": "Won't you go to the park on Saturday?",
+      "english": "Want to go to the park on Saturday?",
       "category": "Grammar & Function Words",
       "target": "どようび、こうえんいかない?",
       "pronunciation": "doyōbi, kōen ikanai",
@@ -391,7 +391,7 @@
       "target": "おれはまだ",
       "pronunciation": "ore wa mada",
       "scene": "Asked whether you've read the new manga yet",
-      "hint": "casual style",
+      "hint": "casual style; rough, not modest",
       "audio": "2d4f06054724f072.mp3",
       "audioOriginal": "2d4f06054724f072.orig.mp3",
       "audioAuto": "2d4f06054724f072.mp3",
@@ -414,7 +414,7 @@
     },
     {
       "id": "kondo-no-doyou-uchi-konai",
-      "english": "Want to come over to my place this Saturday?",
+      "english": "Want to come over to my place next Saturday?",
       "category": "Grammar & Function Words",
       "target": "こんどのどよう、うちこない?",
       "pronunciation": "kondo no doyō, uchi konai",
@@ -446,12 +446,13 @@
       "category": "Grammar & Function Words",
       "target": "あたしはいかない",
       "pronunciation": "atashi wa ikanai",
-      "hint": "casual style",
+      "hint": "casual style; keep は (wa) for contrast",
       "audio": "c7d56c35995d6051.mp3",
       "audioOriginal": "c7d56c35995d6051.orig.mp3",
       "audioAuto": "c7d56c35995d6051.mp3",
       "audioMarked": true,
-      "audioTextHash": "c7d56c35995d6051"
+      "audioTextHash": "c7d56c35995d6051",
+      "note": "は (wa) stays here for contrast: the others are going, but as for me, I'm not."
     },
     {
       "id": "ack-standalone",

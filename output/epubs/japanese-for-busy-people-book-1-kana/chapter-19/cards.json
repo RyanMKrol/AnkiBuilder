@@ -52,7 +52,7 @@
       "reviewNote": "Possibly already taught — already introduced in Lesson 3: Asking the Time: What Time Is It? (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
       "note": "Same まで (made) as \"Until (particle)\" from Lesson 3, where it marked the end of a time span. Here it also covers distance: \"as far as\" a place.",
       "hint": "a place you go as far as, not a time",
-      "scene": "marking how far along a route you are travelling",
+      "scene": "with a place, not a time",
       "sourceOrder": 3678,
       "audio": "3d3a4b969adcb136.mp3",
       "audioOriginal": "3d3a4b969adcb136.orig.mp3",
@@ -83,7 +83,7 @@
       "uncertain": true,
       "note": "Same を (o) as the object marker from Lesson 8, but here it marks the road or space you move along, with verbs like まがります (magarimasu).",
       "reviewNote": "Possibly already taught — already introduced in Lesson 8: Doing Things (1): I’m Going to Eat Tempura (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
-      "scene": "marking a space that is moved along or through",
+      "scene": "used with まがります (magarimasu) or まっすぐいきます (massugu ikimasu)",
       "sourceOrder": 197,
       "audio": "cd887be7dcd6d4bf.mp3",
       "audioOriginal": "cd887be7dcd6d4bf.orig.mp3",
@@ -100,7 +100,7 @@
       "uncertain": true,
       "note": "Same で (de) as \"By means of (particle)\" from Lesson 4 and Lesson 7. Here it extends to how you communicate, not just what you travel by.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on target) | Cue written at gate 1 to resolve a collision with an earlier lesson. Confirm it disambiguates without giving the answer away.",
-      "scene": "naming what something is sent by, or travelled by",
+      "scene": "used with メール (mēru) or ゆうびん (yūbin)",
       "sourceOrder": 159,
       "audio": "210d401c5f95bd81.mp3",
       "audioOriginal": "210d401c5f95bd81.orig.mp3",
@@ -260,7 +260,8 @@
       "audioOriginal": "ed3e82c9064f380e.orig.mp3",
       "audioAuto": "ed3e82c9064f380e.mp3",
       "audioMarked": true,
-      "audioTextHash": "ed3e82c9064f380e"
+      "audioTextHash": "ed3e82c9064f380e",
+      "hint": "the near side of a landmark, not a time"
     },
     {
       "id": "tonari",
@@ -506,7 +507,7 @@
       "category": "Directions",
       "target": "まがります",
       "pronunciation": "magarimasu",
-      "note": "Takes を (o) for the place you turn at, which is this chapter's third grammar point: つぎのしんごうをみぎにまがってください (tsugi no shingou o migi ni magatte kudasai).",
+      "note": "Takes を (o) for the place you turn at: つぎのしんごうをみぎにまがってください (tsugi no shingō o migi ni magatte kudasai, \"please turn right at the next traffic light\").",
       "sourceOrder": 1510,
       "audio": "4881b6a7b5a69166.mp3",
       "audioOriginal": "4881b6a7b5a69166.orig.mp3",
@@ -537,7 +538,7 @@
       "uncertain": true,
       "reviewNote": "Kept at the owner's request. Chapter 11 already teaches とります as \"Take (a photo)\"; this card carries the general sense the chapter glosses as just \"take\". The scenes separate them on the Recognition front, but note this chapter's only concrete use (しゃしんをとります) is itself a photo, so the distinction is in the glosses rather than in the book's example.",
       "sourceOrder": 2198,
-      "scene": "picking something up or taking it with you",
+      "scene": "not a photo",
       "audio": "dcb06d5d18f5156b.mp3",
       "audioOriginal": "dcb06d5d18f5156b.orig.mp3",
       "audioAuto": "dcb06d5d18f5156b.mp3",
@@ -627,7 +628,7 @@
       "audioAuto": "1b5869c89deed973.mp3",
       "audioMarked": true,
       "audioTextHash": "1b5869c89deed973",
-      "scene": "telling a driver where to stop"
+      "scene": "said to a taxi driver"
     },
     {
       "id": "te-form-tomete",
@@ -749,7 +750,7 @@
       "pronunciation": "hōkoku shimasu",
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 18: Explaining Plans: I Will Go to Osaka and See Her (matched on english)",
-      "note": "A formal, spoken or business report to a superior. It is a verb, unlike レポート (repōto) \"Report\" from Lesson 18, the written document.",
+      "note": "A verb, unlike レポート (repōto) \"Report\" from Lesson 18, which is the noun.",
       "hint": "to report to someone (verb)",
       "sourceOrder": 360,
       "audio": "f68cac6b05e4d24f.mp3",
@@ -776,13 +777,13 @@
       "category": "Work & Occupations",
       "target": "おくりました",
       "pronunciation": "okurimashita",
-      "hint": "Past of おくります",
       "sourceOrder": 214,
       "audio": "f4d8003742acf48c.mp3",
       "audioOriginal": "f4d8003742acf48c.orig.mp3",
       "audioAuto": "f4d8003742acf48c.mp3",
       "audioMarked": true,
-      "audioTextHash": "f4d8003742acf48c"
+      "audioTextHash": "f4d8003742acf48c",
+      "note": "Past of おくります (okurimasu, \"send\")."
     },
     {
       "id": "kakimasu-l19",
@@ -792,7 +793,7 @@
       "pronunciation": "kakimasu",
       "uncertain": true,
       "reviewNote": "Kept at the owner's request with a distinct id. NOTE: chapter-17/kakimasu already ships かきます \"Write\" with its own scene and a note distinguishing it from かきます \"Draw\" (Lesson 15). This card adds no new sense — the scene below is drawn from this chapter's exercises (なまえ/じゅうしょ) rather than a real difference in meaning. Exclude it if it reads as repetition.",
-      "scene": "writing your name or address on a form",
+      "scene": "used with なまえ (namae) or じゅうしょ (jūsho)",
       "sourceOrder": 2157,
       "audio": "641794d0a3619820.mp3",
       "audioOriginal": "641794d0a3619820.orig.mp3",
@@ -944,7 +945,8 @@
       "audioOriginal": "ae6845dd3cbc85da.orig.mp3",
       "audioAuto": "ae6845dd3cbc85da.mp3",
       "audioMarked": true,
-      "audioTextHash": "ae6845dd3cbc85da"
+      "audioTextHash": "ae6845dd3cbc85da",
+      "hint": "by post, not e-mail"
     },
     {
       "id": "nimotsu",
@@ -957,7 +959,8 @@
       "audioOriginal": "3b6584866d398e1a.orig.mp3",
       "audioAuto": "3b6584866d398e1a.mp3",
       "audioMarked": true,
-      "audioTextHash": "3b6584866d398e1a"
+      "audioTextHash": "3b6584866d398e1a",
+      "note": "Something you carry or send: a parcel or luggage. パッケージ (pakkēji, \"package\") from Lesson 18 is a product's packaging."
     },
     {
       "id": "shorui",
@@ -970,7 +973,9 @@
       "audioOriginal": "cea2afb25f52ba46.orig.mp3",
       "audioAuto": "cea2afb25f52ba46.mp3",
       "audioMarked": true,
-      "audioTextHash": "cea2afb25f52ba46"
+      "audioTextHash": "cea2afb25f52ba46",
+      "hint": "paperwork",
+      "note": "しょるい (shorui) are paperwork like forms; しりょう (shiryō, \"materials\") from Lesson 17 are reference materials."
     },
     {
       "id": "shiryou",

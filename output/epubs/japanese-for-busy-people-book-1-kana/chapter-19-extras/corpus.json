@@ -76,7 +76,7 @@
     {
       "id": "motte-kite-meeting",
       "target": "かいぎのまえにしりょうをもってきてください",
-      "english": "Please bring the documents before the meeting.",
+      "english": "Please bring the materials before the meeting.",
       "category": "Grammar & Function Words",
       "aiSuggested": true
     },
@@ -122,7 +122,7 @@
     {
       "id": "taxi-turn-beyond-school",
       "target": "がっこうの さきを まがってください",
-      "english": "Please turn just beyond the school.",
+      "english": "Please turn beyond the school.",
       "category": "Directions",
       "fillInBlank": true
     },
@@ -250,7 +250,7 @@
     {
       "id": "chotto-matte-documents",
       "target": "ちょっとまってください。しょるいをとります",
-      "english": "Please wait a moment. I'll get the documents.",
+      "english": "Please wait a moment. I'll take the documents.",
       "category": "Grammar & Function Words",
       "aiSuggested": true
     },
@@ -315,7 +315,7 @@
       "target": "つぎのこうさてんをまっすぐいってください",
       "english": "Please go straight through the next intersection.",
       "category": "Directions",
-      "note": "The を (o) marks the space you pass through, so つぎのこうさてんを (tsugi no kōsaten o) means \"through the next intersection\", not \"at\" it."
+      "note": "The を (o) marks the place the movement goes through. With まっすぐいきます (massugu ikimasu, \"go straight\") it is the place you go straight through; with まがります (magarimasu, \"turn\") it is the place you turn at."
     },
     {
       "id": "keep-bag-until-five",
@@ -418,7 +418,8 @@
       "scene": "A hotel employee answers a guest's request for a blanket",
       "note": "More polite than わかりました.",
       "uncertain": true,
-      "reviewNote": "Possibly already taught — Only adds はい to chapter-19 しょうちしました, and the gloss is identical."
+      "reviewNote": "Possibly already taught — Only adds はい to chapter-19 しょうちしました, and the gloss is identical.",
+      "hint": "with はい (hai)"
     },
     {
       "id": "taxi-stop-before-intersection",
@@ -464,7 +465,7 @@
     {
       "id": "request-bring-meeting-documents",
       "target": "すみません。かいぎの しりょうを もってきてください",
-      "english": "Excuse me. Please bring the documents for the meeting.",
+      "english": "Excuse me. Please bring the materials for the meeting.",
       "category": "Work & Occupations",
       "fillInBlank": true
     },
@@ -529,7 +530,8 @@
       "id": "heading-to-osaka-branch",
       "target": "いまからおおさかししゃですか",
       "english": "Are you now headed to the Osaka branch office?",
-      "category": "Work & Occupations"
+      "category": "Work & Occupations",
+      "note": "いまから (ima kara) means \"from now\". A place + ですか (desu ka) here asks whether that is where the person is going, with です (desu) standing in for いきます (ikimasu, \"go\")."
     },
     {
       "id": "delivery-sunday-by-two",
@@ -614,7 +616,7 @@
     {
       "id": "taxi-stop-beyond-traffic-light",
       "target": "しんごうの さきで とめてください",
-      "english": "Please stop just beyond the traffic light.",
+      "english": "Please stop beyond the traffic light.",
       "category": "Directions",
       "fillInBlank": true
     },
@@ -675,16 +677,16 @@
       "english": "Please call before you park the car.",
       "category": "Grammar & Function Words",
       "target": "くるまをとめるまえに、でんわをしてください",
-      "note": "とめる (park) is the dictionary form, the form まえに (before) always follows, as in ねるまえに from Lesson 17.",
+      "note": "とめる (park) is the dictionary form, the form a verb takes before まえに (mae ni, \"before\"), as in ねるまえに (neru mae ni) from Lesson 17.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using とめる, the dictionary form added to the base unit in the same batch."
     },
     {
       "id": "douryou-ni-iu-mae-ni-denwa",
-      "english": "Please call me before you tell your colleagues.",
+      "english": "Please call me before you say it to your colleagues.",
       "category": "Grammar & Function Words",
       "target": "どうりょうにいうまえに、わたしにでんわをしてください",
-      "note": "いう (say, tell). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then this lesson's てください (please).",
+      "note": "いう (say, tell). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then this lesson's てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いう, the dictionary form added to the base unit in the same batch."
     },
@@ -693,7 +695,7 @@
       "english": "Please stop before you turn right at the traffic light.",
       "category": "Grammar & Function Words",
       "target": "しんごうをみぎにまがるまえに、とめてください",
-      "note": "まがる (turn), said to a taxi driver. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "note": "まがる (turn), said to a taxi driver. A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using まがる, the dictionary form added to the base unit in the same batch."
     },
@@ -702,7 +704,7 @@
       "english": "Please call before you deliver the package.",
       "category": "Grammar & Function Words",
       "target": "にもつをとどけるまえに、でんわをしてください",
-      "note": "とどける (deliver). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "note": "とどける (deliver). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using とどける, the dictionary form added to the base unit in the same batch."
     },
@@ -711,7 +713,7 @@
       "english": "Please read the documents once more before you bring them.",
       "category": "Grammar & Function Words",
       "target": "しょるいをもってくるまえに、もういちどよんでください",
-      "note": "もってくる (bring). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "note": "もってくる (bring). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using もってくる, the dictionary form added to the base unit in the same batch."
     },
@@ -720,7 +722,7 @@
       "english": "Please let me know before you pass it on to the president.",
       "category": "Grammar & Function Words",
       "target": "しゃちょうにつたえるまえに、わたしにおしえてください",
-      "note": "つたえる (relay a message). まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "note": "つたえる (relay a message). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using つたえる, the dictionary form added to the base unit in the same batch."
     },
@@ -729,16 +731,16 @@
       "english": "Please show me the report before you report to the president.",
       "category": "Grammar & Function Words",
       "target": "しゃちょうにほうこくするまえに、レポートをみせてください",
-      "note": "ほうこくする (report). The person you report to takes に. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "note": "ほうこくする (report). The person you report to takes に. A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ほうこくする, the dictionary form added to the base unit in the same batch."
     },
     {
       "id": "nimotsu-wo-azukaru-mae-ni-namae",
-      "english": "Please write your name before we take your luggage.",
+      "english": "Please write your name before we look after your luggage.",
       "category": "Grammar & Function Words",
       "target": "にもつをあずかるまえに、なまえをかいてください",
-      "note": "あずかる (keep, take care of), said by staff at a cloakroom. まえに (mae ni, \"before\") always follows the dictionary form, as in ねるまえに from Lesson 17. Then てください (please).",
+      "note": "あずかる (keep, take care of), said by staff at a cloakroom. A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あずかる, the dictionary form added to the base unit in the same batch."
     }

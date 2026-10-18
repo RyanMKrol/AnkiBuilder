@@ -218,7 +218,8 @@
       "audioOriginal": "f6c0d5a9cc7cafbd.orig.mp3",
       "audioAuto": "f6c0d5a9cc7cafbd.mp3",
       "audioMarked": true,
-      "audioTextHash": "f6c0d5a9cc7cafbd"
+      "audioTextHash": "f6c0d5a9cc7cafbd",
+      "note": "With a noun + をします (o shimasu) verb, the thing explained goes in front with の (no): プロジェクトのせつめいをします (purojekuto no setsumei o shimasu, \"explain the project\")."
     },
     {
       "id": "dekiru-dict-form-1",
@@ -248,7 +249,7 @@
     },
     {
       "id": "kato-guitar-weekly",
-      "english": "Kato-san takes guitar lessons every week.",
+      "english": "Kato-san is taking guitar lessons every week.",
       "category": "Sports & Hobbies",
       "target": "かとうさんはまいしゅうギターをならっています",
       "pronunciation": "Katō-san wa maishū gitā o naratte imasu",
@@ -260,12 +261,12 @@
     },
     {
       "id": "shodou-calligraphy-1",
-      "english": "Emma-san takes calligraphy lessons every week.",
+      "english": "Emma-san is taking calligraphy lessons every week.",
       "category": "School & Education",
       "target": "エマさんはまいしゅうしょどうをならっています",
       "pronunciation": "Ema-san wa maishū shodō o naratte imasu",
       "aiSuggested": true,
-      "note": "Follows the chapter's EXERCISES III drill pattern directly.",
+      "note": "ならっています (naratte imasu) with まいしゅう (maishū, \"every week\"): the ています form for an action repeated over a period.",
       "audio": "4c05843160a8a06b.mp3",
       "audioOriginal": "4c05843160a8a06b.orig.mp3",
       "audioAuto": "4c05843160a8a06b.mp3",
@@ -310,7 +311,8 @@
       "audioOriginal": "23af65702bb93d2c.orig.mp3",
       "audioAuto": "23af65702bb93d2c.mp3",
       "audioMarked": true,
-      "audioTextHash": "23af65702bb93d2c"
+      "audioTextHash": "23af65702bb93d2c",
+      "hint": "with the noun チェック (chekku, \"check\") joined by の (no)"
     },
     {
       "id": "meeting-materials-ready-a",
@@ -362,7 +364,8 @@
       "audioOriginal": "692e46d9a6d3da71.orig.mp3",
       "audioAuto": "692e46d9a6d3da71.mp3",
       "audioMarked": true,
-      "audioTextHash": "692e46d9a6d3da71"
+      "audioTextHash": "692e46d9a6d3da71",
+      "hint": "the phone greeting, not はい (hai)"
     },
     {
       "id": "hanashite-imasen-2-1",
@@ -416,7 +419,7 @@
     },
     {
       "id": "nakamura-flower-arrangement-weekly",
-      "english": "Nakamura-san takes flower arrangement lessons every week.",
+      "english": "Nakamura-san is taking flower arrangement lessons every week.",
       "category": "Sports & Hobbies",
       "target": "なかむらさんはまいしゅういけばなをならっています",
       "pronunciation": "Nakamura-san wa maishū ikebana o naratte imasu",
@@ -783,7 +786,7 @@
     },
     {
       "id": "suzuki-french-weekly",
-      "english": "Suzuki-san takes French lessons every week.",
+      "english": "Suzuki-san is taking French lessons every week.",
       "category": "Sports & Hobbies",
       "target": "すずきさんはまいしゅうフランスごをならっています",
       "pronunciation": "Suzuki-san wa maishū furansugo o naratte imasu",
@@ -798,11 +801,11 @@
       "english": "We'll start the meeting soon.",
       "category": "Work & Occupations",
       "target": "もうすぐかいぎをはじめます",
-      "pronunciation": "mōsu gukaigiohajimemasu.",
+      "pronunciation": "mōsugu kaigi o hajimemasu",
       "aiSuggested": true,
       "excluded": true,
-      "excludedBy": "untaught-vocabulary",
-      "excludedReason": "はじめます (begin) is not taught in this book yet; only はじめまして is"
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "もうすぐ (mōsugu) already has three sentences in this unit (mousugu-soon-1, -2, -3). Re-excluded with a true reason: はじめます is taught in Lesson 17, so the earlier 'untaught' reason was wrong."
     },
     {
       "id": "owaru-dict-form-1",
@@ -947,7 +950,8 @@
       "audioOriginal": "3b9219b63559215e.orig.mp3",
       "audioAuto": "3b9219b63559215e.mp3",
       "audioMarked": true,
-      "audioTextHash": "3b9219b63559215e"
+      "audioTextHash": "3b9219b63559215e",
+      "hint": "the ています form, for an action repeated over a period"
     },
     {
       "id": "yoyakushimasu-make-reservation-1",
@@ -1012,7 +1016,8 @@
       "audioOriginal": "b1a4bc8a29d70f55.orig.mp3",
       "audioAuto": "b1a4bc8a29d70f55.mp3",
       "audioMarked": true,
-      "audioTextHash": "b1a4bc8a29d70f55"
+      "audioTextHash": "b1a4bc8a29d70f55",
+      "hint": "asking with おねがいします (onegai shimasu)"
     },
     {
       "id": "ima-ii-desu-ka-1",

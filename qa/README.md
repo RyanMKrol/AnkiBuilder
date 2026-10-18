@@ -49,6 +49,19 @@ node scripts/chapter-images.mjs <epubHash> <n>     # its pictures, with paths to
 node scripts/preflight.mjs <collectionDir> --verbose   # the deterministic findings, not to be re-reported
 ```
 
+For a reading collection there is one more, and it is the only QA tool that spends money:
+
+```sh
+node scripts/reading-vocab-scan.mjs <collectionDir> [--dry] [--date YYYY-MM-DD]
+```
+
+It runs the reading chapter reader over every chapter under the widened card rules 1 (a word from
+anywhere in the chapter is a card; owner ruling, 2026-10-18), one model call per chapter, and writes
+`qa/<slug>/<date>/vocab-scan.jsonl`: one line per candidate word with its chapter, where it appeared,
+whether the book glossed it, whether a later chapter's list introduces it ("skip, carded there"), and
+whether a card already exists. `--dry` prints the plan and spends nothing; the real run waits for the
+owner's approval of the spend. It writes nothing under `output/`.
+
 The renderer goes through the deck's real templates (`src/deck/cardFaces.js`), so a face it prints
 is the face Anki shows. Both scripts are read-only and tested against temp fixtures
 (`test/scripts/qaTools.test.js`).

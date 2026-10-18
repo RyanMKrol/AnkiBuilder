@@ -22,11 +22,22 @@ for it.
 
 ## What earns a card
 
-1. **Card what this chapter teaches you to read: all of it, and nothing it has not reached.** A
-   vocabulary table, a list of set expressions, a table of characters the chapter teaches. Not a word
-   that only appears in a dialogue, an exercise, an example sentence or a reading passage, not a word
-   that only appears in a heading, a title or an instruction (a chapter called デートの約束 does not
-   teach 約束), and not a word the book has not taught yet.
+1. **Card every word the chapter puts in front of the learner to read, wherever it appears** (owner
+   ruling, 2026-10-18): vocabulary lists, kanji tables, dialogues, exercises, Culture
+   Notes, reading passages and their word lists. A Culture Note that prints 生け花 with its reading is
+   teaching it.
+   - The English comes from the book where the book gives one. Where it does not, write the English
+     yourself and say so (`"glossed": false`); the card is flagged AI-suggested for the review.
+   - A word a later chapter's vocabulary list introduces is carded there, not here, so the deck keeps
+     the book's order. You cannot see the later chapters, so list the word as usual and say where you
+     saw it (`where`); the code knows the later lists and holds the word back for them.
+   - Headings, titles and instruction lines are not carded. A chapter called デートの約束 does not
+     teach 約束 by its title, and "Read the passage and answer the questions" is not vocabulary. A
+     word the heading uses is a card only if the chapter also puts it in front of the learner
+     somewhere else.
+   - The other rules still apply wherever a word is found: a sentence is its words (rule 6), and a
+     particle or an ending is grammar, not a word; a name is not a card (rule 7); and a word an
+     earlier chapter carded is not carded again (rule 3).
 2. **One card per word, in the fullest written form the book prints.** When the book prints a word in
    more than one form, the language rules below say which form is the card. A word printed in one
    form only is carded exactly as printed.
@@ -88,4 +99,5 @@ for it.
 - `english`: as above.
 - `reading`: only where the language rules ask for one, copied from the book, never worked out.
 - `category`: one of the categories the prompt lists. It groups the review and is never shown.
+- `where` and `glossed`: only where the prompt asks for them (rule 1).
 - Nothing else: no scene, hint, note or pronunciation. The card has nowhere to show them.

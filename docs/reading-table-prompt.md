@@ -20,7 +20,8 @@ will find.
 ## Your input
 
 Every table in the chapter, as rows of cell text. `index` identifies a table; nothing has been
-filtered, so many tables will teach nothing to read (exercises, charts of grammar, layout).
+filtered, so many tables are not vocabulary lists (exercises, charts of grammar, layout). Your part is
+the lists; the chapter reader takes the words the other tables put in front of the learner.
 
 ```json
 {{TABLES_JSON}}
@@ -36,7 +37,9 @@ filtered, so many tables will teach nothing to read (exercises, charts of gramma
      judged and a table holding nothing must not look the same.
 2. From every `vocabulary` and `characters` table, write one item per card the rules above allow.
    Read every row. A row can yield more than one item (a character plus the example words printed
-   beside it).
+   beside it). Write nothing from an `other` table: its words are still cards (rule 1), but the
+   chapter reader lists them, with where it saw them, because a word a chapter only uses is carded
+   in the later chapter whose list introduces it, and only the chapter reader's items say which.
 3. `category` is one of these, chosen for what the word means; it groups the review and is never
    shown on the card:
 

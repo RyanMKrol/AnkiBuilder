@@ -762,6 +762,13 @@ What is built, newest last:
   word (年, 後) stays silent with both senses, and the colour nouns 赤 青 白 黒 count as taught words.
   Preflight's `reading-kanji-taught-as-word` (ACK) names a silent kanji card a chapter teaches as a
   word. The existing Genki chapters were done before this rule and are fixed by a one-shot backfill.
+  A chapter cards every word it puts in front of the learner, wherever it appears (dialogues,
+  exercises, Culture Notes too), except a word a later chapter's vocabulary list introduces, which the
+  merge holds back for that chapter (`src/reading/laterVocabulary.js`); English the book does not give
+  is flagged AI-suggested. `scripts/reading-vocab-scan.mjs <collectionDir> [--dry]` runs the chapter
+  reader with that rule over a collection built before it (one call per chapter) and writes the
+  candidate words to `qa/<slug>/<date>/vocab-scan.jsonl` for the owner to choose from; it changes no
+  deck data.
   The operator procedure is the `build-reading-deck` skill.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 

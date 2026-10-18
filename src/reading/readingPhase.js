@@ -54,6 +54,7 @@ import {
 } from "./characterGaps.js";
 import {
   ITEM_KINDS,
+  TEACHING_PLACES,
   readTables,
   readChapterForReading,
   readImagesForReading,
@@ -69,9 +70,11 @@ export const READING_REPORT_FILE = "reading-report.json";
  * that no person has reviewed. 1: before versions. 2: kana words to the kana deck, brackets resolved,
  * tilde-free readings (2026-09-24). 3: a single kanji taught as a word rewrites an earlier chapter's
  * character card of it, and the colour nouns the book teaches by rule (赤 青 白 黒) are words
- * (2026-10-18).
+ * (2026-10-18). 4: a word from anywhere in the chapter is a card, except one only seen in running
+ * text that a later chapter's vocabulary list introduces, which is carded there; a word whose English
+ * the book does not give is flagged AI-suggested (2026-10-18).
  */
-export const READING_MERGE_VERSION = 3;
+export const READING_MERGE_VERSION = 4;
 export const READING_COVERAGE_FILE = "candidates/coverage.json";
 export const READING_ROMAJI_FILE = "candidates/romanization.json";
 
@@ -140,6 +143,12 @@ export const targetKey = (target, languageCode = null) =>
  * between rebuilds, and one card per written form makes the form a unique key in the collection. */
 export const readingCardId = (target) =>
   `r-${createHash("sha1").update(targetKey(target)).digest("hex").slice(0, 12)}`;
+
+/** Whether a reader found this item where the chapter presents it as something to learn. */
+const isTaughtHere = (member) =>
+  member.producedBy === "readingTableReader" ||
+  member.where == null ||
+  TEACHING_PLACES.includes(member.where);
 
 function kindOf(item) {
   if (ITEM_KINDS.includes(item.kind)) return item.kind;
@@ -225,7 +234,9 @@ export function resolveBrackets(item, scheme = null) {
  * `earlier` is what this collection already carded in earlier chapters, as `{ target, chapterLabel }`
  * plus, for a card read from the collection folder, `{ unitDir, ttsText, character }`: a written form
  * is carded once per collection, where it is first taught. `bookReadings` is what
- * `bookWordReadings` (src/reading/characterGaps.js) found across the collection.
+ * `bookWordReadings` (src/reading/characterGaps.js) found across the collection. `laterTaught` maps
+ * each written form a LATER chapter's vocabulary list introduces to that chapter's label
+ * (src/reading/laterVocabulary.js): a form this chapter only uses in running text is carded there.
  *
  * Returns `{ items, provenance, kinds, dropped, readingConflicts, kanaPool, earlierWords }`. `dropped`
  * lists every item left out and why, so a review can see it; nothing is discarded silently.
@@ -237,7 +248,7 @@ export function resolveBrackets(item, scheme = null) {
  */
 export function reconcileReading(
   sources,
-  { targetLanguage, earlier = [], bookReadings = new Map() } = {},
+  { targetLanguage, earlier = [], bookReadings = new Map(), laterTaught = new Map() } = {},
 ) {
   const scheme = readingScheme(targetLanguage);
   const key = (target) => targetKey(target, targetLanguage);
@@ -325,6 +336,23 @@ export function reconcileReading(
       });
       continue;
     }
+    // A word this chapter only USES (a dialogue, an exercise, a culture note) that a later chapter's
+    // vocabulary list introduces is carded in that later chapter, so the deck keeps the book's order
+    // (card rules 1; owner ruling, 2026-10-18). A word this chapter presents as something to learn is
+    // carded here whatever a later list does: the table reader's items, and the chapter reader's from
+    // a list or a kanji table. An item with no `where` (the image reader, or a chapter reader run
+    // before the field existed, when it carded only what a chapter taught) counts as taught here. A
+    // form an earlier chapter carded is left to that branch below, which knows what to do with it.
+    // Before the kana deck, so a kana word goes into the pool of the chapter whose list teaches it.
+    if (laterTaught.has(form) && !earlierByKey.has(form) && !members.some(isTaughtHere)) {
+      dropped.push({
+        target: form,
+        producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
+        reason: `only used here; ${laterTaught.get(form)}'s vocabulary list introduces it, so it is carded there`,
+        laterChapter: laterTaught.get(form),
+      });
+      continue;
+    }
     // A kana word goes to the collection's kana deck, not to this chapter, when the language has one
     // (src/reading/kanaUnits.js; owner decisions, 2026-09-24): a chapter cards kanji only. It is still
     // reported, as dropped with its reason and in `kanaPool`, which is what the kana deck is chosen
@@ -336,14 +364,12 @@ export function reconcileReading(
       !members.every((m) => m.kind === "character")
     ) {
       const first = members[0];
+      const glossMembers = members.filter((m) => m.producedBy === first.producedBy);
       kanaPool.push({
         target: form,
-        english: joinGlosses(
-          members
-            .filter((m) => m.producedBy === first.producedBy)
-            .flatMap((m) => splitGloss(m.english)),
-        ),
+        english: joinGlosses(glossMembers.flatMap((m) => splitGloss(m.english))),
         category: members.map((m) => m.category).find((c) => CATEGORIES.includes(c)) ?? "Other",
+        ...(glossMembers.every((m) => m.glossed === false) ? { aiSuggested: true } : {}),
       });
       dropped.push({
         target: form,
@@ -434,12 +460,17 @@ export function reconcileReading(
     // (said before eating)") on the first live run. Glosses are joined only within that reader,
     // which is where a form with two real meanings shows up (今日: today; these days).
     const glossSource = members[0].producedBy;
-    const english = joinGlosses(
-      members.filter((m) => m.producedBy === glossSource).flatMap((m) => splitGloss(m.english)),
-    );
+    const glossMembers = members.filter((m) => m.producedBy === glossSource);
+    const english = joinGlosses(glossMembers.flatMap((m) => splitGloss(m.english)));
+    // The book gives no English for a word it only uses (a culture note's 生け花): the reader wrote
+    // one, and the card says so for the review (card rules 1; owner ruling, 2026-10-18).
+    const aiSuggested = glossMembers.every((m) => m.glossed === false);
     const category = members.map((m) => m.category).find((c) => CATEGORIES.includes(c)) ?? "Other";
     const reading = readings[0] ?? null;
     const notes = [];
+    if (aiSuggested) {
+      notes.push("The book gives no English for this word; the English is AI-suggested.");
+    }
     if (readings.length > 1) {
       notes.push(
         `The book gives more than one reading: ${readings.join(", ")}. The romaji lists them all; audio uses the first.`,
@@ -463,6 +494,7 @@ export function reconcileReading(
       // so neither cards.json nor corpus.json ever carries it.
       ...(readings.length > 1 ? { alternateReadings: readings.slice(1) } : {}),
       ...(notes.length ? { reviewNote: notes.join(" ") } : {}),
+      ...(aiSuggested ? { aiSuggested: true } : {}),
     });
     provenance[id] = [...new Set(members.map((m) => m.producedBy))];
     kinds[id] = kind;
@@ -593,8 +625,9 @@ function writeArtifact(unitDir, relative, body) {
  * Runs the reading phase for one chapter into `unitDir`.
  *
  * `unit` is the identity stamped on the unit (`epubHash`, `chapterNumber`, `chapterLabel`, and
- * `lastChapterNumber` for a multi-file lesson). `earlier` is `earlierReadingTargets`' answer. Every
- * agent is injectable through `agents`, so the whole phase runs in a test without a model.
+ * `lastChapterNumber` for a multi-file lesson). `earlier` is `earlierReadingTargets`' answer, and
+ * `laterTaught` is `laterVocabulary`'s (src/reading/laterVocabulary.js). Every agent is injectable
+ * through `agents`, so the whole phase runs in a test without a model.
  */
 async function runReadingPhaseInner({
   unitDir,
@@ -603,6 +636,7 @@ async function runReadingPhaseInner({
   unit,
   hints = {},
   earlier = [],
+  laterTaught = new Map(),
   agents = {},
   log = () => {},
   now,
@@ -706,6 +740,7 @@ async function runReadingPhaseInner({
   const merged = reconcileReading([tableResult.items, chapterResult.items, imageResult.items], {
     targetLanguage,
     earlier,
+    laterTaught,
     bookReadings: collectionDir
       ? bookWordReadings(dirname(collectionDir), readingScheme(targetLanguage))
       : new Map(),

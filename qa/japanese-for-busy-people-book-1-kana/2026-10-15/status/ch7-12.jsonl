@@ -87,7 +87,7 @@
 {"id":"chapter-11-extras/ex11-totemo-oishikatta-desu/ambiguous/1","status":"fixed","statusReason":"Kept the book's English; added a hint that 'really' here is the word for 'very'."}
 {"id":"chapter-11-extras/ex11-totemo-kirei-deshita/ambiguous/1","status":"fixed","statusReason":"Kept the book's English; added a hint that 'really' here is the word for 'very'."}
 {"id":"chapter-11-extras/v11-sou-desu-ka-yokatta-desu/ambiguous/1","status":"fixed","statusReason":"English now 'Oh, is that so? I'm glad to hear that.', pointing at そうですか."}
-{"id":"chapter-11-extras/ex11-kore-hakone-no-omiyage-desu/missing-info/1","status":"fixed","statusReason":"Added scene 'handing a gift to a colleague'; Hakone capitalised in the romaji."}
+{"id":"chapter-11-extras/ex11-kore-hakone-no-omiyage-desu/missing-info/1","status":"fixed","statusReason":"Added scene 'as you hand something to a colleague' (does not name the souvenir); Hakone capitalised in the romaji."}
 {"id":"chapter-11-extras/ex11-hontou-ni-kirei-desu-ne/missing-info/1","status":"fixed","statusReason":"Added a photo scene and reworded the note around it, without the dialogue's characters; romaji hontōni."}
 {"id":"chapter-11-extras/ex11-sumisu-san-kinou-wa-omiyage-o-arigatou-gozaimashita/note-unverifiable/1","status":"fixed","statusReason":"Dropped the きのうのおみやげ comparison the book does not make."}
 {"id":"chapter-12/onsen-tte-nandesuka/missing-info/1","status":"fixed","statusReason":"Added scene 'repeating a word you just heard and do not understand', which asks for って."}

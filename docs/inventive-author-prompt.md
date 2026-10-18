@@ -28,6 +28,8 @@ met is not a slightly worse card, it is an unstudiable one.
 If a good idea needs a word that is not on the list, drop the idea. Do not substitute a near-synonym
 you have not checked.
 
+Grammar follows the same rule as words: a sentence uses only grammar frames this chapter or an earlier one teaches. A verb clause modifying a noun, as in ははがくれるおかし (haha ga kureru okashi, "the sweets my mother gives me"), is not taught in this book, so a sentence that needs one is left out.
+
 ## What is worth inventing
 
 - **A situation the chapter's vocabulary supports and never shows.** The book teaches the words for a

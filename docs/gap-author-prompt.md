@@ -15,6 +15,8 @@ lessons after it. A gap you cannot fill without an untaught word is left unfille
 `unfillable`. Reaching for a natural-sounding word the book has not introduced turns one gap into
 two: the hole stays, and a card nobody can study joins it.
 
+Grammar follows the same rule as words: a sentence uses only grammar frames this chapter or an earlier one teaches. A verb clause modifying a noun, as in ははがくれるおかし (haha ga kureru okashi, "the sweets my mother gives me"), is not taught in this book, so a sentence that needs one is left out.
+
 ## The kinds of gap, and what each wants
 
 ### `neverUsed`: a word the lesson teaches and never uses

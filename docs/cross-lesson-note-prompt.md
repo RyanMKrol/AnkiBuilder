@@ -118,6 +118,8 @@ tags are the book's own names and are the only correct way to cite a lesson.
   it "this one (polite for 'this person')", then that is what the learner knows, and a note calling it
   "this way" sends them back to a card that says something else while quietly teaching a sense they
   have never met. If a card's own gloss will not support the point you want to make, drop the point.
+- A note explains a word only with words the learner has met by this card, or glosses what it
+  introduces: とおい (tōi, "far").
 - Do not invent facts; if unsure, leave the card out.
 
 ## Output Format

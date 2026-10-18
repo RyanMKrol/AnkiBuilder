@@ -34,11 +34,16 @@ Lesson 7 is "Going Places (2)"; they will not tell you the book asks by-what-mea
 `どうやって`, which is what actually decides where a `どうやって` card can go. Routing without this is
 guessing with extra steps.
 
+Read them in BOOK order, which is `meta.chapterNumber` (the spine index), not folder order. The two
+differ: Busy People's `chapter-25` was built late but sits at spine 40, between Lessons 17 and 18. The
+listing below sorts by spine for that reason.
+
 ```sh
 node -e 'const fs=require("fs"),p=require("path");const b="output/epubs/<slug>";
-for(const d of fs.readdirSync(b).sort()){const f=p.join(b,d,"cards.json");if(!fs.existsSync(f))continue;
-const c=JSON.parse(fs.readFileSync(f));if(d.includes("-extras"))continue;
-console.log("##",d,c.meta.chapterLabel);console.log("  "+c.items.filter(i=>!i.excluded).map(i=>i.english).join(" · "));}'
+const us=fs.readdirSync(b).filter(d=>!d.includes("-extras")&&fs.existsSync(p.join(b,d,"cards.json")))
+.map(d=>[d,JSON.parse(fs.readFileSync(p.join(b,d,"cards.json")))]).sort((x,y)=>x[1].meta.chapterNumber-y[1].meta.chapterNumber);
+for(const[d,c]of us){console.log("##",d,"spine",c.meta.chapterNumber,c.meta.chapterLabel);
+console.log("  "+c.items.filter(i=>!i.excluded).map(i=>i.english).join(" · "));}'
 ```
 
 ## 2. Route by judgement, with one mechanical rule on top
@@ -58,6 +63,24 @@ fit. Use the card's own `category` as the signal, and check it by hand.
 
 Where a chapter has no `-extras` sibling to receive cards, say so and pick a neighbour rather than
 inventing a unit.
+
+**Then check every word of every routed card against what the book has taught by the destination.**
+"Taught" means taught by the destination unit's place in the book (its `meta.chapterNumber`), the same
+order the build scripts use, never by folder number and never by when the class covered it. For each
+word the book has not taught by then, do one of two things:
+
+- gloss it in the card's note (the default for a word the sentence needs), or
+- route the card to the lesson whose vocabulary list teaches that word, if the card fits there.
+
+A class handout is not prior teaching. 13 of the 26 untaught-word findings in the October 2026 QA
+pass came through this pathway, because it had no such step.
+
+**The book wins over the class.** A retrofitted card follows the book's conventions, not the
+handout's: the book's spelling and kana choice, its politeness level, its romaji style, and its way
+of asking a thing. Where the class and the book disagree on any of these, write the card the book's
+way.
+The additions gates check English, target, pronunciation and audio, not conventions, so this check is
+yours to make before the batch is handed over.
 
 ## 3. The duplicate sweep, which has three traps in it
 

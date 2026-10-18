@@ -23,7 +23,6 @@ import { EXTRAS_PHASE_STEPS, runExtrasPhase, extrasUnitMeta } from "../src/agent
 import { ROLES } from "../src/agents/roles.js";
 import { assertSpeakingSourceHash } from "../src/remaster/speakingSource.js";
 import { assertCollectionKind } from "../src/cli/outputPaths.js";
-import { parseUnitDir } from "../src/model/unitDir.js";
 import { loadEarlierUnitItems, loadEarlierTaughtItems } from "../src/cards/earlierUnits.js";
 
 const argv = process.argv.slice(2);
@@ -80,16 +79,18 @@ const baseItems = (cards.items ?? []).filter((i) => !i.excluded);
 // What the learner has met before this chapter, which is the vocabulary the miners may USE. See
 // `loadEarlierTaughtItems` for why extras units count only for their lexical entries.
 const collection = dirname(baseDir);
-const thisNumber = parseUnitDir(baseDir.split("/").pop())?.number ?? Infinity;
+// The book position, `meta.chapterNumber` (first spine index), NOT the folder's `<n>`: taught means
+// taught by the book's order, so a supplement built late is judged where the book puts it.
+const thisNumber = typeof meta.chapterNumber === "number" ? meta.chapterNumber : Infinity;
 const earlierItems = loadEarlierTaughtItems(collection, thisNumber, targetLanguage);
 
 const spends = EXTRAS_PHASE_STEPS.filter((s) => s.kind === "agent");
 console.log(`base:    ${baseDir}  (${baseItems.length} approved card(s))`);
-// `thisNumber` is the CHAPTER number, not a unit count. Printing it after the words "earlier
-// unit(s)" read as a count and cost a real abort: 17 looked like a loss of half the collection
-// against the 34 units on disk, with a paid run about to start.
+// `thisNumber` is a BOOK POSITION (spine index), not a unit count. Printing it after the words
+// "earlier unit(s)" read as a count and cost a real abort: 17 looked like a loss of half the
+// collection against the 34 units on disk, with a paid run about to start.
 console.log(
-  `earlier: ${earlierItems.length} card(s) from every unit before chapter ${
+  `earlier: ${earlierItems.length} card(s) from every unit the book puts before spine position ${
     thisNumber === Infinity ? "?" : thisNumber
   }`,
 );
@@ -121,7 +122,9 @@ const result = runExtrasPhase({
   meta: { hints: loadBookHints(meta.epubHash), unit: extrasUnitMeta(meta) },
   // Distinct from `earlierItems` above, which is the vocabulary the miners may USE and leaves out
   // extras sentences. This is prior art for the backward judge and must include them.
-  priorItems: loadEarlierUnitItems(collection, extrasDir.split("/").pop()),
+  priorItems: loadEarlierUnitItems(collection, extrasDir.split("/").pop(), {
+    chapterNumber: meta.chapterNumber,
+  }),
   // Where phase 1 left its image verdicts: the miners are handed the figure transcriptions, so a
   // drill cued only by pictures is answerable. Missing, the `figures` step is skipped and says so.
   baseUnitDir: baseDir,

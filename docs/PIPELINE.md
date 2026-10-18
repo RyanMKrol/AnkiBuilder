@@ -1361,6 +1361,13 @@ every `candidates/backward.json`), so near misses and exact repeats of extras ca
 The build now logs how many earlier cards the judge reads, so a zero is visible. A base unit counts as earlier than its own extras sibling, because the extras unit is
 built from the base unit's approved vocabulary.
 
+"Earlier" means earlier in the book: units are ordered by `meta.chapterNumber` (the spine index),
+the same key the dedup library and the taught index use, never by the `<n>` in the folder name. Until
+2026-10-18 both loaders sorted by folder number, so `chapter-25` (built late, spine 40, between
+Lessons 17 and 18) was treated as later than Lessons 18 to 24. Every caller passes the unit's
+`chapterNumber`, because a unit on its first build has no `cards.json` to read it from, and the
+loader throws rather than fall back to the folder number.
+
 **The pre-filter is fuzzy on purpose.** Exact matching already finds what exact matching can find, so
 everything left is a near miss: `おかし` against `かし`, or two glosses that say the same thing in
 different words. Three signals propose a pair, and all three thresholds were set by running the
@@ -1836,7 +1843,8 @@ with the reason, which `build-extras` prints among its notes.
 
 It is also given every **earlier lesson's** cards, so the vocabulary rule is judged against what the
 learner has actually met rather than against this chapter alone. That means every earlier base unit,
-plus the lexical entries of every earlier extras unit (`loadEarlierTaughtItems`). A drill sentence
+plus the lexical entries of every earlier extras unit (`loadEarlierTaughtItems`), where earlier means
+a lower `meta.chapterNumber` (book position), not a lower folder number. A drill sentence
 does not teach the words inside it, so extras sentences stay out, but a word carded in an extras unit
 is taught: pathway 2 retrofits land there. Leaving extras out entirely made Lesson 20's miners drop
 the chapter's title question, because its どうやって is carded only in Lesson 7's extras.

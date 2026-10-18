@@ -5,14 +5,19 @@ import { join } from "path";
 import os from "os";
 import { loadEarlierUnitItems, loadEarlierTaughtItems } from "../../src/cards/earlierUnits.js";
 
-async function withCollection(units, fn) {
+// A unit's book position defaults to its folder number, which is the common case. `spine` overrides
+// it for the case this module exists to get right: a unit whose folder number and book position
+// disagree.
+async function withCollection(units, fn, spine = {}) {
   const dir = await fs.mkdtemp(join(os.tmpdir(), "earlier-"));
   try {
     for (const [name, items] of Object.entries(units)) {
       mkdirSync(join(dir, name), { recursive: true });
+      const base = name.replace(/-extras$/, "");
+      const chapterNumber = spine[base] ?? Number(base.split("-")[1]);
       writeFileSync(
         join(dir, name, "cards.json"),
-        JSON.stringify({ meta: { chapterLabel: name }, items }),
+        JSON.stringify({ meta: { chapterLabel: name, chapterNumber }, items }),
       );
     }
     return await fn(dir);
@@ -114,3 +119,76 @@ test("taught vocabulary keeps extras out entirely for a language with no sentenc
       ["a"],
     );
   }));
+
+// QA ruling 1 (2026-10-18): "taught" means taught by the BOOK's order. A supplement built late gets a
+// high folder number but sits early in the book (Busy People's chapter-25 is at spine 40, between
+// chapter-17 at 39 and chapter-18 at 42), and it has to be judged where the book puts it.
+const SPINE = { "chapter-1": 10, "chapter-3": 20, "chapter-2": 30 };
+
+test("prior art is ordered by spine position, not folder number", () =>
+  withCollection(
+    {
+      "chapter-1": [card("a")],
+      "chapter-2": [card("c")],
+      "chapter-3": [card("b")],
+      "chapter-3-extras": [card("b2")],
+    },
+    (dir) => {
+      assert.deepEqual(
+        loadEarlierUnitItems(dir, "chapter-2").map((i) => i.__unit),
+        ["chapter-1", "chapter-3", "chapter-3-extras"],
+      );
+      // chapter-2 has the lower folder number but the book puts it after chapter-3.
+      assert.deepEqual(
+        loadEarlierUnitItems(dir, "chapter-3").map((i) => i.__unit),
+        ["chapter-1"],
+      );
+      assert.deepEqual(
+        loadEarlierUnitItems(dir, "chapter-3-extras").map((i) => i.__unit),
+        ["chapter-1", "chapter-3"],
+      );
+    },
+    SPINE,
+  ));
+
+test("taught vocabulary is filtered by spine position, not folder number", () =>
+  withCollection(
+    { "chapter-1": [card("a")], "chapter-2": [card("c")], "chapter-3": [card("b")] },
+    (dir) => {
+      assert.deepEqual(
+        loadEarlierTaughtItems(dir, 30, "xx").map((i) => i.id),
+        ["a", "b"],
+      );
+      assert.deepEqual(
+        loadEarlierTaughtItems(dir, 20, "xx").map((i) => i.id),
+        ["a"],
+      );
+    },
+    SPINE,
+  ));
+
+test("a first build passes its position, since it has no cards.json to read it from", () =>
+  withCollection(
+    { "chapter-1": [card("a")], "chapter-2": [card("c")] },
+    (dir) => {
+      assert.deepEqual(
+        loadEarlierUnitItems(dir, "chapter-3", { chapterNumber: 20 }).map((i) => i.__unit),
+        ["chapter-1"],
+      );
+      // Without it there is nothing to place the unit by, and guessing from the folder is the bug.
+      assert.throws(() => loadEarlierUnitItems(dir, "chapter-3"), /no book position/);
+    },
+    SPINE,
+  ));
+
+test("an extras unit on its first build takes its base sibling's position", () =>
+  withCollection(
+    { "chapter-1": [card("a")], "chapter-2": [card("c")], "chapter-3": [card("b")] },
+    (dir) => {
+      assert.deepEqual(
+        loadEarlierUnitItems(dir, "chapter-3-extras").map((i) => i.__unit),
+        ["chapter-1", "chapter-3"],
+      );
+    },
+    SPINE,
+  ));

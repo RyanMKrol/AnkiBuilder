@@ -158,7 +158,7 @@ if (reuseFrom) {
       meta: { hints: loadBookHints(meta.epubHash) },
       // Without this the backward judge runs against an empty prior set and reports 0 candidates,
       // which reads exactly like "nothing repeats" while actually meaning "nothing was compared".
-      priorItems: loadEarlierUnitItems(BOOK, unitName),
+      priorItems: loadEarlierUnitItems(BOOK, unitName, { chapterNumber: meta.chapterNumber }),
     });
   } catch (error) {
     console.error(`phase 1 failed: ${error.message}`);
@@ -192,10 +192,12 @@ if (withExtras || reuseFrom) {
       chapterFilePath,
       chapterHtml: readFileSync(chapterFilePath, "utf-8"),
       baseItems: result.items.filter((i) => !i.excluded),
-      earlierItems: loadEarlierUnitItems(BOOK, unitName).filter(
-        (i) => !i.__unit.endsWith("-extras"),
-      ),
-      priorItems: loadEarlierUnitItems(BOOK, `${unitName}-extras`),
+      earlierItems: loadEarlierUnitItems(BOOK, unitName, {
+        chapterNumber: meta.chapterNumber,
+      }).filter((i) => !i.__unit.endsWith("-extras")),
+      priorItems: loadEarlierUnitItems(BOOK, `${unitName}-extras`, {
+        chapterNumber: meta.chapterNumber,
+      }),
       targetLanguage,
       meta: { hints: loadBookHints(meta.epubHash) },
       // Phase 1's own output, so the miners get the figure transcriptions its image step recorded.

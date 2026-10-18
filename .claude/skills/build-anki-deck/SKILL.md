@@ -474,7 +474,8 @@ written by the dashboard's **Mark reviewed** (not by the build), and each earlie
 lesson 8's de-dup cannot see lesson 7 at all. Neither is blocked (both commands warn and carry on,
 and `prepare` leaves its markers unset so a re-run repairs the result), but treat the order as the
 rule: finish and sign off lesson N before you assemble lesson N+1, and never build two lessons of one
-book at the same time.
+book at the same time. "Taught" means taught by book position (`meta.chapterNumber`, the spine
+index), not by folder number or build date: a supplement built late is judged where the book puts it.
 
 **Gate 1 must see the FINAL card set.** Everything that changes which cards exist or what they say
 (extraction, translation, FIB mining, semantic de-dup, cross-lesson notes) runs inside

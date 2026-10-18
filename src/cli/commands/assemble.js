@@ -469,6 +469,7 @@ async function assembleIntoRunDir(flags, ctx, runDir) {
           chapterFilePath,
           targetLanguage: flags.lang,
           epubHash,
+          chapterNumber,
           log: ctx.log,
         })
       : ctx.assembleCorpusFromChapter({

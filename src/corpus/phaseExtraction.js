@@ -45,6 +45,7 @@ export function extractBaseCorpus({
   chapterHtml,
   targetLanguage,
   epubHash,
+  chapterNumber,
   log = () => {},
   runPhase = runBasePhase,
 } = {}) {
@@ -68,7 +69,9 @@ export function extractBaseCorpus({
   // flagged exact repeats of BASE cards, which hid it, but it reads the dedup library, and the
   // library cannot hold an extras unit. So an exact repeat of an extras card, and every near miss,
   // went through: Lesson 20 re-carded ごふん and じゅっぷん, already live in Lesson 3's extras.
-  const priorItems = loadEarlierUnitItems(dirname(unitDir), basename(unitDir));
+  // `chapterNumber` places this unit in the BOOK (spine), which is what "earlier" means; on a first
+  // build the unit has no cards.json to read it from.
+  const priorItems = loadEarlierUnitItems(dirname(unitDir), basename(unitDir), { chapterNumber });
   log(`[phase:base] backward dedup reads ${priorItems.length} card(s) from earlier units`);
   const result = runPhase({
     unitDir,

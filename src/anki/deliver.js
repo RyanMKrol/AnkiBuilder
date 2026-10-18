@@ -172,8 +172,11 @@ export function pruneBackups(
   } catch {
     return { deleted: [] };
   }
+  // Only the plain stamps a routine delivery writes are eligible. A labelled snapshot
+  // (`<stamp>-pre-qa-fix`, from scripts/backup-anki-decks.mjs or made by hand) was taken on purpose
+  // before something risky, and ten routine deliveries later is exactly when it gets reached for.
   const stamps = entries
-    .filter((e) => e.isDirectory() && /^\d{4}-\d{2}-\d{2}T/.test(e.name))
+    .filter((e) => e.isDirectory() && ROUTINE_STAMP.test(e.name))
     .map((e) => e.name)
     .sort()
     .reverse(); // newest first — the stamp format sorts chronologically
@@ -210,6 +213,198 @@ export function pruneBackups(
     );
   }
   return { deleted };
+}
+
+// The directory name a backup without a label gets: `new Date().toISOString()` with `:` and `.`
+// made filesystem-safe. pruneBackups keys on this exact shape, so keep the two together.
+const ROUTINE_STAMP = /^\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}-\d{3}Z$/;
+
+/**
+ * The snapshot directory name for a backup taken at `nowMs`. A label is appended after a dash
+ * (`2026-10-18T21-30-00-000Z-pre-qa-fix`), sanitised to a safe filename. The name still starts with
+ * the date, so restore-anki-backup.mjs lists it in order, and pruneBackups leaves it alone.
+ */
+export function backupStamp(nowMs, label = null) {
+  const stamp = new Date(nowMs).toISOString().replace(/[:.]/g, "-");
+  const tail =
+    label == null
+      ? ""
+      : String(label)
+          .replace(/[^\w.-]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+  return tail ? `${stamp}-${tail}` : stamp;
+}
+
+/**
+ * Write one backup snapshot of the given Anki parent decks into `<backupRoot>/<stamp>/`:
+ *
+ *   - `<deck>.apkg` per parent, exported WITH scheduling, so a restore brings back review history;
+ *   - `models.json`, the fields, templates and CSS of each note type in `modelNames`, which an
+ *     .apkg re-import cannot restore over an existing note type;
+ *   - `manifest.json`, `{decks: [{deck, path}]}`, the real deck name behind each file.
+ *
+ * scripts/restore-anki-backup.mjs reads exactly this layout, so change the two together.
+ *
+ * Fail-closed. A parent in `mustExist` that exports nothing stops the backup with an error, because
+ * the caller is about to rely on a copy that does not exist. A parent NOT in `mustExist` that exports
+ * nothing is skipped with a log line: on a first delivery the deck is not there yet, and the deliver
+ * is what creates it. `mustExist` defaults to every parent.
+ *
+ * It never prunes. A routine delivery prunes after calling this; a deliberate standalone backup
+ * must not delete older snapshots on its way past.
+ */
+export async function backupManagedDecks(
+  client,
+  parents,
+  {
+    backupRoot = resolve("anki-backups"),
+    modelNames = [],
+    mustExist = new Set(parents),
+    label = null,
+    now = () => Date.now(),
+    log = () => {},
+  } = {},
+) {
+  const backupDir = join(backupRoot, backupStamp(now(), label));
+  mkdirSync(backupDir, { recursive: true });
+  const backedUp = [];
+  for (const parent of parents) {
+    const path = resolve(join(backupDir, `${safeFile(parent)}.apkg`));
+    try {
+      // A FALSY result is a failure, WHEN there is something to back up. AnkiConnect answers
+      // `{result: false, error: null}` for a deck that does not exist: no throw, nothing to catch.
+      // For a delivered collection that means the deck was renamed or deleted and the backup the
+      // caller is about to rely on does not exist, so the run must stop.
+      //
+      // For a collection that has NEVER been delivered it means something entirely ordinary: the
+      // deck is not there yet, because the delivery is what creates it. Treating those the same
+      // made the first delivery of any new book impossible.
+      const ok = await client.exportPackage(parent, path, true);
+      if (ok === false || ok == null) {
+        if (!mustExist.has(parent)) {
+          log(`nothing to back up for "${parent}" (this collection has never been delivered)`);
+          continue;
+        }
+        throw new Error(
+          `AnkiConnect reported no export (result: ${JSON.stringify(ok)}). The usual cause is ` +
+            `that no deck is named "${parent}" any more`,
+        );
+      }
+      backedUp.push({ deck: parent, path });
+    } catch (e) {
+      throw new Error(
+        `backup failed for "${parent}" (${e.message}), aborting before any changes were made`,
+      );
+    }
+    log(`backed up ${parent}`);
+  }
+  // Structure snapshot: what an .apkg re-import can't restore.
+  const snap = {};
+  for (const name of modelNames) {
+    snap[name] = {
+      fields: await client.modelFieldNames(name).catch(() => null),
+      templates: await client.modelTemplates(name).catch(() => null),
+      css: (await client.modelStyling(name).catch(() => null))?.css ?? null,
+    };
+  }
+  writeFileSync(join(backupDir, "models.json"), JSON.stringify(snap, null, 2) + "\n");
+  // Manifest: the REAL deck name behind each .apkg. `safeFile` mangles names, so a restore
+  // could not otherwise know which live deck to delete before importing.
+  writeFileSync(
+    join(backupDir, "manifest.json"),
+    JSON.stringify({ decks: backedUp }, null, 2) + "\n",
+  );
+  return { backupDir, backedUp };
+}
+
+// The Anki profiles the behaviour probes run against. A backup of one of these is a backup of
+// scratch decks, which looks like success and protects nothing.
+export const TEST_PROFILES = ["Testing", "Claude Test Profile"];
+
+/**
+ * Every Anki parent deck this repo manages, read from disk alone: the `ankiParent` in each book's
+ * and course's `anki-delivered.json`, plus the note type each one uses. A retired collection is
+ * skipped (its deck was removed on purpose) and so is one that has never been delivered (there is
+ * nothing in Anki to back up).
+ *
+ * A marker that will not parse, or one with no `ankiParent`, throws. A backup that quietly leaves
+ * out a deck the owner studies is worse than one that refuses to run.
+ */
+export function resolveBackupTargets(outputRoot, adapters = ADAPTERS) {
+  const parents = [];
+  const modelNames = new Set();
+  const skipped = [];
+  const managed = adapters.filter((a) => a.type === "book" || a.type === "course");
+  for (const entry of listAllDecks(outputRoot, managed)) {
+    const adapter = managed.find((a) => a.type === entry.type);
+    const collectionDir = dirname(adapter.deckFile(outputRoot, entry.id));
+    if (isRetiredCollection(collectionDir)) {
+      skipped.push({ type: entry.type, id: entry.id, reason: "retired" });
+      continue;
+    }
+    const marker = readDeliveredMarker(collectionDir);
+    if (!marker) {
+      skipped.push({ type: entry.type, id: entry.id, reason: "never delivered" });
+      continue;
+    }
+    const markerFile = join(collectionDir, DELIVERED_MARKER);
+    if (marker.unreadable) {
+      throw new Error(`${markerFile} will not parse (${marker.unreadable}). Fix it, then re-run.`);
+    }
+    if (typeof marker.ankiParent !== "string" || !marker.ankiParent) {
+      throw new Error(`${markerFile} has no ankiParent, so which Anki deck it is cannot be known.`);
+    }
+    if (!parents.includes(marker.ankiParent)) parents.push(marker.ankiParent);
+    const language = entry.targetLanguage || adapter.deckLanguage(outputRoot, entry.id);
+    if (language) {
+      const deckKind = collectionDeckKind(collectionDir);
+      modelNames.add(noteTypeSpec(language, { deckKind }).modelName);
+    }
+  }
+  return { parents, modelNames: [...modelNames], skipped };
+}
+
+/**
+ * A standalone backup of every managed deck, for before a risky change rather than as part of a
+ * delivery. Checks the AnkiConnect version and that the active profile is not a probe profile,
+ * then writes the same snapshot layout a delivery writes. It never prunes.
+ */
+export async function backupAllManagedDecks(
+  outputRoot,
+  {
+    client,
+    backupRoot = resolve("anki-backups"),
+    label = null,
+    allowTestProfile = false,
+    adapters = ADAPTERS,
+    now = () => Date.now(),
+    log = () => {},
+  } = {},
+) {
+  if (!client) throw new Error("backupAllManagedDecks requires an AnkiConnect client");
+  const apiVersion = await client.version();
+  if (typeof apiVersion !== "number" || apiVersion < 6) {
+    throw new Error(`unexpected AnkiConnect API version ${apiVersion} (need >= 6)`);
+  }
+  const profile = await client.invoke("getActiveProfile");
+  if (TEST_PROFILES.includes(profile) && !allowTestProfile) {
+    throw new Error(
+      `Anki is open on the probe profile "${profile}", not the real collection. Switch profiles ` +
+        `in Anki (File > Switch Profile), or pass --allow-test-profile if that is really meant.`,
+    );
+  }
+  const { parents, modelNames, skipped } = resolveBackupTargets(outputRoot, adapters);
+  if (parents.length === 0) {
+    throw new Error(`no delivered collection under ${outputRoot}, so there is nothing to back up`);
+  }
+  const { backupDir, backedUp } = await backupManagedDecks(client, parents, {
+    backupRoot,
+    modelNames,
+    label,
+    now,
+    log,
+  });
+  return { profile, backupDir, backedUp, modelNames, skipped };
 }
 
 // Marker written beside a deck's merged .apkg after a real (non-dry) deliver. Once a collection is
@@ -1414,56 +1609,15 @@ export async function deliverToAnki(
 
   // 3. BACKUP (before any write; fail-closed). Skipped on a dry run (a dry run writes nothing).
   if (!dry) {
-    const stamp = new Date(now()).toISOString().replace(/[:.]/g, "-");
-    const backupDir = join(backupRoot, stamp);
+    const { backupDir, backedUp } = await backupManagedDecks(client, ankiParents, {
+      backupRoot,
+      modelNames: [...specsByModel.keys()],
+      mustExist: deliveredParents,
+      now,
+      log,
+    });
     report.backupDir = backupDir;
-    mkdirSync(backupDir, { recursive: true });
-    for (const parent of ankiParents) {
-      const path = resolve(join(backupDir, `${safeFile(parent)}.apkg`));
-      try {
-        // A FALSY result is a failure — WHEN there is something to back up. AnkiConnect answers
-        // `{result: false, error: null}` for a deck that does not exist: no throw, nothing to catch.
-        // For a delivered collection that means the deck was renamed or deleted and the backup this
-        // delivery is about to rely on does not exist, so the run must stop.
-        //
-        // For a collection that has NEVER been delivered it means something entirely ordinary: the
-        // deck is not there yet, because this deliver is what creates it (step 5, below). Treating
-        // those the same made the first delivery of any new book impossible.
-        const ok = await client.exportPackage(parent, path, true);
-        if (ok === false || ok == null) {
-          if (!deliveredParents.has(parent)) {
-            log(`nothing to back up for "${parent}" — this collection has never been delivered`);
-            continue;
-          }
-          throw new Error(
-            `AnkiConnect reported no export (result: ${JSON.stringify(ok)}) — the usual cause is ` +
-              `that no deck is named "${parent}" any more`,
-          );
-        }
-        report.backedUp.push({ deck: parent, path });
-      } catch (e) {
-        throw new Error(
-          `backup failed for "${parent}" (${e.message}) — aborting before any changes were made`,
-        );
-      }
-      log(`backed up ${parent}`);
-    }
-    // Structure snapshot — what an .apkg re-import can't restore.
-    const snap = {};
-    for (const [name] of specsByModel) {
-      snap[name] = {
-        fields: await client.modelFieldNames(name).catch(() => null),
-        templates: await client.modelTemplates(name).catch(() => null),
-        css: (await client.modelStyling(name).catch(() => null))?.css ?? null,
-      };
-    }
-    writeFileSync(join(backupDir, "models.json"), JSON.stringify(snap, null, 2) + "\n");
-    // Manifest: the REAL deck name behind each .apkg. `safeFile` mangles names, so a restore
-    // could not otherwise know which live deck to delete before importing.
-    writeFileSync(
-      join(backupDir, "manifest.json"),
-      JSON.stringify({ decks: report.backedUp }, null, 2) + "\n",
-    );
+    report.backedUp.push(...backedUp);
     pruneBackups(backupRoot, { log });
   }
 

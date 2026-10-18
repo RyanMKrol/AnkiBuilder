@@ -193,7 +193,10 @@ the flag when it refreshes a marker, because it replaces the file wholesale, so 
 forward would be silently dropped, turning a retired deck back into a deliverable one.
 
 Backups land in `anki-backups/<stamp>/` and are pruned
-automatically (the newest 10 plus one per older week; `ANKI_BUILDER_BACKUP_KEEP` tunes it). To roll a
+automatically (the newest 10 plus one per older week; `ANKI_BUILDER_BACKUP_KEEP` tunes it). To back
+up every managed deck without delivering, run `node scripts/backup-anki-decks.mjs --label <text>`:
+same snapshot layout, written to `anki-backups/<stamp>-<label>/`, refused on the probe profiles, and
+never pruned, since labelled snapshots are exempt from pruning. To roll a
 deck back, use `node scripts/restore-anki-backup.mjs --list` then
 `... <stamp> [deckName] --yes` — it deletes the live deck first and imports the snapshot, because a
 plain re-import does not overwrite existing scheduling and silently restores nothing. It refuses outright if two cards in a deck share an `id`,

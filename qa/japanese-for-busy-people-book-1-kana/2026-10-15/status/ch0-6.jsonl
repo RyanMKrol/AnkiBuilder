@@ -1,0 +1,7 @@
+{"id":"chapter-0/shitsurei-shimasu-leaving/ambiguous/1","status":"fixed","statusReason":"Scene now names the leaving, so it no longer fits the entering card."}
+{"id":"chapter-0/iie-not-at-all/missing-info/1","status":"fixed","statusReason":"Note says this USE deflects thanks and that the word's plain meaning is 'no'."}
+{"id":"chapter-0/arigatou-gozaimasu/missing-info/1","status":"fixed","statusReason":"Note names the short form the hint implies; hint kept as the collision cue."}
+{"id":"chapter-0/osaki-ni-shitsurei-shimasu/missing-info/1","status":"fixed","statusReason":"Added a plain-words gloss of おさきに, no grammar needed."}
+{"id":"chapter-0/gochisousama-deshita/other/1","status":"fixed","statusReason":"Unit's note romaji swept to macrons (gochisōsama, ohayō, sayōnara, mō)."}
+{"id":"chapter-0/konnichiwa/book-mismatch/1","status":"fixed","statusReason":"Note uses the book's 'rather informal'."}
+{"id":"chapter-0/sayounara/book-mismatch/1","status":"fixed","statusReason":"Dropped 'fairly formal' and the 'not for people you will see again' restriction from hint and notes; hint now fits the book's picture and still separates the four Good-bye cards."}

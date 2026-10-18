@@ -1,0 +1,18 @@
+{"id":"chapter-14/iindesuka/note-restates-card/1","status":"fixed","statusReason":"Dropped the note that restated the scene."}
+{"id":"chapter-14/ni-from-particle/other/1","status":"fixed","statusReason":"Removed the 'see GRAMMAR 1–2' pointer."}
+{"id":"chapter-14/ks2-morau-hana/other/1","status":"fixed","statusReason":"'the previous card' replaced with the twin sentence スミスさんはなかむらさんにはなをあげました, romanized and glossed."}
+{"id":"chapter-14/kuremasu-example/ambiguous/1","status":"fixed","statusReason":"Cleared by narrowing mafuraa to 'Muffler (a thick winter scarf)'; 'scarf' now means スカーフ alone."}
+{"id":"chapter-14/kyouto-omiyage/note-restates-card/1","status":"fixed","statusReason":"Dropped the note (it only glossed two known words)."}
+{"id":"chapter-14/fib-suteki-mafuraa/other/1","status":"fixed","statusReason":"Pronunciation now 'suteki na mafurā desu ne'."}
+{"id":"chapter-14-extras/eg-kuroi-beruto/wrong-content/1","status":"fixed","statusReason":"Note rewritten: きいろい and ちゃいろい work like the four, while みどり and ピンク take の; 'those four and no others' removed."}
+{"id":"chapter-14-extras/x14-sukaafu-ga-arimasu-yo/missing-info/1","status":"fixed","statusReason":"Scene 'offering something to a friend who says it is cold' added (does not name the scarf); 'the chapter's first use' removed from the note."}
+{"id":"chapter-14-extras/x14b-suteki-na-baggu-doko-de/ambiguous/1","status":"fixed","statusReason":"Hint added: the loanword for a fashion bag, not かばん."}
+{"id":"chapter-14-extras/x14-ashita-no-yoru-jikan-arimasuka/unanswerable/1","status":"fixed","statusReason":"English now 'Do you have time tomorrow night?' to point at よる."}
+{"id":"chapter-14-extras/x14-dare-ni-moraimashita-q/note-unverifiable/1","status":"fixed","statusReason":"Note now says this lesson marks the giver with に, without calling から wrong."}
+{"id":"chapter-14-extras/fib-emma-douryou-ni-agemasu/other/1","status":"fixed","statusReason":"English now 'to her colleague', so the in-group くれます rule visibly does not apply."}
+{"id":"chapter-14-extras/x14-suteki-na-sukaafu-desune/ambiguous/1","status":"fixed","statusReason":"Cleared by narrowing the mafuraa gloss to 'Muffler (a thick winter scarf)'."}
+{"id":"chapter-14-extras/x14b-okane-kashimasendeshita/other/1","status":"fixed","statusReason":"Base -masendeshita romaji split to '-masen deshita' (7 cards, a note, and the one joined extras card) to match the collection majority and the word-split style."}
+{"id":"chapter-14/mafuraa/book-mismatch/1","status":"fixed","statusReason":"English 'Muffler (a thick winter scarf)'; note contrasts it with スカーフ instead of equating them."}
+{"id":"chapter-14/kara-particle-because/book-mismatch/1","status":"fixed","statusReason":"Note now calls から a particle."}
+{"id":"chapter-14/yoku/book-mismatch/1","status":"fixed","statusReason":"Scene now 'praising how something suits someone' (still separates it from Lesson 9's よく 'Often')."}
+{"id":"chapter-14-extras/fib-tanjoubi-ni-kuremasu/wrong-content/1","status":"fixed","statusReason":"Scene now 'answering when your father gives you money'; the paired question fib-chichi-itsu-okane-kuremasu-q rewritten to おとうさんはいつおかねをくれますか 'When does your father give you money?' (stage-made clip, needs re-voicing)."}

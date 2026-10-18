@@ -20,10 +20,11 @@
     {
       "id": "r-b27790d8cdf7",
       "target": "才",
-      "english": "Genius; years old",
+      "english": "Talent; years old",
       "category": "Other",
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 1
+      "sourceOrder": 1,
+      "ttsText": "さい"
     },
     {
       "id": "r-4bbe59fd177f",
@@ -59,7 +60,7 @@
     {
       "id": "r-31825d8efb50",
       "target": "では、お元気で",
-      "english": "Take care.",
+      "english": "Take care",
       "category": "Greetings",
       "sourceOrder": 6,
       "ttsText": "では、おげんきで"
@@ -295,6 +296,15 @@
       "category": "Time",
       "ttsText": "いつか",
       "sourceOrder": 35
+    },
+    {
+      "id": "r-74a252dd437c",
+      "target": "様",
+      "english": "Mr./Ms. (in letters)",
+      "category": "Family & People",
+      "ttsText": "さま",
+      "reviewNote": "QA fix pass 2026-10: the postcard vocabulary glosses 〜さま Mr./Ms. (used in letter writing) and the addresses note prints 様(さま); neither form had a card.",
+      "sourceOrder": 36
     }
   ]
 }

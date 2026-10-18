@@ -27,7 +27,7 @@
     },
     {
       "id": "itadakimasu-accept",
-      "english": "Yes, thank you. (I'll gladly accept.)",
+      "english": "Thank you. (I'll gladly accept.)",
       "category": "Greetings",
       "target": "いただきます",
       "pronunciation": "itadakimasu",
@@ -52,7 +52,8 @@
       "audioOriginal": "698dd1a3244730a7.orig.mp3",
       "audioAuto": "698dd1a3244730a7.mp3",
       "audioMarked": true,
-      "audioTextHash": "698dd1a3244730a7"
+      "audioTextHash": "698dd1a3244730a7",
+      "hint": "the word on its own, as before です (desu)"
     },
     {
       "id": "totemo",
@@ -60,7 +61,7 @@
       "category": "Grammar & Function Words",
       "target": "とても",
       "pronunciation": "totemo",
-      "note": "See the card \"What a very old clock!\" for とても used with an adjective. Similar to ほんとうに ('really', below) — both intensify an adjective, とても leaning toward 'very' and ほんとうに toward genuine emphasis.",
+      "note": "See the card \"It's a very old clock, isn't it?\" for とても used with an adjective. Similar to ほんとうに (hontōni, \"really\"): both intensify an adjective, とても leaning toward \"very\" and ほんとうに toward genuine emphasis.",
       "audio": "76389a2e623aaaaf.mp3",
       "audioOriginal": "76389a2e623aaaaf.orig.mp3",
       "audioAuto": "76389a2e623aaaaf.mp3",
@@ -421,7 +422,8 @@
       "audioOriginal": "7055a58688ab328d.orig.mp3",
       "audioAuto": "7055a58688ab328d.mp3",
       "audioMarked": true,
-      "audioTextHash": "7055a58688ab328d"
+      "audioTextHash": "7055a58688ab328d",
+      "note": "This さん (san) is the word for a mountain, not the honorific さん (san, \"Mr., Mrs., Ms.\") that follows a person's name."
     },
     {
       "id": "hana-flower",
@@ -649,7 +651,8 @@
       "audioOriginal": "24a7dd1686afb876.orig.mp3",
       "audioAuto": "24a7dd1686afb876.mp3",
       "audioMarked": true,
-      "audioTextHash": "24a7dd1686afb876"
+      "audioTextHash": "24a7dd1686afb876",
+      "hint": "what kind of place somewhere is"
     },
     {
       "id": "nikko-going",
@@ -771,7 +774,7 @@
       "category": "Grammar & Function Words",
       "target": "ほんとうに",
       "pronunciation": "hontōni",
-      "note": "See \"Yeah, it's really cold.\" for ほんとうに used with an adjective.",
+      "note": "See \"Yeah, it really is cold, isn't it?\" for ほんとうに used with an adjective.",
       "audio": "05857bc5bf7d1d35.mp3",
       "audioOriginal": "05857bc5bf7d1d35.orig.mp3",
       "audioAuto": "05857bc5bf7d1d35.mp3",
@@ -841,7 +844,7 @@
       "category": "Grammar & Function Words",
       "target": "まちます",
       "pronunciation": "machimasu",
-      "note": "Plain/dictionary form of まってください (please wait) — て-form (まって) + ください makes the polite request.",
+      "note": "The polite ます form of the verb \"to wait\" (its dictionary form is まつ (matsu)). まってください (matte kudasai, \"please wait\") is built on the same verb: its て-form まって (matte) plus ください (kudasai) makes the request.",
       "audio": "67be95c133945552.mp3",
       "audioOriginal": "67be95c133945552.orig.mp3",
       "audioAuto": "67be95c133945552.mp3",
@@ -855,7 +858,7 @@
       "target": "まってください",
       "pronunciation": "matte kudasai",
       "uncertain": true,
-      "note": "て-form of まちます (wait) + ください — see that card for the plain dictionary form.",
+      "note": "まって (matte) is the て-form of the verb whose ます form is まちます (machimasu, \"wait\"); ください (kudasai) after it makes the polite request.",
       "reviewNote": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (uses て-form + ください, a request pattern this book doesn't formally introduce until later (て-form itself in ch. 42, then the ください request pattern explicitly in ch. 43))",
       "audio": "270f634ca86a0187.mp3",
       "audioOriginal": "270f634ca86a0187.orig.mp3",

@@ -122,7 +122,7 @@
       "pronunciation": "Sumisu-san wa ashita Tōkyō eki ni ikimasu",
       "aiSuggested": true,
       "reviewNote": "Constructed. Particle job (に vs へ): member 1 of a minimal pair differing only in that one particle. Both members carry a hint because the English is identical.",
-      "hint": "use the に (ni, \"in/on/at\") destination particle",
+      "hint": "use the に (ni, \"to\") destination particle",
       "note": "に (ni) is the everyday choice for a destination and the one this lesson uses throughout.",
       "audio": "15ccc7c3646740f8.mp3",
       "audioOriginal": "15ccc7c3646740f8.orig.mp3",
@@ -176,7 +176,8 @@
       "audioOriginal": "a23b8b8277cf7947.orig.mp3",
       "audioAuto": "a23b8b8277cf7947.mp3",
       "audioMarked": true,
-      "audioTextHash": "a23b8b8277cf7947"
+      "audioTextHash": "a23b8b8277cf7947",
+      "hint": "use なんで (nande), not どうやって (dō yatte)"
     },
     {
       "id": "fib-tanaka-nande-kaigi-q",
@@ -195,7 +196,8 @@
       "audioAuto": "77a9c2ca577b467e.mp3",
       "audioMarked": true,
       "audioTextHash": "77a9c2ca577b467e",
-      "additionDone": true
+      "additionDone": true,
+      "hint": "use なんで (nande), not どうやって (dō yatte)"
     },
     {
       "id": "w2-mikka-desu",
@@ -235,7 +237,7 @@
       "pronunciation": "Sumisu-san wa doyōbi ni uchi ni kaerimasen",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form job: negative member of the かえります triad. かえりません appears nowhere in the lesson's own cards.",
-      "note": "Member 2 of the set: ます (masu) becomes ません (masen) and nothing else in the sentence moves.",
+      "note": "ます (masu) becomes ません (masen) and nothing else in the sentence moves.",
       "audio": "bbfd1543b21f07d8.mp3",
       "audioOriginal": "bbfd1543b21f07d8.orig.mp3",
       "audioAuto": "bbfd1543b21f07d8.mp3",
@@ -244,7 +246,7 @@
     },
     {
       "id": "raishuu-no-getsuyoubi-ni-sochira",
-      "english": "I'll go there next Monday.",
+      "english": "I'll go there (where you are) next Monday.",
       "category": "Travel & Tourism",
       "target": "らいしゅうのげつようびにそちらにいきます",
       "pronunciation": "raishū no getsuyōbi ni sochira ni ikimasu",
@@ -613,7 +615,7 @@
       "pronunciation": "Sumisu-san wa doyōbi ni uchi ni kaerimasu",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form job: the ます/ません/ますか triad for かえります, on one fixed sentence so the transformation is visible. どようび also had no sentence card, only the どようびに fragment.",
-      "note": "A named day is a specific time, so it takes に (ni). Member 1 of a かえります (kaerimasu) / かえりません (kaerimasen) / かえりますか (kaerimasu ka) set on the same sentence.",
+      "note": "A named day is a specific time, so it takes に (ni).",
       "audio": "da409d2de7e9247b.mp3",
       "audioOriginal": "da409d2de7e9247b.orig.mp3",
       "audioAuto": "da409d2de7e9247b.mp3",
@@ -741,7 +743,7 @@
       "pronunciation": "tanjōbi wa jū-gatsu kokonoka desu",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary job: ここのか and じゅうがつ each had no sentence, and the month + native-reading-day combination appears nowhere.",
-      "note": "The month comes first and the day second, the reverse of the usual English order.",
+      "note": "The month comes first and the day second, each with its own counter: がつ (gatsu) for the month, and here the native reading ここのか (kokonoka) for the 9th.",
       "ttsText": "たんじょうびはじゅうがつここのかです",
       "audioOriginal": "63b5671fb4dab0f1-genkanji-dfadec2e.orig.mp3",
       "audioAuto": "63b5671fb4dab0f1-genkanji-dfadec2e.mp3",
@@ -828,7 +830,8 @@
       "audioAuto": "feef7e1a957380ff.mp3",
       "audioMarked": true,
       "audioTextHash": "feef7e1a957380ff",
-      "additionDone": true
+      "additionDone": true,
+      "hint": "use どうやって (dō yatte), not なんで (nande)"
     },
     {
       "id": "w2-getsuyoubi-kara-mokuyoubi-made",
@@ -860,7 +863,8 @@
       "audioAuto": "9f0da341ba6f7a40.mp3",
       "audioMarked": true,
       "audioTextHash": "9f0da341ba6f7a40",
-      "additionDone": true
+      "additionDone": true,
+      "hint": "use どうやって (dō yatte), not なんで (nande)"
     },
     {
       "id": "w2-ropesu-mo-hikouki-de-kimasu-ka",
@@ -919,7 +923,7 @@
       "pronunciation": "Sumisu-san wa doyōbi ni uchi ni kaerimasu ka",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form job: question member of the かえります triad.",
-      "note": "Member 3 of the set: か (ka) is simply added to the end, with no change to word order.",
+      "note": "か (ka) is simply added to the end, with no change to word order.",
       "audio": "e815b3db9710b098.mp3",
       "audioOriginal": "e815b3db9710b098.orig.mp3",
       "audioAuto": "e815b3db9710b098.mp3",
@@ -949,7 +953,7 @@
       "pronunciation": "Paku-san wa mokuyōbi ni Nihon ni kimasu ka",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form job: question member of the きます triad.",
-      "note": "Member 3 of the set — a yes/no question, unlike the いつ (itsu) question the exercises drill.",
+      "note": "A yes/no question: add か (ka) to the statement, with no change to word order.",
       "audio": "150947e8028408f5.mp3",
       "audioOriginal": "150947e8028408f5.orig.mp3",
       "audioAuto": "150947e8028408f5.mp3",
@@ -1090,7 +1094,7 @@
       "pronunciation": "Paku-san wa mokuyōbi ni Nihon ni kimasu",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form job: the ます/ません/ますか triad for きます. もくようび had no sentence card either.",
-      "note": "Two に (ni) in a row doing different jobs: もくようびに (mokuyōbi ni) is the time, にほんに (Nihon ni) the destination. Member 1 of a きます (kimasu) / きません (kimasen) / きますか (kimasu ka) set.",
+      "note": "Two に (ni) in a row doing different jobs: もくようびに (mokuyōbi ni) is the time, にほんに (Nihon ni) the destination.",
       "audio": "d0c5ae0a60aa2ec3.mp3",
       "audioOriginal": "d0c5ae0a60aa2ec3.orig.mp3",
       "audioAuto": "d0c5ae0a60aa2ec3.mp3",
@@ -1158,14 +1162,14 @@
     },
     {
       "id": "w2-sanban-no-basu-ga-ikimasu",
-      "english": "The No. 3 bus goes there.",
+      "english": "The No. 8 bus goes there.",
       "category": "Transport",
-      "target": "3ばんのバスがいきます",
-      "pronunciation": "san-ban no basu ga ikimasu",
+      "target": "8ばんのバスがいきます",
+      "pronunciation": "hachi-ban no basu ga ikimasu",
       "aiSuggested": true,
       "reviewNote": "Constructed on the model of the Lesson 6 card 6ばんのバスがいきます. Particle job (が): answer half of the pair with w2-dono-basu-ga-kuukou-ni, which the Lesson 6 card had no question to answer.",
-      "note": "The answer keeps が (ga) — swapping in は (wa) would make it sound like a change of subject.",
-      "ttsText": "さんばんのバスがいきます",
+      "note": "The reply keeps が (ga) from the question: a どの…が (dono … ga) question is answered with が, never with は (wa).",
+      "ttsText": "はちばんのバスがいきます",
       "audio": "c47fcfbd32ef7f39.mp3",
       "audioOriginal": "c47fcfbd32ef7f39.orig.mp3",
       "audioAuto": "c47fcfbd32ef7f39.mp3",
@@ -1291,7 +1295,8 @@
       "audioOriginal": "0c7e40b6ccc26c2b.orig.mp3",
       "audioAuto": "0c7e40b6ccc26c2b.mp3",
       "audioMarked": true,
-      "audioTextHash": "0c7e40b6ccc26c2b"
+      "audioTextHash": "0c7e40b6ccc26c2b",
+      "hint": "use なんで (nande), not どうやって (dō yatte)"
     },
     {
       "id": "w2-ema-chikatetsu-ginza",
@@ -1315,7 +1320,7 @@
       "pronunciation": "Paku-san wa mokuyōbi ni Nihon ni kimasen",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form job: negative member of the きます triad, a genuine hole — the deck teaches きます and きました but never the negative.",
-      "note": "Member 2 of the set. きません (kimasen) appears on no other card, though its partner いきません (ikimasen) does.",
+      "note": "ます (masu) becomes ません (masen): きます (kimasu) → きません (kimasen), the same change as いきます → いきません (ikimasu → ikimasen).",
       "audio": "18534db09083840e.mp3",
       "audioOriginal": "18534db09083840e.orig.mp3",
       "audioAuto": "18534db09083840e.mp3",

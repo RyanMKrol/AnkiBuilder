@@ -61,7 +61,7 @@
       "english": "Smith-san is going to Tokyo Station tomorrow.",
       "category": "Travel & Tourism",
       "target": "スミスさんはあしたとうきょうえきにいきます",
-      "hint": "use the に (ni, \"in/on/at\") destination particle",
+      "hint": "use the に (ni, \"to\") destination particle",
       "note": "に (ni) is the everyday choice for a destination and the one this lesson uses throughout.",
       "reviewNote": "Constructed. Particle job (に vs へ): member 1 of a minimal pair differing only in that one particle. Both members carry a hint because the English is identical.",
       "aiSuggested": true
@@ -81,7 +81,7 @@
       "english": "How is Smith-san going to Osaka?",
       "category": "Transport",
       "target": "スミスさんはなんでおおさかにいきますか",
-      "hint": null,
+      "hint": "use なんで (nande), not どうやって (dō yatte)",
       "note": null,
       "reviewNote": "Exercise VII worked example. The existing なんでいきますか is a bare fragment with no subject or destination; this is the full question the book drills. I deliberately left out its answer (くるまでいきます) because バスでいきます already teaches that pattern and いいえ、しんかんせんでいきます above makes a second.",
       "aiSuggested": true
@@ -112,13 +112,13 @@
       "category": "Travel & Tourism",
       "target": "スミスさんはどようびにうちにかえりません",
       "hint": null,
-      "note": "Member 2 of the set: ます (masu) becomes ません (masen) and nothing else in the sentence moves.",
+      "note": "ます (masu) becomes ません (masen) and nothing else in the sentence moves.",
       "reviewNote": "Constructed. Form job: negative member of the かえります triad. かえりません appears nowhere in the lesson's own cards.",
       "aiSuggested": true
     },
     {
       "id": "raishuu-no-getsuyoubi-ni-sochira",
-      "english": "I'll go there next Monday.",
+      "english": "I'll go there (where you are) next Monday.",
       "category": "Travel & Tourism",
       "target": "らいしゅうのげつようびにそちらにいきます",
       "hint": null,
@@ -285,7 +285,7 @@
       "category": "Travel & Tourism",
       "target": "スミスさんはどようびにうちにかえります",
       "hint": null,
-      "note": "A named day is a specific time, so it takes に (ni). Member 1 of a かえります (kaerimasu) / かえりません (kaerimasen) / かえりますか (kaerimasu ka) set on the same sentence.",
+      "note": "A named day is a specific time, so it takes に (ni).",
       "reviewNote": "Constructed. Form job: the ます/ません/ますか triad for かえります, on one fixed sentence so the transformation is visible. どようび also had no sentence card, only the どようびに fragment.",
       "aiSuggested": true
     },
@@ -348,7 +348,7 @@
       "target": "たんじょうびは10がつここのかです",
       "ttsText": "たんじょうびはじゅうがつここのかです",
       "hint": null,
-      "note": "The month comes first and the day second, the reverse of the usual English order.",
+      "note": "The month comes first and the day second, each with its own counter: がつ (gatsu) for the month, and here the native reading ここのか (kokonoka) for the 9th.",
       "reviewNote": "Constructed. Vocabulary job: ここのか and じゅうがつ each had no sentence, and the month + native-reading-day combination appears nowhere.",
       "aiSuggested": true
     },
@@ -400,7 +400,8 @@
       "target": "どうやってジムにいきますか",
       "note": "どうやって (dō yatte) asks by what means, like なんで (nande) in this lesson. どうやって (dō yatte) is the more everyday of the two.",
       "reviewNote": "Nihongo 102, Beginner 2 Week 1-2 PDF, which prints it schematically as どうやって〜にいきますか. Rewritten around ジム (jimu) because a shipped 〜 is not something a person can say.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "use どうやって (dō yatte), not なんで (nande)"
     },
     {
       "id": "w2-getsuyoubi-kara-mokuyoubi-made",
@@ -418,7 +419,8 @@
       "category": "Transport",
       "target": "どうやってしごとにいきますか",
       "reviewNote": "Nihongo 102, Extra questions PDF, question 3. Job: the same どうやって (dō yatte) frame with a second destination, so the learner sees a slot rather than a fixed phrase.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "hint": "use どうやって (dō yatte), not なんで (nande)"
     },
     {
       "id": "w2-ropesu-mo-hikouki-de-kimasu-ka",
@@ -456,7 +458,7 @@
       "category": "Travel & Tourism",
       "target": "スミスさんはどようびにうちにかえりますか",
       "hint": null,
-      "note": "Member 3 of the set: か (ka) is simply added to the end, with no change to word order.",
+      "note": "か (ka) is simply added to the end, with no change to word order.",
       "reviewNote": "Constructed. Form job: question member of the かえります triad.",
       "aiSuggested": true
     },
@@ -476,7 +478,7 @@
       "category": "Travel & Tourism",
       "target": "パクさんはもくようびににほんにきますか",
       "hint": null,
-      "note": "Member 3 of the set — a yes/no question, unlike the いつ (itsu) question the exercises drill.",
+      "note": "A yes/no question: add か (ka) to the statement, with no change to word order.",
       "reviewNote": "Constructed. Form job: question member of the きます triad.",
       "aiSuggested": true
     },
@@ -559,7 +561,7 @@
       "category": "Travel & Tourism",
       "target": "パクさんはもくようびににほんにきます",
       "hint": null,
-      "note": "Two に (ni) in a row doing different jobs: もくようびに (mokuyōbi ni) is the time, にほんに (Nihon ni) the destination. Member 1 of a きます (kimasu) / きません (kimasen) / きますか (kimasu ka) set.",
+      "note": "Two に (ni) in a row doing different jobs: もくようびに (mokuyōbi ni) is the time, にほんに (Nihon ni) the destination.",
       "reviewNote": "Constructed. Form job: the ます/ません/ますか triad for きます. もくようび had no sentence card either.",
       "aiSuggested": true
     },
@@ -605,11 +607,11 @@
     },
     {
       "id": "w2-sanban-no-basu-ga-ikimasu",
-      "english": "The No. 3 bus goes there.",
+      "english": "The No. 8 bus goes there.",
       "category": "Transport",
-      "target": "3ばんのバスがいきます",
-      "ttsText": "さんばんのバスがいきます",
-      "note": "The answer keeps が (ga) — swapping in は (wa) would make it sound like a change of subject.",
+      "target": "8ばんのバスがいきます",
+      "ttsText": "はちばんのバスがいきます",
+      "note": "The reply keeps が (ga) from the question: a どの…が (dono … ga) question is answered with が, never with は (wa).",
       "reviewNote": "Constructed on the model of the Lesson 6 card 6ばんのバスがいきます. Particle job (が): answer half of the pair with w2-dono-basu-ga-kuukou-ni, which the Lesson 6 card had no question to answer.",
       "aiSuggested": true,
       "scene": "answering which bus goes to the airport"
@@ -693,7 +695,7 @@
       "english": "How does Kato-san come to the office?",
       "category": "Transport",
       "target": "かとうさんはなんでかいしゃにきますか",
-      "hint": null,
+      "hint": "use なんで (nande), not どうやって (dō yatte)",
       "note": "なんで (nande) also means \"why\" in casual speech, so なにで (nani de) is used when the sentence could be taken either way.",
       "reviewNote": "Constructed. Form job: なんで attached to きます rather than いきます, which no card shows. Also the question half that gives でんしゃ its first sentence.",
       "aiSuggested": true
@@ -714,7 +716,7 @@
       "category": "Travel & Tourism",
       "target": "パクさんはもくようびににほんにきません",
       "hint": null,
-      "note": "Member 2 of the set. きません (kimasen) appears on no other card, though its partner いきません (ikimasen) does.",
+      "note": "ます (masu) becomes ません (masen): きます (kimasu) → きません (kimasen), the same change as いきます → いきません (ikimasu → ikimasen).",
       "reviewNote": "Constructed. Form job: negative member of the きます triad, a genuine hole — the deck teaches きます and きました but never the negative.",
       "aiSuggested": true
     },

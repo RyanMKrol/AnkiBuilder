@@ -113,3 +113,12 @@
 {"id":"chapter-25-extras/casual-question-tanaka-nihonjin-tte/wrong-content/1","status":"fixed","statusReason":"English now 'Is Tanaka Japanese?'."}
 {"id":"chapter-25/casual-no/wrong-content/1","status":"fixed","statusReason":"Pronunciation now ūn."}
 {"id":"chapter-25/casual-no/book-mismatch/1","status":"fixed","statusReason":"English now 'Nope (casual 'no').', the plainer gloss the extras already use, parallel to 'Yeah (casual 'yes')'."}
+{"id":"chapter-26/arigatou-thanks/ambiguous/1","status":"fixed","statusReason":"Hint now 'casual style; not どうも (dōmo)'."}
+{"id":"chapter-26/gentle-refusal-chotto/ambiguous/1","status":"fixed","statusReason":"Hint now 'casual style; start with a drawn-out \"eh\"', which asks for the えー the book prints."}
+{"id":"chapter-26/ta-itta/unanswerable/1","status":"fixed","statusReason":"Scene 'Talking about last weekend's trip to the sea' added, as ta-kita and ta-shita have, so いった reads as went, not said (scene only; the curated clip is untouched)."}
+{"id":"chapter-26/dont-want-to-iyada/note-unverifiable/1","status":"fixed","statusReason":"'Stronger than だめ' ranking dropped; the book's don't-want-to versus not-allowed contrast kept."}
+{"id":"chapter-26-extras/ore-wa-mada/unanswerable/1","status":"fixed","statusReason":"Hint now 'casual style; rough, not modest', which picks おれ over ぼく."}
+{"id":"chapter-26-extras/atashi-wa-ikanai/missing-info/1","status":"fixed","statusReason":"Hint 'casual style; keep は (wa) for contrast' and a note explaining the contrastive は; the book's target stays."}
+{"id":"chapter-26-extras/kondo-no-doyou-uchi-konai/book-mismatch/1","status":"fixed","statusReason":"English now 'next Saturday', as the book and the こんど card say."}
+{"id":"chapter-26-extras/casual-invitation-koen/wrong-content/1","status":"fixed","statusReason":"English now 'Want to go to the park on Saturday?', matching the chapter's other invitation glosses."}
+{"id":"chapter-26/saturday-doyou/note-unverifiable/1","status":"fixed","statusReason":"Unsourced 'the other days shorten the same way' dropped."}

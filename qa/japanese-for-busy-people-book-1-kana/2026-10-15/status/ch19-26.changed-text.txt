@@ -1,0 +1,3 @@
+# F1d (chapter-19 to chapter-26 and their -extras): cards whose target or ttsText changed.
+# None. Every fix in these units edits english, hint, scene, note, reviewNote, pronunciation or an
+# exclusion reason, so no clip needs regenerating and no hand-curated clip is affected.

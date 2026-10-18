@@ -351,9 +351,13 @@ that already exists in Lesson 8. The agents structurally cannot catch this. Afte
    ```
 
    It groups by normalized `english` and by `target` and lists every group with more than one
-   distinct answer, flagging any member with no cue **on the face it actually collides on**: a
-   `hint` or a `scene` for an English-gloss group, a `scene` ONLY for a target group, since a hint
-   renders on the back of a Recognition card (exit 2 when any are missing). It is
+   distinct answer. The English key ignores case, trailing punctuation, square brackets (the word
+   inside is kept, so "May I sit [here]?" and "May I sit here?" are one front) and a leading
+   article; round-bracketed cues like "(casual)" or "(male speaker)" are kept, because they are
+   what tells two cards apart. Each group's members are flagged when they have no cue **on the
+   face they actually collide on**: a `hint` or a `scene` for an English-gloss group, a `scene`
+   ONLY for a target group, since a hint renders on the back of a Recognition card (exit 2 when
+   any are missing). It is
    report-only: fix the collisions the pass introduced, and report pre-existing ones rather than
    inventing wording for cards the human already signed off.
 

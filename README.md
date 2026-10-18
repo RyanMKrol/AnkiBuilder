@@ -681,6 +681,12 @@ What is built, newest last:
       against it through one function (`src/deck/packageInputs.js`). A checkout or branch switch that
       only touches file times no longer fails preflight. A package built before the record existed is
       judged by file times until its next rebuild.
+- [x] The collision check matches English more loosely (2026-10-18). Preflight's `collisions` check
+      and `scripts/extras-collision-audit.mjs` group Production fronts by an English key that drops
+      square brackets (keeping the word inside them) and a leading article, so "May I sit [here]?"
+      meets "May I sit here?" and "A watch" meets "Watch". Round-bracketed cues such as "(casual)"
+      still separate two cards. Target groups are compared exactly as before
+      (`englishCollisionKey`, `src/cards/extrasTools.js`)
 - [~] Reading decks (in progress; design and build order in `docs/designs/reading-decks/`). A
   second deck kind whose card shows the written form alone on a silent front, with the English, the
   romaji and the audio on the back. Built so far: the `everything` conversion purpose, and the reading note

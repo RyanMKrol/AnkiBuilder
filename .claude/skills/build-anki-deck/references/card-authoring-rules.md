@@ -409,7 +409,11 @@ register, which one answers the other), because the front cue only has room to p
 The collision is easy to miss during a single-lesson build, since the two cards often live in
 different chapters and neither pass ever sees both. Check for it across the WHOLE COLLECTION, and
 only that collection: group every card in this one book or course by its normalized English and by
-its `target`, and any group with more than one distinct answer needs cues.
+its `target`, and any group with more than one distinct answer needs cues. Square brackets do not
+make two fronts different: "May I sit [here]?" and "May I sit here?" are one question, because the
+learner cannot tell from the brackets whether to say ここに (koko ni), so each card needs a cue saying
+which answer is wanted. The audit matches them that way, and it ignores a leading article too. A
+round-bracketed cue like "(casual)" does separate two fronts, and the audit respects it.
 
 Common shapes in a Japanese course: a polite/plain register pair (なんにん (nan-nin) vs なんめいさま
 (nanmeisama), じゃ (ja) vs では (dewa), はい (hai) vs ええ (ē)), a noun and its noun+します verb

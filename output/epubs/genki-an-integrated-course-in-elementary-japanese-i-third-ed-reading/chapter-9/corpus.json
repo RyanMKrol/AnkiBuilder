@@ -54,8 +54,9 @@
       "target": "袋",
       "english": "Bag",
       "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 5
+      "reviewNote": "Taught as a word in Chapter 10: Lesson 8: Barbecue: this is the word's card, voiced.",
+      "sourceOrder": 5,
+      "ttsText": "ふくろ"
     },
     {
       "id": "r-7c155bc560d0",
@@ -93,9 +94,10 @@
       "id": "r-bf9b3e9c32c4",
       "target": "牛",
       "english": "Cow",
-      "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 10
+      "category": "Animals",
+      "reviewNote": "Taught as a word in Chapter 26: Reading and Writing 12: Tanabata Festival: this is the word's card, voiced.",
+      "sourceOrder": 10,
+      "ttsText": "うし"
     },
     {
       "id": "r-81d4aecdad11",
@@ -180,10 +182,11 @@
     {
       "id": "r-aae488416289",
       "target": "事",
-      "english": "Matter; thing; fact",
+      "english": "Thing (abstract); matter",
       "category": "Other",
-      "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
-      "sourceOrder": 21
+      "reviewNote": "Taught as a word in Chapter 22: Reading and Writing 8: Japanese Office Workers: this is the word's card, voiced.",
+      "sourceOrder": 21,
+      "ttsText": "こと"
     },
     {
       "id": "r-81d3c496f5dc",
@@ -204,7 +207,7 @@
     {
       "id": "r-304fce687a69",
       "target": "度",
-      "english": "Degrees (temperature)",
+      "english": "Degrees (temperature); time (occurrence)",
       "category": "Grammar & Function Words",
       "ttsText": "ど",
       "sourceOrder": 24

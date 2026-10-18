@@ -12,7 +12,7 @@
 {"id":"chapter-21/akemasu/other/1","status":"fixed","statusReason":"akemasu, shimemasu, tsukemasu notes now 'Regular 2: て-form X, dictionary form Y' with each verb's forms."}
 {"id":"chapter-21/keshimasu/other/1","status":"fixed","statusReason":"Note now says Regular 1 like はなします, unlike this lesson's Regular 2 verbs; no 'above', no R1/R2."}
 {"id":"chapter-22-extras/please-dont-photo/ambiguous/1","status":"fixed","statusReason":"Collision cue on both sides: chapter-22/toranaide-kudasai hint 'the verb alone, no object', this card 'say what is not to be taken'."}
-{"id":"chapter-22/mae-ago/leaks-answer/1","status":"fixed","statusReason":"Scene now 'placed right behind a length of time, as in みっかまえ (mikka mae)': no 'ago', romaji only so it does not gloss the answer."}
+{"id":"chapter-22/mae-ago/leaks-answer/1","status":"fixed","statusReason":"Scene now 'placed right behind a length of time (number + counter)': no 'ago' for Recognition, and no example containing まえ, which would have printed the answer on the Production front."}
 {"id":"chapter-22/mae-ago/other/1","status":"fixed","statusReason":"Same rewrite: the scene no longer opens with 'after'."}
 {"id":"chapter-22/iremasu-put-in/other/1","status":"fixed","statusReason":"Note now 'Regular 2: ない-form いれない (irenai), dictionary form いれる (ireru).'"}
 {"id":"chapter-22/-/other/1","status":"fixed","statusReason":"Every 'Regular I/II' in chapter-22 and chapter-22-extras notes (29 cards) normalised to 'Regular 1/2'."}

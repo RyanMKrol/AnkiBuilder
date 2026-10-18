@@ -32,7 +32,7 @@
     {
       "id": "casual-no",
       "target": "ううん",
-      "english": "Nuh-uh (casual 'no').",
+      "english": "Nope (casual 'no').",
       "category": "Greetings",
       "note": "Casual counterpart to いいえ; used in place of いいえ、〜じゃありません.",
       "sourceOrder": 815,
@@ -240,7 +240,7 @@
       "note": "Filler interjection expressing uncertainty before answering a question.",
       "reviewNote": "Gate 1: kept. Chapter-2-extras uses さあ only inside a sentence; this is its first card.",
       "sourceOrder": 787,
-      "hint": "casual style"
+      "hint": "casual style; the hesitation word alone"
     },
     {
       "id": "un",
@@ -322,7 +322,7 @@
     {
       "id": "tte-casual-topic",
       "target": "って",
-      "english": "Casual contraction of は (topic marker in a casual question).",
+      "english": "Casual stand-in for は (topic marker in a casual question).",
       "category": "Grammar & Function Words",
       "note": "In casual speech は is often dropped and sometimes becomes って, as in これって (kore tte), \"is this…?\"",
       "sourceOrder": 839,
@@ -336,7 +336,7 @@
       "category": "Grammar & Function Words",
       "note": "Formed when ね is added to a noun predicate whose です has been dropped in casual style.",
       "sourceOrder": 1082,
-      "hint": "casual style"
+      "hint": "casual style; after a noun or な-adjective"
     },
     {
       "id": "dayo",
@@ -345,7 +345,7 @@
       "category": "Grammar & Function Words",
       "note": "Formed when よ is added to a noun predicate whose です has been dropped in casual style.",
       "sourceOrder": 1085,
-      "hint": "casual style"
+      "hint": "casual style; after a noun or な-adjective"
     },
     {
       "id": "sugoku",
@@ -380,7 +380,7 @@
     {
       "id": "na-adjective-casual-ne-kirei",
       "target": "きれいだね",
-      "english": "It's pretty, isn't it? (な-adjective + だ before casual ね)",
+      "english": "It's pretty, isn't it?",
       "category": "Grammar & Function Words",
       "note": "A な-adjective, like a noun, takes だ before ね in casual speech: きれい + だね. An い-adjective takes ね directly (おおきいね).",
       "sourceOrder": 2359,
@@ -389,7 +389,7 @@
     {
       "id": "na-adjective-casual-yo-kirei",
       "target": "きれいだよ",
-      "english": "It's pretty, you know. (な-adjective + だ before casual よ)",
+      "english": "It's pretty, you know.",
       "category": "Grammar & Function Words",
       "note": "A な-adjective, like a noun, takes だ before よ in casual speech: きれい + だよ. An い-adjective takes よ directly (おおきいよ).",
       "sourceOrder": 2367,

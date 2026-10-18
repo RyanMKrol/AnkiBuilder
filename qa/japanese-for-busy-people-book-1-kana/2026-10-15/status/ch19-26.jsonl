@@ -87,3 +87,29 @@
 {"id":"chapter-24-extras/ex8b2-ando-mobile-q/missing-info/1","status":"fixed","statusReason":"Note added: けいたいのばんごう and Lesson 2's けいたいばんごう mean the same."}
 {"id":"chapter-24-extras/ex8a-ask-andos-work/wrong-content/1","status":"fixed","statusReason":"Note now says it leaves the rest of the question unsaid, such as なんですか; em-dashes removed."}
 {"id":"chapter-24-extras/tsutomemasu-sentence/note-unverifiable/1","status":"fixed","statusReason":"English now 'Next month, I will work for ABC Foods.' so it matches らいげつ without から (no target change, no audio); note trimmed to the ます form for the future versus つとめています, and 'plain' dropped."}
+{"id":"chapter-25/saa/ambiguous/1","status":"fixed","statusReason":"Hints now differ: 'casual style; the hesitation word alone' here, 'casual style; the whole sentence' on saa-1."}
+{"id":"chapter-25/dane/ambiguous/1","status":"fixed","statusReason":"Hint now 'casual style; after a noun or な-adjective', which rules out bare ね."}
+{"id":"chapter-25/dayo/ambiguous/1","status":"fixed","statusReason":"Hint now 'casual style; after a noun or な-adjective', which rules out bare よ."}
+{"id":"chapter-25/tte-casual-topic/note-unverifiable/1","status":"fixed","statusReason":"English now 'Casual stand-in for は', not 'contraction'; the extras note on casual-question-tanaka-nihonjin-tte reworded the same way. The chapter-12-extras card is outside this fixer's units."}
+{"id":"chapter-25/na-adjective-casual-ne-kirei/leaks-answer/1","status":"fixed","statusReason":"Bracketed rule removed from the English ('It's pretty, isn't it?'); the note already states it."}
+{"id":"chapter-25/na-adjective-casual-yo-kirei/leaks-answer/1","status":"fixed","statusReason":"Bracketed rule removed from the English ('It's pretty, you know.'); the note already states it."}
+{"id":"chapter-25-extras/suffix-chan-usage/unanswerable/1","status":"fixed","statusReason":"Scene 'talking to a little girl named Hayashi' picks ちゃん; romaji name capitalised."}
+{"id":"chapter-25-extras/suffix-kun-usage/unanswerable/1","status":"fixed","statusReason":"Scene 'greeting a younger male colleague named Tanaka' picks くん; romaji name capitalised."}
+{"id":"chapter-25-extras/ore-2/unanswerable/1","status":"fixed","statusReason":"Hint 'rough, not modest' added beside the English '(male speaker)', which picks おれ over ぼく."}
+{"id":"chapter-25-extras/ore-3/unanswerable/1","status":"fixed","statusReason":"Hint 'rough, not modest' picks おれ over ぼく."}
+{"id":"chapter-25-extras/boku-3/unanswerable/1","status":"fixed","statusReason":"Hint now 'male speaker, modest, casual', which picks ぼく over おれ."}
+{"id":"chapter-25-extras/abe-not-mine/unanswerable/1","status":"fixed","statusReason":"Scene now names 'a rough-spoken classmate' (おれ); targets stay as the book has them."}
+{"id":"chapter-25-extras/yes-its-mine/unanswerable/1","status":"fixed","statusReason":"Scene now names 'a modest-spoken classmate' (ぼく)."}
+{"id":"chapter-25-extras/boku-sensei-janai/unanswerable/1","status":"fixed","statusReason":"Hint 'male speaker, modest, casual' added."}
+{"id":"chapter-25-extras/atashi-gakusei-dayo/unanswerable/1","status":"fixed","statusReason":"Hint 'spoken by a woman, casual' added, as atashi-2 has."}
+{"id":"chapter-25-extras/nikko-tte-donna-tokoro/unanswerable/1","status":"fixed","statusReason":"Hint 'casual, with って (tte)' added."}
+{"id":"chapter-25-extras/casual-question-tanaka-nihonjin-tte/unanswerable/1","status":"fixed","statusReason":"Hint 'casual, with って (tte)' here and 'casual, は (wa) dropped' on the Suzuki partner."}
+{"id":"chapter-25-extras/is-this-yours-raja/unanswerable/1","status":"fixed","statusReason":"Hint 'casual, with って (tte)' added; romaji names capitalised."}
+{"id":"chapter-25-extras/nikko-kirei-janakatta/other/1","status":"fixed","statusReason":"Note no longer points at the excluded にっこう、きれいだね card; it contrasts the past negative with the bare きれいだね."}
+{"id":"chapter-25-extras/uchi-ookikunakatta/other/1","status":"fixed","statusReason":"Build-language note replaced with the form: くない becomes くなかった."}
+{"id":"chapter-25-extras/party-was-lively/unanswerable/1","status":"fixed","statusReason":"Hint 'casual style, with the casual word for very' picks すごく over とても."}
+{"id":"chapter-25-extras/-/other/1","status":"fixed","statusReason":"ううん is ūn on all three cards; adjective negatives joined (yokunai, ōkikunai, yokunakatta, ōkikunakatta) as in the base unit and the collection; Hakone and the personal names in this unit's romaji capitalised per the pinned proper-noun rule."}
+{"id":"chapter-25-extras/casual-question-suzuki-sensei-ha-omit/wrong-content/1","status":"fixed","statusReason":"English now 'Is Suzuki a teacher?', matching the note's topic reading and the Tanaka sibling."}
+{"id":"chapter-25-extras/casual-question-tanaka-nihonjin-tte/wrong-content/1","status":"fixed","statusReason":"English now 'Is Tanaka Japanese?'."}
+{"id":"chapter-25/casual-no/wrong-content/1","status":"fixed","statusReason":"Pronunciation now ūn."}
+{"id":"chapter-25/casual-no/book-mismatch/1","status":"fixed","statusReason":"English now 'Nope (casual 'no').', the plainer gloss the extras already use, parallel to 'Yeah (casual 'yes')'."}

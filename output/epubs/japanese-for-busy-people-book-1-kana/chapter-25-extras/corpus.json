@@ -26,7 +26,8 @@
       "english": "Hayashi, whose is this?",
       "category": "Family & People",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "scene": "talking to a little girl named Hayashi"
     },
     {
       "id": "atashi-3",
@@ -46,7 +47,7 @@
       "english": "Well... I don't know.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style; the whole sentence"
     },
     {
       "id": "ii-present-neg",
@@ -98,7 +99,7 @@
       "target": "にっこう、きれいじゃなかった。",
       "english": "Nikko wasn't pretty.",
       "category": "Travel & Tourism",
-      "note": "Contrasts with the existing にっこう、きれいだね — same place, past tense, negated.",
+      "note": "The casual past negative of a な-adjective: きれいじゃなかった (kirei ja nakatta), against the present きれいだね (kirei da ne, \"it's pretty, isn't it?\").",
       "aiSuggested": true,
       "hint": "casual style"
     },
@@ -117,7 +118,7 @@
       "english": "Nikko, what kind of place is it?",
       "category": "Travel & Tourism",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual, with って (tte)"
     },
     {
       "id": "casual-answer-no-nationality",
@@ -174,11 +175,11 @@
     {
       "id": "casual-question-suzuki-sensei-ha-omit",
       "target": "すずきさん、せんせい?",
-      "english": "Suzuki, are you a teacher?",
+      "english": "Is Suzuki a teacher?",
       "category": "Grammar & Function Words",
       "fillInBlank": true,
-      "note": "A casual yes/no question can drop は entirely, leaving just the topic plus rising intonation. Compare たなかさんってにほんじん? (tanaka-san tte nihonjin?), where って stands in for は instead.",
-      "hint": "casual style"
+      "note": "A casual yes/no question can drop は entirely, leaving just the topic plus rising intonation. Compare たなかさんってにほんじん? (Tanaka-san tte nihonjin?), where って stands in for は instead.",
+      "hint": "casual, は (wa) dropped"
     },
     {
       "id": "casual-answer-yes-nationality",
@@ -211,11 +212,11 @@
     {
       "id": "casual-question-tanaka-nihonjin-tte",
       "target": "たなかさんってにほんじん?",
-      "english": "Tanaka, is he Japanese?",
+      "english": "Is Tanaka Japanese?",
       "category": "Grammar & Function Words",
       "fillInBlank": true,
-      "note": "って here is the casual contraction of は; compare すずきさん、せんせい? (suzuki-san, sensei?), which drops は outright instead.",
-      "hint": "casual style"
+      "note": "って here stands in for は in casual speech; compare すずきさん、せんせい? (Suzuki-san, sensei?), which drops は outright instead.",
+      "hint": "casual, with って (tte)"
     },
     {
       "id": "casual-statement-tanaka-nihonjin",
@@ -223,7 +224,7 @@
       "english": "Tanaka's Japanese.",
       "category": "Nationalities & Countries",
       "fillInBlank": true,
-      "note": "Casual speech can drop です entirely from a noun predicate, with nothing replacing it. Before ね or よ, だ comes back: たなかさんはにほんじんだね (tanaka-san wa nihonjin da ne).",
+      "note": "Casual speech can drop です entirely from a noun predicate, with nothing replacing it. Before ね or よ, だ comes back: たなかさんはにほんじんだね (Tanaka-san wa nihonjin da ne).",
       "hint": "casual style"
     },
     {
@@ -286,14 +287,14 @@
       "target": "ラジャさん、これって ラジャさんの?",
       "english": "Raja, is this yours?",
       "category": "Grammar & Function Words",
-      "hint": "casual style"
+      "hint": "casual, with って (tte)"
     },
     {
       "id": "abe-not-mine",
       "target": "ううん、おれのじゃない。",
       "english": "No, it's not mine.",
       "category": "Grammar & Function Words",
-      "scene": "A classmate is asked whether a pen found on the floor belongs to him.",
+      "scene": "A rough-spoken classmate is asked whether a pen found on the floor belongs to him.",
       "hint": "casual style"
     },
     {
@@ -312,7 +313,7 @@
       "english": "I'm not going. (male speaker)",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "rough, not modest"
     },
     {
       "id": "kaban-ookii-casual",
@@ -338,7 +339,8 @@
       "english": "Tanaka, how are you doing?",
       "category": "Family & People",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "casual style",
+      "scene": "greeting a younger male colleague named Tanaka"
     },
     {
       "id": "kirei-past-aff",
@@ -385,7 +387,7 @@
       "target": "うん、ぼくの。",
       "english": "Yeah, it's mine.",
       "category": "Grammar & Function Words",
-      "scene": "A classmate confirms that a pen found on the floor is his.",
+      "scene": "A modest-spoken classmate confirms that a pen found on the floor is his.",
       "hint": "casual style"
     },
     {
@@ -393,7 +395,7 @@
       "target": "あのうち、おおきくなかった。",
       "english": "That house wasn't big.",
       "category": "Descriptions & Qualities",
-      "note": "Completes the i-adjective paradigm alongside the already-used あのうち、おおきくない and あのいぬ、おおきかった.",
+      "note": "い-adjective past negative: くない becomes くなかった, as in おおきくない → おおきくなかった (ōkikunai → ōkikunakatta).",
       "aiSuggested": true,
       "hint": "casual style"
     },
@@ -403,7 +405,7 @@
       "english": "I'm not a teacher.",
       "category": "Work & Occupations",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "male speaker, modest, casual"
     },
     {
       "id": "food-was-good",
@@ -445,7 +447,7 @@
       "target": "このはな、きれいじゃない。",
       "english": "This flower isn't pretty.",
       "category": "Descriptions & Qualities",
-      "note": "Contrasts directly with the existing このはな、きれいだね, same flower, opposite polarity.",
+      "note": "Contrasts directly with このはな、きれいだね (kono hana, kirei da ne): same flower, opposite polarity.",
       "aiSuggested": true,
       "hint": "casual style"
     },
@@ -456,7 +458,7 @@
       "category": "Grammar & Function Words",
       "aiSuggested": true,
       "note": "ぼくの (boku no) is how a man casually says \"mine\"; a woman would say あたしの (atashi no).",
-      "hint": "asked by a man, casual"
+      "hint": "male speaker, modest, casual"
     },
     {
       "id": "dou-datta-3",
@@ -472,7 +474,7 @@
       "english": "This is mine. (casual, male speaker)",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "rough, not modest"
     },
     {
       "id": "atashi-gakusei-dayo",
@@ -480,7 +482,7 @@
       "english": "I'm a student, you know.",
       "category": "Family & People",
       "aiSuggested": true,
-      "hint": "casual style"
+      "hint": "spoken by a woman, casual"
     },
     {
       "id": "party-was-lively",
@@ -488,7 +490,7 @@
       "english": "It was very lively.",
       "category": "Grammar & Function Words",
       "scene": "Asked how yesterday's party was, describing the atmosphere.",
-      "hint": "casual style"
+      "hint": "casual style, with the casual word for very"
     },
     {
       "id": "casual-statement-tanaka-nihonjin-dane",

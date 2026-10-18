@@ -82,3 +82,27 @@
 {"id":"chapter-4-extras/tokei-o-misete-kudasai/ambiguous/1","status":"fixed","statusReason":"Hint names とけい as the general word, against うでどけい (the wristwatch)."}
 {"id":"chapter-4-extras/kore-mo-sore-mo-tokei/ambiguous/1","status":"fixed","statusReason":"Hint names とけい as the general word, against うでどけい (the wristwatch)."}
 {"id":"chapter-4-extras/fib-iie-rimokon-desu/wrong-content/1","status":"skipped","statusReason":"The collection is split 'iie' / 'īe' and the style guide's 'いい stays ii' favours this card's spelling, so a one-card change fixes nothing: the owner picks one spelling and it is swept collection-wide (T8's consistency check will list them)."}
+{"id":"chapter-5/doumo/ambiguous/1","status":"fixed","statusReason":"Production hint 'the one-word thanks' separates it from the two 'Thank you.' cards; note romaji swept to macrons."}
+{"id":"chapter-5/fib-c5-coffee-cup-quantity/wrong-content/1","status":"fixed","statusReason":"Dropped 'Then', which the target has no じゃ for."}
+{"id":"chapter-5/fib-c5-coffee-cup-origin-a/ambiguous/1","status":"fixed","statusReason":"English 'It's a British one.' asks for the の, like iie-doitsu-no-desu."}
+{"id":"chapter-5/fib-c5-coffee-cup-origin-a/book-mismatch/1","status":"fixed","statusReason":"England replaced by British/UK, the book's and the igirisu card's gloss; kore-wa-igirisu-no-kaban too."}
+{"id":"chapter-5/counter-hon-8/other/1","status":"fixed","statusReason":"Romaji 'hap-pon'; the floor cards swept to the same hyphenated style (ik-kai, rok-kai, hak-kai, nana-kai, kyū-kai, juk-kai, chika ik-kai)."}
+{"id":"chapter-5-extras/1st-floor/ambiguous/1","status":"fixed","statusReason":"Excluded the absorbed duplicate and moved its ground-floor note onto chapter-5/ikkai-sub. A delivered note, so it shows as orphaned in Anki for the owner."}
+{"id":"chapter-5-extras/sono-wain-doko-no/ambiguous/1","status":"fixed","statusReason":"Hint names the shape; the two どこの[noun] cards with the same English frame got 'starting from それ / これ' hints."}
+{"id":"chapter-5-extras/ano-kamera-wa-doko-no/ambiguous/1","status":"fixed","statusReason":"Hint names the shape; the two どこの[noun] cards with the same English frame got 'starting from それ / これ' hints."}
+{"id":"chapter-5/two-hon/note-unverifiable/1","status":"fixed","statusReason":"'identical in sound' became 'spelled the same'."}
+{"id":"chapter-5-extras/furansu-no-desu/ambiguous/1","status":"fixed","statusReason":"English 'It's a French one.' asks for the の."}
+{"id":"chapter-5-extras/dore-desu-ka/wrong-content/1","status":"fixed","statusReason":"Note says どちら's 'which of two' sense is new here instead of pointing back to the 'where' card."}
+{"id":"chapter-5-extras/5th-floor/ambiguous/1","status":"fixed","statusReason":"Excluded the absorbed duplicate, keeping the base card. A delivered note, so it shows as orphaned in Anki for the owner."}
+{"id":"chapter-5-extras/hai-sore-mo-nihon-no/wrong-content/1","status":"fixed","statusReason":"Note explains それ as pointing back to the thing just mentioned, not as 'the near one'."}
+{"id":"chapter-5-extras/kore-wa-igirisu-no-kaban/wrong-content/1","status":"fixed","statusReason":"'never' softened to 'usually' for a country before の."}
+{"id":"chapter-5-extras/akawain-o-ippon-kudasai/wrong-content/1","status":"fixed","statusReason":"Added はち / はっぽん to the list."}
+{"id":"chapter-5-extras/koppu-futatsu-to-osara-sanmai/wrong-content/1","status":"fixed","statusReason":"Glasses take つ as the general counter, matching the base note, not 'because they are round'."}
+{"id":"chapter-5-extras/eg-kiiro-no-kutsushita/unanswerable/1","status":"fixed","statusReason":"Production hint asks for the の form."}
+{"id":"chapter-5-extras/eg-kiiroi-kasa/unanswerable/1","status":"fixed","statusReason":"Production hint asks for the い form."}
+{"id":"chapter-5-extras/irl-l1-29/ambiguous/1","status":"fixed","statusReason":"Production hint names しゅっしん and the hometown sense."}
+{"id":"chapter-5-extras/irl-l1-29/book-mismatch/1","status":"fixed","statusReason":"Dropped the false 'in this lesson' example and glossed しゅっしん in the note."}
+{"id":"chapter-5-extras/irl-l1-40/wrong-content/1","status":"fixed","statusReason":"English is natural ('What is the hotel's address?'); a note says the Japanese uses どこ."}
+{"id":"chapter-5-extras/sore-wa-itaria-no-kutsu-ka/other/1","status":"fixed","statusReason":"Set numbering dropped from all six notes, each keeping its explanatory clause."}
+{"id":"chapter-5-extras/fukuro-mo-ni-mai-kudasai/other/1","status":"fixed","statusReason":"The dialogue reference now names the wine sentence it meant."}
+{"id":"chapter-5-extras/rooftop/wrong-content/1","status":"fixed","statusReason":"Replaced the false shared-じょう claim (and the untaught ちゅうしゃじょう) with a true note."}

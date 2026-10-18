@@ -36,6 +36,12 @@ for it.
 4. **A single character is a card only when the language rules say so** and the book teaches it as a
    character (a character table). A character that only appears inside a word is not a card of its
    own. A single character the book also teaches as a word in its own right is one card: the word.
+   This holds across chapters too: when a chapter teaches as a word a character an earlier chapter
+   carded on its own, give the word with its reading as usual. The code turns the earlier card into
+   the word, in place and under the same id, and logs it (owner ruling, 2026-10-18). Two exceptions
+   come from the language rules: a character the book reads more than one way as a word stays a
+   silent card with every sense in its English, and a word the book teaches by a rule rather than a
+   vocabulary line counts as taught.
 5. **Never a letter of an alphabet or syllabary taught as a letter** (in Japanese, a hiragana or
    katakana from a kana chart or a writing lesson). The learner studies those in a separate deck. A
    single kana the book teaches as a WORD, with a meaning of its own, is a word like any other: に

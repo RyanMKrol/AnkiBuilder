@@ -96,6 +96,19 @@ const JAPANESE = Object.freeze({
     complete: completeKanjiReadings,
     soleReading: soleKanjiReading,
   }),
+  /**
+   * Single kanji the book teaches as WORDS by a rule rather than by a vocabulary line, so a reader
+   * sees them only as characters: Genki teaches that a colour adjective drops its い to become a noun
+   * (赤い, so 赤 あか "Red") and never lists 赤 on its own (owner ruling, 2026-10-18). They count as
+   * taught words: the merge cards them as the word, and an earlier silent card of one is rewritten as
+   * the word (src/reading/characterGaps.js, rewriteEarlierCard).
+   */
+  wordsByRule: Object.freeze({
+    赤: Object.freeze({ reading: "あか", romaji: "aka", english: "Red", category: "Colors" }),
+    青: Object.freeze({ reading: "あお", romaji: "ao", english: "Blue", category: "Colors" }),
+    白: Object.freeze({ reading: "しろ", romaji: "shiro", english: "White", category: "Colors" }),
+    黒: Object.freeze({ reading: "くろ", romaji: "kuro", english: "Black", category: "Colors" }),
+  }),
   /** Written in kana alone: an optional ending in brackets, or a word's reading after its kanji. */
   isPhonetic: (text) => /^[\p{Script=Hiragana}\p{Script=Katakana}ー]+$/u.test(String(text ?? "")),
   promptBlock: `## Japanese

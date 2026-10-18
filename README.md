@@ -704,6 +704,12 @@ What is built, newest last:
   list (常用漢字表, `scripts/build-joyo-readings.mjs`), and a kanji with exactly one reading is voiced.
   The list's narrow-use readings are kept apart and are never added by default; one already on a card
   (a deck word uses it) survives a rebuild.
+  A kanji an earlier chapter carded as a character and a later chapter teaches as a word becomes the
+  voiced word card, rewritten in place under the same id, both at the later chapter's merge and in the
+  book pass, and every drop is logged in `reading-report.json`. A kanji the book reads two ways as a
+  word (年, 後) stays silent with both senses, and the colour nouns 赤 青 白 黒 count as taught words.
+  Preflight's `reading-kanji-taught-as-word` (ACK) names a silent kanji card a chapter teaches as a
+  word. The existing Genki chapters were done before this rule and are fixed by a one-shot backfill.
   The operator procedure is the `build-reading-deck` skill.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 

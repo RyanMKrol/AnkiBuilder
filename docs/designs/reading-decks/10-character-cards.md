@@ -65,6 +65,44 @@ the full list, "one reading" means one, not one taught so far. Every other kanji
 mistaken for the word card of a single-kanji word (日 read ひ). Generic code only calls the plugin's
 `characterSource.complete` and `soleReading`.
 
+## When a later chapter teaches the kanji as a word (owner ruling, 2026-10-18)
+
+A kanji carded early as a silent character can turn up later as a word in its own right: 春 はる
+"Spring", 海 うみ "Sea", 話 はなし "Talk". Until this ruling the later chapter's word was dropped as a
+repeat of the character card, and nothing logged it, so 27 Genki kanji never got their voiced card.
+
+Now the word wins across chapters, as it already did inside one. The earlier card is rewritten in
+place as the word, under the same id (so a delivered card stays the same Anki note): the word's
+English, its reading as `ttsText`, its romaji, and a `reviewNote` naming the chapter that teaches it.
+Both `cards.json` and `corpus.json` are written, through `writeUnitJson`. The earlier unit's
+`candidates/characters.json` loses its `cards` entry for the kanji and its generated entry is marked
+`taughtAsWord`, so the book pass neither completes the card back into a kanji card nor gives it the
+book's character data. The later chapter's repeat goes, and the drop is logged in its
+`reading-report.json` `dropped` with the reason and the word's readings (`wordReadings`).
+
+It happens in two places, and both call the same functions in `src/reading/characterGaps.js`
+(`earlierCardFate`, `rewriteEarlierCard`): at a chapter's merge (`reconcileReading` hands the word
+back as `earlierWords`, and the reading phase rewrites the earlier card after the romaji step), and
+in the book pass (`dropCharactersCardedEarlier`), which catches a repeat a merge did not see.
+
+Two exceptions, both the Japanese plugin's (`05-japanese-plugin.md`):
+
+- **A kanji the book reads more than one way as a word stays silent.** 年 is ねん in one chapter and
+  とし in another, 後 is ご and あと, and no single clip is right. The earlier card stays a silent
+  kanji card and its English joins every sense ("Year; ... years"). The readings are gathered across
+  the collection by `bookWordReadings`: every reader's item with a reading, every merge's
+  `readingConflicts`, and every logged drop's `wordReadings`. No single chapter's merge sees both
+  readings of 年, which is why the readers' saved output is read too.
+- **The colour nouns 赤 青 白 黒 count as taught words.** Genki teaches that a colour adjective drops
+  its い to become a noun, and never lists 赤 on its own, so the readers see only the character. The
+  plugin's `wordsByRule` gives each its reading, romaji and English.
+
+The existing Genki units were all done before this rule existed, and the book pass never re-merges a
+done unit, so their 27 cards are rewritten by a one-shot backfill (F3 in
+`docs/designs/qa-fix-pass-2026-10.md`), not by this code. Preflight's `reading-kanji-taught-as-word`
+(ACK) names any silent kanji card whose kanji a unit's `as-generated.json` records as a word, so a
+case this code misses is still seen.
+
 ## How a kanji card is graded (owner, 2026-09-28)
 
 The audio is the signal; the card layout is not changed. A silent kanji card (明, several readings) is

@@ -1859,7 +1859,12 @@ The merge (`reconcileReading`) is where the reading rules the code can see are e
 written form (English joined, two readings noted), a kana word printed with an optional ending in
 brackets (`おやすみ(なさい)`) is carded as the full form, the word wins over a single character, no
 kana taught as a letter (a kana a reader calls a word, like に "Two", is kept), a character card carries no reading, and a written form already carded earlier in the
-collection is dropped. Every drop is in `reading-report.json` with its reason. There is no `prepare`:
+collection is dropped. Every drop is in `reading-report.json` with its reason. One drop does more:
+a single kanji taught here as a word that an earlier chapter carded as a character comes back as
+`earlierWords`, and after the romaji step the phase rewrites that earlier card in place as the word,
+same id, in `cards.json` and `corpus.json` (`rewriteEarlierCard`, `src/reading/characterGaps.js`;
+see docs/designs/reading-decks/10-character-cards.md for the two exceptions). The snapshot records
+each card's `kind`. There is no `prepare`:
 the phase writes `corpus.json` and `cards.json` itself (`meta.phase: "reading"`, which the readiness
 gate accepts with no speaking passes), and the card id is `r-<sha1 of the written form>`, stable
 across rebuilds. Each agent step reuses its artifact if one is already on disk, so a stop costs only
@@ -1884,8 +1889,9 @@ the package's new-card order and delivery all follow. `applyStudyOrder` reorders
 the rule in place (the book pass does this), leaving a done unit alone.
 
 The book pass then completes each chapter's characters (`src/reading/characterGaps.js`, gated on the
-language plugin's `characterSource`): it drops a character card the chapter repeats from an earlier
-one, gives the book's meaning and readings to an earlier generated card for each character the
+language plugin's `characterSource`): it drops a single-kanji card the chapter repeats from an earlier
+one, logging each drop in `reading-report.json` `dropped` (a word it drops rewrites the earlier
+character card as the word, the same `rewriteEarlierCard` the merge uses), gives the book's meaning and readings to an earlier generated card for each character the
 chapter's table teaches (`applyBookCharacters`), and fills the chapter's gaps, every character its
 words use with no card yet, from the dictionary, then the `readingCharacterWriter` role, then one
 `readingCharacterReviewer` call. All in place; `candidates/characters.json` records what was generated.
@@ -1898,7 +1904,8 @@ the collection has been delivered).
 Preflight knows a collection's kind (`collection.deckKind`, `src/audit/units.js`). A reading
 collection runs the reading checks (`src/audit/checks/reading.js`: the front gives nothing away, one
 card per written form, single kana acknowledged as words, word-sized, kanji words carry a kana reading, the kanji
-spelling was used, English present, silent cards stay silent) and skips the speaking-only ones listed
+spelling was used, English present, silent cards stay silent, a kanji the book teaches as a word is
+the word's card) and skips the speaking-only ones listed
 in `src/audit/checks/index.js`, reporting which it skipped. A speaking collection runs no reading
 check.
 

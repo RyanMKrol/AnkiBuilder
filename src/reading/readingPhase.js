@@ -13,8 +13,10 @@
 //
 //   - The rules the code can enforce are enforced HERE, in `reconcileReading`, not hoped for in a
 //     prompt: one card per written form, the word wins over a character, no single kana, a character
-//     card carries no reading, and anything already carded earlier in this collection is dropped.
-//     Every drop is listed with its reason in `reading-report.json`, never discarded silently.
+//     card carries no reading, and anything already carded earlier in this collection is dropped,
+//     except that a single kanji taught here as a word turns an earlier character card of it into
+//     the word (src/reading/characterGaps.js, rewriteEarlierCard). Every drop is listed with its
+//     reason in `reading-report.json`, never discarded silently.
 //   - There is no `prepare`. The book prints the English and the readings, so this phase writes the
 //     reviewable `cards.json` itself, and the unit goes straight to the content gate.
 //
@@ -41,6 +43,15 @@ import { romanizeReadingItems } from "./readingRomaji.js";
 import { readingStudyOrder } from "./studyOrder.js";
 import { characterReadingsIn, withCharacterReadings } from "./characterReadings.js";
 import {
+  CHARACTERS_FILE,
+  bookWordReadings,
+  earlierCardFate,
+  fateReadings,
+  isCharacterCardIn,
+  rewriteEarlierCard,
+  wordWinsReason,
+} from "./characterGaps.js";
+import {
   ITEM_KINDS,
   readTables,
   readChapterForReading,
@@ -55,9 +66,11 @@ export const READING_REPORT_FILE = "reading-report.json";
  * `reconcileReading` (or the splitting and bracket handling before it) changes what a chapter cards:
  * `build-reading.mjs --book-pass` re-merges, for free, every chapter merged under an older version
  * that no person has reviewed. 1: before versions. 2: kana words to the kana deck, brackets resolved,
- * tilde-free readings (2026-09-24).
+ * tilde-free readings (2026-09-24). 3: a single kanji taught as a word rewrites an earlier chapter's
+ * character card of it, and the colour nouns the book teaches by rule (赤 青 白 黒) are words
+ * (2026-10-18).
  */
-export const READING_MERGE_VERSION = 2;
+export const READING_MERGE_VERSION = 3;
 export const READING_COVERAGE_FILE = "candidates/coverage.json";
 export const READING_ROMAJI_FILE = "candidates/romanization.json";
 
@@ -231,17 +244,31 @@ export function resolveBrackets(item, scheme = null) {
 /**
  * Merges the readers' items into one reading corpus and applies every rule the code can see.
  *
- * `earlier` is what this collection already carded in earlier chapters, as `{ target, chapterLabel }`:
- * a written form is carded once per collection, where it is first taught.
+ * `earlier` is what this collection already carded in earlier chapters, as `{ target, chapterLabel }`
+ * plus, for a card read from the collection folder, `{ unitDir, ttsText, character }`: a written form
+ * is carded once per collection, where it is first taught. `bookReadings` is what
+ * `bookWordReadings` (src/reading/characterGaps.js) found across the collection.
  *
- * Returns `{ items, provenance, dropped, readingConflicts, kanaPool }`. `dropped` lists every item
- * left out and why, so a review can see it; nothing is discarded silently. `kanaPool` is this
- * chapter's kana words, for the kana deck, in the order the readers found them.
+ * Returns `{ items, provenance, kinds, dropped, readingConflicts, kanaPool, earlierWords }`. `dropped`
+ * lists every item left out and why, so a review can see it; nothing is discarded silently.
+ * `kanaPool` is this chapter's kana words, for the kana deck, in the order the readers found them.
+ * `kinds` is each card's kind (word, phrase, character) by id, for the snapshot. `earlierWords` is
+ * each single kanji this chapter teaches as a word that an earlier chapter carded as a character:
+ * the caller rewrites that earlier card as the word, in place (owner ruling, 2026-10-18), since
+ * this function writes nothing.
  */
-export function reconcileReading(sources, { targetLanguage, earlier = [] } = {}) {
+export function reconcileReading(
+  sources,
+  { targetLanguage, earlier = [], bookReadings = new Map() } = {},
+) {
   const scheme = readingScheme(targetLanguage);
   const key = (target) => targetKey(target, targetLanguage);
   const earlierByKey = new Map(earlier.map((e) => [key(e.target), e.chapterLabel ?? null]));
+  // The earlier card itself, where it was read from a unit on disk (the first chapter that cards it).
+  const earlierCardByKey = new Map();
+  for (const e of earlier) {
+    if (e.unitDir && !earlierCardByKey.has(key(e.target))) earlierCardByKey.set(key(e.target), e);
+  }
   const dropped = [];
   const groups = new Map();
 
@@ -292,8 +319,24 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
 
   const items = [];
   const provenance = {};
+  const kinds = {};
   const readingConflicts = [];
   const kanaPool = [];
+  const earlierWords = [];
+  // The readings a group's word members give, split where a book prints two (しち／なな).
+  const wordReadingsOf = (wordMembers) => [
+    ...new Set(
+      wordMembers
+        .flatMap((m) => String(m.reading ?? "").split(/[／/・,，、]/u))
+        // A suffix's reading carries the book's placeholder tilde too (〜じかん for 〜時間); the
+        // written form already loses it in targetKey.
+        .map((reading) => reading.trim().replace(/^[〜~～]+|[〜~～]+$/gu, ""))
+        .filter(Boolean),
+    ),
+  ];
+  // A colour noun the book teaches by rule (赤, from 赤い) is a word although the readers saw only
+  // the character (the language plugin's `wordsByRule`; owner ruling, 2026-10-18).
+  const byRule = (form) => scheme?.wordsByRule?.[form] ?? null;
   for (const [form, members] of groups) {
     const spelledAs = kanaOfKanji.get(form);
     if (spelledAs && !scheme.requiresReading(form)) {
@@ -332,16 +375,67 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
       continue;
     }
     if (earlierByKey.has(form)) {
+      const producedBy = [...new Set(members.map((m) => m.producedBy))].join(", ");
+      const where = earlierByKey.get(form) ?? "an earlier chapter";
+      // A single kanji taught HERE as a word, which an earlier chapter carded as a silent character:
+      // the word wins across chapters too (card rules 4; owner ruling, 2026-10-18). The earlier card
+      // becomes this word, in place, unless the book reads the kanji more than one way as a word.
+      const asWords = members.filter((m) => m.kind !== "character");
+      const rule = byRule(form);
+      let wordReadings = [];
+      if (scheme?.isCharacterTarget?.(form)) {
+        wordReadings = asWords.length ? wordReadingsOf(asWords) : rule ? [rule.reading] : [];
+      }
+      const prior = earlierCardByKey.get(form);
+      if (wordReadings.length && prior) {
+        const fate = earlierCardFate(prior, wordReadings, { bookReadings });
+        const readings = fateReadings(prior, wordReadings, { bookReadings });
+        dropped.push({
+          target: form,
+          producedBy,
+          reason: wordWinsReason(fate, where, readings),
+          wordReadings,
+        });
+        if (fate) {
+          const glossFrom = asWords.length ? asWords : members;
+          const glossSource = glossFrom[0].producedBy;
+          const gloss = joinGlosses(
+            glossFrom
+              .filter((m) => m.producedBy === glossSource)
+              .flatMap((m) => splitGloss(m.english)),
+          );
+          earlierWords.push({
+            id: readingCardId(form),
+            target: form,
+            english: gloss || rule?.english || "",
+            category:
+              glossFrom.map((m) => m.category).find((c) => CATEGORIES.includes(c)) ??
+              rule?.category ??
+              "Other",
+            ttsText: wordReadings[0],
+            fate,
+            readings,
+            unitDir: prior.unitDir,
+          });
+        }
+        continue;
+      }
       dropped.push({
         target: form,
-        producedBy: [...new Set(members.map((m) => m.producedBy))].join(", "),
-        reason: `already carded in ${earlierByKey.get(form) ?? "an earlier chapter"} of this collection`,
+        producedBy,
+        reason: `already carded in ${where} of this collection`,
+        ...(wordReadings.length ? { wordReadings } : {}),
       });
       continue;
     }
     // The word wins over the character (card rules 4): a single character the book also teaches as
-    // a word keeps the word's reading, and is voiced.
+    // a word keeps the word's reading, and is voiced. A colour noun the book teaches by rule is a
+    // word even when the readers gave only its character.
+    const rule = byRule(form);
     const wordMembers = members.filter((m) => m.kind !== "character");
+    if (!wordMembers.length && rule) {
+      wordMembers.push(...members.map((m) => ({ ...m, kind: "word", reading: rule.reading })));
+    }
     const kind = wordMembers.length
       ? wordMembers.some((m) => m.kind === "phrase")
         ? "phrase"
@@ -352,16 +446,7 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
     // A book can print two readings for one form (Genki's 七: しち／なな; 十歳: じゅっさい／じっさい).
     // Each is its own reading: the audio is spoken from ONE, and the alternatives are named for
     // review. Kept whole, "しち／なな" would be spoken as both and is not a kana reading at all.
-    const readings = [
-      ...new Set(
-        (kind === "character" ? [] : wordMembers)
-          .flatMap((m) => String(m.reading ?? "").split(/[／/・,，、]/u))
-          // A suffix's reading carries the book's placeholder tilde too (〜じかん for 〜時間); the
-          // written form already loses it in targetKey.
-          .map((reading) => reading.trim().replace(/^[〜~～]+|[〜~～]+$/gu, ""))
-          .filter(Boolean),
-      ),
-    ];
+    const readings = kind === "character" ? [] : wordReadingsOf(wordMembers);
     if (readings.length > 1) readingConflicts.push({ target: form, readings });
     // The English comes from ONE reader: the first in `sources` order that found this form (the
     // table reader first, because a table is the book's own gloss). Joining every reader's wording
@@ -396,8 +481,9 @@ export function reconcileReading(sources, { targetLanguage, earlier = [] } = {})
       ...(notes.length ? { reviewNote: notes.join(" ") } : {}),
     });
     provenance[id] = [...new Set(members.map((m) => m.producedBy))];
+    kinds[id] = kind;
   }
-  return { items, provenance, dropped, readingConflicts, kanaPool };
+  return { items, provenance, kinds, dropped, readingConflicts, kanaPool, earlierWords };
 }
 
 /**
@@ -476,8 +562,25 @@ export function earlierReadingTargets(collectionDir, chapterNumber, libraryItems
     ) {
       continue;
     }
+    // Where the card is and whether it is a character card: a single kanji this chapter teaches as
+    // a word rewrites an earlier character card of it (reconcileReading, earlierWords).
+    const unitDir = join(collectionDir, name);
+    const scheme = readingScheme(cards.meta.targetLanguage);
+    let record = null;
+    try {
+      record = JSON.parse(readFileSync(join(unitDir, CHARACTERS_FILE), "utf-8"));
+    } catch {
+      /* no characters record: every silent single kanji is a character card */
+    }
     for (const item of cards.items ?? []) {
-      if (!item.excluded) out.push({ target: item.target, chapterLabel: cards.meta.chapterLabel });
+      if (item.excluded) continue;
+      out.push({
+        target: item.target,
+        chapterLabel: cards.meta.chapterLabel,
+        unitDir,
+        ttsText: item.ttsText ?? null,
+        character: isCharacterCardIn(item, record, scheme),
+      });
     }
   }
   return out;
@@ -613,14 +716,28 @@ async function runReadingPhaseInner({
   );
 
   // --- deterministic: the merge, where the rules the code can see are enforced ----------------
+  // Every reading the book gives a single kanji as a word, across this collection: a kanji read two
+  // ways stays a silent card when a later chapter teaches it as a word (characterGaps.js).
+  const collectionDir = earlier.find((e) => e.unitDir)?.unitDir;
   const merged = reconcileReading([tableResult.items, chapterResult.items, imageResult.items], {
     targetLanguage,
     earlier,
+    bookReadings: collectionDir
+      ? bookWordReadings(dirname(collectionDir), readingScheme(targetLanguage))
+      : new Map(),
   });
   // Studied in a fixed shuffle, not book order (src/reading/studyOrder.js): in book order a run such
   // as the days of the month gives each card away.
   merged.items = readingStudyOrder(merged.items, {
     isCharacter: (item) => Boolean(readingScheme(targetLanguage)?.isCharacterTarget?.(item.target)),
+  });
+  const reportBody = () => ({
+    items: merged.items.length,
+    dropped: merged.dropped,
+    readingConflicts: merged.readingConflicts,
+    unreadSections: chapterResult.unread ?? [],
+    kanaPool: merged.kanaPool,
+    mergeVersion: READING_MERGE_VERSION,
   });
   recordStep(run, {
     step: "reconcile",
@@ -629,31 +746,68 @@ async function runReadingPhaseInner({
       in: tableResult.items.length + chapterResult.items.length + imageResult.items.length,
       out: merged.items.length,
     },
-    artifact: writeArtifact(unitDir, READING_REPORT_FILE, {
-      items: merged.items.length,
-      dropped: merged.dropped,
-      readingConflicts: merged.readingConflicts,
-      unreadSections: chapterResult.unread ?? [],
-      kanaPool: merged.kanaPool,
-      mergeVersion: READING_MERGE_VERSION,
-    }),
+    artifact: writeArtifact(unitDir, READING_REPORT_FILE, reportBody()),
   });
 
   // --- the romaji, reused per card from an earlier run ----------------------------------------
+  // The words an earlier chapter's card becomes (below) are romanized with this chapter's cards, in
+  // the same call: they are this chapter's words, carded where the kanji was first seen.
+  const toEarlier = merged.earlierWords.filter((w) => w.fate === "word");
   const cachedRomaji = readArtifact(unitDir, READING_ROMAJI_FILE)?.items ?? [];
-  const romaji = await (impl.romanizeReadingItems ?? romanizeReadingItems)(merged.items, {
-    targetLanguage,
-    isSilent: silentCardPredicate({ targetLanguage, deckKind: "reading" }),
-    cached: Object.fromEntries(
-      cachedRomaji.filter((r) => r.pronunciation).map((r) => [r.id, r.pronunciation]),
-    ),
-    ...(agents.runRomanization ? { runClaude: agents.runRomanization } : {}),
-    log,
-  });
-  merged.items = romaji.items;
+  const romaji = await (impl.romanizeReadingItems ?? romanizeReadingItems)(
+    [
+      ...merged.items,
+      ...toEarlier.map(({ id, target, english, category, ttsText }) => ({
+        id,
+        target,
+        english,
+        category,
+        ttsText,
+      })),
+    ],
+    {
+      targetLanguage,
+      isSilent: silentCardPredicate({ targetLanguage, deckKind: "reading" }),
+      cached: Object.fromEntries(
+        cachedRomaji.filter((r) => r.pronunciation).map((r) => [r.id, r.pronunciation]),
+      ),
+      ...(agents.runRomanization ? { runClaude: agents.runRomanization } : {}),
+      log,
+    },
+  );
+  merged.items = romaji.items.slice(0, merged.items.length);
+  const earlierRomaji = new Map(
+    romaji.items.slice(merged.items.length).map((item) => [item.id, item.pronunciation ?? ""]),
+  );
   // A character card is silent (no one pronunciation), so the romaji step gives it none; its romaji
   // line is instead the readings the language plugin finds for it (src/reading/characterReadings.js).
   const scheme = readingScheme(targetLanguage);
+
+  // --- a kanji taught here as a word: the earlier chapter's character card becomes the word ------
+  // In place, under the same id, in cards.json and corpus.json (owner ruling, 2026-10-18). A failed
+  // rewrite does not stop the chapter: it is written into the report, beside the drop it explains.
+  let rewriteFailed = false;
+  for (const word of merged.earlierWords) {
+    try {
+      const changed = rewriteEarlierCard(
+        word.unitDir,
+        { ...word, pronunciation: earlierRomaji.get(word.id) ?? "" },
+        { fate: word.fate, chapterLabel: unit.chapterLabel, scheme, readings: word.readings },
+      );
+      if (changed) {
+        log(
+          `  ${word.target}: the earlier card is ${word.fate === "word" ? "now this word" : "silent with both senses"} (${word.unitDir})`,
+        );
+      }
+    } catch (error) {
+      rewriteFailed = true;
+      const entry = merged.dropped.find((d) => d.target === word.target && d.wordReadings);
+      if (entry) {
+        entry.reason += `; the rewrite of that card FAILED: ${String(error.message).split("\n")[0]}`;
+      }
+    }
+  }
+  if (rewriteFailed) writeArtifact(unitDir, READING_REPORT_FILE, reportBody());
   merged.items = withCharacterReadings(
     merged.items,
     characterReadingsIn(chapterHtml, scheme),
@@ -685,6 +839,9 @@ async function runReadingPhaseInner({
       phase: "reading",
       items: merged.items,
       provenance: merged.provenance,
+      // Which items the readers gave as words: preflight's reading-kanji-taught-as-word reads it to
+      // find a silent kanji card whose kanji a chapter teaches as a word.
+      kinds: merged.kinds,
     });
   }
   recordStep(run, {

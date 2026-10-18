@@ -274,3 +274,63 @@ test("reading-kana-in-chapter: a chapter cards kanji only; the kana deck may car
     cleanup();
   }
 });
+
+test("reading-kanji-taught-as-word: a silent kanji card whose kanji a chapter teaches as a word", () => {
+  const snapshot = (items) =>
+    JSON.stringify({ phase: "reading", provenance: {}, counts: {}, items });
+  const spring = word("a", "春", { english: "Spring" });
+  // Chapter 02's merge carded 春 as a word; the book pass then dropped it for Chapter 01's character.
+  let fixture = readingRoot([spring], { extraUnits: [["chapter-1", []]] });
+  try {
+    writeRaw(
+      fixture.root,
+      `${READING_BOOK}/chapter-1/as-generated.json`,
+      snapshot([{ id: "a", target: "春", ttsText: "はる", kind: "word" }]),
+    );
+    assert.match(
+      findingsOf(fixture.root, "reading-kanji-taught-as-word").join("\n"),
+      /"春" is a silent kanji card, and the book teaches it as a word in chapter-1 \(はる\)/,
+    );
+  } finally {
+    fixture.cleanup();
+  }
+  // A snapshot from before `kind` was recorded: a reading means a word.
+  fixture = readingRoot([spring], { extraUnits: [["chapter-1", []]] });
+  try {
+    writeRaw(
+      fixture.root,
+      `${READING_BOOK}/chapter-1/as-generated.json`,
+      snapshot([{ id: "a", target: "春", ttsText: "はる" }]),
+    );
+    assert.equal(findingsOf(fixture.root, "reading-kanji-taught-as-word").length, 1);
+  } finally {
+    fixture.cleanup();
+  }
+  // Clean: the kanji is only ever a character; and 年, which the book reads two ways, stays silent.
+  fixture = readingRoot([spring, word("b", "年")], { extraUnits: [["chapter-1", []]] });
+  try {
+    writeRaw(
+      fixture.root,
+      `${READING_BOOK}/chapter-1/as-generated.json`,
+      snapshot([
+        { id: "a", target: "春", kind: "character" },
+        { id: "b", target: "年", ttsText: "ねん", kind: "word" },
+      ]),
+    );
+    writeRaw(
+      fixture.root,
+      `${READING_BOOK}/chapter-0/reading-report.json`,
+      JSON.stringify({ dropped: [{ target: "年", reason: "x", wordReadings: ["とし"] }] }),
+    );
+    assert.deepEqual(findingsOf(fixture.root, "reading-kanji-taught-as-word"), []);
+  } finally {
+    fixture.cleanup();
+  }
+  // The colour nouns are words wherever they are carded.
+  expect(
+    "reading-kanji-taught-as-word",
+    [word("c", "赤", { english: "Red" })],
+    [word("c", "赤", { english: "Red", ttsText: "あか", pronunciation: "aka" })],
+    /taught by rule/,
+  );
+});

@@ -31,7 +31,7 @@
 // prints what would be read and, once every chapter is read, the kana deck it would choose.
 
 import { existsSync, readFileSync, readdirSync, rmSync, writeFileSync } from "fs";
-import { join, resolve } from "path";
+import { dirname, join, resolve } from "path";
 import {
   hashEpubFile,
   registerEpub,
@@ -84,6 +84,7 @@ import {
   fillCharacterGaps,
   applyBookCharacters,
   dropCharactersCardedEarlier,
+  bookWordReadings,
   reReviewCharacters,
 } from "../src/reading/characterGaps.js";
 import { writeCharacters, reviewCharacters } from "../src/reading/readingAgents.js";
@@ -358,7 +359,7 @@ if (bookPass) {
       const state = merged
         ? ", merged"
         : reviewed
-          ? ", REVIEWED before the kana deck: withdraw its review to re-merge it"
+          ? ", REVIEWED under older merge rules, so it is not re-merged: withdraw its review to re-merge it"
           : dir && !todo
             ? ", to re-merge (free)"
             : "";
@@ -401,6 +402,8 @@ if (bookPass) {
   // Characters carded by the chapters so far, and which chapter generated each generated one
   // (src/reading/characterGaps.js).
   const earlierCharacters = new Set();
+  // And which chapter cards each one: a kanji a later chapter teaches as a word rewrites that card.
+  const characterCardIn = new Map();
   const generatedIn = new Map();
   const characterAgents = (unitDir) => ({
     writeCharacters: (entries) =>
@@ -423,7 +426,14 @@ if (bookPass) {
     const taught = existsSync(chapterPath)
       ? characterReadingsIn(readFileSync(chapterPath, "utf-8"), scheme)
       : new Map();
-    const dropped = dropCharactersCardedEarlier(unitDir, earlierCharacters, { scheme });
+    // A word this chapter teaches is not lost to an earlier character card: that card becomes the
+    // word, in place (owner ruling, 2026-10-18). Every drop is logged in reading-report.json.
+    const dropped = dropCharactersCardedEarlier(unitDir, earlierCharacters, {
+      scheme,
+      cardedIn: characterCardIn,
+      chapterLabel: lesson.label,
+      bookReadings: bookWordReadings(dirname(unitDir), scheme),
+    });
     const corrected = [];
     for (const [character, entry] of taught) {
       const earlierDir = generatedIn.get(character);
@@ -448,10 +458,13 @@ if (bookPass) {
     });
     const now = readJsonOrNull(join(unitDir, "cards.json"));
     for (const item of now?.items ?? []) {
-      if (!item.excluded && isCharacter(item)) earlierCharacters.add(item.target);
+      if (!item.excluded && isCharacter(item)) {
+        earlierCharacters.add(item.target);
+        if (!characterCardIn.has(item.target)) characterCardIn.set(item.target, unitDir);
+      }
     }
     for (const entry of readJsonOrNull(join(unitDir, CHARACTERS_FILE))?.generated ?? []) {
-      if (!entry.replacedByBook) generatedIn.set(entry.target, unitDir);
+      if (!entry.replacedByBook && !entry.taughtAsWord) generatedIn.set(entry.target, unitDir);
     }
     // Last, every character card's readings completed to the language's reference list (the book's
     // first), and a character with exactly one reading voiced (src/reading/characterReadings.js).
@@ -473,7 +486,13 @@ if (bookPass) {
     }
     const said = [
       completed && `${completed} character card(s) completed to the reference readings`,
-      dropped.length && `${dropped.length} repeat character card(s) dropped (carded earlier)`,
+      dropped.removed.length &&
+        `${dropped.removed.length} repeat single-kanji card(s) dropped (carded earlier; see reading-report.json)`,
+      ...dropped.rewritten.map((r) =>
+        r.fate === "word"
+          ? `${r.target} is taught here as a word: the earlier card is now the word (${r.unitDir})`
+          : `${r.target} is taught here as a word the book reads two ways: the earlier card stays silent with both senses (${r.unitDir})`,
+      ),
       corrected.length && `the book's data given to ${corrected.length} earlier generated card(s)`,
       result.added &&
         `${result.added} character card(s) generated (${result.fromModel} by the model, ${result.corrected} corrected by review)`,

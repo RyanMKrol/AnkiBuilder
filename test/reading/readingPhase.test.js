@@ -787,3 +787,146 @@ test("what a book puts in brackets after a word becomes cards with no brackets",
     ["アレルギーがあります"],
   );
 });
+
+// ---- a kanji taught here as a word, carded earlier as a character (owner ruling, 2026-10-18) ----
+
+test("a kanji taught as a word, carded earlier as a character, is handed back to rewrite that card", () => {
+  const prior = {
+    target: "春",
+    chapterLabel: "Chapter 01",
+    unitDir: "/x/chapter-1",
+    ttsText: null,
+    character: true,
+  };
+  const { items, dropped, earlierWords } = reconcileReading(
+    [[{ target: "春", reading: "はる", english: "Spring", kind: "word", producedBy: "t" }]],
+    { targetLanguage: "ja", earlier: [prior] },
+  );
+  assert.equal(items.length, 0);
+  assert.match(dropped[0].reason, /character card in Chapter 01 is rewritten in place/);
+  assert.deepEqual(dropped[0].wordReadings, ["はる"]);
+  assert.equal(earlierWords.length, 1);
+  assert.equal(earlierWords[0].fate, "word");
+  assert.equal(earlierWords[0].ttsText, "はる");
+  assert.equal(earlierWords[0].id, readingCardId("春"));
+  assert.equal(earlierWords[0].unitDir, "/x/chapter-1");
+
+  // The earlier card already this word: a plain repeat, nothing to rewrite.
+  const again = reconcileReading(
+    [[{ target: "春", reading: "はる", english: "Spring", kind: "word", producedBy: "t" }]],
+    { targetLanguage: "ja", earlier: [{ ...prior, ttsText: "はる", character: false }] },
+  );
+  assert.equal(again.earlierWords.length, 0);
+  assert.match(again.dropped[0].reason, /already carded in Chapter 01/);
+
+  // The book reads it another way elsewhere: the earlier card stays silent, both senses.
+  const two = reconcileReading(
+    [[{ target: "年", reading: "ねん", english: "... years", kind: "word", producedBy: "t" }]],
+    {
+      targetLanguage: "ja",
+      earlier: [{ ...prior, target: "年" }],
+      bookReadings: new Map([["年", new Set(["とし"])]]),
+    },
+  );
+  assert.equal(two.earlierWords[0].fate, "both-senses");
+});
+
+test("a colour noun the book teaches by rule is a word card even when the readers gave the character", () => {
+  const { items, kinds } = reconcileReading(
+    [[{ target: "赤", english: "Red", kind: "character", producedBy: "t" }]],
+    { targetLanguage: "ja" },
+  );
+  assert.equal(items[0].ttsText, "あか");
+  assert.equal(kinds[items[0].id], "word");
+});
+
+test("the phase rewrites an earlier chapter's character card when this chapter teaches the kanji as a word", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "reading-word-wins-"));
+  try {
+    const early = join(dir, "chapter-1");
+    mkdirSync(early, { recursive: true });
+    const meta = {
+      targetLanguage: "ja",
+      sourceType: "epub",
+      reviewed: true,
+      epubHash: "abc",
+      chapterNumber: 2,
+      chapterLabel: "Chapter 01",
+      phase: "reading",
+    };
+    const sun = {
+      id: readingCardId("日"),
+      target: "日",
+      english: "Day; sun",
+      category: "Other",
+    };
+    writeFileSync(
+      join(early, "cards.json"),
+      JSON.stringify({
+        meta: { ...meta, kanjiTts: true, done: true },
+        items: [{ ...sun, pronunciation: "nichi / hi" }],
+      }),
+    );
+    writeFileSync(join(early, "corpus.json"), JSON.stringify({ meta, items: [sun] }));
+    writeFileSync(join(early, "reading-report.json"), "{}");
+
+    const unitDir = join(dir, "chapter-2");
+    const chapterFilePath = join(dir, "chapter.xhtml");
+    writeFileSync(chapterFilePath, "<html><body><h2>Vocabulary</h2><p>日</p></body></html>");
+    const calls = [];
+    const agents = fakeAgents(calls);
+    agents.readTables = () => ({
+      items: [
+        {
+          target: "日",
+          reading: "ひ",
+          english: "Day",
+          kind: "word",
+          producedBy: "readingTableReader",
+        },
+        {
+          target: "映画",
+          reading: "えいが",
+          english: "Movie",
+          kind: "word",
+          producedBy: "readingTableReader",
+        },
+      ],
+      tables: [{ index: 0, verdict: "vocabulary" }],
+    });
+    const result = await runReadingPhase({
+      unitDir,
+      chapterFilePath,
+      targetLanguage: "ja",
+      unit: { epubHash: "abc", chapterNumber: 3, chapterLabel: "Chapter 02" },
+      earlier: earlierReadingTargets(dir, 3),
+      agents,
+    });
+    assert.equal(result.verdict.ok, true, result.verdict.problems.join("; "));
+
+    // This chapter does not card 日 again, and its report says why.
+    const cards = JSON.parse(readFileSync(join(unitDir, "cards.json"), "utf-8"));
+    assert.deepEqual(
+      cards.items.map((i) => i.target),
+      ["映画"],
+    );
+    const report = JSON.parse(readFileSync(join(unitDir, "reading-report.json"), "utf-8"));
+    assert.match(
+      report.dropped.find((d) => d.target === "日").reason,
+      /character card in Chapter 01 is rewritten in place as this word/,
+    );
+    // The earlier chapter's card is the word now, same id, voiced, with this chapter's romaji.
+    const earlier = JSON.parse(readFileSync(join(early, "cards.json"), "utf-8")).items[0];
+    assert.equal(earlier.id, sun.id);
+    assert.equal(earlier.ttsText, "ひ");
+    assert.equal(earlier.english, "Day");
+    assert.equal(earlier.pronunciation, "r:日");
+    const earlierCorpus = JSON.parse(readFileSync(join(early, "corpus.json"), "utf-8")).items[0];
+    assert.equal(earlierCorpus.ttsText, "ひ");
+    // The snapshot records each card's kind, for preflight.
+    const snapshot = JSON.parse(readFileSync(join(unitDir, "as-generated.json"), "utf-8"));
+    assert.equal(snapshot.items[0].kind, "word");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

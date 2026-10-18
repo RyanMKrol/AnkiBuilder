@@ -433,6 +433,58 @@ test("vocab coverage: no cached chapter file is a SKIP, never a pass", () => {
   }
 });
 
+// --- place name carded as a word ---
+//
+// The failure it names: とうきょうタワー, えびすえき and ぎんざどおり shipped as Lesson 19 vocabulary
+// because the book listed them.
+
+test("place name card: a kana name plus a place suffix in a base unit's vocabulary is named", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-19", {
+      items: [
+        card("tokyo-tower", { target: "とうきょうタワー", english: "Tokyo Tower" }),
+        card("ebisu-eki", { target: "えびすえき", english: "Ebisu Station" }),
+        card("ginza-dori", { target: "ぎんざどおり", english: "Ginza Street" }),
+      ],
+    });
+    const found = messages(runOnly(root, "place-name-card"));
+    assert.equal(found.length, 3);
+    assert.match(found[0], /とうきょうタワー/);
+    assert.match(found[1], /common noun えき/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("place name card: the bare noun, a sentence, an authored card and an extras unit are clean", () => {
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-19", {
+      items: [
+        card("eki", { target: "えき", english: "Station" }),
+        card("depaato", { target: "デパート", english: "Department store" }),
+        card("sentence", {
+          target: "えびすえきで おります",
+          english: "I get off at Ebisu Station",
+        }),
+        card("authored", { target: "しぶやえき", english: "Shibuya Station", aiSuggested: true }),
+        card("dropped", { target: "えびすえき", english: "Ebisu Station", excluded: true }),
+      ],
+    });
+    writeUnit(root, "epubs/book/chapter-19-extras", {
+      items: [card("drill", { target: "ぎんざどおり", english: "Ginza Street" })],
+    });
+    writeUnit(root, "epubs/spanish/chapter-1", {
+      meta: { targetLanguage: "es" },
+      items: [card("hotel", { target: "ホテル", english: "Hotel" })],
+    });
+    assert.deepEqual(messages(runOnly(root, "place-name-card")), []);
+  } finally {
+    cleanup();
+  }
+});
+
 test("romaji style: a card breaking the pinned spec is named with the rule it breaks", () => {
   const { root, cleanup } = makeOutputRoot();
   try {

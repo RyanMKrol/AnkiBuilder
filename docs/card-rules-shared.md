@@ -59,9 +59,11 @@ name do its job inside a sentence, which is where the source put it. Real places
 outside the book, countries, cities and districts (Hiroshima, Akasaka), are ordinary vocabulary and
 do count. A named facility is not, even a real one: a station, an airport, a stadium or a venue
 (Suidobashi, Haneda Airport, Tokyo Dome) is a business-shaped name. Card the common noun it is
-built on (station, airport) and leave the name in the sentences that use it. Owner ruling, 2026-09-22,
-after the two base readers split on four such names in Lesson 20. _Five invented business
-names reached a human review as vocabulary cards before anyone noticed._
+built on (station, airport) and leave the name in the sentences that use it. That holds even when
+the source's own vocabulary list carries the name: a list entry is not a reason to card it. A name
+inside a sentence the source prints is fine, and that card stays. Owner rulings, 2026-09-22 and
+2026-10-18. _Five invented business names reached a human review as vocabulary cards, and three
+named places shipped as vocabulary because the book listed them._
 
 **A word the source prints with an optional part is ONE entry.** Where a source writes a word with
 part of it in brackets, the brackets are the source saying the short and the full form are the same

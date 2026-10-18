@@ -466,7 +466,14 @@ What is built, newest last:
 - [x] Coverage checks for what extraction can silently drop: `scripts/vocab-coverage.mjs` (the
       chapter's own vocabulary headwords vs the built cards) and `scripts/paradigm-grid.mjs` (a
       grammar paradigm audited cell by cell across the whole collection, in predicate position and
-      excluding the paradigm's own longer forms)
+      excluding the paradigm's own longer forms). A headword the book glosses as "(fictitious ...)"
+      is a name, not vocabulary, so neither the script nor `preflight`'s `vocab-coverage` lists it
+      as uncarded
+- [x] `preflight`'s `place-name-card` check (INFO) names a Japanese base-unit word card that is a
+      kana name plus a place noun (タワー, えき, どおり, デパート, ホテル, こうえん) and was not
+      authored by an agent: とうきょうタワー or えびすえき carded because the book's list carried it.
+      A named facility is a name even then, so the fix is to card the common noun. The shape is not
+      proof (ビジネスホテル is a common noun), so the verdict stays with the reviewer
 - [x] Cached whole-book artifacts carry provenance — `conventions.md.meta.json` /
       `taught-index.json.meta.json` record the prompt (with a hash), model, effort and chapter count,
       and a later `assemble` warns when the prompt has been edited since. Nothing regenerates

@@ -11,7 +11,7 @@
       "english": "Pretty",
       "category": "Other",
       "target": "きれいな",
-      "hint": "also 'clean, tidy'",
+      "hint": "the form that goes before a noun; also 'clean, tidy'",
       "note": "Despite ending in い it's a な-adjective, so な goes before the noun: きれいな かばん (kirei na kaban). It covers both 'pretty' and 'clean'.",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: na-adjective describing things, Lesson 10's job"
     },
@@ -55,7 +55,8 @@
       "target": "はい、どなたですか",
       "note": "Answering the door or an intercom. どなた (donata) is the polite word for だれ (dare).",
       "aiSuggested": true,
-      "reviewNote": "Speaking Practice 1, verbatim (Sasaki answering the doorbell). Only the bare vocabulary item どなた was carded, not this sentence."
+      "reviewNote": "Speaking Practice 1, verbatim (Sasaki answering the doorbell). Only the bare vocabulary item どなた was carded, not this sentence.",
+      "hint": "the polite word for who"
     },
     {
       "id": "ex10-omoshiroi-tokoro",
@@ -312,7 +313,7 @@
       "category": "Other",
       "target": "かっこいい",
       "hint": "stylish, good-looking",
-      "note": "すずしい (suzushii) in this lesson is about temperature; かっこいい (kakkoii) is about how something looks.",
+      "note": "すずしい (suzushii) in this lesson is about temperature; かっこいい (kakkoii) is about how something looks. Because it ends in いい (ii), its negative follows いい: かっこよくないです (kakkoyokunai desu), not かっこいくない.",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: i-adjective describing things, Lesson 10's job. Needs a hint on merge, because the English gloss \"Cool\" also reaches すずしい (suzushii), which is about temperature: \"stylish, good-looking\". The book card suzushii (chapter-10) takes \"pleasantly cool weather\"."
     },
     {
@@ -370,7 +371,7 @@
       "english": "This wine is not cheap.",
       "category": "Shopping",
       "target": "このワインはやすくないです",
-      "hint": "Use やすい (yasui, \"inexpensive\") in the negative, not たかい (takai, \"expensive\")",
+      "hint": "negate the word for inexpensive; do not switch to the word for expensive",
       "aiSuggested": true,
       "reviewNote": "Gap-closing batch: やすくないです appeared nowhere. Hint added because the natural English 'not cheap' could otherwise produce たかいです (takai desu). Constructed."
     },

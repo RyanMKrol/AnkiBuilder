@@ -1,0 +1,12 @@
+{"id":"chapter-10/machimasu/wrong-content/1","status":"fixed","statusReason":"Note now calls まちます the polite ます form and names まつ as the dictionary form."}
+{"id":"chapter-10/matte-kudasai/wrong-content/1","status":"fixed","statusReason":"Note no longer calls まちます the plain dictionary form; it names it the ます form."}
+{"id":"chapter-10/totemo/other/1","status":"fixed","statusReason":"Quotes the real card's English, drops 'below', adds romaji to ほんとうに."}
+{"id":"chapter-10/hontouni/other/1","status":"fixed","statusReason":"Quotes the real card's English exactly."}
+{"id":"chapter-10/mt-fuji/missing-info/1","status":"fixed","statusReason":"Added a note that this さん means mountain, not the honorific."}
+{"id":"chapter-10/tokoro/ambiguous/1","status":"fixed","statusReason":"Added a Production hint 'what kind of place somewhere is'."}
+{"id":"chapter-10/itadakimasu-accept/book-mismatch/1","status":"fixed","statusReason":"Dropped 'Yes,' from the English (smaller edit; no audio change)."}
+{"id":"chapter-10-extras/pretty/ambiguous/1","status":"fixed","statusReason":"Hint names the before-a-noun form; base kirei gets a hint for the bare word. No card excluded."}
+{"id":"chapter-10-extras/ex10-hai-donata/ambiguous/1","status":"fixed","statusReason":"Added hint 'the polite word for who'."}
+{"id":"chapter-10-extras/f10-wain-yasukunai/leaks-answer/1","status":"fixed","statusReason":"Hint no longer prints やすい; it names the move without the word."}
+{"id":"chapter-10-extras/f10-apuri-yokunai/note-unverifiable/1","status":"fixed","statusReason":"This card's note is correct and kept; the かっこいい card's note now says it negates like いい (かっこよくない), as the verifier suggested."}
+{"id":"chapter-10-extras/ex10-hontou-ni-ii-tenki-ne/other/1","status":"fixed","statusReason":"Romaji now 'ē, hontōni ii tenki desu ne', matching the base cards."}

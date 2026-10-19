@@ -65,3 +65,5 @@
 {"id":"chapter-23-extras/yoyaku-suru-dict-form-1/untaught-prerequisite/1","status":"fixed","statusReason":"Note explains でんわします as でんわをします with を dropped. Lesson 23 itself prints でんわします (Speaking Practice 2), so the target stays and its clip is unchanged."}
 {"id":"chapter-23-extras/-/book-gap/1","status":"fixed","statusReason":"Addition kaigishitsu-yoyaku-shiryou-tsukutte-imasu in batch qa-fix-2026-10."}
 {"id":"chapter-23-extras/-/book-gap/2","status":"fixed","statusReason":"Additions itsu-dekimasu-ka, ima-ryouri-o-shite-imasu and ja-mata-atode-denwa-shimasu in batch qa-fix-2026-10, the three lines the finding names."}
+{"id":"chapter-24/shitteimasu/book-gap/1","status":"fixed","statusReason":"Note opens with the book's point: know is always しっています; the unsupported 'knowing that something exists' line is gone."}
+{"id":"chapter-24-extras/ex9-smith-understands-japanese/book-gap/1","status":"fixed","statusReason":"Note: the thing understood takes が, as with すきです and じょうずです."}

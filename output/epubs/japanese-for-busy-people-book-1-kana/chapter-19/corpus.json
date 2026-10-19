@@ -289,7 +289,10 @@
       "english": "Tokyo Tower",
       "category": "Travel & Tourism",
       "reviewNote": "Settled at the final review: a real place a learner meets outside the book counts as vocabulary, unlike an invented drill name.",
-      "sourceOrder": 3725
+      "sourceOrder": 3725,
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 4 (2026-10-18): a named facility is a name, not a card, even when the book lists it. The name stays inside taxi-near-tokyo-tower."
     },
     {
       "id": "ebisu-eki",
@@ -297,7 +300,10 @@
       "english": "Ebisu Station",
       "category": "Transport",
       "reviewNote": "Settled at the final review: a real place a learner meets outside the book counts as vocabulary, unlike an invented drill name.",
-      "sourceOrder": 3932
+      "sourceOrder": 3932,
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 4 (2026-10-18): a named station is a name, not a card, even when the book lists it. The name stays inside taxi-to-ebisu-station."
     },
     {
       "id": "ginza-dori",
@@ -305,7 +311,10 @@
       "english": "Ginza Street",
       "category": "Directions",
       "reviewNote": "Settled at the final review: a real place a learner meets outside the book counts as vocabulary, unlike an invented drill name.",
-      "sourceOrder": 2955
+      "sourceOrder": 2955,
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 4 (2026-10-18): a named street is a name, not a card, even when the book lists it. The name stays in the extras sentence that uses it."
     },
     {
       "id": "iimasu",

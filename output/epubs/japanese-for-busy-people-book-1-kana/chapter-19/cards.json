@@ -413,7 +413,10 @@
       "audioOriginal": "8bcb19fe4981e67c.orig.mp3",
       "audioAuto": "8bcb19fe4981e67c.mp3",
       "audioMarked": true,
-      "audioTextHash": "8bcb19fe4981e67c"
+      "audioTextHash": "8bcb19fe4981e67c",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 4 (2026-10-18): a named facility is a name, not a card, even when the book lists it. The name stays inside taxi-near-tokyo-tower."
     },
     {
       "id": "ebisu-eki",
@@ -427,7 +430,10 @@
       "audioOriginal": "2d9668507e3d7081.orig.mp3",
       "audioAuto": "2d9668507e3d7081.mp3",
       "audioMarked": true,
-      "audioTextHash": "2d9668507e3d7081"
+      "audioTextHash": "2d9668507e3d7081",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 4 (2026-10-18): a named station is a name, not a card, even when the book lists it. The name stays inside taxi-to-ebisu-station."
     },
     {
       "id": "ginza-dori",
@@ -441,7 +447,10 @@
       "audioOriginal": "c56845d389b46a4d.orig.mp3",
       "audioAuto": "c56845d389b46a4d.mp3",
       "audioMarked": true,
-      "audioTextHash": "c56845d389b46a4d"
+      "audioTextHash": "c56845d389b46a4d",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 4 (2026-10-18): a named street is a name, not a card, even when the book lists it. The name stays in the extras sentence that uses it."
     },
     {
       "id": "iimasu",

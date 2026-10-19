@@ -1317,7 +1317,8 @@
       "pronunciation": "ko / yo",
       "reviewNote": "QA fix pass 2026-10: used by 呼ぶ, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 97,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     }
   ]
 }

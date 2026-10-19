@@ -2116,7 +2116,8 @@
       "ttsKanji": "留学生",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 164
+      "sourceOrder": 164,
+      "additionReviewed": true
     },
     {
       "id": "r-3898a45567bc",
@@ -2128,7 +2129,8 @@
       "ttsKanji": "傘",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 165
+      "sourceOrder": 165,
+      "additionReviewed": true
     },
     {
       "id": "r-e951d898e9f7",
@@ -2140,7 +2142,8 @@
       "ttsKanji": "靴",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 166
+      "sourceOrder": 166,
+      "additionReviewed": true
     },
     {
       "id": "r-dac5927ab517",
@@ -2152,7 +2155,8 @@
       "ttsKanji": "野菜",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 167
+      "sourceOrder": 167,
+      "additionReviewed": true
     },
     {
       "id": "r-08ad0d22ad5c",
@@ -2164,7 +2168,8 @@
       "ttsKanji": "韓国",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 168
+      "sourceOrder": 168,
+      "additionReviewed": true
     },
     {
       "id": "r-f3255b3073cf",
@@ -2176,7 +2181,8 @@
       "ttsKanji": "教室",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 169
+      "sourceOrder": 169,
+      "additionReviewed": true
     },
     {
       "id": "r-8dccc4a2e6ce",
@@ -2188,7 +2194,8 @@
       "ttsKanji": "帽子",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 170
+      "sourceOrder": 170,
+      "additionReviewed": true
     },
     {
       "id": "r-64494d92b8cc",
@@ -2200,7 +2207,8 @@
       "ttsKanji": "歴史",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 171
+      "sourceOrder": 171,
+      "additionReviewed": true
     },
     {
       "id": "r-cfe9997d6d39",
@@ -2212,7 +2220,8 @@
       "ttsKanji": "授業料",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 172
+      "sourceOrder": 172,
+      "additionReviewed": true
     }
   ]
 }

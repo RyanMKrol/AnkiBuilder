@@ -1057,7 +1057,8 @@
       "ttsKanji": "専攻",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 3: Making a Date, example sentence, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 83
+      "sourceOrder": 83,
+      "additionReviewed": true
     },
     {
       "id": "r-03f89ec1c0c4",
@@ -1069,7 +1070,8 @@
       "ttsKanji": "中国語",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 3: Making a Date, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 84
+      "sourceOrder": 84,
+      "additionReviewed": true
     }
   ]
 }

@@ -618,7 +618,8 @@
       "ttsKanji": "最後",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 8: Japanese Office Workers, vocabulary list; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 44
+      "sourceOrder": 44,
+      "additionReviewed": true
     }
   ]
 }

@@ -794,7 +794,8 @@
       "ttsKanji": "七夕",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 12: Tanabata Festival, reading passage, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 54
+      "sourceOrder": 54,
+      "additionReviewed": true
     }
   ]
 }

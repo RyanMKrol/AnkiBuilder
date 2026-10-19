@@ -190,8 +190,9 @@ export const DECK_EDIT_SCRIPT = `(function () {
 //
 // The waveform is computed here rather than server-side: the browser already has to fetch the mp3 to
 // play it, and decodeAudioData gives the samples for free — no dependency, no extra round trip, no
-// peaks file to keep in step with the audio. One clip is decoded per modal open, so a lesson with
-// forty cards doesn't decode forty mp3s to render a page.
+// peaks file to keep in step with the audio. The modal decodes one clip per open. The inline strip on
+// each row (MINI_WAVEFORM, owner request 2026-10-19: seeing the cut is the quickest tell for an
+// audible end marker) decodes every row's clip, but lazily, as rows scroll into view, a few at a time.
 //
 // Vanilla JS, no template literals / ${} (it's embedded in one). Reads deck ctx from #deckctx and each
 // row's card id / unit / original URL / saved range from its data-* attributes.
@@ -495,6 +496,151 @@ export const AUDIO_TRIM_SCRIPT = `(function () {
   document.querySelectorAll("button.trim").forEach(function (btn) {
     btn.addEventListener("click", function () { open(btn); });
   });
+
+  // --- the inline strip on every row (MINI_WAVEFORM) -------------------------------------------
+  // The editor's picture without opening it: the original take with the cut shaded, so a cut that
+  // lands inside speech shows at a glance. Unlike the modal, this decodes MANY clips, so each row is
+  // decoded only when it first scrolls near the screen, at most MINI_CONCURRENCY at a time, and kept
+  // as BUCKETS min/max pairs rather than the full sample array.
+  var BUCKETS = 200, MINI_CONCURRENCY = 3;
+  var peaksCache = {};
+  var queue = [], running = 0, decoder = null;
+  // One decoder for the page. An OfflineAudioContext needs no user gesture and never plays anything;
+  // a context per clip would hit the browser's cap on live AudioContexts within a single lesson.
+  var decode = function (buf) {
+    if (!decoder) {
+      var OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+      decoder = OAC ? new OAC(1, 1, 44100) : new (window.AudioContext || window.webkitAudioContext)();
+    }
+    return decoder.decodeAudioData(buf);
+  };
+  var peaksOf = function (url) {
+    if (peaksCache[url]) return Promise.resolve(peaksCache[url]);
+    return window.fetch(url)
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.arrayBuffer(); })
+      .then(decode)
+      .then(function (d) {
+        var data = d.getChannelData(0), step = data.length / BUCKETS;
+        var lo = new Float32Array(BUCKETS), hi = new Float32Array(BUCKETS);
+        for (var b = 0; b < BUCKETS; b++) {
+          var from = Math.floor(b * step), to = Math.min(data.length, Math.floor((b + 1) * step)), l = 0, h = 0;
+          for (var i = from; i < to; i++) { var v = data[i]; if (v < l) l = v; if (v > h) h = v; }
+          lo[b] = l; hi[b] = h;
+        }
+        peaksCache[url] = { lo: lo, hi: hi, duration: d.duration };
+        return peaksCache[url];
+      });
+  };
+  // Where the clip in use is cut, by the same rule the editor opens with (see open above): a hand cut
+  // is authoritative; otherwise the automatic trim only ever removes the END, so the range is
+  // [0, length of the clip in use], read from its metadata.
+  var miniRange = function (tr, duration) {
+    var s = parseFloat(tr.getAttribute("data-trim-start"));
+    var e = parseFloat(tr.getAttribute("data-trim-end"));
+    if (isFinite(s) && isFinite(e)) return Promise.resolve([s, e]);
+    var inUse = tr.querySelector("td.au:not(.au-orig) audio");
+    var src = inUse && inUse.getAttribute("src");
+    if (!src) return Promise.resolve([0, duration]);
+    return new Promise(function (resolve) {
+      var probe = new Audio(), settled = false;
+      var use = function (end) { if (!settled) { settled = true; resolve([0, end]); } };
+      probe.preload = "metadata";
+      probe.addEventListener("loadedmetadata", function () {
+        use(isFinite(probe.duration) && probe.duration > 0 ? probe.duration : duration);
+      });
+      probe.addEventListener("error", function () { use(duration); });
+      probe.src = src;
+    });
+  };
+  var drawMini = function (box, p) {
+    var c = box.querySelector("canvas"), dpr = window.devicePixelRatio || 1;
+    var w = box.clientWidth, h = box.clientHeight;
+    if (!w || !h) return false;
+    c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
+    var g = c.getContext("2d"), mid = h / 2;
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, w, h);
+    g.strokeStyle = "#7a3b36";
+    g.lineWidth = 1;
+    g.beginPath();
+    for (var x = 0; x < w; x++) {
+      var b0 = Math.floor((x * BUCKETS) / w), b1 = Math.max(b0 + 1, Math.floor(((x + 1) * BUCKETS) / w));
+      var l = 0, hh = 0;
+      for (var b = b0; b < b1 && b < BUCKETS; b++) { if (p.lo[b] < l) l = p.lo[b]; if (p.hi[b] > hh) hh = p.hi[b]; }
+      g.moveTo(x + 0.5, mid - hh * mid * 0.9);
+      g.lineTo(x + 0.5, mid - l * mid * 0.9);
+    }
+    g.stroke();
+    return true;
+  };
+  var paintMini = function (box, start, end, duration) {
+    var a = Math.max(0, Math.min(100, (start / duration) * 100));
+    var b = Math.max(0, Math.min(100, (end / duration) * 100));
+    var l = box.querySelector(".wfcut.left"), r = box.querySelector(".wfcut.right");
+    l.style.left = "0%"; l.style.width = a + "%"; l.style.display = a > 0.2 ? "" : "none";
+    r.style.left = b + "%"; r.style.width = (100 - b) + "%"; r.style.display = b < 99.8 ? "" : "none";
+    box.title = "Keeps " + fmt(start) + " to " + fmt(end) + " of " + fmt(duration) +
+      "; the shaded part is cut. Click to edit.";
+  };
+  var renderMini = function (box) {
+    var tr = box.closest("tr"), url = tr && tr.getAttribute("data-original-url");
+    if (!url) return Promise.resolve();
+    return peaksOf(url).then(function (p) {
+      return miniRange(tr, p.duration).then(function (r) {
+        box.classList.remove("err");
+        if (drawMini(box, p)) box.setAttribute("data-wf", "drawn");
+        paintMini(box, r[0], Math.min(r[1], p.duration), p.duration);
+      });
+    }).catch(function (e) {
+      box.classList.add("err");
+      box.title = "could not read this clip: " + e.message;
+    });
+  };
+  var pump = function () {
+    while (running < MINI_CONCURRENCY && queue.length) {
+      (function (box) {
+        running++;
+        var next = function () { box.__wfQueued = false; running--; pump(); };
+        renderMini(box).then(next, next);
+      })(queue.shift());
+    }
+  };
+  var want = function (box) {
+    if (box.__wfQueued) return;
+    box.__wfQueued = true;
+    queue.push(box);
+    pump();
+  };
+  var minis = document.querySelectorAll(".wfmini");
+  if (minis.length) {
+    var io = "IntersectionObserver" in window
+      ? new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting && en.target.getAttribute("data-wf") !== "drawn") want(en.target);
+          });
+        }, { rootMargin: "300px 0px" })
+      : null;
+    minis.forEach(function (box) {
+      if (io) io.observe(box); else want(box);
+      box.addEventListener("click", function () { open(box); });
+      box.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(box); }
+      });
+    });
+    // Anything that changes what a row plays or where it is cut redraws that row's strip: a drag in
+    // the editor, Revert, a cleanup chain, Replace and Generate all end by rewriting one of these.
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var tr = m.target.closest && m.target.closest("tr");
+        var box = tr && tr.querySelector(".wfmini");
+        if (box) { box.removeAttribute("data-wf"); want(box); }
+      });
+    }).observe(document.body, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["data-original-url", "data-trim-start", "data-trim-end", "src"]
+    });
+  }
 })();`;
 
 // Client wiring for the combined Corpus review (included when the first-review section is editable).

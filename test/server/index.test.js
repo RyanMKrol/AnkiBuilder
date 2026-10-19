@@ -1510,6 +1510,13 @@ test("the audio review shows Original and In use columns, and offers Trim on a c
         assert.match(html, /<button type="button" class="trim">/);
         assert.match(html, /id="trim-modal"/);
         assert.match(html, /data-original-url="[^"]*a\.orig\.mp3"/);
+        // The inline waveform sits in the In use cell, ahead of the Edit button, on every row with a
+        // clip (a and b; b's own clip stands in for its original); the clipless c gets none.
+        assert.match(
+          html,
+          /<td class="au"><audio[^>]*><\/audio><div class="wfmini"[^>]*><canvas><\/canvas>/,
+        );
+        assert.equal((html.match(/class="wfmini"/g) || []).length, 2);
       },
       editDeps,
     );
@@ -1530,6 +1537,7 @@ test("Browse stays a single audio column with no trim controls", async () => {
         assert.equal(/<th>Original<\/th>/.test(html), false);
         assert.equal(/class="trim"/.test(html), false);
         assert.equal(/id="trim-modal"/.test(html), false);
+        assert.equal(/class="wfmini"/.test(html), false, "no editor, so no strip that opens it");
       },
       editDeps,
     );

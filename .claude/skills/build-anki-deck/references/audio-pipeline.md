@@ -40,7 +40,10 @@ the marker findable and removable by the trim.
 
 The trim then cuts the marker back off before the clip ships. When it cannot find and strip the
 marker, the card gets an `audioMarkerStuck` flag, badged **Marker audible** in the audio review, so
-you know to re-generate or hand-trim that clip rather than ship audible nonsense.
+you know to re-generate or hand-trim that clip rather than ship audible nonsense. The inline waveform
+under each In use player is the quickest check by eye, including for markers the badge missed: the
+marker is the last blob in the original, and a cut that leaves speech touching the cut line (no quiet
+gap) usually still carries some of it.
 
 The flag describes the clip that SHIPS, not the take the stage happened to produce, so hand-trimming
 the marker away clears it — installing, re-cleaning or reverting a hand cut re-asks the question of

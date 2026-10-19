@@ -322,6 +322,26 @@ test("AUDIO_TRIM_SCRIPT cuts from the original and posts the range, never the re
 // trim only ever removes from the end, so its range is [0, length of the clip in use], which the
 // editor derives from the page rather than from a stored value. That's what makes it work for clips
 // built before the editor existed.
+// The inline strip draws every row's clip, which the modal never had to: a unit can hold 170 cards.
+test("AUDIO_TRIM_SCRIPT draws the inline strips lazily, a few at a time, and redraws on any change", () => {
+  // Decoded only as a row nears the screen, never all at page load.
+  assert.match(AUDIO_TRIM_SCRIPT, /new IntersectionObserver\(/);
+  assert.match(AUDIO_TRIM_SCRIPT, /MINI_CONCURRENCY = 3/);
+  // One decoder for the page: a context per clip would hit the browser's cap within one lesson.
+  assert.match(AUDIO_TRIM_SCRIPT, /OfflineAudioContext/);
+  // Every path that changes a row's clip or cut ends by rewriting one of these, so watching them
+  // keeps the strip true after a drag, Revert, a cleanup chain, Replace or Generate.
+  assert.match(
+    AUDIO_TRIM_SCRIPT,
+    /attributeFilter: \["data-original-url", "data-trim-start", "data-trim-end", "src"\]/,
+  );
+  // Clicking the strip opens the same editor the Edit button does.
+  assert.match(
+    AUDIO_TRIM_SCRIPT,
+    /box\.addEventListener\("click", function \(\) \{\s*open\(box\);/,
+  );
+});
+
 test("AUDIO_TRIM_SCRIPT opens the handles at the current trim, preferring a hand cut", () => {
   // A saved hand cut is authoritative and short-circuits before any probing.
   assert.match(

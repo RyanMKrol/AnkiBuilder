@@ -21,6 +21,7 @@ import {
   DELIVER_SCRIPT,
   CLEAR_CLAIM_SCRIPT,
   AUDIO_TRIM_SCRIPT,
+  MINI_WAVEFORM,
 } from "../review/deckViewChrome.js";
 import { DELIVERED_MARKER } from "../anki/deliver.js";
 import { INCOMPLETE } from "./adapters/stage.js";
@@ -424,8 +425,11 @@ ${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately remo
       c.audioTextState === "stale"
         ? `<button type="button" class="keep-clip" title="Record that this clip is correct for the card's current text (changes no audio)">Keep this clip</button>`
         : "";
+    // The inline waveform sits between the player and the Edit button: the cut is visible on every
+    // row without opening the editor, which is the fastest tell for an audible end marker.
     const audioCell = (c) =>
       player(c.audioUrl) +
+      (canEdit && c.originalUrl ? MINI_WAVEFORM : "") +
       (canEdit && (c.originalUrl || c.audioTextState === "stale")
         ? `<div class="ed">${c.originalUrl ? `<button type="button" class="trim">Edit</button>` : ""}${keepClipBtn(c)}</div>`
         : "");
@@ -739,7 +743,7 @@ ${sectionHtml}
     const audioCell = (c) =>
       player(c.audioUrl) +
       (canEdit && c.originalUrl
-        ? `<div class="ed"><button type="button" class="trim">Edit</button></div>`
+        ? `${MINI_WAVEFORM}<div class="ed"><button type="button" class="trim">Edit</button></div>`
         : "");
     const originalCell = canEdit ? (c) => player(c.originalUrl) + editControls : undefined;
 

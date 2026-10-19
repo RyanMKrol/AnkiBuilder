@@ -53,3 +53,6 @@
 {"id":"chapter-19/tokyo-tower/other/1","status":"fixed","statusReason":"Excluded under ruling 4; it is delivered, so it becomes an orphan note in Anki."}
 {"id":"chapter-19/ebisu-eki/other/1","status":"fixed","statusReason":"Excluded under ruling 4; it is delivered, so it becomes an orphan note in Anki."}
 {"id":"chapter-19/ginza-dori/other/1","status":"fixed","statusReason":"Excluded under ruling 4 (a named street counts as a named facility); it is delivered, so it becomes an orphan note in Anki."}
+{"id":"chapter-20/kakarimasu-2/book-gap/1","status":"fixed","statusReason":"Note adds the other half of GRAMMAR 3: when the time is not felt as long, period + です."}
+{"id":"chapter-20/-/book-gap/1","status":"fixed","statusReason":"Notes on kakarimasu-2 and imasu-stay: the length of time comes right before the verb with no particle."}
+{"id":"chapter-20-extras/yasumi-ni-nebou-suru-no-ga-suki/untaught-prerequisite/1","status":"fixed","statusReason":"ひ (\"day\") glossed in the note (ruling 5 default); the target and clip are unchanged."}

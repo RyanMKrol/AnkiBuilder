@@ -13,7 +13,7 @@ import { defineCheck } from "../registry.js";
 import { unitLanguage } from "../units.js";
 import { isReadingKind } from "../../model/deckKind.js";
 import { readingScheme, isSilentReadingCard } from "../../reading/readingSchemes.js";
-import { wordReadingsInUnit } from "../../reading/characterGaps.js";
+import { wordReadingsInUnit, cardedCharacters } from "../../reading/characterGaps.js";
 import { SNAPSHOT_FILE } from "../../agents/snapshot.js";
 
 const shipped = (unit) => unit.items.filter((item) => !item.excluded);
@@ -494,8 +494,54 @@ export function readingSkippedChecks(speakingOnlyIds) {
   });
 }
 
+export const readingUncardedKanjiCheck = readingCheck({
+  id: "reading-uncarded-kanji",
+  title: "every kanji a word uses has a card",
+  scope: "collection",
+  tier: "ACK",
+  /**
+   * A chapter build cards each kanji its words use that nothing else covers (characterGaps.js), so a
+   * word whose kanji has no card anywhere in the collection came in by a path that skipped that
+   * step. On 2026-10-19 the vocabulary scan's 54 word additions did exactly that, and 21 kanji had
+   * no card until a second pass added them. Any single-character card counts, silent or a voiced
+   * word, in any unit: a card later in the book is a deviation from "first chapter that uses it",
+   * but moving a delivered note is a migration, not a finding here.
+   */
+  run({ units }) {
+    const carded = new Set();
+    const schemes = new Map();
+    for (const unit of units) {
+      const scheme = readingScheme(unitLanguage(unit));
+      if (!scheme?.characterSource) continue;
+      schemes.set(unit.name, scheme);
+      for (const target of cardedCharacters(shipped(unit), scheme)) carded.add(target);
+    }
+    const findings = [];
+    const seen = new Set();
+    for (const unit of units) {
+      const scheme = schemes.get(unit.name);
+      if (!scheme) continue;
+      for (const item of shipped(unit)) {
+        if (scheme.isCharacterTarget(item.target)) continue;
+        for (const character of scheme.characterSource.charactersIn(item.target)) {
+          if (carded.has(character) || seen.has(character)) continue;
+          seen.add(character);
+          findings.push({
+            key: character,
+            message:
+              `"${character}" has no card anywhere in the collection, and ${unit.name}/${item.id} ` +
+              `"${item.target}" uses it: a chapter build would have carded it (characterGaps.js)`,
+          });
+        }
+      }
+    }
+    return { findings, summary: "every kanji a shipping word uses has a card of its own" };
+  },
+});
+
 export const READING_CHECKS = [
   readingFrontCheck,
+  readingUncardedKanjiCheck,
   readingLatinCheck,
   readingSingleCharacterCheck,
   readingSingleKanaCheck,

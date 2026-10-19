@@ -761,7 +761,9 @@ What is built, newest last:
   book pass, and every drop is logged in `reading-report.json`. A kanji the book reads two ways as a
   word (年, 後) stays silent with both senses, and the colour nouns 赤 青 白 黒 count as taught words.
   Preflight's `reading-kanji-taught-as-word` (ACK) names a silent kanji card a chapter teaches as a
-  word. The existing Genki chapters were done before this rule and were fixed by a one-shot backfill,
+  word, and `reading-uncarded-kanji` (ACK) names a kanji a shipping word uses that has no card
+  anywhere in the collection, which is what a word added outside the chapter build (an addition, the
+  vocabulary scan) leaves behind unless its kanji are carded with it. The existing Genki chapters were done before this rule and were fixed by a one-shot backfill,
   `scripts/backfill-reading-word-cards.mjs` (SPENT, 2026-10-18: 39 kanji cards became voiced words,
   年 and 後 kept silent with both senses; 有 stays silent, since the reading a reader gave it was 有る's).
   A chapter cards every word it puts in front of the learner, wherever it appears (dialogues,

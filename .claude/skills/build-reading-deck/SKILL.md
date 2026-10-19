@@ -207,7 +207,11 @@ that reads as a phrase (`reading-phrase`: cut it and card its words, unless it i
 carded in kana where the chapter prints its kanji, and two different words or two kanji with the same
 English (`reading-distinct-english`, card rules 9), and a silent kanji card the book teaches as a
 word (`reading-kanji-taught-as-word`, card rules 4: the card should be the voiced word; the build
-now rewrites it itself, so a finding means a card built before that rule or a case it missed).
+now rewrites it itself, so a finding means a card built before that rule or a case it missed), and
+a kanji a shipping word uses that has no card anywhere in the collection (`reading-uncarded-kanji`).
+That last one fires on a word added outside the chapter build: an addition, or a word from the
+vocabulary scan. The chapter build cards each new kanji itself (characterGaps.js); a word added
+any other way needs its kanji carded alongside it, as silent kanji additions in the same batch.
 
 **`reading-distinct-english` is the one to fix rather than accept.** The English is the whole answer,
 so two cards that share it teach the learner nothing about how they differ: in the Genki deck 洗 and

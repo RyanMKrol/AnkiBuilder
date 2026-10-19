@@ -237,6 +237,33 @@
         "message": "chapter-24: \"すんでいます\" (Live.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "Lesson 24: がんばってください is a fixed expression the book glosses as one vocabulary entry; がんばります, すんでいます and すんでいません are verb forms (dictionary entry and Exercise I paradigm cells), lexical entries rather than sentences."
       }
+    },
+    "untaught-words": {
+      "chapter-1-extras/irl-l1-28": {
+        "at": "2026-10-19T02:07:46.406Z",
+        "message": "chapter-1-extras: \"こちらはイギリスのライアンです\" (This is Ryan from the United Kingdom., addition nihongo-102-2026-08) uses \"ライアン\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "QA fix F2 (2026-10-19), each read: ライアン and チャン are people's names and ABCフーズ is the book's company name (ruling 4, names are not cards); ろな is a false match inside いろいろな, which chapter-19 cards as いろいろ(な)."
+      },
+      "chapter-1-extras/irl-l1-30": {
+        "at": "2026-10-19T02:07:46.406Z",
+        "message": "chapter-1-extras: \"はじめまして。ライアンです\" (Nice to meet you, my name is Ryan, addition nihongo-102-2026-08) uses \"ライアン\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "QA fix F2 (2026-10-19), each read: ライアン and チャン are people's names and ABCフーズ is the book's company name (ruling 4, names are not cards); ろな is a false match inside いろいろな, which chapter-19 cards as いろいろ(な)."
+      },
+      "chapter-1-extras/sp3-abc-foods-smith": {
+        "at": "2026-10-19T02:07:46.406Z",
+        "message": "chapter-1-extras: \"ABCフーズのスミスです\" (I am Smith of ABC Foods., deck-written) uses \"フーズ\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "QA fix F2 (2026-10-19), each read: ライアン and チャン are people's names and ABCフーズ is the book's company name (ruling 4, names are not cards); ろな is a false match inside いろいろな, which chapter-19 cards as いろいろ(な)."
+      },
+      "chapter-19-extras/iroiro-catalog": {
+        "at": "2026-10-19T02:07:46.406Z",
+        "message": "chapter-19-extras: \"いろいろなサンプルがあります\" (There are various samples., deck-written) uses \"ろな\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "QA fix F2 (2026-10-19), each read: ライアン and チャン are people's names and ABCフーズ is the book's company name (ruling 4, names are not cards); ろな is a false match inside いろいろな, which chapter-19 cards as いろいろ(な)."
+      },
+      "chapter-6-extras/td-hai-chan-desu": {
+        "at": "2026-10-19T02:07:46.406Z",
+        "message": "chapter-6-extras: \"はい、チャンです\" (Hello, this is Chan., deck-written) uses \"チャン\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "QA fix F2 (2026-10-19), each read: ライアン and チャン are people's names and ABCフーズ is the book's company name (ruling 4, names are not cards); ろな is a false match inside いろいろな, which chapter-19 cards as いろいろ(な)."
+      }
     }
   }
 }

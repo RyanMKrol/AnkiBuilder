@@ -9,6 +9,7 @@ import {
 import { lessonReadiness, describeReadiness } from "../../cards/readiness.js";
 import { httpError } from "../../util/httpError.js";
 import { collectionDeckKind } from "../../model/deckKind.js";
+import { silentCardPredicate } from "../../reading/readingSchemes.js";
 
 // Write-back for the dashboard Corpus review — non-audio edits to cards.json (exclude a card, fix its
 // target/pronunciation/ttsText, or mark the lesson reviewed). Each is a read-modify-write targeting the
@@ -166,7 +167,14 @@ export function markAdditionDone(runDir, cardId, { validateCards = defaultValida
       `${cardId} has not passed its content review yet — approve the card before signing off its audio`,
     );
   }
-  if (!item.audio) {
+  // A reading deck's single kanji is silent by design (src/reading/readingSchemes.js): it never gets
+  // a clip, so "no clip" is not a reason to hold it. Without this, a kanji card added through the
+  // additions pathway could never pass this gate at all.
+  const isSilent = silentCardPredicate({
+    targetLanguage: data.meta?.targetLanguage,
+    deckKind: collectionDeckKind(dirname(runDir)),
+  });
+  if (!item.audio && !isSilent(item)) {
     throw httpError(
       422,
       `${cardId} has no clip yet — run "anki-builder audio --run ${runDir}" before signing off its audio`,

@@ -151,7 +151,10 @@ The dashboard's home page lists pending batches, so the work is findable.
 
 A content-approved addition has no clip, and it CANNOT ship without one: `assertEveryCardHasAudio`
 refuses a build or a deliver holding a silent shipping card, and preflight's `audio-files` check
-catches the sneakier case where a clip is named but missing from disk.
+catches the sneakier case where a clip is named but missing from disk. The one exception is a card
+that is silent BY DESIGN, a reading deck's single kanji: it never gets a clip, so the audio gate
+accepts it with none and the page does not count it as waiting for one (`markAdditionDone`, with a
+test in `test/server/additions.test.js`). Before 2026-10-19 that card could never be marked ready.
 
 The destination unit is still `reviewed: true`, so `anki-builder audio --run <unit>` works untouched
 and regenerates only cards whose clip is missing or stale, costing exactly the new cards. Moved cards

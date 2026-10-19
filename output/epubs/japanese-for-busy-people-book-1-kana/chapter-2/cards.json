@@ -728,7 +728,8 @@
       "note": "The book gives 0 two readings, ゼロ (zero) and れい (rei).",
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 0.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "num-4-shi",
@@ -740,7 +741,8 @@
       "note": "The book gives 4 two readings, よん (yon) and し (shi).",
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 4.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "num-7-shichi",
@@ -752,7 +754,8 @@
       "note": "The book gives 7 two readings, なな (nana) and しち (shichi).",
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 7.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "num-9-ku",
@@ -764,7 +767,8 @@
       "note": "The book gives 9 two readings, きゅう (kyū) and く (ku).",
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 9.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "doumo-arigatou-gozaimasu",
@@ -776,7 +780,8 @@
       "note": "どうも (dōmo) in front gives the thanks more weight or formality. Between friends it is ありがとう (arigatō) or どうもありがとう (dōmo arigatō).",
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/2: NOTES 3's どうも ありがとうございます, which no card carried.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     }
   ]
 }

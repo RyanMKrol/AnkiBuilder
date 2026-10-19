@@ -1431,7 +1431,8 @@
       "pronunciation": "daremo ikimasendeshita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-8/-/book-gap/1: GRAMMAR 3's own example, だれも いきませんでした (\"Nobody went.\").",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     }
   ]
 }

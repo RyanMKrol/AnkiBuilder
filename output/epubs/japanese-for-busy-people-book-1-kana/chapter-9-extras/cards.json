@@ -1021,7 +1021,8 @@
       "aiSuggested": true,
       "reviewNote": "Target Dialogue, Smith's line いい みせですね. Pre-excluded at the v1 review because いい gets its card in Lesson 10; restored in the QA fix pass 2026-10 (chapter-9/ii-nice/book-gap/1) through the additions gate, since Lesson 9's vocabulary lists いい and this is the book's own sentence.",
       "addition": "qa-fix-2026-10",
-      "note": "いい (ii) means \"nice, good\"; Lesson 10 gives it its own card."
+      "note": "いい (ii) means \"nice, good\"; Lesson 10 gives it its own card.",
+      "additionReviewed": true
     },
     {
       "id": "p102-sakuban-nanji-ni-nemashita-ka",
@@ -1724,7 +1725,8 @@
       "pronunciation": "Sumisu-san wa Tanaka-san ni denwa o shimasen",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "f9-denwa-shimashita",
@@ -1734,7 +1736,8 @@
       "pronunciation": "Sumisu-san wa Tanaka-san ni denwa o shimashita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, past affirmative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "f9-denwa-shimasendeshita",
@@ -1744,7 +1747,8 @@
       "pronunciation": "Sumisu-san wa Tanaka-san ni denwa o shimasendeshita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "f9-okurimasen",
@@ -1754,7 +1758,8 @@
       "pronunciation": "Sumisu-san wa Tanaka-san ni mēru o okurimasen",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おくります row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "f9-okurimasendeshita",
@@ -1764,7 +1769,8 @@
       "pronunciation": "Sumisu-san wa Tanaka-san ni mēru o okurimasendeshita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おくります row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "f9-aimasen",
@@ -1774,7 +1780,8 @@
       "pronunciation": "Sumisu-san wa ashita Tanaka-san ni aimasen",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's あいます row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "f9-aimasendeshita",
@@ -1784,7 +1791,8 @@
       "pronunciation": "Sumisu-san wa kinō Tanaka-san ni aimasendeshita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's あいます row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "f9-oshiemasen",
@@ -1794,7 +1802,8 @@
       "pronunciation": "Sumisu-san wa Suzuki-san ni resutoran no basho o oshiemasen",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おしえます row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "f9-oshiemasendeshita",
@@ -1804,7 +1813,8 @@
       "pronunciation": "Sumisu-san wa Suzuki-san ni resutoran no basho o oshiemasendeshita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おしえます row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     }
   ]
 }

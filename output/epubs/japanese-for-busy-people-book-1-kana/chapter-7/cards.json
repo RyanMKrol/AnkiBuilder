@@ -1277,7 +1277,8 @@
       "target": "ホテル",
       "pronunciation": "hoteru",
       "addition": "qa-fix-2026-10",
-      "reviewNote": "QA fix pass 2026-10, answers chapter-7/hoteru/book-gap/1: the Exercise vocabulary entry ホテル, excluded at the v1 review with no reason recorded. Restored through the additions gate, since eight shipping sentences from Lesson 7 on use the word."
+      "reviewNote": "QA fix pass 2026-10, answers chapter-7/hoteru/book-gap/1: the Exercise vocabulary entry ホテル, excluded at the v1 review with no reason recorded. Restored through the additions gate, since eight shipping sentences from Lesson 7 on use the word.",
+      "additionReviewed": true
     },
     {
       "id": "okake-kudasai",

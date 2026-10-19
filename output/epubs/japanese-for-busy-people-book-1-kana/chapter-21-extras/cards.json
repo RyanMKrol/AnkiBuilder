@@ -1109,7 +1109,8 @@
       "note": "やすんで (yasunde) is the て-form of やすみます (yasumimasu): み before ます becomes んで.",
       "reviewNote": "QA fix pass 2026-10, answers chapter-21-extras/-/book-gap/1: Exercise II item 4, あした やすんでも いいですか.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     }
   ]
 }

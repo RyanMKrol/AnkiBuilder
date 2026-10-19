@@ -1106,7 +1106,8 @@
       "note": "The two は (wa) set the meeting room and the materials against each other: one is done, the other is still under way.",
       "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/1: Smith's Target Dialogue line, with the book's English.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "itsu-dekimasu-ka",
@@ -1117,7 +1118,8 @@
       "scene": "handing in clothes at the dry cleaner",
       "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 1, いつ できますか.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "ima-ryouri-o-shite-imasu",
@@ -1128,7 +1130,8 @@
       "scene": "a friend phones at a bad moment",
       "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 2, いま りょうりを しています.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "ja-mata-atode-denwa-shimasu",
@@ -1139,7 +1142,8 @@
       "note": "でんわします (denwa shimasu) is でんわをします with を (o) dropped, as the book writes it here.",
       "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 2, じゃ、また あとで でんわします.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     }
   ]
 }

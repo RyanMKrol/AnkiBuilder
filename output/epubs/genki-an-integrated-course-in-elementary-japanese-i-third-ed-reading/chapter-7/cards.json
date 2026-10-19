@@ -1426,7 +1426,8 @@
       "ttsKanji": "一つ目",
       "reviewNote": "QA fix pass 2026-10: the Useful Expressions print 一つ目の信号を右に曲がる; the words-only cut carded the phrase's other words and missed this one.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 109
+      "sourceOrder": 109,
+      "additionReviewed": true
     },
     {
       "id": "r-503adf9ba77c",
@@ -1438,7 +1439,8 @@
       "ttsKanji": "二つ目",
       "reviewNote": "QA fix pass 2026-10: the Useful Expressions print 二つ目の角を左に曲がる; the words-only cut carded the phrase's other words and missed this one.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 110
+      "sourceOrder": 110,
+      "additionReviewed": true
     }
   ]
 }

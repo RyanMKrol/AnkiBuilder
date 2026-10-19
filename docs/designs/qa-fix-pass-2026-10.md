@@ -332,9 +332,10 @@ Updated by the orchestrating session as tasks land. Status: todo, running, merge
 | F2 Busy People structural and additions                                                                                                                       | qa-fix/jfbp-structural                | merged | 0dfcf31       |
 | T4 vocab scan run                                                                                                                                             | qa/genki-vocab-scan                   | merged | 6fc77c8       |
 | owner content-gate approvals (28 Busy People, 6 Genki)                                                                                                        | chore/additions-content-approvals     | merged | 4f8ac85       |
-| vocab scan words into the Genki `qa-fix-2026-10` batch (56 cards)                                                                                             | qa-fix/genki-vocab-scan-words         | merged | efec3b1       |
-| F4 audio                                                                                                                                                      | (main checkout)                       | todo   |               |
-| F5 close-out                                                                                                                                                  | qa-fix/close-out                      | todo   |               |
+| vocab scan words into the Genki `qa-fix-2026-10` batch (54 cards)                                                                                             | qa-fix/genki-vocab-scan-words         | merged | efec3b1       |
+| vocab scan reports an owner-excluded card as `excluded`                                                                                                       | fix/vocab-scan-reports-excluded       | merged | cdeb3a8       |
+| F4 audio (35 units, 101 clips, none failed)                                                                                                                   | chore/qa-fix-audio                    | merged | bfce29b       |
+| F5 close-out                                                                                                                                                  | qa-fix/close-out                      | merged | (this commit) |
 
 ## Wave B notes (2026-10-19)
 
@@ -350,6 +351,57 @@ F2: 66 fixed, 2 skipped, 5 untaught-words instances accepted (names and one fals
 
 Owner review (2026-10-19): both additions batches approved at the content gate (4f8ac85), and the 77-word list approved whole. Of the 77, 21 were already in the deck as cards the owner excluded under the words-only ruling of 2026-10-13 (phrases such as 背が高い, 知っています, 結構です, the three 言い方 labels): the scan's `cardedForms` skips excluded cards, so it reported them as having no card. They stay excluded; the owner can un-exclude any of them in the dashboard. 不思議 and 新鮮 duplicate the existing 不思議な and 新鮮な word cards and were dropped. The remaining 56 are pending additions in the Genki `qa-fix-2026-10` batch (efec3b1), one per chapter of first appearance, awaiting the content gate.
 
+## Wave D notes (2026-10-19)
+
+F4: `node src/cli/bin.js audio --run` over the 35 units with a missing or stale stage-made clip
+(18 Genki, 17 Busy People), 101 clips fetched, none failed, about three and a half minutes in all.
+Preflight afterwards: Genki clean apart from the package-freshness FAIL (rebuilt in F5) and the
+accepted 有 ACK; Busy People has four audio-marker ACKs for the owner to hear at audition
+(chapter-2/ja-arimasen, chapter-22-extras/nai-kasanai-ex1, chapter-25/suffix-kun,
+chapter-25/adj-ii-present-neg; three were there before the pass).
+
+F5: statuses folded into both `findings.jsonl` (no live finding left open), Fixed sections in
+both run READMEs, both packages rebuilt, the delivery previewed and the orphans listed below.
+Learner spot-checks of Lesson 8 and Genki Lesson 6 are in each run's `spot-check/`.
+
+Session review (golden rule 5a), each put where it is enforced:
+
+- **The scan reported the owner's own exclusions as candidates.** `cardedForms` skipped excluded
+  cards, so 21 phrases cut under the words-only ruling came back on the review list and were
+  approved again. Fixed in `src/reading/vocabScan.js` (`excludedForms`, decision `excluded` with the
+  reason) with a test, and the reading-deck skill now says to keep such rows off the list.
+- **This checklist was not kept up as tasks landed.** Every row still said `todo` after three waves,
+  although the wave notes beneath it were written. The notes carried the state; the table did not.
+  Filled in from `git log` in Wave D. A fresh session reading only the table would have restarted
+  Wave A.
+- **A one-off audit that re-derives a stage's rule drifts from it.** The scratchpad audio audit
+  flagged 240 hand-curated Busy People clips as "text changed" because it compared their names
+  against the default naming, which hand-picked clips never follow. Preflight's `audio text hash`
+  check is the detector that already knows this; use it, not a re-derivation.
+
 ## Orphan notes for the owner to delete in Anki
 
-Filled in by F5 from the delivery dry run.
+From `node --env-file=.env scripts/deliver-to-anki.mjs --dry` on 2026-10-19 (read-only). Deliver
+never deletes a note, so a card the pass excluded stays in Anki until the owner removes it by
+hand. Genki has none. Busy People has twelve, all under `Japanese for Busy People Book 1`; search
+Anki for the card id (it is the note's first field tag) or the note id:
+
+| Card id                                   | Note id       | Why it was cut                                                                                                 |
+| ----------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------- |
+| irl-l1-41                                 | 1784422913964 | chapter-2-extras: a frame with its value missing (わたしのじゅうしょは); the complete sentence card carries it |
+| irl-l1-42                                 | 1784422913974 | chapter-2-extras: a frame with its value missing (ホテルのじゅうしょは)                                        |
+| amazing                                   | 1784680025356 | chapter-15-extras: duplicate of chapter-15/sugoi-great, the same すごい with a second English                  |
+| 1st-floor                                 | 1785197980083 | chapter-5-extras: duplicate of chapter-5/ikkai-sub (same clip)                                                 |
+| 5th-floor                                 | 1785197980281 | chapter-5-extras: duplicate of chapter-5/fifth-floor (same clip)                                               |
+| zehi-3                                    | 1789935067168 | chapter-17-extras: untaught grammar, みてください needs the て-form Lesson 18 teaches (ruling 5)               |
+| tokyo-tower                               | 1790023602550 | chapter-19: a named facility is a name, not a card (ruling 4)                                                  |
+| ebisu-eki                                 | 1790023602601 | chapter-19: a named station is a name, not a card (ruling 4)                                                   |
+| ginza-dori                                | 1790023602651 | chapter-19: a named street is a name, not a card (ruling 4)                                                    |
+| nihongo-no-anime-ga-wakaru-no-wa-tanoshii | 1791843759892 | chapter-15-extras: untaught grammar, nominalising の outside the のが すきです frame (ruling 5)                |
+| haha-ga-kureru-okashi-ga-suki             | 1791843760141 | chapter-15-extras: untaught grammar, a verb clause modifying a noun (ruling 5)                                 |
+| niau-fuku-wo-kau-no-ga-suki               | 1791843760237 | chapter-15-extras: untaught grammar, a verb clause modifying a noun (ruling 5)                                 |
+
+The same dry run previewed the delivery itself: Genki 88 updated, 0 added, 1,613 unchanged; Busy
+People 640 updated, 121 added, 2,797 unchanged. Those counts were taken before the additions'
+audio gate, so the approved additions (28 Busy People, 60 Genki) are not in them yet; they ship
+once each is marked ready.

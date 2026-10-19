@@ -22,3 +22,5 @@
 {"id":"chapter-6/ga-particle/untaught-prerequisite/1","status":"fixed","statusReason":"Scene now points at a どの… question, which Lesson 6 teaches, instead of だれが."}
 {"id":"chapter-7/hoteru/book-gap/1","status":"fixed","statusReason":"Restored as a pending addition in batch qa-fix-2026-10, so the owner approves it at the additions gate; it needs a clip."}
 {"id":"chapter-7/a-interjection/book-gap/1","status":"fixed","statusReason":"Exclusion kept and its reason recorded in excludedReason."}
+{"id":"chapter-8/-/book-gap/1","status":"fixed","statusReason":"Additions daremo (chapter-8) and daremo-ikimasendeshita (chapter-8-extras) in batch qa-fix-2026-10."}
+{"id":"chapter-8-extras/food/untaught-prerequisite/1","status":"fixed","statusReason":"Note builds たべもの and のみもの from the ます stems; the dictionary forms are gone."}

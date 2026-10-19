@@ -696,7 +696,8 @@
       "audioAuto": "ad2a71acc4996fa8.mp3",
       "audioMarked": true,
       "audioTextHash": "ad2a71acc4996fa8",
-      "additionDone": true
+      "additionDone": true,
+      "note": "ハンバーガー (hanbāgā) is \"hamburger\"."
     },
     {
       "id": "p-suzuki-mo-kabuki-mimasu",
@@ -1361,7 +1362,7 @@
       "target": "たべもの",
       "pronunciation": "tabemono",
       "audio": "070526f9dbd66e39.mp3",
-      "note": "Built from たべる (taberu, 'to eat') + もの (mono, 'thing'); のみもの (nomimono, drink) follows the same pattern from のむ (nomu, 'to drink').",
+      "note": "Built from たべ (tabe), from たべます (tabemasu, 'eat'), + もの (mono, 'thing'); のみもの (nomimono, 'a drink') follows the same pattern from のみます (nomimasu).",
       "audioOriginal": "070526f9dbd66e39.orig.mp3",
       "audioAuto": "070526f9dbd66e39.mp3",
       "audioFilter": "standard",
@@ -1421,6 +1422,16 @@
       "audioMarked": true,
       "scene": "answering what you're going to drink",
       "audioTextHash": "25bb0190f08f0980"
+    },
+    {
+      "id": "daremo-ikimasendeshita",
+      "english": "Nobody went.",
+      "category": "Grammar & Function Words",
+      "target": "だれもいきませんでした",
+      "pronunciation": "daremo ikimasendeshita",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-8/-/book-gap/1: GRAMMAR 3's own example, だれも いきませんでした (\"Nobody went.\").",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

@@ -56,11 +56,16 @@
       "category": "Numbers",
       "sourceOrder": 3,
       "pronunciation": "ku",
-      "audio": "c154343d9de3441b.mp3",
+      "audio": "r-ac94e112183c-manual-48d504de.mp3",
       "audioOriginal": "c154343d9de3441b.orig.mp3",
       "audioAuto": "c154343d9de3441b.mp3",
       "audioMarked": true,
-      "audioTextHash": "c154343d9de3441b"
+      "audioTextHash": "c154343d9de3441b",
+      "audioManual": "r-ac94e112183c-manual-48d504de.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.9372602739726029
+      }
     },
     {
       "id": "r-88f91799ac4c",
@@ -787,11 +792,16 @@
       "category": "Food",
       "sourceOrder": 60,
       "pronunciation": "rāmen",
-      "audio": "ea799258125360e5.mp3",
+      "audio": "r-9dadb366aba9-manual-295d7bfb.mp3",
       "audioOriginal": "ea799258125360e5.orig.mp3",
       "audioAuto": "ea799258125360e5.mp3",
       "audioMarked": true,
-      "audioTextHash": "ea799258125360e5"
+      "audioTextHash": "ea799258125360e5",
+      "audioManual": "r-9dadb366aba9-manual-295d7bfb.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.5994541952054795
+      }
     },
     {
       "id": "r-fcf78769cda5",
@@ -2736,11 +2746,16 @@
       "category": "Grammar & Function Words",
       "sourceOrder": 211,
       "pronunciation": "watashi",
-      "audio": "de9b4ce878f5eb2e.mp3",
+      "audio": "r-b8020da03ae5-manual-0fc2db49.mp3",
       "audioOriginal": "de9b4ce878f5eb2e.orig.mp3",
       "audioAuto": "de9b4ce878f5eb2e.mp3",
       "audioMarked": true,
-      "audioTextHash": "de9b4ce878f5eb2e"
+      "audioTextHash": "de9b4ce878f5eb2e",
+      "audioManual": "r-b8020da03ae5-manual-0fc2db49.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.8742958047945205
+      }
     },
     {
       "id": "r-703e87ed9fe6",
@@ -2918,11 +2933,16 @@
       "category": "Family & People",
       "sourceOrder": 225,
       "pronunciation": "onēsan",
-      "audio": "947a8a951351cdb7.mp3",
+      "audio": "r-8cf44fafbf93-manual-77410c1b.mp3",
       "audioOriginal": "947a8a951351cdb7.orig.mp3",
       "audioAuto": "947a8a951351cdb7.mp3",
       "audioMarked": true,
-      "audioTextHash": "947a8a951351cdb7"
+      "audioTextHash": "947a8a951351cdb7",
+      "audioManual": "r-8cf44fafbf93-manual-77410c1b.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.7684914383561644
+      }
     },
     {
       "id": "r-3e5da20ffe59",
@@ -3733,11 +3753,16 @@
       "category": "Greetings",
       "sourceOrder": 288,
       "pronunciation": "sumimasen",
-      "audio": "e65b17184aa057a7.mp3",
+      "audio": "r-cce1862bcbd9-manual-e9a7389c.mp3",
       "audioOriginal": "e65b17184aa057a7.orig.mp3",
       "audioAuto": "e65b17184aa057a7.mp3",
       "audioMarked": true,
-      "audioTextHash": "e65b17184aa057a7"
+      "audioTextHash": "e65b17184aa057a7",
+      "audioManual": "r-cce1862bcbd9-manual-e9a7389c.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.0368891267123288
+      }
     },
     {
       "id": "r-6f0b069faec6",
@@ -3814,12 +3839,17 @@
       "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
       "addition": "genki-reading-words-only-2026-10",
       "additionReviewed": true,
-      "audio": "37cb1c0a2b7a941a.mp3",
+      "audio": "r-1cd72882c51d-manual-16364ecc.mp3",
       "audioOriginal": "37cb1c0a2b7a941a.orig.mp3",
       "audioAuto": "37cb1c0a2b7a941a.mp3",
       "audioMarked": true,
       "audioTextHash": "37cb1c0a2b7a941a",
-      "additionDone": true
+      "additionDone": true,
+      "audioManual": "r-1cd72882c51d-manual-16364ecc.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.0933005136986302
+      }
     },
     {
       "id": "r-46b255d3a847",
@@ -4052,12 +4082,17 @@
       "reviewNote": "Owner ruling 2026-10-13: the reading deck cards single words. Added because a sentence or phrase card using this word was cut and the word had no card of its own.",
       "addition": "genki-reading-words-only-2026-10",
       "additionReviewed": true,
-      "audio": "134a2dcca20b5fe9.mp3",
+      "audio": "r-278ac6fcc5b8-manual-39d88e21.mp3",
       "audioOriginal": "134a2dcca20b5fe9.orig.mp3",
       "audioAuto": "134a2dcca20b5fe9.mp3",
       "audioMarked": true,
       "audioTextHash": "134a2dcca20b5fe9",
-      "additionDone": true
+      "additionDone": true,
+      "audioManual": "r-278ac6fcc5b8-manual-39d88e21.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.9495269691780821
+      }
     },
     {
       "id": "r-dc0a069d6cb7",

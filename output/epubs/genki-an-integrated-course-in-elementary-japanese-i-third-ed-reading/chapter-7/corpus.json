@@ -938,6 +938,51 @@
       "ttsText": "ふたつめ",
       "reviewNote": "QA fix pass 2026-10: the Useful Expressions print 二つ目の角を左に曲がる; the words-only cut carded the phrase's other words and missed this one.",
       "sourceOrder": 110
+    },
+    {
+      "id": "r-7a4fe7758104",
+      "target": "義務教育",
+      "english": "Compulsory education",
+      "category": "School & Education",
+      "ttsText": "ぎむきょういく",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
+      "sourceOrder": 111
+    },
+    {
+      "id": "r-a5e487dc05dc",
+      "target": "夏休み",
+      "english": "Summer vacation",
+      "category": "Time",
+      "ttsText": "なつやすみ",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
+      "sourceOrder": 112
+    },
+    {
+      "id": "r-1d773007ebc9",
+      "target": "冬休み",
+      "english": "Winter vacation",
+      "category": "Time",
+      "ttsText": "ふゆやすみ",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
+      "sourceOrder": 113
+    },
+    {
+      "id": "r-e266c482e39b",
+      "target": "春休み",
+      "english": "Spring vacation",
+      "category": "Time",
+      "ttsText": "はるやすみ",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
+      "sourceOrder": 114
+    },
+    {
+      "id": "r-7cb3b66a1f4c",
+      "target": "寮",
+      "english": "Dormitory",
+      "category": "Home & Household",
+      "ttsText": "りょう",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, exercise; no card had it.",
+      "sourceOrder": 115
     }
   ]
 }

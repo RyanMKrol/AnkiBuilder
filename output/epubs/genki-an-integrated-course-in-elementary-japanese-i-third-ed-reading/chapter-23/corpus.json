@@ -217,6 +217,15 @@
       "category": "Weather & Nature",
       "ttsText": "しんせつ",
       "sourceOrder": 25
+    },
+    {
+      "id": "r-8f07c23f5f99",
+      "target": "主人公",
+      "english": "Main character(s)",
+      "category": "Other",
+      "ttsText": "しゅじんこう",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 10: The Folktale Kasajizo, exercise; no card had it.",
+      "sourceOrder": 26
     }
   ]
 }

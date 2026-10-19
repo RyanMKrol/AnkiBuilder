@@ -783,6 +783,18 @@
         "start": 0,
         "end": 0.9
       }
+    },
+    {
+      "id": "r-67825d429142",
+      "target": "七夕",
+      "english": "Tanabata (star festival)",
+      "category": "Other",
+      "ttsText": "たなばた",
+      "pronunciation": "tanabata",
+      "ttsKanji": "七夕",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 12: Tanabata Festival, reading passage, not glossed by the book; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 54
     }
   ]
 }

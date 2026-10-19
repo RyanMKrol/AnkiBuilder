@@ -1595,6 +1595,78 @@
       "audioMarked": true,
       "audioTextHash": "14b4ec12bb693558",
       "additionDone": true
+    },
+    {
+      "id": "r-afb43b194061",
+      "target": "厳しい",
+      "english": "Strict",
+      "category": "Descriptions & Qualities",
+      "ttsText": "きびしい",
+      "pronunciation": "kibishii",
+      "ttsKanji": "厳しい",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, exercise, not glossed by the book; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 118
+    },
+    {
+      "id": "r-785e422c5e41",
+      "target": "台風",
+      "english": "Typhoon",
+      "category": "Weather & Nature",
+      "ttsText": "たいふう",
+      "pronunciation": "taifū",
+      "ttsKanji": "台風",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, culture note; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 119
+    },
+    {
+      "id": "r-3d6177f4d29b",
+      "target": "保険証",
+      "english": "Health insurance certificate",
+      "category": "Body & Health",
+      "ttsText": "ほけんしょう",
+      "pronunciation": "hokenshō",
+      "ttsKanji": "保険証",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 120
+    },
+    {
+      "id": "r-fdb98a7a9fbd",
+      "target": "見せる",
+      "english": "To show",
+      "category": "Other",
+      "ttsText": "みせる",
+      "pronunciation": "miseru",
+      "ttsKanji": "見せる",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue, not glossed by the book; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 121
+    },
+    {
+      "id": "r-21dc12b6ccf5",
+      "target": "痛み止め",
+      "english": "Painkiller",
+      "category": "Body & Health",
+      "ttsText": "いたみどめ",
+      "pronunciation": "itamidome",
+      "ttsKanji": "痛み止め",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 122
+    },
+    {
+      "id": "r-b25543188812",
+      "target": "食後",
+      "english": "After a meal",
+      "category": "Body & Health",
+      "ttsText": "しょくご",
+      "pronunciation": "shokugo",
+      "ttsKanji": "食後",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 123
     }
   ]
 }

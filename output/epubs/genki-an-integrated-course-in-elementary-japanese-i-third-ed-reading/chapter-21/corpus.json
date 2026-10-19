@@ -347,6 +347,15 @@
       "category": "Transport",
       "ttsText": "ちゅうしゃじょう",
       "sourceOrder": 41
+    },
+    {
+      "id": "r-7dedb581c1c8",
+      "target": "最後",
+      "english": "Last; end",
+      "category": "Time",
+      "ttsText": "さいご",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 8: Japanese Office Workers, vocabulary list; no card had it.",
+      "sourceOrder": 44
     }
   ]
 }

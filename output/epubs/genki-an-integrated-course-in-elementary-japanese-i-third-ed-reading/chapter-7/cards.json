@@ -1441,6 +1441,66 @@
       "addition": "qa-fix-2026-10",
       "sourceOrder": 110,
       "additionReviewed": true
+    },
+    {
+      "id": "r-7a4fe7758104",
+      "target": "義務教育",
+      "english": "Compulsory education",
+      "category": "School & Education",
+      "ttsText": "ぎむきょういく",
+      "pronunciation": "gimu kyōiku",
+      "ttsKanji": "義務教育",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 111
+    },
+    {
+      "id": "r-a5e487dc05dc",
+      "target": "夏休み",
+      "english": "Summer vacation",
+      "category": "Time",
+      "ttsText": "なつやすみ",
+      "pronunciation": "natsuyasumi",
+      "ttsKanji": "夏休み",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 112
+    },
+    {
+      "id": "r-1d773007ebc9",
+      "target": "冬休み",
+      "english": "Winter vacation",
+      "category": "Time",
+      "ttsText": "ふゆやすみ",
+      "pronunciation": "fuyuyasumi",
+      "ttsKanji": "冬休み",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 113
+    },
+    {
+      "id": "r-e266c482e39b",
+      "target": "春休み",
+      "english": "Spring vacation",
+      "category": "Time",
+      "ttsText": "はるやすみ",
+      "pronunciation": "haruyasumi",
+      "ttsKanji": "春休み",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 114
+    },
+    {
+      "id": "r-7cb3b66a1f4c",
+      "target": "寮",
+      "english": "Dormitory",
+      "category": "Home & Household",
+      "ttsText": "りょう",
+      "pronunciation": "ryō",
+      "ttsKanji": "寮",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, exercise; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 115
     }
   ]
 }

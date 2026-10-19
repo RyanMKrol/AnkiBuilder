@@ -548,6 +548,18 @@
       "addition": "qa-fix-2026-10",
       "sourceOrder": 36,
       "additionReviewed": true
+    },
+    {
+      "id": "r-9c3d50892978",
+      "target": "メキシコ人",
+      "english": "Mexican (person)",
+      "category": "Nationalities & Countries",
+      "ttsText": "めきしこじん",
+      "pronunciation": "mekishikojin",
+      "ttsKanji": "メキシコ人",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 5: Travel, reading passage, not glossed by the book; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 37
     }
   ]
 }

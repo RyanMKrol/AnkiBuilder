@@ -833,7 +833,8 @@
       "note": "The polite コーヒーをのみますか (kōhī o nomimasu ka) with を (o) dropped, the dictionary form in place of the ます form, and rising intonation in place of か (ka).",
       "reviewNote": "QA fix pass 2026-10, answers chapter-25-extras/-/book-gap/2: the book says を is often omitted in casual speech, and no card showed it.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     }
   ]
 }

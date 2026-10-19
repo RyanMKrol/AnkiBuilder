@@ -546,7 +546,8 @@
       "pronunciation": "sama",
       "reviewNote": "QA fix pass 2026-10: the postcard vocabulary glosses 〜さま Mr./Ms. (used in letter writing) and the addresses note prints 様(さま); neither form had a card.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 36
+      "sourceOrder": 36,
+      "additionReviewed": true
     }
   ]
 }

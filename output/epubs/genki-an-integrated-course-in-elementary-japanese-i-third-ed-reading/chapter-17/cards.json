@@ -455,7 +455,8 @@
       "ttsKanji": "日本",
       "reviewNote": "QA fix pass 2026-10: the kanji table teaches 日本(にほん) Japan; the reader excluded it as a proper name, against the rule that countries are vocabulary.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 30
+      "sourceOrder": 30,
+      "additionReviewed": true
     },
     {
       "id": "r-101806f57c32",
@@ -467,7 +468,8 @@
       "ttsKanji": "中国",
       "reviewNote": "QA fix pass 2026-10: the kanji table teaches 中国(ちゅうごく) China; the reader excluded it as a proper name, against the rule that countries are vocabulary.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 31
+      "sourceOrder": 31,
+      "additionReviewed": true
     }
   ]
 }

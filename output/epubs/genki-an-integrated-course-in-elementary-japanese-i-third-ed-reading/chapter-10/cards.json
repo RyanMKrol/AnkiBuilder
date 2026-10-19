@@ -1294,7 +1294,8 @@
       "ttsKanji": "生け花",
       "reviewNote": "QA fix pass 2026-10: the Culture Notes print 生け花（華道） Flower arrangement; only the bracketed 華道 was carded.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 95
+      "sourceOrder": 95,
+      "additionReviewed": true
     }
   ]
 }

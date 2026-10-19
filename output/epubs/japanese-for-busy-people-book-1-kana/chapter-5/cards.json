@@ -1510,7 +1510,8 @@
       "note": "A set compound like あかワイン (akawain): しろ (shiro), not しろい (shiroi).",
       "reviewNote": "QA fix pass 2026-10, answers chapter-5/-/book-gap/3: the book teaches しろワイン beside あかワイン.",
       "aiSuggested": true,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     }
   ]
 }

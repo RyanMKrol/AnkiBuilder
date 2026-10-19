@@ -43,3 +43,4 @@
 {"id":"chapter-15-extras/niau-fuku-wo-kau-no-ga-suki/untaught-prerequisite/1","status":"fixed","statusReason":"Excluded (ruling 5: cut where the grammar is untaught; a relative clause)."}
 {"id":"chapter-15-extras/nihongo-no-anime-ga-wakaru-no-wa-tanoshii/untaught-prerequisite/1","status":"fixed","statusReason":"Excluded (ruling 5: cut where the grammar is untaught; the のは…たのしい frame)."}
 {"id":"chapter-15-extras/nihongo-no-anime-ga-wakaru-no-wa-tanoshii/untaught-prerequisite/1#chapter-15","status":"fixed","statusReason":"Same card as the finding above: excluded (ruling 5)."}
+{"id":"chapter-16-extras/-/book-gap/1","status":"fixed","statusReason":"Note on sp1-party-invite, which already shows 15にちのにちようび: date first, then the day of the week, joined by の. A note on the existing sentence rather than a new card."}

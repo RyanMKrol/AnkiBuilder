@@ -7,3 +7,5 @@
 {"id":"chapter-24/shirimasen-2/ambiguous/1","status":"fixed","statusReason":"Matching hint on chapter-2/wakarimasen ('not having the information or the answer'), so both sides of the pair are cued."}
 {"id":"chapter-2-extras/irl-l1-42/untaught-prerequisite/1","status":"fixed","statusReason":"The card is excluded (F1a, schematic fragment), so ホテル no longer ships here."}
 {"id":"chapter-2-extras/irl-l1-38/untaught-prerequisite/1","status":"fixed","statusReason":"Note now says only that なん is \"what\" before です; the なに clause is gone."}
+{"id":"chapter-3/-/book-gap/1","status":"fixed","statusReason":"Each of the six number cards (14, 17, 19, 24, 27, 29) now names its second reading from the Numbers table in its note."}
+{"id":"chapter-3/-/book-gap/2","status":"skipped","statusReason":"Left to Lesson 4 as a deliberate choice: num-100 is carded there with the hundreds and the prices that use it, and moving it would move a delivered note to another deck."}

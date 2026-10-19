@@ -543,7 +543,8 @@
       "audioAuto": "108f58d5d9af4adf.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "108f58d5d9af4adf"
+      "audioTextHash": "108f58d5d9af4adf",
+      "note": "The book gives 17 a second reading, じゅうしち (jūshichi)."
     },
     {
       "id": "sanjuu-30",
@@ -596,7 +597,8 @@
       "altAudio": "afe877509970a2f1.mp3",
       "audioOriginal": "nijuunana-27-custom.mp3",
       "audioAuto": "nijuunana-27-custom.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "note": "The book gives 27 a second reading, にじゅうしち (nijūshichi)."
     },
     {
       "id": "nijuugo-25",
@@ -721,7 +723,8 @@
       "audioAuto": "a98bd10f78a4d8ca.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "a98bd10f78a4d8ca"
+      "audioTextHash": "a98bd10f78a4d8ca",
+      "note": "The book gives 14 a second reading, じゅうし (jūshi)."
     },
     {
       "id": "nijuukyuu-29",
@@ -735,7 +738,8 @@
       "audioAuto": "b8c77b2befe36aa5.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "b8c77b2befe36aa5"
+      "audioTextHash": "b8c77b2befe36aa5",
+      "note": "The book gives 29 a second reading, にじゅうく (nijūku)."
     },
     {
       "id": "juugo-15",
@@ -762,7 +766,8 @@
       "audioAuto": "37cdde070439014e.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "37cdde070439014e"
+      "audioTextHash": "37cdde070439014e",
+      "note": "The book gives 19 a second reading, じゅうく (jūku)."
     },
     {
       "id": "yonjuu-40",
@@ -788,7 +793,8 @@
       "altAudio": "429ec289457a70f4.mp3",
       "audioOriginal": "nijuuyon-24-custom.mp3",
       "audioAuto": "nijuuyon-24-custom.standard.mp3",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "note": "The book gives 24 a second reading, にじゅうし (nijūshi)."
     },
     {
       "id": "juuhachi-18",

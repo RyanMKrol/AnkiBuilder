@@ -1452,7 +1452,8 @@
       "audioOriginal": "7e1bb658d83692b0.orig.mp3",
       "audioAuto": "7e1bb658d83692b0.mp3",
       "audioMarked": true,
-      "audioTextHash": "7e1bb658d83692b0"
+      "audioTextHash": "7e1bb658d83692b0",
+      "additionDone": true
     },
     {
       "id": "r-503adf9ba77c",
@@ -1470,7 +1471,8 @@
       "audioOriginal": "3e9e2c1486588096.orig.mp3",
       "audioAuto": "3e9e2c1486588096.mp3",
       "audioMarked": true,
-      "audioTextHash": "3e9e2c1486588096"
+      "audioTextHash": "3e9e2c1486588096",
+      "additionDone": true
     },
     {
       "id": "r-7a4fe7758104",
@@ -1488,7 +1490,8 @@
       "audioOriginal": "8567a41924c15d5a.orig.mp3",
       "audioAuto": "8567a41924c15d5a.mp3",
       "audioMarked": true,
-      "audioTextHash": "8567a41924c15d5a"
+      "audioTextHash": "8567a41924c15d5a",
+      "additionDone": true
     },
     {
       "id": "r-a5e487dc05dc",
@@ -1506,7 +1509,8 @@
       "audioOriginal": "c3b8f9aa523a13cc.orig.mp3",
       "audioAuto": "c3b8f9aa523a13cc.mp3",
       "audioMarked": true,
-      "audioTextHash": "c3b8f9aa523a13cc"
+      "audioTextHash": "c3b8f9aa523a13cc",
+      "additionDone": true
     },
     {
       "id": "r-1d773007ebc9",
@@ -1524,7 +1528,8 @@
       "audioOriginal": "c0fa9a3396be06d3.orig.mp3",
       "audioAuto": "c0fa9a3396be06d3.mp3",
       "audioMarked": true,
-      "audioTextHash": "c0fa9a3396be06d3"
+      "audioTextHash": "c0fa9a3396be06d3",
+      "additionDone": true
     },
     {
       "id": "r-e266c482e39b",
@@ -1542,7 +1547,8 @@
       "audioOriginal": "714d6cfa5316e945.orig.mp3",
       "audioAuto": "714d6cfa5316e945.mp3",
       "audioMarked": true,
-      "audioTextHash": "714d6cfa5316e945"
+      "audioTextHash": "714d6cfa5316e945",
+      "additionDone": true
     },
     {
       "id": "r-7cb3b66a1f4c",
@@ -1560,7 +1566,8 @@
       "audioOriginal": "c5a5216f29c1dac1.orig.mp3",
       "audioAuto": "c5a5216f29c1dac1.mp3",
       "audioMarked": true,
-      "audioTextHash": "c5a5216f29c1dac1"
+      "audioTextHash": "c5a5216f29c1dac1",
+      "additionDone": true
     }
   ]
 }

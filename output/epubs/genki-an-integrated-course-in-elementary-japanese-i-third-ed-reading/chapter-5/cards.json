@@ -2202,7 +2202,8 @@
       "audioOriginal": "554faf8c176c339c.orig.mp3",
       "audioAuto": "554faf8c176c339c.mp3",
       "audioMarked": true,
-      "audioTextHash": "554faf8c176c339c"
+      "audioTextHash": "554faf8c176c339c",
+      "additionDone": true
     },
     {
       "id": "r-3898a45567bc",
@@ -2220,7 +2221,8 @@
       "audioOriginal": "531daaec8c9083e8.orig.mp3",
       "audioAuto": "531daaec8c9083e8.mp3",
       "audioMarked": true,
-      "audioTextHash": "531daaec8c9083e8"
+      "audioTextHash": "531daaec8c9083e8",
+      "additionDone": true
     },
     {
       "id": "r-e951d898e9f7",
@@ -2238,7 +2240,8 @@
       "audioOriginal": "68edee0a5efe1e0d.orig.mp3",
       "audioAuto": "68edee0a5efe1e0d.mp3",
       "audioMarked": true,
-      "audioTextHash": "68edee0a5efe1e0d"
+      "audioTextHash": "68edee0a5efe1e0d",
+      "additionDone": true
     },
     {
       "id": "r-dac5927ab517",
@@ -2256,7 +2259,8 @@
       "audioOriginal": "d52f20dfc9b1f4f6.orig.mp3",
       "audioAuto": "d52f20dfc9b1f4f6.mp3",
       "audioMarked": true,
-      "audioTextHash": "d52f20dfc9b1f4f6"
+      "audioTextHash": "d52f20dfc9b1f4f6",
+      "additionDone": true
     },
     {
       "id": "r-08ad0d22ad5c",
@@ -2274,7 +2278,8 @@
       "audioOriginal": "ea897758e8442081.orig.mp3",
       "audioAuto": "ea897758e8442081.mp3",
       "audioMarked": true,
-      "audioTextHash": "ea897758e8442081"
+      "audioTextHash": "ea897758e8442081",
+      "additionDone": true
     },
     {
       "id": "r-f3255b3073cf",
@@ -2292,7 +2297,8 @@
       "audioOriginal": "5b8eeadcde0756ed.orig.mp3",
       "audioAuto": "5b8eeadcde0756ed.mp3",
       "audioMarked": true,
-      "audioTextHash": "5b8eeadcde0756ed"
+      "audioTextHash": "5b8eeadcde0756ed",
+      "additionDone": true
     },
     {
       "id": "r-8dccc4a2e6ce",
@@ -2310,7 +2316,8 @@
       "audioOriginal": "799e8847a0c6070a.orig.mp3",
       "audioAuto": "799e8847a0c6070a.mp3",
       "audioMarked": true,
-      "audioTextHash": "799e8847a0c6070a"
+      "audioTextHash": "799e8847a0c6070a",
+      "additionDone": true
     },
     {
       "id": "r-64494d92b8cc",
@@ -2328,7 +2335,8 @@
       "audioOriginal": "cb2e32a126555ab4.orig.mp3",
       "audioAuto": "cb2e32a126555ab4.mp3",
       "audioMarked": true,
-      "audioTextHash": "cb2e32a126555ab4"
+      "audioTextHash": "cb2e32a126555ab4",
+      "additionDone": true
     },
     {
       "id": "r-cfe9997d6d39",
@@ -2346,7 +2354,8 @@
       "audioOriginal": "7adb45d286abc749.orig.mp3",
       "audioAuto": "7adb45d286abc749.mp3",
       "audioMarked": true,
-      "audioTextHash": "7adb45d286abc749"
+      "audioTextHash": "7adb45d286abc749",
+      "additionDone": true
     }
   ]
 }

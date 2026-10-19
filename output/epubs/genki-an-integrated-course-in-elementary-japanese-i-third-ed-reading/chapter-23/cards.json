@@ -403,7 +403,8 @@
       "audioOriginal": "78a9d175b218e4c8.orig.mp3",
       "audioAuto": "78a9d175b218e4c8.mp3",
       "audioMarked": true,
-      "audioTextHash": "78a9d175b218e4c8"
+      "audioTextHash": "78a9d175b218e4c8",
+      "additionDone": true
     }
   ]
 }

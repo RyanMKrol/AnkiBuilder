@@ -1114,7 +1114,11 @@ The full rule and the incident behind it: [audio-pipeline](references/audio-pipe
 units' clips together. Each unit's own Review view still works and is where the per-card controls
 live. Once a lesson is at the audio stage its Review view
 renders an inline player per card plus **Replace** / **Generate** / **Generate (kanji)** / **Edit**
-(manual trim) controls and an **Exclude** checkbox. Play each card's clip; for any that sound wrong,
+(manual trim) controls and an **Exclude** checkbox. Under each In use player is a small waveform of
+the original take with the cut shaded: a quiet gap before the cut line is a clean clip, and speech
+running right up to the line (or a blob just left of it) is the usual sign of an audible end marker or
+a clipped word, so scan the strips first and listen to those. Clicking a strip opens the editor. Play
+each card's clip; for any that sound wrong,
 **Generate** fresh takes (comma/bracket variants, 1 to 4 per card), audition them in the modal,
 **Re-roll** an individual take (one credit each), and **Use this** to pick. **Replace** uploads a
 hand-made clip. **Exclude** drops a card without returning to the corpus review. How each control

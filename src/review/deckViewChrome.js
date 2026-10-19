@@ -208,6 +208,15 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 /* Playhead — only visible while auditioning. */
 .wfplay{position:absolute;top:0;bottom:0;width:1px;background:#2f6f4f;pointer-events:none;display:none}
 .wfplay.on{display:block}
+/* The same picture, inline on every row: the original take with the cut shaded, so a cut that lands
+   inside speech (the usual sign of an audible end marker, or of a word clipped short) shows without
+   opening anything. Clicking it opens the editor above. */
+.wfmini{position:relative;height:34px;max-width:168px;margin:4px 0 2px;border:1px solid var(--rule);border-radius:6px;background:var(--card);overflow:hidden;cursor:pointer}
+.wfmini:hover,.wfmini:focus-visible{border-color:var(--accent);outline:none}
+.wfmini canvas{display:block;width:100%;height:100%}
+.wfmini .wfcut.left{border-right:2px solid var(--accent)}
+.wfmini .wfcut.right{border-left:2px solid var(--accent)}
+.wfmini.err{cursor:default;border-style:dashed}
 .trimtimes{display:flex;gap:18px;font-family:var(--mono);font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums}
 .trimtimes b{color:var(--ink);font-weight:600}
 .trimbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
@@ -242,6 +251,16 @@ td.saved{background:rgba(122,59,54,.1)}`;
 
 // The @font-face rule for the target-script font. Pass { base64 } for an inlined data URI (static
 // artifact) or { url } for a served asset (dashboard). Returns "" when no font is supplied.
+/**
+ * The inline waveform strip for one row's audio cell. Empty markup: AUDIO_TRIM_SCRIPT finds it, decodes
+ * the row's original take when the row scrolls into view, and shades what the clip in use cuts. Only
+ * rendered where the trim editor is (an editable page, a card with an original), because the range it
+ * draws comes from the same row attributes the editor reads.
+ */
+export const MINI_WAVEFORM =
+  `<div class="wfmini" role="button" tabindex="0" title="The original take; the shaded part is cut. Click to edit.">` +
+  `<canvas></canvas><div class="wfcut left"></div><div class="wfcut right"></div></div>`;
+
 export function fontFaceRule(src) {
   if (!src) return "";
   const url = src.base64 ? `data:font/woff2;base64,${src.base64}` : src.url;

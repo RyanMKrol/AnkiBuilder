@@ -600,7 +600,10 @@ What is built, newest last:
       beside **In use** (the auto-trimmed take, or your hand cut), and **Trim…** opens a waveform with
       draggable start/end handles, snap-to-speech, and selection playback. Every cut is made from the
       original, so the handles drag freely in both directions — including back out past where the
-      automatic trim landed — and "revert to automatic" is always one click away
+      automatic trim landed, and "revert to automatic" is always one click away. The same
+      waveform also sits inline under every In use player, the original with the cut shaded, so
+      a cut that lands inside speech (an audible end marker, a clipped word) shows without
+      opening anything; clicking it opens the editor. Strips decode lazily as rows scroll in
 - [x] Background-noise cleanup, on by default. ElevenLabs clips carry low-frequency rumble under the
       voice (~94% of the noise energy sits below 80 Hz), which a steep low-cut removes without touching
       speech. It runs BEFORE the trim, because the rumble is loud enough to defeat silence detection

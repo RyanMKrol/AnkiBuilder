@@ -405,6 +405,7 @@ test("the page carries the markup its audio scripts dereference on load", async 
       const html = await (await fetch(`${url}/additions/book/mybook`)).text();
       assert.match(html, /id="gen-modal"/, "Generate needs its variant picker");
       assert.match(html, /id="trim-modal"/, "the trim editor needs its modal");
+      assert.match(html, /class="wfmini"/, "the audio gate shows each clip's cut inline");
       assert.match(html, /class="vlist"/);
       assert.match(html, /class="close"/, "the script dereferences this on load");
       assert.match(html, /id="rebuild-status"/, "or every status message is dropped silently");

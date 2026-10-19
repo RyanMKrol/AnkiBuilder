@@ -181,7 +181,8 @@
       "audioMarked": true,
       "audioTextHash": "fdcd220aae61e95e",
       "audioFilter": "standard",
-      "audio": "fdcd220aae61e95e-genkanji-e02382b0.mp3"
+      "audio": "fdcd220aae61e95e-genkanji-e02382b0.mp3",
+      "note": "Word order: place に (ni), thing が (ga), then the number, which takes no particle, then あります (arimasu). For people it is います (imasu), as in かいぎしつにおきゃくさんが４にんいます (kaigishitsu ni okyakusan ga yonin imasu, \"There are four guests in the meeting room.\")."
     },
     {
       "id": "ks2-guests",

@@ -1110,7 +1110,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-21-extras/-/book-gap/1: Exercise II item 4, あした やすんでも いいですか.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "36ebdf47379a58b6.mp3",
+      "audioOriginal": "36ebdf47379a58b6.orig.mp3",
+      "audioAuto": "36ebdf47379a58b6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "36ebdf47379a58b6"
     }
   ]
 }

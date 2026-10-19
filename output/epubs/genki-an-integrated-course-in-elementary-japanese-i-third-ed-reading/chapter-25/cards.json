@@ -795,7 +795,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 12: Tanabata Festival, reading passage, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 54,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "10d10b6f2fbce1e4.mp3",
+      "audioOriginal": "10d10b6f2fbce1e4.orig.mp3",
+      "audioAuto": "10d10b6f2fbce1e4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "10d10b6f2fbce1e4"
     }
   ]
 }

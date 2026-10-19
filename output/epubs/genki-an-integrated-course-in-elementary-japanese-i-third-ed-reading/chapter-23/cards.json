@@ -398,7 +398,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 10: The Folktale Kasajizo, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 26,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "78a9d175b218e4c8.mp3",
+      "audioOriginal": "78a9d175b218e4c8.orig.mp3",
+      "audioAuto": "78a9d175b218e4c8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "78a9d175b218e4c8"
     }
   ]
 }

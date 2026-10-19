@@ -354,11 +354,9 @@
       "category": "Grammar & Function Words",
       "target": "まい",
       "pronunciation": "mai",
-      "audio": "1c87da3365fd4c72.mp3",
       "altAudio": "cde47d89cb175c2a.mp3",
       "excluded": true,
-      "note": "Suffix — attaches after a number (〜まい (~mai))",
-      "audioTextHash": "1c87da3365fd4c72"
+      "note": "Suffix — attaches after a number (〜まい (~mai))"
     },
     {
       "id": "hon-suffix-hon",
@@ -366,12 +364,10 @@
       "target": "ほん",
       "pronunciation": "hon",
       "category": "Grammar & Function Words",
-      "audio": "d2815033823ea835.mp3",
       "altAudio": "7476ada2e35293b9.mp3",
       "excluded": true,
       "note": "Base reading of the long-object counter — after に (ni) (2), よん (yon) (4), ご (go) (5), なな (nana) (7), きゅう (kyuu) (9). Same sound and spelling as ほん (hon, 'Book') from Lesson 2 — two unrelated words that happen to share a form.",
-      "scene": "counting slender things",
-      "audioTextHash": "d2815033823ea835"
+      "scene": "counting slender things"
     },
     {
       "id": "hon-suffix-bon",
@@ -379,11 +375,9 @@
       "target": "ぼん",
       "pronunciation": "bon",
       "category": "Grammar & Function Words",
-      "audio": "0282ccb35415fc7b.mp3",
       "altAudio": "6678d4058c0143f0.mp3",
       "excluded": true,
-      "note": "Voiced (dakuten) form of the long-object counter — after さん (san) (3), e.g. さんぼん (sanbon)",
-      "audioTextHash": "0282ccb35415fc7b"
+      "note": "Voiced (dakuten) form of the long-object counter — after さん (san) (3), e.g. さんぼん (sanbon)"
     },
     {
       "id": "hon-suffix-pon",
@@ -391,11 +385,9 @@
       "target": "ぽん",
       "pronunciation": "pon",
       "category": "Grammar & Function Words",
-      "audio": "68a41b6bbff0e8a8.mp3",
       "altAudio": "8bf5287377baf46e.mp3",
       "excluded": true,
-      "note": "Plosive (handakuten) form — after いっ (ip) (1), ろっ (rop) (6), はっ (hap) (8), じゅっ (jup) (10), e.g. いっぽん (ippon)",
-      "audioTextHash": "68a41b6bbff0e8a8"
+      "note": "Plosive (handakuten) form — after いっ (ip) (1), ろっ (rop) (6), はっ (hap) (8), じゅっ (jup) (10), e.g. いっぽん (ippon)"
     },
     {
       "id": "tsu-suffix",
@@ -403,11 +395,9 @@
       "category": "Grammar & Function Words",
       "target": "つ",
       "pronunciation": "tsu",
-      "audio": "1962f1a6db331047.mp3",
       "altAudio": "82cb12703e4a4ce6.mp3",
       "excluded": true,
-      "note": "Suffix — the general-purpose counter, used when no specific counter fits. Attaches to native-Japanese numerals (ひと〜 (hito-), ふた〜 (futa-), みっ〜 (mit-) → ひとつ (hitotsu), ふたつ (futatsu), みっつ (mittsu)). Written 〜つ (~tsu).",
-      "audioTextHash": "1962f1a6db331047"
+      "note": "Suffix — the general-purpose counter, used when no specific counter fits. Attaches to native-Japanese numerals (ひと〜 (hito-), ふた〜 (futa-), みっ〜 (mit-) → ひとつ (hitotsu), ふたつ (futatsu), みっつ (mittsu)). Written 〜つ (~tsu)."
     },
     {
       "id": "counter-mai-9",
@@ -999,11 +989,9 @@
       "target": "かい",
       "pronunciation": "kai",
       "category": "Grammar & Function Words",
-      "audio": "9fb0c23100e7e867.mp3",
       "altAudio": "41dfa06a0c90235d.mp3",
       "note": "Base reading of the floor counter — after most numbers (1 いっ (ik), 2 に (ni), 4 よん (yon), 5 ご (go), 6 ろっ (rok) …), e.g. ごかい (gokai) (5th floor)",
-      "excluded": true,
-      "audioTextHash": "9fb0c23100e7e867"
+      "excluded": true
     },
     {
       "id": "gai-suffix",
@@ -1011,11 +999,9 @@
       "target": "がい",
       "pronunciation": "gai",
       "category": "Grammar & Function Words",
-      "audio": "be7520fc2809f063.mp3",
       "altAudio": "6914f4b3f6860a18.mp3",
       "note": "Voiced (dakuten) form of the floor counter — after さん (san) (3), e.g. さんがい (sangai) (3rd floor)",
-      "excluded": true,
-      "audioTextHash": "be7520fc2809f063"
+      "excluded": true
     },
     {
       "id": "fourth-floor",
@@ -1511,7 +1497,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-5/-/book-gap/3: the book teaches しろワイン beside あかワイン.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "1748e78b713a83b2.mp3",
+      "audioOriginal": "1748e78b713a83b2.orig.mp3",
+      "audioAuto": "1748e78b713a83b2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1748e78b713a83b2"
     }
   ]
 }

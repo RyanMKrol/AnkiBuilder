@@ -547,7 +547,12 @@
       "reviewNote": "QA fix pass 2026-10: the postcard vocabulary glosses 〜さま Mr./Ms. (used in letter writing) and the addresses note prints 様(さま); neither form had a card.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 36,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "46ff7bb7b4d8f39c.mp3",
+      "audioOriginal": "46ff7bb7b4d8f39c.orig.mp3",
+      "audioAuto": "46ff7bb7b4d8f39c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "46ff7bb7b4d8f39c"
     },
     {
       "id": "r-9c3d50892978",
@@ -560,7 +565,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 5: Travel, reading passage, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 37,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "df6a9fdcf5179d9b.mp3",
+      "audioOriginal": "df6a9fdcf5179d9b.orig.mp3",
+      "audioAuto": "df6a9fdcf5179d9b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "df6a9fdcf5179d9b"
     }
   ]
 }

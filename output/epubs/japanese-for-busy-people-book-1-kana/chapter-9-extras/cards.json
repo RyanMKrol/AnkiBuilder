@@ -1022,7 +1022,12 @@
       "reviewNote": "Target Dialogue, Smith's line いい みせですね. Pre-excluded at the v1 review because いい gets its card in Lesson 10; restored in the QA fix pass 2026-10 (chapter-9/ii-nice/book-gap/1) through the additions gate, since Lesson 9's vocabulary lists いい and this is the book's own sentence.",
       "addition": "qa-fix-2026-10",
       "note": "いい (ii) means \"nice, good\"; Lesson 10 gives it its own card.",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "cc87142ccf786416.mp3",
+      "audioOriginal": "cc87142ccf786416.orig.mp3",
+      "audioAuto": "cc87142ccf786416.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cc87142ccf786416"
     },
     {
       "id": "p102-sakuban-nanji-ni-nemashita-ka",
@@ -1066,11 +1071,11 @@
       "pronunciation": "resutoran no basho o oshiete kudasai",
       "aiSuggested": true,
       "reviewNote": "Constructed. Rebuilt in the QA fix pass 2026-10 (chapter-9-extras/v9-resutoran-roma-no-basho/other/1, ruling 4): it made the invented name レストランローマ the answer, so it now asks about a restaurant. Reuses the Lesson 2 おしえてください request frame with this lesson's ばしょ.",
-      "audio": "304d995b455f4b5c.mp3",
-      "audioOriginal": "304d995b455f4b5c.orig.mp3",
-      "audioAuto": "304d995b455f4b5c.mp3",
+      "audio": "c42ce9f50eaa4555.mp3",
+      "audioOriginal": "c42ce9f50eaa4555.orig.mp3",
+      "audioAuto": "c42ce9f50eaa4555.mp3",
       "audioMarked": true,
-      "audioTextHash": "304d995b455f4b5c"
+      "audioTextHash": "c42ce9f50eaa4555"
     },
     {
       "id": "p102-itariago",
@@ -1726,7 +1731,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "f30bbd3447832566.mp3",
+      "audioOriginal": "f30bbd3447832566.orig.mp3",
+      "audioAuto": "f30bbd3447832566.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f30bbd3447832566"
     },
     {
       "id": "f9-denwa-shimashita",
@@ -1737,7 +1747,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, past affirmative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "ff029aa7328d5451.mp3",
+      "audioOriginal": "ff029aa7328d5451.orig.mp3",
+      "audioAuto": "ff029aa7328d5451.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ff029aa7328d5451"
     },
     {
       "id": "f9-denwa-shimasendeshita",
@@ -1748,7 +1763,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "5430573dffd06b47.mp3",
+      "audioOriginal": "5430573dffd06b47.orig.mp3",
+      "audioAuto": "5430573dffd06b47.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5430573dffd06b47"
     },
     {
       "id": "f9-okurimasen",
@@ -1759,7 +1779,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おくります row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "6e26f228ccf527d5.mp3",
+      "audioOriginal": "6e26f228ccf527d5.orig.mp3",
+      "audioAuto": "6e26f228ccf527d5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6e26f228ccf527d5"
     },
     {
       "id": "f9-okurimasendeshita",
@@ -1770,7 +1795,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おくります row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "4ba8a63a2f07c7ed.mp3",
+      "audioOriginal": "4ba8a63a2f07c7ed.orig.mp3",
+      "audioAuto": "4ba8a63a2f07c7ed.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4ba8a63a2f07c7ed"
     },
     {
       "id": "f9-aimasen",
@@ -1781,7 +1811,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's あいます row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "0bbebd0347c63531.mp3",
+      "audioOriginal": "0bbebd0347c63531.orig.mp3",
+      "audioAuto": "0bbebd0347c63531.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0bbebd0347c63531"
     },
     {
       "id": "f9-aimasendeshita",
@@ -1792,7 +1827,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's あいます row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "672ee1dd5123f4cb.mp3",
+      "audioOriginal": "672ee1dd5123f4cb.orig.mp3",
+      "audioAuto": "672ee1dd5123f4cb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "672ee1dd5123f4cb"
     },
     {
       "id": "f9-oshiemasen",
@@ -1803,7 +1843,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おしえます row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "f1a00693ca94a4df.mp3",
+      "audioOriginal": "f1a00693ca94a4df.orig.mp3",
+      "audioAuto": "f1a00693ca94a4df.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f1a00693ca94a4df"
     },
     {
       "id": "f9-oshiemasendeshita",
@@ -1814,7 +1859,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おしえます row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "ac402d90f0c9ac35.mp3",
+      "audioOriginal": "ac402d90f0c9ac35.orig.mp3",
+      "audioAuto": "ac402d90f0c9ac35.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ac402d90f0c9ac35"
     }
   ]
 }

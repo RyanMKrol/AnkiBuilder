@@ -291,7 +291,12 @@
       "pronunciation": "nani",
       "reviewNote": "Taught as a word in Chapter 22: Reading and Writing 8: Japanese Office Workers: this is the word's card, voiced.",
       "sourceOrder": 22,
-      "ttsText": "なに"
+      "ttsText": "なに",
+      "audio": "d1cfab64b27944a0.mp3",
+      "audioOriginal": "d1cfab64b27944a0.orig.mp3",
+      "audioAuto": "d1cfab64b27944a0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d1cfab64b27944a0"
     },
     {
       "id": "r-ab420126abcb",
@@ -716,11 +721,6 @@
       "sourceOrder": 57,
       "pronunciation": "genki na",
       "ttsKanji": "元気な",
-      "audio": "1f6d6351045cd5cf.mp3",
-      "audioOriginal": "1f6d6351045cd5cf.orig.mp3",
-      "audioAuto": "1f6d6351045cd5cf.mp3",
-      "audioMarked": true,
-      "audioTextHash": "1f6d6351045cd5cf",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 元気."

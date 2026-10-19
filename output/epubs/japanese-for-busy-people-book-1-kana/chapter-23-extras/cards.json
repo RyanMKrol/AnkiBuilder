@@ -1107,7 +1107,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/1: Smith's Target Dialogue line, with the book's English.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "d819e8cf972cf72f.mp3",
+      "audioOriginal": "d819e8cf972cf72f.orig.mp3",
+      "audioAuto": "d819e8cf972cf72f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d819e8cf972cf72f"
     },
     {
       "id": "itsu-dekimasu-ka",
@@ -1119,7 +1124,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 1, いつ できますか.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "68c5385fae854dfd.mp3",
+      "audioOriginal": "68c5385fae854dfd.orig.mp3",
+      "audioAuto": "68c5385fae854dfd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "68c5385fae854dfd"
     },
     {
       "id": "ima-ryouri-o-shite-imasu",
@@ -1131,7 +1141,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 2, いま りょうりを しています.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "227399d6aa63af33.mp3",
+      "audioOriginal": "227399d6aa63af33.orig.mp3",
+      "audioAuto": "227399d6aa63af33.mp3",
+      "audioMarked": true,
+      "audioTextHash": "227399d6aa63af33"
     },
     {
       "id": "ja-mata-atode-denwa-shimasu",
@@ -1143,7 +1158,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 2, じゃ、また あとで でんわします.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "48301dcbcc590e17.mp3",
+      "audioOriginal": "48301dcbcc590e17.orig.mp3",
+      "audioAuto": "48301dcbcc590e17.mp3",
+      "audioMarked": true,
+      "audioTextHash": "48301dcbcc590e17"
     }
   ]
 }

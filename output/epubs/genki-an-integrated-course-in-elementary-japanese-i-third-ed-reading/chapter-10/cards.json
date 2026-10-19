@@ -57,7 +57,12 @@
       "pronunciation": "kuro",
       "reviewNote": "Taught as a word in Chapter 11: Lesson 9: Kabuki: this is the word's card, voiced.",
       "sourceOrder": 3,
-      "ttsText": "くろ"
+      "ttsText": "くろ",
+      "audio": "7a1961c941e6c355.mp3",
+      "audioOriginal": "7a1961c941e6c355.orig.mp3",
+      "audioAuto": "7a1961c941e6c355.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7a1961c941e6c355"
     },
     {
       "id": "r-542d34678c0a",
@@ -124,7 +129,12 @@
       "pronunciation": "ao",
       "reviewNote": "Taught as a word in Chapter 26: Reading and Writing 12: Tanabata Festival: this is the word's card, voiced.",
       "sourceOrder": 9,
-      "ttsText": "あお"
+      "ttsText": "あお",
+      "audio": "214af8ee5a5b7122.mp3",
+      "audioOriginal": "214af8ee5a5b7122.orig.mp3",
+      "audioAuto": "214af8ee5a5b7122.mp3",
+      "audioMarked": true,
+      "audioTextHash": "214af8ee5a5b7122"
     },
     {
       "id": "r-30160a21b92a",
@@ -308,7 +318,12 @@
       "pronunciation": "kami",
       "reviewNote": "Taught as a word in Chapter 25: Reading and Writing 11: Looking for Friends/Members: this is the word's card, voiced.",
       "sourceOrder": 25,
-      "ttsText": "かみ"
+      "ttsText": "かみ",
+      "audio": "16ce8b09f858e145.mp3",
+      "audioOriginal": "16ce8b09f858e145.orig.mp3",
+      "audioAuto": "16ce8b09f858e145.mp3",
+      "audioMarked": true,
+      "audioTextHash": "16ce8b09f858e145"
     },
     {
       "id": "r-c010838dd8fa",
@@ -466,7 +481,12 @@
       "pronunciation": "aka",
       "reviewNote": "Taught as a word in Chapter 26: Reading and Writing 12: Tanabata Festival: this is the word's card, voiced.",
       "sourceOrder": 40,
-      "ttsText": "あか"
+      "ttsText": "あか",
+      "audio": "d707ce7ab44013e0.mp3",
+      "audioOriginal": "d707ce7ab44013e0.orig.mp3",
+      "audioAuto": "d707ce7ab44013e0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d707ce7ab44013e0"
     },
     {
       "id": "r-d0dc22224c0b",
@@ -522,11 +542,6 @@
       "sourceOrder": 44,
       "pronunciation": "ninki ga aru",
       "ttsKanji": "人気がある",
-      "audio": "f6fa368fcee44b82.mp3",
-      "audioOriginal": "f6fa368fcee44b82.orig.mp3",
-      "audioAuto": "f6fa368fcee44b82.mp3",
-      "audioMarked": true,
-      "audioTextHash": "f6fa368fcee44b82",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 人気 in Chapter 19: Reading and Writing 5: Travel."
@@ -930,11 +945,6 @@
       "sourceOrder": 71,
       "pronunciation": "kusuri o nomu",
       "ttsKanji": "薬を飲む",
-      "audio": "6944f8b0fe4bfb83.mp3",
-      "audioOriginal": "6944f8b0fe4bfb83.orig.mp3",
-      "audioAuto": "6944f8b0fe4bfb83.mp3",
-      "audioMarked": true,
-      "audioTextHash": "6944f8b0fe4bfb83",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 薬, 飲む."
@@ -1295,7 +1305,12 @@
       "reviewNote": "QA fix pass 2026-10: the Culture Notes print 生け花（華道） Flower arrangement; only the bracketed 華道 was carded.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 95,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "b0fc7dff849b6fa9.mp3",
+      "audioOriginal": "b0fc7dff849b6fa9.orig.mp3",
+      "audioAuto": "b0fc7dff849b6fa9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b0fc7dff849b6fa9"
     },
     {
       "id": "r-1006e5787c4a",
@@ -1308,7 +1323,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 9: Kabuki, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 96,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "1564c7d4f9ffa4ac.mp3",
+      "audioOriginal": "1564c7d4f9ffa4ac.orig.mp3",
+      "audioAuto": "1564c7d4f9ffa4ac.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1564c7d4f9ffa4ac"
     },
     {
       "id": "r-07c4e81b2775",
@@ -1321,7 +1341,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 9: Kabuki, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 97,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "910975d2815e783f.mp3",
+      "audioOriginal": "910975d2815e783f.orig.mp3",
+      "audioAuto": "910975d2815e783f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "910975d2815e783f"
     }
   ]
 }

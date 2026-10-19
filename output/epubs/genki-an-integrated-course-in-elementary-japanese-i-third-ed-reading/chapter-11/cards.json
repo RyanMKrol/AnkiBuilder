@@ -1521,7 +1521,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 113,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "5b7eebcb2582de12.mp3",
+      "audioOriginal": "5b7eebcb2582de12.orig.mp3",
+      "audioAuto": "5b7eebcb2582de12.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5b7eebcb2582de12"
     },
     {
       "id": "r-f9b670ca441b",
@@ -1534,7 +1539,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, reading passage, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 114,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "7d883e989f62781a.mp3",
+      "audioOriginal": "7d883e989f62781a.orig.mp3",
+      "audioAuto": "7d883e989f62781a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7d883e989f62781a"
     },
     {
       "id": "r-e81918c53b09",
@@ -1547,7 +1557,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 115,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "6f84b8455f5e8b20.mp3",
+      "audioOriginal": "6f84b8455f5e8b20.orig.mp3",
+      "audioAuto": "6f84b8455f5e8b20.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6f84b8455f5e8b20"
     },
     {
       "id": "r-ba450f99699e",
@@ -1560,7 +1575,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 116,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "a82c384df9c46efb.mp3",
+      "audioOriginal": "a82c384df9c46efb.orig.mp3",
+      "audioAuto": "a82c384df9c46efb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a82c384df9c46efb"
     },
     {
       "id": "r-afb4c62e7125",
@@ -1573,7 +1593,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 117,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "d85bccd4efe8e393.mp3",
+      "audioOriginal": "d85bccd4efe8e393.orig.mp3",
+      "audioAuto": "d85bccd4efe8e393.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d85bccd4efe8e393"
     },
     {
       "id": "r-8525185c99eb",
@@ -1586,7 +1611,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 118,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "8767c07ebd146d91.mp3",
+      "audioOriginal": "8767c07ebd146d91.orig.mp3",
+      "audioAuto": "8767c07ebd146d91.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8767c07ebd146d91"
     },
     {
       "id": "r-6af4dde870d4",
@@ -1599,7 +1629,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 119,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "a23415bf3886bf25.mp3",
+      "audioOriginal": "a23415bf3886bf25.orig.mp3",
+      "audioAuto": "a23415bf3886bf25.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a23415bf3886bf25"
     }
   ]
 }

@@ -81,7 +81,12 @@
       "pronunciation": "ima",
       "reviewNote": "Taught as a word in Chapter 19: Reading and Writing 5: Travel: this is the word's card, voiced.",
       "sourceOrder": 5,
-      "ttsText": "いま"
+      "ttsText": "いま",
+      "audio": "c300820a27ed6293.mp3",
+      "audioOriginal": "c300820a27ed6293.orig.mp3",
+      "audioAuto": "c300820a27ed6293.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c300820a27ed6293"
     },
     {
       "id": "r-8ffbf192934a",
@@ -221,7 +226,12 @@
       "pronunciation": "hiru",
       "reviewNote": "Taught as a word in Chapter 23: Reading and Writing 9: Sora's Diary: this is the word's card, voiced.",
       "sourceOrder": 18,
-      "ttsText": "ひる"
+      "ttsText": "ひる",
+      "audio": "fbea32cff3de867f.mp3",
+      "audioOriginal": "fbea32cff3de867f.orig.mp3",
+      "audioAuto": "fbea32cff3de867f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fbea32cff3de867f"
     },
     {
       "id": "r-370fea522051",
@@ -297,7 +307,12 @@
       "pronunciation": "hanashi",
       "reviewNote": "Taught as a word in Chapter 22: Reading and Writing 8: Japanese Office Workers: this is the word's card, voiced.",
       "sourceOrder": 25,
-      "ttsText": "はなし"
+      "ttsText": "はなし",
+      "audio": "60fffa19f38907de.mp3",
+      "audioOriginal": "60fffa19f38907de.orig.mp3",
+      "audioAuto": "60fffa19f38907de.mp3",
+      "audioMarked": true,
+      "audioTextHash": "60fffa19f38907de"
     },
     {
       "id": "r-ea9fad1aad62",
@@ -425,7 +440,12 @@
       "pronunciation": "toki",
       "reviewNote": "Taught as a word in Chapter 06: Lesson 4: The First Date: this is the word's card, voiced.",
       "sourceOrder": 38,
-      "ttsText": "とき"
+      "ttsText": "とき",
+      "audio": "634e3e66ece57ed1.mp3",
+      "audioOriginal": "634e3e66ece57ed1.orig.mp3",
+      "audioAuto": "634e3e66ece57ed1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "634e3e66ece57ed1"
     },
     {
       "id": "r-90fbc9b1ac2e",
@@ -435,7 +455,12 @@
       "pronunciation": "tsuchi",
       "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
       "sourceOrder": 39,
-      "ttsText": "つち"
+      "ttsText": "つち",
+      "audio": "d9093208215d5d22.mp3",
+      "audioOriginal": "d9093208215d5d22.orig.mp3",
+      "audioAuto": "d9093208215d5d22.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d9093208215d5d22"
     },
     {
       "id": "r-7ac94c1ab970",
@@ -1058,7 +1083,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 3: Making a Date, example sentence, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 83,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "ff5dc357fa58970c.mp3",
+      "audioOriginal": "ff5dc357fa58970c.orig.mp3",
+      "audioAuto": "ff5dc357fa58970c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ff5dc357fa58970c"
     },
     {
       "id": "r-03f89ec1c0c4",
@@ -1071,7 +1101,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 3: Making a Date, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 84,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "91c7543e1c69e707.mp3",
+      "audioOriginal": "91c7543e1c69e707.orig.mp3",
+      "audioAuto": "91c7543e1c69e707.mp3",
+      "audioMarked": true,
+      "audioTextHash": "91c7543e1c69e707"
     }
   ]
 }

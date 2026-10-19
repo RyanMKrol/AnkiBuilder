@@ -331,11 +331,6 @@
       "sourceOrder": 22,
       "pronunciation": "kono hito",
       "ttsKanji": "この人",
-      "audio": "345d2fdf5acc911e.mp3",
-      "audioOriginal": "345d2fdf5acc911e.orig.mp3",
-      "audioAuto": "345d2fdf5acc911e.mp3",
-      "audioMarked": true,
-      "audioTextHash": "345d2fdf5acc911e",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 人."
@@ -456,7 +451,12 @@
       "reviewNote": "QA fix pass 2026-10: the kanji table teaches 日本(にほん) Japan; the reader excluded it as a proper name, against the rule that countries are vocabulary.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 30,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "efd5debee4c383fe.mp3",
+      "audioOriginal": "efd5debee4c383fe.orig.mp3",
+      "audioAuto": "efd5debee4c383fe.mp3",
+      "audioMarked": true,
+      "audioTextHash": "efd5debee4c383fe"
     },
     {
       "id": "r-101806f57c32",
@@ -469,7 +469,12 @@
       "reviewNote": "QA fix pass 2026-10: the kanji table teaches 中国(ちゅうごく) China; the reader excluded it as a proper name, against the rule that countries are vocabulary.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 31,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "fc8c5aafcf1b9d4e.mp3",
+      "audioOriginal": "fc8c5aafcf1b9d4e.orig.mp3",
+      "audioAuto": "fc8c5aafcf1b9d4e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fc8c5aafcf1b9d4e"
     },
     {
       "id": "r-445f94aea57d",
@@ -482,7 +487,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 4: Mary's Weekend, reading passage, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 32,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "35d73179a4506e21.mp3",
+      "audioOriginal": "35d73179a4506e21.orig.mp3",
+      "audioAuto": "35d73179a4506e21.mp3",
+      "audioMarked": true,
+      "audioTextHash": "35d73179a4506e21"
     }
   ]
 }

@@ -157,7 +157,8 @@
       "id": "went-ginza-ate-lunch",
       "target": "きのうぎんざにいって、ひるごはんをたべました",
       "english": "Yesterday I went to Ginza and ate lunch there.",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "note": "After いって (itte), the next action happens at the place you went, so no で (de) phrase is needed: lunch was in Ginza."
     },
     {
       "id": "hanasu-koko",
@@ -295,7 +296,8 @@
       "id": "chan-likes-steak-topic",
       "target": "エマさん、ステーキはすきですか",
       "english": "Emma-san, do you like steak?",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "note": "ステーキ (sutēki) takes は (wa) in place of the が (ga) of すきです (suki desu): steak is now the topic, \"as for steak, do you like it?\""
     },
     {
       "id": "kaeru-goji",
@@ -494,7 +496,7 @@
       "english": "I went to the Osaka branch office and gave a presentation.",
       "category": "Work & Occupations",
       "scene": "Someone asks what you did yesterday.",
-      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. The tense is set only by the last verb, しました (shimashita)."
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. The tense is set only by the last verb, しました (shimashita). Clauses of different kinds, such as a statement and a suggestion, are not joined with て."
     },
     {
       "id": "kaku-denwa",
@@ -563,7 +565,8 @@
       "english": "Is here all right?",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "hint": "polite, as a shop clerk to a customer"
+      "hint": "polite, as a shop clerk to a customer",
+      "note": "ここで (koko de) asks about the place where something will be done, which is why it takes で (de). あしたは (ashita wa) and いま (ima) ask about a time instead."
     },
     {
       "id": "miru-terebi",
@@ -722,7 +725,8 @@
       "id": "supper-before-or-after-meeting",
       "target": "ばんごはんはかいぎのまえにたべますか。あとでたべますか",
       "english": "Will you eat supper before the meeting? Or after?",
-      "category": "Grammar & Function Words"
+      "category": "Grammar & Function Words",
+      "note": "ばんごはんを (bangohan o) becomes ばんごはんは (bangohan wa) and moves to the front, making supper the topic of both questions."
     },
     {
       "id": "kato-ask-after-fair",

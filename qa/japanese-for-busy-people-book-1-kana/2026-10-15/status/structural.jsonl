@@ -46,3 +46,7 @@
 {"id":"chapter-16-extras/-/book-gap/1","status":"fixed","statusReason":"Note on sp1-party-invite, which already shows 15にちのにちようび: date first, then the day of the week, joined by の. A note on the existing sentence rather than a new card."}
 {"id":"chapter-17-extras/zehi-3/untaught-prerequisite/1","status":"fixed","statusReason":"Excluded (ruling 5: cut where the grammar is untaught). Rebuilding the target would replace a hand-picked clip, and zehi-1 covers ぜひ."}
 {"id":"chapter-17-extras/-/book-gap/1","status":"fixed","statusReason":"The たい caveat (own wish only, not an invitation, impolite as a question to a superior, ask with ます+か) is now the note on where-eat-dinner, with a shorter form on ikitai-3."}
+{"id":"chapter-18-extras/yoroshii-place/untaught-prerequisite/1","status":"fixed","statusReason":"Note explains the で in ここでよろしいですか against あしたは and いま."}
+{"id":"chapter-18-extras/chan-likes-steak-topic/book-gap/1","status":"fixed","statusReason":"Notes on chan-likes-steak-topic (は replaces the が of すき) and supper-before-or-after-meeting (ばんごはんを becomes ばんごはんは and moves to the front)."}
+{"id":"chapter-18-extras/went-ginza-ate-lunch/book-gap/1","status":"fixed","statusReason":"Note: after a verb of movement the next action happens at that place, so no で phrase."}
+{"id":"chapter-18-extras/-/book-gap/1","status":"fixed","statusReason":"Note on answer-osaka-branch-presentation: clauses of different kinds are not joined with て."}

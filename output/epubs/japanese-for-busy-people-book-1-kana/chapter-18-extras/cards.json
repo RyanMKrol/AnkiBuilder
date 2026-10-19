@@ -270,7 +270,8 @@
       "audioOriginal": "f838332139def4c7.orig.mp3",
       "audioAuto": "f838332139def4c7.mp3",
       "audioMarked": true,
-      "audioTextHash": "f838332139def4c7"
+      "audioTextHash": "f838332139def4c7",
+      "note": "After いって (itte), the next action happens at the place you went, so no で (de) phrase is needed: lunch was in Ginza."
     },
     {
       "id": "hanasu-koko",
@@ -487,7 +488,8 @@
       "audioOriginal": "0eb8f66ecce08891.orig.mp3",
       "audioAuto": "0eb8f66ecce08891.mp3",
       "audioMarked": true,
-      "audioTextHash": "0eb8f66ecce08891"
+      "audioTextHash": "0eb8f66ecce08891",
+      "note": "ステーキ (sutēki) takes は (wa) in place of the が (ga) of すきです (suki desu): steak is now the topic, \"as for steak, do you like it?\""
     },
     {
       "id": "kaeru-goji",
@@ -771,7 +773,7 @@
       "target": "おおさかししゃにいって、プレゼンをしました",
       "pronunciation": "Ōsaka shisha ni itte, purezen o shimashita",
       "scene": "Someone asks what you did yesterday.",
-      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. The tense is set only by the last verb, しました (shimashita).",
+      "note": "いって (itte) is the て-form of いきます (ikimasu), a Regular 1 verb. The tense is set only by the last verb, しました (shimashita). Clauses of different kinds, such as a statement and a suggestion, are not joined with て.",
       "audioOriginal": "332326fe16a0925e-genkanji-438515db.orig.mp3",
       "audioAuto": "332326fe16a0925e-genkanji-438515db.mp3",
       "audioMarked": true,
@@ -874,7 +876,8 @@
       "audioAuto": "c7fe86287bb3c662.mp3",
       "audioMarked": true,
       "audioTextHash": "c7fe86287bb3c662",
-      "hint": "polite, as a shop clerk to a customer"
+      "hint": "polite, as a shop clerk to a customer",
+      "note": "ここで (koko de) asks about the place where something will be done, which is why it takes で (de). あしたは (ashita wa) and いま (ima) ask about a time instead."
     },
     {
       "id": "miru-terebi",
@@ -1104,7 +1107,8 @@
       "audioOriginal": "27c692e7d90b12bf.orig.mp3",
       "audioAuto": "27c692e7d90b12bf.mp3",
       "audioMarked": true,
-      "audioTextHash": "27c692e7d90b12bf"
+      "audioTextHash": "27c692e7d90b12bf",
+      "note": "ばんごはんを (bangohan o) becomes ばんごはんは (bangohan wa) and moves to the front, making supper the topic of both questions."
     },
     {
       "id": "kato-ask-after-fair",

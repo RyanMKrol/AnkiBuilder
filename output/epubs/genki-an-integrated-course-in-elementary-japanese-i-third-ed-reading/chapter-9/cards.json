@@ -64,7 +64,12 @@
       "pronunciation": "fukuro",
       "reviewNote": "Taught as a word in Chapter 10: Lesson 8: Barbecue: this is the word's card, voiced.",
       "sourceOrder": 5,
-      "ttsText": "ふくろ"
+      "ttsText": "ふくろ",
+      "audio": "de4190846c97d5bd.mp3",
+      "audioOriginal": "de4190846c97d5bd.orig.mp3",
+      "audioAuto": "de4190846c97d5bd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "de4190846c97d5bd"
     },
     {
       "id": "r-7c155bc560d0",
@@ -115,7 +120,12 @@
       "pronunciation": "ushi",
       "reviewNote": "Taught as a word in Chapter 26: Reading and Writing 12: Tanabata Festival: this is the word's card, voiced.",
       "sourceOrder": 10,
-      "ttsText": "うし"
+      "ttsText": "うし",
+      "audio": "5402fcc23c728d6b.mp3",
+      "audioOriginal": "5402fcc23c728d6b.orig.mp3",
+      "audioAuto": "5402fcc23c728d6b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5402fcc23c728d6b"
     },
     {
       "id": "r-81d4aecdad11",
@@ -236,7 +246,12 @@
       "pronunciation": "koto",
       "reviewNote": "Taught as a word in Chapter 22: Reading and Writing 8: Japanese Office Workers: this is the word's card, voiced.",
       "sourceOrder": 21,
-      "ttsText": "こと"
+      "ttsText": "こと",
+      "audio": "09531c5cb1749596.mp3",
+      "audioOriginal": "09531c5cb1749596.orig.mp3",
+      "audioAuto": "09531c5cb1749596.mp3",
+      "audioMarked": true,
+      "audioTextHash": "09531c5cb1749596"
     },
     {
       "id": "r-81d3c496f5dc",
@@ -1153,7 +1168,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, example sentence, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 89,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "afdbd9a164e80c10.mp3",
+      "audioOriginal": "afdbd9a164e80c10.orig.mp3",
+      "audioAuto": "afdbd9a164e80c10.mp3",
+      "audioMarked": true,
+      "audioTextHash": "afdbd9a164e80c10"
     },
     {
       "id": "r-83d65d4e88de",
@@ -1166,7 +1186,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 90,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "30aab6c4229b7b3c.mp3",
+      "audioOriginal": "30aab6c4229b7b3c.orig.mp3",
+      "audioAuto": "30aab6c4229b7b3c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "30aab6c4229b7b3c"
     },
     {
       "id": "r-85c18e2c38fc",
@@ -1179,7 +1204,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 91,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "991ae348112446ac.mp3",
+      "audioOriginal": "991ae348112446ac.orig.mp3",
+      "audioAuto": "991ae348112446ac.mp3",
+      "audioMarked": true,
+      "audioTextHash": "991ae348112446ac"
     },
     {
       "id": "r-c555af262ef9",
@@ -1192,7 +1222,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 92,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "261f7a56948596fa.mp3",
+      "audioOriginal": "261f7a56948596fa.orig.mp3",
+      "audioAuto": "261f7a56948596fa.mp3",
+      "audioMarked": true,
+      "audioTextHash": "261f7a56948596fa"
     },
     {
       "id": "r-9bba0d69bb3c",
@@ -1205,7 +1240,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 93,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "6ce07318498dd2ad.mp3",
+      "audioOriginal": "6ce07318498dd2ad.orig.mp3",
+      "audioAuto": "6ce07318498dd2ad.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6ce07318498dd2ad"
     },
     {
       "id": "r-77fe42f39884",
@@ -1218,7 +1258,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 94,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "e7cb9c28f8b3764c.mp3",
+      "audioOriginal": "e7cb9c28f8b3764c.orig.mp3",
+      "audioAuto": "e7cb9c28f8b3764c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e7cb9c28f8b3764c"
     },
     {
       "id": "r-c89c95bdcba2",
@@ -1231,7 +1276,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, culture note, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 95,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "77a627fe7e88722e.mp3",
+      "audioOriginal": "77a627fe7e88722e.orig.mp3",
+      "audioAuto": "77a627fe7e88722e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "77a627fe7e88722e"
     },
     {
       "id": "r-2b7c52d264e5",
@@ -1244,7 +1294,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, vocabulary list; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 96,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "821d556afe4ea6df.mp3",
+      "audioOriginal": "821d556afe4ea6df.orig.mp3",
+      "audioAuto": "821d556afe4ea6df.mp3",
+      "audioMarked": true,
+      "audioTextHash": "821d556afe4ea6df"
     }
   ]
 }

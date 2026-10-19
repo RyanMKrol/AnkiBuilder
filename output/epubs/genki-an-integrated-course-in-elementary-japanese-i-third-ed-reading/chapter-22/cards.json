@@ -125,11 +125,6 @@
       "sourceOrder": 10,
       "pronunciation": "kimasu",
       "ttsKanji": "来ます",
-      "audio": "5ef313e16f175a82.mp3",
-      "audioOriginal": "5ef313e16f175a82.orig.mp3",
-      "audioAuto": "5ef313e16f175a82.mp3",
-      "audioMarked": true,
-      "audioTextHash": "5ef313e16f175a82",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 来る."
@@ -248,11 +243,6 @@
       "sourceOrder": 18,
       "pronunciation": "hanashi o suru",
       "ttsKanji": "話をする",
-      "audio": "1265b891223e5f0e.mp3",
-      "audioOriginal": "1265b891223e5f0e.orig.mp3",
-      "audioAuto": "1265b891223e5f0e.mp3",
-      "audioMarked": true,
-      "audioTextHash": "1265b891223e5f0e",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 話."
@@ -476,11 +466,6 @@
       "sourceOrder": 33,
       "pronunciation": "konai",
       "ttsKanji": "来ない",
-      "audio": "a983808b7bad7479.mp3",
-      "audioOriginal": "a983808b7bad7479.orig.mp3",
-      "audioAuto": "a983808b7bad7479.mp3",
-      "audioMarked": true,
-      "audioTextHash": "a983808b7bad7479",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 来る."
@@ -599,11 +584,6 @@
       "sourceOrder": 41,
       "pronunciation": "no ato",
       "ttsKanji": "の後",
-      "audio": "d68917a4c6d70434.mp3",
-      "audioOriginal": "d68917a4c6d70434.orig.mp3",
-      "audioAuto": "d68917a4c6d70434.mp3",
-      "audioMarked": true,
-      "audioTextHash": "d68917a4c6d70434",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 後."
@@ -694,7 +674,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 9: Sora's Diary, other, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 47,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "bc70b26b07eb6d76.mp3",
+      "audioOriginal": "bc70b26b07eb6d76.orig.mp3",
+      "audioAuto": "bc70b26b07eb6d76.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bc70b26b07eb6d76"
     }
   ]
 }

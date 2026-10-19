@@ -116,16 +116,10 @@
       "category": "Grammar & Function Words",
       "target": "です",
       "pronunciation": "desu",
-      "audio": "4f82eb288c9c359c.mp3",
       "altAudio": "36c7185f86fcf0b4.mp3",
       "reviewNote": "Excluded as a duplicate: chapter-1 already teaches です with the gloss \"To be (copula)\". Same word, same meaning, glossed twice, which made the two cards an unanswerable Recognition collision. The earliest occurrence is kept.",
       "note": "The same です (desu) as the copula card from the earlier lesson; here it anchors a four-way paradigm with じゃありません (ja arimasen, negative), でした (deshita, past), and じゃありませんでした (ja arimasen deshita, past negative).",
-      "audioOriginal": "4f82eb288c9c359c.orig.mp3",
-      "audioAuto": "4f82eb288c9c359c.mp3",
-      "audioFilter": "standard",
-      "audioMarked": true,
-      "excluded": true,
-      "audioTextHash": "4f82eb288c9c359c"
+      "excluded": true
     },
     {
       "id": "ja-arimasen",
@@ -140,7 +134,8 @@
       "audioAuto": "373cbbd016ecdc37.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "373cbbd016ecdc37"
+      "audioTextHash": "373cbbd016ecdc37",
+      "audioMarkerStuck": true
     },
     {
       "id": "tokei",
@@ -729,7 +724,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 0.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "fccaf157062f183f.mp3",
+      "audioOriginal": "fccaf157062f183f.orig.mp3",
+      "audioAuto": "fccaf157062f183f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fccaf157062f183f"
     },
     {
       "id": "num-4-shi",
@@ -742,7 +742,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 4.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "7810214ac1db8475.mp3",
+      "audioOriginal": "7810214ac1db8475.orig.mp3",
+      "audioAuto": "7810214ac1db8475.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7810214ac1db8475"
     },
     {
       "id": "num-7-shichi",
@@ -755,7 +760,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 7.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "40a89ebca5b3a4a2.mp3",
+      "audioOriginal": "40a89ebca5b3a4a2.orig.mp3",
+      "audioAuto": "40a89ebca5b3a4a2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "40a89ebca5b3a4a2"
     },
     {
       "id": "num-9-ku",
@@ -768,7 +778,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 9.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "c154343d9de3441b.mp3",
+      "audioOriginal": "c154343d9de3441b.orig.mp3",
+      "audioAuto": "c154343d9de3441b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c154343d9de3441b"
     },
     {
       "id": "doumo-arigatou-gozaimasu",
@@ -781,7 +796,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/2: NOTES 3's どうも ありがとうございます, which no card carried.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "d20c9ed17a6f1537.mp3",
+      "audioOriginal": "d20c9ed17a6f1537.orig.mp3",
+      "audioAuto": "d20c9ed17a6f1537.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d20c9ed17a6f1537"
     }
   ]
 }

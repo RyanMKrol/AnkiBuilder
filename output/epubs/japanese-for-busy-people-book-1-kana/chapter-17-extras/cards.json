@@ -120,11 +120,11 @@
       "pronunciation": "bangohan no mae ni uchi ni kaeritai desu",
       "aiSuggested": true,
       "note": "A noun takes の (no) before まえに (mae ni): ばんごはんのまえに (bangohan no mae ni), like かいぎのまえに (kaigi no mae ni). A verb attaches directly, as in ねるまえに (neru mae ni).",
-      "audio": "cb51d7913e328152.mp3",
-      "audioOriginal": "cb51d7913e328152.orig.mp3",
-      "audioAuto": "cb51d7913e328152.mp3",
+      "audio": "6b4b3c99bc8f82c7.mp3",
+      "audioOriginal": "6b4b3c99bc8f82c7.orig.mp3",
+      "audioAuto": "6b4b3c99bc8f82c7.mp3",
       "audioMarked": true,
-      "audioTextHash": "cb51d7913e328152"
+      "audioTextHash": "6b4b3c99bc8f82c7"
     },
     {
       "id": "smith-japanese-study-before-coming",
@@ -1360,12 +1360,6 @@
       "target": "このえいがはぜひみてください",
       "pronunciation": "kono eiga wa zehi mite kudasai",
       "aiSuggested": true,
-      "audioOriginal": "02317612d45a9e06-genkanji-70389cc1.orig.mp3",
-      "audioAuto": "02317612d45a9e06-genkanji-70389cc1.mp3",
-      "audioMarked": true,
-      "audioTextHash": "02317612d45a9e06",
-      "audioFilter": "standard",
-      "audio": "02317612d45a9e06-genkanji-70389cc1.mp3",
       "excluded": true,
       "excludedBy": "qa-fix-2026-10",
       "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: みてください needs the て-form of みます, which Lesson 18 teaches. zehi-1 already carries ぜひ with a request."

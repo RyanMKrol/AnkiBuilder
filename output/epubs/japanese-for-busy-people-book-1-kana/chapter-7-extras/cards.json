@@ -1170,12 +1170,12 @@
       "reviewNote": "Constructed on the model of the Lesson 6 card 6ばんのバスがいきます. Particle job (が): answer half of the pair with w2-dono-basu-ga-kuukou-ni, which the Lesson 6 card had no question to answer.",
       "note": "The reply keeps が (ga) from the question: a どの…が (dono … ga) question is answered with が, never with は (wa).",
       "ttsText": "はちばんのバスがいきます",
-      "audio": "c47fcfbd32ef7f39.mp3",
-      "audioOriginal": "c47fcfbd32ef7f39.orig.mp3",
-      "audioAuto": "c47fcfbd32ef7f39.mp3",
+      "audio": "5a647fb7fc93b294.mp3",
+      "audioOriginal": "5a647fb7fc93b294.orig.mp3",
+      "audioAuto": "5a647fb7fc93b294.mp3",
       "audioMarked": true,
       "scene": "answering which bus goes to the airport",
-      "audioTextHash": "c47fcfbd32ef7f39"
+      "audioTextHash": "5a647fb7fc93b294"
     },
     {
       "id": "shucchou-desu-ka",
@@ -1186,11 +1186,6 @@
       "aiSuggested": true,
       "reviewNote": "Target Dialogue, line 1 (trimmed of the あ、スミスさん、 opening, since the あ card is excluded from the deck). The lesson's title word しゅっちょう exists only as a bare noun card; this is the question the book actually uses it in.",
       "note": "A noun + ですか (desu ka) is enough to ask this — no verb is needed. Nakamura asks it because Smith is carrying a suitcase.",
-      "audio": "43b81e64c12970cc.mp3",
-      "audioOriginal": "43b81e64c12970cc.orig.mp3",
-      "audioAuto": "43b81e64c12970cc.mp3",
-      "audioMarked": true,
-      "audioTextHash": "43b81e64c12970cc",
       "excluded": true,
       "excludedBy": "human"
     },

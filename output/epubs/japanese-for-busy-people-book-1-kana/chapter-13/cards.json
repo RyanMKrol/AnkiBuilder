@@ -33,12 +33,7 @@
       "uncertain": true,
       "note": "Suffix attached after a noun to mean \"...shop\": ほんや (bookstore), パンや (bakery), ラーメンや (ramen shop); adding さん afterward, as in おそばやさん, softens the tone. This や is the same word behind そばや (soba shop, Lesson 12) and てんぷらや (Lesson 9) — a different word from the や (ya) particle meaning \"and, and so on,\" also taught in Lesson 12.",
       "reviewNote": "Not given its own headword row; extracted from the recurring 〜や shop-suffix pattern across this lesson's vocabulary and NOTES 1's explicit discussion of 〜や denoting \"shop\". | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on target) | Excluded as a re-teach of chapter-9/ya-suffix (same や shop suffix), which already carries a disambiguating scene.",
-      "audio": "a6a294ce06130f3d.mp3",
-      "audioOriginal": "a6a294ce06130f3d.orig.mp3",
-      "audioAuto": "a6a294ce06130f3d.mp3",
-      "audioMarked": true,
-      "excluded": true,
-      "audioTextHash": "a6a294ce06130f3d"
+      "excluded": true
     },
     {
       "id": "osobayasan",
@@ -203,11 +198,11 @@
       "category": "Transport",
       "target": "タクシーのりばはえきのまえにあります",
       "pronunciation": "takushī noriba wa eki no mae ni arimasu",
-      "audio": "cc7b0c812d772272.mp3",
-      "audioOriginal": "cc7b0c812d772272.orig.mp3",
-      "audioAuto": "cc7b0c812d772272.mp3",
+      "audio": "b62d9a9391635538.mp3",
+      "audioOriginal": "b62d9a9391635538.orig.mp3",
+      "audioAuto": "b62d9a9391635538.mp3",
       "audioMarked": true,
-      "audioTextHash": "cc7b0c812d772272",
+      "audioTextHash": "b62d9a9391635538",
       "hint": "using に あります (ni arimasu, \"is/exists at\"), not the contracted です (desu)"
     },
     {
@@ -427,12 +422,7 @@
       "pronunciation": "hikidashi",
       "uncertain": true,
       "reviewNote": "No English gloss is given anywhere in this chapter's text (it appears only as a WORD POWER illustration caption); meaning inferred from common usage and from its contextual use in an EXERCISES model sentence, \"ひきだしの なかに ペンが 5ほん あります\" (There are five pens in the drawer). | Possibly already taught — already introduced in Lesson 12: Asking about Places: What Is at Nikko? (matched on english) | Excluded as a duplicate of chapter-12/hikidashi-drawer, which teaches the same word with the same meaning and is the earlier occurrence.",
-      "audio": "ca722d49a0f3db0c.mp3",
-      "audioOriginal": "ca722d49a0f3db0c.orig.mp3",
-      "audioAuto": "ca722d49a0f3db0c.mp3",
-      "audioMarked": true,
-      "excluded": true,
-      "audioTextHash": "ca722d49a0f3db0c"
+      "excluded": true
     },
     {
       "id": "cabinet",
@@ -456,12 +446,7 @@
       "uncertain": true,
       "note": "The ko-so-a location set, by DISTANCE FROM EACH SPEAKER (the chapter teaches this with a picture, not words): ここ is where the speaker is, そこ is near the listener, あそこ is away from both. Pick by who is closest, not by how far away it feels.",
       "reviewNote": "No English gloss is given anywhere in this chapter's text (it appears only as a WORD POWER illustration caption); meaning inferred from the common ko-so-a demonstrative sense, paired with そこ (\"there\") and あそこ (\"over there\"), which ARE glossed elsewhere in this chapter. | Possibly already taught — already introduced in Lesson 9: Doing Things (2): Do You Often Come Here? (matched on english) | Excluded as a duplicate of chapter-9/koko-here, which teaches the same word with the same meaning and is the earlier occurrence.",
-      "audio": "ca132d21bfe8b3b8.mp3",
-      "audioOriginal": "ca132d21bfe8b3b8.orig.mp3",
-      "audioAuto": "ca132d21bfe8b3b8.mp3",
-      "audioMarked": true,
-      "excluded": true,
-      "audioTextHash": "ca132d21bfe8b3b8"
+      "excluded": true
     },
     {
       "id": "soko",

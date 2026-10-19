@@ -344,11 +344,6 @@
       "sourceOrder": 24,
       "pronunciation": "tsukarete iru",
       "ttsKanji": "疲れている",
-      "audio": "691b6cf07fdb9f63.mp3",
-      "audioOriginal": "691b6cf07fdb9f63.orig.mp3",
-      "audioAuto": "691b6cf07fdb9f63.mp3",
-      "audioMarked": true,
-      "audioTextHash": "691b6cf07fdb9f63",
       "excluded": true,
       "excludedBy": "owner-words-only-2026-10-13",
       "excludedReason": "Owner ruling 2026-10-13: the reading deck cards single words, not sentences or phrases. Its words are carded on their own: 疲れる."
@@ -619,7 +614,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 8: Japanese Office Workers, vocabulary list; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 44,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "6fe63bc2373323c7.mp3",
+      "audioOriginal": "6fe63bc2373323c7.orig.mp3",
+      "audioAuto": "6fe63bc2373323c7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6fe63bc2373323c7"
     }
   ]
 }

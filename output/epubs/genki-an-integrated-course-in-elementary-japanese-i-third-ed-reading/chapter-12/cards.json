@@ -694,7 +694,12 @@
       "pronunciation": "soto",
       "reviewNote": "Taught as a word in Chapter 20: Reading and Writing 6: My Favorite Restaurant: this is the word's card, voiced.",
       "sourceOrder": 59,
-      "ttsText": "そと"
+      "ttsText": "そと",
+      "audio": "7f8b16beff62b688.mp3",
+      "audioOriginal": "7f8b16beff62b688.orig.mp3",
+      "audioAuto": "7f8b16beff62b688.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7f8b16beff62b688"
     },
     {
       "id": "r-2353efbc3e76",
@@ -1757,7 +1762,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, dialogue; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 131,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "dbc4b33e468e98bf.mp3",
+      "audioOriginal": "dbc4b33e468e98bf.orig.mp3",
+      "audioAuto": "dbc4b33e468e98bf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dbc4b33e468e98bf"
     },
     {
       "id": "r-54269f9a928d",
@@ -1770,7 +1780,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 132,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "5972ac7e02f96639.mp3",
+      "audioOriginal": "5972ac7e02f96639.orig.mp3",
+      "audioAuto": "5972ac7e02f96639.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5972ac7e02f96639"
     },
     {
       "id": "r-f9b9af375fcf",
@@ -1783,7 +1798,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 133,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "2079458d29737a39.mp3",
+      "audioOriginal": "2079458d29737a39.orig.mp3",
+      "audioAuto": "2079458d29737a39.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2079458d29737a39"
     },
     {
       "id": "r-06eac2a8bb7f",
@@ -1796,7 +1816,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 134,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "1bd440eb7ab7932c.mp3",
+      "audioOriginal": "1bd440eb7ab7932c.orig.mp3",
+      "audioAuto": "1bd440eb7ab7932c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1bd440eb7ab7932c"
     },
     {
       "id": "r-ea19fa764216",
@@ -1809,7 +1834,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 135,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "f543df587adf50cb.mp3",
+      "audioOriginal": "f543df587adf50cb.orig.mp3",
+      "audioAuto": "f543df587adf50cb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f543df587adf50cb"
     },
     {
       "id": "r-0071ee6a3541",
@@ -1822,7 +1852,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 136,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "4ef63b1ce5614d9e.mp3",
+      "audioOriginal": "4ef63b1ce5614d9e.orig.mp3",
+      "audioAuto": "4ef63b1ce5614d9e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4ef63b1ce5614d9e"
     },
     {
       "id": "r-a0c085e2a22e",
@@ -1835,7 +1870,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 137,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "218fbb02b3ddc6cf.mp3",
+      "audioOriginal": "218fbb02b3ddc6cf.orig.mp3",
+      "audioAuto": "218fbb02b3ddc6cf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "218fbb02b3ddc6cf"
     },
     {
       "id": "r-9f1504723042",
@@ -1848,7 +1888,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, vocabulary list; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 138,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "4c192ce3b7a348dd.mp3",
+      "audioOriginal": "4c192ce3b7a348dd.orig.mp3",
+      "audioAuto": "4c192ce3b7a348dd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4c192ce3b7a348dd"
     }
   ]
 }

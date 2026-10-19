@@ -1248,7 +1248,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-4/-/book-gap/1: the PLUS ONE large-number chart's 100,000 row.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "2369866f47b84c76.mp3",
+      "audioOriginal": "2369866f47b84c76.orig.mp3",
+      "audioAuto": "2369866f47b84c76.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2369866f47b84c76"
     },
     {
       "id": "num-1million",
@@ -1260,7 +1265,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-4/-/book-gap/2: the PLUS ONE large-number chart's 1,000,000 row.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "c263d6fead978144.mp3",
+      "audioOriginal": "c263d6fead978144.orig.mp3",
+      "audioAuto": "c263d6fead978144.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c263d6fead978144"
     },
     {
       "id": "num-10million",
@@ -1272,7 +1282,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-4/-/book-gap/3: the PLUS ONE large-number chart's 10,000,000 row.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "82555c23f0419431.mp3",
+      "audioOriginal": "82555c23f0419431.orig.mp3",
+      "audioAuto": "82555c23f0419431.mp3",
+      "audioMarked": true,
+      "audioTextHash": "82555c23f0419431"
     }
   ]
 }

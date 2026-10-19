@@ -99,7 +99,12 @@
       "pronunciation": "hi",
       "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
       "sourceOrder": 7,
-      "ttsText": "ひ"
+      "ttsText": "ひ",
+      "audio": "4e43a64c0f337b7d.mp3",
+      "audioOriginal": "4e43a64c0f337b7d.orig.mp3",
+      "audioAuto": "4e43a64c0f337b7d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4e43a64c0f337b7d"
     },
     {
       "id": "r-8f0005d18f7e",
@@ -124,7 +129,12 @@
       "pronunciation": "ichi",
       "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
       "sourceOrder": 9,
-      "ttsText": "いち"
+      "ttsText": "いち",
+      "audio": "5f4c9c25f8771f1b.mp3",
+      "audioOriginal": "5f4c9c25f8771f1b.orig.mp3",
+      "audioAuto": "5f4c9c25f8771f1b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5f4c9c25f8771f1b"
     },
     {
       "id": "r-577cfff2988c",
@@ -170,7 +180,12 @@
       "pronunciation": "tsuki",
       "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
       "sourceOrder": 14,
-      "ttsText": "つき"
+      "ttsText": "つき",
+      "audio": "3086e22fb1f24628.mp3",
+      "audioOriginal": "3086e22fb1f24628.orig.mp3",
+      "audioAuto": "3086e22fb1f24628.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3086e22fb1f24628"
     },
     {
       "id": "r-6f14c2641c25",
@@ -198,7 +213,12 @@
       "pronunciation": "ki",
       "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
       "sourceOrder": 17,
-      "ttsText": "き"
+      "ttsText": "き",
+      "audio": "60446fbae0d9afb4.mp3",
+      "audioOriginal": "60446fbae0d9afb4.orig.mp3",
+      "audioAuto": "60446fbae0d9afb4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "60446fbae0d9afb4"
     },
     {
       "id": "r-0d73d884a9f3",
@@ -277,7 +297,12 @@
       "pronunciation": "umi",
       "reviewNote": "Taught as a word in Chapter 07: Lesson 5: A Trip to Okinawa: this is the word's card, voiced.",
       "sourceOrder": 24,
-      "ttsText": "うみ"
+      "ttsText": "うみ",
+      "audio": "369d6bffbe51cf51.mp3",
+      "audioOriginal": "369d6bffbe51cf51.orig.mp3",
+      "audioAuto": "369d6bffbe51cf51.mp3",
+      "audioMarked": true,
+      "audioTextHash": "369d6bffbe51cf51"
     },
     {
       "id": "r-bea55d0635be",
@@ -287,7 +312,12 @@
       "pronunciation": "mono",
       "reviewNote": "Taught as a word in Chapter 14: Lesson 12: Feeling Sick: this is the word's card, voiced.",
       "sourceOrder": 25,
-      "ttsText": "もの"
+      "ttsText": "もの",
+      "audio": "96ee5bdc5523f56e.mp3",
+      "audioOriginal": "96ee5bdc5523f56e.orig.mp3",
+      "audioAuto": "96ee5bdc5523f56e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "96ee5bdc5523f56e"
     },
     {
       "id": "r-073d8528405e",
@@ -311,7 +341,12 @@
       "pronunciation": "yama",
       "reviewNote": "Taught as a word in Chapter 13: Lesson 11: After the Vacation: this is the word's card, voiced.",
       "sourceOrder": 27,
-      "ttsText": "やま"
+      "ttsText": "やま",
+      "audio": "c826539574a3f206.mp3",
+      "audioOriginal": "c826539574a3f206.orig.mp3",
+      "audioAuto": "c826539574a3f206.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c826539574a3f206"
     },
     {
       "id": "r-ba9358753016",
@@ -345,7 +380,12 @@
       "pronunciation": "roku",
       "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
       "sourceOrder": 30,
-      "ttsText": "ろく"
+      "ttsText": "ろく",
+      "audio": "802b29781c24f248.mp3",
+      "audioOriginal": "802b29781c24f248.orig.mp3",
+      "audioAuto": "802b29781c24f248.mp3",
+      "audioMarked": true,
+      "audioTextHash": "802b29781c24f248"
     },
     {
       "id": "r-f4bba5643a36",
@@ -355,7 +395,12 @@
       "pronunciation": "kuni",
       "reviewNote": "Taught as a word in Chapter 08: Lesson 6: A Day in Robert's Life: this is the word's card, voiced.",
       "sourceOrder": 31,
-      "ttsText": "くに"
+      "ttsText": "くに",
+      "audio": "d7544fe82db1004b.mp3",
+      "audioOriginal": "d7544fe82db1004b.orig.mp3",
+      "audioAuto": "d7544fe82db1004b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d7544fe82db1004b"
     },
     {
       "id": "r-7f2c11c7950a",
@@ -513,7 +558,12 @@
       "pronunciation": "ni",
       "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
       "sourceOrder": 46,
-      "ttsText": "に"
+      "ttsText": "に",
+      "audio": "557359c0476f3633.mp3",
+      "audioOriginal": "557359c0476f3633.orig.mp3",
+      "audioAuto": "557359c0476f3633.mp3",
+      "audioMarked": true,
+      "audioTextHash": "557359c0476f3633"
     },
     {
       "id": "r-c9bd4c71a44e",
@@ -538,7 +588,12 @@
       "pronunciation": "kyū",
       "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
       "sourceOrder": 48,
-      "ttsText": "きゅう"
+      "ttsText": "きゅう",
+      "audio": "333e5986c02c0bbb.mp3",
+      "audioOriginal": "333e5986c02c0bbb.orig.mp3",
+      "audioAuto": "333e5986c02c0bbb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "333e5986c02c0bbb"
     },
     {
       "id": "r-3aca6391ccb2",
@@ -743,7 +798,12 @@
       "pronunciation": "haru",
       "reviewNote": "Taught as a word in Chapter 12: Lesson 10: Winter Vacation Plans: this is the word's card, voiced.",
       "sourceOrder": 67,
-      "ttsText": "はる"
+      "ttsText": "はる",
+      "audio": "66e5937fed32de5b.mp3",
+      "audioOriginal": "66e5937fed32de5b.orig.mp3",
+      "audioAuto": "66e5937fed32de5b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "66e5937fed32de5b"
     },
     {
       "id": "r-13d060362fff",
@@ -797,7 +857,12 @@
       "pronunciation": "hachi",
       "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
       "sourceOrder": 71,
-      "ttsText": "はち"
+      "ttsText": "はち",
+      "audio": "969c69db79fdb2a9.mp3",
+      "audioOriginal": "969c69db79fdb2a9.orig.mp3",
+      "audioAuto": "969c69db79fdb2a9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "969c69db79fdb2a9"
     },
     {
       "id": "r-835872d37309",
@@ -862,7 +927,12 @@
       "pronunciation": "yon",
       "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
       "sourceOrder": 77,
-      "ttsText": "よん"
+      "ttsText": "よん",
+      "audio": "cfd158c976ba6112.mp3",
+      "audioOriginal": "cfd158c976ba6112.orig.mp3",
+      "audioAuto": "cfd158c976ba6112.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cfd158c976ba6112"
     },
     {
       "id": "r-93c323048753",
@@ -913,7 +983,12 @@
       "pronunciation": "ten",
       "reviewNote": "Taught as a word in Chapter 26: Reading and Writing 12: Tanabata Festival: this is the word's card, voiced.",
       "sourceOrder": 82,
-      "ttsText": "てん"
+      "ttsText": "てん",
+      "audio": "e98b6d32665572b7.mp3",
+      "audioOriginal": "e98b6d32665572b7.orig.mp3",
+      "audioAuto": "e98b6d32665572b7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e98b6d32665572b7"
     },
     {
       "id": "r-8f07f53d63e1",
@@ -923,7 +998,12 @@
       "pronunciation": "go",
       "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
       "sourceOrder": 83,
-      "ttsText": "ご"
+      "ttsText": "ご",
+      "audio": "51cb9ab3eaf67614.mp3",
+      "audioOriginal": "51cb9ab3eaf67614.orig.mp3",
+      "audioAuto": "51cb9ab3eaf67614.mp3",
+      "audioMarked": true,
+      "audioTextHash": "51cb9ab3eaf67614"
     },
     {
       "id": "r-0889c349726f",
@@ -942,7 +1022,12 @@
       "pronunciation": "san",
       "reviewNote": "Taught as a word in Chapter 17: Reading and Writing 3: Daily Life: this is the word's card, voiced.",
       "sourceOrder": 85,
-      "ttsText": "さん"
+      "ttsText": "さん",
+      "audio": "d222e5a852735f25.mp3",
+      "audioOriginal": "d222e5a852735f25.orig.mp3",
+      "audioAuto": "d222e5a852735f25.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d222e5a852735f25"
     },
     {
       "id": "r-8d8f4aeca850",
@@ -952,7 +1037,12 @@
       "pronunciation": "aki",
       "reviewNote": "Taught as a word in Chapter 12: Lesson 10: Winter Vacation Plans: this is the word's card, voiced.",
       "sourceOrder": 86,
-      "ttsText": "あき"
+      "ttsText": "あき",
+      "audio": "b27d5bdadf809cde.mp3",
+      "audioOriginal": "b27d5bdadf809cde.orig.mp3",
+      "audioAuto": "b27d5bdadf809cde.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b27d5bdadf809cde"
     },
     {
       "id": "r-1cf3b2f84e7f",
@@ -971,7 +1061,12 @@
       "pronunciation": "hon",
       "reviewNote": "Taught as a word in Chapter 18: Reading and Writing 4: Mary's Weekend: this is the word's card, voiced.",
       "sourceOrder": 88,
-      "ttsText": "ほん"
+      "ttsText": "ほん",
+      "audio": "5edb5219bfd6b996.mp3",
+      "audioOriginal": "5edb5219bfd6b996.orig.mp3",
+      "audioAuto": "5edb5219bfd6b996.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5edb5219bfd6b996"
     },
     {
       "id": "r-0869071c92c0",
@@ -1281,11 +1376,6 @@
       "sourceOrder": 109,
       "pronunciation": "ni-shūkan mae",
       "ttsKanji": "二週間前",
-      "audio": "1932c5ca7432e9db.mp3",
-      "audioOriginal": "1932c5ca7432e9db.orig.mp3",
-      "audioAuto": "1932c5ca7432e9db.mp3",
-      "audioMarked": true,
-      "audioTextHash": "1932c5ca7432e9db",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 二, 週間, 前."
@@ -1389,11 +1479,6 @@
       "sourceOrder": 116,
       "pronunciation": "hitori de",
       "ttsKanji": "一人で",
-      "audio": "c8b48ef60326f8c3.mp3",
-      "audioOriginal": "c8b48ef60326f8c3.orig.mp3",
-      "audioAuto": "c8b48ef60326f8c3.mp3",
-      "audioMarked": true,
-      "audioTextHash": "c8b48ef60326f8c3",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 一人."
@@ -1437,11 +1522,6 @@
       "sourceOrder": 119,
       "pronunciation": "ni-kagetsu mae",
       "ttsKanji": "二か月前",
-      "audio": "6ea093ec2b218889.mp3",
-      "audioOriginal": "6ea093ec2b218889.orig.mp3",
-      "audioAuto": "6ea093ec2b218889.mp3",
-      "audioMarked": true,
-      "audioTextHash": "6ea093ec2b218889",
       "excluded": true,
       "excludedBy": "owner-cut-2026-10-14",
       "excludedReason": "Owner ruling 2026-10-14 (deck review): a phrase, an inflected form or a repeat, not a word. Its words are carded on their own: 二, か月, 前."
@@ -2117,7 +2197,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 164,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "554faf8c176c339c.mp3",
+      "audioOriginal": "554faf8c176c339c.orig.mp3",
+      "audioAuto": "554faf8c176c339c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "554faf8c176c339c"
     },
     {
       "id": "r-3898a45567bc",
@@ -2130,7 +2215,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 165,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "531daaec8c9083e8.mp3",
+      "audioOriginal": "531daaec8c9083e8.orig.mp3",
+      "audioAuto": "531daaec8c9083e8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "531daaec8c9083e8"
     },
     {
       "id": "r-e951d898e9f7",
@@ -2143,7 +2233,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 166,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "68edee0a5efe1e0d.mp3",
+      "audioOriginal": "68edee0a5efe1e0d.orig.mp3",
+      "audioAuto": "68edee0a5efe1e0d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "68edee0a5efe1e0d"
     },
     {
       "id": "r-dac5927ab517",
@@ -2156,7 +2251,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 167,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "d52f20dfc9b1f4f6.mp3",
+      "audioOriginal": "d52f20dfc9b1f4f6.orig.mp3",
+      "audioAuto": "d52f20dfc9b1f4f6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d52f20dfc9b1f4f6"
     },
     {
       "id": "r-08ad0d22ad5c",
@@ -2169,7 +2269,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 168,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "ea897758e8442081.mp3",
+      "audioOriginal": "ea897758e8442081.orig.mp3",
+      "audioAuto": "ea897758e8442081.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ea897758e8442081"
     },
     {
       "id": "r-f3255b3073cf",
@@ -2182,7 +2287,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 169,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "5b8eeadcde0756ed.mp3",
+      "audioOriginal": "5b8eeadcde0756ed.orig.mp3",
+      "audioAuto": "5b8eeadcde0756ed.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5b8eeadcde0756ed"
     },
     {
       "id": "r-8dccc4a2e6ce",
@@ -2195,7 +2305,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 170,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "799e8847a0c6070a.mp3",
+      "audioOriginal": "799e8847a0c6070a.orig.mp3",
+      "audioAuto": "799e8847a0c6070a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "799e8847a0c6070a"
     },
     {
       "id": "r-64494d92b8cc",
@@ -2208,7 +2323,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 171,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "cb2e32a126555ab4.mp3",
+      "audioOriginal": "cb2e32a126555ab4.orig.mp3",
+      "audioAuto": "cb2e32a126555ab4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cb2e32a126555ab4"
     },
     {
       "id": "r-cfe9997d6d39",
@@ -2221,7 +2341,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 172,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "7adb45d286abc749.mp3",
+      "audioOriginal": "7adb45d286abc749.orig.mp3",
+      "audioAuto": "7adb45d286abc749.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7adb45d286abc749"
     }
   ]
 }

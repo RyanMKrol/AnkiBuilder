@@ -1607,7 +1607,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 118,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "9f55da4f84df22f8.mp3",
+      "audioOriginal": "9f55da4f84df22f8.orig.mp3",
+      "audioAuto": "9f55da4f84df22f8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9f55da4f84df22f8"
     },
     {
       "id": "r-785e422c5e41",
@@ -1620,7 +1625,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, culture note; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 119,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "71e2fd21ce5e3108.mp3",
+      "audioOriginal": "71e2fd21ce5e3108.orig.mp3",
+      "audioAuto": "71e2fd21ce5e3108.mp3",
+      "audioMarked": true,
+      "audioTextHash": "71e2fd21ce5e3108"
     },
     {
       "id": "r-3d6177f4d29b",
@@ -1633,7 +1643,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 120,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "f34e532e35a3f2fa.mp3",
+      "audioOriginal": "f34e532e35a3f2fa.orig.mp3",
+      "audioAuto": "f34e532e35a3f2fa.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f34e532e35a3f2fa"
     },
     {
       "id": "r-fdb98a7a9fbd",
@@ -1646,7 +1661,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 121,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "ef2a400708ca6742.mp3",
+      "audioOriginal": "ef2a400708ca6742.orig.mp3",
+      "audioAuto": "ef2a400708ca6742.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ef2a400708ca6742"
     },
     {
       "id": "r-21dc12b6ccf5",
@@ -1659,7 +1679,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 122,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "4162f7af2be26f67.mp3",
+      "audioOriginal": "4162f7af2be26f67.orig.mp3",
+      "audioAuto": "4162f7af2be26f67.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4162f7af2be26f67"
     },
     {
       "id": "r-b25543188812",
@@ -1672,7 +1697,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 123,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "d811a5f21f38afcd.mp3",
+      "audioOriginal": "d811a5f21f38afcd.orig.mp3",
+      "audioAuto": "d811a5f21f38afcd.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d811a5f21f38afcd"
     }
   ]
 }

@@ -834,7 +834,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-25-extras/-/book-gap/2: the book says を is often omitted in casual speech, and no card showed it.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "71329e7b10a874f5.mp3",
+      "audioOriginal": "71329e7b10a874f5.orig.mp3",
+      "audioAuto": "71329e7b10a874f5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "71329e7b10a874f5"
     }
   ]
 }

@@ -117,19 +117,8 @@
       "note": "Attaches to a noun naming a means of transportation, e.g. バスで (basu de, \"by bus\"). To ask by what means, use なんで (nande) — see that card.",
       "uncertain": true,
       "reviewNote": "Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on english) | Excluded as a duplicate of chapter-4/de-particle, which teaches the same word with the same meaning and is the earlier occurrence.",
-      "audioOriginal": "a2e54fdcf32b8cea-gen-c931b9ad.orig.mp3",
-      "audioAuto": "a2e54fdcf32b8cea-gen-c931b9ad.mp3",
-      "audioFilter": "standard",
-      "audioMarked": true,
-      "audio": "de-particle-transport-manual-e7c18736.mp3",
-      "audioManual": "de-particle-transport-manual-e7c18736.mp3",
-      "audioTrim": {
-        "start": 0,
-        "end": 0.5976575342465753
-      },
       "scene": "getting somewhere — by bus, by train",
-      "excluded": true,
-      "audioTextHash": "a2e54fdcf32b8cea"
+      "excluded": true
     },
     {
       "id": "shinkansen",
@@ -1278,7 +1267,12 @@
       "pronunciation": "hoteru",
       "addition": "qa-fix-2026-10",
       "reviewNote": "QA fix pass 2026-10, answers chapter-7/hoteru/book-gap/1: the Exercise vocabulary entry ホテル, excluded at the v1 review with no reason recorded. Restored through the additions gate, since eight shipping sentences from Lesson 7 on use the word.",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "4d4b3cdaece3fac7.mp3",
+      "audioOriginal": "4d4b3cdaece3fac7.orig.mp3",
+      "audioAuto": "4d4b3cdaece3fac7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4d4b3cdaece3fac7"
     },
     {
       "id": "okake-kudasai",

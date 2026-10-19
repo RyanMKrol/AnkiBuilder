@@ -42,7 +42,12 @@
       "pronunciation": "shiro",
       "reviewNote": "Taught as a word in Chapter 23: Reading and Writing 9: Sora's Diary: this is the word's card, voiced.",
       "sourceOrder": 2,
-      "ttsText": "しろ"
+      "ttsText": "しろ",
+      "audio": "6c5fb0e7c87300e5.mp3",
+      "audioOriginal": "6c5fb0e7c87300e5.orig.mp3",
+      "audioAuto": "6c5fb0e7c87300e5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6c5fb0e7c87300e5"
     },
     {
       "id": "r-e94720352f3c",
@@ -138,7 +143,12 @@
       "pronunciation": "otto",
       "reviewNote": "Taught as a word in Chapter 09: Lesson 7: Family Picture: this is the word's card, voiced.",
       "sourceOrder": 12,
-      "ttsText": "おっと"
+      "ttsText": "おっと",
+      "audio": "8c56ad251fb210a6.mp3",
+      "audioOriginal": "8c56ad251fb210a6.orig.mp3",
+      "audioAuto": "8c56ad251fb210a6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8c56ad251fb210a6"
     },
     {
       "id": "r-ec5dc229294b",

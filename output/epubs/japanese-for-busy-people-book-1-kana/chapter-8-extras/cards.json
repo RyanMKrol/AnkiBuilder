@@ -1432,7 +1432,12 @@
       "reviewNote": "QA fix pass 2026-10, answers chapter-8/-/book-gap/1: GRAMMAR 3's own example, だれも いきませんでした (\"Nobody went.\").",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "ef3baa9050fd8c7a.mp3",
+      "audioOriginal": "ef3baa9050fd8c7a.orig.mp3",
+      "audioAuto": "ef3baa9050fd8c7a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ef3baa9050fd8c7a"
     }
   ]
 }

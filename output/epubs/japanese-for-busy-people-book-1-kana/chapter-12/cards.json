@@ -37,12 +37,7 @@
       "note": "Marks a newly introduced subject, or one the speaker believes is new information to the listener — used after a noun with あります/います. Same が already met as が (but), joining two contrasting clauses (Lesson 11); here it has nothing to do with contrast, it simply marks the subject.",
       "reviewNote": "Possibly already taught — already introduced in Lesson 6: Going Places (1): Where Are You Going? (matched on target) | Excluded as a duplicate of chapter-6/ga-particle, which teaches the same word with the same meaning and is the earlier occurrence.",
       "scene": "introducing something new, in a 〜があります (~ga arimasu, \"there is a …\") existence sentence",
-      "audio": "2e80f7652f14ae6a.mp3",
-      "audioOriginal": "2e80f7652f14ae6a.orig.mp3",
-      "audioAuto": "2e80f7652f14ae6a.mp3",
-      "audioMarked": true,
-      "excluded": true,
-      "audioTextHash": "2e80f7652f14ae6a"
+      "excluded": true
     },
     {
       "id": "arimasu-inanimate",
@@ -276,12 +271,7 @@
       "pronunciation": "hana",
       "uncertain": true,
       "reviewNote": "Excluded as a duplicate: chapter-10 already teaches はな with the identical gloss \"Flower\", and both cards carried the same id (hana-flower), which collided when the book package maps each card id to one Anki note. The backward de-dup flagged this at build time as already introduced. The earliest occurrence is kept; the WORD POWER hotel-room list simply re-uses the word.",
-      "audio": "7115be407b7a5e6e.mp3",
-      "audioOriginal": "7115be407b7a5e6e.orig.mp3",
-      "audioAuto": "7115be407b7a5e6e.mp3",
-      "audioMarked": true,
-      "excluded": true,
-      "audioTextHash": "7115be407b7a5e6e"
+      "excluded": true
     },
     {
       "id": "table-ue-hana-arimasu",
@@ -458,12 +448,7 @@
       "pronunciation": "reizōko",
       "uncertain": true,
       "reviewNote": "Numbered item ② in the WORD POWER 'Things in a hotel room' image list, but never given an English gloss anywhere in this chapter's text — translation supplied from general knowledge. | Possibly already taught — already introduced in Lesson 4: Shopping (1): How Much Is This? (matched on english) | Excluded as a duplicate of chapter-4 (Refrigerator), which teaches the same word with the same meaning and is the earlier occurrence.",
-      "audio": "04d2f751d4dccf39.mp3",
-      "audioOriginal": "04d2f751d4dccf39.orig.mp3",
-      "audioAuto": "04d2f751d4dccf39.mp3",
-      "audioMarked": true,
-      "excluded": true,
-      "audioTextHash": "04d2f751d4dccf39"
+      "excluded": true
     },
     {
       "id": "taki-waterfall",
@@ -750,13 +735,8 @@
       "target": "だれも…〜ません",
       "pronunciation": "dare mo … ~ masen",
       "note": "Pattern: だれも + negative verb = \"no one (is/does...)\". Compare なにも ありません (there is nothing), the same pattern with なに instead of だれ.",
-      "audio": "65ce4a3569945076.mp3",
-      "audioOriginal": "65ce4a3569945076.orig.mp3",
-      "audioAuto": "65ce4a3569945076.mp3",
-      "audioMarked": true,
       "excluded": true,
-      "reviewNote": "Excluded at the audio review: the target was the book vocabulary list's SCHEMATIC pattern (… and 〜 are placeholders for a verb), so it is not an utterance. Its audio was meaningless, its romaji unreadable, and its Production face unanswerable. The pattern is taught concretely by だれもいません and なにもありません in this same lesson, and this card's だれも/なにも comparison moved onto だれもいません.",
-      "audioTextHash": "65ce4a3569945076"
+      "reviewNote": "Excluded at the audio review: the target was the book vocabulary list's SCHEMATIC pattern (… and 〜 are placeholders for a verb), so it is not an utterance. Its audio was meaningless, its romaji unreadable, and its Production face unanswerable. The pattern is taught concretely by だれもいません and なにもありません in this same lesson, and this card's だれも/なにも comparison moved onto だれもいません."
     },
     {
       "id": "hikidashi-naka-nani-arimasuka",
@@ -952,11 +932,11 @@
       "scene": null,
       "fillInBlank": true,
       "aiSuggested": true,
-      "audio": "f6f81770f2fa9995.mp3",
-      "audioOriginal": "f6f81770f2fa9995.orig.mp3",
-      "audioAuto": "f6f81770f2fa9995.mp3",
+      "audio": "5de0fc6dd68742a2.mp3",
+      "audioOriginal": "5de0fc6dd68742a2.orig.mp3",
+      "audioAuto": "5de0fc6dd68742a2.mp3",
       "audioMarked": true,
-      "audioTextHash": "f6f81770f2fa9995"
+      "audioTextHash": "5de0fc6dd68742a2"
     },
     {
       "id": "fib-goa-desu",

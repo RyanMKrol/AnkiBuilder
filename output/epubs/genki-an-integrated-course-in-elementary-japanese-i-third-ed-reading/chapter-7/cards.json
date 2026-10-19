@@ -286,7 +286,12 @@
       "pronunciation": "te",
       "reviewNote": "Taught as a word in Chapter 09: Lesson 7: Family Picture: this is the word's card, voiced.",
       "sourceOrder": 25,
-      "ttsText": "て"
+      "ttsText": "て",
+      "audio": "5c8b8b79047427f5.mp3",
+      "audioOriginal": "5c8b8b79047427f5.orig.mp3",
+      "audioAuto": "5c8b8b79047427f5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5c8b8b79047427f5"
     },
     {
       "id": "r-869fd80b7f2f",
@@ -468,7 +473,12 @@
       "pronunciation": "kuruma",
       "reviewNote": "Taught as a word in Chapter 09: Lesson 7: Family Picture: this is the word's card, voiced.",
       "sourceOrder": 42,
-      "ttsText": "くるま"
+      "ttsText": "くるま",
+      "audio": "506f37e721b46997.mp3",
+      "audioOriginal": "506f37e721b46997.orig.mp3",
+      "audioAuto": "506f37e721b46997.mp3",
+      "audioMarked": true,
+      "audioTextHash": "506f37e721b46997"
     },
     {
       "id": "r-3a0ea34a22f0",
@@ -478,7 +488,12 @@
       "pronunciation": "me",
       "reviewNote": "Taught as a word in Chapter 09: Lesson 7: Family Picture: this is the word's card, voiced.",
       "sourceOrder": 43,
-      "ttsText": "め"
+      "ttsText": "め",
+      "audio": "f246efa733234dc9.mp3",
+      "audioOriginal": "f246efa733234dc9.orig.mp3",
+      "audioAuto": "f246efa733234dc9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f246efa733234dc9"
     },
     {
       "id": "r-99529c90aed3",
@@ -524,7 +539,12 @@
       "pronunciation": "michi",
       "reviewNote": "Taught as a word in Chapter 24: Reading and Writing 10: The Folktale Kasajizo: this is the word's card, voiced.",
       "sourceOrder": 48,
-      "ttsText": "みち"
+      "ttsText": "みち",
+      "audio": "37a8ba43a47f1354.mp3",
+      "audioOriginal": "37a8ba43a47f1354.orig.mp3",
+      "audioAuto": "37a8ba43a47f1354.mp3",
+      "audioMarked": true,
+      "audioTextHash": "37a8ba43a47f1354"
     },
     {
       "id": "r-6c71e31e2aad",
@@ -1427,7 +1447,12 @@
       "reviewNote": "QA fix pass 2026-10: the Useful Expressions print 一つ目の信号を右に曲がる; the words-only cut carded the phrase's other words and missed this one.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 109,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "7e1bb658d83692b0.mp3",
+      "audioOriginal": "7e1bb658d83692b0.orig.mp3",
+      "audioAuto": "7e1bb658d83692b0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7e1bb658d83692b0"
     },
     {
       "id": "r-503adf9ba77c",
@@ -1440,7 +1465,12 @@
       "reviewNote": "QA fix pass 2026-10: the Useful Expressions print 二つ目の角を左に曲がる; the words-only cut carded the phrase's other words and missed this one.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 110,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "3e9e2c1486588096.mp3",
+      "audioOriginal": "3e9e2c1486588096.orig.mp3",
+      "audioAuto": "3e9e2c1486588096.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3e9e2c1486588096"
     },
     {
       "id": "r-7a4fe7758104",
@@ -1453,7 +1483,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 111,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "8567a41924c15d5a.mp3",
+      "audioOriginal": "8567a41924c15d5a.orig.mp3",
+      "audioAuto": "8567a41924c15d5a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8567a41924c15d5a"
     },
     {
       "id": "r-a5e487dc05dc",
@@ -1466,7 +1501,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 112,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "c3b8f9aa523a13cc.mp3",
+      "audioOriginal": "c3b8f9aa523a13cc.orig.mp3",
+      "audioAuto": "c3b8f9aa523a13cc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c3b8f9aa523a13cc"
     },
     {
       "id": "r-1d773007ebc9",
@@ -1479,7 +1519,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 113,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "c0fa9a3396be06d3.mp3",
+      "audioOriginal": "c0fa9a3396be06d3.orig.mp3",
+      "audioAuto": "c0fa9a3396be06d3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c0fa9a3396be06d3"
     },
     {
       "id": "r-e266c482e39b",
@@ -1492,7 +1537,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, culture note; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 114,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "714d6cfa5316e945.mp3",
+      "audioOriginal": "714d6cfa5316e945.orig.mp3",
+      "audioAuto": "714d6cfa5316e945.mp3",
+      "audioMarked": true,
+      "audioTextHash": "714d6cfa5316e945"
     },
     {
       "id": "r-7cb3b66a1f4c",
@@ -1505,7 +1555,12 @@
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
       "sourceOrder": 115,
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "c5a5216f29c1dac1.mp3",
+      "audioOriginal": "c5a5216f29c1dac1.orig.mp3",
+      "audioAuto": "c5a5216f29c1dac1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "c5a5216f29c1dac1"
     }
   ]
 }

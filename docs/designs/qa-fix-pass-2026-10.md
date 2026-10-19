@@ -342,6 +342,10 @@ For the owner, from the fixers: three target changes on hand-trimmed clips were 
 
 Session-review items: corpus.json and cards.json already differed in chapters 13 to 18 before the pass (fill-in-the-blank cards exist only in cards.json; chapters 17 and 18 have corpus items with no card); the shared scratchpad folder let two agents overwrite each other's helper scripts; the pre-push hook failed and then passed with no change for two agents.
 
+## Wave C notes (2026-10-19)
+
+F2: 66 fixed, 2 skipped, 5 untaught-words instances accepted (names and one false match); 28 Busy People additions pending in batch `qa-fix-2026-10`; eight more delivered cards excluded (seven will be orphans). The Genki scan ran over all 26 chapters: 792 candidate rows, of which 701 are kana-only (kana unit, by budget) and 91 rows (77 forms) are kanji words; `vocab-scan-review.md` lists the 77 for the owner. Six Genki additions pending. Next: owner approves both batches and the review list, then F4 voices everything and F5 closes out.
+
 ## Orphan notes for the owner to delete in Anki
 
 Filled in by F5 from the delivery dry run.

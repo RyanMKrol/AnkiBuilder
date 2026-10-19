@@ -8,7 +8,9 @@
 // chapter reader, with the current prompt, over every chapter of the book (ONE model call per
 // chapter) and writes one line per candidate word to `qa/<slug>/<date>/vocab-scan.jsonl`: the
 // chapter, where the word appeared, whether the book glossed it, whether a later chapter's list
-// introduces it ("skip, carded there"), and whether a card already exists. The owner reads it and
+// introduces it ("skip, carded there"), whether a card already exists, and whether a card exists
+// that someone EXCLUDED ("excluded", with the reason): that is a decision already made, shown so the
+// owner reopens it on purpose rather than approving the same form twice. The owner reads it and
 // approves which words become cards; those go through the additions gates like any new card.
 //
 // READ-ONLY: nothing under output/ is written, and nothing under .anki-builder/ except the free
@@ -35,7 +37,7 @@ import { parseHeadings } from "../src/corpus/chapterOutline.js";
 import { READING } from "../src/model/deckKind.js";
 import { readChapterForReading } from "../src/reading/readingAgents.js";
 import { laterVocabulary } from "../src/reading/laterVocabulary.js";
-import { cardedForms, scanRows, summarizeRows } from "../src/reading/vocabScan.js";
+import { cardedForms, excludedForms, scanRows, summarizeRows } from "../src/reading/vocabScan.js";
 import { withRunLogDir } from "../src/agents/runLog.js";
 
 const REPO = resolve(join(dirname(fileURLToPath(import.meta.url)), ".."));
@@ -126,6 +128,7 @@ const chapterFile = (lesson) => {
 
 const hints = loadBookHints(epubHash);
 const carded = cardedForms(collectionDir, targetLanguage);
+const excluded = excludedForms(collectionDir, targetLanguage);
 const rows = [];
 const failed = [];
 for (const [at, lesson] of lessons.entries()) {
@@ -164,6 +167,7 @@ for (const [at, lesson] of lessons.entries()) {
         vocabularyTableClass: hints.vocabularyTableClass ?? null,
       }),
       carded,
+      excluded,
       targetLanguage,
     }),
   );

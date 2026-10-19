@@ -179,8 +179,12 @@ node scripts/reading-vocab-scan.mjs output/epubs/<slug>-reading [--date YYYY-MM-
 **Say the cost first**: one Sonnet call per chapter (26 for Genki). Run it only when the owner has
 approved the spend. It writes `qa/<slug>/<date>/vocab-scan.jsonl`, one line per word the chapter
 reader found: the chapter, where it appeared, whether the book glossed it, the later chapter whose
-list introduces it, whether a card exists, and a `decision` (`card exists`, `skip, carded there` or
-`candidate`). Each chapter's reply is saved under `vocab-scan/` as it returns, so a stop costs only
+list introduces it, whether a card exists, and a `decision` (`card exists`, `excluded`, `skip, carded
+there` or `candidate`). An `excluded` row is a form someone already cut from the deck, with the
+reason beside it (`excludedIn`, `excludedReason`); keep it off the owner's review list unless you
+mean to reopen that decision. On the first Genki scan 21 such phrases went onto the list as
+candidates and were approved again before anyone noticed. Each chapter's reply is saved under
+`vocab-scan/` as it returns, so a stop costs only
 the running chapter. The owner chooses which candidates become cards, and those go through the
 additions gates like any new card; never write them into a done unit directly.
 

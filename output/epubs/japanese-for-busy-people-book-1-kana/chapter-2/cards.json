@@ -729,7 +729,8 @@
       "audioOriginal": "fccaf157062f183f.orig.mp3",
       "audioAuto": "fccaf157062f183f.mp3",
       "audioMarked": true,
-      "audioTextHash": "fccaf157062f183f"
+      "audioTextHash": "fccaf157062f183f",
+      "additionDone": true
     },
     {
       "id": "num-4-shi",
@@ -747,7 +748,8 @@
       "audioOriginal": "7810214ac1db8475.orig.mp3",
       "audioAuto": "7810214ac1db8475.mp3",
       "audioMarked": true,
-      "audioTextHash": "7810214ac1db8475"
+      "audioTextHash": "7810214ac1db8475",
+      "additionDone": true
     },
     {
       "id": "num-7-shichi",
@@ -765,7 +767,8 @@
       "audioOriginal": "40a89ebca5b3a4a2.orig.mp3",
       "audioAuto": "40a89ebca5b3a4a2.mp3",
       "audioMarked": true,
-      "audioTextHash": "40a89ebca5b3a4a2"
+      "audioTextHash": "40a89ebca5b3a4a2",
+      "additionDone": true
     },
     {
       "id": "num-9-ku",
@@ -779,11 +782,17 @@
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
       "additionReviewed": true,
-      "audio": "c154343d9de3441b.mp3",
+      "audio": "num-9-ku-manual-708f7209.mp3",
       "audioOriginal": "c154343d9de3441b.orig.mp3",
       "audioAuto": "c154343d9de3441b.mp3",
       "audioMarked": true,
-      "audioTextHash": "c154343d9de3441b"
+      "audioTextHash": "c154343d9de3441b",
+      "audioManual": "num-9-ku-manual-708f7209.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.8331464041095892
+      },
+      "additionDone": true
     },
     {
       "id": "doumo-arigatou-gozaimasu",
@@ -801,7 +810,8 @@
       "audioOriginal": "d20c9ed17a6f1537.orig.mp3",
       "audioAuto": "d20c9ed17a6f1537.mp3",
       "audioMarked": true,
-      "audioTextHash": "d20c9ed17a6f1537"
+      "audioTextHash": "d20c9ed17a6f1537",
+      "additionDone": true
     }
   ]
 }

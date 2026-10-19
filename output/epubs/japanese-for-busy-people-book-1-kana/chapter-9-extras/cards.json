@@ -1027,7 +1027,8 @@
       "audioOriginal": "cc87142ccf786416.orig.mp3",
       "audioAuto": "cc87142ccf786416.mp3",
       "audioMarked": true,
-      "audioTextHash": "cc87142ccf786416"
+      "audioTextHash": "cc87142ccf786416",
+      "additionDone": true
     },
     {
       "id": "p102-sakuban-nanji-ni-nemashita-ka",
@@ -1736,7 +1737,8 @@
       "audioOriginal": "f30bbd3447832566.orig.mp3",
       "audioAuto": "f30bbd3447832566.mp3",
       "audioMarked": true,
-      "audioTextHash": "f30bbd3447832566"
+      "audioTextHash": "f30bbd3447832566",
+      "additionDone": true
     },
     {
       "id": "f9-denwa-shimashita",
@@ -1752,7 +1754,8 @@
       "audioOriginal": "ff029aa7328d5451.orig.mp3",
       "audioAuto": "ff029aa7328d5451.mp3",
       "audioMarked": true,
-      "audioTextHash": "ff029aa7328d5451"
+      "audioTextHash": "ff029aa7328d5451",
+      "additionDone": true
     },
     {
       "id": "f9-denwa-shimasendeshita",
@@ -1768,7 +1771,8 @@
       "audioOriginal": "5430573dffd06b47.orig.mp3",
       "audioAuto": "5430573dffd06b47.mp3",
       "audioMarked": true,
-      "audioTextHash": "5430573dffd06b47"
+      "audioTextHash": "5430573dffd06b47",
+      "additionDone": true
     },
     {
       "id": "f9-okurimasen",
@@ -1784,7 +1788,8 @@
       "audioOriginal": "6e26f228ccf527d5.orig.mp3",
       "audioAuto": "6e26f228ccf527d5.mp3",
       "audioMarked": true,
-      "audioTextHash": "6e26f228ccf527d5"
+      "audioTextHash": "6e26f228ccf527d5",
+      "additionDone": true
     },
     {
       "id": "f9-okurimasendeshita",
@@ -1800,7 +1805,8 @@
       "audioOriginal": "4ba8a63a2f07c7ed.orig.mp3",
       "audioAuto": "4ba8a63a2f07c7ed.mp3",
       "audioMarked": true,
-      "audioTextHash": "4ba8a63a2f07c7ed"
+      "audioTextHash": "4ba8a63a2f07c7ed",
+      "additionDone": true
     },
     {
       "id": "f9-aimasen",
@@ -1816,7 +1822,8 @@
       "audioOriginal": "0bbebd0347c63531.orig.mp3",
       "audioAuto": "0bbebd0347c63531.mp3",
       "audioMarked": true,
-      "audioTextHash": "0bbebd0347c63531"
+      "audioTextHash": "0bbebd0347c63531",
+      "additionDone": true
     },
     {
       "id": "f9-aimasendeshita",
@@ -1832,7 +1839,8 @@
       "audioOriginal": "672ee1dd5123f4cb.orig.mp3",
       "audioAuto": "672ee1dd5123f4cb.mp3",
       "audioMarked": true,
-      "audioTextHash": "672ee1dd5123f4cb"
+      "audioTextHash": "672ee1dd5123f4cb",
+      "additionDone": true
     },
     {
       "id": "f9-oshiemasen",
@@ -1848,7 +1856,8 @@
       "audioOriginal": "f1a00693ca94a4df.orig.mp3",
       "audioAuto": "f1a00693ca94a4df.mp3",
       "audioMarked": true,
-      "audioTextHash": "f1a00693ca94a4df"
+      "audioTextHash": "f1a00693ca94a4df",
+      "additionDone": true
     },
     {
       "id": "f9-oshiemasendeshita",
@@ -1864,7 +1873,8 @@
       "audioOriginal": "ac402d90f0c9ac35.orig.mp3",
       "audioAuto": "ac402d90f0c9ac35.mp3",
       "audioMarked": true,
-      "audioTextHash": "ac402d90f0c9ac35"
+      "audioTextHash": "ac402d90f0c9ac35",
+      "additionDone": true
     }
   ]
 }

@@ -1088,7 +1088,8 @@
       "audioOriginal": "ff5dc357fa58970c.orig.mp3",
       "audioAuto": "ff5dc357fa58970c.mp3",
       "audioMarked": true,
-      "audioTextHash": "ff5dc357fa58970c"
+      "audioTextHash": "ff5dc357fa58970c",
+      "additionDone": true
     },
     {
       "id": "r-03f89ec1c0c4",
@@ -1106,7 +1107,8 @@
       "audioOriginal": "91c7543e1c69e707.orig.mp3",
       "audioAuto": "91c7543e1c69e707.mp3",
       "audioMarked": true,
-      "audioTextHash": "91c7543e1c69e707"
+      "audioTextHash": "91c7543e1c69e707",
+      "additionDone": true
     }
   ]
 }

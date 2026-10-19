@@ -800,7 +800,8 @@
       "audioOriginal": "10d10b6f2fbce1e4.orig.mp3",
       "audioAuto": "10d10b6f2fbce1e4.mp3",
       "audioMarked": true,
-      "audioTextHash": "10d10b6f2fbce1e4"
+      "audioTextHash": "10d10b6f2fbce1e4",
+      "additionDone": true
     }
   ]
 }

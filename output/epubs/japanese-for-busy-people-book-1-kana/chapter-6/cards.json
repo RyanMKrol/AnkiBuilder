@@ -115,7 +115,8 @@
       "audioAuto": "43340877c657a86a.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "43340877c657a86a"
+      "audioTextHash": "43340877c657a86a",
+      "hint": "on its own, asking the listener to agree"
     },
     {
       "id": "ne-example",
@@ -932,7 +933,7 @@
       "audioAuto": "2e80f7652f14ae6a.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "picking out which one of several, as in a だれが (dare ga, \"who …?\") question",
+      "scene": "picking out which one of several, as in a どの… (dono, \"which …?\") question",
       "audioTextHash": "2e80f7652f14ae6a"
     },
     {

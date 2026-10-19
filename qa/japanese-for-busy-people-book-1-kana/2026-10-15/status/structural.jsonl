@@ -19,3 +19,4 @@
 {"id":"chapter-5-extras/eg-kiiro-no-kutsushita/untaught-prerequisite/1","status":"fixed","statusReason":"くつした glossed in the note (ruling 5 default); the target and its clip are unchanged."}
 {"id":"chapter-5/dore-example/untaught-prerequisite/1","status":"fixed","statusReason":"シャツ glossed in the note against Tシャツ (ruling 5 default); swapping the target would replace a hand-picked clip."}
 {"id":"chapter-5-extras/-/untaught-prerequisite/1","status":"fixed","statusReason":"The four colour notes now use taught nouns (かさ, かばん, Tシャツ, くつ), each with romaji and English."}
+{"id":"chapter-6/ga-particle/untaught-prerequisite/1","status":"fixed","statusReason":"Scene now points at a どの… question, which Lesson 6 teaches, instead of だれが."}

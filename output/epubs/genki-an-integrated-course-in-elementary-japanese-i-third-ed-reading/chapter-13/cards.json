@@ -1606,7 +1606,8 @@
       "ttsKanji": "厳しい",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 118
+      "sourceOrder": 118,
+      "additionReviewed": true
     },
     {
       "id": "r-785e422c5e41",
@@ -1618,7 +1619,8 @@
       "ttsKanji": "台風",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, culture note; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 119
+      "sourceOrder": 119,
+      "additionReviewed": true
     },
     {
       "id": "r-3d6177f4d29b",
@@ -1630,7 +1632,8 @@
       "ttsKanji": "保険証",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 120
+      "sourceOrder": 120,
+      "additionReviewed": true
     },
     {
       "id": "r-fdb98a7a9fbd",
@@ -1642,7 +1645,8 @@
       "ttsKanji": "見せる",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 121
+      "sourceOrder": 121,
+      "additionReviewed": true
     },
     {
       "id": "r-21dc12b6ccf5",
@@ -1654,7 +1658,8 @@
       "ttsKanji": "痛み止め",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 122
+      "sourceOrder": 122,
+      "additionReviewed": true
     },
     {
       "id": "r-b25543188812",
@@ -1666,7 +1671,8 @@
       "ttsKanji": "食後",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 12: Feeling Sick, dialogue; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 123
+      "sourceOrder": 123,
+      "additionReviewed": true
     }
   ]
 }

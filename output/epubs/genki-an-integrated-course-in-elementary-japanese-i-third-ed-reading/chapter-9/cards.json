@@ -1152,7 +1152,8 @@
       "ttsKanji": "呼ぶ",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, example sentence, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 89
+      "sourceOrder": 89,
+      "additionReviewed": true
     },
     {
       "id": "r-83d65d4e88de",
@@ -1164,7 +1165,8 @@
       "ttsKanji": "スペイン語",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 90
+      "sourceOrder": 90,
+      "additionReviewed": true
     },
     {
       "id": "r-85c18e2c38fc",
@@ -1176,7 +1178,8 @@
       "ttsKanji": "イギリス人",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 91
+      "sourceOrder": 91,
+      "additionReviewed": true
     },
     {
       "id": "r-c555af262ef9",
@@ -1188,7 +1191,8 @@
       "ttsKanji": "韓国人",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 92
+      "sourceOrder": 92,
+      "additionReviewed": true
     },
     {
       "id": "r-9bba0d69bb3c",
@@ -1200,7 +1204,8 @@
       "ttsKanji": "十六日",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 93
+      "sourceOrder": 93,
+      "additionReviewed": true
     },
     {
       "id": "r-77fe42f39884",
@@ -1212,7 +1217,8 @@
       "ttsKanji": "十八日",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 94
+      "sourceOrder": 94,
+      "additionReviewed": true
     },
     {
       "id": "r-c89c95bdcba2",
@@ -1224,7 +1230,8 @@
       "ttsKanji": "定食",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, culture note, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 95
+      "sourceOrder": 95,
+      "additionReviewed": true
     },
     {
       "id": "r-2b7c52d264e5",
@@ -1236,7 +1243,8 @@
       "ttsKanji": "お願いします",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, vocabulary list; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 96
+      "sourceOrder": 96,
+      "additionReviewed": true
     }
   ]
 }

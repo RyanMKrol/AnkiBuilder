@@ -658,7 +658,8 @@
       "ttsKanji": "近い",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 6: My Favorite Restaurant, exercise, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 42
+      "sourceOrder": 42,
+      "additionReviewed": true
     }
   ]
 }

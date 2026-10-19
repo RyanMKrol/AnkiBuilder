@@ -693,7 +693,8 @@
       "ttsKanji": "楽しみ",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 9: Sora's Diary, other, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 47
+      "sourceOrder": 47,
+      "additionReviewed": true
     }
   ]
 }

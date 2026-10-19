@@ -1520,7 +1520,8 @@
       "ttsKanji": "蒸し暑い",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, exercise; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 113
+      "sourceOrder": 113,
+      "additionReviewed": true
     },
     {
       "id": "r-f9b670ca441b",
@@ -1532,7 +1533,8 @@
       "ttsKanji": "地図",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, reading passage, not glossed by the book; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 114
+      "sourceOrder": 114,
+      "additionReviewed": true
     },
     {
       "id": "r-e81918c53b09",
@@ -1544,7 +1546,8 @@
       "ttsKanji": "発車する",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 115
+      "sourceOrder": 115,
+      "additionReviewed": true
     },
     {
       "id": "r-ba450f99699e",
@@ -1556,7 +1559,8 @@
       "ttsKanji": "参る",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 116
+      "sourceOrder": 116,
+      "additionReviewed": true
     },
     {
       "id": "r-afb4c62e7125",
@@ -1568,7 +1572,8 @@
       "ttsKanji": "止まる",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 117
+      "sourceOrder": 117,
+      "additionReviewed": true
     },
     {
       "id": "r-8525185c99eb",
@@ -1580,7 +1585,8 @@
       "ttsKanji": "閉まる",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 118
+      "sourceOrder": 118,
+      "additionReviewed": true
     },
     {
       "id": "r-6af4dde870d4",
@@ -1592,7 +1598,8 @@
       "ttsKanji": "注意する",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "addition": "qa-fix-2026-10",
-      "sourceOrder": 119
+      "sourceOrder": 119,
+      "additionReviewed": true
     }
   ]
 }

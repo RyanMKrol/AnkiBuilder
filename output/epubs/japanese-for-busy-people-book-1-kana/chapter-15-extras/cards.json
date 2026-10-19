@@ -391,7 +391,10 @@
       "audioAuto": "a1b3243842db1789.mp3",
       "audioMarked": true,
       "audioTextHash": "a1b3243842db1789",
-      "audioFilter": "standard"
+      "audioFilter": "standard",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Duplicate of chapter-15/sugoi-great: the same すごい with a second English, not a separate sense."
     },
     {
       "id": "x15b-uisukii-suki-ja-arimasen",
@@ -1360,7 +1363,10 @@
       "audioAuto": "9190d878f194ad3d.mp3",
       "audioMarked": true,
       "audioTextHash": "9190d878f194ad3d",
-      "additionDone": true
+      "additionDone": true,
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: Lesson 15 teaches the nominalising の only before が with すきです or じょうずです, not in a のは…たのしいです frame. わかる keeps its bare card."
     },
     {
       "id": "kazoku-ni-shashin-wo-okuru-no-ga-suki",
@@ -1453,7 +1459,10 @@
       "audioTextHash": "a4c3dc195c1f973c",
       "additionDone": true,
       "audioFilter": "standard",
-      "audio": "a4c3dc195c1f973c-genkanji-d56903b3.mp3"
+      "audio": "a4c3dc195c1f973c-genkanji-d56903b3.mp3",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: the sentence rests on a verb clause modifying a noun (ははがくれる おかし), which this book does not teach. くれる keeps its bare card."
     },
     {
       "id": "toshokan-de-hon-wo-kariru-no-ga-suki",
@@ -1490,7 +1499,10 @@
       "audioTextHash": "f3f6070ad555fd32",
       "additionDone": true,
       "audioFilter": "standard",
-      "audio": "f3f6070ad555fd32-genkanji-c94492cb.mp3"
+      "audio": "f3f6070ad555fd32-genkanji-c94492cb.mp3",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: the sentence rests on a verb clause modifying a noun (にあう ふく), which this book does not teach. にあう keeps its bare card."
     }
   ]
 }

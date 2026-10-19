@@ -38,3 +38,8 @@
 {"id":"chapter-10/-/book-gap/2","status":"skipped","statusReason":"The target already ships: いいです is chapter-11/ii-desu, one lesson later."}
 {"id":"chapter-11/dono-kurai/book-gap/1","status":"fixed","statusReason":"Note adds that it may also be said どのぐらい."}
 {"id":"chapter-13/ks1-chairs/book-gap/1","status":"fixed","statusReason":"Note gives the place に thing が number あります order, the number taking no particle, and the います contrast."}
+{"id":"chapter-15-extras/amazing/ambiguous/1","status":"fixed","statusReason":"Excluded as a duplicate of sugoi-great (theme 13). It is delivered, so it becomes an orphan note in Anki."}
+{"id":"chapter-15-extras/haha-ga-kureru-okashi-ga-suki/untaught-prerequisite/1","status":"fixed","statusReason":"Excluded (ruling 5: cut where the grammar is untaught; a relative clause)."}
+{"id":"chapter-15-extras/niau-fuku-wo-kau-no-ga-suki/untaught-prerequisite/1","status":"fixed","statusReason":"Excluded (ruling 5: cut where the grammar is untaught; a relative clause)."}
+{"id":"chapter-15-extras/nihongo-no-anime-ga-wakaru-no-wa-tanoshii/untaught-prerequisite/1","status":"fixed","statusReason":"Excluded (ruling 5: cut where the grammar is untaught; the のは…たのしい frame)."}
+{"id":"chapter-15-extras/nihongo-no-anime-ga-wakaru-no-wa-tanoshii/untaught-prerequisite/1#chapter-15","status":"fixed","statusReason":"Same card as the finding above: excluded (ruling 5)."}

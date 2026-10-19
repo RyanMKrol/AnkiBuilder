@@ -1912,7 +1912,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 南極, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 139,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "r-cf18c242752b",
@@ -1929,7 +1930,8 @@
       "audioOriginal": "1806847319ab5ef5.orig.mp3",
       "audioAuto": "1806847319ab5ef5.mp3",
       "audioMarked": true,
-      "audioTextHash": "1806847319ab5ef5"
+      "audioTextHash": "1806847319ab5ef5",
+      "additionDone": true
     },
     {
       "id": "r-231d406558b6",
@@ -1940,7 +1942,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 絵葉書, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 141,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     }
   ]
 }

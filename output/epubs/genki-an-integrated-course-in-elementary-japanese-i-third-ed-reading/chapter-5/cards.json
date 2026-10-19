@@ -2366,7 +2366,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 野菜, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 173,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "r-4faa260fd0a1",
@@ -2377,7 +2378,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 教室, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 174,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "r-3b000e08d690",
@@ -2394,7 +2396,8 @@
       "audioOriginal": "e094bfd4f0a4f46f.orig.mp3",
       "audioAuto": "e094bfd4f0a4f46f.mp3",
       "audioMarked": true,
-      "audioTextHash": "e094bfd4f0a4f46f"
+      "audioTextHash": "e094bfd4f0a4f46f",
+      "additionDone": true
     },
     {
       "id": "r-4797d3f7a1e5",
@@ -2411,7 +2414,8 @@
       "audioOriginal": "2361770ae039dcc8.orig.mp3",
       "audioAuto": "2361770ae039dcc8.mp3",
       "audioMarked": true,
-      "audioTextHash": "2361770ae039dcc8"
+      "audioTextHash": "2361770ae039dcc8",
+      "additionDone": true
     },
     {
       "id": "r-35235ea1f37d",
@@ -2428,7 +2432,8 @@
       "audioOriginal": "7810214ac1db8475.orig.mp3",
       "audioAuto": "7810214ac1db8475.mp3",
       "audioMarked": true,
-      "audioTextHash": "7810214ac1db8475"
+      "audioTextHash": "7810214ac1db8475",
+      "additionDone": true
     },
     {
       "id": "r-f7eec70f868b",
@@ -2445,7 +2450,8 @@
       "audioOriginal": "9ab87cb4d29fb9ef.orig.mp3",
       "audioAuto": "9ab87cb4d29fb9ef.mp3",
       "audioMarked": true,
-      "audioTextHash": "9ab87cb4d29fb9ef"
+      "audioTextHash": "9ab87cb4d29fb9ef",
+      "additionDone": true
     }
   ]
 }

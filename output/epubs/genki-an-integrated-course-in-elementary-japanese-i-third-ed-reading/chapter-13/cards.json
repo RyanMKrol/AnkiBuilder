@@ -1725,7 +1725,8 @@
       "audioOriginal": "67762cc91c89cf9d.orig.mp3",
       "audioAuto": "67762cc91c89cf9d.mp3",
       "audioMarked": true,
-      "audioTextHash": "67762cc91c89cf9d"
+      "audioTextHash": "67762cc91c89cf9d",
+      "additionDone": true
     },
     {
       "id": "r-45519dc859a0",
@@ -1736,7 +1737,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 保険証, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 125,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "r-39f0c6ae2a97",
@@ -1747,7 +1749,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 厳しい, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 126,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     }
   ]
 }

@@ -1652,7 +1652,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 蒸し暑い, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 120,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "r-bc30bf6b96de",
@@ -1663,7 +1664,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 止まる, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 121,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     },
     {
       "id": "r-60b499485cda",
@@ -1674,7 +1676,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 参る, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 122,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     }
   ]
 }

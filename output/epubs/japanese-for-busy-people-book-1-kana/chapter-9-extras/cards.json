@@ -427,7 +427,7 @@
       "audioAuto": "f92b10cdc1e2f0b0.mp3",
       "audioMarked": true,
       "audioTextHash": "f92b10cdc1e2f0b0",
-      "note": "どう (dō) asks for an impression rather than a fact: what you think of something, not what state it is in. Compare りょこうはどうでしたか (ryokō wa dō deshita ka, \"How was the trip?\") for the same question in the past."
+      "note": "どう (dō) means \"how\". It asks for an impression rather than a fact: what you think of something, not what state it is in. Compare りょこうはどうでしたか (ryokō wa dō deshita ka, \"How was the trip?\") for the same question in the past."
     },
     {
       "id": "p102-mainichi-nanji-ni-okimasu-ka",
@@ -444,7 +444,8 @@
       "audioAuto": "d1018ef830b04c5d.mp3",
       "audioMarked": true,
       "audioTextHash": "d1018ef830b04c5d",
-      "additionDone": true
+      "additionDone": true,
+      "note": "おきます (okimasu) means \"get up\"."
     },
     {
       "id": "v9-kanai-wa-kaimono",
@@ -499,7 +500,8 @@
       "audioAuto": "5fd73f8465d45228.mp3",
       "audioMarked": true,
       "audioTextHash": "5fd73f8465d45228",
-      "additionDone": true
+      "additionDone": true,
+      "note": "ねました (nemashita) is the past of ねます (nemasu, \"go to bed\")."
     },
     {
       "id": "v9-shujin-wa-nyusu",
@@ -833,7 +835,7 @@
       "category": "Grammar & Function Words",
       "target": "りょこうはどうでしたか",
       "pronunciation": "ryokō wa dō deshita ka",
-      "note": "でしたか (deshita ka) is the past of ですか (desu ka), so this asks for an impression after the trip is over.",
+      "note": "どう (dō) means \"how\". でしたか (deshita ka) is the past of ですか (desu ka), so this asks for an impression after the trip is over.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Form coverage for どうですか in its past form どうでしたか, pairing with f9-nihon-wa-do-desu-ka to show the present/past contrast on the same pattern.",
       "audio": "f22d07d210a0763a.mp3",
@@ -945,7 +947,8 @@
       "audioAuto": "25414fa8284e6607.mp3",
       "audioMarked": true,
       "audioTextHash": "25414fa8284e6607",
-      "additionDone": true
+      "additionDone": true,
+      "note": "おきます (okimasu) means \"get up\"."
     },
     {
       "id": "p9-kaigi-no-basho-o-kikimashita",
@@ -1016,8 +1019,9 @@
       "target": "いいみせですね",
       "pronunciation": "ii mise desu ne",
       "aiSuggested": true,
-      "reviewNote": "Target Dialogue, Smith's line いい みせですね. The new adjective いい (ii, 'nice, good') appears in the chapter vocabulary but no card uses it; this printed sentence was skipped entirely. PRE-EXCLUDED: the reviewer excluded いい (ii) from the base lesson as premature (formally taught in Lesson 10) — restore this card if early exposure inside the book's own printed sentence is wanted.",
-      "excluded": true
+      "reviewNote": "Target Dialogue, Smith's line いい みせですね. Pre-excluded at the v1 review because いい gets its card in Lesson 10; restored in the QA fix pass 2026-10 (chapter-9/ii-nice/book-gap/1) through the additions gate, since Lesson 9's vocabulary lists いい and this is the book's own sentence.",
+      "addition": "qa-fix-2026-10",
+      "note": "いい (ii) means \"nice, good\"; Lesson 10 gives it its own card."
     },
     {
       "id": "p102-sakuban-nanji-ni-nemashita-ka",
@@ -1025,7 +1029,7 @@
       "category": "Time",
       "target": "さくばん、なんじにねましたか",
       "pronunciation": "sakuban nan-ji ni nemashita ka",
-      "note": "さくばん (sakuban) is last night. きのうのよる (kinō no yoru) says the same thing more plainly.",
+      "note": "さくばん (sakuban) is last night. きのうのよる (kinō no yoru, with よる meaning \"night\") says the same thing more plainly. ねました (nemashita) is the past of ねます (nemasu, \"go to bed\").",
       "aiSuggested": true,
       "reviewNote": "Nihongo 102, Extra questions PDF, question 7. Job: the past of the なんじに (nan-ji ni) time question, against the present-tense one above.",
       "addition": "nihongo-102-2026-08",
@@ -1055,12 +1059,12 @@
     },
     {
       "id": "v9-resutoran-roma-no-basho",
-      "english": "Please tell me the location of Restaurant Rome.",
+      "english": "Please tell me the location of the restaurant.",
       "category": "Food",
-      "target": "レストランローマのばしょをおしえてください",
-      "pronunciation": "resutoran rōma no basho o oshiete kudasai",
+      "target": "レストランのばしょをおしえてください",
+      "pronunciation": "resutoran no basho o oshiete kudasai",
       "aiSuggested": true,
-      "reviewNote": "Constructed. Vocabulary coverage for レストランローマ (no sentence anywhere); reuses the Lesson 2 おしえてください request frame combined with this lesson's ばしょ.",
+      "reviewNote": "Constructed. Rebuilt in the QA fix pass 2026-10 (chapter-9-extras/v9-resutoran-roma-no-basho/other/1, ruling 4): it made the invented name レストランローマ the answer, so it now asks about a restaurant. Reuses the Lesson 2 おしえてください request frame with this lesson's ばしょ.",
       "audio": "304d995b455f4b5c.mp3",
       "audioOriginal": "304d995b455f4b5c.orig.mp3",
       "audioAuto": "304d995b455f4b5c.mp3",
@@ -1711,6 +1715,96 @@
       "audioMarked": true,
       "audioTextHash": "2575fab016868fd9",
       "additionDone": true
+    },
+    {
+      "id": "f9-denwa-shimasen",
+      "english": "Smith-san won't telephone Tanaka-san.",
+      "category": "Technology & Communication",
+      "target": "スミスさんはたなかさんにでんわをしません",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni denwa o shimasen",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "f9-denwa-shimashita",
+      "english": "Smith-san telephoned Tanaka-san.",
+      "category": "Technology & Communication",
+      "target": "スミスさんはたなかさんにでんわをしました",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni denwa o shimashita",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, past affirmative cell, on the same sentence as the base unit's key sentence for the verb.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "f9-denwa-shimasendeshita",
+      "english": "Smith-san didn't telephone Tanaka-san.",
+      "category": "Technology & Communication",
+      "target": "スミスさんはたなかさんにでんわをしませんでした",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni denwa o shimasendeshita",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "f9-okurimasen",
+      "english": "Smith-san won't send Tanaka-san an e-mail.",
+      "category": "Technology & Communication",
+      "target": "スミスさんはたなかさんにメールをおくりません",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni mēru o okurimasen",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おくります row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "f9-okurimasendeshita",
+      "english": "Smith-san didn't send Tanaka-san an e-mail.",
+      "category": "Technology & Communication",
+      "target": "スミスさんはたなかさんにメールをおくりませんでした",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni mēru o okurimasendeshita",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おくります row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "f9-aimasen",
+      "english": "Smith-san won't meet Tanaka-san tomorrow.",
+      "category": "Time",
+      "target": "スミスさんはあしたたなかさんにあいません",
+      "pronunciation": "Sumisu-san wa ashita Tanaka-san ni aimasen",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's あいます row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "f9-aimasendeshita",
+      "english": "Smith-san didn't meet Tanaka-san yesterday.",
+      "category": "Time",
+      "target": "スミスさんはきのうたなかさんにあいませんでした",
+      "pronunciation": "Sumisu-san wa kinō Tanaka-san ni aimasendeshita",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's あいます row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "f9-oshiemasen",
+      "english": "Smith-san won't tell Suzuki-san the location of the restaurant.",
+      "category": "Directions",
+      "target": "スミスさんはすずきさんにレストランのばしょをおしえません",
+      "pronunciation": "Sumisu-san wa Suzuki-san ni resutoran no basho o oshiemasen",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おしえます row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "f9-oshiemasendeshita",
+      "english": "Smith-san didn't tell Suzuki-san the location of the restaurant.",
+      "category": "Directions",
+      "target": "スミスさんはすずきさんにレストランのばしょをおしえませんでした",
+      "pronunciation": "Sumisu-san wa Suzuki-san ni resutoran no basho o oshiemasendeshita",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おしえます row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

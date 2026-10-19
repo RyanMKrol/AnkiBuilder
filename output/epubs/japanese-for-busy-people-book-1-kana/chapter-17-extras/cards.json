@@ -59,7 +59,8 @@
       "audioAuto": "acf16b8e4f5a9a63.mp3",
       "audioMarked": true,
       "audioTextHash": "acf16b8e4f5a9a63",
-      "note": "Non-past すみます (sumimasu) describes a move you are going to make, not where you live now."
+      "note": "Non-past すみます (sumimasu) describes a move you are going to make, not where you live now.",
+      "hint": "a move still to come, not where you live now"
     },
     {
       "id": "cherry-blossom-good-place-ask",
@@ -1309,7 +1310,8 @@
       "audioOriginal": "ca6acfddbb3d18ae.orig.mp3",
       "audioAuto": "ca6acfddbb3d18ae.mp3",
       "audioMarked": true,
-      "audioTextHash": "ca6acfddbb3d18ae"
+      "audioTextHash": "ca6acfddbb3d18ae",
+      "note": "〜たい (tai) states your own wish and is not used for an invitation. Asking 〜たいですか (tai desu ka) is impolite to someone of higher status; the safe question is the ます (masu) form plus か (ka): どこでばんごはんをたべますか (doko de bangohan o tabemasu ka)."
     },
     {
       "id": "oyogimasu-1",
@@ -1335,7 +1337,8 @@
       "audioOriginal": "320f5723bbd525bd.orig.mp3",
       "audioAuto": "320f5723bbd525bd.mp3",
       "audioMarked": true,
-      "audioTextHash": "320f5723bbd525bd"
+      "audioTextHash": "320f5723bbd525bd",
+      "note": "Fine with a friend. To someone of higher status, ask with the ます (masu) form instead: どこにいきますか (doko ni ikimasu ka)."
     },
     {
       "id": "aitakunakatta-3",
@@ -1362,7 +1365,10 @@
       "audioMarked": true,
       "audioTextHash": "02317612d45a9e06",
       "audioFilter": "standard",
-      "audio": "02317612d45a9e06-genkanji-70389cc1.mp3"
+      "audio": "02317612d45a9e06-genkanji-70389cc1.mp3",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: みてください needs the て-form of みます, which Lesson 18 teaches. zehi-1 already carries ぜひ with a request."
     },
     {
       "id": "ikitakunai-1",

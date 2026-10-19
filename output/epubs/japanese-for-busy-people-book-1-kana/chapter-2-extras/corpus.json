@@ -437,7 +437,7 @@
       "english": "What is it?",
       "category": "Grammar & Function Words",
       "target": "なんですか",
-      "note": "Uses なん (nan), the form なに (nani) takes before です (desu) and many counters/particles.",
+      "note": "なん (nan) is \"what\" in the shape it takes before です (desu).",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Identifying an object: Lesson 2's kore wa nan desu ka frame"
     },
     {

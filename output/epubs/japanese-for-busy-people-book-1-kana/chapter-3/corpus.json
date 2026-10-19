@@ -248,7 +248,8 @@
       "id": "juunana-17",
       "english": "17",
       "category": "Numbers",
-      "target": "じゅうなな"
+      "target": "じゅうなな",
+      "note": "The book gives 17 a second reading, じゅうしち (jūshichi)."
     },
     {
       "id": "sanjuu-30",
@@ -272,7 +273,8 @@
       "id": "nijuunana-27",
       "english": "27",
       "category": "Numbers",
-      "target": "にじゅうなな"
+      "target": "にじゅうなな",
+      "note": "The book gives 27 a second reading, にじゅうしち (nijūshichi)."
     },
     {
       "id": "nijuugo-25",
@@ -326,13 +328,15 @@
       "id": "juuyon-14",
       "english": "14",
       "category": "Numbers",
-      "target": "じゅうよん"
+      "target": "じゅうよん",
+      "note": "The book gives 14 a second reading, じゅうし (jūshi)."
     },
     {
       "id": "nijuukyuu-29",
       "english": "29",
       "category": "Numbers",
-      "target": "にじゅうきゅう"
+      "target": "にじゅうきゅう",
+      "note": "The book gives 29 a second reading, にじゅうく (nijūku)."
     },
     {
       "id": "juugo-15",
@@ -344,7 +348,8 @@
       "id": "juukyuu-19",
       "english": "19",
       "category": "Numbers",
-      "target": "じゅうきゅう"
+      "target": "じゅうきゅう",
+      "note": "The book gives 19 a second reading, じゅうく (jūku)."
     },
     {
       "id": "yonjuu-40",
@@ -356,7 +361,8 @@
       "id": "nijuuyon-24",
       "english": "24",
       "category": "Numbers",
-      "target": "にじゅうよん"
+      "target": "にじゅうよん",
+      "note": "The book gives 24 a second reading, にじゅうし (nijūshi)."
     },
     {
       "id": "juuhachi-18",

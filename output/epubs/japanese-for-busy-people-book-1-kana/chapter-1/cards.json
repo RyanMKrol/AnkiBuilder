@@ -47,7 +47,7 @@
       "pronunciation": "san",
       "audio": "d222e5a852735f25.mp3",
       "altAudio": "d24a8e73e9b217d5.mp3",
-      "note": "Suffix: attaches after a person's name (the 〜 in 〜さん marks where the name goes); cannot be used after one's own name.",
+      "note": "Suffix: attaches after a person's name (the 〜 in 〜さん marks where the name goes); cannot be used after one's own name. It is used for men and women alike, after a surname or a given name; at work, surname + さん is the most common.",
       "audioOriginal": "d222e5a852735f25.orig.mp3",
       "audioAuto": "d222e5a852735f25.mp3",
       "audioFilter": "standard",
@@ -143,7 +143,7 @@
       "audio": "928c7673049eb170.mp3",
       "uncertain": true,
       "altAudio": "1ed1bd2cc6cee84d.mp3",
-      "note": "Said right after introducing yourself, usually preceded by はじめまして (hajimemashite) and your name + です (desu); the person you're greeting replies with こちらこそ (kochirakoso), 'likewise.' Here おねがいします is fused into a set greeting idiom, not the standalone request use seen in もういちどおねがいします (mou ichido onegaishimasu, 'once more, please') from the earlier lesson.",
+      "note": "Said right after introducing yourself, usually preceded by はじめまして (hajimemashite) and your name + です (desu); the person you're greeting replies with こちらこそ (kochirakoso), 'likewise.' Here おねがいします is fused into a set greeting idiom, not the standalone request use seen in もういちどおねがいします (mou ichido onegaishimasu, 'once more, please') from the earlier lesson. It is also said when taking your leave after asking someone a favour. よろしく (yoroshiku) means 'well': it asks for the other person's kind consideration from here on.",
       "audioOriginal": "928c7673049eb170.orig.mp3",
       "audioAuto": "928c7673049eb170.mp3",
       "audioFilter": "standard",
@@ -671,7 +671,7 @@
         "start": 0.08495890410958905,
         "end": 0.37200684931506856
       },
-      "hint": "the prefix on native words like なまえ (namae, \"name\") and みやげ (miyage, \"souvenir\")",
+      "hint": "the prefix that turns くに (kuni) into the listener's country",
       "audioTextHash": "dd250649cc4ac044"
     },
     {

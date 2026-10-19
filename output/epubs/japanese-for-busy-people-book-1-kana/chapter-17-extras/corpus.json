@@ -23,7 +23,8 @@
       "english": "I'm going to live in Tokyo.",
       "category": "Home & Household",
       "aiSuggested": true,
-      "note": "Non-past すみます (sumimasu) describes a move you are going to make, not where you live now."
+      "note": "Non-past すみます (sumimasu) describes a move you are going to make, not where you live now.",
+      "hint": "a move still to come, not where you live now"
     },
     {
       "id": "cherry-blossom-good-place-ask",
@@ -682,7 +683,7 @@
       "target": "どこでばんごはんをたべたいですか",
       "english": "Where do you want to eat dinner?",
       "category": "Food",
-      "note": "",
+      "note": "〜たい (tai) states your own wish and is not used for an invitation. Asking 〜たいですか (tai desu ka) is impolite to someone of higher status; the safe question is the ます (masu) form plus か (ka): どこでばんごはんをたべますか (doko de bangohan o tabemasu ka).",
       "aiSuggested": true
     },
     {
@@ -697,7 +698,8 @@
       "target": "どこにいきたいですか",
       "english": "Where do you want to go?",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "Fine with a friend. To someone of higher status, ask with the ます (masu) form instead: どこにいきますか (doko ni ikimasu ka)."
     },
     {
       "id": "aitakunakatta-3",
@@ -711,7 +713,10 @@
       "target": "このえいがはぜひみてください",
       "english": "Please be sure to see this movie.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: みてください needs the て-form of みます, which Lesson 18 teaches. zehi-1 already carries ぜひ with a request."
     },
     {
       "id": "ikitakunai-1",

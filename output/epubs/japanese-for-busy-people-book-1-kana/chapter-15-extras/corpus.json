@@ -206,7 +206,10 @@
       "english": "Amazing!",
       "category": "Emotions & Feelings",
       "target": "すごい",
-      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu"
+      "reviewNote": "Moved from the Nihongo 101 course (lesson-2) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Exclamations of praise sit with Lesson 15's sugoi / jouzu",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Duplicate of chapter-15/sugoi-great: the same すごい with a second English, not a separate sense."
     },
     {
       "id": "x15b-uisukii-suki-ja-arimasen",
@@ -734,7 +737,10 @@
       "target": "にほんごのアニメがわかるのはたのしいです",
       "note": "わかる (understand) + のはたのしいです, \"doing ~ is fun\". The の turns the verb into a thing, exactly as in のがすきです; here it takes は instead of が.",
       "aiSuggested": true,
-      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using わかる, the dictionary form added to the base unit in the same batch."
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using わかる, the dictionary form added to the base unit in the same batch.",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: Lesson 15 teaches the nominalising の only before が with すきです or じょうずです, not in a のは…たのしいです frame. わかる keeps its bare card."
     },
     {
       "id": "kazoku-ni-shashin-wo-okuru-no-ga-suki",
@@ -779,7 +785,10 @@
       "target": "ははがくれるおかしがすきです",
       "note": "くれる (give to me) sits in front of おかし (sweets) and describes it: \"the sweets my mother gives me\".",
       "aiSuggested": true,
-      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using くれる, the dictionary form added to the base unit in the same batch."
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using くれる, the dictionary form added to the base unit in the same batch.",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: the sentence rests on a verb clause modifying a noun (ははがくれる おかし), which this book does not teach. くれる keeps its bare card."
     },
     {
       "id": "toshokan-de-hon-wo-kariru-no-ga-suki",
@@ -797,7 +806,10 @@
       "target": "にあうふくをかうのがすきです",
       "note": "にあう (suit) sits in front of ふく (clothes) and describes it, \"clothes that suit me\"; then かう (buy) + のがすきです (no ga suki desu, \"I like doing ~\") from this lesson.",
       "aiSuggested": true,
-      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using にあう, the dictionary form added to the base unit in the same batch."
+      "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using にあう, the dictionary form added to the base unit in the same batch.",
+      "excluded": true,
+      "excludedBy": "qa-fix-2026-10",
+      "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: the sentence rests on a verb clause modifying a noun (にあう ふく), which this book does not teach. にあう keeps its bare card."
     }
   ]
 }

@@ -182,7 +182,8 @@
       "audioOriginal": "63126600a78a0b6f.orig.mp3",
       "audioAuto": "63126600a78a0b6f.mp3",
       "audioMarked": true,
-      "audioTextHash": "63126600a78a0b6f"
+      "audioTextHash": "63126600a78a0b6f",
+      "note": "でんわします (denwa shimasu) is でんわをします with を (o) dropped; Lesson 23 gives it this way too."
     },
     {
       "id": "ks-smith-eating-lunch-now",
@@ -1095,6 +1096,50 @@
       "audioAuto": "57c33c6ddafe3529.mp3",
       "audioMarked": true,
       "audioTextHash": "57c33c6ddafe3529"
+    },
+    {
+      "id": "kaigishitsu-yoyaku-shiryou-tsukutte-imasu",
+      "english": "I reserved the meeting room, but I am now preparing the materials.",
+      "category": "Work & Occupations",
+      "target": "かいぎしつはよやくしましたが、しりょうはいまつくっています",
+      "pronunciation": "kaigishitsu wa yoyaku shimashita ga, shiryō wa ima tsukutte imasu",
+      "note": "The two は (wa) set the meeting room and the materials against each other: one is done, the other is still under way.",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/1: Smith's Target Dialogue line, with the book's English.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "itsu-dekimasu-ka",
+      "english": "When will it be ready?",
+      "category": "Shopping",
+      "target": "いつできますか",
+      "pronunciation": "itsu dekimasu ka",
+      "scene": "handing in clothes at the dry cleaner",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 1, いつ できますか.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "ima-ryouri-o-shite-imasu",
+      "english": "I'm cooking now.",
+      "category": "Food",
+      "target": "いまりょうりをしています",
+      "pronunciation": "ima ryōri o shite imasu",
+      "scene": "a friend phones at a bad moment",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 2, いま りょうりを しています.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "ja-mata-atode-denwa-shimasu",
+      "english": "Okay. I'll call you back later.",
+      "category": "Technology & Communication",
+      "target": "じゃ、またあとででんわします",
+      "pronunciation": "ja, mata ato de denwa shimasu",
+      "note": "でんわします (denwa shimasu) is でんわをします with を (o) dropped, as the book writes it here.",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 2, じゃ、また あとで でんわします.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

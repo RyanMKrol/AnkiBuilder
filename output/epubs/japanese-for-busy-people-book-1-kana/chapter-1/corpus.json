@@ -27,7 +27,7 @@
       "english": "Mr., Mrs., Ms., Miss",
       "category": "Family & People",
       "target": "さん",
-      "note": "Suffix: attaches after a person's name (the 〜 in 〜さん marks where the name goes); cannot be used after one's own name.",
+      "note": "Suffix: attaches after a person's name (the 〜 in 〜さん marks where the name goes); cannot be used after one's own name. It is used for men and women alike, after a surname or a given name; at work, surname + さん is the most common.",
       "hint": "the polite title placed after a name",
       "scene": "attached to a person's name"
     },
@@ -74,7 +74,8 @@
       "category": "Greetings",
       "hint": "said right after introducing yourself, at work or anywhere else",
       "target": "よろしくおねがいします",
-      "note": "Said right after introducing yourself, usually preceded by はじめまして (hajimemashite) and your name + です (desu); the person you're greeting replies with こちらこそ (kochirakoso), 'likewise.' Here おねがいします is fused into a set greeting idiom, not the standalone request use seen in もういちどおねがいします (mou ichido onegaishimasu, 'once more, please') from the earlier lesson."
+      "note": "Said right after introducing yourself, usually preceded by はじめまして (hajimemashite) and your name + です (desu); the person you're greeting replies with こちらこそ (kochirakoso), 'likewise.' Here おねがいします is fused into a set greeting idiom, not the standalone request use seen in もういちどおねがいします (mou ichido onegaishimasu, 'once more, please') from the earlier lesson. It is also said when taking your leave after asking someone a favour. よろしく (yoroshiku) means 'well': it asks for the other person's kind consideration from here on.",
+      "uncertain": true
     },
     {
       "id": "kochirakoso",
@@ -310,7 +311,7 @@
       "category": "Grammar & Function Words",
       "target": "お",
       "note": "お (o) is not a word on its own: it is a short prefix stuck onto the FRONT of certain nouns to make them sound more polite. On くに (kuni, 'country') it makes おくに (okuni), the polite way to speak of the country of the person you are talking to, heard in this chapter's dialogue: スミスさん、おくには どちらですか。 (Sumisu-san, okuni wa dochira desu ka?, 'Smith-san, what country are you from?').",
-      "hint": "the prefix on native words like なまえ (namae, \"name\") and みやげ (miyage, \"souvenir\")"
+      "hint": "the prefix that turns くに (kuni) into the listener's country"
     },
     {
       "id": "okuni",

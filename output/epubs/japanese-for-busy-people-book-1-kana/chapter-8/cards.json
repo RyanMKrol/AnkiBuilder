@@ -1191,6 +1191,17 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "b2cd68383b205d0d"
+    },
+    {
+      "id": "daremo",
+      "english": "Nobody (used with a negative verb)",
+      "category": "Grammar & Function Words",
+      "target": "だれも",
+      "pronunciation": "daremo",
+      "note": "The same frame as なにも (nanimo), with だれ (dare, \"who\") in place of なに (nani, \"what\").",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-8/-/book-gap/1: GRAMMAR 3 teaches だれも with a negative verb beside なにも.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

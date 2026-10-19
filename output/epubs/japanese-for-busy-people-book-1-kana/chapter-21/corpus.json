@@ -431,7 +431,7 @@
       "target": "どうしましたか",
       "english": "What seems to be the problem?",
       "category": "Body & Health",
-      "note": "Said by a doctor to a patient (see Notes 2, p. 208).",
+      "note": "Said by a doctor to a patient, and to anyone who looks to be in trouble: \"What's the matter?\"",
       "sourceOrder": 4040
     },
     {
@@ -516,7 +516,8 @@
       "english": "I have a headache.",
       "category": "Body & Health",
       "sourceOrder": 1844,
-      "reviewNote": "KEY SENTENCES item 3 renders as the corrupted fragment 「たまが たいです」 in the source markup, but its translation ('I have a headache') and the WORD POWER Symptoms list both confirm this full phrase."
+      "reviewNote": "KEY SENTENCES item 3 renders as the corrupted fragment 「たまが たいです」 in the source markup, but its translation ('I have a headache') and the WORD POWER Symptoms list both confirm this full phrase.",
+      "note": "The body part that hurts takes が (ga). The person in pain, unstated here, is the speaker."
     },
     {
       "id": "denki-2",

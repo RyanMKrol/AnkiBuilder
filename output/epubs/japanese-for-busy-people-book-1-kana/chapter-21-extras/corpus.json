@@ -599,6 +599,15 @@
       "note": "じゅうでんする (recharge). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then てもいいですか (may I).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using じゅうでんする, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "ashita-yasunde-mo-ii-desu-ka",
+      "english": "May I take tomorrow off?",
+      "category": "Work & Occupations",
+      "target": "あしたやすんでもいいですか",
+      "note": "やすんで (yasunde) is the て-form of やすみます (yasumimasu): み before ます becomes んで.",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-21-extras/-/book-gap/1: Exercise II item 4, あした やすんでも いいですか.",
+      "aiSuggested": true
     }
   ]
 }

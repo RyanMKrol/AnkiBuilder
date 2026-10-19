@@ -41,7 +41,8 @@
       "english": "I don't know",
       "category": "Other",
       "target": "わかりません",
-      "note": "The plain 'I don't know'. To show you are hesitating before admitting it, put さあ (sā) in front: さあ、わかりません (sā, wakarimasen, \"Well, I don't know\")."
+      "note": "The plain 'I don't know'. To show you are hesitating before admitting it, put さあ (sā) in front: さあ、わかりません (sā, wakarimasen, \"Well, I don't know\").",
+      "hint": "not having the information or the answer"
     },
     {
       "id": "watashino",
@@ -121,7 +122,8 @@
       "id": "num-0",
       "english": "0",
       "category": "Numbers",
-      "target": "ゼロ"
+      "target": "ゼロ",
+      "hint": "the reading other than れい (rei)"
     },
     {
       "id": "num-1",
@@ -148,7 +150,8 @@
       "id": "num-4",
       "english": "4",
       "category": "Numbers",
-      "target": "よん"
+      "target": "よん",
+      "hint": "the reading other than し (shi)"
     },
     {
       "id": "num-5",
@@ -167,7 +170,9 @@
       "id": "num-7",
       "english": "7",
       "category": "Numbers",
-      "target": "なな"
+      "target": "なな",
+      "uncertain": true,
+      "hint": "the reading other than しち (shichi)"
     },
     {
       "id": "num-8",
@@ -179,7 +184,8 @@
       "id": "num-9",
       "english": "9",
       "category": "Numbers",
-      "target": "きゅう"
+      "target": "きゅう",
+      "hint": "the reading other than く (ku)"
     },
     {
       "id": "meishi",
@@ -315,6 +321,56 @@
       "category": "Greetings",
       "target": "おねがいします",
       "note": "Broader and a touch more polite/indirect than a plain request — can ask for an item, a service, or even a person, e.g. たなかさんをおねがいします (tanaka-san o onegaishimasu), 'may I speak with Tanaka-san'."
+    },
+    {
+      "id": "num-0-rei",
+      "english": "0",
+      "category": "Numbers",
+      "target": "れい",
+      "hint": "the reading other than ゼロ (zero)",
+      "note": "The book gives 0 two readings, ゼロ (zero) and れい (rei).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 0.",
+      "aiSuggested": true
+    },
+    {
+      "id": "num-4-shi",
+      "english": "4",
+      "category": "Numbers",
+      "target": "し",
+      "hint": "the reading other than よん (yon)",
+      "note": "The book gives 4 two readings, よん (yon) and し (shi).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 4.",
+      "aiSuggested": true
+    },
+    {
+      "id": "num-7-shichi",
+      "english": "7",
+      "category": "Numbers",
+      "target": "しち",
+      "hint": "the reading other than なな (nana)",
+      "note": "The book gives 7 two readings, なな (nana) and しち (shichi).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 7.",
+      "aiSuggested": true
+    },
+    {
+      "id": "num-9-ku",
+      "english": "9",
+      "category": "Numbers",
+      "target": "く",
+      "hint": "the reading other than きゅう (kyū)",
+      "note": "The book gives 9 two readings, きゅう (kyū) and く (ku).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/1: the WORD POWER I table's second reading of 9.",
+      "aiSuggested": true
+    },
+    {
+      "id": "doumo-arigatou-gozaimasu",
+      "english": "Thank you very much.",
+      "category": "Greetings",
+      "target": "どうもありがとうございます",
+      "hint": "polite, with extra weight",
+      "note": "どうも (dōmo) in front gives the thanks more weight or formality. Between friends it is ありがとう (arigatō) or どうもありがとう (dōmo arigatō).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-2/-/book-gap/2: NOTES 3's どうも ありがとうございます, which no card carried.",
+      "aiSuggested": true
     }
   ]
 }

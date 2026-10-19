@@ -722,7 +722,7 @@
       "pronunciation": "doyōbi ni ginza de suzuki san to tenpura o tabemasu",
       "aiSuggested": true,
       "reviewNote": "From TARGET DIALOGUE — Smith's reply, and the title line of the whole lesson. The deck cards the question (td-shuumatsu-nani-shimasu) but none of the three answers, so the dialogue currently has an opening and nothing else. This is also the only sentence in the lesson that shows the full time/place/object particle stack.",
-      "note": "The lesson's word order in full: person は — time に — place で — object を — verb. Three particles already known (に from Lesson 7, で newly split into its place sense, と from Lesson 6) stack around this lesson's new を.",
+      "note": "The particle stack in full: time に, place で, person と, object を, then the verb. The speaker drops わたしは, as usual. に is from Lesson 7, で is newly split into its place sense, と is Lesson 6 with, and を is this lesson new object marker.",
       "audioOriginal": "f87351e48170395e-genkanji-8f40e392.orig.mp3",
       "audioAuto": "f87351e48170395e-genkanji-8f40e392.mp3",
       "audioMarked": true,
@@ -1125,7 +1125,7 @@
     },
     {
       "id": "sp-onamae-to-odenwabangou",
-      "english": "Please give me your name and your telephone number.",
+      "english": "Your name and telephone number, please.",
       "category": "Other",
       "target": "おなまえとおでんわばんごうをおねがいします",
       "pronunciation": "onamae to odenwa bangō o onegaishimasu",
@@ -1437,7 +1437,8 @@
       "audioOriginal": "ef3baa9050fd8c7a.orig.mp3",
       "audioAuto": "ef3baa9050fd8c7a.mp3",
       "audioMarked": true,
-      "audioTextHash": "ef3baa9050fd8c7a"
+      "audioTextHash": "ef3baa9050fd8c7a",
+      "additionDone": true
     }
   ]
 }

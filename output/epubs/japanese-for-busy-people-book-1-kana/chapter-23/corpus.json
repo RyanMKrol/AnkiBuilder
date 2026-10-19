@@ -316,7 +316,8 @@
       "english": "Be taking lessons in",
       "category": "School & Education",
       "sourceOrder": 1060,
-      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (ならっています expresses an ongoing/habitual state rather than the chapter-50 progressive; if intended as the state sense it sits closer to the chapter-51 て-form います (2) teaching — worth a reviewer glance) | Judged before review: the chapter's own grammar note 1 teaches this (KS2, an action repeated over a period) and its vocabulary box glosses it. Not premature; kept."
+      "reviewNote": "Possibly premature — explicitly taught later in Lesson 24: Work and Interests: I Work for an Apparel Maker (ならっています expresses an ongoing/habitual state rather than the chapter-50 progressive; if intended as the state sense it sits closer to the chapter-51 て-form います (2) teaching — worth a reviewer glance) | Judged before review: the chapter's own grammar note 1 teaches this (KS2, an action repeated over a period) and its vocabulary box glosses it. Not premature; kept.",
+      "note": "ています (te imasu) here describes something done regularly over a period, such as lessons you are taking these days, not only what is happening right now."
     },
     {
       "id": "souji-shimasu-clean",
@@ -459,7 +460,7 @@
       "english": "Was done, is ready (polite past)",
       "category": "Other",
       "target": "できました",
-      "note": "Past of できます (dekimasu). It says something is finished and ready: しりょうが できました (shiryō ga dekimashita, \"the materials are ready\").",
+      "note": "Past of できます (dekimasu). It says something is finished and ready: しりょうが できました (shiryō ga dekimashita, \"the materials are ready\"). Use が (ga) when the news is new to the listener and は (wa) when the thing is already the topic, as in もう かいぎの じゅんびは できましたか (mō kaigi no junbi wa dekimashita ka). もう (mō) can come first or later in the sentence.",
       "reviewNote": "Added at gate 1 after the final review: NOTES 1 teaches noun が できました／おわりました for something finished, and the target dialogue uses できました twice. Carded the same way as よみました."
     },
     {

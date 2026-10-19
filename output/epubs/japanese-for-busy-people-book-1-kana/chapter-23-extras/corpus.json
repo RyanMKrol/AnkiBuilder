@@ -99,7 +99,8 @@
       "target": "レストランを よやくするまえに、でんわします。",
       "english": "Before reserving the restaurant, I make a phone call.",
       "category": "Grammar & Function Words",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "でんわします (denwa shimasu) is でんわをします with を (o) dropped; Lesson 23 gives it this way too."
     },
     {
       "id": "ks-smith-eating-lunch-now",
@@ -609,6 +610,42 @@
       "category": "Work & Occupations",
       "scene": "asked where Emma-san is",
       "reviewNote": "Checked before review: the book prints ３がい, and after 3 the floor counter voices to がい (さんがい). The number pass had read it as さんかい."
+    },
+    {
+      "id": "kaigishitsu-yoyaku-shiryou-tsukutte-imasu",
+      "english": "I reserved the meeting room, but I am now preparing the materials.",
+      "category": "Work & Occupations",
+      "target": "かいぎしつはよやくしましたが、しりょうはいまつくっています",
+      "note": "The two は (wa) set the meeting room and the materials against each other: one is done, the other is still under way.",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/1: Smith's Target Dialogue line, with the book's English.",
+      "aiSuggested": true
+    },
+    {
+      "id": "itsu-dekimasu-ka",
+      "english": "When will it be ready?",
+      "category": "Shopping",
+      "target": "いつできますか",
+      "scene": "handing in clothes at the dry cleaner",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 1, いつ できますか.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ima-ryouri-o-shite-imasu",
+      "english": "I'm cooking now.",
+      "category": "Food",
+      "target": "いまりょうりをしています",
+      "scene": "a friend phones at a bad moment",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 2, いま りょうりを しています.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ja-mata-atode-denwa-shimasu",
+      "english": "Okay. I'll call you back later.",
+      "category": "Technology & Communication",
+      "target": "じゃ、またあとででんわします",
+      "note": "でんわします (denwa shimasu) is でんわをします with を (o) dropped, as the book writes it here.",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 2, じゃ、また あとで でんわします.",
+      "aiSuggested": true
     }
   ]
 }

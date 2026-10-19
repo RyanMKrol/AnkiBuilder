@@ -34,3 +34,6 @@
 {"id":"chapter-9-extras/f9-nihon-wa-do-desu-ka/untaught-prerequisite/1","status":"fixed","statusReason":"どう (\"how\") glossed in the note (ruling 5 default)."}
 {"id":"chapter-9-extras/f9-ryoko-wa-do-deshita-ka/untaught-prerequisite/1","status":"fixed","statusReason":"どう (\"how\") glossed in the note (ruling 5 default)."}
 {"id":"chapter-9-extras/v9-resutoran-roma-no-basho/other/1","status":"fixed","statusReason":"Rebuilt on the common noun: レストランのばしょをおしえてください, \"Please tell me the location of the restaurant.\" Same id; the clip needs re-voicing."}
+{"id":"chapter-10/-/book-gap/1","status":"fixed","statusReason":"Note on ookii-uchi-ne: an い-adjective goes straight before its noun with no な."}
+{"id":"chapter-10/-/book-gap/2","status":"skipped","statusReason":"The target already ships: いいです is chapter-11/ii-desu, one lesson later."}
+{"id":"chapter-11/dono-kurai/book-gap/1","status":"fixed","statusReason":"Note adds that it may also be said どのぐらい."}

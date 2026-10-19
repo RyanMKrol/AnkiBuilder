@@ -31,6 +31,7 @@ import { page } from "./respond.js";
 import { renderCardFacesPage } from "../deck/cardFacePreview.js";
 import { templatesForDeckKind } from "../deck/cardTemplates.js";
 import { collectionDeckKind, isReadingKind } from "../model/deckKind.js";
+import { silentCardPredicate } from "../reading/readingSchemes.js";
 import { unitDeckSegments } from "../deck/deckPath.js";
 
 const TYPE_LABEL = { book: "Book", course: "Course", template: "Template" };
@@ -720,9 +721,16 @@ ${sectionHtml}
     // with any care, so the first is hidden by default rather than padding the list.
     const inherited = atAudio.filter((c) => c.additionAudioInherited);
     const freshAudio = atAudio.filter((c) => !c.additionAudioInherited);
-    const needClip = atAudio.filter((c) => !c.audio);
+    // A reading deck's single kanji never gets a clip (silent by design), so it is not waiting for one.
+    const deckLanguage = adapter.deckLanguage?.(outputRoot, id);
+    const isSilent = silentCardPredicate({
+      targetLanguage: deckLanguage,
+      deckKind: collectionDeckKind(pathDirname(adapter.deckFile(outputRoot, id))),
+    });
+    const hasClipOrNeedsNone = (c) => Boolean(c.audio) || isSilent(c);
+    const needClip = atAudio.filter((c) => !hasClipOrNeedsNone(c));
 
-    const isJa = resolveIso639Code(adapter.deckLanguage?.(outputRoot, id)) === "ja";
+    const isJa = resolveIso639Code(deckLanguage) === "ja";
     const editControls = canEdit
       ? `<div class="ed"><label class="btn">Replace<input type="file" class="repl" accept="audio/*" hidden></label><button type="button" class="gen">Generate</button>${isJa ? `<button type="button" class="gen-kanji">Generate (kanji)</button>` : ""}<span class="msg"></span></div>`
       : "";
@@ -756,7 +764,7 @@ ${sectionHtml}
               ? `<button type="button" class="mark-rev-additions" data-unit="${escapeHtml(String(sec.seq))}">Mark reviewed</button><span class="rev-msg"></span>`
               : `<span class="done-badge">✓ reviewed</span>`;
           }
-          const ready = open.filter((c) => c.audio);
+          const ready = open.filter(hasClipOrNeedsNone);
           if (!open.length) return `<span class="done-badge">✓ done</span>`;
           return ready.length === open.length
             ? `<button type="button" class="mark-done-additions" data-unit="${escapeHtml(String(sec.seq))}">Mark done</button><span class="done-msg"></span>`

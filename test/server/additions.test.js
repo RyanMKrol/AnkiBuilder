@@ -472,3 +472,44 @@ test("every button on the page has a handler in the page's own scripts", async (
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("a silent reading card (a single kanji) passes the audio gate with no clip, by design", async () => {
+  const { root, book } = fixture();
+  try {
+    // Make the collection a reading deck and add an approved single-kanji addition. A reading deck's
+    // single kanji never gets a clip (src/reading/readingSchemes.js), so "no clip" must not hold it:
+    // before this, a kanji card added through the additions pathway could never ship.
+    writeFileSync(
+      join(book, "book.json"),
+      JSON.stringify({ title: "My Book", targetLanguage: "ja", deckKind: "reading" }),
+    );
+    const cards = readCards(book);
+    cards.items.push({
+      id: "kanji-yama",
+      english: "Mountain",
+      target: "山",
+      pronunciation: "yama / san",
+      category: "Other",
+      addition: "notes-2026-08",
+      additionReviewed: true,
+    });
+    writeFileSync(join(book, "chapter-0", "cards.json"), JSON.stringify(cards));
+    await withServer(root, async (url) => {
+      const page = await (await fetch(`${url}/additions/book/mybook/notes-2026-08`)).text();
+      assert.doesNotMatch(
+        page,
+        /still have no clip/,
+        "the kanji is not counted as waiting for a clip",
+      );
+      const done = await asJson(
+        await fetch(`${url}/api/deck/book/mybook/unit/0/card/kanji-yama/addition/done`, {
+          method: "POST",
+        }),
+      );
+      assert.equal(done.status, 200, JSON.stringify(done.body));
+      assert.equal(readCards(book).items.find((i) => i.id === "kanji-yama").additionDone, true);
+    });
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});

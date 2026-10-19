@@ -248,7 +248,9 @@ anki-builder audio --run output/epubs/<slug>-reading/chapter-<n>
 ```
 
 This spends ElevenLabs credits: one clip per word or phrase. **Single-kanji cards get no clip, by
-design**; the stage says how many were silent. It is a human step at any scale beyond a chapter or
+design**; the stage says how many were silent. The same holds on the additions pathway: a kanji
+card added there passes the audio gate (Mark ready) with no clip, and the additions page does not
+count it as waiting for one. It is a human step at any scale beyond a chapter or
 two. The owner reviews the audio in the dashboard as for a speaking deck: a kanji word the voice
 misreads is caught by ear here, and the reading on the card is what to check first.
 

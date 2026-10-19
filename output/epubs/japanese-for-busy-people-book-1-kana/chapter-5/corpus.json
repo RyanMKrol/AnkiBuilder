@@ -107,7 +107,8 @@
       "english": "The restaurant is on the 5th floor.",
       "category": "Directions",
       "target": "レストランは５かいです",
-      "ttsText": "レストランはごかいです"
+      "ttsText": "レストランはごかいです",
+      "note": "With a place after は (wa), です (desu) says where something is. To ask, put どこ (doko) in the place slot: レストランはどこですか (resutoran wa doko desu ka, \"Where is the restaurant?\")."
     },
     {
       "id": "kono",
@@ -164,7 +165,8 @@
       "english": "I would like two bottles of that wine, please.",
       "category": "Shopping",
       "target": "そのワインを２ほんください",
-      "ttsText": "そのワインをにほんください"
+      "ttsText": "そのワインをにほんください",
+      "note": "The number, with its counter, comes straight after noun を (o) and takes no particle of its own; ください (kudasai) follows."
     },
     {
       "id": "mai-suffix",
@@ -590,7 +592,7 @@
       "target": "あかいシャツはどれですか",
       "aiSuggested": true,
       "reviewNote": "The chapter's only example for どれ appears inside the skipped SPEAKING PRACTICE dialogue, so this example was added separately.",
-      "note": null
+      "note": "シャツ (shatsu) is \"shirt\", the word inside Tシャツ (T-shatsu)."
     },
     {
       "id": "cheesecake",
@@ -635,6 +637,15 @@
       "target": "どうも",
       "note": "A casual, shortened 'thanks' cut down from どうもありがとう (dōmo arigatō, \"Thank you.\"); the fuller どうもありがとう or the more formal ありがとうございます (arigatō gozaimasu) from Frequently Used Expressions are better in polite settings.",
       "hint": "the one-word thanks"
+    },
+    {
+      "id": "white-wine",
+      "english": "White wine",
+      "category": "Food",
+      "target": "しろワイン",
+      "note": "A set compound like あかワイン (akawain): しろ (shiro), not しろい (shiroi).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-5/-/book-gap/3: the book teaches しろワイン beside あかワイン.",
+      "aiSuggested": true
     }
   ]
 }

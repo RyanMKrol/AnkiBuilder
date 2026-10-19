@@ -13,3 +13,9 @@
 {"id":"chapter-4/-/book-gap/1","status":"fixed","statusReason":"Addition num-100000 じゅうまん in batch qa-fix-2026-10."}
 {"id":"chapter-4/-/book-gap/2","status":"fixed","statusReason":"Addition num-1million ひゃくまん in batch qa-fix-2026-10."}
 {"id":"chapter-4/-/book-gap/3","status":"fixed","statusReason":"Addition num-10million せんまん in batch qa-fix-2026-10."}
+{"id":"chapter-5/-/book-gap/1","status":"fixed","statusReason":"Note on ks5-two-bottles-wine: the number and counter follow noun を and take no particle."}
+{"id":"chapter-5/-/book-gap/2","status":"fixed","statusReason":"Note on ks1-restaurant-floor: は…です with a place says where something is, and どこ fills the slot to ask."}
+{"id":"chapter-5/-/book-gap/3","status":"fixed","statusReason":"Addition white-wine しろワイン in batch qa-fix-2026-10."}
+{"id":"chapter-5-extras/eg-kiiro-no-kutsushita/untaught-prerequisite/1","status":"fixed","statusReason":"くつした glossed in the note (ruling 5 default); the target and its clip are unchanged."}
+{"id":"chapter-5/dore-example/untaught-prerequisite/1","status":"fixed","statusReason":"シャツ glossed in the note against Tシャツ (ruling 5 default); swapping the target would replace a hand-picked clip."}
+{"id":"chapter-5-extras/-/untaught-prerequisite/1","status":"fixed","statusReason":"The four colour notes now use taught nouns (かさ, かばん, Tシャツ, くつ), each with romaji and English."}

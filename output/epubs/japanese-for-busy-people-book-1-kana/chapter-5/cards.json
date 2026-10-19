@@ -224,7 +224,8 @@
       "audioAuto": "6d0953fdf405efea.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "6d0953fdf405efea"
+      "audioTextHash": "6d0953fdf405efea",
+      "note": "With a place after は (wa), です (desu) says where something is. To ask, put どこ (doko) in the place slot: レストランはどこですか (resutoran wa doko desu ka, \"Where is the restaurant?\")."
     },
     {
       "id": "kono",
@@ -344,7 +345,8 @@
       "audioOriginal": "b7983a30b88ac7fd-genkanji-d8d941d9.mp3",
       "audioAuto": "b7983a30b88ac7fd-genkanji-d8d941d9.standard.mp3",
       "audioFilter": "standard",
-      "audioTextHash": "b7983a30b88ac7fd"
+      "audioTextHash": "b7983a30b88ac7fd",
+      "note": "The number, with its counter, comes straight after noun を (o) and takes no particle of its own; ください (kudasai) follows."
     },
     {
       "id": "mai-suffix",
@@ -1264,7 +1266,7 @@
       "pronunciation": "akai shatsu wa dore desu ka.",
       "altAudio": "c804441fc0b18857.mp3",
       "reviewNote": "Worked example for どれ (which one) — chapter's only example is inside the skipped SPEAKING PRACTICE dialogue.",
-      "note": null,
+      "note": "シャツ (shatsu) is \"shirt\", the word inside Tシャツ (T-shatsu).",
       "audioOriginal": "b7788e122380d894-genkanji-8b33ec01.orig.mp3",
       "audioAuto": "b7788e122380d894-genkanji-8b33ec01.mp3",
       "audioFilter": "standard",
@@ -1498,6 +1500,17 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "4894dbc88bab3961"
+    },
+    {
+      "id": "white-wine",
+      "english": "White wine",
+      "category": "Food",
+      "target": "しろワイン",
+      "pronunciation": "shirowain",
+      "note": "A set compound like あかワイン (akawain): しろ (shiro), not しろい (shiroi).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-5/-/book-gap/3: the book teaches しろワイン beside あかワイン.",
+      "aiSuggested": true,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

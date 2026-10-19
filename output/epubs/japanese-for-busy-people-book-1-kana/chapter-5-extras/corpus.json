@@ -194,7 +194,7 @@
       "id": "eg-kiiro-no-kutsushita",
       "english": "These are yellow socks.",
       "target": "これはきいろのくつしたです",
-      "note": "The same colour in its の form — both are correct here. Contrast これはみどりのペンです (kore wa midori no pen desu), where の is the only option available.",
+      "note": "The same colour in its の form; both are correct here. くつした (kutsushita) means \"socks\". Contrast これはみどりのペンです (kore wa midori no pen desu), where の is the only option available.",
       "category": "Colors",
       "hint": "using the form with の (no)",
       "reviewNote": "Example sentence added after the corpus review, at your request, to show the three colour classes in use. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
@@ -238,7 +238,7 @@
       "category": "Travel & Tourism",
       "target": "ホテルのじゅうしょはどこですか",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Uses doko, which the book first teaches in Lesson 5 (Lesson 1 gives only the polite dochira)",
-      "note": "Japanese asks for an address with どこ (doko, \"where\"), not なん (nan, \"what\")."
+      "note": "ホテル (hoteru) is \"hotel\". Japanese asks for an address with どこ (doko, \"where\"), not なん (nan, \"what\")."
     },
     {
       "id": "mikan-o-too-kudasai",
@@ -313,7 +313,7 @@
       "english": "Green",
       "category": "Colors",
       "target": "みどりの",
-      "note": "みどり (midori) is a noun, so の is the ONLY way to attach it: みどりの くるま (midori no kuruma). Unlike きいろ (kiiro) and ちゃいろ (chairo) there is no みどりい — green does not have an adjective form.",
+      "note": "みどり (midori) is a noun, so の is the ONLY way to attach it: みどりの かさ (midori no kasa, \"a green umbrella\"). Unlike きいろ (kiiro) and ちゃいろ (chairo) there is no みどりい: green has no adjective form.",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar"
     },
     {
@@ -719,7 +719,7 @@
       "english": "Grey",
       "category": "Colors",
       "target": "はいいろの",
-      "note": "Literally 'ash colour'. グレー (gurē) is the borrowed alternative and is just as common — both take の: はいいろの そら (haiiro no sora).",
+      "note": "Literally 'ash colour'. グレー (gurē) is the borrowed alternative and is just as common; both take の: はいいろの くつ (haiiro no kutsu, \"grey shoes\").",
       "reviewNote": "Added as a further の-only colour; グレー (gurē) is the equally common loanword form. Audio synthesized from はい色の (audio-only orthography) — all-kana はいいろの is mis-parsed by ElevenLabs as はい + いろの, and 灰色の gets 色 read as しょく. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "aiSuggested": true
     },
@@ -755,7 +755,7 @@
       "english": "Orange",
       "category": "Colors",
       "target": "オレンジの",
-      "note": "The colour and the fruit share the word. Like every borrowed colour it takes の: オレンジの ぼうし (orenji no bōshi).",
+      "note": "The colour and the fruit share the word. Like every borrowed colour it takes の: オレンジの Tシャツ (orenji no T-shatsu, \"an orange T-shirt\").",
       "reviewNote": "Added as an example of a loanword colour, which is always の-only. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "aiSuggested": true
     },
@@ -823,7 +823,7 @@
       "english": "Purple",
       "category": "Colors",
       "target": "むらさきの",
-      "note": "A noun like みどり (midori), so it takes の: むらさきの はな (murasaki no hana). There is no むらさきい.",
+      "note": "A noun like みどり (midori), so it takes の: むらさきの かばん (murasaki no kaban, \"a purple bag\"). There is no むらさきい.",
       "reviewNote": "Added as a second example of a colour that only works with の, per your question. — Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Extends Lesson 5's colour set (akai/kuroi/shiroi/aoi) with the same grammar",
       "aiSuggested": true
     },

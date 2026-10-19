@@ -59,3 +59,4 @@
 {"id":"chapter-21/dou-shimashitaka/book-gap/1","status":"fixed","statusReason":"Page reference dropped; the note gives both uses."}
 {"id":"chapter-21/-/book-gap/1","status":"fixed","statusReason":"Note on atama-ga-itaidesu: the body part takes が and the speaker is the unstated subject."}
 {"id":"chapter-21-extras/-/book-gap/1","status":"fixed","statusReason":"Addition ashita-yasunde-mo-ii-desu-ka in batch qa-fix-2026-10."}
+{"id":"chapter-22/toranaide-kudasai/book-gap/1","status":"fixed","statusReason":"Note now says ないでください is a fairly firm instruction that a reason softens, in place of \"ください makes the whole request polite\"."}

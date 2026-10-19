@@ -1,0 +1,2715 @@
+{
+  "items": [
+    {
+      "target": "すみません",
+      "english": "Excuse me",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "I Mary goes downtown. K04-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あそこ",
+      "english": "Over there",
+      "kind": "word",
+      "category": "Directions",
+      "section": "I Mary goes downtown. K04-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ありがとうございます",
+      "english": "Thank you very much",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "I Mary goes downtown. K04-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どこ",
+      "english": "Where",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "I Mary goes downtown. K04-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ただいま",
+      "english": "I'm home",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "II In the evening, at Mary's host family's house. K04-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おかえりなさい",
+      "english": "Welcome home",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "II In the evening, at Mary's host family's house. K04-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "映画",
+      "reading": "えいが",
+      "english": "Movie",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "II In the evening, at Mary's host family's house. K04-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "見る",
+      "reading": "みる",
+      "english": "To see; to watch",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "II In the evening, at Mary's host family's house. K04-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来る",
+      "reading": "くる",
+      "english": "To come",
+      "kind": "word",
+      "category": "Other",
+      "section": "II In the evening, at Mary's host family's house. K04-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "行く",
+      "reading": "いく",
+      "english": "To go",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "II In the evening, at Mary's host family's house. K04-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "そうですか",
+      "english": "I see",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "II In the evening, at Mary's host family's house. K04-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "えっ",
+      "english": "What?! (incredulous)",
+      "kind": "phrase",
+      "category": "Emotions & Feelings",
+      "section": "II In the evening, at Mary's host family's house. K04-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あっ",
+      "english": "Oh! (sudden realization)",
+      "kind": "phrase",
+      "category": "Emotions & Feelings",
+      "section": "II In the evening, at Mary's host family's house. K04-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今日",
+      "reading": "きょう",
+      "english": "Today",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅲ Takeshi calls Mary at night. K04-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ゲーム",
+      "english": "Game",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Activities",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アルバイト",
+      "english": "Part-time job",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Activities",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "買い物",
+      "reading": "かいもの",
+      "english": "Shopping",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "Activities",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "クラス",
+      "english": "Class",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Activities",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "犬",
+      "reading": "いぬ",
+      "english": "Dog",
+      "kind": "word",
+      "category": "Animals",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "猫",
+      "reading": "ねこ",
+      "english": "Cat",
+      "kind": "word",
+      "category": "Animals",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "人",
+      "reading": "ひと",
+      "english": "Person",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "子供",
+      "reading": "こども",
+      "english": "Child",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あなた",
+      "english": "You",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いす",
+      "english": "Chair",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "机",
+      "reading": "つくえ",
+      "english": "Desk",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "写真",
+      "reading": "しゃしん",
+      "english": "Picture; photograph",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "花",
+      "reading": "はな",
+      "english": "Flower",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "レポート",
+      "english": "(Term) paper",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ご飯",
+      "reading": "ごはん",
+      "english": "Rice; meal",
+      "kind": "word",
+      "category": "Food",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "パン",
+      "english": "Bread",
+      "kind": "word",
+      "category": "Food",
+      "section": "People and Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お寺",
+      "reading": "おてら",
+      "english": "Temple",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "公園",
+      "reading": "こうえん",
+      "english": "Park",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "スーパー",
+      "english": "Supermarket",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "バス停",
+      "reading": "バスてい",
+      "english": "Bus stop",
+      "kind": "word",
+      "category": "Transport",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "病院",
+      "reading": "びょういん",
+      "english": "Hospital",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ホテル",
+      "english": "Hotel",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "本屋",
+      "reading": "ほんや",
+      "english": "Bookstore",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "町",
+      "reading": "まち",
+      "english": "Town; city",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "レストラン",
+      "english": "Restaurant",
+      "kind": "word",
+      "category": "Food",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "昨日",
+      "reading": "きのう",
+      "english": "Yesterday",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時間",
+      "reading": "じかん",
+      "english": "Hour(s)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一時間",
+      "reading": "いちじかん",
+      "english": "One hour",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先週",
+      "reading": "せんしゅう",
+      "english": "Last week",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時",
+      "reading": "とき",
+      "english": "Time; when . . .",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "月曜日",
+      "reading": "げつようび",
+      "english": "Monday",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "火曜日",
+      "reading": "かようび",
+      "english": "Tuesday",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "水曜日",
+      "reading": "すいようび",
+      "english": "Wednesday",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "木曜日",
+      "reading": "もくようび",
+      "english": "Thursday",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "金曜日",
+      "reading": "きんようび",
+      "english": "Friday",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会う",
+      "reading": "あう",
+      "english": "To meet; to see (a person)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ある",
+      "english": "There is . . . (non-living things)",
+      "kind": "word",
+      "category": "Other",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "買う",
+      "reading": "かう",
+      "english": "To buy",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "書く",
+      "reading": "かく",
+      "english": "To write",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "撮る",
+      "reading": "とる",
+      "english": "To take (a picture)",
+      "kind": "word",
+      "category": "Other",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "待つ",
+      "reading": "まつ",
+      "english": "To wait",
+      "kind": "word",
+      "category": "Other",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "わかる",
+      "english": "To understand",
+      "kind": "word",
+      "category": "Other",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いる",
+      "english": "(A person) is in . . . ; stays at . . .",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ru-verb",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごめんなさい",
+      "english": "I'm sorry",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "それから",
+      "english": "And then",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だから",
+      "english": "So; therefore",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たくさん",
+      "english": "Many; a lot",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どうして",
+      "english": "Why",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一人で",
+      "reading": "ひとりで",
+      "english": "Alone",
+      "kind": "phrase",
+      "category": "Descriptions & Qualities",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "もしもし",
+      "english": "Hello? (used on the phone)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "右",
+      "reading": "みぎ",
+      "english": "Right (direction)",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "左",
+      "reading": "ひだり",
+      "english": "Left (direction)",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "前",
+      "reading": "まえ",
+      "english": "Front",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "後ろ",
+      "reading": "うしろ",
+      "english": "Back; behind",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中",
+      "reading": "なか",
+      "english": "Inside",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "上",
+      "reading": "うえ",
+      "english": "On; above",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "下",
+      "reading": "した",
+      "english": "Under; beneath",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "近く",
+      "reading": "ちかく",
+      "english": "Near; nearby",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "隣",
+      "reading": "となり",
+      "english": "Next to",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "間",
+      "reading": "あいだ",
+      "english": "Between",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Location Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "テレビ",
+      "english": "Television",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "1 X があります / います",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本語",
+      "reading": "にほんご",
+      "english": "Japanese (language)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "1 X があります / います",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あした",
+      "english": "Tomorrow",
+      "kind": "word",
+      "category": "Time",
+      "section": "1 X があります / います",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お祭り",
+      "reading": "おまつり",
+      "english": "Festival",
+      "kind": "word",
+      "category": "Other",
+      "section": "1 X があります / います",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日曜日",
+      "reading": "にちようび",
+      "english": "Sunday",
+      "kind": "word",
+      "category": "Time",
+      "section": "1 X があります / います",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "留学生",
+      "reading": "りゅうがくせい",
+      "english": "International student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "友だち",
+      "reading": "ともだち",
+      "english": "Friend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本人",
+      "reading": "にほんじん",
+      "english": "Japanese person",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ここ",
+      "english": "Here",
+      "kind": "word",
+      "category": "Directions",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "そこ",
+      "english": "There (near you)",
+      "kind": "word",
+      "category": "Directions",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "銀行",
+      "reading": "ぎんこう",
+      "english": "Bank",
+      "kind": "word",
+      "category": "Money",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "図書館",
+      "reading": "としょかん",
+      "english": "Library",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "傘",
+      "reading": "かさ",
+      "english": "Umbrella",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "テーブル",
+      "english": "Table (furniture)",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食べる",
+      "reading": "たべる",
+      "english": "To eat",
+      "kind": "word",
+      "category": "Food",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よこ",
+      "english": "Beside; next to",
+      "kind": "word",
+      "category": "Directions",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かばん",
+      "english": "Bag",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "2 Describing Where Things Are",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先生",
+      "reading": "せんせい",
+      "english": "Teacher; professor",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "3 Past Tense of です",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大学",
+      "reading": "だいがく",
+      "english": "University",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "3 Past Tense of です",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学生",
+      "reading": "がくせい",
+      "english": "Student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "3 Past Tense of です",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大学生",
+      "reading": "だいがくせい",
+      "english": "College student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "3 Past Tense of です",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帰る",
+      "reading": "かえる",
+      "english": "To return; to go home",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "4 Past Tense of Verbs",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "勉強する",
+      "reading": "べんきょうする",
+      "english": "To study",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "4 Past Tense of Verbs",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "読む",
+      "reading": "よむ",
+      "english": "To read",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "4 Past Tense of Verbs",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "本",
+      "reading": "ほん",
+      "english": "Book",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "4 Past Tense of Verbs",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "私",
+      "reading": "わたし",
+      "english": "I; me",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "4 Past Tense of Verbs",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "靴",
+      "reading": "くつ",
+      "english": "Shoes",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "5 も",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学校",
+      "reading": "がっこう",
+      "english": "School",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "5 も",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "土曜日",
+      "reading": "どようび",
+      "english": "Saturday",
+      "kind": "word",
+      "category": "Time",
+      "section": "5 も",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "カフェ",
+      "english": "Cafe",
+      "kind": "word",
+      "category": "Food",
+      "section": "5 も",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "寝る",
+      "reading": "ねる",
+      "english": "To sleep",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "6 一時間",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "野菜",
+      "reading": "やさい",
+      "english": "Vegetable",
+      "kind": "word",
+      "category": "Food",
+      "section": "7 たくさん",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "英語",
+      "reading": "えいご",
+      "english": "English (language)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "8 と",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "韓国",
+      "reading": "かんこく",
+      "english": "Korea",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "8 と",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "話す",
+      "reading": "はなす",
+      "english": "To speak",
+      "kind": "word",
+      "category": "Other",
+      "section": "8 と",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "むかい",
+      "english": "Opposite; across",
+      "kind": "word",
+      "category": "Directions",
+      "section": "X の 前 ▶",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うら",
+      "english": "Behind (hidden side); reverse side",
+      "kind": "word",
+      "category": "Directions",
+      "section": "X の 前 ▶",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今週",
+      "reading": "こんしゅう",
+      "english": "This week",
+      "kind": "word",
+      "category": "Time",
+      "section": "Not using あなた▶",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "元日",
+      "reading": "がんじつ",
+      "english": "New Year's Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "成人の日",
+      "reading": "せいじんのひ",
+      "english": "Coming-of-Age Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "建国記念の日",
+      "reading": "けんこくきねんのひ",
+      "english": "National Foundation Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天皇誕生日",
+      "reading": "てんのうたんじょうび",
+      "english": "Emperor's Birthday",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "春分の日",
+      "reading": "しゅんぶんのひ",
+      "english": "Vernal Equinox Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "昭和の日",
+      "reading": "しょうわのひ",
+      "english": "Showa Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "憲法記念日",
+      "reading": "けんぽうきねんび",
+      "english": "Constitution Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "みどりの日",
+      "reading": "みどりのひ",
+      "english": "Greenery Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こどもの日",
+      "reading": "こどものひ",
+      "english": "Children's Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "海の日",
+      "reading": "うみのひ",
+      "english": "Marine Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "山の日",
+      "reading": "やまのひ",
+      "english": "Mountain Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "敬老の日",
+      "reading": "けいろうのひ",
+      "english": "Respect-for-the-Aged Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "秋分の日",
+      "reading": "しゅうぶんのひ",
+      "english": "Autumnal Equinox Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "スポーツの日",
+      "reading": "スポーツのひ",
+      "english": "Health and Sports Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "文化の日",
+      "reading": "ぶんかのひ",
+      "english": "Culture Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "勤労感謝の日",
+      "reading": "きんろうかんしゃのひ",
+      "english": "Labor Thanksgiving Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ゴールデンウィーク",
+      "english": "Golden Week",
+      "kind": "word",
+      "category": "Other",
+      "section": "日本 の 祝日 Japanese National Holidays",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "家",
+      "reading": "いえ",
+      "english": "House; home",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンビニ",
+      "english": "Convenience store",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "教室",
+      "reading": "きょうしつ",
+      "english": "Classroom",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だれ",
+      "english": "Who",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "動物園",
+      "reading": "どうぶつえん",
+      "english": "Zoo",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "国",
+      "reading": "くに",
+      "english": "Country",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "何",
+      "reading": "なに",
+      "english": "What",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サークル",
+      "english": "Club activity",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. Look at Takeshi’s schedule for the week and answer the following questions. K04-09",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "パーティー",
+      "english": "Party",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Look at Takeshi’s schedule for the week and answer the following questions. K04-09",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "テスト",
+      "english": "Test; exam",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "C. Look at Takeshi’s schedule for the week and answer the following questions. K04-09",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中国語",
+      "reading": "ちゅうごくご",
+      "english": "Chinese (language)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "C. Look at Takeshi’s schedule for the week and answer the following questions. K04-09",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンピューター",
+      "english": "Computer",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "C. Look at Takeshi’s schedule for the week and answer the following questions. K04-09",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "郵便局",
+      "reading": "ゆうびんきょく",
+      "english": "Post office",
+      "kind": "word",
+      "category": "Other",
+      "section": "A. Look at the picture and tell where the following things are. K04-10",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ジーンズ",
+      "english": "Jeans",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "B. Pair Work—You and your partner have just moved to a new place. The room is messy. You are looking for the following things. Ask your partner where the following things are.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帽子",
+      "reading": "ぼうし",
+      "english": "Hat",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "B. Pair Work—You and your partner have just moved to a new place. The room is messy. You are looking for the following things. Ask your partner where the following things are.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時計",
+      "reading": "とけい",
+      "english": "Clock; watch",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "B. Pair Work—You and your partner have just moved to a new place. The room is messy. You are looking for the following things. Ask your partner where the following things are.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "高校",
+      "reading": "こうこう",
+      "english": "High school",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "C. Pair Work—Ask and answer questions to find where the buildings are. One student looks at map A. The other student looks at map B (p. 126). Don't look at the other's map.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一年生",
+      "reading": "いちねんせい",
+      "english": "First-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Look at the information about Professor Yamashita 25 years ago and answer the questions. K04-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "専攻",
+      "reading": "せんこう",
+      "english": "Major (field of study)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Look at the information about Professor Yamashita 25 years ago and answer the questions. K04-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歴史",
+      "reading": "れきし",
+      "english": "History",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Look at the information about Professor Yamashita 25 years ago and answer the questions. K04-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "Tシャツ",
+      "english": "T-shirt",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "B. Pair Work—Guessing Game",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ピザ",
+      "english": "Pizza",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "シリアル",
+      "english": "Cereal",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おにぎり",
+      "english": "Rice ball",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サラダ",
+      "english": "Salad",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ラーメン",
+      "english": "Ramen",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すし",
+      "english": "Sushi",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とんかつ",
+      "english": "Tonkatsu (pork cutlet)",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "パスタ",
+      "english": "Pasta",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ハンバーガー",
+      "english": "Hamburger",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "魚",
+      "reading": "さかな",
+      "english": "Fish",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "起きる",
+      "reading": "おきる",
+      "english": "To get up; to wake up",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "A. Change the following verbs into 〜ました and 〜ませんでした. K04-12/13",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "聞く",
+      "reading": "きく",
+      "english": "To listen; to hear",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "A. Change the following verbs into 〜ました and 〜ませんでした. K04-12/13",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "飲む",
+      "reading": "のむ",
+      "english": "To drink",
+      "kind": "word",
+      "category": "Food",
+      "section": "A. Change the following verbs into 〜ました and 〜ませんでした. K04-12/13",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "音楽",
+      "reading": "おんがく",
+      "english": "Music",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. Look at the pictures in B and answer the questions. K04-15",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "テニス",
+      "english": "Tennis",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. Look at the pictures in B and answer the questions. K04-15",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "晩ご飯",
+      "reading": "ばんごはん",
+      "english": "Dinner",
+      "kind": "word",
+      "category": "Food",
+      "section": "D. Look at the pictures in B and answer the questions. K04-16",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "週末",
+      "reading": "しゅうまつ",
+      "english": "Weekend",
+      "kind": "word",
+      "category": "Time",
+      "section": "E. Pair Work—Ask what your partner did on the weekend, Monday, Tuesday, etc.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コーヒー",
+      "english": "Coffee",
+      "kind": "word",
+      "category": "Food",
+      "section": "B．Describe the pictures using も. K04-18",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おちゃ",
+      "english": "Tea",
+      "kind": "word",
+      "category": "Food",
+      "section": "B．Describe the pictures using も. K04-18",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "スペインご",
+      "english": "Spanish (language)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "B．Describe the pictures using も. K04-18",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "インターネット",
+      "english": "Internet",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "B. Pair Work—Ask your partner the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よく",
+      "english": "Often",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "A. Pair Work—Using the expressions below, ask your partner how often they did the following activities when they were a child or in high school.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ときどき",
+      "english": "Sometimes",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "A. Pair Work—Using the expressions below, ask your partner how often they did the following activities when they were a child or in high school.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あまり",
+      "english": "Not very (often)",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "A. Pair Work—Using the expressions below, ask your partner how often they did the following activities when they were a child or in high school.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ぜんぜん",
+      "english": "Not at all",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "A. Pair Work—Using the expressions below, ask your partner how often they did the following activities when they were a child or in high school.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "スポーツ",
+      "english": "Sports",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "A. Pair Work—Using the expressions below, ask your partner how often they did the following activities when they were a child or in high school.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "デート",
+      "english": "Date (romantic outing)",
+      "kind": "word",
+      "category": "Other",
+      "section": "A. Pair Work—Using the expressions below, ask your partner how often they did the following activities when they were a child or in high school.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "昼ご飯",
+      "reading": "ひるごはん",
+      "english": "Lunch",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "バドミントン",
+      "english": "Badminton",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "授業料",
+      "reading": "じゅぎょうりょう",
+      "english": "Tuition (fee)",
+      "kind": "word",
+      "category": "Money",
+      "section": "University Research",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いくら",
+      "english": "How much (price)",
+      "kind": "word",
+      "category": "Money",
+      "section": "University Research",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "名前",
+      "reading": "なまえ",
+      "english": "Name",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "University Research",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "毎日",
+      "reading": "まいにち",
+      "english": "Every day",
+      "kind": "word",
+      "category": "Time",
+      "section": "Useful Expressions",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ついたち",
+      "english": "1st (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ふつか",
+      "english": "2nd (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "みっか",
+      "english": "3rd (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よっか",
+      "english": "4th (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いつか",
+      "english": "5th (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "むいか",
+      "english": "6th (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なのか",
+      "english": "7th (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ようか",
+      "english": "8th (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ここのか",
+      "english": "9th (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とおか",
+      "english": "10th (of the month)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Days",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一月",
+      "reading": "いちがつ",
+      "english": "January",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二月",
+      "reading": "にがつ",
+      "english": "February",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三月",
+      "reading": "さんがつ",
+      "english": "March",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "四月",
+      "reading": "しがつ",
+      "english": "April",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "五月",
+      "reading": "ごがつ",
+      "english": "May",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "六月",
+      "reading": "ろくがつ",
+      "english": "June",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "七月",
+      "reading": "しちがつ",
+      "english": "July",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "八月",
+      "reading": "はちがつ",
+      "english": "August",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "九月",
+      "reading": "くがつ",
+      "english": "September",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十月",
+      "reading": "じゅうがつ",
+      "english": "October",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十一月",
+      "reading": "じゅういちがつ",
+      "english": "November",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十二月",
+      "reading": "じゅうにがつ",
+      "english": "December",
+      "kind": "word",
+      "category": "Time",
+      "section": "Months",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おととい",
+      "english": "The day before yesterday",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二週間前",
+      "reading": "にしゅうかんまえ",
+      "english": "Two weeks ago",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二か月前",
+      "reading": "にかげつまえ",
+      "english": "Two months ago",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おととし",
+      "english": "The year before last",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先月",
+      "reading": "せんげつ",
+      "english": "Last month",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "去年",
+      "reading": "きょねん",
+      "english": "Last year",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今月",
+      "reading": "こんげつ",
+      "english": "This month",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今年",
+      "reading": "ことし",
+      "english": "This year",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来週",
+      "reading": "らいしゅう",
+      "english": "Next week",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来月",
+      "reading": "らいげつ",
+      "english": "Next month",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来年",
+      "reading": "らいねん",
+      "english": "Next year",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あさって",
+      "english": "The day after tomorrow",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "再来週",
+      "reading": "さらいしゅう",
+      "english": "The week after next",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "再来月",
+      "reading": "さらいげつ",
+      "english": "The month after next",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "再来年",
+      "reading": "さらいねん",
+      "english": "The year after next",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time Words",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 06: Lesson 4: The First Date",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第4課 LESSON 4",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "初 めてのデート The First Date",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "会話 Dialogue",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "I Mary goes downtown. K04-01/02",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "II In the evening, at Mary's host family's house. K04-03/04",
+      "read": true,
+      "items": 9
+    },
+    {
+      "title": "Ⅲ Takeshi calls Mary at night. K04-05/06",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Ⅰ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅲ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "単 語 Vocabulary",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Nouns",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Activities",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "People and Things",
+      "read": true,
+      "items": 12
+    },
+    {
+      "title": "Places",
+      "read": true,
+      "items": 9
+    },
+    {
+      "title": "Time",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "U-verbs",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "Ru-verb",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Adverbs and Other Expressions",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "Location Words",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "文 法 Grammar",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "1 X があります / います",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "2 Describing Where Things Are",
+      "read": true,
+      "items": 12
+    },
+    {
+      "title": "3 Past Tense of です",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "4 Past Tense of Verbs",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "5 も",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "6 一時間",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "7 たくさん",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "8 と",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Expression Notes 表現 ノート 5",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "X の 前 ▶",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "えっ/あっ▶",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Not using あなた▶",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Culture Notes",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "日本 の 祝日 Japanese National Holidays",
+      "read": true,
+      "items": 17
+    },
+    {
+      "title": "練習 Practice",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "I 病院 があります ☛Grammar 1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Look at the picture and tell what you see, using あります or います.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Answer the following questions.",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "C. Look at Takeshi’s schedule for the week and answer the following questions. K04-09",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "D. Pair Work—Write down your next week’s schedule and ask each other what plans you have on each day of the week.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ 図書館 はどこですか ☛Grammar 2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Look at the picture and tell where the following things are. K04-10",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "B. Pair Work—You and your partner have just moved to a new place. The room is messy. You are looking for the following things. Ask your partner where the following things are.",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "C. Pair Work—Ask and answer questions to find where the buildings are. One student looks at map A. The other student looks at map B (p. 126). Don't look at the other's map.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Ⅲ 先生 は 大学生 でした ☞Grammar 3",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "A. Look at the information about Professor Yamashita 25 years ago and answer the questions. K04-11",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "B. Pair Work—Guessing Game",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "C. Pair Work—Guess what your partner had for breakfast/lunch/dinner. Choose from the items below, or add your favorites.",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "Ⅳ 月曜日 に 何 をしましたか ☛Grammar 4",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Change the following verbs into 〜ました and 〜ませんでした. K04-12/13",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "B. The pictures below show what Mary did last week. Tell what she did. K04-14",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Look at the pictures in B and answer the questions. K04-15",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "D. Look at the pictures in B and answer the questions. K04-16",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "E. Pair Work—Ask what your partner did on the weekend, Monday, Tuesday, etc.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "V コーヒーも 飲 みます Grammar 5",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A．Compare sentences (a) and (b), and change sentence (b) using も. K04-17",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B．Describe the pictures using も. K04-18",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Ⅵ 一時間 待 ちました ☛Grammar 6",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Mary did a lot yesterday. Describe how many hours Mary did each activity. K04-19",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Pair Work—Ask your partner the following questions.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Ⅶ まとめの練習 (Review Exercises)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Pair Work—Using the expressions below, ask your partner how often they did the following activities when they were a child or in high school.",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "B. Answer the following questions.",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "Example",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Let's Find Out 調 べてみよう",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "University Research",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Pair Work Ⅱ C. (p. 118)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Pair Work Ⅶ C. (p. 125)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Useful Expressions",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "日 ・ 週 ・ 月 ・ 年",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Days",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "Months",
+      "read": true,
+      "items": 12
+    },
+    {
+      "title": "Time Words",
+      "read": true,
+      "items": 15
+    }
+  ],
+  "unread": []
+}

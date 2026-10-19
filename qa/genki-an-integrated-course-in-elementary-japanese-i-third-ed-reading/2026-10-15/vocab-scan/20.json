@@ -1,0 +1,1304 @@
+{
+  "items": [
+    {
+      "target": "東",
+      "reading": "ひがし",
+      "english": "East",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "西",
+      "reading": "にし",
+      "english": "West",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "南",
+      "reading": "みなみ",
+      "english": "South",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "北",
+      "reading": "きた",
+      "english": "North",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "東口",
+      "reading": "ひがしぐち",
+      "english": "East exit",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "西口",
+      "reading": "にしぐち",
+      "english": "West exit",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "南口",
+      "reading": "みなみぐち",
+      "english": "South exit",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "北口",
+      "reading": "きたぐち",
+      "english": "North exit",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "北西",
+      "reading": "ほくせい",
+      "english": "Northwest",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "南東",
+      "reading": "なんとう",
+      "english": "Southeast",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "口",
+      "reading": "くち",
+      "english": "Mouth",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "人口",
+      "reading": "じんこう",
+      "english": "Population",
+      "kind": "word",
+      "category": "Other",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "入り口",
+      "reading": "いりぐち",
+      "english": "Entrance",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "出",
+      "english": "To exit",
+      "kind": "character",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "出る",
+      "reading": "でる",
+      "english": "To exit",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "出口",
+      "reading": "でぐち",
+      "english": "Exit",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "出かける",
+      "reading": "でかける",
+      "english": "To go out",
+      "kind": "word",
+      "category": "Other",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "出す",
+      "reading": "だす",
+      "english": "To take something out",
+      "kind": "word",
+      "category": "Other",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "出席",
+      "reading": "しゅっせき",
+      "english": "Attendance",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "輸出",
+      "reading": "ゆしゅつ",
+      "english": "Export",
+      "kind": "word",
+      "category": "Other",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "右",
+      "reading": "みぎ",
+      "english": "Right (direction)",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "右折",
+      "reading": "うせつ",
+      "english": "Right turn",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "左右",
+      "reading": "さゆう",
+      "english": "Right and left",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "右手",
+      "reading": "みぎて",
+      "english": "Right hand",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "右側",
+      "reading": "みぎがわ",
+      "english": "Right side",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "左",
+      "reading": "ひだり",
+      "english": "Left",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "左折",
+      "reading": "させつ",
+      "english": "Left turn",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "左手",
+      "reading": "ひだりて",
+      "english": "Left hand",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "左利き",
+      "reading": "ひだりきき",
+      "english": "Left-handed",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "分",
+      "english": "Minute; to divide",
+      "kind": "character",
+      "category": "Time",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "五分",
+      "reading": "ごふん",
+      "english": "Five minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十分",
+      "reading": "じゅっぷん／じっぷん",
+      "english": "Ten minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "自分",
+      "reading": "じぶん",
+      "english": "Oneself",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "分ける",
+      "reading": "わける",
+      "english": "To divide",
+      "kind": "word",
+      "category": "Other",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先",
+      "english": "Ahead",
+      "kind": "character",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先生",
+      "reading": "せんせい",
+      "english": "Teacher",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先週",
+      "reading": "せんしゅう",
+      "english": "Last week",
+      "kind": "word",
+      "category": "Time",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先月",
+      "reading": "せんげつ",
+      "english": "Last month",
+      "kind": "word",
+      "category": "Time",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先輩",
+      "reading": "せんぱい",
+      "english": "Senior member",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "生",
+      "english": "Birth",
+      "kind": "character",
+      "category": "Family & People",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学生",
+      "reading": "がくせい",
+      "english": "Student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "生まれる",
+      "reading": "うまれる",
+      "english": "To be born",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一生に一度",
+      "reading": "いっしょうにいちど",
+      "english": "Once in a lifetime",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大",
+      "english": "Big",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大学生",
+      "reading": "だいがくせい",
+      "english": "College student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大きい",
+      "reading": "おおきい",
+      "english": "Big",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大変",
+      "reading": "たいへん",
+      "english": "Tough",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大人",
+      "reading": "おとな",
+      "english": "Adult",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大使館",
+      "reading": "たいしかん",
+      "english": "Embassy",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学",
+      "english": "Learning",
+      "kind": "character",
+      "category": "School & Education",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大学",
+      "reading": "だいがく",
+      "english": "University",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学校",
+      "reading": "がっこう",
+      "english": "School",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学ぶ",
+      "reading": "まなぶ",
+      "english": "To study",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学部",
+      "reading": "がくぶ",
+      "english": "Department; faculty",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "外",
+      "reading": "そと",
+      "english": "Outside",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "外国",
+      "reading": "がいこく",
+      "english": "Foreign country",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "外国人",
+      "reading": "がいこくじん",
+      "english": "Foreigner",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "海外",
+      "reading": "かいがい",
+      "english": "Overseas",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "国",
+      "reading": "くに",
+      "english": "Country",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中国",
+      "reading": "ちゅうごく",
+      "english": "China",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "韓国",
+      "reading": "かんこく",
+      "english": "South Korea",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "私のすきなレストラン My Favorite Restaurant",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "レストラン",
+      "english": "Restaurant",
+      "kind": "word",
+      "category": "Food",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "駅",
+      "reading": "えき",
+      "english": "Station",
+      "kind": "word",
+      "category": "Transport",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まっすぐ",
+      "english": "Straight",
+      "kind": "word",
+      "category": "Directions",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "近い",
+      "reading": "ちか",
+      "english": "Near",
+      "kind": "word",
+      "category": "Directions",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ある",
+      "english": "To exist; there is",
+      "kind": "word",
+      "category": "Other",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うち",
+      "english": "House",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こうえん",
+      "english": "Park",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ホームステイ",
+      "english": "Homestay",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "プログラム",
+      "english": "Program",
+      "kind": "word",
+      "category": "Other",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まち",
+      "english": "Town",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "する",
+      "english": "To do",
+      "kind": "word",
+      "category": "Other",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きれい",
+      "english": "Pretty; beautiful",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "えいご",
+      "english": "English (language)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おしえる",
+      "english": "To teach",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "セール",
+      "english": "Sale",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じてんしゃ",
+      "english": "Bicycle",
+      "kind": "word",
+      "category": "Transport",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あたらしい",
+      "english": "New",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "でんわ",
+      "english": "Telephone",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よる",
+      "english": "Night; evening",
+      "kind": "word",
+      "category": "Time",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ハロウィーン",
+      "english": "Halloween",
+      "kind": "word",
+      "category": "Other",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "パーティー",
+      "english": "Party",
+      "kind": "word",
+      "category": "Other",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ところ",
+      "english": "Place",
+      "kind": "word",
+      "category": "Other",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じかん",
+      "english": "Time",
+      "kind": "word",
+      "category": "Time",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ともだち",
+      "english": "Friend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "つれる",
+      "english": "To bring; take along (a person)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "もつ",
+      "english": "To have; to hold; to carry",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "イタリアンレストラン",
+      "english": "Italian restaurant",
+      "kind": "word",
+      "category": "Food",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ランチ",
+      "english": "Lunch",
+      "kind": "word",
+      "category": "Food",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "セット",
+      "english": "Set (meal)",
+      "kind": "word",
+      "category": "Food",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サラダ",
+      "english": "Salad",
+      "kind": "word",
+      "category": "Food",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コーヒー",
+      "english": "Coffee",
+      "kind": "word",
+      "category": "Food",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "パン",
+      "english": "Bread",
+      "kind": "word",
+      "category": "Food",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ギター",
+      "english": "Guitar",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンサート",
+      "english": "Concert",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "II でんごんばん (Bulletin Board)",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すき",
+      "english": "Fond of; favorite",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "イタリア",
+      "english": "Italy",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "私のすきなレストラン",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "りょうり",
+      "english": "Cooking; dish",
+      "kind": "word",
+      "category": "Food",
+      "section": "私のすきなレストラン",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "シェフ",
+      "english": "Chef",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "私のすきなレストラン",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ワイン",
+      "english": "Wine",
+      "kind": "word",
+      "category": "Food",
+      "section": "私のすきなレストラン",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ピザ",
+      "english": "Pizza",
+      "kind": "word",
+      "category": "Food",
+      "section": "私のすきなレストラン",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いつも",
+      "english": "Always",
+      "kind": "word",
+      "category": "Time",
+      "section": "私のすきなレストラン",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "みなさん",
+      "english": "Everyone",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "私のすきなレストラン",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ちいさい",
+      "english": "Small",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とても",
+      "english": "Very",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おもしろい",
+      "english": "Interesting; funny",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おいしい",
+      "english": "Delicious",
+      "kind": "word",
+      "category": "Food",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よく",
+      "english": "Often",
+      "kind": "word",
+      "category": "Time",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アイスクリーム",
+      "english": "Ice cream",
+      "kind": "word",
+      "category": "Food",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ここ",
+      "english": "Here",
+      "kind": "word",
+      "category": "Directions",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たくさん",
+      "english": "A lot; many",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "やすい",
+      "english": "Cheap",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "くる",
+      "english": "To come",
+      "kind": "word",
+      "category": "Other",
+      "section": "私のすきなレストラン",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "パスタ",
+      "english": "Pasta",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Circle the food or drink the writer has at the restaurant.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ビール",
+      "english": "Beer",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Circle the food or drink the writer has at the restaurant.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ステーキ",
+      "english": "Steak",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Circle the food or drink the writer has at the restaurant.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たかい",
+      "english": "Expensive",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "C. Choose the correct answer.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "つまらない",
+      "english": "Boring",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "C. Choose the correct answer.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 20: Reading and Writing 6: My Favorite Restaurant",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第6課 LESSON 6",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "私のすきなレストラン My Favorite Restaurant",
+      "read": true,
+      "items": 61
+    },
+    {
+      "title": "I 漢字の練習 (Kanji Practice)",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "II でんごんばん (Bulletin Board)",
+      "read": true,
+      "items": 27
+    },
+    {
+      "title": "Ⅲ 私のすきなレストラン",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "私のすきなレストラン",
+      "read": true,
+      "items": 18
+    },
+    {
+      "title": "B. Circle the food or drink the writer has at the restaurant.",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "C. Choose the correct answer.",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "Ⅳ 書く練習 (Writing Practice)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. You are organizing a party. Write a flyer about the party. Be sure to include: what kind of party it is, what time it starts, where it is held, what to bring, how to get there, and so on.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Write about your favorite restaurant. You may include the following.",
+      "read": true,
+      "items": 0
+    }
+  ],
+  "unread": []
+}

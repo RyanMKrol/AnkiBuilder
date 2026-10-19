@@ -1,0 +1,1072 @@
+{
+  "items": [
+    {
+      "target": "住",
+      "english": "Living",
+      "kind": "character",
+      "category": "Home & Household",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "住む",
+      "reading": "すむ",
+      "english": "To live",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "住所",
+      "reading": "じゅうしょ",
+      "english": "Address",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "移住する",
+      "reading": "いじゅうする",
+      "english": "To immigrate",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "正",
+      "english": "Right; correct",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "正しい",
+      "reading": "ただしい",
+      "english": "Correct (to be right)",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "正午",
+      "reading": "しょうご",
+      "english": "Noon",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "正解",
+      "reading": "せいかい",
+      "english": "Correct answer",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三年生",
+      "reading": "さんねんせい",
+      "english": "Third-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来年",
+      "reading": "らいねん",
+      "english": "Next year",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今年",
+      "reading": "ことし",
+      "english": "This year",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "売",
+      "english": "Selling",
+      "kind": "character",
+      "category": "Shopping",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "売店",
+      "reading": "ばいてん",
+      "english": "Stand; stall",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "自動販売機",
+      "reading": "じどうはんばいき",
+      "english": "Vending machine",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "買",
+      "english": "Buying",
+      "kind": "character",
+      "category": "Shopping",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "買う",
+      "reading": "かう",
+      "english": "To buy",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "買い物",
+      "reading": "かいもの",
+      "english": "Shopping",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "売買",
+      "reading": "ばいばい",
+      "english": "Selling and buying",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "町",
+      "reading": "まち",
+      "english": "Town",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "町長",
+      "reading": "ちょうちょう",
+      "english": "Mayor of a town",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "長",
+      "english": "Long",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "長い",
+      "reading": "ながい",
+      "english": "Long (describing something)",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "長男",
+      "reading": "ちょうなん",
+      "english": "The eldest son",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "社長",
+      "reading": "しゃちょう",
+      "english": "Company president",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "道",
+      "reading": "みち",
+      "english": "Way; road",
+      "kind": "word",
+      "category": "Directions",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "書道",
+      "reading": "しょどう",
+      "english": "Calligraphy",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "柔道",
+      "reading": "じゅうどう",
+      "english": "Judo",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "新雪",
+      "reading": "しんせつ",
+      "english": "New snow",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "雪だるま",
+      "reading": "ゆきだるま",
+      "english": "Snowman",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "立",
+      "english": "Standing",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "立つ",
+      "reading": "たつ",
+      "english": "To stand",
+      "kind": "word",
+      "category": "Other",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "国立大学",
+      "reading": "こくりつだいがく",
+      "english": "National university",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "私立高校",
+      "reading": "しりつこうこう",
+      "english": "Private high school",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "自",
+      "english": "Self",
+      "kind": "character",
+      "category": "Other",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "自動車",
+      "reading": "じどうしゃ",
+      "english": "Automobile",
+      "kind": "word",
+      "category": "Transport",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "自転車",
+      "reading": "じてんしゃ",
+      "english": "Bicycle",
+      "kind": "word",
+      "category": "Transport",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "自由",
+      "reading": "じゆう",
+      "english": "Freedom",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "夜",
+      "reading": "よる",
+      "english": "Night",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "夜中",
+      "reading": "よなか",
+      "english": "Middle of the night",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今夜",
+      "reading": "こんや",
+      "english": "Tonight",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "夜明け",
+      "reading": "よあけ",
+      "english": "Dawn",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "朝",
+      "reading": "あさ",
+      "english": "Morning",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今朝",
+      "reading": "けさ",
+      "english": "This morning",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "朝食",
+      "reading": "ちょうしょく",
+      "english": "Breakfast",
+      "kind": "word",
+      "category": "Food",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "毎朝",
+      "reading": "まいあさ",
+      "english": "Every morning",
+      "kind": "word",
+      "category": "Time",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "持",
+      "english": "Holding",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "持つ",
+      "reading": "もつ",
+      "english": "To carry; to hold",
+      "kind": "word",
+      "category": "Other",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "持ってくる",
+      "reading": "もってくる",
+      "english": "To bring",
+      "kind": "word",
+      "category": "Other",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "所持品",
+      "reading": "しょじひん",
+      "english": "Belongings",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "気持ち",
+      "reading": "きもち",
+      "english": "Feeling",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すわる",
+      "english": "To sit",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. Write each antonym in kanji.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "みじかい",
+      "english": "Short",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "B. Write each antonym in kanji.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "むかしむかし",
+      "english": "Once upon a time",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かさ",
+      "english": "Bamboo hat",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お正月",
+      "reading": "おしょうがつ",
+      "english": "New Year's",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "年",
+      "reading": "とし",
+      "english": "Year",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おもち",
+      "english": "Rice cake",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "売る",
+      "reading": "うる",
+      "english": "To sell",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かなしい",
+      "english": "Sad",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "山道",
+      "reading": "やまみち",
+      "english": "Mountain road",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おじぞうさん",
+      "english": "Guardian deity of children (statue)",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "雪",
+      "reading": "ゆき",
+      "english": "Snow",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かぶせる",
+      "english": "To put (a hat) on someone's head",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "自分",
+      "reading": "じぶん",
+      "english": "Oneself",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とる",
+      "english": "To take off",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いいこと",
+      "english": "Good deed",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "声",
+      "reading": "こえ",
+      "english": "Voice",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "戸",
+      "reading": "と",
+      "english": "Door",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "びっくりする",
+      "english": "To be surprised",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しあわせ",
+      "english": "Happy",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Ⅱ かさじぞう",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おじいさん",
+      "english": "Old man; grandfather",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Ⅱ かさじぞう",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どうぞ",
+      "english": "Please; go ahead",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ かさじぞう",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おばあさん",
+      "english": "Old woman; grandmother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "A. Answer the following questions.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "主人公",
+      "reading": "しゅじんこう",
+      "english": "Main character(s)",
+      "kind": "word",
+      "category": "Other",
+      "section": "A. Answer the following questions.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どんな",
+      "english": "What kind of",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "A. Answer the following questions.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だれ",
+      "english": "Who; anyone",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "D. Mark each of the following statements with ○ if true, or with × if false.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お金",
+      "reading": "おかね",
+      "english": "Money",
+      "kind": "word",
+      "category": "Money",
+      "section": "D. Mark each of the following statements with ○ if true, or with × if false.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お金持ち",
+      "reading": "おかねもち",
+      "english": "Rich (wealthy person)",
+      "kind": "word",
+      "category": "Money",
+      "section": "D. Mark each of the following statements with ○ if true, or with × if false.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とても",
+      "english": "Very",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "D. Mark each of the following statements with ○ if true, or with × if false.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たくさん",
+      "english": "A lot; many",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "D. Mark each of the following statements with ○ if true, or with × if false.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "使う",
+      "reading": "つかう",
+      "english": "To use",
+      "kind": "word",
+      "category": "Other",
+      "section": "かさじぞう",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さむい",
+      "english": "Cold",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "かさじぞう",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うち",
+      "english": "House; home",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "かさじぞう",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あした",
+      "english": "Tomorrow",
+      "kind": "word",
+      "category": "Time",
+      "section": "かさじぞう",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はじまる",
+      "english": "To begin",
+      "kind": "word",
+      "category": "Other",
+      "section": "かさじぞう",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "でも",
+      "english": "But; however",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "かさじぞう",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ふる",
+      "english": "To fall (rain or snow)",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "かさじぞう",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "クリスマス",
+      "english": "Christmas",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ 書く 練習",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ハロウィーン",
+      "english": "Halloween",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ 書く 練習",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "誕生日",
+      "reading": "たんじょうび",
+      "english": "Birthday",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ 書く 練習",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "バレンタインデー",
+      "english": "Valentine's Day",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ 書く 練習",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ラマダン",
+      "english": "Ramadan",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ 書く 練習",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ハヌカー",
+      "english": "Chanukkah",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ 書く 練習",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ディーワーリー",
+      "english": "Diwali",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ 書く 練習",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 24: Reading and Writing 10: The Folktale Kasajizo",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第10課 LESSON 10",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "昔話「かさじぞう」 The Folktale Kasajizo",
+      "read": true,
+      "items": 50
+    },
+    {
+      "title": "Ⅰ 漢字 の 練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Add strokes to the kanji below and turn them into new kanji from this lesson.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Write each antonym in kanji.",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "C. Fill in the blanks with the appropriate kanji from the list, and add hiragana where necessary.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ かさじぞう",
+      "read": true,
+      "items": 20
+    },
+    {
+      "title": "A. Answer the following questions.",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "B. Read the Japanese folktale “かさじぞう” on pp. 344-345. Y10",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Put the following pictures in the right order.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "D. Mark each of the following statements with ○ if true, or with × if false.",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "かさじぞう",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "Ⅲ 書く 練習",
+      "read": true,
+      "items": 7
+    }
+  ],
+  "unread": []
+}

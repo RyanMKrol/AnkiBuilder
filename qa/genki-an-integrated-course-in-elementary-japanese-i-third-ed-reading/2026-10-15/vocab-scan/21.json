@@ -1,0 +1,1168 @@
+{
+  "items": [
+    {
+      "target": "京",
+      "english": "Capital",
+      "kind": "character",
+      "category": "Travel & Tourism",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "上京する",
+      "english": "To go to the capital (to Tokyo)",
+      "reading": "じょうきょうする",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "子",
+      "english": "Child (kanji)",
+      "kind": "character",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "子ども",
+      "english": "Child",
+      "reading": "こども",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "女の子",
+      "english": "Girl",
+      "reading": "おんなのこ",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "男の子",
+      "english": "Boy",
+      "reading": "おとこのこ",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "女子学生",
+      "english": "Female student",
+      "reading": "じょしがくせい",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "小",
+      "english": "Small (kanji)",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "小さい",
+      "english": "Small",
+      "reading": "ちいさい",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "小学校",
+      "english": "Elementary school",
+      "reading": "しょうがっこう",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "小学生",
+      "english": "Elementary school student",
+      "reading": "しょうがくせい",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会",
+      "english": "To meet (kanji)",
+      "kind": "character",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会う",
+      "english": "To meet",
+      "reading": "あう",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会社",
+      "english": "Company",
+      "reading": "かいしゃ",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会社員",
+      "english": "Office worker",
+      "reading": "かいしゃいん",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会議",
+      "english": "Meeting",
+      "reading": "かいぎ",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "教会",
+      "english": "Church",
+      "reading": "きょうかい",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "社",
+      "english": "Company (kanji)",
+      "kind": "character",
+      "category": "Work & Occupations",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "神社",
+      "english": "Shrine",
+      "reading": "じんじゃ",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "社会",
+      "english": "Society",
+      "reading": "しゃかい",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "入社",
+      "english": "Entry to a company",
+      "reading": "にゅうしゃ",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "父",
+      "english": "Father (plain)",
+      "reading": "ちち",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お父さん",
+      "english": "Father (polite)",
+      "reading": "おとうさん",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "父母",
+      "english": "Father and mother",
+      "reading": "ふぼ",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "祖父",
+      "english": "Grandfather",
+      "reading": "そふ",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "母",
+      "english": "Mother (plain)",
+      "reading": "はは",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お母さん",
+      "english": "Mother (polite)",
+      "reading": "おかあさん",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "母語",
+      "english": "Mother tongue",
+      "reading": "ぼご",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "祖母",
+      "english": "Grandmother",
+      "reading": "そぼ",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "高",
+      "english": "High",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "高い",
+      "english": "Expensive; high",
+      "reading": "たかい",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "高校",
+      "english": "High school",
+      "reading": "こうこう",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "高校生",
+      "english": "High school student",
+      "reading": "こうこうせい",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "最高",
+      "english": "The best",
+      "reading": "さいこう",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "校",
+      "english": "School (kanji)",
+      "kind": "character",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学校",
+      "english": "School",
+      "reading": "がっこう",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中学校",
+      "english": "Junior high school",
+      "reading": "ちゅうがっこう",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "毎",
+      "english": "Every",
+      "kind": "character",
+      "category": "Time",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "毎日",
+      "english": "Every day",
+      "reading": "まいにち",
+      "kind": "word",
+      "category": "Time",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "毎週",
+      "english": "Every week",
+      "reading": "まいしゅう",
+      "kind": "word",
+      "category": "Time",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "毎晩",
+      "english": "Every night",
+      "reading": "まいばん",
+      "kind": "word",
+      "category": "Time",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "毎年",
+      "english": "Every year",
+      "reading": "まいねん／まいとし",
+      "kind": "word",
+      "category": "Time",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "語",
+      "english": "Word",
+      "kind": "character",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本語",
+      "english": "Japanese language",
+      "reading": "にほんご",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "英語",
+      "english": "English language",
+      "reading": "えいご",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "敬語",
+      "english": "Honorific expressions",
+      "reading": "けいご",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "文",
+      "english": "Sentence",
+      "kind": "character",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "作文",
+      "english": "Composition",
+      "reading": "さくぶん",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "文字",
+      "english": "Letter; character",
+      "reading": "もじ",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "文化",
+      "english": "Culture",
+      "reading": "ぶんか",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "文法",
+      "english": "Grammar",
+      "reading": "ぶんぽう",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帰",
+      "english": "To return (kanji)",
+      "kind": "character",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帰る",
+      "english": "To return",
+      "reading": "かえる",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帰国",
+      "english": "Going home (to one's country)",
+      "reading": "きこく",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帰宅",
+      "english": "Returning home",
+      "reading": "きたく",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帰り",
+      "english": "Return (trip)",
+      "reading": "かえり",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "入",
+      "english": "To enter (kanji)",
+      "kind": "character",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "入る",
+      "english": "To enter",
+      "reading": "はいる",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "入り口",
+      "english": "Entrance",
+      "reading": "いりぐち",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "入れる",
+      "english": "To put something in",
+      "reading": "いれる",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "輸入",
+      "english": "Import",
+      "reading": "ゆにゅう",
+      "kind": "word",
+      "category": "Other",
+      "section": "メアリーさんのてがみ Mary's Letter",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "元気",
+      "english": "Healthy; energetic",
+      "reading": "げんき",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あつい",
+      "english": "Hot (weather)",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さむい",
+      "english": "Cold (weather)",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今",
+      "english": "Now",
+      "reading": "いま",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "私",
+      "english": "I; me",
+      "reading": "わたし",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かぞく",
+      "english": "Family",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大学",
+      "english": "University",
+      "reading": "だいがく",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ちかく",
+      "english": "Near; vicinity",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すむ",
+      "english": "To live (reside)",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ここ",
+      "english": "Here",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しずか",
+      "english": "Quiet",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まち",
+      "english": "Town",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とても",
+      "english": "Very",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しんせつ",
+      "english": "Kind (to people)",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たのしい",
+      "english": "Fun; enjoyable",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンピューター",
+      "english": "Computer",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はたらく",
+      "english": "To work",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いそがしい",
+      "english": "Busy",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おそい",
+      "english": "Late",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おもしろい",
+      "english": "Interesting; funny",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "人",
+      "english": "Person",
+      "reading": "ひと",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いっしょに",
+      "english": "Together",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よく",
+      "english": "Often; well",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はなす",
+      "english": "To speak",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いもうと",
+      "english": "Younger sister",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "らいねん",
+      "english": "Next year",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "べんきょうする",
+      "english": "To study",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すぐ",
+      "english": "Immediately; right away",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "行く",
+      "english": "To go",
+      "reading": "いく",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たいへん",
+      "english": "Tough; difficult",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おにいさん",
+      "english": "Older brother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あまり",
+      "english": "Not very; not much",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "クラス",
+      "english": "Class",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "テニス",
+      "english": "Tennis",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サークル",
+      "english": "Club (circle)",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いつ",
+      "english": "When",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すこし",
+      "english": "A little",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "みんな",
+      "english": "All",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅく",
+      "english": "Cram school",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "文学",
+      "english": "Literature",
+      "reading": "ぶんがく",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とる",
+      "english": "To take (a class)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たのしみにする",
+      "english": "To look forward (to)",
+      "kind": "phrase",
+      "category": "Emotions & Feelings",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "からだ",
+      "english": "Body",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "気をつける",
+      "english": "To be careful; to take care",
+      "kind": "phrase",
+      "category": "Body & Health",
+      "section": "Ⅱ メアリーさんのてがみ",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 21: Reading and Writing 7: Mary's Letter",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第7課 LESSON 7",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "メアリーさんのてがみ Mary's Letter",
+      "read": true,
+      "items": 60
+    },
+    {
+      "title": "Ⅰ 漢字 の 練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Fill in the blanks with the appropriate kanji.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Which new kanji from this lesson include the katakana below?",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Word Search—Find seven kanji compounds from this lesson and six review compounds.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ メアリーさんのてがみ",
+      "read": true,
+      "items": 44
+    },
+    {
+      "title": "Ⅲ 書 く 練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Write about the following topics.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Write a letter to a Japanese friend or teacher. Describe your town, school, family, friends, and so on.",
+      "read": true,
+      "items": 0
+    }
+  ],
+  "unread": []
+}

@@ -1,0 +1,327 @@
+{
+  "items": [
+    {
+      "target": "ゼロ／れい",
+      "english": "Zero",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いち",
+      "english": "One",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "に",
+      "english": "Two",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さん",
+      "english": "Three",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よん／し／(よ)",
+      "english": "Four",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ご",
+      "english": "Five",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろく",
+      "english": "Six",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なな／しち",
+      "english": "Seven",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はち",
+      "english": "Eight",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きゅう／く",
+      "english": "Nine",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅう",
+      "english": "Ten",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅういち",
+      "english": "Eleven",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうに",
+      "english": "Twelve",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうさん",
+      "english": "Thirteen",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうよん／じゅうし",
+      "english": "Fourteen",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうご",
+      "english": "Fifteen",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうろく",
+      "english": "Sixteen",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうなな／じゅうしち",
+      "english": "Seventeen",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうはち",
+      "english": "Eighteen",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうきゅう／じゅうく",
+      "english": "Nineteen",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にじゅう",
+      "english": "Twenty",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんじゅう",
+      "english": "Thirty",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よんじゅう",
+      "english": "Forty",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごじゅう",
+      "english": "Fifty",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろくじゅう",
+      "english": "Sixty",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ななじゅう",
+      "english": "Seventy",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はちじゅう",
+      "english": "Eighty",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きゅうじゅう",
+      "english": "Ninety",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ひゃく",
+      "english": "Hundred",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "すうじ K00-02",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 02: Numbers",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "すうじ K00-02",
+      "read": true,
+      "items": 29
+    },
+    {
+      "title": "れんしゅう Practice",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Read the following numbers. K00-03",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Read the following numbers. K00-04",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. What are the answers? K00-05",
+      "read": true,
+      "items": 0
+    }
+  ],
+  "unread": []
+}

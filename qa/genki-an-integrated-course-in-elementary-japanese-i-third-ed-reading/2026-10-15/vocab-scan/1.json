@@ -1,0 +1,252 @@
+{
+  "items": [
+    {
+      "target": "おはよう",
+      "english": "Good morning",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おはようございます",
+      "english": "Good morning (polite)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こんにちは",
+      "english": "Good afternoon",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こんばんは",
+      "english": "Good evening",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さようなら",
+      "english": "Good-bye",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おやすみなさい",
+      "english": "Good night",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ありがとう",
+      "english": "Thank you",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ありがとうございます",
+      "english": "Thank you (polite)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すみません",
+      "english": "Excuse me; I'm sorry",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いいえ",
+      "english": "No; Not at all",
+      "kind": "phrase",
+      "category": "Grammar & Function Words",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いってきます",
+      "english": "I'll go and come back",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いってらっしゃい",
+      "english": "Please go and come back",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ただいま",
+      "english": "I'm home",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おかえりなさい",
+      "english": "Welcome home",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いただきます",
+      "english": "Thank you for the meal (before eating)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごちそうさまでした",
+      "english": "Thank you for the meal (after eating)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はじめまして",
+      "english": "How do you do?",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よろしくおねがいします",
+      "english": "Nice to meet you",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Greetings",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゃあ、また",
+      "english": "See you (casual)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "表 現 ノート Expression Notes 1",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しつれいします",
+      "english": "Excuse me (leaving)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "表 現 ノート Expression Notes 1",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 01: Greetings",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "あいさつ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Greetings",
+      "read": true,
+      "items": 18
+    },
+    {
+      "title": "Culture Notes",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "あいさつと おじぎ Greetings and Bowing",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "表 現 ノート Expression Notes 1",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "●れんしゅう Practice",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Act out the following situations with your classmates.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Class Activity—Meeting someone for the first time",
+      "read": true,
+      "items": 0
+    }
+  ],
+  "unread": []
+}

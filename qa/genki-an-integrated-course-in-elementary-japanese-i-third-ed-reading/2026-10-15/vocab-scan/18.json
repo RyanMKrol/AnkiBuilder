@@ -1,0 +1,1055 @@
+{
+  "items": [
+    {
+      "target": "日",
+      "english": "Day; sun",
+      "kind": "character",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "人",
+      "english": "Person",
+      "kind": "character",
+      "category": "Family & People",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "金",
+      "english": "Gold; money",
+      "kind": "character",
+      "category": "Money",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "曜",
+      "english": "Weekday",
+      "kind": "character",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "半",
+      "english": "Half",
+      "kind": "character",
+      "category": "Numbers",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "本",
+      "reading": "ほん",
+      "english": "Book; basis",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "月",
+      "reading": "つき",
+      "english": "Moon; month",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "火",
+      "reading": "ひ",
+      "english": "Fire",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "水",
+      "reading": "みず",
+      "english": "Water",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "木",
+      "reading": "き",
+      "english": "Tree",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "土",
+      "reading": "つち",
+      "english": "Soil",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "上",
+      "reading": "うえ",
+      "english": "Top; above",
+      "kind": "word",
+      "category": "Directions",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "下",
+      "reading": "した",
+      "english": "Under",
+      "kind": "word",
+      "category": "Directions",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中",
+      "reading": "なか",
+      "english": "Inside",
+      "kind": "word",
+      "category": "Directions",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本",
+      "reading": "にほん",
+      "english": "Japan",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日曜日",
+      "reading": "にちようび",
+      "english": "Sunday",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "毎日",
+      "reading": "まいにち",
+      "english": "Every day",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "母の日",
+      "reading": "ははのひ",
+      "english": "Mother's Day",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日記",
+      "reading": "にっき",
+      "english": "Diary",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三日",
+      "reading": "みっか",
+      "english": "Three days",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本語",
+      "reading": "にほんご",
+      "english": "Japanese language",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本人",
+      "reading": "にほんじん",
+      "english": "Japanese people",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一人",
+      "reading": "ひとり",
+      "english": "One person; alone",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三人",
+      "reading": "さんにん",
+      "english": "Three people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "月曜日",
+      "reading": "げつようび",
+      "english": "Monday",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一月",
+      "reading": "いちがつ",
+      "english": "January",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今月",
+      "reading": "こんげつ",
+      "english": "This month",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一か月",
+      "reading": "いっかげつ",
+      "english": "One month",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "火曜日",
+      "reading": "かようび",
+      "english": "Tuesday",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "火山",
+      "reading": "かざん",
+      "english": "Volcano",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "花火",
+      "reading": "はなび",
+      "english": "Fireworks",
+      "kind": "word",
+      "category": "Other",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "水曜日",
+      "reading": "すいようび",
+      "english": "Wednesday",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "水泳",
+      "reading": "すいえい",
+      "english": "Swimming",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "水道",
+      "reading": "すいどう",
+      "english": "Water supply",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "水着",
+      "reading": "みずぎ",
+      "english": "Bathing suit",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "木曜日",
+      "reading": "もくようび",
+      "english": "Thursday",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お金",
+      "reading": "おかね",
+      "english": "Money",
+      "kind": "word",
+      "category": "Money",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "料金",
+      "reading": "りょうきん",
+      "english": "Charge (fee)",
+      "kind": "word",
+      "category": "Money",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お金持ち",
+      "reading": "おかねもち",
+      "english": "Rich person",
+      "kind": "word",
+      "category": "Money",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "金曜日",
+      "reading": "きんようび",
+      "english": "Friday",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "土曜日",
+      "reading": "どようび",
+      "english": "Saturday",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "土地",
+      "reading": "とち",
+      "english": "Land",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "粘土",
+      "reading": "ねんど",
+      "english": "Clay",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "曜日",
+      "reading": "ようび",
+      "english": "Day of the week",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "上手な",
+      "reading": "じょうずな",
+      "english": "Good at",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "屋上",
+      "reading": "おくじょう",
+      "english": "Rooftop",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "上る",
+      "reading": "のぼる",
+      "english": "To go up",
+      "kind": "word",
+      "category": "Directions",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "地下鉄",
+      "reading": "ちかてつ",
+      "english": "Subway",
+      "kind": "word",
+      "category": "Transport",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "下手な",
+      "reading": "へたな",
+      "english": "Poor at",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中国",
+      "reading": "ちゅうごく",
+      "english": "China",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中学",
+      "reading": "ちゅうがく",
+      "english": "Junior high school",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一年中",
+      "reading": "いちねんじゅう",
+      "english": "All year around",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三時半",
+      "reading": "さんじはん",
+      "english": "Half past three",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "半分",
+      "reading": "はんぶん",
+      "english": "Half (fraction)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "半年",
+      "reading": "はんとし",
+      "english": "Half a year",
+      "kind": "word",
+      "category": "Time",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "半額",
+      "reading": "はんがく",
+      "english": "Half price",
+      "kind": "word",
+      "category": "Money",
+      "section": "I 漢字の練習 (Kanji Practice)",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ビル",
+      "english": "Building",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "B. Look at the picture and choose the appropriate kanji for the blanks.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "レストラン",
+      "english": "Restaurant",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Look at the picture and choose the appropriate kanji for the blanks.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "スーパー",
+      "english": "Supermarket",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "B. Look at the picture and choose the appropriate kanji for the blanks.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学校",
+      "reading": "がっこう",
+      "english": "School",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Look at the picture and choose the appropriate kanji for the blanks.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おかあさん",
+      "english": "Mother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "メモ",
+      "english": "Memo; note",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "書く",
+      "reading": "かく",
+      "english": "To write",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なに",
+      "english": "What",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きょう",
+      "english": "Today",
+      "kind": "word",
+      "category": "Time",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "する",
+      "english": "To do",
+      "kind": "word",
+      "category": "Other",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うち",
+      "english": "Home",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ばんごはん",
+      "english": "Dinner",
+      "kind": "word",
+      "category": "Food",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食べる",
+      "reading": "たべる",
+      "english": "To eat",
+      "kind": "word",
+      "category": "Food",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "何時",
+      "reading": "なんじ",
+      "english": "What time",
+      "kind": "word",
+      "category": "Time",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帰る",
+      "reading": "かえる",
+      "english": "To return",
+      "kind": "word",
+      "category": "Other",
+      "section": "II おかあさんへのメモ",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ともだち",
+      "english": "Friend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "II おかあさんへのメモ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だいがく",
+      "english": "University",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "II おかあさんへのメモ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "勉強する",
+      "reading": "べんきょうする",
+      "english": "To study",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "II おかあさんへのメモ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "九時半",
+      "reading": "くじはん",
+      "english": "Half past nine",
+      "kind": "word",
+      "category": "Time",
+      "section": "II おかあさんへのメモ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こうえん",
+      "english": "Park",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "行く",
+      "reading": "いく",
+      "english": "To go",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "話す",
+      "reading": "はなす",
+      "english": "To talk",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "それから",
+      "english": "And then",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たくさん",
+      "english": "A lot; many",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おてら",
+      "english": "Temple",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "みせ",
+      "english": "Shop; store",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おまんじゅう",
+      "english": "Sweet bun",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "買う",
+      "reading": "かう",
+      "english": "To buy",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ある",
+      "english": "To exist; to have",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おそく",
+      "english": "Late (in doing something)",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "起きる",
+      "reading": "おきる",
+      "english": "To get up",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "わたし",
+      "english": "I",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あさ",
+      "english": "Morning",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ざっし",
+      "english": "Magazine",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "読む",
+      "reading": "よむ",
+      "english": "To read",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ひるごはん",
+      "english": "Lunch",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごご",
+      "english": "Afternoon; P.M.",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "レポート",
+      "english": "Report",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅲ メアリーさんのしゅうまつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 18: Reading and Writing 4: Mary's Weekend",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第4課 LESSON 4",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "メアリーさんのしゅうまつ Mary's Weekend",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "I 漢字の練習 (Kanji Practice)",
+      "read": true,
+      "items": 56
+    },
+    {
+      "title": "A. Match the kanji with the English equivalents.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Look at the picture and choose the appropriate kanji for the blanks.",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "II おかあさんへのメモ",
+      "read": true,
+      "items": 15
+    },
+    {
+      "title": "Ⅲ メアリーさんのしゅうまつ",
+      "read": true,
+      "items": 19
+    },
+    {
+      "title": "書く練習 (Writing Practice)",
+      "read": true,
+      "items": 0
+    }
+  ],
+  "unread": []
+}

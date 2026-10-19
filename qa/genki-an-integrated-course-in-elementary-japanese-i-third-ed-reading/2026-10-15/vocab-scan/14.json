@@ -1,0 +1,1740 @@
+{
+  "items": [
+    {
+      "target": "おなか",
+      "english": "Stomach",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "足",
+      "reading": "あし",
+      "english": "Leg; foot",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "のど",
+      "english": "Throat",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歯",
+      "reading": "は",
+      "english": "Tooth",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "インフルエンザ",
+      "english": "Influenza",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "風邪",
+      "reading": "かぜ",
+      "english": "Cold (illness)",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せき",
+      "english": "Cough",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二日酔い",
+      "reading": "ふつかよい",
+      "english": "Hangover",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ホームシック",
+      "english": "Homesickness",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アレルギー",
+      "english": "Allergy",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ジュース",
+      "english": "Juice",
+      "kind": "word",
+      "category": "Food",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "卵",
+      "reading": "たまご",
+      "english": "Egg",
+      "kind": "word",
+      "category": "Food",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "服",
+      "reading": "ふく",
+      "english": "Clothes",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "物",
+      "reading": "もの",
+      "english": "Thing (concrete object)",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "プレゼント",
+      "english": "Present",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "切符",
+      "reading": "きっぷ",
+      "english": "Train ticket",
+      "kind": "word",
+      "category": "Transport",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "代",
+      "reading": "だい",
+      "english": "Charge; fee (suffix)",
+      "kind": "word",
+      "category": "Money",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "用事",
+      "reading": "ようじ",
+      "english": "Business to take care of",
+      "kind": "word",
+      "category": "Other",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お手洗い",
+      "reading": "おてあらい",
+      "english": "Restroom",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "試合",
+      "reading": "しあい",
+      "english": "Match; game",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "政治",
+      "reading": "せいじ",
+      "english": "Politics",
+      "kind": "word",
+      "category": "Other",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "成績",
+      "reading": "せいせき",
+      "english": "Grade (on a test, etc.)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "彼女",
+      "reading": "かのじょ",
+      "english": "She; girlfriend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "彼",
+      "reading": "かれ",
+      "english": "He; boyfriend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "彼氏",
+      "reading": "かれし",
+      "english": "Boyfriend (specific term)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "意味",
+      "reading": "いみ",
+      "english": "Meaning",
+      "kind": "word",
+      "category": "Other",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "狭い",
+      "reading": "せまい",
+      "english": "Narrow; not spacious",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "広い",
+      "reading": "ひろい",
+      "english": "Wide; spacious",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "悪い",
+      "reading": "わるい",
+      "english": "Bad",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "痛い",
+      "reading": "いたい",
+      "english": "Hurt; painful",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "甘い",
+      "reading": "あまい",
+      "english": "Sweet",
+      "kind": "word",
+      "category": "Food",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "多い",
+      "reading": "おおい",
+      "english": "Many; numerous",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "素敵",
+      "reading": "すてき",
+      "english": "Nice",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "な-adjective",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歩く",
+      "reading": "あるく",
+      "english": "To walk",
+      "kind": "word",
+      "category": "Other",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ひく",
+      "english": "To catch (an illness); to pull",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "熱",
+      "reading": "ねつ",
+      "english": "Fever",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "渇く",
+      "reading": "かわく",
+      "english": "To become thirsty",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "払う",
+      "reading": "はらう",
+      "english": "To pay",
+      "kind": "word",
+      "category": "Money",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なくす",
+      "english": "To lose",
+      "kind": "word",
+      "category": "Other",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "興味",
+      "reading": "きょうみ",
+      "english": "Interest",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "出る",
+      "reading": "でる",
+      "english": "To come out; to exit",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ru-verbs",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "別れる",
+      "reading": "わかれる",
+      "english": "To break up; to separate",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Ru-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "緊張する",
+      "reading": "きんちょうする",
+      "english": "To get nervous",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Irregular Verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "心配する",
+      "reading": "しんぱいする",
+      "english": "To worry",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Irregular Verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お大事に",
+      "reading": "おだいじに",
+      "english": "Get well soon",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "元気がない",
+      "reading": "げんきがない",
+      "english": "Don't look well",
+      "kind": "phrase",
+      "category": "Body & Health",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "できるだけ",
+      "english": "As much as possible",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "多分",
+      "reading": "たぶん",
+      "english": "Probably; maybe",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "もうすぐ",
+      "english": "Very soon; in a few moments/days",
+      "kind": "word",
+      "category": "Time",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "初めて",
+      "reading": "はじめて",
+      "english": "For the first time",
+      "kind": "word",
+      "category": "Time",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二三日",
+      "reading": "にさんにち",
+      "english": "For two to three days",
+      "kind": "word",
+      "category": "Time",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "それに",
+      "english": "Moreover",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "同じ",
+      "reading": "おなじ",
+      "english": "Same",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うーん",
+      "english": "Um... (hesitation)",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Ⅰ Mary and Yui are talking at school. K12-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "練習する",
+      "reading": "れんしゅうする",
+      "english": "To practice",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Ⅱ Next day Mary is at a hospital. K12-03/04",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "運動する",
+      "reading": "うんどうする",
+      "english": "To exercise",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Ⅱ Next day Mary is at a hospital. K12-03/04",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "薬",
+      "reading": "くすり",
+      "english": "Medicine",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ⅱ Next day Mary is at a hospital. K12-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "バス",
+      "english": "Bus",
+      "kind": "word",
+      "category": "Transport",
+      "section": "1 〜んです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "試験",
+      "reading": "しけん",
+      "english": "Exam; test",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "1 〜んです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "終わる",
+      "reading": "おわる",
+      "english": "To end; to finish",
+      "kind": "word",
+      "category": "Other",
+      "section": "1 〜んです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "猫",
+      "reading": "ねこ",
+      "english": "Cat",
+      "kind": "word",
+      "category": "Animals",
+      "section": "1 〜んです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "死ぬ",
+      "reading": "しぬ",
+      "english": "To die",
+      "kind": "word",
+      "category": "Other",
+      "section": "1 〜んです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ノート",
+      "english": "Notebook",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "1 〜んです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お風呂",
+      "reading": "おふろ",
+      "english": "Bath",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "1 〜んです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いじわる",
+      "english": "Mean; unkind",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "4 〜ので",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "掃除する",
+      "reading": "そうじする",
+      "english": "To clean",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "5 〜なければいけません／〜なきゃいけません",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "降る",
+      "reading": "ふる",
+      "english": "To fall (rain, snow)",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "6 ～でしょうか",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "頭",
+      "reading": "あたま",
+      "english": "Head",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "A.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "車",
+      "reading": "くるま",
+      "english": "Car",
+      "kind": "word",
+      "category": "Transport",
+      "section": "B. Respond to the comments using 〜んです. K12-08",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "花",
+      "reading": "はな",
+      "english": "Flower",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "B. Respond to the comments using 〜んです. K12-08",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "靴",
+      "reading": "くつ",
+      "english": "Shoes",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "B. Respond to the comments using 〜んです. K12-08",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かばん",
+      "english": "Bag",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "B. Respond to the comments using 〜んです. K12-08",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かっこいい",
+      "english": "Cool; good-looking",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "B. Respond to the comments using 〜んです. K12-08",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時計",
+      "reading": "とけい",
+      "english": "Clock; watch",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "C. Pair Work—Your partner has said something nice about what you have. Respond using 〜んです.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "走る",
+      "reading": "はしる",
+      "english": "To run",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "B. Look at the verbs below. Think about the results of over doing these things and make sentences as in the example.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌",
+      "reading": "うた",
+      "english": "Song",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "B. Look at the verbs below. Think about the results of over doing these things and make sentences as in the example.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌う",
+      "reading": "うたう",
+      "english": "To sing",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "B. Look at the verbs below. Think about the results of over doing these things and make sentences as in the example.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "やせる",
+      "english": "To lose weight; to become thin",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "B. Pair Work—Give advice to your partner in the following situations, using 〜ほうがいい.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "けんか",
+      "english": "Quarrel; fight",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "B. Pair Work—Give advice to your partner in the following situations, using 〜ほうがいい.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "遅刻する",
+      "reading": "ちこくする",
+      "english": "To be late",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Pair Work—Give advice to your partner in the following situations, using 〜ほうがいい.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たばこ",
+      "english": "Cigarette; tobacco",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "C. Pair Work—You are a health counselor. Someone who hasn't been feeling well is at your office. Ask the following questions. Complete this form first, then give your advice using 〜ほうがいい.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "吸う",
+      "reading": "すう",
+      "english": "To smoke; to inhale",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "C. Pair Work—You are a health counselor. Someone who hasn't been feeling well is at your office. Ask the following questions. Complete this form first, then give your advice using 〜ほうがいい.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "散歩する",
+      "reading": "さんぽする",
+      "english": "To take a walk",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "A. Connect the two sentences using 〜ので. K12-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サボる",
+      "english": "To skip (class); to slack off",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Connect the two sentences using 〜ので. K12-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "人気",
+      "reading": "にんき",
+      "english": "Popularity",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "A. Connect the two sentences using 〜ので. K12-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "借りる",
+      "reading": "かりる",
+      "english": "To borrow",
+      "kind": "word",
+      "category": "Other",
+      "section": "A. You have a busy day tomorrow. You have to do the following things. Make sentences according to the example. K12-12",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "デート",
+      "english": "Date (romantic)",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "B. Answer the following questions.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "雪",
+      "reading": "ゆき",
+      "english": "Snow",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "A.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "厳しい",
+      "reading": "きびしい",
+      "english": "Strict",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "A.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アニメ",
+      "english": "Animation; anime",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "A.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サークル",
+      "english": "Club; circle (group)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ホストファミリー",
+      "english": "Host family",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "A.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌手",
+      "reading": "かしゅ",
+      "english": "Singer",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "B.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "梅雨",
+      "reading": "つゆ",
+      "english": "Rainy season",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "日本 の 気候 The Japanese Climate",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "台風",
+      "reading": "たいふう",
+      "english": "Typhoon",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "日本 の 気候 The Japanese Climate",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "保険証",
+      "reading": "ほけんしょう",
+      "english": "Health insurance certificate",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "At the Clinic's Reception",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "見せる",
+      "reading": "みせる",
+      "english": "To show",
+      "kind": "word",
+      "category": "Other",
+      "section": "At the Clinic's Reception",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "痛み止め",
+      "reading": "いたみどめ",
+      "english": "Painkiller",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "At the Clinic's Reception",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食後",
+      "reading": "しょくご",
+      "english": "After a meal",
+      "kind": "word",
+      "category": "Time",
+      "section": "At the Clinic's Reception",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "下痢",
+      "reading": "げり",
+      "english": "Diarrhea",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "便秘",
+      "reading": "べんぴ",
+      "english": "Constipation",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "生理",
+      "reading": "せいり",
+      "english": "Period; menstruation",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "花粉症",
+      "reading": "かふんしょう",
+      "english": "Hay fever",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "虫歯",
+      "reading": "むしば",
+      "english": "Cavity; bad tooth",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "くしゃみ",
+      "english": "Sneeze",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "鼻水",
+      "reading": "はなみず",
+      "english": "Runny nose",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "背中",
+      "reading": "せなか",
+      "english": "Back (body part)",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かゆい",
+      "english": "Itchy",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "発疹",
+      "reading": "はっしん",
+      "english": "Rash",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "めまい",
+      "english": "Dizziness",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "吐く",
+      "reading": "はく",
+      "english": "To throw up",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "気分",
+      "reading": "きぶん",
+      "english": "Feeling; mood",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "やけど",
+      "english": "Burn (injury)",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "骨折",
+      "reading": "こっせつ",
+      "english": "Fracture",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "けが",
+      "english": "Injury",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "内科",
+      "reading": "ないか",
+      "english": "Physician; internal medicine",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "皮膚科",
+      "reading": "ひふか",
+      "english": "Dermatologist",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "外科",
+      "reading": "げか",
+      "english": "Surgeon; surgery",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "産婦人科",
+      "reading": "さんふじんか",
+      "english": "Obstetrician and gynecologist",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "整形外科",
+      "reading": "せいけいげか",
+      "english": "Orthopedic surgeon",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "眼科",
+      "reading": "がんか",
+      "english": "Ophthalmologist",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "目医者",
+      "reading": "めいしゃ",
+      "english": "Ophthalmologist (colloquial)",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歯科",
+      "reading": "しか",
+      "english": "Dentist",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歯医者",
+      "reading": "はいしゃ",
+      "english": "Dentist (colloquial)",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "耳鼻科",
+      "reading": "じびか",
+      "english": "Otorhinolaryngologist; ENT doctor",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Doctor's office",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "抗生物質",
+      "reading": "こうせいぶっしつ",
+      "english": "Antibiotic",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Miscellaneous",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "レントゲン",
+      "english": "X-ray",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Miscellaneous",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "手術",
+      "reading": "しゅじゅつ",
+      "english": "Operation; surgery",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Miscellaneous",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "注射",
+      "reading": "ちゅうしゃ",
+      "english": "Injection",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Miscellaneous",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "体温計",
+      "reading": "たいおんけい",
+      "english": "Thermometer",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Miscellaneous",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "点滴",
+      "reading": "てんてき",
+      "english": "Intravenous feeding; IV drip",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Miscellaneous",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 14: Lesson 12: Feeling Sick",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第12課　LESSON　12",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "病 気 Feeling Ill",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "会 話 Dialogue",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅰ Mary and Yui are talking at school. K12-01/02",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Ⅱ Next day Mary is at a hospital. K12-03/04",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Ⅰ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "単 語",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Nouns",
+      "read": true,
+      "items": 26
+    },
+    {
+      "title": "い-adjectives",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "な-adjective",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "U-verbs",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "Ru-verbs",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "Irregular Verbs",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "Adverbs and Other Expressions",
+      "read": true,
+      "items": 9
+    },
+    {
+      "title": "文 法 Grammar",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "1 〜んです",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "2 〜すぎる",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "3 〜ほうがいいです",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "4 〜ので",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "5 〜なければいけません／〜なきゃいけません",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "6 ～でしょうか",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Expression Notes 表現 ノート",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "練 習 Practice",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "I 頭 が 痛 いんです Grammar 1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "B. Respond to the comments using 〜んです. K12-08",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "C. Pair Work—Your partner has said something nice about what you have. Respond using 〜んです.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "D. Pair Work—Make up dialogues asking for reasons.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ 食 べすぎました ☛Grammar 2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Describe the following pictures using 〜すぎる. Use \"verb＋すぎる\" for (1) through (4) and \"adjective＋すぎる\" for (5) through (10). K12-09",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Look at the verbs below. Think about the results of over doing these things and make sentences as in the example.",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "C. Group Work—Complain about your classes, town, school, dormitory ( 寮 ), cafeteria, etc.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅲ 薬 を 飲 んだほうがいいです ☞Grammar 3",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Using the cues below, give advice to a friend who has a headache. Decide if you should use the affirmative or the negative. K12-10",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Pair Work—Give advice to your partner in the following situations, using 〜ほうがいい.",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "C. Pair Work—You are a health counselor. Someone who hasn't been feeling well is at your office. Ask the following questions. Complete this form first, then give your advice using 〜ほうがいい.",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "Ⅳ いい 天気 なので、 散歩 します ☛Grammar 4",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Connect the two sentences using 〜ので. K12-11",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "B. Make sentences using the cues below as reasons, according to the example.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Fill in the blanks with appropriate words.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅴ 七時 に 起 きなければいけません/ 起 きなきゃいけません ☛Grammar 5",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. You have a busy day tomorrow. You have to do the following things. Make sentences according to the example. K12-12",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "B. Answer the following questions.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "C. Using the cues in A, tell your friend what you must do tomorrow. K12-13",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "D. Pair Work—Your partner invites you to do the following things together on a certain time. Turn down the invitation and explain your reason using 〜なきゃいけない.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅵ 日本 は 寒 いでしょうか Grammar 6",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A.",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "B.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Ⅶ まとめの 練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Example",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A's schedule",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Role Play—Visiting a Doctor's Office",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Pair Work Ⅶ B. (p. 290)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B's schedule",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Culture Notes",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "日本 の 気候 The Japanese Climate",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "Useful Expressions",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "健康 と 病気 Health and Illness",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "At the Clinic's Reception",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "Expressions for Illness（ 病気 ）and Injuries（けが）",
+      "read": true,
+      "items": 16
+    },
+    {
+      "title": "Vocabulary",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Doctor's office",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "Miscellaneous",
+      "read": true,
+      "items": 6
+    }
+  ],
+  "unread": []
+}

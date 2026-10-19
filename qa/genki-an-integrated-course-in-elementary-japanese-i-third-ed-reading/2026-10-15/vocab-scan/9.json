@@ -1,0 +1,1432 @@
+{
+  "items": [
+    {
+      "target": "家族",
+      "reading": "かぞく",
+      "english": "Family",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おじいさん",
+      "english": "Grandfather; old man",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おばあさん",
+      "english": "Grandmother; old woman",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お兄さん",
+      "reading": "おにいさん",
+      "english": "Older brother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お姉さん",
+      "reading": "おねえさん",
+      "english": "Older sister",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "父",
+      "reading": "ちち",
+      "english": "Father (one's own)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "母",
+      "reading": "はは",
+      "english": "Mother (one's own)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "兄",
+      "reading": "あに",
+      "english": "Older brother (one's own)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "姉",
+      "reading": "あね",
+      "english": "Older sister (one's own)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "妹",
+      "reading": "いもうと",
+      "english": "Younger sister",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "弟",
+      "reading": "おとうと",
+      "english": "Younger brother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "兄弟",
+      "reading": "きょうだい",
+      "english": "Brothers and sisters",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "男の人",
+      "reading": "おとこのひと",
+      "english": "Man",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "女の人",
+      "reading": "おんなのひと",
+      "english": "Woman",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会社",
+      "reading": "かいしゃ",
+      "english": "Company",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食堂",
+      "reading": "しょくどう",
+      "english": "Cafeteria; dining commons",
+      "kind": "word",
+      "category": "Food",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "デパート",
+      "english": "Department store",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "髪",
+      "reading": "かみ",
+      "english": "Hair",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "口",
+      "reading": "くち",
+      "english": "Mouth",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "目",
+      "reading": "め",
+      "english": "Eye",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "眼鏡",
+      "reading": "めがね",
+      "english": "Glasses",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌",
+      "reading": "うた",
+      "english": "Song",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サークル",
+      "english": "Club activity",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "車",
+      "reading": "くるま",
+      "english": "Car",
+      "kind": "word",
+      "category": "Transport",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "長い",
+      "reading": "ながい",
+      "english": "Long",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "短い",
+      "reading": "みじかい",
+      "english": "Short (length)",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "速い",
+      "reading": "はやい",
+      "english": "Fast",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "背が高い",
+      "reading": "せがたかい",
+      "english": "Tall (stature)",
+      "kind": "phrase",
+      "category": "Body & Health",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "背が低い",
+      "reading": "せがひくい",
+      "english": "Short (stature)",
+      "kind": "phrase",
+      "category": "Body & Health",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "頭がいい",
+      "reading": "あたまがいい",
+      "english": "Bright; smart; clever",
+      "kind": "phrase",
+      "category": "Descriptions & Qualities",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かわいい",
+      "english": "Cute",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "い-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "親切",
+      "reading": "しんせつ",
+      "english": "Kind",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "な-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "便利",
+      "reading": "べんり",
+      "english": "Convenient",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "な-adjectives",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌う",
+      "reading": "うたう",
+      "english": "To sing",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かぶる",
+      "english": "To put on (a hat)",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はく",
+      "english": "To put on (items below your waist)",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "知る",
+      "reading": "しる",
+      "english": "To get to know",
+      "kind": "word",
+      "category": "Other",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "知っています",
+      "reading": "しっています",
+      "english": "I know",
+      "kind": "word",
+      "category": "Other",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "知りません",
+      "reading": "しりません",
+      "english": "I do not know",
+      "kind": "word",
+      "category": "Other",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "住む",
+      "reading": "すむ",
+      "english": "To live",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "働く",
+      "reading": "はたらく",
+      "english": "To work",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "太る",
+      "reading": "ふとる",
+      "english": "To gain weight",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "太っています",
+      "reading": "ふとっています",
+      "english": "To be on the heavy side; overweight",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かける",
+      "english": "To put on (glasses)",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "Ru-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "着る",
+      "reading": "きる",
+      "english": "To put on (clothes above your waist)",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "Ru-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "やせる",
+      "english": "To lose weight",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ru-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "やせています",
+      "english": "To be thin",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ru-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "結婚する",
+      "reading": "けっこんする",
+      "english": "To get married",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Irregular Verb",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "何も",
+      "reading": "なにも",
+      "english": "Nothing; not anything",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一人",
+      "reading": "ひとり",
+      "english": "One person",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二人",
+      "reading": "ふたり",
+      "english": "Two people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "別に",
+      "reading": "べつに",
+      "english": "Nothing in particular",
+      "kind": "word",
+      "category": "Other",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "もちろん",
+      "english": "Of course",
+      "kind": "word",
+      "category": "Other",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よかったら",
+      "english": "If you like",
+      "kind": "word",
+      "category": "Other",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "写真",
+      "reading": "しゃしん",
+      "english": "Photo; picture",
+      "kind": "word",
+      "category": "Other",
+      "section": "会話 Dialogue",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "高校",
+      "reading": "こうこう",
+      "english": "High school",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "会話 Dialogue",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時",
+      "reading": "とき",
+      "english": "Time; when",
+      "kind": "word",
+      "category": "Time",
+      "section": "会話 Dialogue",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かっこいい",
+      "english": "Good-looking; cool",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "会話 Dialogue",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "子供",
+      "reading": "こども",
+      "english": "Child",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "会話 Dialogue",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "猫",
+      "reading": "ねこ",
+      "english": "Cat",
+      "kind": "word",
+      "category": "Animals",
+      "section": "会話 Dialogue",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "もしもし",
+      "english": "Hello (on the phone)",
+      "kind": "word",
+      "category": "Greetings",
+      "section": "Ⅱ Yui's phone rings. K07-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "死ぬ",
+      "reading": "しぬ",
+      "english": "To die",
+      "kind": "word",
+      "category": "Other",
+      "section": "1 〜ている (Action in Progress)",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "耳",
+      "reading": "みみ",
+      "english": "Ear",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "3 メアリーさんは髪が長いです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "手",
+      "reading": "て",
+      "english": "Hand",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "3 メアリーさんは髪が長いです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "足",
+      "reading": "あし",
+      "english": "Leg; foot",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "3 メアリーさんは髪が長いです",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三人",
+      "reading": "さんにん",
+      "english": "Three people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "6 Counting People",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "四人",
+      "reading": "よにん",
+      "english": "Four people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "6 Counting People",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "五人",
+      "reading": "ごにん",
+      "english": "Five people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "6 Counting People",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "六人",
+      "reading": "ろくにん",
+      "english": "Six people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "6 Counting People",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "七人",
+      "reading": "しちにん／ななにん",
+      "english": "Seven people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "6 Counting People",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "八人",
+      "reading": "はちにん",
+      "english": "Eight people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "6 Counting People",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "九人",
+      "reading": "きゅうにん",
+      "english": "Nine people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "6 Counting People",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十人",
+      "reading": "じゅうにん",
+      "english": "Ten people",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "6 Counting People",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "遊ぶ",
+      "reading": "あそぶ",
+      "english": "To play; to spend time pleasantly",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "遊ぶ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "テニス",
+      "english": "Tennis",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "遊ぶ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ゲーム",
+      "english": "Game(s)",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "遊ぶ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "トランプ",
+      "english": "Playing cards",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "遊ぶ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ギター",
+      "english": "Guitar",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "遊ぶ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "弾く",
+      "reading": "ひく",
+      "english": "To play (a string instrument)",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "遊ぶ",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にぎやか",
+      "english": "Lively; bustling",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "A. Mary has been enjoying her life in Japan. She talks about her friends and life in Japan. Make sentences using two adjectives like the example. K07-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "新幹線",
+      "reading": "しんかんせん",
+      "english": "Bullet train",
+      "kind": "word",
+      "category": "Transport",
+      "section": "C. Naomi and her friends went on a trip to Tokyo last month. Make sentences describing the city using two adjectives. K07-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "神社",
+      "reading": "じんじゃ",
+      "english": "Shrine",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "C. Naomi and her friends went on a trip to Tokyo last month. Make sentences describing the city using two adjectives. K07-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ご主人",
+      "reading": "ごしゅじん",
+      "english": "Husband (someone else's; formal)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "主人",
+      "reading": "しゅじん",
+      "english": "Husband (one's own; formal)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "夫",
+      "reading": "おっと",
+      "english": "Husband (one's own)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だんな",
+      "english": "Husband (casual term)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うちの人",
+      "reading": "うちのひと",
+      "english": "Husband (casual; lit. \"the person at home\")",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "奥さん",
+      "reading": "おくさん",
+      "english": "Wife (someone else's; also used to address one's own)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "家内",
+      "reading": "かない",
+      "english": "Wife (one's own; formal, husband speaking)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "妻",
+      "reading": "つま",
+      "english": "Wife (one's own)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "嫁さん",
+      "reading": "よめさん",
+      "english": "Wife (casual term)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "祖父",
+      "reading": "そふ",
+      "english": "Grandfather (one's own; formal)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "祖母",
+      "reading": "そぼ",
+      "english": "Grandmother (one's own; formal)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お子さん",
+      "reading": "おこさん",
+      "english": "Child (someone else's)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うちの子",
+      "reading": "うちのこ",
+      "english": "Child (one's own; casual)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "家族の呼び方 Kinship Terms",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "眉毛",
+      "reading": "まゆげ",
+      "english": "Eyebrow",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "鼻",
+      "reading": "はな",
+      "english": "Nose",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "首",
+      "reading": "くび",
+      "english": "Neck",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "指",
+      "reading": "ゆび",
+      "english": "Finger",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歯",
+      "reading": "は",
+      "english": "Tooth",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "頭",
+      "reading": "あたま",
+      "english": "Head",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "背中",
+      "reading": "せなか",
+      "english": "Back",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おしり",
+      "english": "Buttocks",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "顔",
+      "reading": "かお",
+      "english": "Face",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "肩",
+      "reading": "かた",
+      "english": "Shoulder",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "胸",
+      "reading": "むね",
+      "english": "Chest",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おなか",
+      "english": "Stomach; belly",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "体の部分",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 09: Lesson 7: Family Picture",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第7課　LESSON 7",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "家族の写真 Family Picture",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "会話 Dialogue",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "Ⅱ Yui's phone rings. K07-03/04",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Ⅰ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "単語",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Nouns",
+      "read": true,
+      "items": 24
+    },
+    {
+      "title": "い-adjectives",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "な-adjectives",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "U-verbs",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "Ru-verbs",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "Irregular Verb",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Adverbs and Other Expressions",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "文法 Grammar",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "1 〜ている (Action in Progress)",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "2 〜ている (Result of a Change)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "3 メアリーさんは髪が長いです",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "4 Adjective/Noun Te-forms for Joining Sentences",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "5 Verb Stem + に行く",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "6 Counting People",
+      "read": true,
+      "items": 8
+    },
+    {
+      "title": "表現ノート Expression Notes 8",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "遊ぶ",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "知る/わかる",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "練習 Practice",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "I テレビを見ています Grammar 1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Look at the pictures below and answer the questions. K07-07",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Pair Work—What were you doing at the following times yesterday? Be as specific as possible (where, with whom, and so on).",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ ニューヨークに住んでいます ☛Grammar 2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅲ この人は目が大きいです Grammar 2・3",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Describe the physical characteristics of the following people. K07-09",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Look at the picture below and answer the questions. K07-10",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Look at the picture below and describe each person.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "D. Class Activity—One student describes another student without mentioning the name. The rest of the class guesses who the student is.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅳ ゆいさんはかわいくて、やさしいです ☛Grammar 4",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Mary has been enjoying her life in Japan. She talks about her friends and life in Japan. Make sentences using two adjectives like the example. K07-11",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "B. Describe the following items using two or more adjectives.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Naomi and her friends went on a trip to Tokyo last month. Make sentences describing the city using two adjectives. K07-12",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "D. Pair Work—Answer the following questions using two or more adjectives.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "V 京都に写真を撮りに行きます ☞Grammar 5",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Sora is going to the following places to do the things below. Make sentences like the example. K07-13",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. For what purpose would you go to the following places?",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Pair Work—Look at the pictures below and practice the dialogue with your partner.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅵ 日本人が何人いますか ☞Grammar 6",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Look at the picture below and count the people. K07-14",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Pair Work—Ask your partner the following questions.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅶ まとめの練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Answer the following questions.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Class Activity—Show a picture of your family to the class and describe it.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Culture Notes",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "家族の呼び方 Kinship Terms",
+      "read": true,
+      "items": 13
+    },
+    {
+      "title": "Useful Expressions",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "体の部分",
+      "read": true,
+      "items": 12
+    }
+  ],
+  "unread": []
+}

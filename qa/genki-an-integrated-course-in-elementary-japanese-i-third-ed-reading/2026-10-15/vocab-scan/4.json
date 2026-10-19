@@ -1,0 +1,1712 @@
+{
+  "items": [
+    {
+      "target": "すみません",
+      "english": "Excuse me",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "Ⅰ Mary goes to a flea market. K02-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "わたし",
+      "english": "I; me",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅰ Mary goes to a flea market. K02-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ありがとうございます",
+      "english": "Thank you very much",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Ⅰ Mary goes to a flea market. K02-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なん",
+      "english": "What",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ After shopping, Mary goes to a restaurant.",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "これ",
+      "english": "This one",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "それ",
+      "english": "That one",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あれ",
+      "english": "That one (over there)",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どれ",
+      "english": "Which one",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "この",
+      "english": "This . . .",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "その",
+      "english": "That . . .",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あの",
+      "english": "That . . . (over there)",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どの",
+      "english": "Which . . .",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ここ",
+      "english": "Here",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "そこ",
+      "english": "There",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あそこ",
+      "english": "Over there",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どこ",
+      "english": "Where",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だれ",
+      "english": "Who",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Words That Point",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おいしい",
+      "english": "Delicious",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Food",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さかな",
+      "english": "Fish",
+      "kind": "word",
+      "category": "Food",
+      "section": "Food",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とんかつ",
+      "english": "Pork cutlet",
+      "kind": "word",
+      "category": "Food",
+      "section": "Food",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にく",
+      "english": "Meat",
+      "kind": "word",
+      "category": "Food",
+      "section": "Food",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "メニュー",
+      "english": "Menu",
+      "kind": "word",
+      "category": "Food",
+      "section": "Food",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "やさい",
+      "english": "Vegetable",
+      "kind": "word",
+      "category": "Food",
+      "section": "Food",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かさ",
+      "english": "Umbrella",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かばん",
+      "english": "Bag",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "くつ",
+      "english": "Shoes",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さいふ",
+      "english": "Wallet",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ジーンズ",
+      "english": "Jeans",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じてんしゃ",
+      "english": "Bicycle",
+      "kind": "word",
+      "category": "Transport",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しんぶん",
+      "english": "Newspaper",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "スマホ",
+      "english": "Smartphone; mobile",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "Tシャツ",
+      "english": "T-shirt",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とけい",
+      "english": "Watch; clock",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ノート",
+      "english": "Notebook",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ペン",
+      "english": "Pen",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ぼうし",
+      "english": "Hat; cap",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ほん",
+      "english": "Book",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Things",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ぎんこう",
+      "english": "Bank",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンビニ",
+      "english": "Convenience store",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "トイレ",
+      "english": "Toilet; restroom",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "としょかん",
+      "english": "Library",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ゆうびんきょく",
+      "english": "Post office",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Places",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "イギリス",
+      "english": "Britain",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かんこく",
+      "english": "Korea",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ちゅうごく",
+      "english": "China",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "えいご",
+      "english": "English (language)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "けいざい",
+      "english": "Economics",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンピューター",
+      "english": "Computer",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "Majors",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ビジネス",
+      "english": "Business",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "れきし",
+      "english": "History",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おかあさん",
+      "english": "Mother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Family",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おとうさん",
+      "english": "Father",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Family",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いくら",
+      "english": "How much",
+      "kind": "word",
+      "category": "Money",
+      "section": "Money Matters",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "えん",
+      "english": "Yen",
+      "kind": "word",
+      "category": "Money",
+      "section": "Money Matters",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たかい",
+      "english": "Expensive; high",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Money Matters",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いらっしゃいませ",
+      "english": "Welcome (to our store)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おねがいします",
+      "english": "...，please",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ください",
+      "english": "Please give me ...",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゃあ",
+      "english": "Then . . . ; if that is the case, . . .",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どうぞ",
+      "english": "Please; here it is",
+      "kind": "word",
+      "category": "Other",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どうも",
+      "english": "Thank you",
+      "kind": "word",
+      "category": "Greetings",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ともだち",
+      "english": "Friend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "1 これ／それ／あれ／どれ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "がくせい",
+      "english": "Student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "2 この / その / あの / どの + Noun",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "りゅうがくせい",
+      "english": "International student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "2 この / その / あの / どの + Noun",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にほんじん",
+      "english": "Japanese (person)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "2 この / その / あの / どの + Noun",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せんこう",
+      "english": "Major",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "7 〜ね/〜よ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ぶんがく",
+      "english": "Literature",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "7 〜ね/〜よ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "イギリスじん",
+      "english": "British (person)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "7 〜ね/〜よ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にじゅうさんまん",
+      "english": "230,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Big numbers",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ひゃく",
+      "english": "100",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にひゃく",
+      "english": "200",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんびゃく",
+      "english": "300",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よんひゃく",
+      "english": "400",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごひゃく",
+      "english": "500",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろっぴゃく",
+      "english": "600",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ななひゃく",
+      "english": "700",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はっぴゃく",
+      "english": "800",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きゅうひゃく",
+      "english": "900",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せん",
+      "english": "1,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にせん",
+      "english": "2,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんぜん",
+      "english": "3,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よんせん",
+      "english": "4,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごせん",
+      "english": "5,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろくせん",
+      "english": "6,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ななせん",
+      "english": "7,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はっせん",
+      "english": "8,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きゅうせん",
+      "english": "9,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いちまん",
+      "english": "10,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にまん",
+      "english": "20,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんまん",
+      "english": "30,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よんまん",
+      "english": "40,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごまん",
+      "english": "50,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろくまん",
+      "english": "60,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ななまん",
+      "english": "70,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はちまん",
+      "english": "80,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きゅうまん",
+      "english": "90,000",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Ⅰ すうじ (Numbers) K02-07",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アメリカじん",
+      "english": "American (person)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "A. Look at the chart below and answer the questions. K02-15",
+      "where": "example sentence",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ちゅうごくじん",
+      "english": "Chinese (person)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "A. Look at the chart below and answer the questions. K02-15",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かんこくじん",
+      "english": "Korean (person)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "A. Look at the chart below and answer the questions. K02-15",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にほんご",
+      "english": "Japanese (language)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Look at the chart below and answer the questions. K02-15",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にねんせい",
+      "english": "2nd-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Look at the chart below and answer the questions. K02-15",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いちねんせい",
+      "english": "1st-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Look at the chart below and answer the questions. K02-15",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よねんせい",
+      "english": "4th-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Look at the chart below and answer the questions. K02-15",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんねんせい",
+      "english": "3rd-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "C. Pair Work—Ask each other yes-no questions such as year in school, major, age, belongings, etc.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ていしょく",
+      "english": "Set meal",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "パスタ",
+      "english": "Pasta",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "カレー",
+      "english": "Curry",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "そば",
+      "english": "Soba (buckwheat noodles)",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うどん",
+      "english": "Udon (wheat noodles)",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サンドイッチ",
+      "english": "Sandwich",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アイスクリーム",
+      "english": "Ice cream",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ラーメン",
+      "english": "Ramen",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ハンバーガー",
+      "english": "Hamburger",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コーヒー",
+      "english": "Coffee",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コーラ",
+      "english": "Cola",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サラダ",
+      "english": "Salad",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こうちゃ",
+      "english": "Black tea",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ジュース",
+      "english": "Juice",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ミルク",
+      "english": "Milk",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しゅっしん",
+      "english": "Hometown",
+      "kind": "word",
+      "category": "Other",
+      "section": "D. Class Activity—Find someone who/whose . . .",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こくばん",
+      "english": "Blackboard",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "でんき",
+      "english": "Light",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "カーテン",
+      "english": "Curtain",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ドア",
+      "english": "Door",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "つくえ",
+      "english": "Desk",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じしょ",
+      "english": "Dictionary",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まど",
+      "english": "Window",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "けしゴム",
+      "english": "Eraser",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "えんぴつ",
+      "english": "Pencil",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いす",
+      "english": "Chair",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "きょうしつ In the Classroom",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 04: Lesson 2: Shopping",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第 2 課 L E S S O N 2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "かいもの Shopping",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "かいわ D i a l o g u e",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅰ Mary goes to a flea market. K02-01/02",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Ⅱ After shopping, Mary goes to a restaurant.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Ⅰ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "たんご Vocabulary",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Words That Point",
+      "read": true,
+      "items": 13
+    },
+    {
+      "title": "Food",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "Things",
+      "read": true,
+      "items": 14
+    },
+    {
+      "title": "Places",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "Countries",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Majors",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "Family",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "Money Matters",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Expressions",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "ぶんぽう Grammar",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "1 これ／それ／あれ／どれ",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "2 この / その / あの / どの + Noun",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "3 ここ / そこ / あそこ / どこ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "4 だれの Noun",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "5 Noun も",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "6 Noun じゃないです",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "7 〜ね/〜よ",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "表 現 ノート Expression Notes 3",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "（～を）ください",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "（～を）おねがいします",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "（～を）どうぞ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "On the pronunciation of number words",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Big numbers",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Culture Notes",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "にほんの おかね Japanese Currency",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "10,000-yen bill",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "5,000-yen bill",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "2,000-yen bill",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "1,000-yen bill",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "500-yen coin",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "100-yen coin",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "50-yen coin",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "10-yen coin",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "5-yen coin",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "1-yen coin",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "れんしゅう Practice",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅰ すうじ (Numbers) K02-07",
+      "read": true,
+      "items": 27
+    },
+    {
+      "title": "A. Read the following numbers. K02-08",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Look at the pictures and answer how much the things are. K02-09",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Pair Work",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Picture A",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ これは なんですか ☛Grammar 1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Example 1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Example 2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Look at the picture and tell what each building is. K02-11",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Pair Work—Point out five things in the classroom and ask your partner what they are using これ (kore), それ (sore), or あれ (are). Refer to the picture on p. 81 for the vocabulary.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅲ このほんは いくらですか ☛Grammar 2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Look at the pictures and make sentences using この (kono), その (sono), or あの (ano). K02-12",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Pair Work",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Card A",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Pair Work—Point out items your partner has and ask him/her as to how much they cost.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅳ ぎんこうは あそこです ☛Grammar 3",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅴ これは だれの かさですか Grammar 4",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Picture A",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅵ おかあさんも にほんじんです Grammar 5",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅶ メアリー さんは にほんじんじゃないです Grammar 6",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Look at the chart below and answer the questions. K02-15",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "B. Group Work—Put your belongings (textbook, note, pen, etc.) into a bag/box, and take turns picking up an item and asking who it belongs to.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Pair Work—Ask each other yes-no questions such as year in school, major, age, belongings, etc.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Ⅷ まとめの れんしゅう (Review Exercises)",
+      "read": true,
+      "items": 15
+    },
+    {
+      "title": "C. Bring pictures of your friends or family and ask each other who each person is. Then, add more questions about their nationality, occupation, etc., as in the example.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "D. Class Activity—Find someone who/whose . . .",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "調 べてみよう",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Compare the Prices",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Pair Work Ⅰ C. (p. 68)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Picture B",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Pair Work Ⅴ (p. 73)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Picture B",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Pair Work Ⅲ B. (p. 71)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Card B",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Useful Expressions",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "きょうしつ In the Classroom",
+      "read": true,
+      "items": 10
+    }
+  ],
+  "unread": []
+}

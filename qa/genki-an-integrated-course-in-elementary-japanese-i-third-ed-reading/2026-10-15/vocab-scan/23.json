@@ -1,0 +1,1282 @@
+{
+  "items": [
+    {
+      "target": "午",
+      "english": "Noon (character)",
+      "kind": "character",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "午前",
+      "english": "A.M.",
+      "kind": "word",
+      "reading": "ごぜん",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "午後",
+      "english": "P.M.; in the afternoon",
+      "kind": "word",
+      "reading": "ごご",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "午前中",
+      "english": "In the morning",
+      "kind": "word",
+      "reading": "ごぜんちゅう",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "正午",
+      "english": "Noon",
+      "kind": "word",
+      "reading": "しょうご",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "後",
+      "english": "After (character)",
+      "kind": "character",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "後で",
+      "english": "Later",
+      "kind": "word",
+      "reading": "あとで",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "後ろ",
+      "english": "Back; behind",
+      "kind": "word",
+      "reading": "うしろ",
+      "category": "Directions",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "最後に",
+      "english": "Lastly",
+      "kind": "word",
+      "reading": "さいごに",
+      "category": "Grammar & Function Words",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "前",
+      "english": "Before; front",
+      "kind": "word",
+      "reading": "まえ",
+      "category": "Directions",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "名前",
+      "english": "Name",
+      "kind": "word",
+      "reading": "なまえ",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "前売り",
+      "english": "Advance sale",
+      "kind": "word",
+      "reading": "まえうり",
+      "category": "Shopping",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "名",
+      "english": "Name (character)",
+      "kind": "character",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "有名な",
+      "english": "Famous",
+      "kind": "word",
+      "reading": "ゆうめいな",
+      "category": "Descriptions & Qualities",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "名刺",
+      "english": "Name card",
+      "kind": "word",
+      "reading": "めいし",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "氏名",
+      "english": "Full name",
+      "kind": "word",
+      "reading": "しめい",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "名字",
+      "english": "Family name",
+      "kind": "word",
+      "reading": "みょうじ",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "白",
+      "english": "White (color)",
+      "kind": "word",
+      "reading": "しろ",
+      "category": "Colors",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "白い",
+      "english": "White",
+      "kind": "word",
+      "reading": "しろい",
+      "category": "Colors",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "白紙",
+      "english": "Blank sheet",
+      "kind": "word",
+      "reading": "はくし",
+      "category": "Everyday Objects",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "白鳥",
+      "english": "Swan",
+      "kind": "word",
+      "reading": "はくちょう",
+      "category": "Animals",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "雨",
+      "english": "Rain",
+      "kind": "word",
+      "reading": "あめ",
+      "category": "Weather & Nature",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "雨期",
+      "english": "Rainy season",
+      "kind": "word",
+      "reading": "うき",
+      "category": "Weather & Nature",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "梅雨",
+      "english": "Rainy season (monsoon)",
+      "kind": "word",
+      "reading": "つゆ",
+      "category": "Weather & Nature",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大雨",
+      "english": "Heavy rain",
+      "kind": "word",
+      "reading": "おおあめ",
+      "category": "Weather & Nature",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "書",
+      "english": "Writing (character)",
+      "kind": "character",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "書く",
+      "english": "To write",
+      "kind": "word",
+      "reading": "かく",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "辞書",
+      "english": "Dictionary",
+      "kind": "word",
+      "reading": "じしょ",
+      "category": "School & Education",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "教科書",
+      "english": "Textbook",
+      "kind": "word",
+      "reading": "きょうかしょ",
+      "category": "School & Education",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "図書館",
+      "english": "Library",
+      "kind": "word",
+      "reading": "としょかん",
+      "category": "School & Education",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "友",
+      "english": "Friend",
+      "kind": "character",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "友だち",
+      "english": "Friend (casual)",
+      "kind": "word",
+      "reading": "ともだち",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "親友",
+      "english": "Best friend",
+      "kind": "word",
+      "reading": "しんゆう",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "友人",
+      "english": "Friend (formal)",
+      "kind": "word",
+      "reading": "ゆうじん",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "友情",
+      "english": "Friendship",
+      "kind": "word",
+      "reading": "ゆうじょう",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "間",
+      "english": "Between",
+      "kind": "word",
+      "reading": "あいだ",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時間",
+      "english": "Time",
+      "kind": "word",
+      "reading": "じかん",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二時間",
+      "english": "Two hours",
+      "kind": "word",
+      "reading": "にじかん",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "人間",
+      "english": "Human being",
+      "kind": "word",
+      "reading": "にんげん",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一週間",
+      "english": "One week",
+      "kind": "word",
+      "reading": "いっしゅうかん",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "家",
+      "english": "House; home",
+      "kind": "word",
+      "reading": "いえ／うち",
+      "category": "Home & Household",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "家族",
+      "english": "Family",
+      "kind": "word",
+      "reading": "かぞく",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "家内",
+      "english": "My wife",
+      "kind": "word",
+      "reading": "かない",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "作家",
+      "english": "Author",
+      "kind": "word",
+      "reading": "さっか",
+      "category": "Work & Occupations",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "話",
+      "english": "Talk; story",
+      "kind": "word",
+      "reading": "はなし",
+      "category": "Technology & Communication",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "話す",
+      "english": "To speak",
+      "kind": "word",
+      "reading": "はなす",
+      "category": "Technology & Communication",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "電話",
+      "english": "Telephone",
+      "kind": "word",
+      "reading": "でんわ",
+      "category": "Technology & Communication",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会話",
+      "english": "Conversation",
+      "kind": "word",
+      "reading": "かいわ",
+      "category": "Technology & Communication",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "少",
+      "english": "Little",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "少し",
+      "english": "A little",
+      "kind": "word",
+      "reading": "すこし",
+      "category": "Descriptions & Qualities",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "少ない",
+      "english": "Few",
+      "kind": "word",
+      "reading": "すくない",
+      "category": "Descriptions & Qualities",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "少々",
+      "english": "A little (formal)",
+      "kind": "word",
+      "reading": "しょうしょう",
+      "category": "Descriptions & Qualities",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "少女",
+      "english": "Girl",
+      "kind": "word",
+      "reading": "しょうじょ",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "少年",
+      "english": "Boy",
+      "kind": "word",
+      "reading": "しょうねん",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "古",
+      "english": "Old",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "古い",
+      "english": "Old (for things)",
+      "kind": "word",
+      "reading": "ふるい",
+      "category": "Descriptions & Qualities",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中古",
+      "english": "Secondhand",
+      "kind": "word",
+      "reading": "ちゅうこ",
+      "category": "Shopping",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "古代",
+      "english": "Ancient times",
+      "kind": "word",
+      "reading": "こだい",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "知",
+      "english": "Knowing (character)",
+      "kind": "character",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "知る",
+      "english": "To know",
+      "kind": "word",
+      "reading": "しる",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "知人",
+      "english": "Acquaintance (formal)",
+      "kind": "word",
+      "reading": "ちじん",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "知り合い",
+      "english": "Acquaintance",
+      "kind": "word",
+      "reading": "しりあい",
+      "category": "Family & People",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来",
+      "english": "Come (character)",
+      "kind": "character",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来る",
+      "english": "To come",
+      "kind": "word",
+      "reading": "くる",
+      "category": "Other",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来週",
+      "english": "Next week",
+      "kind": "word",
+      "reading": "らいしゅう",
+      "category": "Time",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来日",
+      "english": "Visit to Japan",
+      "kind": "word",
+      "reading": "らいにち",
+      "category": "Travel & Tourism",
+      "section": "ソラさんの日記 Sora's Diary",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大きい",
+      "english": "Big",
+      "kind": "word",
+      "reading": "おおきい",
+      "category": "Descriptions & Qualities",
+      "section": "B. Choose the most appropriate word for each blank.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "新しい",
+      "english": "New",
+      "kind": "word",
+      "reading": "あたらしい",
+      "category": "Descriptions & Qualities",
+      "section": "B. Choose the most appropriate word for each blank.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "元気",
+      "english": "Energetic; well",
+      "kind": "word",
+      "reading": "げんき",
+      "category": "Body & Health",
+      "section": "B. Choose the most appropriate word for each blank.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天気",
+      "english": "Weather",
+      "kind": "word",
+      "reading": "てんき",
+      "category": "Weather & Nature",
+      "section": "B. Choose the most appropriate word for each blank.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帰る",
+      "english": "To return",
+      "kind": "word",
+      "reading": "かえる",
+      "category": "Other",
+      "section": "B. Choose the most appropriate word for each blank.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日記",
+      "english": "Diary",
+      "kind": "word",
+      "reading": "にっき",
+      "category": "Other",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いろいろ",
+      "english": "Various",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "する",
+      "english": "To do",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "昼",
+      "english": "Noon; daytime",
+      "kind": "word",
+      "reading": "ひる",
+      "category": "Time",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ホストファミリー",
+      "english": "Host family",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "そして",
+      "english": "And then",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "着物",
+      "english": "Kimono; Japanese traditional dress",
+      "kind": "word",
+      "reading": "きもの",
+      "category": "Clothing",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごちそう",
+      "english": "Excellent food",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今日",
+      "english": "Today",
+      "kind": "word",
+      "reading": "きょう",
+      "category": "Time",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "朝",
+      "english": "Morning",
+      "kind": "word",
+      "reading": "あさ",
+      "category": "Time",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ふる",
+      "english": "To fall (rain)",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "メール",
+      "english": "Email",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "音楽",
+      "english": "Music",
+      "kind": "word",
+      "reading": "おんがく",
+      "category": "Sports & Hobbies",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せ",
+      "english": "Height; stature",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "やせる",
+      "english": "To be thin",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "晩ご飯",
+      "english": "Dinner",
+      "kind": "word",
+      "reading": "ばんごはん",
+      "category": "Food",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ある",
+      "english": "To exist; to have",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たくさん",
+      "english": "A lot; many",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おいしい",
+      "english": "Delicious",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "料理",
+      "english": "Cooking; cuisine",
+      "kind": "word",
+      "reading": "りょうり",
+      "category": "Food",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すごく",
+      "english": "Very (casual)",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "上手",
+      "english": "Skilled; good at",
+      "kind": "word",
+      "reading": "じょうず",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きれい",
+      "english": "Pretty; clean",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "もらう",
+      "english": "To receive",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しんせつ",
+      "english": "Kind",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "楽しい",
+      "english": "Fun; enjoyable",
+      "kind": "word",
+      "reading": "たのしい",
+      "category": "Emotions & Feelings",
+      "section": "Ⅱ ソラさんの日記",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "好き",
+      "english": "Fond of; to like",
+      "kind": "word",
+      "reading": "すき",
+      "category": "Emotions & Feelings",
+      "section": "B. Make each of the following statements with 〇 if true, or with × if false.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ひくい",
+      "english": "Low; short (height)",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "B. Make each of the following statements with 〇 if true, or with × if false.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ありがとうございました",
+      "english": "Thank you",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きのう",
+      "english": "Yesterday",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どうも",
+      "english": "Very much (as an intensifier)",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とても",
+      "english": "Very",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あまり",
+      "english": "Not very (with negative)",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "それから",
+      "english": "After that",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あそぶ",
+      "english": "To play; to visit for fun",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "りょう",
+      "english": "Dormitory",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あんないする",
+      "english": "To show someone around",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "体",
+      "english": "Body",
+      "kind": "word",
+      "reading": "からだ",
+      "category": "Body & Health",
+      "section": "Useful Expressions:",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "つける",
+      "english": "To attach; to pay attention",
+      "kind": "word",
+      "category": "Other",
+      "section": "Useful Expressions:",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "楽しみ",
+      "english": "Looking forward to; enjoyment",
+      "kind": "word",
+      "reading": "たのしみ",
+      "category": "Emotions & Feelings",
+      "section": "Useful Expressions:",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おせわになる",
+      "english": "To be in someone's care; to receive kindness",
+      "kind": "word",
+      "category": "Greetings",
+      "section": "Useful Expressions:",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おめでとうございます",
+      "english": "Congratulations",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Useful Expressions:",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おたんじょうびおめでとう",
+      "english": "Happy birthday",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Useful Expressions:",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 23: Reading and Writing 9: Sora's Diary",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第9課 LESSON 9",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "ソラさんの日記 Sora's Diary",
+      "read": true,
+      "items": 66
+    },
+    {
+      "title": "Ⅰ 漢字の練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Fill in the blanks with the appropriate kanji.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Choose the most appropriate word for each blank.",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "Ⅱ ソラさんの日記",
+      "read": true,
+      "items": 26
+    },
+    {
+      "title": "A. Put the following pictures in the right order according to Sora's diary.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Make each of the following statements with 〇 if true, or with × if false.",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "C. ソラさんはメアリーさんのホストファミリーにメールを書きました。",
+      "read": true,
+      "items": 9
+    },
+    {
+      "title": "Ⅲ 書く練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Useful Expressions:",
+      "read": true,
+      "items": 6
+    }
+  ],
+  "unread": []
+}

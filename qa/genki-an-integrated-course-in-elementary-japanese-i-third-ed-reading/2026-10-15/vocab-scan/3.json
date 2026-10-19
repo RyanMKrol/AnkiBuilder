@@ -1,0 +1,1867 @@
+{
+  "items": [
+    {
+      "target": "だいがく",
+      "english": "College; university",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "School",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こうこう",
+      "english": "High school",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "School",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "がくせい",
+      "english": "Student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "School",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だいがくせい",
+      "english": "College student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "School",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "りゅうがくせい",
+      "english": "International student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "School",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せんせい",
+      "english": "Teacher; professor",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "School",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "〜ねんせい",
+      "english": "Year student (counter)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "School",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いちねんせい",
+      "english": "First-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "School",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せんこう",
+      "english": "Major (field of study)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "School",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "わたし",
+      "english": "I",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Person",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ともだち",
+      "english": "Friend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Person",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "〜さん",
+      "english": "Mr.; Ms. (title)",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Person",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "〜じん",
+      "english": "...people (nationality suffix)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Person",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にほんじん",
+      "english": "Japanese people",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Person",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いま",
+      "english": "Now",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごぜん",
+      "english": "A.M.",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごご",
+      "english": "P.M.",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "〜じ",
+      "english": "O'clock (counter)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いちじ",
+      "english": "One o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はん",
+      "english": "Half",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にじはん",
+      "english": "Half past two",
+      "kind": "word",
+      "category": "Time",
+      "section": "Time",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にほん",
+      "english": "Japan",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アメリカ",
+      "english": "U.S.A.",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "〜ご",
+      "english": "...language (suffix)",
+      "kind": "word",
+      "category": "Other",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にほんご",
+      "english": "Japanese language",
+      "kind": "word",
+      "category": "Other",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "〜さい",
+      "english": "...years old (counter)",
+      "kind": "word",
+      "category": "Other",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "でんわ",
+      "english": "Telephone",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "〜ばん",
+      "english": "Number... (counter)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ばんごう",
+      "english": "Number",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なまえ",
+      "english": "Name",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なん／なに",
+      "english": "What",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Others",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あのう",
+      "english": "Um...",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はい",
+      "english": "Yes",
+      "kind": "word",
+      "category": "Other",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "そうです",
+      "english": "That's right",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "そうですか",
+      "english": "I see.; Is that so?",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "イギリス",
+      "english": "Britain",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries (くに kuni)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "オーストラリア",
+      "english": "Australia",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries (くに kuni)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かんこく",
+      "english": "Korea",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries (くに kuni)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "カナダ",
+      "english": "Canada",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries (くに kuni)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ちゅうごく",
+      "english": "China",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries (くに kuni)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "インド",
+      "english": "India",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries (くに kuni)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "エジプト",
+      "english": "Egypt",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries (くに kuni)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "フィリピン",
+      "english": "Philippines",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Countries (くに kuni)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アジアけんきゅう",
+      "english": "Asian studies",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "けいざい",
+      "english": "Economics",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こうがく",
+      "english": "Engineering",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こくさいかんけい",
+      "english": "International relations",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンピューター",
+      "english": "Computer",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せいじ",
+      "english": "Politics",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せいぶつがく",
+      "english": "Biology",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ビジネス",
+      "english": "Business",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ぶんがく",
+      "english": "Literature",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "れきし",
+      "english": "History",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Majors (せんこう senkoo)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いしゃ",
+      "english": "Doctor",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Occupations (しごと shigoto)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かいしゃいん",
+      "english": "Office worker",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Occupations (しごと shigoto)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かんごし",
+      "english": "Nurse",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Occupations (しごと shigoto)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こうこうせい",
+      "english": "High school student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Occupations (しごと shigoto)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しゅふ",
+      "english": "Housewife",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Occupations (しごと shigoto)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だいがくいんせい",
+      "english": "Graduate student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Occupations (しごと shigoto)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "べんごし",
+      "english": "Lawyer",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Occupations (しごと shigoto)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おかあさん",
+      "english": "Mother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Family (かぞく kazoku)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おとうさん",
+      "english": "Father",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Family (かぞく kazoku)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おねえさん",
+      "english": "Older sister",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Family (かぞく kazoku)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おにいさん",
+      "english": "Older brother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Family (かぞく kazoku)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いもうと",
+      "english": "Younger sister",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Family (かぞく kazoku)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おとうと",
+      "english": "Younger brother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Family (かぞく kazoku)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こんにちは",
+      "english": "Hello",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Dialogue I",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いいえ",
+      "english": "No",
+      "kind": "word",
+      "category": "Other",
+      "section": "Dialogue I",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なんねんせい",
+      "english": "What year (in school)",
+      "kind": "phrase",
+      "category": "School & Education",
+      "section": "Dialogue I",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はじめまして",
+      "english": "How do you do?",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Dialogue II",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よろしくおねがいします",
+      "english": "Nice to meet you",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Dialogue II",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうきゅうさい",
+      "english": "Nineteen years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "Dialogue II",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "えいご",
+      "english": "English (language)",
+      "kind": "word",
+      "category": "Other",
+      "section": "2 Question Sentences",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なんじ",
+      "english": "What time",
+      "kind": "phrase",
+      "category": "Time",
+      "section": "2 Question Sentences",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なんさい",
+      "english": "How old",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "2 Question Sentences",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なんばん",
+      "english": "What number",
+      "kind": "phrase",
+      "category": "Numbers",
+      "section": "2 Question Sentences",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ゼロ",
+      "english": "Zero",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "れい",
+      "english": "Zero (alternative)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いち",
+      "english": "One",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "に",
+      "english": "Two",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さん",
+      "english": "Three",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よん",
+      "english": "Four",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ご",
+      "english": "Five",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろく",
+      "english": "Six",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なな",
+      "english": "Seven",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はち",
+      "english": "Eight",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きゅう",
+      "english": "Nine",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅう",
+      "english": "Ten",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きょうし",
+      "english": "Teacher (humble)",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Expression Notes 2",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あなた",
+      "english": "You",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Expression Notes",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "〜ちゃん",
+      "english": "Title for children",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Expression Notes",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "〜くん",
+      "english": "Title for boys",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Expression Notes",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かんこくじん",
+      "english": "Korean (person)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Ⅰ メアリー さんは アメリカ じんです",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "イギリスじん",
+      "english": "British (person)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Ⅰ メアリー さんは アメリカ じんです",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アメリカじん",
+      "english": "American (person)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Ⅰ メアリー さんは アメリカ じんです",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんねんせい",
+      "english": "Third-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Tell which year they are in school. K01-10",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごねんせい",
+      "english": "Fifth-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Tell which year they are in school. K01-10",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にねんせい",
+      "english": "Second-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Tell which year they are in school. K01-10",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よねんせい",
+      "english": "Fourth-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Tell which year they are in school. K01-10",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろくねんせい",
+      "english": "Sixth-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Tell which year they are in school. K01-10",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いっさい",
+      "english": "One year old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にさい",
+      "english": "Two years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんさい",
+      "english": "Three years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よんさい",
+      "english": "Four years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごさい",
+      "english": "Five years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろくさい",
+      "english": "Six years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ななさい",
+      "english": "Seven years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はっさい",
+      "english": "Eight years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きゅうさい",
+      "english": "Nine years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅっさい",
+      "english": "Ten years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅういっさい",
+      "english": "Eleven years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はたち",
+      "english": "Twenty years old (traditional)",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にじゅっさい",
+      "english": "Twenty years old (regular)",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にじゅういっさい",
+      "english": "Twenty-one years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんじゅうごさい",
+      "english": "Thirty-five years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よんじゅっさい",
+      "english": "Forty years old",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Tell how old they are. K01-11",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にじ",
+      "english": "Two o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんじ",
+      "english": "Three o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よじ",
+      "english": "Four o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごじ",
+      "english": "Five o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろくじ",
+      "english": "Six o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しちじ",
+      "english": "Seven o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はちじ",
+      "english": "Eight o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "くじ",
+      "english": "Nine o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうじ",
+      "english": "Ten o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅういちじ",
+      "english": "Eleven o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうにじ",
+      "english": "Twelve o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いちじはん",
+      "english": "Half past one",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅴ じかん (Time)",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すみません",
+      "english": "Excuse me",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "B. Pair Work—Using the pictures in A, ask the time as in the example.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ありがとうございます",
+      "english": "Thank you",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "B. Pair Work—Using the pictures in A, ask the time as in the example.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごしゅっしん",
+      "english": "Hometown; place of origin",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "A. Class Activity—Ask five classmates questions and fill in the chart below. K01-24",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しごと",
+      "english": "Job; occupation",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "A. Class Activity—Ask five classmates questions and fill in the chart below. K01-24",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よじはん",
+      "english": "Half past four",
+      "kind": "word",
+      "category": "Time",
+      "section": "Hours",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いっぷん",
+      "english": "One minute",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にふん",
+      "english": "Two minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんぷん",
+      "english": "Three minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よんぷん",
+      "english": "Four minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごふん",
+      "english": "Five minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ろっぷん",
+      "english": "Six minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ななふん",
+      "english": "Seven minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はっぷん／はちふん",
+      "english": "Eight minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きゅうふん",
+      "english": "Nine minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅっぷん",
+      "english": "Ten minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅういっぷん",
+      "english": "Eleven minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうにふん",
+      "english": "Twelve minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうさんぷん",
+      "english": "Thirteen minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうよんぷん",
+      "english": "Fourteen minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうごふん",
+      "english": "Fifteen minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうろっぷん",
+      "english": "Sixteen minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうななふん",
+      "english": "Seventeen minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうはっぷん／じゅうはちふん",
+      "english": "Eighteen minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "じゅうきゅうふん",
+      "english": "Nineteen minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にじゅっぷん",
+      "english": "Twenty minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんじゅっぷん",
+      "english": "Thirty minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ごじゅうごふん",
+      "english": "Fifty-five minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "Minutes",
+      "where": "other",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 03: Lesson 1: New Friends",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第1課 LESSON 1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "あたらしいともだち New Friends",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "かいわ Dialogue",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "I Mary, an international student who just arrived in Japan, meets a Japanese student Takeshi at a school orientation. K01-01/02",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Ⅱ At the orientation, Mary introduces herself to everyone. K01-03/04",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Ⅰ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "たんご Vocabulary",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "School",
+      "read": true,
+      "items": 9
+    },
+    {
+      "title": "Person",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "Time",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "Others",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "Expressions",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "Additional Vocabulary",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Countries (くに kuni)",
+      "read": true,
+      "items": 8
+    },
+    {
+      "title": "Majors (せんこう senkoo)",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "Occupations (しごと shigoto)",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "Family (かぞく kazoku)",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "ぶんぽう Grammar",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "1 X は Y です",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "2 Question Sentences",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "3 Noun 1 の Noun 2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "表 現 ノート",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Expression Notes 2",
+      "read": true,
+      "items": 13
+    },
+    {
+      "title": "Expression Notes",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Culture Notes",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "にほんじんの なまえ Japanese Names",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "れんしゅう Practice",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅰ メアリー さんは アメリカ じんです",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "A. Look at the chart above and describe each person’s nationality. K01-09",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Tell which year they are in school. K01-10",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "C. Tell how old they are. K01-11",
+      "read": true,
+      "items": 16
+    },
+    {
+      "title": "D. Group Work—Tell your group members (1) your name, (2) your nationality, (3) your year in school, and (4) your age.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ メアリー さんは アメリカ じんですか Grammar 2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Ask and answer questions using the given cues. K01-12",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Ask about their age and year in school.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "(a) Age K01-13",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "(b) Year in school K01-14",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Look at the chart about Mary’s host family and answer the questions. K01-15",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅲ にほんごの がくせいです Grammar 3",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Translate the following phrases into Japanese using の ( no ). K01-16",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Look at the chart and describe each person using the given cues.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "(a) School K01-17",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "(b) Major K01-18",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Answer the following questions. K01-19",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "D. Group Work—Ask group members questions as in C above.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅳ でんわばんごう (Telephone Numbers)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Pair Work—Read the dialogue below with your partner. K01-20",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Group Work—Use the dialogue above and ask three classsmates their telephone numbers.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅴ じかん (Time)",
+      "read": true,
+      "items": 12
+    },
+    {
+      "title": "A. Look at the following pictures and tell the time. K01-22",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Pair Work—Using the pictures in A, ask the time as in the example.",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "C. Look at the map and answer the questions. K01-23",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅵ まとめの れんしゅう (Review Exercises)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Class Activity—Ask five classmates questions and fill in the chart below. K01-24",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "B. Role Play—You’ve just met someone and want to get to know the person. Make a skit using Dialogue Ⅰ as a model.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Self-introduction—Using Dialogue Ⅱ as a model, introduce yourself to the class.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Useful Expressions",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "じかん",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Hours",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Minutes",
+      "read": true,
+      "items": 22
+    }
+  ],
+  "unread": []
+}

@@ -1,0 +1,3031 @@
+{
+  "items": [
+    {
+      "target": "外国",
+      "reading": "がいこく",
+      "english": "Foreign country",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "オーストラリア",
+      "english": "Australia",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "川",
+      "reading": "かわ",
+      "english": "River",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "温泉",
+      "reading": "おんせん",
+      "english": "Spa; hot spring",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "つり",
+      "english": "Fishing",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "湖",
+      "reading": "みずうみ",
+      "english": "Lake",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "山",
+      "reading": "やま",
+      "english": "Mountain",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "キャンプ",
+      "english": "Camp",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ドライブ",
+      "english": "Drive",
+      "kind": "word",
+      "category": "Transport",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "神社",
+      "reading": "じんじゃ",
+      "english": "Shrine",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "美術館",
+      "reading": "びじゅつかん",
+      "english": "Art museum",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "社長",
+      "reading": "しゃちょう",
+      "english": "President of a company",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌手",
+      "reading": "かしゅ",
+      "english": "Singer",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ルームメイト",
+      "english": "Roommate",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ホストファミリー",
+      "english": "Host family",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "将来",
+      "reading": "しょうらい",
+      "english": "Future",
+      "kind": "word",
+      "category": "Time",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "夢",
+      "reading": "ゆめ",
+      "english": "Dream (while sleeping); dream (aspiration)",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お祭り",
+      "reading": "おまつり",
+      "english": "Festival",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お正月",
+      "reading": "おしょうがつ",
+      "english": "New Year's",
+      "kind": "word",
+      "category": "Time",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お菓子",
+      "reading": "おかし",
+      "english": "Snack; sweets",
+      "kind": "word",
+      "category": "Food",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ビール",
+      "english": "Beer",
+      "kind": "word",
+      "category": "Food",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おもちゃ",
+      "english": "Toy",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今学期",
+      "reading": "こんがっき",
+      "english": "This semester",
+      "kind": "word",
+      "category": "Time",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来学期",
+      "reading": "らいがっき",
+      "english": "Next semester",
+      "kind": "word",
+      "category": "Time",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "授業",
+      "reading": "じゅぎょう",
+      "english": "Class (a course)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こちら",
+      "english": "This person (polite)",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Nouns",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うそ",
+      "english": "Lie",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "つく",
+      "english": "To tell (a lie)",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おなか",
+      "english": "Stomach",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すく",
+      "english": "To become empty (of hunger)",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "飼う",
+      "reading": "かう",
+      "english": "To own (a pet)",
+      "kind": "word",
+      "category": "Animals",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サボる",
+      "english": "To cut (classes)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "取る",
+      "reading": "とる",
+      "english": "To take (a class); to get (a grade)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "習う",
+      "reading": "ならう",
+      "english": "To learn",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "登る",
+      "reading": "のぼる",
+      "english": "To climb",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "走る",
+      "reading": "はしる",
+      "english": "To run",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "U-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "疲れる",
+      "reading": "つかれる",
+      "english": "To get tired",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ru-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "やめる",
+      "english": "To quit",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ru-verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "けんかする",
+      "english": "To have a fight; to quarrel",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "Irregular Verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "紹介する",
+      "reading": "しょうかいする",
+      "english": "To introduce",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "Irregular Verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ダイエットする",
+      "english": "To go on a diet",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Irregular Verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "遅刻する",
+      "reading": "ちこくする",
+      "english": "To be late (for an appointment)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Irregular Verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "留学する",
+      "reading": "りゅうがくする",
+      "english": "To study abroad",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Irregular Verbs",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "出身",
+      "reading": "しゅっしん",
+      "english": "Coming from (a place)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "久しぶり",
+      "reading": "ひさしぶり",
+      "english": "It's been a long time",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まあまあ",
+      "english": "Okay; so-so",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "もっと",
+      "english": "More",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "後",
+      "reading": "あと",
+      "english": "After (an event)",
+      "kind": "word",
+      "category": "Time",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "そして",
+      "english": "And then",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だけ",
+      "english": "Just . . . ; only . . .",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Adverbs and Other Expressions",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "作家",
+      "reading": "さっか",
+      "english": "Writer",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "俳優",
+      "reading": "はいゆう",
+      "english": "Actor; actress",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ジャーナリスト",
+      "english": "Journalist",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "看護師",
+      "reading": "かんごし",
+      "english": "Nurse",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "警察官",
+      "reading": "けいさつかん",
+      "english": "Police officer",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "シェフ",
+      "english": "Chef",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "消防士",
+      "reading": "しょうぼうし",
+      "english": "Firefighter",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "漫画家",
+      "reading": "まんがか",
+      "english": "Cartoonist",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "教師",
+      "reading": "きょうし",
+      "english": "Schoolteacher",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "研究者",
+      "reading": "けんきゅうしゃ",
+      "english": "Researcher",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "宇宙飛行士",
+      "reading": "うちゅうひこうし",
+      "english": "Astronaut",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "スポーツ選手",
+      "reading": "スポーツせんしゅ",
+      "english": "Athlete",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大統領",
+      "reading": "だいとうりょう",
+      "english": "President of a country",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "職業 (Occupations)",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "休み",
+      "reading": "やすみ",
+      "english": "Vacation; day off",
+      "kind": "word",
+      "category": "Time",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どう",
+      "english": "How",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すごく",
+      "english": "Really; extremely",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "楽しい",
+      "reading": "たのしい",
+      "english": "Fun; enjoyable",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "動物園",
+      "reading": "どうぶつえん",
+      "english": "Zoo",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "行く",
+      "reading": "いく",
+      "english": "To go",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "買い物",
+      "reading": "かいもの",
+      "english": "Shopping",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "私",
+      "reading": "わたし",
+      "english": "I",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "旅行",
+      "reading": "りょこう",
+      "english": "Travel; trip",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一日",
+      "reading": "いちにち",
+      "english": "One day",
+      "kind": "word",
+      "category": "Time",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "毎日",
+      "reading": "まいにち",
+      "english": "Every day",
+      "kind": "word",
+      "category": "Time",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アルバイト",
+      "english": "Part-time job",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "I K11-01/02",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "友だち",
+      "reading": "ともだち",
+      "english": "Friend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "II K11-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先月",
+      "reading": "せんげつ",
+      "english": "Last month",
+      "kind": "word",
+      "category": "Time",
+      "section": "II K11-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本",
+      "reading": "にほん",
+      "english": "Japan",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "II K11-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "来る",
+      "reading": "くる",
+      "english": "To come",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "II K11-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "初めまして",
+      "reading": "はじめまして",
+      "english": "How do you do",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "II K11-03/04",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どこ",
+      "english": "Where",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "そうですか",
+      "english": "Is that so?",
+      "kind": "phrase",
+      "category": "Grammar & Function Words",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いいえ",
+      "english": "No",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ある",
+      "english": "To exist; to have",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "海",
+      "reading": "うみ",
+      "english": "Sea; ocean",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きれい",
+      "english": "Pretty; clean",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "所",
+      "reading": "ところ",
+      "english": "Place",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "有名",
+      "reading": "ゆうめい",
+      "english": "Famous",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今度",
+      "reading": "こんど",
+      "english": "Next time; this time",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "遊ぶ",
+      "reading": "あそぶ",
+      "english": "To play; to have fun",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食べ物",
+      "reading": "たべもの",
+      "english": "Food",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おいしい",
+      "english": "Delicious",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ぜひ",
+      "english": "By all means; definitely",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅲ K11-05/06",
+      "where": "dialogue",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "週末",
+      "reading": "しゅうまつ",
+      "english": "Weekend",
+      "kind": "word",
+      "category": "Time",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "映画",
+      "reading": "えいが",
+      "english": "Movie",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "見る",
+      "reading": "みる",
+      "english": "To see; to watch",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いつか",
+      "english": "Someday",
+      "kind": "word",
+      "category": "Time",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中国",
+      "reading": "ちゅうごく",
+      "english": "China",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "人",
+      "reading": "ひと",
+      "english": "Person",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会う",
+      "reading": "あう",
+      "english": "To meet",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お弁当",
+      "reading": "おべんとう",
+      "english": "Boxed lunch",
+      "kind": "word",
+      "category": "Food",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "買う",
+      "reading": "かう",
+      "english": "To buy",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンビニ",
+      "english": "Convenience store",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "思う",
+      "reading": "おもう",
+      "english": "To think",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "言う",
+      "reading": "いう",
+      "english": "To say",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "チベット",
+      "english": "Tibet",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "着物",
+      "reading": "きもの",
+      "english": "Kimono",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "着る",
+      "reading": "きる",
+      "english": "To wear",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "1 〜たい",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "晩ご飯",
+      "reading": "ばんごはん",
+      "english": "Dinner",
+      "kind": "word",
+      "category": "Food",
+      "section": "2 〜たり〜たりする",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食べる",
+      "reading": "たべる",
+      "english": "To eat",
+      "kind": "word",
+      "category": "Food",
+      "section": "2 〜たり〜たりする",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "勉強する",
+      "reading": "べんきょうする",
+      "english": "To study",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "2 〜たり〜たりする",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "話す",
+      "reading": "はなす",
+      "english": "To speak; to talk",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "2 〜たり〜たりする",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "踊る",
+      "reading": "おどる",
+      "english": "To dance",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "2 〜たり〜たりする",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "音楽",
+      "reading": "おんがく",
+      "english": "Music",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "2 〜たり〜たりする",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "聞く",
+      "reading": "きく",
+      "english": "To listen; to ask",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "2 〜たり〜たりする",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "好き",
+      "reading": "すき",
+      "english": "Likeable; to one's liking",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "2 〜たり〜たりする",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "休む",
+      "reading": "やすむ",
+      "english": "To rest; to be absent",
+      "kind": "word",
+      "category": "Time",
+      "section": "3 〜ことがある",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ヨーロッパ",
+      "english": "Europe",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "3 〜ことがある",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はい",
+      "english": "Yes",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "3 〜ことがある",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "南極",
+      "reading": "なんきょく",
+      "english": "Antarctica",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "4 Noun A や Noun B",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "もう",
+      "english": "Already",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "4 Noun A や Noun B",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まだ",
+      "english": "Not yet",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "4 Noun A や Noun B",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "先生",
+      "reading": "せんせい",
+      "english": "Teacher",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "は in negative sentences",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "テレビ",
+      "english": "Television",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "は in negative sentences",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コーヒー",
+      "english": "Coffee",
+      "kind": "word",
+      "category": "Food",
+      "section": "は in negative sentences",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "英語",
+      "reading": "えいご",
+      "english": "English (language)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "は in negative sentences",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一回",
+      "reading": "いっかい",
+      "english": "One time",
+      "kind": "word",
+      "category": "Time",
+      "section": "だけ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一つ",
+      "reading": "ひとつ",
+      "english": "One (thing)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "だけ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三十分",
+      "reading": "さんじゅっぷん",
+      "english": "Thirty minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "だけ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "寝る",
+      "reading": "ねる",
+      "english": "To sleep",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "だけ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サラダ",
+      "english": "Salad",
+      "kind": "word",
+      "category": "Food",
+      "section": "に",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おみやげ",
+      "english": "Souvenir",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "Expression Notes",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "絵葉書",
+      "reading": "えはがき",
+      "english": "Postcard",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "Expression Notes",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "運転する",
+      "reading": "うんてんする",
+      "english": "To drive (a car)",
+      "kind": "word",
+      "category": "Transport",
+      "section": "ドライブ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "車",
+      "reading": "くるま",
+      "english": "Car",
+      "kind": "word",
+      "category": "Transport",
+      "section": "ドライブ",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "持つ",
+      "reading": "もつ",
+      "english": "To hold; to carry",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "夢",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "何",
+      "reading": "なに／なん",
+      "english": "What",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "夢",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "デパート",
+      "english": "Department store",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "には",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たくさん",
+      "english": "A lot; many",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "には",
+      "where": "example sentence",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ハンバーガー",
+      "english": "Hamburger",
+      "kind": "word",
+      "category": "Food",
+      "section": "A. Change the following phrases into 〜たい sentences. K11-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本語",
+      "reading": "にほんご",
+      "english": "Japanese language",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Change the following phrases into 〜たい sentences. K11-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "練習する",
+      "reading": "れんしゅうする",
+      "english": "To practice",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "A. Change the following phrases into 〜たい sentences. K11-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ゆっくり",
+      "english": "Slowly; leisurely",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "A. Change the following phrases into 〜たい sentences. K11-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "会社",
+      "reading": "かいしゃ",
+      "english": "Company",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "A. Change the following phrases into 〜たい sentences. K11-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なる",
+      "english": "To become",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "A. Change the following phrases into 〜たい sentences. K11-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "働く",
+      "reading": "はたらく",
+      "english": "To work",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "A. Change the following phrases into 〜たい sentences. K11-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "住む",
+      "reading": "すむ",
+      "english": "To live (reside)",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "A. Change the following phrases into 〜たい sentences. K11-11",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さっき",
+      "english": "A little while ago; just now",
+      "kind": "word",
+      "category": "Time",
+      "section": "B. Pair Work—Ask if your partner wants to do the things above. When you answer, give reasons as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "電車",
+      "reading": "でんしゃ",
+      "english": "Train",
+      "kind": "word",
+      "category": "Transport",
+      "section": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "子供",
+      "reading": "こども",
+      "english": "Child",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時",
+      "reading": "とき",
+      "english": "Time; when",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "飛行機",
+      "reading": "ひこうき",
+      "english": "Airplane",
+      "kind": "word",
+      "category": "Transport",
+      "section": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "乗る",
+      "reading": "のる",
+      "english": "To ride",
+      "kind": "word",
+      "category": "Transport",
+      "section": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ゲーム",
+      "english": "Game",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "犬",
+      "reading": "いぬ",
+      "english": "Dog",
+      "kind": "word",
+      "category": "Animals",
+      "section": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "学校",
+      "reading": "がっこう",
+      "english": "School",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ピアノ",
+      "english": "Piano",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いちばん",
+      "english": "The most; best",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "E. Pair Work—Ask your partner the following questions and report the answers as in the example. See p. 257 for occupation vocabulary.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だれ",
+      "english": "Who",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "E. Pair Work—Ask your partner the following questions and report the answers as in the example. See p. 257 for occupation vocabulary.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今週",
+      "reading": "こんしゅう",
+      "english": "This week",
+      "kind": "word",
+      "category": "Time",
+      "section": "E. Pair Work—Ask your partner the following questions and report the answers as in the example. See p. 257 for occupation vocabulary.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今",
+      "reading": "いま",
+      "english": "Now",
+      "kind": "word",
+      "category": "Time",
+      "section": "E. Pair Work—Ask your partner the following questions and report the answers as in the example. See p. 257 for occupation vocabulary.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今日",
+      "reading": "きょう",
+      "english": "Today",
+      "kind": "word",
+      "category": "Time",
+      "section": "F. Complete the following sentences.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天気",
+      "reading": "てんき",
+      "english": "Weather",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "F. Complete the following sentences.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いじわる",
+      "english": "Mean; unkind",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "F. Complete the following sentences.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一緒に",
+      "reading": "いっしょに",
+      "english": "Together",
+      "kind": "word",
+      "category": "Other",
+      "section": "F. Complete the following sentences.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "高校",
+      "reading": "こうこう",
+      "english": "High school",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "F. Complete the following sentences.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "それから",
+      "english": "After that; then",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "B. Pair Work—Look at the picture and talk about what you want to do during the next vacation using 〜たり〜たり.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あした",
+      "english": "Tomorrow",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "宿題",
+      "reading": "しゅくだい",
+      "english": "Homework",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "カラオケ",
+      "english": "Karaoke",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "デート",
+      "english": "Date (romantic)",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "国",
+      "reading": "くに",
+      "english": "Country",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "冬休み",
+      "reading": "ふゆやすみ",
+      "english": "Winter vacation",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "夏休み",
+      "reading": "なつやすみ",
+      "english": "Summer vacation",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "クラス",
+      "english": "Class (group of students)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きらい",
+      "english": "Disliked; hated",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天ぷら",
+      "reading": "てんぷら",
+      "english": "Tempura",
+      "kind": "word",
+      "category": "Food",
+      "section": "A. The following are what John has or hasn’t done. Make the sentences using 〜ことがある. K11-14",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ラブレター",
+      "english": "Love letter",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "A. The following are what John has or hasn’t done. Make the sentences using 〜ことがある. K11-14",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "飲む",
+      "reading": "のむ",
+      "english": "To drink",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ええ",
+      "english": "Yeah; yes",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "テスト",
+      "english": "Test",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "教える",
+      "reading": "おしえる",
+      "english": "To teach",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "有名人",
+      "reading": "ゆうめいじん",
+      "english": "Celebrity; famous person",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ふぐ",
+      "english": "Blowfish (fugu)",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中国語",
+      "reading": "ちゅうごくご",
+      "english": "Chinese language",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "新幹線",
+      "reading": "しんかんせん",
+      "english": "Bullet train; Shinkansen",
+      "kind": "word",
+      "category": "Transport",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本料理",
+      "reading": "にほんりょうり",
+      "english": "Japanese cuisine",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "作る",
+      "reading": "つくる",
+      "english": "To make",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すし",
+      "english": "Sushi",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よく",
+      "english": "Often",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どんな",
+      "english": "What kind of",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "スポーツ",
+      "english": "Sports",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "果物",
+      "reading": "くだもの",
+      "english": "Fruit",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "料理",
+      "reading": "りょうり",
+      "english": "Cooking; cuisine",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大学",
+      "reading": "だいがく",
+      "english": "University",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食堂",
+      "reading": "しょくどう",
+      "english": "Cafeteria",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中",
+      "reading": "なか",
+      "english": "Inside; among",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "レストラン",
+      "english": "Restaurant",
+      "kind": "word",
+      "category": "Food",
+      "section": "A. Talk about your dream for the future or what it was when you were a child.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌",
+      "reading": "うた",
+      "english": "Song",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "A. Talk about your dream for the future or what it was when you were a child.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大好き",
+      "reading": "だいすき",
+      "english": "Love; like very much",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "A. Talk about your dream for the future or what it was when you were a child.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌う",
+      "reading": "うたう",
+      "english": "To sing",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "A. Talk about your dream for the future or what it was when you were a child.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ヒーロー",
+      "english": "Hero",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "B. Class Activity—Find someone who . . .",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とても",
+      "english": "Very",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "C. Class Activity—Bring pictures of your hometown and describe it.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大きい",
+      "reading": "おおきい",
+      "english": "Big",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "C. Class Activity—Bring pictures of your hometown and describe it.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にぎやか",
+      "english": "Lively; bustling",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "C. Class Activity—Bring pictures of your hometown and describe it.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "公園",
+      "reading": "こうえん",
+      "english": "Park",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "C. Class Activity—Bring pictures of your hometown and describe it.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "劇場",
+      "reading": "げきじょう",
+      "english": "Theater",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "C. Class Activity—Bring pictures of your hometown and describe it.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ミュージカル",
+      "english": "Musical (show)",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. Class Activity—Bring pictures of your hometown and describe it.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "散歩する",
+      "reading": "さんぽする",
+      "english": "To take a walk",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. Class Activity—Bring pictures of your hometown and describe it.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "帰る",
+      "reading": "かえる",
+      "english": "To return (home)",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "C. Class Activity—Bring pictures of your hometown and describe it.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大晦日",
+      "reading": "おおみそか",
+      "english": "New Year's Eve",
+      "kind": "word",
+      "category": "Time",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "年賀状",
+      "reading": "ねんがじょう",
+      "english": "New Year's greeting card",
+      "kind": "word",
+      "category": "Time",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "年越しそば",
+      "reading": "としこしそば",
+      "english": "New Year's Eve buckwheat noodles",
+      "kind": "word",
+      "category": "Food",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よいお年を",
+      "reading": "よいおとしを",
+      "english": "Have a happy New Year!",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あけましておめでとうございます",
+      "english": "Happy New Year!",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お寺",
+      "reading": "おてら",
+      "english": "Buddhist temple",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "初詣",
+      "reading": "はつもうで",
+      "english": "First shrine visit of the year",
+      "kind": "word",
+      "category": "Time",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お節料理",
+      "reading": "おせちりょうり",
+      "english": "New Year's special dishes",
+      "kind": "word",
+      "category": "Food",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "黒豆",
+      "reading": "くろまめ",
+      "english": "Black beans",
+      "kind": "word",
+      "category": "Food",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "数の子",
+      "reading": "かずのこ",
+      "english": "Herring roe",
+      "kind": "word",
+      "category": "Food",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おもち",
+      "english": "Rice cake",
+      "kind": "word",
+      "category": "Food",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "雑煮",
+      "reading": "ぞうに",
+      "english": "New Year's soup (with mochi)",
+      "kind": "word",
+      "category": "Food",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お年玉",
+      "reading": "おとしだま",
+      "english": "New Year's money gift",
+      "kind": "word",
+      "category": "Time",
+      "section": "お 正月 New Year's",
+      "where": "culture note",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "同じ",
+      "reading": "おなじ",
+      "english": "Same",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "違う",
+      "reading": "ちがう",
+      "english": "To be different",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "使う",
+      "reading": "つかう",
+      "english": "To use",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だめ",
+      "english": "No good",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "手",
+      "reading": "て",
+      "english": "Hand",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あげる",
+      "english": "To raise; to give",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "読む",
+      "reading": "よむ",
+      "english": "To read",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "出す",
+      "reading": "だす",
+      "english": "To hand in; to submit",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ページ",
+      "english": "Page",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "開く",
+      "reading": "ひらく",
+      "english": "To open",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "教科書",
+      "reading": "きょうかしょ",
+      "english": "Textbook",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "となり",
+      "english": "Next to; neighbor",
+      "kind": "word",
+      "category": "Directions",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "これ",
+      "english": "This (thing)",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "終わる",
+      "reading": "おわる",
+      "english": "To end; to finish",
+      "kind": "word",
+      "category": "Time",
+      "section": "Expressions",
+      "where": "other",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しめきり",
+      "english": "Deadline",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "練習",
+      "reading": "れんしゅう",
+      "english": "Exercise; practice",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "意味",
+      "reading": "いみ",
+      "english": "Meaning",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "発音",
+      "reading": "はつおん",
+      "english": "Pronunciation",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "文法",
+      "reading": "ぶんぽう",
+      "english": "Grammar",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "質問",
+      "reading": "しつもん",
+      "english": "Question",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "答え",
+      "reading": "こたえ",
+      "english": "Answer",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "例",
+      "reading": "れい",
+      "english": "Example",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かっこ",
+      "english": "Parentheses ( )",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まる",
+      "english": "Circle (○, correct)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ばつ",
+      "english": "X mark (✕, wrong)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "くだけた言い方",
+      "reading": "くだけたいいかた",
+      "english": "Colloquial expression",
+      "kind": "phrase",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かたい言い方",
+      "reading": "かたいいいかた",
+      "english": "Bookish expression",
+      "kind": "phrase",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ていねいな言い方",
+      "reading": "ていねいないいかた",
+      "english": "Polite expression",
+      "kind": "phrase",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "方言",
+      "reading": "ほうげん",
+      "english": "Dialect",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "共通語",
+      "reading": "きょうつうご",
+      "english": "Common language",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たとえば",
+      "english": "For example",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ほかに",
+      "english": "Anything else; in addition",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二人ずつ",
+      "reading": "ふたりずつ",
+      "english": "Two people each",
+      "kind": "phrase",
+      "category": "Numbers",
+      "section": "Vocabulary",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 13: Lesson 11: After the Vacation",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第11課　LESSON 11",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "休みのあと After the Vacation",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "In this lesson, we will…",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "会話 Dialogue",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "I K11-01/02",
+      "read": true,
+      "items": 12
+    },
+    {
+      "title": "II K11-03/04",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "Ⅲ K11-05/06",
+      "read": true,
+      "items": 13
+    },
+    {
+      "title": "Ⅰ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅲ",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "単語 Vocabulary",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Nouns",
+      "read": true,
+      "items": 26
+    },
+    {
+      "title": "U-verbs",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "Ru-verbs",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "Irregular Verbs",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "Adverbs and Other Expressions",
+      "read": true,
+      "items": 7
+    },
+    {
+      "title": "Additional Vocabulary",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "職業 (Occupations)",
+      "read": true,
+      "items": 13
+    },
+    {
+      "title": "文法 Grammar",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "1 〜たい",
+      "read": true,
+      "items": 15
+    },
+    {
+      "title": "2 〜たり〜たりする",
+      "read": true,
+      "items": 8
+    },
+    {
+      "title": "3 〜ことがある",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "4 Noun A や Noun B",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "Expression Notes 11",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "表現ノート",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "は in negative sentences",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "だけ",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "に",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Expression Notes",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "ドライブ",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "夢",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "には",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "練習 Practice",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅰ ハンバーガーを 食 べたいです ☛Grammar 1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Change the following phrases into 〜たい sentences. K11-11",
+      "read": true,
+      "items": 8
+    },
+    {
+      "title": "B. Pair Work—Ask if your partner wants to do the things above. When you answer, give reasons as in the example.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "C. Change the following phrases into 〜たい sentences in the past tense. K11-12",
+      "read": true,
+      "items": 9
+    },
+    {
+      "title": "D. Pair Work—Ask if your partner wanted to do the things above during their childhood.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "E. Pair Work—Ask your partner the following questions and report the answers as in the example. See p. 257 for occupation vocabulary.",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "F. Complete the following sentences.",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "Ⅱ 掃除 したり、 洗濯 したりします ☛Grammar 2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Tell what the following people did on the weekend using 〜たり〜たりする. K11-13",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Pair Work—Look at the picture and talk about what you want to do during the next vacation using 〜たり〜たり.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "C. Pair Work—Ask your partner the following questions. When you answer, use 〜たり〜たりする as in the example.",
+      "read": true,
+      "items": 9
+    },
+    {
+      "title": "Ⅲ 有名人 に 会 ったことがありますか ☛Grammar 3",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. The following are what John has or hasn’t done. Make the sentences using 〜ことがある. K11-14",
+      "read": true,
+      "items": 2
+    },
+    {
+      "title": "B. Pair Work—Make questions using 〜ことがある and ask your partner. Continue your conversation.",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "Ⅳ すしや 天 ぷらをよく 食 べます ☛Grammar 4",
+      "read": true,
+      "items": 9
+    },
+    {
+      "title": "V まとめの 練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Talk about your dream for the future or what it was when you were a child.",
+      "read": true,
+      "items": 4
+    },
+    {
+      "title": "B. Class Activity—Find someone who . . .",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "C. Class Activity—Bring pictures of your hometown and describe it.",
+      "read": true,
+      "items": 8
+    },
+    {
+      "title": "Culture Notes",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "お 正月 New Year's",
+      "read": true,
+      "items": 13
+    },
+    {
+      "title": "Useful Expressions",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "日本語 のクラスで",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Expressions",
+      "read": true,
+      "items": 14
+    },
+    {
+      "title": "Vocabulary",
+      "read": true,
+      "items": 19
+    }
+  ],
+  "unread": []
+}

@@ -1,0 +1,1050 @@
+{
+  "items": [
+    {
+      "target": "一",
+      "reading": "いち",
+      "english": "One",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一時",
+      "reading": "いちじ",
+      "english": "One o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一年生",
+      "reading": "いちねんせい",
+      "english": "First-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一分",
+      "reading": "いっぷん",
+      "english": "One minute",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一つ",
+      "reading": "ひとつ",
+      "english": "One (thing)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二",
+      "reading": "に",
+      "english": "Two",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二時",
+      "reading": "にじ",
+      "english": "Two o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二年生",
+      "reading": "にねんせい",
+      "english": "Second-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二つ",
+      "reading": "ふたつ",
+      "english": "Two (things)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二日間",
+      "reading": "ふつかかん",
+      "english": "Two days",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三",
+      "reading": "さん",
+      "english": "Three",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三時",
+      "reading": "さんじ",
+      "english": "Three o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三年生",
+      "reading": "さんねんせい",
+      "english": "Third-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三月",
+      "reading": "さんがつ",
+      "english": "March",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三つ",
+      "reading": "みっつ",
+      "english": "Three (things)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "四",
+      "reading": "よん",
+      "english": "Four",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "四時",
+      "reading": "よじ",
+      "english": "Four o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "四年生",
+      "reading": "よねんせい",
+      "english": "Fourth-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "四月",
+      "reading": "しがつ",
+      "english": "April",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "四つ",
+      "reading": "よっつ",
+      "english": "Four (things)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "五",
+      "reading": "ご",
+      "english": "Five",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "五時",
+      "reading": "ごじ",
+      "english": "Five o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "五月",
+      "reading": "ごがつ",
+      "english": "May",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "五歳",
+      "reading": "ごさい",
+      "english": "Five years old",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "五つ",
+      "reading": "いつつ",
+      "english": "Five (things)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "六",
+      "reading": "ろく",
+      "english": "Six",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "六時",
+      "reading": "ろくじ",
+      "english": "Six o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "六百",
+      "reading": "ろっぴゃく",
+      "english": "Six hundred",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "六分",
+      "reading": "ろっぷん",
+      "english": "Six minutes",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "六つ",
+      "reading": "むっつ",
+      "english": "Six (things)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "七",
+      "reading": "しち／なな",
+      "english": "Seven",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "七時",
+      "reading": "しちじ",
+      "english": "Seven o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "七月",
+      "reading": "しちがつ",
+      "english": "July",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "七つ",
+      "reading": "ななつ",
+      "english": "Seven (things)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "七人",
+      "reading": "ななにん／しちにん",
+      "english": "Seven people",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "八",
+      "reading": "はち",
+      "english": "Eight",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "八時",
+      "reading": "はちじ",
+      "english": "Eight o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "八百",
+      "reading": "はっぴゃく",
+      "english": "Eight hundred",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "八歳",
+      "reading": "はっさい",
+      "english": "Eight years old",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "八つ",
+      "reading": "やっつ",
+      "english": "Eight (things)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "九",
+      "reading": "きゅう",
+      "english": "Nine",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "九時",
+      "reading": "くじ",
+      "english": "Nine o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "九月",
+      "reading": "くがつ",
+      "english": "September",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "九歳",
+      "reading": "きゅうさい",
+      "english": "Nine years old",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "九つ",
+      "reading": "ここのつ",
+      "english": "Nine (things)",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十",
+      "reading": "じゅう／とお",
+      "english": "Ten",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十時",
+      "reading": "じゅうじ",
+      "english": "Ten o'clock",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十月",
+      "reading": "じゅうがつ",
+      "english": "October",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十歳",
+      "reading": "じゅっさい／じっさい",
+      "english": "Ten years old",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "百",
+      "reading": "ひゃく",
+      "english": "Hundred",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三百",
+      "reading": "さんびゃく",
+      "english": "Three hundred",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "千",
+      "reading": "せん",
+      "english": "Thousand",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三千",
+      "reading": "さんぜん",
+      "english": "Three thousand",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "八千",
+      "reading": "はっせん",
+      "english": "Eight thousand",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "千円",
+      "reading": "せんえん",
+      "english": "One thousand yen",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "万",
+      "english": "Ten thousand",
+      "kind": "character",
+      "category": "Numbers",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一万",
+      "reading": "いちまん",
+      "english": "Ten thousand (number)",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十万",
+      "reading": "じゅうまん",
+      "english": "One hundred thousand",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "百万",
+      "reading": "ひゃくまん",
+      "english": "One million",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "円",
+      "reading": "えん",
+      "english": "Circle",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "百円",
+      "reading": "ひゃくえん",
+      "english": "One hundred yen",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "円高",
+      "reading": "えんだか",
+      "english": "Strong yen",
+      "kind": "word",
+      "category": "Money",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "円い",
+      "reading": "まるい",
+      "english": "Round",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時",
+      "reading": "とき",
+      "english": "Time",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時間",
+      "reading": "じかん",
+      "english": "Time; hours",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "子ども",
+      "reading": "こども",
+      "english": "Child",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時々",
+      "reading": "ときどき",
+      "english": "Sometimes",
+      "kind": "word",
+      "category": "Time",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時計",
+      "reading": "とけい",
+      "english": "Watch; clock",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "チョコレート",
+      "english": "Chocolate",
+      "kind": "word",
+      "category": "Food",
+      "section": "A. Read the price of the following items in kanji and write it in numerals.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ハンカチ",
+      "english": "Handkerchief",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "A. Read the price of the following items in kanji and write it in numerals.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せんす",
+      "english": "Folding fan",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "A. Read the price of the following items in kanji and write it in numerals.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きもの",
+      "english": "Kimono",
+      "kind": "word",
+      "category": "Clothing",
+      "section": "A. Read the price of the following items in kanji and write it in numerals.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "テレビ",
+      "english": "Television",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "A. Read the price of the following items in kanji and write it in numerals.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いえ",
+      "english": "House",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "A. Read the price of the following items in kanji and write it in numerals.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "わたし",
+      "english": "I",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まいにち",
+      "english": "Every day",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おきる",
+      "english": "To get up",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うち",
+      "english": "Home",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あさごはん",
+      "english": "Breakfast",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たべる",
+      "english": "To eat",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だいがく",
+      "english": "University",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いく",
+      "english": "To go",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にほんご",
+      "english": "Japanese (language)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "べんきょうする",
+      "english": "To study",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "半",
+      "reading": "はん",
+      "english": "Half",
+      "kind": "word",
+      "category": "Time",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ひるごはん",
+      "english": "Lunch",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コーヒー",
+      "english": "Coffee",
+      "kind": "word",
+      "category": "Food",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "のむ",
+      "english": "To drink",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "としょかん",
+      "english": "Library",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ほん",
+      "english": "Book",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よむ",
+      "english": "To read",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かえる",
+      "english": "To go home; return",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "みる",
+      "english": "To watch; see",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ねる",
+      "english": "To sleep",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "Ⅱ まいにちのせいかつ",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 17: Reading and Writing 3: Daily Life",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第3課 LESSON 3 まいにちのせいかつ Daily Life",
+      "read": true,
+      "items": 68
+    },
+    {
+      "title": "I 漢字 の 練習 (Kanji Practice)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Read the price of the following items in kanji and write it in numerals.",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "B. Write the following prices in kanji.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ まいにちのせいかつ",
+      "read": true,
+      "items": 20
+    },
+    {
+      "title": "Ⅲ 書 く 練習 (Writing Practice)",
+      "read": true,
+      "items": 0
+    }
+  ],
+  "unread": []
+}

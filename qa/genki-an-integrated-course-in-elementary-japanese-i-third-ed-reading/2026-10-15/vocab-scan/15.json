@@ -1,0 +1,477 @@
+{
+  "items": [
+    {
+      "target": "いちご",
+      "english": "Strawberry",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Listen to the recording and add diacritical marks ゛ and ゜ to the hiragana where needed. Y01-3",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だんご",
+      "english": "Dumpling",
+      "kind": "word",
+      "category": "Food",
+      "section": "C. Listen to the recording and add diacritical marks ゛ and ゜ to the hiragana where needed. Y01-3",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ざぶとん",
+      "english": "Cushion",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "C. Listen to the recording and add diacritical marks ゛ and ゜ to the hiragana where needed. Y01-3",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "がいこくじん",
+      "english": "Foreigner",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "C. Listen to the recording and add diacritical marks ゛ and ゜ to the hiragana where needed. Y01-3",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たんぽぽ",
+      "english": "Dandelion",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "C. Listen to the recording and add diacritical marks ゛ and ゜ to the hiragana where needed. Y01-3",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "がんぺき",
+      "english": "Cliff",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "C. Listen to the recording and add diacritical marks ゛ and ゜ to the hiragana where needed. Y01-3",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しゃしん",
+      "english": "Photograph",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "D. Listen to the recording and circle the matching hiragana word. Y01-4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どくしょ",
+      "english": "Reading",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "D. Listen to the recording and circle the matching hiragana word. Y01-4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きょり",
+      "english": "Distance",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "D. Listen to the recording and circle the matching hiragana word. Y01-4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ひやす",
+      "english": "To chill (something)",
+      "kind": "word",
+      "category": "Food",
+      "section": "D. Listen to the recording and circle the matching hiragana word. Y01-4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ちゃいろ",
+      "english": "Brown",
+      "kind": "word",
+      "category": "Colors",
+      "section": "D. Listen to the recording and circle the matching hiragana word. Y01-4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おんなのひと",
+      "english": "Woman",
+      "kind": "phrase",
+      "category": "Family & People",
+      "section": "D. Listen to the recording and circle the matching hiragana word. Y01-4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きって",
+      "english": "Stamp",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "D. Listen to the recording and circle the matching hiragana word. Y01-4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "もっと",
+      "english": "More",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "D. Listen to the recording and circle the matching hiragana word. Y01-4",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おばさん",
+      "english": "Aunt",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おばあさん",
+      "english": "Grandmother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おじいさん",
+      "english": "Grandfather",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おじさん",
+      "english": "Uncle",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しゅじん",
+      "english": "Husband",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しゅうじん",
+      "english": "Prisoner",
+      "kind": "word",
+      "category": "Other",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おや",
+      "english": "Parent",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おおや",
+      "english": "Landlord",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せいき",
+      "english": "Century",
+      "kind": "word",
+      "category": "Time",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せき",
+      "english": "Seat",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ともだち",
+      "english": "Friend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "F. Put the hiragana in the right order to make sense.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かいしゃいん",
+      "english": "Office worker",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だいがくせい",
+      "english": "University student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "せんこう",
+      "english": "Major (field of study)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "れきし",
+      "english": "History",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だいがくいんせい",
+      "english": "Graduate student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "けいざい",
+      "english": "Economics",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "わたし",
+      "english": "I; me",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なまえ",
+      "english": "Name",
+      "kind": "word",
+      "category": "Other",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こうこう",
+      "english": "High school",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さんねんせい",
+      "english": "Third-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅱ Reading Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はじめまして",
+      "english": "How do you do (first meeting)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Ⅲ Writing Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "にほんじん",
+      "english": "Japanese (person)",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "Ⅲ Writing Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だいがく",
+      "english": "University",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅲ Writing Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いちねんせい",
+      "english": "First-year student",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅲ Writing Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "えいご",
+      "english": "English (language)",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "Ⅲ Writing Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よろしくおねがいします",
+      "english": "Nice to meet you (please treat me well)",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "Ⅲ Writing Practice",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 15: Reading and Writing 1: Hiragana",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第 1 課 LESSON 1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "ひらがな Hiragana",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "I Hiragana Practice",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Choose the correct hiragana . Y01-1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Match the words. Y01-2",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Listen to the recording and add diacritical marks ゛ and ゜ to the hiragana where needed. Y01-3",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "D. Listen to the recording and circle the matching hiragana word. Y01-4",
+      "read": true,
+      "items": 8
+    },
+    {
+      "title": "E. Read the following pairs, paying attention to the long vowels. Y01-5",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "F. Put the hiragana in the right order to make sense.",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "Ⅱ Reading Practice",
+      "read": true,
+      "items": 10
+    },
+    {
+      "title": "Ⅲ Writing Practice",
+      "read": true,
+      "items": 6
+    }
+  ],
+  "unread": []
+}

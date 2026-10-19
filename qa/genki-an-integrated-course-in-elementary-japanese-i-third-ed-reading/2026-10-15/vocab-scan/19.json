@@ -1,0 +1,1160 @@
+{
+  "items": [
+    {
+      "target": "山",
+      "english": "Mountain",
+      "reading": "やま",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "川",
+      "english": "River",
+      "reading": "かわ",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "元",
+      "english": "Origin",
+      "kind": "character",
+      "category": "Other",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "元気",
+      "english": "Fine; healthy",
+      "reading": "げんき",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "元日",
+      "english": "New Year's Day",
+      "reading": "がんじつ",
+      "kind": "word",
+      "category": "Time",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "地元",
+      "english": "Local",
+      "reading": "じもと",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "気",
+      "english": "Spirit",
+      "kind": "character",
+      "category": "Other",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天気",
+      "english": "Weather",
+      "reading": "てんき",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "電気",
+      "english": "Electricity",
+      "reading": "でんき",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "気持ち",
+      "english": "Feeling",
+      "reading": "きもち",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "人気",
+      "english": "Popularity",
+      "reading": "にんき",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天",
+      "english": "Heaven (sky)",
+      "kind": "character",
+      "category": "Other",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天国",
+      "english": "Heaven (paradise)",
+      "reading": "てんごく",
+      "kind": "word",
+      "category": "Other",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天皇",
+      "english": "Emperor (of Japan)",
+      "reading": "てんのう",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天才",
+      "english": "Genius",
+      "reading": "てんさい",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "私",
+      "english": "I",
+      "reading": "わたし",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "私立大学",
+      "english": "Private university",
+      "reading": "しりつだいがく",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今",
+      "english": "Now",
+      "reading": "いま",
+      "kind": "word",
+      "category": "Time",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今日",
+      "english": "Today",
+      "reading": "きょう",
+      "kind": "word",
+      "category": "Time",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今晩",
+      "english": "Tonight",
+      "reading": "こんばん",
+      "kind": "word",
+      "category": "Time",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今月",
+      "english": "This month",
+      "reading": "こんげつ",
+      "kind": "word",
+      "category": "Time",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今年",
+      "english": "This year",
+      "reading": "ことし",
+      "kind": "word",
+      "category": "Time",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "田",
+      "english": "Rice field (kanji)",
+      "kind": "character",
+      "category": "Weather & Nature",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "田んぼ",
+      "english": "Rice field",
+      "reading": "たんぼ",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "女",
+      "english": "Woman (character)",
+      "kind": "character",
+      "category": "Family & People",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "女の人",
+      "english": "Woman",
+      "reading": "おんなのひと",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "女性",
+      "english": "Woman (formal)",
+      "reading": "じょせい",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "女の子",
+      "english": "Girl",
+      "reading": "おんなのこ",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "長女",
+      "english": "Eldest daughter",
+      "reading": "ちょうじょ",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "男",
+      "english": "Man (character)",
+      "kind": "character",
+      "category": "Family & People",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "男の人",
+      "english": "Man",
+      "reading": "おとこのひと",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "男性",
+      "english": "Man (formal)",
+      "reading": "だんせい",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "男の子",
+      "english": "Boy",
+      "reading": "おとこのこ",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "男子学生",
+      "english": "Male student",
+      "reading": "だんしがくせい",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "見る",
+      "english": "To see",
+      "reading": "みる",
+      "kind": "word",
+      "category": "Other",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "見物",
+      "english": "Sightseeing",
+      "reading": "けんぶつ",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "花見",
+      "english": "Flower viewing",
+      "reading": "はなみ",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "意見",
+      "english": "Opinion",
+      "reading": "いけん",
+      "kind": "word",
+      "category": "Other",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "行く",
+      "english": "To go",
+      "reading": "いく",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "銀行",
+      "english": "Bank",
+      "reading": "ぎんこう",
+      "kind": "word",
+      "category": "Money",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一行目",
+      "english": "First line (of text)",
+      "reading": "いちぎょうめ",
+      "kind": "word",
+      "category": "Other",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "旅行",
+      "english": "Travel",
+      "reading": "りょこう",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食べる",
+      "english": "To eat",
+      "reading": "たべる",
+      "kind": "word",
+      "category": "Food",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食べ物",
+      "english": "Food",
+      "reading": "たべもの",
+      "kind": "word",
+      "category": "Food",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食堂",
+      "english": "Cafeteria",
+      "reading": "しょくどう",
+      "kind": "word",
+      "category": "Food",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "食事",
+      "english": "Meal",
+      "reading": "しょくじ",
+      "kind": "word",
+      "category": "Food",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "朝食",
+      "english": "Breakfast",
+      "reading": "ちょうしょく",
+      "kind": "word",
+      "category": "Food",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "飲む",
+      "english": "To drink",
+      "reading": "のむ",
+      "kind": "word",
+      "category": "Food",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "飲み物",
+      "english": "Drink; beverage",
+      "reading": "のみもの",
+      "kind": "word",
+      "category": "Food",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "飲酒運転",
+      "english": "Drunk driving",
+      "reading": "いんしゅうんてん",
+      "kind": "word",
+      "category": "Other",
+      "section": "りょこう　Travel",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "えいが",
+      "english": "Movie",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "B. Match the following sentences with the pictures.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ハンバーガー",
+      "english": "Hamburger",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Match the following sentences with the pictures.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いる",
+      "english": "To be; to exist (people, animals)",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. Match the following sentences with the pictures.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ある",
+      "english": "To be; to exist (things)",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. Match the following sentences with the pictures.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いい",
+      "english": "Good",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "B. Match the following sentences with the pictures.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一日",
+      "english": "The 1st (day of the month)",
+      "reading": "ついたち",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二日",
+      "english": "The 2nd (day of the month)",
+      "reading": "ふつか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三日",
+      "english": "The 3rd (day of the month)",
+      "reading": "みっか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "四日",
+      "english": "The 4th (day of the month)",
+      "reading": "よっか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "五日",
+      "english": "The 5th (day of the month)",
+      "reading": "いつか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "六日",
+      "english": "The 6th (day of the month)",
+      "reading": "むいか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "七日",
+      "english": "The 7th (day of the month)",
+      "reading": "なのか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "八日",
+      "english": "The 8th (day of the month)",
+      "reading": "ようか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "九日",
+      "english": "The 9th (day of the month)",
+      "reading": "ここのか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "十日",
+      "english": "The 10th (day of the month)",
+      "reading": "とおか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "二十日",
+      "english": "The 20th (day of the month)",
+      "reading": "はつか",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Match the kanji with the reading.",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コーヒー",
+      "english": "Coffee",
+      "kind": "word",
+      "category": "Food",
+      "section": "A. Match the following katakana words with the English equivalents.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンサート",
+      "english": "Concert",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "A. Match the following katakana words with the English equivalents.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "カフェ",
+      "english": "Cafe",
+      "kind": "word",
+      "category": "Food",
+      "section": "A. Match the following katakana words with the English equivalents.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "クラシック",
+      "english": "Classical music",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "A. Match the following katakana words with the English equivalents.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ケーキ",
+      "english": "Cake",
+      "kind": "word",
+      "category": "Food",
+      "section": "A. Match the following katakana words with the English equivalents.",
+      "where": "exercise",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さむい",
+      "english": "Cold (weather)",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きれい",
+      "english": "Pretty; beautiful",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まち",
+      "english": "Town; city",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おしろ",
+      "english": "Castle",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ふるい",
+      "english": "Old",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たくさん",
+      "english": "A lot; many",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "しゃしん",
+      "english": "Photograph",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "とる",
+      "english": "To take (a photo)",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "よる",
+      "english": "Night",
+      "kind": "word",
+      "category": "Time",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まいにち",
+      "english": "Every day",
+      "kind": "word",
+      "category": "Time",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "すごく",
+      "english": "Very; extremely",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おいしい",
+      "english": "Delicious",
+      "kind": "word",
+      "category": "Food",
+      "section": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どこ",
+      "english": "Where",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どんな",
+      "english": "What kind of",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なに",
+      "english": "What",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だれ",
+      "english": "Who",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "きのう",
+      "english": "Yesterday",
+      "kind": "word",
+      "category": "Time",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "する",
+      "english": "To do",
+      "kind": "word",
+      "category": "Other",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "おかあさん",
+      "english": "Mother",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あつい",
+      "english": "Hot (weather)",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ともだち",
+      "english": "Friend",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いっしょに",
+      "english": "Together",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "うみ",
+      "english": "Sea; ocean",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "およぐ",
+      "english": "To swim",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "日本人",
+      "english": "Japanese (person)",
+      "reading": "にほんじん",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "メキシコ",
+      "english": "Mexico",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "メキシコ人",
+      "english": "Mexican (person)",
+      "reading": "めきしこじん",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たいへん",
+      "english": "Tough",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たのしい",
+      "english": "Fun; enjoyable",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "だいすき",
+      "english": "Very much liked; favorite",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "さま",
+      "english": "Mr./Ms. (used in letter writing)",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "では、お元気で",
+      "english": "Take care",
+      "reading": "では、おげんきで",
+      "kind": "phrase",
+      "category": "Greetings",
+      "section": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "where": "reading passage",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 19: Reading and Writing 5: Travel",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第5課　LESSON 5",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "りょこう　Travel",
+      "read": true,
+      "items": 50
+    },
+    {
+      "title": "Ⅰ 漢字 の 練習 (Kanji Practice)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Use each part below to write a kanji incorporating it.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Match the following sentences with the pictures.",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "C. Match the kanji with the reading.",
+      "read": true,
+      "items": 11
+    },
+    {
+      "title": "Ⅱ たのしいりょこう",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Match the following katakana words with the English equivalents.",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "B. Read Moe's post below. Write ○ for the things she did or does and write × for the things she didn't or doesn't do in Vienna. Y05-1",
+      "read": true,
+      "items": 12
+    },
+    {
+      "title": "C. Robert's postcard (unheaded in the source, follows Ⅱ B directly)",
+      "read": true,
+      "items": 20
+    },
+    {
+      "title": "Ⅲ 書 く 練習 (Writing Practice)",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Japanese addresses",
+      "read": true,
+      "items": 0
+    }
+  ],
+  "unread": []
+}

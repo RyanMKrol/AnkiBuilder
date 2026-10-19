@@ -1,0 +1,1291 @@
+{
+  "items": [
+    {
+      "target": "近",
+      "english": "Near",
+      "kind": "character",
+      "category": "Directions",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "明",
+      "english": "Bright",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "病",
+      "english": "Ill; sick",
+      "kind": "character",
+      "category": "Body & Health",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "院",
+      "english": "Institution",
+      "kind": "character",
+      "category": "Other",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "映",
+      "english": "To reflect",
+      "kind": "character",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "画",
+      "english": "Picture",
+      "kind": "character",
+      "category": "Other",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "市",
+      "english": "City",
+      "kind": "character",
+      "category": "Other",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "所",
+      "english": "Place",
+      "kind": "character",
+      "category": "Directions",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "好",
+      "english": "Favorite; to like",
+      "kind": "character",
+      "category": "Emotions & Feelings",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "旅",
+      "english": "Travel",
+      "kind": "character",
+      "category": "Travel & Tourism",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "手紙",
+      "english": "Letter",
+      "reading": "てがみ",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌手",
+      "english": "Singer",
+      "reading": "かしゅ",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "手",
+      "english": "Hand",
+      "reading": "て",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "手話",
+      "english": "Sign language",
+      "reading": "しゅわ",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "上手な",
+      "english": "Good at",
+      "reading": "じょうずな",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "紙",
+      "english": "Paper",
+      "reading": "かみ",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "和紙",
+      "english": "Japanese paper",
+      "reading": "わし",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "表紙",
+      "english": "Cover page",
+      "reading": "ひょうし",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "折り紙",
+      "english": "Origami",
+      "reading": "おりがみ",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "好きな",
+      "english": "To like",
+      "reading": "すきな",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大好きな",
+      "english": "To love",
+      "reading": "だいすきな",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "好意",
+      "english": "Goodwill",
+      "reading": "こうい",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "好み",
+      "english": "Liking; taste",
+      "reading": "このみ",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "好物",
+      "english": "Favorite food",
+      "reading": "こうぶつ",
+      "kind": "word",
+      "category": "Food",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "近く",
+      "english": "Near; nearby",
+      "reading": "ちかく",
+      "kind": "word",
+      "category": "Directions",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "近所",
+      "english": "Neighborhood",
+      "reading": "きんじょ",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "最近",
+      "english": "Recently",
+      "reading": "さいきん",
+      "kind": "word",
+      "category": "Time",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "中近東",
+      "english": "The Middle and Near East",
+      "reading": "ちゅうきんとう",
+      "kind": "word",
+      "category": "Nationalities & Countries",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "明るい",
+      "english": "Cheerful; bright",
+      "reading": "あかるい",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "明日",
+      "english": "Tomorrow",
+      "reading": "あした",
+      "kind": "word",
+      "category": "Time",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "説明",
+      "english": "Explanation",
+      "reading": "せつめい",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "発明",
+      "english": "Invention",
+      "reading": "はつめい",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "文明",
+      "english": "Civilization",
+      "reading": "ぶんめい",
+      "kind": "word",
+      "category": "Other",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "病院",
+      "english": "Hospital",
+      "reading": "びょういん",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "病気",
+      "english": "Illness",
+      "reading": "びょうき",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "重病",
+      "english": "Serious illness",
+      "reading": "じゅうびょう",
+      "kind": "word",
+      "category": "Body & Health",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "急病",
+      "english": "Sudden illness",
+      "reading": "きゅうびょう",
+      "kind": "word",
+      "category": "Emergencies",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大学院",
+      "english": "Graduate school",
+      "reading": "だいがくいん",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "美容院",
+      "english": "Beauty parlor",
+      "reading": "びよういん",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "映画",
+      "english": "Movie",
+      "reading": "えいが",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "映画館",
+      "english": "Movie theater",
+      "reading": "えいがかん",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "映る",
+      "english": "To be reflected",
+      "reading": "うつる",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "画家",
+      "english": "Painter",
+      "reading": "がか",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "計画",
+      "english": "Plan",
+      "reading": "けいかく",
+      "kind": "word",
+      "category": "Other",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "漫画",
+      "english": "Comic",
+      "reading": "まんが",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌う",
+      "english": "To sing",
+      "reading": "うたう",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌",
+      "english": "Song",
+      "reading": "うた",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "国歌",
+      "english": "National anthem",
+      "reading": "こっか",
+      "kind": "word",
+      "category": "Other",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌舞伎",
+      "english": "Kabuki",
+      "reading": "かぶき",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歌詞",
+      "english": "Lyrics",
+      "reading": "かし",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "市役所",
+      "english": "City hall",
+      "reading": "しやくしょ",
+      "kind": "word",
+      "category": "Other",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "市長",
+      "english": "Mayor",
+      "reading": "しちょう",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "市場",
+      "english": "Market",
+      "reading": "いちば",
+      "kind": "word",
+      "category": "Shopping",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "台所",
+      "english": "Kitchen",
+      "reading": "だいどころ",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "住所",
+      "english": "Address",
+      "reading": "じゅうしょ",
+      "kind": "word",
+      "category": "Home & Household",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いろいろな",
+      "english": "Various",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "勉強する",
+      "english": "To study",
+      "reading": "べんきょうする",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "勉める",
+      "english": "To try hard",
+      "reading": "つとめる",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "勤勉な",
+      "english": "Diligent",
+      "reading": "きんべんな",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "強い",
+      "english": "Strong",
+      "reading": "つよい",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "強情な",
+      "english": "Obstinate",
+      "reading": "ごうじょうな",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "強盗",
+      "english": "Robbery",
+      "reading": "ごうとう",
+      "kind": "word",
+      "category": "Emergencies",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "強力な",
+      "english": "Powerful",
+      "reading": "きょうりょくな",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "有名な",
+      "english": "Famous",
+      "reading": "ゆうめいな",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "有料",
+      "english": "Toll; fee",
+      "reading": "ゆうりょう",
+      "kind": "word",
+      "category": "Money",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "有る",
+      "english": "To exist",
+      "reading": "ある",
+      "kind": "word",
+      "category": "Other",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "有能な",
+      "english": "Talented",
+      "reading": "ゆうのうな",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "旅行",
+      "english": "Travel (trip)",
+      "reading": "りょこう",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "旅館",
+      "english": "Japanese inn",
+      "reading": "りょかん",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一人旅",
+      "english": "Traveling alone",
+      "reading": "ひとりたび",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "旅券",
+      "english": "Passport",
+      "reading": "りょけん",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "友だち・メンバー募集 Looking for Friends/Members",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あなた",
+      "english": "You",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "A. 質問に答えてください。(Answer the following questions.)",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "募集",
+      "english": "Looking for... (recruiting)",
+      "reading": "ぼしゅう",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "友だち・メンバー募集",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ボランティア",
+      "english": "Volunteer",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "友だち・メンバー募集",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "アウトドア",
+      "english": "Outdoor activities",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ホラー",
+      "english": "Horror",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "平日",
+      "english": "Weekday",
+      "reading": "へいじつ",
+      "kind": "word",
+      "category": "Time",
+      "section": "友だち・メンバー募集",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "バンド",
+      "english": "Band",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "友だち・メンバー募集",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "週末",
+      "english": "Weekend",
+      "reading": "しゅうまつ",
+      "kind": "word",
+      "category": "Time",
+      "section": "いっしょにボランティアをしませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "サークル",
+      "english": "Circle (club)",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "いっしょにボランティアをしませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "教える",
+      "english": "To teach",
+      "reading": "おしえる",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "いっしょにボランティアをしませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いっしょに",
+      "english": "Together",
+      "kind": "word",
+      "category": "Other",
+      "section": "いっしょにボランティアをしませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "始める",
+      "english": "To begin (something)",
+      "reading": "はじめる",
+      "kind": "word",
+      "category": "Other",
+      "section": "いっしょにボランティアをしませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "将来",
+      "english": "Future",
+      "reading": "しょうらい",
+      "kind": "word",
+      "category": "Time",
+      "section": "アウトドアが好きな人",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "登る",
+      "english": "To climb",
+      "reading": "のぼる",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "アウトドアが好きな人",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "メール",
+      "english": "Email",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "アウトドアが好きな人",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "歳",
+      "english": "Years old (counter)",
+      "reading": "さい",
+      "kind": "word",
+      "category": "Numbers",
+      "section": "映画について話しませんか？",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "バイト",
+      "english": "Part-time job",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "映画について話しませんか？",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いつも",
+      "english": "Always",
+      "kind": "word",
+      "category": "Other",
+      "section": "映画について話しませんか？",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ロック",
+      "english": "Rock (music)",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "いっしょにバンドをやりませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ギター",
+      "english": "Guitar",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "いっしょにバンドをやりませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ひく",
+      "english": "To play (a string instrument)",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "いっしょにバンドをやりませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "なる",
+      "english": "To become",
+      "kind": "word",
+      "category": "Other",
+      "section": "いっしょにバンドをやりませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "コンサート",
+      "english": "Concert",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "いっしょにバンドをやりませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "それから",
+      "english": "And then; after that",
+      "kind": "word",
+      "category": "Other",
+      "section": "いっしょにバンドをやりませんか",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "運転する",
+      "english": "To drive",
+      "reading": "うんてんする",
+      "kind": "word",
+      "category": "Transport",
+      "section": "D. 質問に答えてください。",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どの",
+      "english": "Which",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "D. 質問に答えてください。",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どうして",
+      "english": "Why",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "D. 質問に答えてください。",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "文化",
+      "english": "Culture",
+      "reading": "ぶんか",
+      "kind": "word",
+      "category": "Other",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "これから",
+      "english": "From now on",
+      "kind": "word",
+      "category": "Time",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "こと",
+      "english": "Things; matters",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お返事",
+      "english": "Reply",
+      "reading": "おへんじ",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "つり",
+      "english": "Fishing",
+      "kind": "word",
+      "category": "Sports & Hobbies",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まだ",
+      "english": "Not yet; still",
+      "kind": "word",
+      "category": "Other",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "あまり",
+      "english": "Not very (much)",
+      "kind": "word",
+      "category": "Other",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "つもり",
+      "english": "Intention (to do something)",
+      "kind": "word",
+      "category": "Other",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お寺",
+      "english": "Temple",
+      "reading": "てら",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "神社",
+      "english": "Shrine",
+      "reading": "じんじゃ",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お祭り",
+      "english": "Festival",
+      "reading": "まつり",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たくさん",
+      "english": "A lot; many",
+      "kind": "word",
+      "category": "Other",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "いつ",
+      "english": "When",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "どこ",
+      "english": "Where",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "where": "exercise",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 25: Reading and Writing 11: Looking for Friends/Members",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第11課 LESSON 11",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "友だち・メンバー募集 Looking for Friends/Members",
+      "read": true,
+      "items": 71
+    },
+    {
+      "title": "Ⅰ 漢字の練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Combine the parts below to form the new kanji from this lesson.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Put one kanji in each box to make compounds.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ 友だち・メンバー募集",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. 質問に答えてください。(Answer the following questions.)",
+      "read": true,
+      "items": 1
+    },
+    {
+      "title": "B. 右ページの「友だち・メンバー募集」を読みましょう。 Y11-1",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. 次の人はだれですか。その人の名前を書いてください。",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "友だち・メンバー募集",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "いっしょにボランティアをしませんか",
+      "read": true,
+      "items": 5
+    },
+    {
+      "title": "アウトドアが好きな人",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "映画について話しませんか？",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "いっしょにバンドをやりませんか",
+      "read": true,
+      "items": 6
+    },
+    {
+      "title": "D. 質問に答えてください。",
+      "read": true,
+      "items": 3
+    },
+    {
+      "title": "E. 「友だち・メンバー募集」を見て、エバさんはゆうさんにメッセージを書きました。メッセージを読んで、質問に答えてください。 Y11-2",
+      "read": true,
+      "items": 14
+    },
+    {
+      "title": "Ⅲ 書く練習",
+      "read": true,
+      "items": 0
+    }
+  ],
+  "unread": []
+}

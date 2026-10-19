@@ -1,0 +1,957 @@
+{
+  "items": [
+    {
+      "target": "昔",
+      "english": "Old times",
+      "reading": "むかし",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "昔話",
+      "english": "Old tale",
+      "reading": "むかしばなし",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大昔",
+      "english": "Ancient times",
+      "reading": "おおむかし",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "々",
+      "english": "Symbol of repetition of a kanji",
+      "kind": "character",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "昔々",
+      "english": "Once upon a time",
+      "reading": "むかしむかし",
+      "kind": "phrase",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "時々",
+      "english": "Sometimes",
+      "reading": "ときどき",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "色々な",
+      "english": "Various",
+      "reading": "いろいろな",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "神",
+      "english": "God (kanji)",
+      "kind": "character",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "神社",
+      "english": "Shrine",
+      "reading": "じんじゃ",
+      "kind": "word",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "神道",
+      "english": "Shinto",
+      "reading": "しんとう",
+      "kind": "word",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "早",
+      "english": "Early (kanji)",
+      "kind": "character",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "早い",
+      "english": "Early",
+      "reading": "はやい",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "早起きする",
+      "english": "To get up early",
+      "reading": "はやおきする",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "早朝",
+      "english": "Early morning",
+      "reading": "そうちょう",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "起",
+      "english": "To get up (kanji)",
+      "kind": "character",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "起きる",
+      "english": "To get up",
+      "reading": "おきる",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "起こす",
+      "english": "To wake someone up",
+      "reading": "おこす",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "再起動",
+      "english": "Reboot",
+      "reading": "さいきどう",
+      "kind": "word",
+      "category": "Technology & Communication",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "牛乳",
+      "english": "Milk",
+      "reading": "ぎゅうにゅう",
+      "kind": "word",
+      "category": "Food",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "牛肉",
+      "english": "Beef",
+      "reading": "ぎゅうにく",
+      "kind": "word",
+      "category": "Food",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "子牛",
+      "english": "Calf; veal",
+      "reading": "こうし",
+      "kind": "word",
+      "category": "Animals",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "使",
+      "english": "To use (kanji)",
+      "kind": "character",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "使う",
+      "english": "To use",
+      "reading": "つかう",
+      "kind": "word",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大使",
+      "english": "Ambassador",
+      "reading": "たいし",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "使用中",
+      "english": "Occupied",
+      "reading": "しようちゅう",
+      "kind": "word",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "お使い",
+      "english": "Errand",
+      "reading": "おつかい",
+      "kind": "word",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "働",
+      "english": "To work (kanji)",
+      "kind": "character",
+      "category": "Work & Occupations",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "働く",
+      "english": "To work",
+      "reading": "はたらく",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "共働き",
+      "english": "Both husband and wife working",
+      "reading": "ともばたらき",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "労働",
+      "english": "Labor",
+      "reading": "ろうどう",
+      "kind": "word",
+      "category": "Work & Occupations",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "連",
+      "english": "To link",
+      "kind": "character",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "連休",
+      "english": "Consecutive holidays",
+      "reading": "れんきゅう",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "別",
+      "english": "To separate (kanji)",
+      "kind": "character",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "別れる",
+      "english": "To separate",
+      "reading": "わかれる",
+      "kind": "word",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "別に",
+      "english": "Not in particular",
+      "reading": "べつに",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "特別な",
+      "english": "Special",
+      "reading": "とくべつな",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "差別",
+      "english": "Discrimination",
+      "reading": "さべつ",
+      "kind": "word",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "別々に",
+      "english": "Separately",
+      "reading": "べつべつに",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "度",
+      "english": "Time; degrees",
+      "kind": "character",
+      "category": "Other",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "一度",
+      "english": "Once",
+      "reading": "いちど",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "今度",
+      "english": "Near future",
+      "reading": "こんど",
+      "kind": "word",
+      "category": "Time",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "温度",
+      "english": "Temperature",
+      "reading": "おんど",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "三十度",
+      "english": "30 degrees",
+      "reading": "さんじゅうど",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "態度",
+      "english": "Attitude",
+      "reading": "たいど",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "赤",
+      "english": "Red; red color",
+      "reading": "あか",
+      "kind": "word",
+      "category": "Colors",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "赤い",
+      "english": "Red",
+      "reading": "あかい",
+      "kind": "word",
+      "category": "Colors",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "赤ちゃん",
+      "english": "Baby",
+      "reading": "あかちゃん",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "赤道",
+      "english": "The equator",
+      "reading": "せきどう",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "青",
+      "english": "Blue; blue color",
+      "reading": "あお",
+      "kind": "word",
+      "category": "Colors",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "青い",
+      "english": "Blue",
+      "reading": "あおい",
+      "kind": "word",
+      "category": "Colors",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "青年",
+      "english": "Youth",
+      "reading": "せいねん",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "青空",
+      "english": "Blue sky",
+      "reading": "あおぞら",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "青信号",
+      "english": "Green light",
+      "reading": "あおしんごう",
+      "kind": "word",
+      "category": "Transport",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "色",
+      "english": "Color",
+      "reading": "いろ",
+      "kind": "word",
+      "category": "Colors",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "景色",
+      "english": "Scenery",
+      "reading": "けしき",
+      "kind": "word",
+      "category": "Travel & Tourism",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "特色",
+      "english": "Characteristic",
+      "reading": "とくしょく",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "七夕 Tanabata Festival",
+      "where": "kanji table",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天",
+      "english": "The heavens; the sky",
+      "reading": "てん",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "神さま",
+      "english": "God",
+      "reading": "かみさま",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "娘",
+      "english": "Daughter",
+      "reading": "むすめ",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "まじめ",
+      "english": "Serious; sober; diligent",
+      "kind": "word",
+      "category": "Descriptions & Qualities",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "はた",
+      "english": "Loom",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "織る",
+      "english": "To weave",
+      "reading": "おる",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "ある",
+      "english": "A certain (one)",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "大人",
+      "english": "Adult",
+      "reading": "おとな",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "見つける",
+      "english": "To find",
+      "reading": "みつける",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "天の川",
+      "english": "The Milky Way",
+      "reading": "あまのがわ",
+      "kind": "word",
+      "category": "Weather & Nature",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "向こう",
+      "english": "The other side; over there",
+      "reading": "むこう",
+      "kind": "word",
+      "category": "Directions",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "牛",
+      "english": "Cow",
+      "reading": "うし",
+      "kind": "word",
+      "category": "Animals",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "畑",
+      "english": "Farm",
+      "reading": "はたけ",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "怒る",
+      "english": "To get angry",
+      "reading": "おこる",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "連れて帰る",
+      "english": "To bring (a person) back",
+      "reading": "つれてかえる",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "泣く",
+      "english": "To cry",
+      "reading": "なく",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かわいそう",
+      "english": "Pitiful",
+      "kind": "word",
+      "category": "Emotions & Feelings",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "までに",
+      "english": "By (a certain time)",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "願い",
+      "english": "Wish",
+      "reading": "ねがい",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "かなう",
+      "english": "To be realized",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "私たち",
+      "english": "We",
+      "reading": "わたしたち",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "など",
+      "english": "And so forth",
+      "kind": "word",
+      "category": "Grammar & Function Words",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "たんざく",
+      "english": "Strip of fancy paper",
+      "kind": "word",
+      "category": "Everyday Objects",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "人々",
+      "english": "People",
+      "reading": "ひとびと",
+      "kind": "word",
+      "category": "Family & People",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "vocabulary list",
+      "glossed": true,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "七夕",
+      "english": "Tanabata (star festival)",
+      "reading": "たなばた",
+      "kind": "word",
+      "category": "Other",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    },
+    {
+      "target": "成績",
+      "english": "Grades; results",
+      "reading": "せいせき",
+      "kind": "word",
+      "category": "School & Education",
+      "section": "B. 七夕 の話を読みましょう。 Y12",
+      "where": "reading passage",
+      "glossed": false,
+      "producedBy": "readingChapterReader"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Chapter 26: Reading and Writing 12: Tanabata Festival",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "第12課 LESSON 12",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "七夕 Tanabata Festival",
+      "read": true,
+      "items": 56
+    },
+    {
+      "title": "Ⅰ 漢字 の 練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. Match each reading with its kanji and translation.",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. Which new kanji from this lesson include the katakana below?",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "C. Which new kanji from this lesson shares the same component as each pair of kanji below?",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅱ 七夕",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "A. 絵 (picture)を見てください。これは何だと思いますか。 七夕 の日に作ります。",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "B. 七夕 の話を読みましょう。 Y12",
+      "read": true,
+      "items": 26
+    },
+    {
+      "title": "C. 質問 に 答 えてください。",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "Ⅲ 書く 練習",
+      "read": true,
+      "items": 0
+    },
+    {
+      "title": "巻 末 Appendix",
+      "read": true,
+      "items": 0
+    }
+  ],
+  "unread": []
+}

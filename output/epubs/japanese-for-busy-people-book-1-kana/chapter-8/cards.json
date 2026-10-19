@@ -54,7 +54,8 @@
       "audioAuto": "particle-wo-user-ba8c8c00.mp3",
       "audioFilter": "standard",
       "audio": "particle-wo-user-ba8c8c00.mp3",
-      "hint": "marking the thing the verb acts on"
+      "hint": "marking the thing the verb acts on",
+      "scene": "with たべます (tabemasu), のみます (nomimasu), みます (mimasu)"
     },
     {
       "id": "shimasu",
@@ -483,7 +484,8 @@
       "audioFilter": "standard",
       "audioMarked": true,
       "audioTextHash": "6b35b56dbd2561c0",
-      "hint": "music, the radio, the news"
+      "hint": "music, the radio, the news",
+      "scene": "with おんがく (ongaku) or ラジオ (rajio)"
     },
     {
       "id": "benkyou-wo-shimasu",

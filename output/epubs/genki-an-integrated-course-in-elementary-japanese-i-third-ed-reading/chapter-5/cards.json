@@ -2389,7 +2389,12 @@
       "sourceOrder": 175,
       "ttsText": "ぼう",
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "e094bfd4f0a4f46f.mp3",
+      "audioOriginal": "e094bfd4f0a4f46f.orig.mp3",
+      "audioAuto": "e094bfd4f0a4f46f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e094bfd4f0a4f46f"
     },
     {
       "id": "r-4797d3f7a1e5",
@@ -2401,7 +2406,12 @@
       "sourceOrder": 176,
       "ttsText": "れき",
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "2361770ae039dcc8.mp3",
+      "audioOriginal": "2361770ae039dcc8.orig.mp3",
+      "audioAuto": "2361770ae039dcc8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2361770ae039dcc8"
     },
     {
       "id": "r-35235ea1f37d",
@@ -2413,7 +2423,12 @@
       "sourceOrder": 177,
       "ttsText": "し",
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "7810214ac1db8475.mp3",
+      "audioOriginal": "7810214ac1db8475.orig.mp3",
+      "audioAuto": "7810214ac1db8475.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7810214ac1db8475"
     },
     {
       "id": "r-f7eec70f868b",
@@ -2425,7 +2440,12 @@
       "sourceOrder": 178,
       "ttsText": "かん",
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "9ab87cb4d29fb9ef.mp3",
+      "audioOriginal": "9ab87cb4d29fb9ef.orig.mp3",
+      "audioAuto": "9ab87cb4d29fb9ef.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9ab87cb4d29fb9ef"
     }
   ]
 }

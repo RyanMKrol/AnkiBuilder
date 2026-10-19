@@ -1720,7 +1720,12 @@
       "sourceOrder": 124,
       "ttsText": "しょう",
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "audio": "67762cc91c89cf9d.mp3",
+      "audioOriginal": "67762cc91c89cf9d.orig.mp3",
+      "audioAuto": "67762cc91c89cf9d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "67762cc91c89cf9d"
     },
     {
       "id": "r-45519dc859a0",

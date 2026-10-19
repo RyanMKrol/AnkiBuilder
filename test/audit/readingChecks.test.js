@@ -334,3 +334,18 @@ test("reading-kanji-taught-as-word: a silent kanji card whose kanji a chapter te
     /taught by rule/,
   );
 });
+
+test("reading-uncarded-kanji: a word whose kanji has no card anywhere in the collection", () => {
+  const major = word("a", "専攻", {
+    english: "Major",
+    ttsText: "せんこう",
+    pronunciation: "senkō",
+  });
+  // Failing: nothing cards 専 or 攻. Passing: both have a silent character card (any unit would do).
+  expect(
+    "reading-uncarded-kanji",
+    [major],
+    [major, word("b", "専", { english: "Exclusive" }), word("c", "攻", { english: "Attack" })],
+    /"専" has no card anywhere in the collection, and chapter-0\/a "専攻" uses it/,
+  );
+});

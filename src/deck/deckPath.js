@@ -31,6 +31,14 @@ const GROUPED_LABEL = /^(Lesson|Chapter|Unit)\s+(\d+)\s*:\s*(.+)$/;
 // It stays a single segment, but its number still needs padding, because it is a sibling deck in
 // exactly the same Anki list as a book's grouping decks and sorts by the same rules.
 const BARE_NUMBERED_LABEL = /^(Lesson|Chapter|Unit)\s+(\d+)$/;
+// Busy People's "Casual Style N" sections sit between units with no title of their own, and their
+// extras unit is "Casual Style N (Extras)". Without this they fell through to the flat case and
+// shipped as four flat siblings beside the grouped lessons (owner, 2026-10-20). They group under a
+// "Casual Style N" deck exactly like a lesson; the child repeats the parent's name because the book
+// gives the section nothing else to call it. The number is deliberately NOT padded: the live
+// collection already holds "Casual Style 1" and "Casual Style 2", and this rule only adds a level
+// beneath them. Book 2 has four such sections, so the rule is not one book's special case.
+const CASUAL_STYLE_LABEL = /^(Casual Style \d+)(\s*\(Extras\))?$/;
 
 // Anki sorts sibling decks as TEXT, with no natural-number sort and no manual ordering, so an
 // unpadded "Lesson 10" files between "Lesson 1" and "Lesson 2". Padding the number to two digits
@@ -43,7 +51,8 @@ const BARE_NUMBERED_LABEL = /^(Lesson|Chapter|Unit)\s+(\d+)$/;
 const padLessonNumber = (digits) => digits.padStart(2, "0");
 
 /**
- * `["Lesson 01", "Meeting: Nice to Meet You"]` for a grouped label, else `["<label>"]`.
+ * `["Lesson 01", "Meeting: Nice to Meet You"]` for a grouped label, `["Casual Style 1",
+ * "Casual Style 1 (Extras)"]` for a casual-style section, else `["<label>"]`.
  * Segments are returned raw; the caller sanitizes them for its own target.
  *
  * A READING collection (`deckKind: "reading"`) is flat: one deck per chapter, `Chapter 02: Greetings`,
@@ -59,6 +68,8 @@ export function unitDeckSegments(label, { deckKind } = {}) {
     return [m ? `${m[1]} ${padLessonNumber(m[2])}: ${m[3]}` : text];
   }
   if (m) return [`${m[1]} ${padLessonNumber(m[2])}`, m[3]];
+  const casual = CASUAL_STYLE_LABEL.exec(text);
+  if (casual) return [casual[1], text];
   const bare = BARE_NUMBERED_LABEL.exec(text);
   return bare ? [`${bare[1]} ${padLessonNumber(bare[2])}`] : [text];
 }

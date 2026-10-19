@@ -40,6 +40,24 @@ test("unitDeckSegments leaves an ungrouped label alone", () => {
   assert.deepEqual(unitDeckSegments(""), [""]);
 });
 
+test("a Casual Style section groups like a lesson, with its extras beside it", () => {
+  // Busy People's casual-style sections have no title after the number, so the child repeats the
+  // parent's name. The number is not padded: the live decks are already called "Casual Style 1".
+  assert.deepEqual(unitDeckSegments("Casual Style 1"), ["Casual Style 1", "Casual Style 1"]);
+  assert.deepEqual(unitDeckSegments("Casual Style 1 (Extras)"), [
+    "Casual Style 1",
+    "Casual Style 1 (Extras)",
+  ]);
+  assert.deepEqual(unitDeckSegments("Casual Style 12"), ["Casual Style 12", "Casual Style 12"]);
+  assert.deepEqual(groupingSegments(["Casual Style 2", "Casual Style 2 (Extras)"]), [
+    "Casual Style 2",
+  ]);
+  // A reading collection stays flat, as for every other label.
+  assert.deepEqual(unitDeckSegments("Casual Style 1", { deckKind: "reading" }), ["Casual Style 1"]);
+  // Only the exact shape: a title after the number is not the casual-style case.
+  assert.deepEqual(unitDeckSegments("Casual Style 1: Greetings"), ["Casual Style 1: Greetings"]);
+});
+
 test("a lesson and its extras resolve to the same grouping deck", () => {
   const a = unitDeckSegments("Lesson 3: Asking the Time: What Time Is It?");
   const b = unitDeckSegments("Lesson 3: Asking the Time: What Time Is It? (Extras)");

@@ -1238,7 +1238,8 @@ each unit as its own real Anki sub-deck under one parent named for the book/cour
 derived from the folder path, so the writer and any reader compute it the same way and can never
 disagree. Deck paths come from `unitDeckSegments`
 (`src/deck/deckPath.js`): a `"Lesson N: Title"` label nests as `Parent::Lesson N::Title` with its
-extras beside it. **Only `done` units are included.** Always rebuilds from scratch; run it again any
+extras beside it, and a title-less `"Casual Style N"` section nests as
+`Parent::Casual Style N::Casual Style N` with its extras beside it. **Only `done` units are included.** Always rebuilds from scratch; run it again any
 time a unit changes. Skip for template/manual decks.
 
 ## Step 7: Import & deliver

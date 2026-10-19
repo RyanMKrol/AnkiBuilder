@@ -44,3 +44,5 @@
 {"id":"chapter-15-extras/nihongo-no-anime-ga-wakaru-no-wa-tanoshii/untaught-prerequisite/1","status":"fixed","statusReason":"Excluded (ruling 5: cut where the grammar is untaught; the のは…たのしい frame)."}
 {"id":"chapter-15-extras/nihongo-no-anime-ga-wakaru-no-wa-tanoshii/untaught-prerequisite/1#chapter-15","status":"fixed","statusReason":"Same card as the finding above: excluded (ruling 5)."}
 {"id":"chapter-16-extras/-/book-gap/1","status":"fixed","statusReason":"Note on sp1-party-invite, which already shows 15にちのにちようび: date first, then the day of the week, joined by の. A note on the existing sentence rather than a new card."}
+{"id":"chapter-17-extras/zehi-3/untaught-prerequisite/1","status":"fixed","statusReason":"Excluded (ruling 5: cut where the grammar is untaught). Rebuilding the target would replace a hand-picked clip, and zehi-1 covers ぜひ."}
+{"id":"chapter-17-extras/-/book-gap/1","status":"fixed","statusReason":"The たい caveat (own wish only, not an invitation, impolite as a question to a superior, ask with ます+か) is now the note on where-eat-dinner, with a shorter form on ikitai-3."}

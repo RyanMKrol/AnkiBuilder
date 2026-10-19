@@ -18,7 +18,8 @@
       "target": "あ",
       "pronunciation": "a",
       "note": "Expresses having just noticed something; also used to get someone's attention.",
-      "excluded": true
+      "excluded": true,
+      "excludedReason": "No reason was recorded when this was excluded at the v1 review. Kept out: a one-sound interjection with nothing to recall on either face; the dialogue lines carry it."
     },
     {
       "id": "shucchou",
@@ -1275,7 +1276,8 @@
       "category": "Travel & Tourism",
       "target": "ホテル",
       "pronunciation": "hoteru",
-      "excluded": true
+      "addition": "qa-fix-2026-10",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-7/hoteru/book-gap/1: the Exercise vocabulary entry ホテル, excluded at the v1 review with no reason recorded. Restored through the additions gate, since eight shipping sentences from Lesson 7 on use the word."
     },
     {
       "id": "okake-kudasai",

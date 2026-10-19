@@ -47,7 +47,8 @@
       "english": "Well... I don't know.",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "hint": "casual style; the whole sentence"
+      "hint": "casual style; the whole sentence",
+      "note": "わからない (wakaranai) is the casual negative of わかる (wakaru), standing in for わかりません (wakarimasen). Lesson 22 covers the pattern."
     },
     {
       "id": "ii-present-neg",
@@ -135,7 +136,7 @@
       "category": "Grammar & Function Words",
       "target": "いま、どこにいる?",
       "hint": "casual style",
-      "note": "に stays in casual speech when it marks where someone is, even though it is often dropped before a destination.",
+      "note": "に stays in casual speech when it marks where someone is, and when the sentence involves giving or receiving, even though it is often dropped before a destination.",
       "aiSuggested": true,
       "reviewNote": "Authored at gate 2: the chapter's rule that に is kept for a current location had no sentence."
     },
@@ -261,7 +262,7 @@
       "category": "Grammar & Function Words",
       "target": "あした、ともだちといく",
       "hint": "casual style",
-      "note": "と is never dropped in casual speech, unlike は, を and a destination に.",
+      "note": "と, で and や (ya, \"and\") are never dropped in casual speech, unlike は, を and a destination に.",
       "aiSuggested": true,
       "reviewNote": "Authored at gate 2: the chapter's rule that と is not omitted had no sentence."
     },
@@ -313,7 +314,8 @@
       "english": "I'm not going. (male speaker)",
       "category": "Grammar & Function Words",
       "aiSuggested": true,
-      "hint": "rough, not modest"
+      "hint": "rough, not modest",
+      "note": "いかない (ikanai) is the casual negative of いく (iku), standing in for いきません (ikimasen). Lesson 22 covers the pattern."
     },
     {
       "id": "kaban-ookii-casual",
@@ -440,7 +442,8 @@
       "english": "Yeah, I'm going.",
       "category": "Grammar & Function Words",
       "scene": "On the phone, a friend is asked whether they are going to tomorrow's party.",
-      "hint": "casual style"
+      "hint": "casual style",
+      "note": "Casual speech uses the dictionary form where polite speech uses the ます form: いきます (ikimasu) becomes いく (iku)."
     },
     {
       "id": "hana-kirei-janai",
@@ -518,6 +521,16 @@
       "excluded": true,
       "excludedBy": "gate2-frame-trim",
       "excludedReason": "Trimmed at gate 2: the casual noun statement frame repeated with another name. Kept: たなかさんはにほんじん, すずきさんはせんせい, あたし、がくせいだよ."
+    },
+    {
+      "id": "koohii-nomu-casual",
+      "english": "Will you have some coffee?",
+      "category": "Grammar & Function Words",
+      "target": "コーヒー、のむ?",
+      "hint": "casual style",
+      "note": "The polite コーヒーをのみますか (kōhī o nomimasu ka) with を (o) dropped, the dictionary form in place of the ます form, and rising intonation in place of か (ka).",
+      "reviewNote": "QA fix pass 2026-10, answers chapter-25-extras/-/book-gap/2: the book says を is often omitted in casual speech, and no card showed it.",
+      "aiSuggested": true
     }
   ]
 }

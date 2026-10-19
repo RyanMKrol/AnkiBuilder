@@ -43,7 +43,7 @@
       "target": "くん",
       "english": "Familiar name suffix, used for boys, men, or juniors.",
       "category": "Family & People",
-      "note": "Replaces さん (san, \"Mr., Mrs., Ms., Miss\") from Lesson 1 in casual speech, used for boys, men, or juniors; signals familiarity rather than politeness.",
+      "note": "Replaces さん (san, \"Mr., Mrs., Ms., Miss\") from Lesson 1 in casual speech, used for boys, men, or juniors; signals familiarity rather than politeness. Among friends a name is also used bare, with no さん, くん or ちゃん.",
       "sourceOrder": 1361,
       "hint": "casual style"
     },
@@ -144,7 +144,7 @@
       "reviewNote": "Possibly already taught — already introduced in Lesson 10: Describing Things: It’s Delicious (matched on target)",
       "excluded": true,
       "excludedBy": "backward-dedup",
-      "excludedReason": "Already taught: chapter-10/ii (same target and sense). The casual point (no です) only shows in a sentence, which the extras unit drills."
+      "excludedReason": "Already taught: chapter-10/ii (same target and sense). The casual point (an adjective ending the sentence with no です) is carried by kaban-ookii-casual."
     },
     {
       "id": "adj-ii-present-neg",

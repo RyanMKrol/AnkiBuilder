@@ -978,6 +978,30 @@
       "ttsText": "ちゅういする",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
       "sourceOrder": 119
+    },
+    {
+      "id": "r-a8cd56b997f2",
+      "target": "蒸",
+      "english": "Steam; sultry",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 蒸し暑い, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 120
+    },
+    {
+      "id": "r-bc30bf6b96de",
+      "target": "止",
+      "english": "Stop; halt",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 止まる, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 121
+    },
+    {
+      "id": "r-60b499485cda",
+      "target": "参",
+      "english": "Going; nonplussed",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 参る, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 122
     }
   ]
 }

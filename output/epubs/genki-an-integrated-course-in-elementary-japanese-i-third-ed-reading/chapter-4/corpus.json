@@ -695,6 +695,22 @@
       "ttsText": "ちゅうごくご",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 3: Making a Date, exercise, not glossed by the book; no card had it.",
       "sourceOrder": 84
+    },
+    {
+      "id": "r-6445c28e452c",
+      "target": "専",
+      "english": "Specialty; exclusive",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 専攻, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 85
+    },
+    {
+      "id": "r-8d4f769e0380",
+      "target": "攻",
+      "english": "Study; attack",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 専攻, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 86
     }
   ]
 }

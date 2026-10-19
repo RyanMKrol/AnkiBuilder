@@ -1709,6 +1709,37 @@
       "audioMarked": true,
       "audioTextHash": "d811a5f21f38afcd",
       "additionDone": true
+    },
+    {
+      "id": "r-055db9a9869d",
+      "target": "証",
+      "english": "Certificate; proof",
+      "category": "Other",
+      "pronunciation": "shō",
+      "reviewNote": "QA fix pass 2026-10: used by 保険証, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 124,
+      "ttsText": "しょう",
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "r-45519dc859a0",
+      "target": "険",
+      "english": "Steep; risky",
+      "category": "Other",
+      "pronunciation": "ken / kewa",
+      "reviewNote": "QA fix pass 2026-10: used by 保険証, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 125,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "r-39f0c6ae2a97",
+      "target": "厳",
+      "english": "Strict; severe",
+      "category": "Other",
+      "pronunciation": "gen / ogoso, kibi, ika",
+      "reviewNote": "QA fix pass 2026-10: used by 厳しい, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 126,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

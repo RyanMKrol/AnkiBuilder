@@ -1429,6 +1429,58 @@
       "ttsText": "じゅぎょうりょう",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
       "sourceOrder": 172
+    },
+    {
+      "id": "r-7b4bb888fb65",
+      "target": "菜",
+      "english": "Vegetable",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 野菜, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 173
+    },
+    {
+      "id": "r-4faa260fd0a1",
+      "target": "室",
+      "english": "Room; chamber",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 教室, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 174
+    },
+    {
+      "id": "r-3b000e08d690",
+      "target": "帽",
+      "english": "Cap; headgear",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 帽子, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 175,
+      "ttsText": "ぼう"
+    },
+    {
+      "id": "r-4797d3f7a1e5",
+      "target": "歴",
+      "english": "Passage of time; experience",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 歴史, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 176,
+      "ttsText": "れき"
+    },
+    {
+      "id": "r-35235ea1f37d",
+      "target": "史",
+      "english": "History; chronicle",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 歴史, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 177,
+      "ttsText": "し"
+    },
+    {
+      "id": "r-f7eec70f868b",
+      "target": "韓",
+      "english": "Korea",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 韓国, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 178,
+      "ttsText": "かん"
     }
   ]
 }

@@ -1642,6 +1642,36 @@
       "audioMarked": true,
       "audioTextHash": "a23415bf3886bf25",
       "additionDone": true
+    },
+    {
+      "id": "r-a8cd56b997f2",
+      "target": "蒸",
+      "english": "Steam; sultry",
+      "category": "Other",
+      "pronunciation": "jō / mu",
+      "reviewNote": "QA fix pass 2026-10: used by 蒸し暑い, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 120,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "r-bc30bf6b96de",
+      "target": "止",
+      "english": "Stop; halt",
+      "category": "Other",
+      "pronunciation": "shi / to, do, todo, ya, yo, sa",
+      "reviewNote": "QA fix pass 2026-10: used by 止まる, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 121,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "r-60b499485cda",
+      "target": "参",
+      "english": "Going; nonplussed",
+      "category": "Other",
+      "pronunciation": "san / mai",
+      "reviewNote": "QA fix pass 2026-10: used by 参る, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 122,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

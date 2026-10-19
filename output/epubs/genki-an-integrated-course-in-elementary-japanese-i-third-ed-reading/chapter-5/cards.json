@@ -2105,6 +2105,114 @@
       "audioAuto": "ad5d0ffc149750c6.mp3",
       "audioMarked": true,
       "audioTextHash": "ad5d0ffc149750c6"
+    },
+    {
+      "id": "r-37a2f10fc172",
+      "target": "留学生",
+      "english": "International student",
+      "category": "School & Education",
+      "ttsText": "りゅうがくせい",
+      "pronunciation": "ryūgakusei",
+      "ttsKanji": "留学生",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 164
+    },
+    {
+      "id": "r-3898a45567bc",
+      "target": "傘",
+      "english": "Umbrella",
+      "category": "Everyday Objects",
+      "ttsText": "かさ",
+      "pronunciation": "kasa",
+      "ttsKanji": "傘",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 165
+    },
+    {
+      "id": "r-e951d898e9f7",
+      "target": "靴",
+      "english": "Shoes",
+      "category": "Clothing",
+      "ttsText": "くつ",
+      "pronunciation": "kutsu",
+      "ttsKanji": "靴",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 166
+    },
+    {
+      "id": "r-dac5927ab517",
+      "target": "野菜",
+      "english": "Vegetable",
+      "category": "Food",
+      "ttsText": "やさい",
+      "pronunciation": "yasai",
+      "ttsKanji": "野菜",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 167
+    },
+    {
+      "id": "r-08ad0d22ad5c",
+      "target": "韓国",
+      "english": "Korea",
+      "category": "Nationalities & Countries",
+      "ttsText": "かんこく",
+      "pronunciation": "kankoku",
+      "ttsKanji": "韓国",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 168
+    },
+    {
+      "id": "r-f3255b3073cf",
+      "target": "教室",
+      "english": "Classroom",
+      "category": "School & Education",
+      "ttsText": "きょうしつ",
+      "pronunciation": "kyōshitsu",
+      "ttsKanji": "教室",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 169
+    },
+    {
+      "id": "r-8dccc4a2e6ce",
+      "target": "帽子",
+      "english": "Hat",
+      "category": "Clothing",
+      "ttsText": "ぼうし",
+      "pronunciation": "bōshi",
+      "ttsKanji": "帽子",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 170
+    },
+    {
+      "id": "r-64494d92b8cc",
+      "target": "歴史",
+      "english": "History",
+      "category": "School & Education",
+      "ttsText": "れきし",
+      "pronunciation": "rekishi",
+      "ttsKanji": "歴史",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 171
+    },
+    {
+      "id": "r-cfe9997d6d39",
+      "target": "授業料",
+      "english": "Tuition (fee)",
+      "category": "School & Education",
+      "ttsText": "じゅぎょうりょう",
+      "pronunciation": "jugyōryō",
+      "ttsKanji": "授業料",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 4: The First Date, exercise; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 172
     }
   ]
 }

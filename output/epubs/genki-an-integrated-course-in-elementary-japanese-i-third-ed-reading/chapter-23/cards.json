@@ -386,6 +386,18 @@
       "audioAuto": "626f7589d86cd069.mp3",
       "audioMarked": true,
       "audioTextHash": "626f7589d86cd069"
+    },
+    {
+      "id": "r-8f07c23f5f99",
+      "target": "主人公",
+      "english": "Main character(s)",
+      "category": "Other",
+      "ttsText": "しゅじんこう",
+      "pronunciation": "shujinkō",
+      "ttsKanji": "主人公",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 10: The Folktale Kasajizo, exercise; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 26
     }
   ]
 }

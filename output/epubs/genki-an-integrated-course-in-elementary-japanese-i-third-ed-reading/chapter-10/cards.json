@@ -1296,6 +1296,30 @@
       "addition": "qa-fix-2026-10",
       "sourceOrder": 95,
       "additionReviewed": true
+    },
+    {
+      "id": "r-1006e5787c4a",
+      "target": "お店",
+      "english": "Shop; store",
+      "category": "Shopping",
+      "ttsText": "おみせ",
+      "pronunciation": "omise",
+      "ttsKanji": "お店",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 9: Kabuki, exercise, not glossed by the book; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 96
+    },
+    {
+      "id": "r-07c4e81b2775",
+      "target": "場所",
+      "english": "Place",
+      "category": "Directions",
+      "ttsText": "ばしょ",
+      "pronunciation": "basho",
+      "ttsKanji": "場所",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 9: Kabuki, exercise, not glossed by the book; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 97
     }
   ]
 }

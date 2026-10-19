@@ -915,6 +915,69 @@
       "category": "Directions",
       "ttsText": "いりぐち",
       "sourceOrder": 112
+    },
+    {
+      "id": "r-eb974d35ca74",
+      "target": "蒸し暑い",
+      "english": "Hot and humid",
+      "category": "Weather & Nature",
+      "ttsText": "むしあつい",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, exercise; no card had it.",
+      "sourceOrder": 113
+    },
+    {
+      "id": "r-f9b670ca441b",
+      "target": "地図",
+      "english": "Map",
+      "category": "Travel & Tourism",
+      "ttsText": "ちず",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, reading passage, not glossed by the book; no card had it.",
+      "sourceOrder": 114
+    },
+    {
+      "id": "r-e81918c53b09",
+      "target": "発車する",
+      "english": "To depart (a vehicle)",
+      "category": "Transport",
+      "ttsText": "はっしゃする",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "sourceOrder": 115
+    },
+    {
+      "id": "r-ba450f99699e",
+      "target": "参る",
+      "english": "To come; to go (humble)",
+      "category": "Other",
+      "ttsText": "まいる",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "sourceOrder": 116
+    },
+    {
+      "id": "r-afb4c62e7125",
+      "target": "止まる",
+      "english": "To stop (of a vehicle)",
+      "category": "Transport",
+      "ttsText": "とまる",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "sourceOrder": 117
+    },
+    {
+      "id": "r-8525185c99eb",
+      "target": "閉まる",
+      "english": "To close (of a door)",
+      "category": "Other",
+      "ttsText": "しまる",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "sourceOrder": 118
+    },
+    {
+      "id": "r-6af4dde870d4",
+      "target": "注意する",
+      "english": "To be careful; pay attention",
+      "category": "Other",
+      "ttsText": "ちゅういする",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "sourceOrder": 119
     }
   ]
 }

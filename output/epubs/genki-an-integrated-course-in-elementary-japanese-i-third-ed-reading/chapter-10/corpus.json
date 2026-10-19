@@ -788,6 +788,24 @@
       "ttsText": "いけばな",
       "reviewNote": "QA fix pass 2026-10: the Culture Notes print 生け花（華道） Flower arrangement; only the bracketed 華道 was carded.",
       "sourceOrder": 95
+    },
+    {
+      "id": "r-1006e5787c4a",
+      "target": "お店",
+      "english": "Shop; store",
+      "category": "Shopping",
+      "ttsText": "おみせ",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 9: Kabuki, exercise, not glossed by the book; no card had it.",
+      "sourceOrder": 96
+    },
+    {
+      "id": "r-07c4e81b2775",
+      "target": "場所",
+      "english": "Place",
+      "category": "Directions",
+      "ttsText": "ばしょ",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 9: Kabuki, exercise, not glossed by the book; no card had it.",
+      "sourceOrder": 97
     }
   ]
 }

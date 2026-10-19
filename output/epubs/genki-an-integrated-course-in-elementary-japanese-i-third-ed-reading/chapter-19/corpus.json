@@ -348,6 +348,15 @@
       "category": "Time",
       "ttsText": "いっしょう",
       "sourceOrder": 41
+    },
+    {
+      "id": "r-088d5b688d3e",
+      "target": "近い",
+      "english": "Near",
+      "category": "Directions",
+      "ttsText": "ちかい",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 6: My Favorite Restaurant, exercise, not glossed by the book; no card had it.",
+      "sourceOrder": 42
     }
   ]
 }

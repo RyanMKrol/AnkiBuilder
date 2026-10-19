@@ -305,6 +305,15 @@
       "ttsText": "さま",
       "reviewNote": "QA fix pass 2026-10: the postcard vocabulary glosses 〜さま Mr./Ms. (used in letter writing) and the addresses note prints 様(さま); neither form had a card.",
       "sourceOrder": 36
+    },
+    {
+      "id": "r-9c3d50892978",
+      "target": "メキシコ人",
+      "english": "Mexican (person)",
+      "category": "Nationalities & Countries",
+      "ttsText": "めきしこじん",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 5: Travel, reading passage, not glossed by the book; no card had it.",
+      "sourceOrder": 37
     }
   ]
 }

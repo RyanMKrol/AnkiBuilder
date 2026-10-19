@@ -1509,6 +1509,90 @@
       "audioAuto": "881dd38032e71672.mp3",
       "audioMarked": true,
       "audioTextHash": "881dd38032e71672"
+    },
+    {
+      "id": "r-eb974d35ca74",
+      "target": "蒸し暑い",
+      "english": "Hot and humid",
+      "category": "Weather & Nature",
+      "ttsText": "むしあつい",
+      "pronunciation": "mushiatsui",
+      "ttsKanji": "蒸し暑い",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, exercise; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 113
+    },
+    {
+      "id": "r-f9b670ca441b",
+      "target": "地図",
+      "english": "Map",
+      "category": "Travel & Tourism",
+      "ttsText": "ちず",
+      "pronunciation": "chizu",
+      "ttsKanji": "地図",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, reading passage, not glossed by the book; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 114
+    },
+    {
+      "id": "r-e81918c53b09",
+      "target": "発車する",
+      "english": "To depart (a vehicle)",
+      "category": "Transport",
+      "ttsText": "はっしゃする",
+      "pronunciation": "hassha suru",
+      "ttsKanji": "発車する",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 115
+    },
+    {
+      "id": "r-ba450f99699e",
+      "target": "参る",
+      "english": "To come; to go (humble)",
+      "category": "Other",
+      "ttsText": "まいる",
+      "pronunciation": "mairu",
+      "ttsKanji": "参る",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 116
+    },
+    {
+      "id": "r-afb4c62e7125",
+      "target": "止まる",
+      "english": "To stop (of a vehicle)",
+      "category": "Transport",
+      "ttsText": "とまる",
+      "pronunciation": "tomaru",
+      "ttsKanji": "止まる",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 117
+    },
+    {
+      "id": "r-8525185c99eb",
+      "target": "閉まる",
+      "english": "To close (of a door)",
+      "category": "Other",
+      "ttsText": "しまる",
+      "pronunciation": "shimaru",
+      "ttsKanji": "閉まる",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 118
+    },
+    {
+      "id": "r-6af4dde870d4",
+      "target": "注意する",
+      "english": "To be careful; pay attention",
+      "category": "Other",
+      "ttsText": "ちゅういする",
+      "pronunciation": "chūi suru",
+      "ttsKanji": "注意する",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 10: Winter Vacation Plans, example sentence; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 119
     }
   ]
 }

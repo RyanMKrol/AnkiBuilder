@@ -744,6 +744,78 @@
       "category": "Food",
       "ttsText": "ぶたにく",
       "sourceOrder": 88
+    },
+    {
+      "id": "r-912252a80641",
+      "target": "呼ぶ",
+      "english": "To call (someone)",
+      "category": "Other",
+      "ttsText": "よぶ",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, example sentence, not glossed by the book; no card had it.",
+      "sourceOrder": 89
+    },
+    {
+      "id": "r-83d65d4e88de",
+      "target": "スペイン語",
+      "english": "Spanish language",
+      "category": "Nationalities & Countries",
+      "ttsText": "すぺいんご",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
+      "sourceOrder": 90
+    },
+    {
+      "id": "r-85c18e2c38fc",
+      "target": "イギリス人",
+      "english": "British person",
+      "category": "Nationalities & Countries",
+      "ttsText": "いぎりすじん",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
+      "sourceOrder": 91
+    },
+    {
+      "id": "r-c555af262ef9",
+      "target": "韓国人",
+      "english": "Korean person",
+      "category": "Nationalities & Countries",
+      "ttsText": "かんこくじん",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
+      "sourceOrder": 92
+    },
+    {
+      "id": "r-9bba0d69bb3c",
+      "target": "十六日",
+      "english": "The 16th (day of the month)",
+      "category": "Time",
+      "ttsText": "じゅうろくにち",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
+      "sourceOrder": 93
+    },
+    {
+      "id": "r-77fe42f39884",
+      "target": "十八日",
+      "english": "The 18th (day of the month)",
+      "category": "Time",
+      "ttsText": "じゅうはちにち",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, exercise, not glossed by the book; no card had it.",
+      "sourceOrder": 94
+    },
+    {
+      "id": "r-c89c95bdcba2",
+      "target": "定食",
+      "english": "Set meal",
+      "category": "Food",
+      "ttsText": "ていしょく",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, culture note, not glossed by the book; no card had it.",
+      "sourceOrder": 95
+    },
+    {
+      "id": "r-2b7c52d264e5",
+      "target": "お願いします",
+      "english": "Please",
+      "category": "Greetings",
+      "ttsText": "おねがいします",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 8: Barbecue, vocabulary list; no card had it.",
+      "sourceOrder": 96
     }
   ]
 }

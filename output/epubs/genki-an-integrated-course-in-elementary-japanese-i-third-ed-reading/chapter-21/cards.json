@@ -607,6 +607,18 @@
       "audioAuto": "5047fc1ddd3e357e.mp3",
       "audioMarked": true,
       "audioTextHash": "5047fc1ddd3e357e"
+    },
+    {
+      "id": "r-7dedb581c1c8",
+      "target": "最後",
+      "english": "Last; end",
+      "category": "Time",
+      "ttsText": "さいご",
+      "pronunciation": "saigo",
+      "ttsKanji": "最後",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 8: Japanese Office Workers, vocabulary list; no card had it.",
+      "addition": "qa-fix-2026-10",
+      "sourceOrder": 44
     }
   ]
 }

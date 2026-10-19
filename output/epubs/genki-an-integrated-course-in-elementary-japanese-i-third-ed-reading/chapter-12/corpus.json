@@ -1103,6 +1103,78 @@
       "category": "School & Education",
       "ttsText": "いいかた",
       "sourceOrder": 130
+    },
+    {
+      "id": "r-cf5dadf9f705",
+      "target": "初めまして",
+      "english": "How do you do",
+      "category": "Greetings",
+      "ttsText": "はじめまして",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, dialogue; no card had it.",
+      "sourceOrder": 131
+    },
+    {
+      "id": "r-54269f9a928d",
+      "target": "南極",
+      "english": "Antarctica",
+      "category": "Travel & Tourism",
+      "ttsText": "なんきょく",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, example sentence; no card had it.",
+      "sourceOrder": 132
+    },
+    {
+      "id": "r-f9b9af375fcf",
+      "target": "一回",
+      "english": "One time",
+      "category": "Numbers",
+      "ttsText": "いっかい",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, example sentence; no card had it.",
+      "sourceOrder": 133
+    },
+    {
+      "id": "r-06eac2a8bb7f",
+      "target": "三十分",
+      "english": "Thirty minutes",
+      "category": "Time",
+      "ttsText": "さんじゅっぷん",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, example sentence; no card had it.",
+      "sourceOrder": 134
+    },
+    {
+      "id": "r-ea19fa764216",
+      "target": "絵葉書",
+      "english": "Postcard",
+      "category": "Travel & Tourism",
+      "ttsText": "えはがき",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, example sentence; no card had it.",
+      "sourceOrder": 135
+    },
+    {
+      "id": "r-0071ee6a3541",
+      "target": "日本料理",
+      "english": "Japanese cuisine",
+      "category": "Food",
+      "ttsText": "にほんりょうり",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, exercise; no card had it.",
+      "sourceOrder": 136
+    },
+    {
+      "id": "r-a0c085e2a22e",
+      "target": "劇場",
+      "english": "Theater",
+      "category": "Sports & Hobbies",
+      "ttsText": "げきじょう",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, exercise; no card had it.",
+      "sourceOrder": 137
+    },
+    {
+      "id": "r-9f1504723042",
+      "target": "答え",
+      "english": "Answer",
+      "category": "School & Education",
+      "ttsText": "こたえ",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 11: After the Vacation, vocabulary list; no card had it.",
+      "sourceOrder": 138
     }
   ]
 }

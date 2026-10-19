@@ -268,6 +268,15 @@
       "ttsText": "ちゅうごく",
       "reviewNote": "QA fix pass 2026-10: the kanji table teaches 中国(ちゅうごく) China; the reader excluded it as a proper name, against the rule that countries are vocabulary.",
       "sourceOrder": 31
+    },
+    {
+      "id": "r-445f94aea57d",
+      "target": "九時半",
+      "english": "Half past nine",
+      "category": "Time",
+      "ttsText": "くじはん",
+      "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Reading and Writing 4: Mary's Weekend, reading passage, not glossed by the book; no card had it.",
+      "sourceOrder": 32
     }
   ]
 }

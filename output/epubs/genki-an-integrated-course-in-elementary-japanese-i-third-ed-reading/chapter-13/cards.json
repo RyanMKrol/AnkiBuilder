@@ -1719,7 +1719,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 保険証, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 124,
       "ttsText": "しょう",
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "r-45519dc859a0",
@@ -1729,7 +1730,8 @@
       "pronunciation": "ken / kewa",
       "reviewNote": "QA fix pass 2026-10: used by 保険証, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 125,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     },
     {
       "id": "r-39f0c6ae2a97",
@@ -1739,7 +1741,8 @@
       "pronunciation": "gen / ogoso, kibi, ika",
       "reviewNote": "QA fix pass 2026-10: used by 厳しい, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 126,
-      "addition": "qa-fix-2026-10"
+      "addition": "qa-fix-2026-10",
+      "additionReviewed": true
     }
   ]
 }

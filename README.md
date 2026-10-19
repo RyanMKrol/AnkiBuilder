@@ -258,8 +258,10 @@ For the full command reference (every flag, every source type), see the skill's
   (`Book::Lesson 5::Shopping (2)…` and `Book::Lesson 5::Shopping (2)… (Extras)`), so you can study
   the lesson alone, the drills alone, or both by clicking the group. A deck that holds cards is never
   given children: Anki studies a parent together with everything beneath it, so a card-holding parent
-  could not be studied on its own. `src/deck/deckPath.js` decides the path for the `.apkg` and for
-  AnkiConnect delivery alike. An extras unit deliberately carries **no** `epubHash`, so marking it
+  could not be studied on its own. A Busy People "Casual Style N" section, which has no title of its
+  own, groups the same way with the child named after the parent (`Book::Casual Style 1::Casual
+Style 1` and `…::Casual Style 1 (Extras)`). `src/deck/deckPath.js` decides the path for the
+  `.apkg` and for AnkiConnect delivery alike. An extras unit deliberately carries **no** `epubHash`, so marking it
   reviewed can't overwrite its base lesson's entry in the dedup library.
 - Cached audio and a registry of EPUBs you've used live in `.anki-builder/` inside this repo
   so re-runs don't redo expensive work. The audio cache, the extracted chapters and the extracted

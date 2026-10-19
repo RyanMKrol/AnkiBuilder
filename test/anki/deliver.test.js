@@ -461,6 +461,9 @@ test("removeLegacyDeckShells deletes only empty, unmanaged, legacy-named decks",
     "Book::Lesson 5: Shopping (2)::Extras", // oldest-scheme child — empty
     "Book::Lesson 6: Going Places", // legacy shell that somehow still holds cards
     "Book::Frequently Used Expressions", // ungrouped label — flat IS the real deck
+    "Book::Casual Style 1", // grouping deck ABOVE the real deck — not a shell
+    "Book::Casual Style 1::Casual Style 1", // managed — holds the real cards
+    "Book::Casual Style 1::Extras", // oldest-scheme child under that name — empty, still legacy
   ];
   const deleted = [];
   const queries = [];
@@ -486,6 +489,7 @@ test("removeLegacyDeckShells deletes only empty, unmanaged, legacy-named decks",
           ankiDeck: "Book::Frequently Used Expressions",
           label: "Frequently Used Expressions",
         },
+        { ankiDeck: "Book::Casual Style 1::Casual Style 1", label: "Casual Style 1" },
       ],
     },
   ];
@@ -495,12 +499,17 @@ test("removeLegacyDeckShells deletes only empty, unmanaged, legacy-named decks",
 
   // Child shell first, then the flat shell; the card-holding Lesson 6 shell is left alone,
   // and the ungrouped-label deck is never treated as legacy.
+  // The grouping deck over the casual-style unit is never a shell, so it is neither deleted nor
+  // counted; its oldest-scheme "::Extras" child still is.
   assert.deepEqual(removed, [
     "Book::Lesson 5: Shopping (2)::Extras",
     "Book::Lesson 5: Shopping (2)",
+    "Book::Casual Style 1::Extras",
   ]);
   assert.deepEqual(deleted, removed);
   assert.ok(logs.some((m) => m.includes("still holds 1 card(s)")));
+  assert.ok(!queries.some((q) => q === 'deck:"Book::Casual Style 1"'));
+  assert.ok(!logs.some((m) => m.includes('"Book::Casual Style 1" still holds')));
   // Emptiness was actually checked, with the deck name escaped into the query.
   assert.ok(queries.every((q) => q.startsWith('deck:"')));
 });

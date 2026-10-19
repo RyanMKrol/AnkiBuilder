@@ -749,8 +749,14 @@ export async function removeLegacyDeckShells(client, decks, { log = () => {} } =
       const flat = `${deck.ankiParent}::${sanitizeSeg(unit.label)}`;
       // An ungrouped label (e.g. "Frequently Used Expressions") IS its real deck — nothing legacy.
       if (flat === unit.ankiDeck) continue;
+      // A label whose flat name is now the GROUPING deck above its real deck ("Casual Style 1" over
+      // "Casual Style 1::Casual Style 1") is not a shell either: it is meant to exist and hold no
+      // cards of its own. Without this the sweep counted its children, left it alone, and warned
+      // about it on every delivery.
+      const isGroupingDeck = unit.ankiDeck.startsWith(`${flat}::`);
       // Child first, then the parent, so the parent's count reflects what's actually left.
       for (const legacy of [`${flat}::Extras`, flat]) {
+        if (legacy === flat && isGroupingDeck) continue;
         if (!existing.has(legacy) || managed.has(legacy)) continue;
         const cards = await client.findCards(`deck:"${escapeSearchTerm(legacy)}"`);
         if (cards.length > 0) {

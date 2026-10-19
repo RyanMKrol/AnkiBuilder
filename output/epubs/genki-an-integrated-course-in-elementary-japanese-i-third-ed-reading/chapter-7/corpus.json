@@ -983,6 +983,23 @@
       "ttsText": "りょう",
       "reviewNote": "QA fix pass 2026-10, vocabulary scan (owner ruling 2026-10-18: the reading deck cards vocabulary from anywhere in the chapter). Appears in Lesson 6: A Day in Robert's Life, exercise; no card had it.",
       "sourceOrder": 115
+    },
+    {
+      "id": "r-184ff76a9c1d",
+      "target": "義",
+      "english": "Righteousness",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 義務教育, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 116,
+      "ttsText": "ぎ"
+    },
+    {
+      "id": "r-4a61b43d21a7",
+      "target": "務",
+      "english": "Duty",
+      "category": "Other",
+      "reviewNote": "QA fix pass 2026-10: used by 義務教育, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 117
     }
   ]
 }

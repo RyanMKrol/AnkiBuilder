@@ -802,6 +802,16 @@
       "audioMarked": true,
       "audioTextHash": "10d10b6f2fbce1e4",
       "additionDone": true
+    },
+    {
+      "id": "r-396fddaec67c",
+      "target": "夕",
+      "english": "Evening",
+      "category": "Other",
+      "pronunciation": "seki / yū",
+      "reviewNote": "QA fix pass 2026-10: used by 七夕, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 55,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

@@ -379,6 +379,17 @@ Session review (golden rule 5a), each put where it is enforced:
   against the default naming, which hand-picked clips never follow. Preflight's `audio text hash`
   check is the detector that already knows this; use it, not a re-derivation.
 
+Spot-check follow-up (2026-10-19): the Genki Learner rerun found the scan words had come in without
+the kanji cards a chapter build makes for them (夏休み with no 夏). The scan-to-additions step has no
+character-gap step, so 21 kanji had no card anywhere (専 攻 菜 韓 室 帽 歴 史 義 務 呼 蒸 参 止 極 絵 劇 厳 険
+証 夕); a scratch run of `fillCharacterGaps` over each unit's additions (dictionary, model, review, the
+build's own path) appended them as silent kanji additions in the same batch, seven of them voiced
+because they have one reading. Seventeen more kanji the words use are carded in a later chapter and
+stay there: moving a delivered note between units is a migration. Two tooling fixes came out of it:
+the additions audio gate accepts a silent card with no clip (a1faa14; before this a kanji addition
+could never be marked ready), and preflight's `reading-uncarded-kanji` names a word whose kanji has no
+card. The Busy People Lesson 8 rerun found five small new findings, fixed in place (efe1911).
+
 ## Orphan notes for the owner to delete in Anki
 
 From `node --env-file=.env scripts/deliver-to-anki.mjs --dry` on 2026-10-19 (read-only). Deliver

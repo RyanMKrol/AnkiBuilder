@@ -1109,6 +1109,26 @@
       "audioMarked": true,
       "audioTextHash": "91c7543e1c69e707",
       "additionDone": true
+    },
+    {
+      "id": "r-6445c28e452c",
+      "target": "専",
+      "english": "Specialty; exclusive",
+      "category": "Other",
+      "pronunciation": "sen / moppa",
+      "reviewNote": "QA fix pass 2026-10: used by 専攻, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 85,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "r-8d4f769e0380",
+      "target": "攻",
+      "english": "Study; attack",
+      "category": "Other",
+      "pronunciation": "kō / seme, se",
+      "reviewNote": "QA fix pass 2026-10: used by 専攻, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 86,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

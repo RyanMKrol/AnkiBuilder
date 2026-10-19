@@ -1568,6 +1568,27 @@
       "audioMarked": true,
       "audioTextHash": "c5a5216f29c1dac1",
       "additionDone": true
+    },
+    {
+      "id": "r-184ff76a9c1d",
+      "target": "義",
+      "english": "Righteousness",
+      "category": "Other",
+      "pronunciation": "gi",
+      "reviewNote": "QA fix pass 2026-10: used by 義務教育, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 116,
+      "ttsText": "ぎ",
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "r-4a61b43d21a7",
+      "target": "務",
+      "english": "Duty",
+      "category": "Other",
+      "pronunciation": "mu / tsuto",
+      "reviewNote": "QA fix pass 2026-10: used by 義務教育, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 117,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

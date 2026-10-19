@@ -1902,6 +1902,37 @@
       "audioMarked": true,
       "audioTextHash": "4c192ce3b7a348dd",
       "additionDone": true
+    },
+    {
+      "id": "r-2d06cc508136",
+      "target": "極",
+      "english": "Pole; extreme",
+      "category": "Other",
+      "pronunciation": "kyoku, goku / kiwa",
+      "reviewNote": "QA fix pass 2026-10: used by 南極, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 139,
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "r-cf18c242752b",
+      "target": "劇",
+      "english": "Drama; play",
+      "category": "Other",
+      "pronunciation": "geki",
+      "reviewNote": "QA fix pass 2026-10: used by 劇場, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 140,
+      "ttsText": "げき",
+      "addition": "qa-fix-2026-10"
+    },
+    {
+      "id": "r-231d406558b6",
+      "target": "絵",
+      "english": "Picture; drawing",
+      "category": "Other",
+      "pronunciation": "kai, e",
+      "reviewNote": "QA fix pass 2026-10: used by 絵葉書, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
+      "sourceOrder": 141,
+      "addition": "qa-fix-2026-10"
     }
   ]
 }

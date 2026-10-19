@@ -412,7 +412,4 @@ Anki for the card id (it is the note's first field tag) or the note id:
 | haha-ga-kureru-okashi-ga-suki             | 1791843760141 | chapter-15-extras: untaught grammar, a verb clause modifying a noun (ruling 5)                                 |
 | niau-fuku-wo-kau-no-ga-suki               | 1791843760237 | chapter-15-extras: untaught grammar, a verb clause modifying a noun (ruling 5)                                 |
 
-The same dry run previewed the delivery itself: Genki 88 updated, 0 added, 1,613 unchanged; Busy
-People 640 updated, 121 added, 2,797 unchanged. Those counts were taken before the additions'
-audio gate, so the approved additions (28 Busy People, 60 Genki) are not in them yet; they ship
-once each is marked ready.
+The final dry run (2026-10-19, after every additions gate): Genki 88 updated, 81 added, 1,613 unchanged; Busy People 644 updated, 149 added, 2,793 unchanged. The orphans above are unchanged by it.

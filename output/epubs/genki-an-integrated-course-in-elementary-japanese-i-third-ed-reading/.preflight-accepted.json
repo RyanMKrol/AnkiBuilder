@@ -93,6 +93,13 @@
         "note": "Same word in two spellings, alternative readings of one number, or a loanword and native word the book prints as alternatives (2026-10-14 review)"
       }
     },
+    "reading-kanji-taught-as-word": {
+      "chapter-9/r-fbd5b75066a6": {
+        "at": "2026-10-19T09:37:34.391Z",
+        "message": "chapter-9/r-fbd5b75066a6 \"有\" is a silent kanji card, and the book teaches it as a word in chapter-24 (ある): the card should be the voiced word (card rules 4)",
+        "note": "有 stays silent: the reading a reader gave it was 有る's (aru), not a word the book teaches as 有 (owner-reviewed fix pass, 2026-10-19)"
+      }
+    },
     "reading-latin": {
       "chapter-11/r-e07e75baa71b": {
         "at": "2026-09-24T16:20:23.110Z",

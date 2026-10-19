@@ -413,3 +413,12 @@ Anki for the card id (it is the note's first field tag) or the note id:
 | niau-fuku-wo-kau-no-ga-suki               | 1791843760237 | chapter-15-extras: untaught grammar, a verb clause modifying a noun (ruling 5)                                 |
 
 The final dry run (2026-10-19, after every additions gate): Genki 88 updated, 81 added, 1,613 unchanged; Busy People 644 updated, 149 added, 2,793 unchanged. The orphans above are unchanged by it.
+
+Delivered 2026-10-19 (5d3f80f): Genki 1,782 notes, Busy People 3,586, every shipping card matched in
+Anki and the post-delivery preview at 0 updated, 0 added for both. The owner deleted the twelve
+orphans above. Seven further Busy People notes carry no `abid:` tag (delivered before tagging) and
+match no shipping card: six bare counter suffixes from Lesson 5 (まい, ほん, ぼん, ぽん, つ, がい) and one
+duplicate しつれいします in Lesson 6. Their content is correct and they hold mature review history, so the
+owner chose to keep them; delivery never touches an untagged note and does not report them. Do not
+"adopt" them by un-excluding the deck cards: with no tag to match on, delivery would add seven new
+notes beside them.

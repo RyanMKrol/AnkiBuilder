@@ -697,10 +697,17 @@ export function createDeckServer({
           return notFound(res);
         }
         const before = git ? await git.snapshot() : null;
+        // The reply is held until the write is recorded. The page sends its next edit the moment
+        // this one answers, and a second edit to the same file that starts before the first is
+        // recorded finds the file at a hash the journal does not know yet, so it is marked mixed
+        // and Deliver refuses the owner's own work. That happened on 2026-10-19: two quick trims
+        // on one Genki card blocked Deliver.
+        const release = before ? holdReply(res) : () => {};
         try {
           if (await routePost(req, res, seg)) return;
         } finally {
           if (before) await git.record(before);
+          release();
         }
         return notFound(res);
       }
@@ -710,6 +717,25 @@ export function createDeckServer({
       if (res.headersSent) return res.end();
       sendJson(res, { error: err.message || "server error" }, err.status || 500);
     }
+  };
+}
+
+/**
+ * Defers `res.end` until the returned release is called, so a handler can finish its reply while the
+ * caller still has work to do before the client may see it. Headers written before then are held
+ * too: Node sends nothing to the socket until the first body write or `end`. Release restores the
+ * real `end` and replays a deferred call; with none deferred it only restores.
+ */
+function holdReply(res) {
+  const end = res.end.bind(res);
+  let deferred = null;
+  res.end = (...args) => {
+    deferred = args;
+    return res;
+  };
+  return () => {
+    res.end = end;
+    if (deferred) end(...deferred);
   };
 }
 

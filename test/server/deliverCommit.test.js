@@ -111,3 +111,20 @@ test("every dashboard write is recorded, so Deliver can tell it from anyone else
   });
   assert.deepEqual(git.calls, ["snapshot", "record"]);
 });
+
+test("a dashboard write answers only after it is recorded, so a quick second edit cannot race it", async () => {
+  // Two quick trims on one card blocked Deliver (2026-10-19): the first answered before its write
+  // was recorded, the page sent the second at once, and the second found the file at a hash the
+  // journal did not know yet, so it was marked mixed. The reply must wait for the record.
+  const git = fakeGit();
+  let recorded = false;
+  git.record = async () => {
+    await new Promise((r) => setTimeout(r, 150));
+    recorded = true;
+  };
+  await withServer({ git }, async (url) => {
+    const { status } = await post(url, "/api/deck/epub/nope/rebuild");
+    assert.equal(status, 404, "the route still answers, including a 404");
+    assert.equal(recorded, true, "but only once the write was recorded");
+  });
+});

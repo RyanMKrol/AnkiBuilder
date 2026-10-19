@@ -38,3 +38,19 @@ All 27 chapters, 3,570 cards, reviewed by both roles and verified.
 Where a Verifier found two agents had used the same finding id for different problems, it
 renumbered one and said so in `verdictReason`. One id that was still duplicated at the merge got
 a `#chapter` suffix.
+
+## Fixed
+
+The fix pass (`docs/designs/qa-fix-pass-2026-10.md`, 2026-10-18 to 2026-10-19) worked through
+every live finding. Each line in `findings.jsonl` now carries its outcome in `status` and
+`statusReason`; the fixers' own ledgers are kept in `status/`.
+
+- 524 live findings: 512 fixed, 12 skipped (each with a reason: hand-curated clips the owner
+  regenerates, exclusions that cannot move a delivered note, and findings the fixer disagreed with).
+- The 55 REJECTED findings keep `status: open` and were not acted on.
+- 28 new cards went in as additions (batch `qa-fix-2026-10`) through the additions gates rather
+  than as edits.
+- The tooling that produced each theme was changed in the same pass (Wave A of the design doc), so
+  a chapter built after it would not repeat them.
+- `spot-check/` holds a Learner rerun of Lesson 8 against the fixed deck, for comparison with the
+  11 live findings the original run had there.

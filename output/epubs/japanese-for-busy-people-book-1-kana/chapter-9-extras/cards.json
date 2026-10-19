@@ -1721,7 +1721,7 @@
       "english": "Smith-san won't telephone Tanaka-san.",
       "category": "Technology & Communication",
       "target": "スミスさんはたなかさんにでんわをしません",
-      "pronunciation": "sumisu san wa tanaka san ni denwa o shimasen",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni denwa o shimasen",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10"
@@ -1731,7 +1731,7 @@
       "english": "Smith-san telephoned Tanaka-san.",
       "category": "Technology & Communication",
       "target": "スミスさんはたなかさんにでんわをしました",
-      "pronunciation": "sumisu san wa tanaka san ni denwa o shimashita",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni denwa o shimashita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, past affirmative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10"
@@ -1741,7 +1741,7 @@
       "english": "Smith-san didn't telephone Tanaka-san.",
       "category": "Technology & Communication",
       "target": "スミスさんはたなかさんにでんわをしませんでした",
-      "pronunciation": "sumisu san wa tanaka san ni denwa o shimasendeshita",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni denwa o shimasendeshita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's でんわを します row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10"
@@ -1751,7 +1751,7 @@
       "english": "Smith-san won't send Tanaka-san an e-mail.",
       "category": "Technology & Communication",
       "target": "スミスさんはたなかさんにメールをおくりません",
-      "pronunciation": "sumisu san wa tanaka san ni mēru o okurimasen",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni mēru o okurimasen",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おくります row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10"
@@ -1761,7 +1761,7 @@
       "english": "Smith-san didn't send Tanaka-san an e-mail.",
       "category": "Technology & Communication",
       "target": "スミスさんはたなかさんにメールをおくりませんでした",
-      "pronunciation": "sumisu san wa tanaka san ni mēru o okurimasendeshita",
+      "pronunciation": "Sumisu-san wa Tanaka-san ni mēru o okurimasendeshita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おくります row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10"
@@ -1771,7 +1771,7 @@
       "english": "Smith-san won't meet Tanaka-san tomorrow.",
       "category": "Time",
       "target": "スミスさんはあしたたなかさんにあいません",
-      "pronunciation": "sumisu san wa ashita tanaka san ni aimasen",
+      "pronunciation": "Sumisu-san wa ashita Tanaka-san ni aimasen",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's あいます row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10"
@@ -1781,7 +1781,7 @@
       "english": "Smith-san didn't meet Tanaka-san yesterday.",
       "category": "Time",
       "target": "スミスさんはきのうたなかさんにあいませんでした",
-      "pronunciation": "sumisu san wa kinō tanaka san ni aimasendeshita",
+      "pronunciation": "Sumisu-san wa kinō Tanaka-san ni aimasendeshita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's あいます row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10"
@@ -1791,7 +1791,7 @@
       "english": "Smith-san won't tell Suzuki-san the location of the restaurant.",
       "category": "Directions",
       "target": "スミスさんはすずきさんにレストランのばしょをおしえません",
-      "pronunciation": "sumisu san wa suzuki san ni resutoran no basho o oshiemasen",
+      "pronunciation": "Sumisu-san wa Suzuki-san ni resutoran no basho o oshiemasen",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おしえます row, present negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10"
@@ -1801,7 +1801,7 @@
       "english": "Smith-san didn't tell Suzuki-san the location of the restaurant.",
       "category": "Directions",
       "target": "スミスさんはすずきさんにレストランのばしょをおしえませんでした",
-      "pronunciation": "sumisu san wa suzuki san ni resutoran no basho o oshiemasendeshita",
+      "pronunciation": "Sumisu-san wa Suzuki-san ni resutoran no basho o oshiemasendeshita",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おしえます row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true,
       "addition": "qa-fix-2026-10"

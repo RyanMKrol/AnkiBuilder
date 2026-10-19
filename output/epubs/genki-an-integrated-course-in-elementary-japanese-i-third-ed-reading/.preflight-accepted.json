@@ -173,6 +173,11 @@
         "at": "2026-10-13T21:14:36.468Z",
         "message": "r-eee137f58589 \"あけましておめでとうございます\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
         "note": "Owner ruling 2026-10-13: fixed greetings and set expressions stay in the reading deck; only sentences and particle phrases go."
+      },
+      "chapter-9/r-2b7c52d264e5": {
+        "at": "2026-10-19T09:04:12.885Z",
+        "message": "r-2b7c52d264e5 \"お願いします\" ends in a polite or inflected ending: card its words instead, or accept it if it is a fixed greeting or set expression.",
+        "note": "Fixed greeting the book lists; approved by the owner at the 2026-10-19 vocab-scan review"
       }
     },
     "reading-single-kana": {

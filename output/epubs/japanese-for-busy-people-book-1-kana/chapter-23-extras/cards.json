@@ -1112,7 +1112,8 @@
       "audioOriginal": "d819e8cf972cf72f.orig.mp3",
       "audioAuto": "d819e8cf972cf72f.mp3",
       "audioMarked": true,
-      "audioTextHash": "d819e8cf972cf72f"
+      "audioTextHash": "d819e8cf972cf72f",
+      "additionDone": true
     },
     {
       "id": "itsu-dekimasu-ka",
@@ -1129,7 +1130,8 @@
       "audioOriginal": "68c5385fae854dfd.orig.mp3",
       "audioAuto": "68c5385fae854dfd.mp3",
       "audioMarked": true,
-      "audioTextHash": "68c5385fae854dfd"
+      "audioTextHash": "68c5385fae854dfd",
+      "additionDone": true
     },
     {
       "id": "ima-ryouri-o-shite-imasu",
@@ -1146,7 +1148,8 @@
       "audioOriginal": "227399d6aa63af33.orig.mp3",
       "audioAuto": "227399d6aa63af33.mp3",
       "audioMarked": true,
-      "audioTextHash": "227399d6aa63af33"
+      "audioTextHash": "227399d6aa63af33",
+      "additionDone": true
     },
     {
       "id": "ja-mata-atode-denwa-shimasu",
@@ -1163,7 +1166,8 @@
       "audioOriginal": "48301dcbcc590e17.orig.mp3",
       "audioAuto": "48301dcbcc590e17.mp3",
       "audioMarked": true,
-      "audioTextHash": "48301dcbcc590e17"
+      "audioTextHash": "48301dcbcc590e17",
+      "additionDone": true
     }
   ]
 }

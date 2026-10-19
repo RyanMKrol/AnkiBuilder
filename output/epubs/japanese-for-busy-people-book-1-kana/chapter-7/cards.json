@@ -1272,7 +1272,8 @@
       "audioOriginal": "4d4b3cdaece3fac7.orig.mp3",
       "audioAuto": "4d4b3cdaece3fac7.mp3",
       "audioMarked": true,
-      "audioTextHash": "4d4b3cdaece3fac7"
+      "audioTextHash": "4d4b3cdaece3fac7",
+      "additionDone": true
     },
     {
       "id": "okake-kudasai",

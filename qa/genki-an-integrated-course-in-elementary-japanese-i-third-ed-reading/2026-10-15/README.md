@@ -40,3 +40,22 @@ limit cut the first attempts off.
 - `themes.md` groups them. The rejection rate is high because reading cards have no note field and
   teach whole-word readings on the back by design; the Learner prompt did not say so, and the next
   run's should.
+
+## Fixed
+
+The fix pass (`docs/designs/qa-fix-pass-2026-10.md`, 2026-10-18 to 2026-10-19) worked through
+every live finding. Each line in `findings.jsonl` now carries its outcome in `status` and
+`statusReason`; the fixer's own ledger is kept in `status/`.
+
+- 68 live findings: 62 fixed, 5 skipped (with reasons), 1 wont-fix.
+- The 47 REJECTED findings keep `status: open` and were not acted on.
+- 39 silent single-kanji cards that the book later teaches as words were rewritten in place as the
+  word (owner ruling 2026-10-18; `scripts/backfill-reading-word-cards.mjs`, now SPENT).
+- New cards went in as additions (batch `qa-fix-2026-10`) through the additions gates: 6 from the
+  findings, then 54 from the vocabulary scan (`vocab-scan.jsonl`, `vocab-scan-review.md`), which the
+  owner approved on 2026-10-19. 21 scanned words were already in the deck as cards the owner had
+  excluded under the words-only ruling and stay excluded; the scan now reports such a form as
+  `excluded` rather than as a candidate.
+- The tooling that produced each theme was changed in the same pass (Wave A of the design doc).
+- `spot-check/` holds a Learner rerun of Lesson 6 (`chapter-7`) against the fixed deck, for
+  comparison with the 3 live findings the original run had there.

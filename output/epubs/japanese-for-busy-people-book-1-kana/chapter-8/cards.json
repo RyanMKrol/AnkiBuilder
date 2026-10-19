@@ -54,7 +54,7 @@
       "audioAuto": "particle-wo-user-ba8c8c00.mp3",
       "audioFilter": "standard",
       "audio": "particle-wo-user-ba8c8c00.mp3",
-      "scene": "marking the thing the verb acts on"
+      "hint": "marking the thing the verb acts on"
     },
     {
       "id": "shimasu",
@@ -159,7 +159,7 @@
     },
     {
       "id": "mimasu",
-      "english": "See",
+      "english": "See, watch",
       "category": "Other",
       "target": "みます",
       "pronunciation": "mimasu",
@@ -169,7 +169,8 @@
       "audioAuto": "e0201347ffd98352.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "e0201347ffd98352"
+      "audioTextHash": "e0201347ffd98352",
+      "hint": "with your eyes: a movie, TV"
     },
     {
       "id": "tenisu-wo-shimasu",
@@ -481,8 +482,8 @@
       "audioAuto": "6b35b56dbd2561c0.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "scene": "music, the radio, the news",
-      "audioTextHash": "6b35b56dbd2561c0"
+      "audioTextHash": "6b35b56dbd2561c0",
+      "hint": "music, the radio, the news"
     },
     {
       "id": "benkyou-wo-shimasu",
@@ -1207,7 +1208,8 @@
       "audioOriginal": "7276eacc44910bf9.orig.mp3",
       "audioAuto": "7276eacc44910bf9.mp3",
       "audioMarked": true,
-      "audioTextHash": "7276eacc44910bf9"
+      "audioTextHash": "7276eacc44910bf9",
+      "additionDone": true
     }
   ]
 }

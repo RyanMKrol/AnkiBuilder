@@ -50,11 +50,16 @@
       "reviewNote": "Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 2,
       "ttsText": "よう",
-      "audio": "907f2e2ebaf938cc.mp3",
+      "audio": "r-2e750a2f58d7-manual-3d1aaaa6.mp3",
       "audioOriginal": "907f2e2ebaf938cc.orig.mp3",
       "audioAuto": "907f2e2ebaf938cc.mp3",
       "audioMarked": true,
-      "audioTextHash": "907f2e2ebaf938cc"
+      "audioTextHash": "907f2e2ebaf938cc",
+      "audioManual": "r-2e750a2f58d7-manual-3d1aaaa6.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.39963527397260273
+      }
     },
     {
       "id": "r-a1b4e92d7376",

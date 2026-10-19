@@ -667,7 +667,7 @@
       "category": "Body & Health",
       "target": "どうしましたか",
       "pronunciation": "dō shimashita ka",
-      "note": "Said by a doctor to a patient (see Notes 2, p. 208).",
+      "note": "Said by a doctor to a patient, and to anyone who looks to be in trouble: \"What's the matter?\"",
       "sourceOrder": 4040,
       "audio": "d52bcb6d00056b13.mp3",
       "audioOriginal": "d52bcb6d00056b13.orig.mp3",
@@ -724,7 +724,8 @@
       "audioOriginal": "1c3d7c17078e4da8.orig.mp3",
       "audioAuto": "1c3d7c17078e4da8.mp3",
       "audioMarked": true,
-      "audioTextHash": "1c3d7c17078e4da8"
+      "audioTextHash": "1c3d7c17078e4da8",
+      "note": "The body part that hurts takes が (ga). The person in pain, unstated here, is the speaker."
     },
     {
       "id": "denki-2",

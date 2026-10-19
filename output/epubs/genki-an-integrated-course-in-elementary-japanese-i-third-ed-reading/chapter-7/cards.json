@@ -1584,7 +1584,8 @@
       "audioOriginal": "6837ccf3c1853b97.orig.mp3",
       "audioAuto": "6837ccf3c1853b97.mp3",
       "audioMarked": true,
-      "audioTextHash": "6837ccf3c1853b97"
+      "audioTextHash": "6837ccf3c1853b97",
+      "additionDone": true
     },
     {
       "id": "r-4a61b43d21a7",
@@ -1595,7 +1596,8 @@
       "reviewNote": "QA fix pass 2026-10: used by 義務教育, added by the vocabulary scan; no card covered it. Not taught by the book yet: meaning and readings from KANJIDIC2 2026-09-21 (jmdict-simplified 3.6.2), checked by a reviewer.",
       "sourceOrder": 117,
       "addition": "qa-fix-2026-10",
-      "additionReviewed": true
+      "additionReviewed": true,
+      "additionDone": true
     }
   ]
 }

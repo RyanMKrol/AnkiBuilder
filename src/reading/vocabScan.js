@@ -22,7 +22,8 @@ const readJson = (path) => {
 
 /**
  * Every written form this collection already cards, `Map<form, chapter label>`, the kana unit
- * included. Only this collection's own units (golden rule 7).
+ * included. Only this collection's own units (golden rule 7). Excluded cards are not here; see
+ * `excludedForms`.
  */
 export function cardedForms(collectionDir, targetLanguage) {
   const carded = new Map();
@@ -40,11 +41,45 @@ export function cardedForms(collectionDir, targetLanguage) {
 }
 
 /**
+ * Every written form this collection holds as an EXCLUDED card,
+ * `Map<form, { chapter, excludedBy, excludedReason }>`.
+ *
+ * Kept apart from `cardedForms` because the two mean opposite things to the reviewer. An excluded
+ * card is a decision someone already made about this exact form, and a scan that reports it as a
+ * fresh candidate asks the owner to make it again without telling them so. That happened on the
+ * first Genki scan (2026-10-19): 21 of the 77 words on the review list were phrases the owner had
+ * cut six days earlier under the words-only ruling, and they were approved a second time before
+ * anyone noticed the ids already existed.
+ */
+export function excludedForms(collectionDir, targetLanguage) {
+  const excluded = new Map();
+  if (!existsSync(collectionDir)) return excluded;
+  for (const name of readdirSync(collectionDir).sort()) {
+    if (!/^chapter-\d+$/.test(name)) continue;
+    const cards = readJson(join(collectionDir, name, "cards.json"));
+    for (const item of cards?.items ?? []) {
+      if (!item.excluded) continue;
+      const form = targetKey(item.target, targetLanguage);
+      if (form && !excluded.has(form)) {
+        excluded.set(form, {
+          chapter: cards.meta?.chapterLabel ?? name,
+          excludedBy: item.excludedBy ?? null,
+          excludedReason: item.excludedReason ?? null,
+        });
+      }
+    }
+  }
+  return excluded;
+}
+
+/**
  * One row per candidate word the chapter reader found in one chapter.
  *
  * `decision` is what the widened rule says about it: `card exists` (somewhere in this collection),
- * `skip, carded there` (only used here, and a later chapter's list introduces it), or `candidate`
- * (no card yet: the owner decides). A form the reader gave twice in one chapter is one row.
+ * `excluded` (a card exists and someone excluded it; `excludedIn` and `excludedReason` say where and
+ * why, so the owner re-opens that decision knowingly or not at all), `skip, carded there` (only used
+ * here, and a later chapter's list introduces it), or `candidate` (no card yet: the owner decides). A
+ * form the reader gave twice in one chapter is one row.
  */
 export function scanRows({
   chapterLabel,
@@ -52,6 +87,7 @@ export function scanRows({
   items,
   laterTaught = new Map(),
   carded = new Map(),
+  excluded = new Map(),
   targetLanguage,
 }) {
   const scheme = readingScheme(targetLanguage);
@@ -67,8 +103,10 @@ export function scanRows({
     const taughtHere = where == null || TEACHING_PLACES.includes(where);
     const laterChapter = laterTaught.get(form) ?? null;
     const cardIn = carded.get(form) ?? null;
+    const cut = cardIn ? null : (excluded.get(form) ?? null);
     let decision = "candidate";
     if (cardIn) decision = "card exists";
+    else if (cut) decision = "excluded";
     else if (laterChapter && !taughtHere) decision = "skip, carded there";
     rows.push({
       chapter: chapterLabel,
@@ -85,6 +123,7 @@ export function scanRows({
       laterChapter,
       cardExists: Boolean(cardIn),
       cardIn,
+      ...(cut ? { excludedIn: cut.chapter, excludedReason: cut.excludedReason } : {}),
       decision,
     });
   }

@@ -770,7 +770,8 @@ What is built, newest last:
   is flagged AI-suggested. `scripts/reading-vocab-scan.mjs <collectionDir> [--dry]` runs the chapter
   reader with that rule over a collection built before it (one call per chapter) and writes the
   candidate words to `qa/<slug>/<date>/vocab-scan.jsonl` for the owner to choose from; it changes no
-  deck data.
+  deck data. A form the deck holds as an excluded card is reported as `excluded` with the reason,
+  not as a candidate, so a decision already made is not put to the owner a second time.
   The operator procedure is the `build-reading-deck` skill.
 - [ ] End-to-end: build a real travel deck and verify it in Anki
 

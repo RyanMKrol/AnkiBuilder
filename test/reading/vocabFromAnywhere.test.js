@@ -5,7 +5,12 @@ import { tmpdir } from "os";
 import { join } from "path";
 import { reconcileReading, runReadingPhase } from "../../src/reading/readingPhase.js";
 import { laterVocabulary, cellForms } from "../../src/reading/laterVocabulary.js";
-import { scanRows, cardedForms, summarizeRows } from "../../src/reading/vocabScan.js";
+import {
+  scanRows,
+  cardedForms,
+  excludedForms,
+  summarizeRows,
+} from "../../src/reading/vocabScan.js";
 import { renderReadingChapterPrompt } from "../../src/reading/readingAgents.js";
 import { validateCards, validateCorpus } from "../../src/model/index.js";
 
@@ -258,12 +263,29 @@ test("the vocab scan gives each candidate word one row and a decision", () => {
         meta: { chapterLabel: "Chapter 03: Lesson 1" },
         items: [
           { id: "a", target: "映画", english: "Movie" },
-          { id: "b", target: "切手", english: "Stamp", excluded: true },
+          {
+            id: "b",
+            target: "切手",
+            english: "Stamp",
+            excluded: true,
+            excludedBy: "owner",
+            excludedReason: "Not a word",
+          },
         ],
       }),
     );
     const carded = cardedForms(dir, "ja");
     assert.deepEqual([...carded], [["映画", "Chapter 03: Lesson 1"]]);
+    const excluded = excludedForms(dir, "ja");
+    assert.deepEqual(
+      [...excluded],
+      [
+        [
+          "切手",
+          { chapter: "Chapter 03: Lesson 1", excludedBy: "owner", excludedReason: "Not a word" },
+        ],
+      ],
+    );
     const rows = scanRows({
       chapterLabel: "Chapter 05: Lesson 3",
       chapterNumber: 5,
@@ -279,6 +301,7 @@ test("the vocab scan gives each candidate word one row and a decision", () => {
         ["音楽", "Chapter 11: Lesson 9"],
       ]),
       carded,
+      excluded,
       targetLanguage: "ja",
     });
     const byTarget = Object.fromEntries(rows.map((r) => [r.target, r]));
@@ -287,13 +310,18 @@ test("the vocab scan gives each candidate word one row and a decision", () => {
     assert.equal(byTarget["映画"].cardIn, "Chapter 03: Lesson 1");
     assert.equal(byTarget["生け花"].decision, "skip, carded there");
     assert.equal(byTarget["生け花"].glossed, false);
-    assert.equal(byTarget["切手"].decision, "candidate");
+    // Someone already decided against this exact form; the scan says so instead of asking again.
+    assert.equal(byTarget["切手"].decision, "excluded");
+    assert.equal(byTarget["切手"].excludedIn, "Chapter 03: Lesson 1");
+    assert.equal(byTarget["切手"].excludedReason, "Not a word");
+    assert.equal(byTarget["切手"].cardExists, false);
     // Its own list teaches it here, so a later list does not hold it back.
     assert.equal(byTarget["音楽"].decision, "candidate");
     assert.deepEqual(summarizeRows(rows), {
       "card exists": 1,
+      excluded: 1,
       "skip, carded there": 1,
-      candidate: 2,
+      candidate: 1,
     });
   } finally {
     rmSync(dir, { recursive: true, force: true });

@@ -1076,6 +1076,19 @@ the spine number and it now tells you which unit you meant and what to type inst
 reporting `no units found for this chapter` and leaving you to work out that a chapter has two
 numbers.
 
+**A pathway 3 lesson with no extras unit is voiced with `anki-builder audio --run <runDir>`
+instead.** `build-audio.mjs` refuses any unit that has no `-extras` sibling, because for a book
+chapter a missing extras unit means phase 2 never ran. A hand-picked phrase list (the Japan Trip
+Phrases course, 2026-10-23) has no drills to mine and no extras unit by design, so that refusal is
+correct for books and a dead end here. Run the stage directly, count the cards that now carry an
+`audio` field, then review and **Mark done** on the unit's own review page, which is the right page
+for a single-unit lesson.
+
+**Exclude what the fill-in-the-blank pass adds to a hand-picked list.** `prepare` runs that pass on
+a dictated lesson too, and with no drills to read it invents practice sentences. On a list the owner
+chose phrase by phrase, those are additions nobody asked for: exclude each with a `reviewNote`
+saying so, and leave them restorable at gate 1.
+
 **Always `--dry` first, because this is the step that spends real money.** It runs the readiness
 check and the refetch audit and fetches nothing:
 

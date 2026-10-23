@@ -40,7 +40,12 @@
       "target": "入ってもいいですか",
       "pronunciation": "haitte mo ii desu ka",
       "scene": "at the door of a small restaurant or shop",
-      "note": "てもいいですか (te mo ii desu ka) asks permission — literally 'even if I do this, is it OK?' → 'may I ___?'. It attaches to a verb's て-form, here 入って (haitte, from 入る, 'to enter')."
+      "note": "てもいいですか (te mo ii desu ka) asks permission — literally 'even if I do this, is it OK?' → 'may I ___?'. It attaches to a verb's て-form, here 入って (haitte, from 入る, 'to enter').",
+      "audio": "ac54a9c33e980b28.mp3",
+      "audioOriginal": "ac54a9c33e980b28.orig.mp3",
+      "audioAuto": "ac54a9c33e980b28.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ac54a9c33e980b28"
     },
     {
       "id": "i-dont-have-a-reservation",
@@ -49,7 +54,12 @@
       "target": "予約していません",
       "pronunciation": "yoyaku shite imasen",
       "scene": "at a restaurant entrance",
-      "note": "していません (shite imasen) means you haven't done it, so this is literally \"I haven't reserved\"."
+      "note": "していません (shite imasen) means you haven't done it, so this is literally \"I haven't reserved\".",
+      "audio": "b384dc6cb5bccb95.mp3",
+      "audioOriginal": "b384dc6cb5bccb95.orig.mp3",
+      "audioAuto": "b384dc6cb5bccb95.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b384dc6cb5bccb95"
     },
     {
       "id": "your-passport-please",
@@ -57,7 +67,12 @@
       "category": "Travel & Tourism",
       "target": "パスポートをお願いします",
       "pronunciation": "pasupōto o onegaishimasu",
-      "scene": "what staff ask at a hotel desk or a tax-free counter"
+      "scene": "what staff ask at a hotel desk or a tax-free counter",
+      "audio": "653f2c2c603d8f41.mp3",
+      "audioOriginal": "653f2c2c603d8f41.orig.mp3",
+      "audioAuto": "653f2c2c603d8f41.mp3",
+      "audioMarked": true,
+      "audioTextHash": "653f2c2c603d8f41"
     },
     {
       "id": "is-this-your-first-time-in-japan",
@@ -65,7 +80,12 @@
       "category": "Travel & Tourism",
       "target": "日本は初めてですか",
       "pronunciation": "Nihon wa hajimete desu ka",
-      "scene": "small talk with a stranger"
+      "scene": "small talk with a stranger",
+      "audio": "4189f5d71345520c.mp3",
+      "audioOriginal": "4189f5d71345520c.orig.mp3",
+      "audioAuto": "4189f5d71345520c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4189f5d71345520c"
     },
     {
       "id": "are-you-ready-to-order",
@@ -74,7 +94,12 @@
       "target": "ご注文はお決まりですか",
       "pronunciation": "gochūmon wa okimari desu ka",
       "scene": "what a restaurant server asks",
-      "note": "お決まり (okimari) is the polite noun form of 決まる (kimaru, 'to be decided') — literally asks whether your order is decided."
+      "note": "お決まり (okimari) is the polite noun form of 決まる (kimaru, 'to be decided') — literally asks whether your order is decided.",
+      "audio": "70ae64aecce885d4.mp3",
+      "audioOriginal": "70ae64aecce885d4.orig.mp3",
+      "audioAuto": "70ae64aecce885d4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "70ae64aecce885d4"
     },
     {
       "id": "do-you-have-any-allergies",
@@ -82,7 +107,12 @@
       "category": "Food",
       "target": "アレルギーはありますか",
       "pronunciation": "arerugī wa arimasu ka",
-      "scene": "what a restaurant server asks"
+      "scene": "what a restaurant server asks",
+      "audio": "8fb6e5a53fbd9859.mp3",
+      "audioOriginal": "8fb6e5a53fbd9859.orig.mp3",
+      "audioAuto": "8fb6e5a53fbd9859.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8fb6e5a53fbd9859"
     },
     {
       "id": "i-dont-have-any-allergies",
@@ -90,7 +120,12 @@
       "category": "Food",
       "target": "アレルギーはないです",
       "pronunciation": "arerugī wa nai desu",
-      "note": "ない (nai) is the plain negative of あります (arimasu, \"there is\")."
+      "note": "ない (nai) is the plain negative of あります (arimasu, \"there is\").",
+      "audio": "7cdfa02d559aa343.mp3",
+      "audioOriginal": "7cdfa02d559aa343.orig.mp3",
+      "audioAuto": "7cdfa02d559aa343.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7cdfa02d559aa343"
     },
     {
       "id": "are-there-any-foods-you-dont-like",
@@ -99,7 +134,12 @@
       "target": "苦手な食べ物はありますか",
       "pronunciation": "nigate na tabemono wa arimasu ka",
       "scene": "what a restaurant server asks",
-      "note": "苦手 (nigate) means something you don't get on with, so this asks about dislikes, not allergies."
+      "note": "苦手 (nigate) means something you don't get on with, so this asks about dislikes, not allergies.",
+      "audio": "bbde575d1c174cb8.mp3",
+      "audioOriginal": "bbde575d1c174cb8.orig.mp3",
+      "audioAuto": "bbde575d1c174cb8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bbde575d1c174cb8"
     },
     {
       "id": "is-there-anything-you-cant-eat",
@@ -108,7 +148,12 @@
       "target": "食べられないものはありますか",
       "pronunciation": "taberarenai mono wa arimasu ka",
       "scene": "what a restaurant server asks",
-      "note": "食べられない (taberarenai) is the potential negative of 食べる (taberu, 'to eat') — broader than allergies or dislikes, covering anything you're unable to eat for any reason. Common before a set menu or a ryokan dinner."
+      "note": "食べられない (taberarenai) is the potential negative of 食べる (taberu, 'to eat') — broader than allergies or dislikes, covering anything you're unable to eat for any reason. Common before a set menu or a ryokan dinner.",
+      "audio": "8abfa20cee164b79.mp3",
+      "audioOriginal": "8abfa20cee164b79.orig.mp3",
+      "audioAuto": "8abfa20cee164b79.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8abfa20cee164b79"
     },
     {
       "id": "i-can-eat-anything",
@@ -116,7 +161,12 @@
       "category": "Food",
       "target": "何でも食べられます",
       "pronunciation": "nandemo taberaremasu",
-      "note": "A good answer to both アレルギーはありますか (arerugī wa arimasu ka, 'Do you have any allergies?') and 食べられないものはありますか (taberarenai mono wa arimasu ka, 'Is there anything you can't eat?')."
+      "note": "A good answer to both アレルギーはありますか (arerugī wa arimasu ka, 'Do you have any allergies?') and 食べられないものはありますか (taberarenai mono wa arimasu ka, 'Is there anything you can't eat?').",
+      "audio": "92cb492578c259f3.mp3",
+      "audioOriginal": "92cb492578c259f3.orig.mp3",
+      "audioAuto": "92cb492578c259f3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "92cb492578c259f3"
     },
     {
       "id": "would-you-like-something-to-drink",
@@ -124,7 +174,12 @@
       "category": "Food",
       "target": "お飲み物はいかがですか",
       "pronunciation": "onomimono wa ikaga desu ka",
-      "scene": "what a restaurant server asks"
+      "scene": "what a restaurant server asks",
+      "audio": "870a3ef1043496a2.mp3",
+      "audioOriginal": "870a3ef1043496a2.orig.mp3",
+      "audioAuto": "870a3ef1043496a2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "870a3ef1043496a2"
     },
     {
       "id": "what-would-you-like-to-drink",
@@ -133,7 +188,12 @@
       "target": "お飲み物は何になさいますか",
       "pronunciation": "onomimono wa nani ni nasaimasu ka",
       "scene": "what a restaurant server asks",
-      "note": "なさいます (nasaimasu) is the polite form of します (shimasu, \"do\"), used by staff to customers."
+      "note": "なさいます (nasaimasu) is the polite form of します (shimasu, \"do\"), used by staff to customers.",
+      "audio": "8d661b82e3c329b2.mp3",
+      "audioOriginal": "8d661b82e3c329b2.orig.mp3",
+      "audioAuto": "8d661b82e3c329b2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8d661b82e3c329b2"
     },
     {
       "id": "will-you-be-eating-in",
@@ -142,7 +202,12 @@
       "target": "店内でお召し上がりですか",
       "pronunciation": "tennai de omeshiagari desu ka",
       "scene": "what a café or fast-food cashier asks",
-      "note": "お召し上がり (omeshiagari) is the polite way staff say \"eat\". Answer with 店内でお願いします (tennai de onegaishimasu, \"to eat here, please\") or 持ち帰りでお願いします (mochikaeri de onegaishimasu, \"to take away, please\")."
+      "note": "お召し上がり (omeshiagari) is the polite way staff say \"eat\". Answer with 店内でお願いします (tennai de onegaishimasu, \"to eat here, please\") or 持ち帰りでお願いします (mochikaeri de onegaishimasu, \"to take away, please\").",
+      "audio": "9897b1196a078300.mp3",
+      "audioOriginal": "9897b1196a078300.orig.mp3",
+      "audioAuto": "9897b1196a078300.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9897b1196a078300"
     },
     {
       "id": "to-eat-here-please",
@@ -150,7 +215,12 @@
       "category": "Food",
       "target": "店内でお願いします",
       "pronunciation": "tennai de onegaishimasu",
-      "scene": "answering whether you're eating in or taking away"
+      "scene": "answering whether you're eating in or taking away",
+      "audio": "2b74dccc0453d3e6.mp3",
+      "audioOriginal": "2b74dccc0453d3e6.orig.mp3",
+      "audioAuto": "2b74dccc0453d3e6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2b74dccc0453d3e6"
     },
     {
       "id": "to-take-away-please",
@@ -158,7 +228,12 @@
       "category": "Food",
       "target": "持ち帰りでお願いします",
       "pronunciation": "mochikaeri de onegaishimasu",
-      "scene": "answering whether you're eating in or taking away"
+      "scene": "answering whether you're eating in or taking away",
+      "audio": "68e488f04d3732a2.mp3",
+      "audioOriginal": "68e488f04d3732a2.orig.mp3",
+      "audioAuto": "68e488f04d3732a2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "68e488f04d3732a2"
     },
     {
       "id": "were-full-right-now",
@@ -166,7 +241,12 @@
       "category": "Food",
       "target": "ただいま満席です",
       "pronunciation": "tadaima manseki desu",
-      "scene": "what staff say at a restaurant entrance"
+      "scene": "what staff say at a restaurant entrance",
+      "audio": "034dd5657c5632d2.mp3",
+      "audioOriginal": "034dd5657c5632d2.orig.mp3",
+      "audioAuto": "034dd5657c5632d2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "034dd5657c5632d2"
     },
     {
       "id": "please-sit-wherever-you-like",
@@ -174,7 +254,12 @@
       "category": "Food",
       "target": "お好きな席へどうぞ",
       "pronunciation": "osuki na seki e dōzo",
-      "scene": "what staff say as you walk in"
+      "scene": "what staff say as you walk in",
+      "audio": "98f4b720653a3569.mp3",
+      "audioOriginal": "98f4b720653a3569.orig.mp3",
+      "audioAuto": "98f4b720653a3569.mp3",
+      "audioMarked": true,
+      "audioTextHash": "98f4b720653a3569"
     },
     {
       "id": "heres-your-cover-charge-starter",
@@ -183,7 +268,12 @@
       "target": "お通しです",
       "pronunciation": "otōshi desu",
       "scene": "what an izakaya server says, putting down a small dish you didn't order",
-      "note": "お通し (otōshi) is a small starter served at most izakaya. It is charged per person, usually ¥300 to ¥800, and it is normal to pay it."
+      "note": "お通し (otōshi) is a small starter served at most izakaya. It is charged per person, usually ¥300 to ¥800, and it is normal to pay it.",
+      "audio": "8844cf58eef609e0.mp3",
+      "audioOriginal": "8844cf58eef609e0.orig.mp3",
+      "audioAuto": "8844cf58eef609e0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8844cf58eef609e0"
     },
     {
       "id": "would-you-like-chopsticks",
@@ -192,7 +282,12 @@
       "target": "お箸はおつけしますか",
       "pronunciation": "ohashi wa otsuke shimasu ka",
       "scene": "what a konbini cashier asks",
-      "note": "The cashier puts them in the bag for you if you say はい (hai, \"yes\")."
+      "note": "The cashier puts them in the bag for you if you say はい (hai, \"yes\").",
+      "audio": "93208b5c8e3e642d.mp3",
+      "audioOriginal": "93208b5c8e3e642d.orig.mp3",
+      "audioAuto": "93208b5c8e3e642d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "93208b5c8e3e642d"
     },
     {
       "id": "shall-i-heat-it-up",
@@ -200,7 +295,12 @@
       "category": "Food",
       "target": "温めますか",
       "pronunciation": "atatamemasu ka",
-      "scene": "what a konbini cashier asks about a bento or other ready meal"
+      "scene": "what a konbini cashier asks about a bento or other ready meal",
+      "audio": "039ce6bea24ccef3.mp3",
+      "audioOriginal": "039ce6bea24ccef3.orig.mp3",
+      "audioAuto": "039ce6bea24ccef3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "039ce6bea24ccef3"
     },
     {
       "id": "one-more-of-this-please",
@@ -208,7 +308,12 @@
       "category": "Food",
       "target": "これ、もう一つお願いします",
       "pronunciation": "kore, mō hitotsu onegaishimasu",
-      "note": "もう一つ (mō hitotsu) is もう ('more') plus 一つ (hitotsu), the generic counter for one item of any kind."
+      "note": "もう一つ (mō hitotsu) is もう ('more') plus 一つ (hitotsu), the generic counter for one item of any kind.",
+      "audio": "d0777fe3c66dd8d6.mp3",
+      "audioOriginal": "d0777fe3c66dd8d6.orig.mp3",
+      "audioAuto": "d0777fe3c66dd8d6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d0777fe3c66dd8d6"
     },
     {
       "id": "how-are-you-paying",
@@ -217,7 +322,12 @@
       "target": "お支払いは",
       "pronunciation": "oshiharai wa",
       "scene": "what a cashier asks",
-      "note": "Short for お支払いはどうなさいますか (oshiharai wa dō nasaimasu ka, \"how would you like to pay?\"), which you will also hear."
+      "note": "Short for お支払いはどうなさいますか (oshiharai wa dō nasaimasu ka, \"how would you like to pay?\"), which you will also hear.",
+      "audio": "0d198bb8b7f17df4.mp3",
+      "audioOriginal": "0d198bb8b7f17df4.orig.mp3",
+      "audioAuto": "0d198bb8b7f17df4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "0d198bb8b7f17df4"
     },
     {
       "id": "can-i-use-a-card",
@@ -225,7 +335,12 @@
       "category": "Money",
       "target": "カードは使えますか",
       "pronunciation": "kādo wa tsukaemasu ka",
-      "scene": "asking at the till before you order or buy"
+      "scene": "asking at the till before you order or buy",
+      "audio": "cfe58ee2aa1203e2.mp3",
+      "audioOriginal": "cfe58ee2aa1203e2.orig.mp3",
+      "audioAuto": "cfe58ee2aa1203e2.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cfe58ee2aa1203e2"
     },
     {
       "id": "by-card-please",
@@ -233,7 +348,12 @@
       "category": "Money",
       "target": "カードでお願いします",
       "pronunciation": "kādo de onegaishimasu",
-      "scene": "answering how you'll pay"
+      "scene": "answering how you'll pay",
+      "audio": "a959a9be39d57bfb.mp3",
+      "audioOriginal": "a959a9be39d57bfb.orig.mp3",
+      "audioAuto": "a959a9be39d57bfb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a959a9be39d57bfb"
     },
     {
       "id": "in-cash-please",
@@ -241,7 +361,12 @@
       "category": "Money",
       "target": "現金でお願いします",
       "pronunciation": "genkin de onegaishimasu",
-      "scene": "answering how you'll pay"
+      "scene": "answering how you'll pay",
+      "audio": "98b7a19a05d0a8c4.mp3",
+      "audioOriginal": "98b7a19a05d0a8c4.orig.mp3",
+      "audioAuto": "98b7a19a05d0a8c4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "98b7a19a05d0a8c4"
     },
     {
       "id": "cash-only",
@@ -249,7 +374,12 @@
       "category": "Money",
       "target": "現金のみ",
       "pronunciation": "genkin nomi",
-      "scene": "a sign by a till or on a door"
+      "scene": "a sign by a till or on a door",
+      "audio": "37ea123d62729ba1.mp3",
+      "audioOriginal": "37ea123d62729ba1.orig.mp3",
+      "audioAuto": "37ea123d62729ba1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "37ea123d62729ba1"
     },
     {
       "id": "are-you-open",
@@ -257,7 +387,12 @@
       "category": "Shopping",
       "target": "やっていますか",
       "pronunciation": "yatte imasu ka",
-      "scene": "at the door of a shop or restaurant"
+      "scene": "at the door of a shop or restaurant",
+      "audio": "87197b0737494f47.mp3",
+      "audioOriginal": "87197b0737494f47.orig.mp3",
+      "audioAuto": "87197b0737494f47.mp3",
+      "audioMarked": true,
+      "audioTextHash": "87197b0737494f47"
     },
     {
       "id": "open",
@@ -265,7 +400,12 @@
       "category": "Shopping",
       "target": "営業中",
       "pronunciation": "eigyōchū",
-      "scene": "a sign on a shop or restaurant door"
+      "scene": "a sign on a shop or restaurant door",
+      "audio": "d36a0a627853240b.mp3",
+      "audioOriginal": "d36a0a627853240b.orig.mp3",
+      "audioAuto": "d36a0a627853240b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d36a0a627853240b"
     },
     {
       "id": "not-open-yet",
@@ -274,7 +414,12 @@
       "target": "準備中",
       "pronunciation": "junbichū",
       "scene": "a sign on a shop or restaurant door",
-      "note": "Literally \"preparing\". Many restaurants hang it between lunch and dinner."
+      "note": "Literally \"preparing\". Many restaurants hang it between lunch and dinner.",
+      "audio": "6c90b3683725e8b0.mp3",
+      "audioOriginal": "6c90b3683725e8b0.orig.mp3",
+      "audioAuto": "6c90b3683725e8b0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6c90b3683725e8b0"
     },
     {
       "id": "will-that-be-everything",
@@ -282,7 +427,12 @@
       "category": "Shopping",
       "target": "以上でよろしいですか",
       "pronunciation": "ijō de yoroshii desu ka",
-      "scene": "what a server or cashier asks after you order"
+      "scene": "what a server or cashier asks after you order",
+      "audio": "13a09c02af059ac4.mp3",
+      "audioOriginal": "13a09c02af059ac4.orig.mp3",
+      "audioAuto": "13a09c02af059ac4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "13a09c02af059ac4"
     },
     {
       "id": "would-you-like-a-bag",
@@ -291,7 +441,12 @@
       "target": "袋はご利用ですか",
       "pronunciation": "fukuro wa goriyō desu ka",
       "scene": "what a cashier asks",
-      "note": "Bags cost a few yen in Japan, so you are always asked."
+      "note": "Bags cost a few yen in Japan, so you are always asked.",
+      "audio": "f83c98bab5813de1.mp3",
+      "audioOriginal": "f83c98bab5813de1.orig.mp3",
+      "audioAuto": "f83c98bab5813de1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f83c98bab5813de1"
     },
     {
       "id": "your-japanese-is-good",
@@ -299,7 +454,12 @@
       "category": "Travel & Tourism",
       "target": "日本語上手ですね",
       "pronunciation": "nihongo jōzu desu ne",
-      "scene": "what someone says after you speak a little Japanese"
+      "scene": "what someone says after you speak a little Japanese",
+      "audio": "7d05f87df41c8da1.mp3",
+      "audioOriginal": "7d05f87df41c8da1.orig.mp3",
+      "audioAuto": "7d05f87df41c8da1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7d05f87df41c8da1"
     },
     {
       "id": "no-no-ive-still-got-a-long-way-to-go",
@@ -308,7 +468,12 @@
       "target": "いえいえ、まだまだです",
       "pronunciation": "ie ie, mada mada desu",
       "scene": "replying when someone praises your Japanese",
-      "note": "The modest, expected reply. Saying ありがとうございます (arigatō gozaimasu, \"thank you\") on its own can sound like you agree you are good."
+      "note": "The modest, expected reply. Saying ありがとうございます (arigatō gozaimasu, \"thank you\") on its own can sound like you agree you are good.",
+      "audio": "1f0ae3bf5ebfd3be.mp3",
+      "audioOriginal": "1f0ae3bf5ebfd3be.orig.mp3",
+      "audioAuto": "1f0ae3bf5ebfd3be.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1f0ae3bf5ebfd3be"
     },
     {
       "id": "i-only-speak-a-little-japanese",
@@ -316,14 +481,24 @@
       "category": "Travel & Tourism",
       "target": "日本語は少しだけです",
       "pronunciation": "nihongo wa sukoshi dake desu",
-      "note": "だけ (dake, 'only/just') attaches directly after the word it limits — here 少し (sukoshi, 'a little')."
+      "note": "だけ (dake, 'only/just') attaches directly after the word it limits — here 少し (sukoshi, 'a little').",
+      "audio": "2afeb61a71416ad1.mp3",
+      "audioOriginal": "2afeb61a71416ad1.orig.mp3",
+      "audioAuto": "2afeb61a71416ad1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2afeb61a71416ad1"
     },
     {
       "id": "more-slowly-please",
       "english": "More slowly, please.",
       "category": "Travel & Tourism",
       "target": "ゆっくりお願いします",
-      "pronunciation": "yukkuri onegaishimasu"
+      "pronunciation": "yukkuri onegaishimasu",
+      "audio": "80a72ac43cc806a5.mp3",
+      "audioOriginal": "80a72ac43cc806a5.orig.mp3",
+      "audioAuto": "80a72ac43cc806a5.mp3",
+      "audioMarked": true,
+      "audioTextHash": "80a72ac43cc806a5"
     },
     {
       "id": "certainly",
@@ -332,7 +507,12 @@
       "target": "かしこまりました",
       "pronunciation": "kashikomarimashita",
       "scene": "what staff say when they take your order or request",
-      "note": "A very polite \"understood\", used by staff to customers."
+      "note": "A very polite \"understood\", used by staff to customers.",
+      "audio": "3471f6530e421307.mp3",
+      "audioOriginal": "3471f6530e421307.orig.mp3",
+      "audioAuto": "3471f6530e421307.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3471f6530e421307"
     },
     {
       "id": "can-i-try-it-on",
@@ -341,7 +521,12 @@
       "target": "試着してもいいですか",
       "pronunciation": "shichaku shite mo ii desu ka",
       "scene": "in a clothes shop",
-      "note": "Same ~てもいいですか (te mo ii desu ka, 'may I ___?') pattern as 入ってもいいですか (haitte mo ii desu ka, 'may I come in?'), here attached to 試着する (shichaku suru, 'to try on')."
+      "note": "Same ~てもいいですか (te mo ii desu ka, 'may I ___?') pattern as 入ってもいいですか (haitte mo ii desu ka, 'may I come in?'), here attached to 試着する (shichaku suru, 'to try on').",
+      "audio": "fdf994f86a48705f.mp3",
+      "audioOriginal": "fdf994f86a48705f.orig.mp3",
+      "audioAuto": "fdf994f86a48705f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fdf994f86a48705f"
     },
     {
       "id": "fib-genkin-wa-tsukaemasu-ka",

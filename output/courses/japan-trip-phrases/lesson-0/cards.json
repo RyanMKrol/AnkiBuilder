@@ -1,0 +1,422 @@
+{
+  "meta": {
+    "targetLanguage": "ja",
+    "sourceType": "manual",
+    "reviewed": false,
+    "courseSlug": "japan-trip-phrases",
+    "chapterNumber": 1,
+    "chapterLabel": "Lesson 1",
+    "passes": {
+      "pedagogicalSort": {
+        "status": "ok"
+      },
+      "romanization": {
+        "status": "ok"
+      },
+      "semanticDedup": {
+        "status": "ok"
+      },
+      "fillInBlank": {
+        "status": "ok"
+      },
+      "crossLessonNotes": {
+        "status": "ok"
+      },
+      "translate": {
+        "status": "ok"
+      },
+      "numberReadings": {
+        "status": "ok"
+      }
+    },
+    "enriched": true,
+    "notesEnhanced": true
+  },
+  "items": [
+    {
+      "id": "may-i-come-in",
+      "english": "May I come in?",
+      "category": "Travel & Tourism",
+      "target": "入ってもいいですか",
+      "pronunciation": "haitte mo ii desu ka",
+      "scene": "at the door of a small restaurant or shop",
+      "note": "てもいいですか (te mo ii desu ka) asks permission — literally 'even if I do this, is it OK?' → 'may I ___?'. It attaches to a verb's て-form, here 入って (haitte, from 入る, 'to enter')."
+    },
+    {
+      "id": "i-dont-have-a-reservation",
+      "english": "I don't have a reservation.",
+      "category": "Travel & Tourism",
+      "target": "予約していません",
+      "pronunciation": "yoyaku shite imasen",
+      "scene": "at a restaurant entrance",
+      "note": "していません (shite imasen) means you haven't done it, so this is literally \"I haven't reserved\"."
+    },
+    {
+      "id": "your-passport-please",
+      "english": "Your passport, please.",
+      "category": "Travel & Tourism",
+      "target": "パスポートをお願いします",
+      "pronunciation": "pasupōto o onegaishimasu",
+      "scene": "what staff ask at a hotel desk or a tax-free counter"
+    },
+    {
+      "id": "is-this-your-first-time-in-japan",
+      "english": "Is this your first time in Japan?",
+      "category": "Travel & Tourism",
+      "target": "日本は初めてですか",
+      "pronunciation": "Nihon wa hajimete desu ka",
+      "scene": "small talk with a stranger"
+    },
+    {
+      "id": "are-you-ready-to-order",
+      "english": "Are you ready to order?",
+      "category": "Food",
+      "target": "ご注文はお決まりですか",
+      "pronunciation": "gochūmon wa okimari desu ka",
+      "scene": "what a restaurant server asks",
+      "note": "お決まり (okimari) is the polite noun form of 決まる (kimaru, 'to be decided') — literally asks whether your order is decided."
+    },
+    {
+      "id": "do-you-have-any-allergies",
+      "english": "Do you have any allergies?",
+      "category": "Food",
+      "target": "アレルギーはありますか",
+      "pronunciation": "arerugī wa arimasu ka",
+      "scene": "what a restaurant server asks"
+    },
+    {
+      "id": "i-dont-have-any-allergies",
+      "english": "I don't have any allergies.",
+      "category": "Food",
+      "target": "アレルギーはないです",
+      "pronunciation": "arerugī wa nai desu",
+      "note": "ない (nai) is the plain negative of あります (arimasu, \"there is\")."
+    },
+    {
+      "id": "are-there-any-foods-you-dont-like",
+      "english": "Are there any foods you don't like?",
+      "category": "Food",
+      "target": "苦手な食べ物はありますか",
+      "pronunciation": "nigate na tabemono wa arimasu ka",
+      "scene": "what a restaurant server asks",
+      "note": "苦手 (nigate) means something you don't get on with, so this asks about dislikes, not allergies."
+    },
+    {
+      "id": "is-there-anything-you-cant-eat",
+      "english": "Is there anything you can't eat?",
+      "category": "Food",
+      "target": "食べられないものはありますか",
+      "pronunciation": "taberarenai mono wa arimasu ka",
+      "scene": "what a restaurant server asks",
+      "note": "食べられない (taberarenai) is the potential negative of 食べる (taberu, 'to eat') — broader than allergies or dislikes, covering anything you're unable to eat for any reason. Common before a set menu or a ryokan dinner."
+    },
+    {
+      "id": "i-can-eat-anything",
+      "english": "I can eat anything.",
+      "category": "Food",
+      "target": "何でも食べられます",
+      "pronunciation": "nandemo taberaremasu",
+      "note": "A good answer to both アレルギーはありますか (arerugī wa arimasu ka, 'Do you have any allergies?') and 食べられないものはありますか (taberarenai mono wa arimasu ka, 'Is there anything you can't eat?')."
+    },
+    {
+      "id": "would-you-like-something-to-drink",
+      "english": "Would you like something to drink?",
+      "category": "Food",
+      "target": "お飲み物はいかがですか",
+      "pronunciation": "onomimono wa ikaga desu ka",
+      "scene": "what a restaurant server asks"
+    },
+    {
+      "id": "what-would-you-like-to-drink",
+      "english": "What would you like to drink?",
+      "category": "Food",
+      "target": "お飲み物は何になさいますか",
+      "pronunciation": "onomimono wa nani ni nasaimasu ka",
+      "scene": "what a restaurant server asks",
+      "note": "なさいます (nasaimasu) is the polite form of します (shimasu, \"do\"), used by staff to customers."
+    },
+    {
+      "id": "will-you-be-eating-in",
+      "english": "Will you be eating in?",
+      "category": "Food",
+      "target": "店内でお召し上がりですか",
+      "pronunciation": "tennai de omeshiagari desu ka",
+      "scene": "what a café or fast-food cashier asks",
+      "note": "お召し上がり (omeshiagari) is the polite way staff say \"eat\". Answer with 店内でお願いします (tennai de onegaishimasu, \"to eat here, please\") or 持ち帰りでお願いします (mochikaeri de onegaishimasu, \"to take away, please\")."
+    },
+    {
+      "id": "to-eat-here-please",
+      "english": "To eat here, please.",
+      "category": "Food",
+      "target": "店内でお願いします",
+      "pronunciation": "tennai de onegaishimasu",
+      "scene": "answering whether you're eating in or taking away"
+    },
+    {
+      "id": "to-take-away-please",
+      "english": "To take away, please.",
+      "category": "Food",
+      "target": "持ち帰りでお願いします",
+      "pronunciation": "mochikaeri de onegaishimasu",
+      "scene": "answering whether you're eating in or taking away"
+    },
+    {
+      "id": "were-full-right-now",
+      "english": "We're full right now.",
+      "category": "Food",
+      "target": "ただいま満席です",
+      "pronunciation": "tadaima manseki desu",
+      "scene": "what staff say at a restaurant entrance"
+    },
+    {
+      "id": "please-sit-wherever-you-like",
+      "english": "Please sit wherever you like.",
+      "category": "Food",
+      "target": "お好きな席へどうぞ",
+      "pronunciation": "osuki na seki e dōzo",
+      "scene": "what staff say as you walk in"
+    },
+    {
+      "id": "heres-your-cover-charge-starter",
+      "english": "Here's your cover-charge starter.",
+      "category": "Food",
+      "target": "お通しです",
+      "pronunciation": "otōshi desu",
+      "scene": "what an izakaya server says, putting down a small dish you didn't order",
+      "note": "お通し (otōshi) is a small starter served at most izakaya. It is charged per person, usually ¥300 to ¥800, and it is normal to pay it."
+    },
+    {
+      "id": "would-you-like-chopsticks",
+      "english": "Would you like chopsticks?",
+      "category": "Food",
+      "target": "お箸はおつけしますか",
+      "pronunciation": "ohashi wa otsuke shimasu ka",
+      "scene": "what a konbini cashier asks",
+      "note": "The cashier puts them in the bag for you if you say はい (hai, \"yes\")."
+    },
+    {
+      "id": "shall-i-heat-it-up",
+      "english": "Shall I heat it up?",
+      "category": "Food",
+      "target": "温めますか",
+      "pronunciation": "atatamemasu ka",
+      "scene": "what a konbini cashier asks about a bento or other ready meal"
+    },
+    {
+      "id": "one-more-of-this-please",
+      "english": "One more of this, please.",
+      "category": "Food",
+      "target": "これ、もう一つお願いします",
+      "pronunciation": "kore, mō hitotsu onegaishimasu",
+      "note": "もう一つ (mō hitotsu) is もう ('more') plus 一つ (hitotsu), the generic counter for one item of any kind."
+    },
+    {
+      "id": "how-are-you-paying",
+      "english": "How are you paying?",
+      "category": "Money",
+      "target": "お支払いは",
+      "pronunciation": "oshiharai wa",
+      "scene": "what a cashier asks",
+      "note": "Short for お支払いはどうなさいますか (oshiharai wa dō nasaimasu ka, \"how would you like to pay?\"), which you will also hear."
+    },
+    {
+      "id": "can-i-use-a-card",
+      "english": "Can I use a card?",
+      "category": "Money",
+      "target": "カードは使えますか",
+      "pronunciation": "kādo wa tsukaemasu ka",
+      "scene": "asking at the till before you order or buy"
+    },
+    {
+      "id": "by-card-please",
+      "english": "By card, please.",
+      "category": "Money",
+      "target": "カードでお願いします",
+      "pronunciation": "kādo de onegaishimasu",
+      "scene": "answering how you'll pay"
+    },
+    {
+      "id": "in-cash-please",
+      "english": "In cash, please.",
+      "category": "Money",
+      "target": "現金でお願いします",
+      "pronunciation": "genkin de onegaishimasu",
+      "scene": "answering how you'll pay"
+    },
+    {
+      "id": "cash-only",
+      "english": "Cash only",
+      "category": "Money",
+      "target": "現金のみ",
+      "pronunciation": "genkin nomi",
+      "scene": "a sign by a till or on a door"
+    },
+    {
+      "id": "are-you-open",
+      "english": "Are you open?",
+      "category": "Shopping",
+      "target": "やっていますか",
+      "pronunciation": "yatte imasu ka",
+      "scene": "at the door of a shop or restaurant"
+    },
+    {
+      "id": "open",
+      "english": "Open",
+      "category": "Shopping",
+      "target": "営業中",
+      "pronunciation": "eigyōchū",
+      "scene": "a sign on a shop or restaurant door"
+    },
+    {
+      "id": "not-open-yet",
+      "english": "Not open yet",
+      "category": "Shopping",
+      "target": "準備中",
+      "pronunciation": "junbichū",
+      "scene": "a sign on a shop or restaurant door",
+      "note": "Literally \"preparing\". Many restaurants hang it between lunch and dinner."
+    },
+    {
+      "id": "will-that-be-everything",
+      "english": "Will that be everything?",
+      "category": "Shopping",
+      "target": "以上でよろしいですか",
+      "pronunciation": "ijō de yoroshii desu ka",
+      "scene": "what a server or cashier asks after you order"
+    },
+    {
+      "id": "would-you-like-a-bag",
+      "english": "Would you like a bag?",
+      "category": "Shopping",
+      "target": "袋はご利用ですか",
+      "pronunciation": "fukuro wa goriyō desu ka",
+      "scene": "what a cashier asks",
+      "note": "Bags cost a few yen in Japan, so you are always asked."
+    },
+    {
+      "id": "your-japanese-is-good",
+      "english": "Your Japanese is good!",
+      "category": "Travel & Tourism",
+      "target": "日本語上手ですね",
+      "pronunciation": "nihongo jōzu desu ne",
+      "scene": "what someone says after you speak a little Japanese"
+    },
+    {
+      "id": "no-no-ive-still-got-a-long-way-to-go",
+      "english": "No, no, I've still got a long way to go.",
+      "category": "Travel & Tourism",
+      "target": "いえいえ、まだまだです",
+      "pronunciation": "ie ie, mada mada desu",
+      "scene": "replying when someone praises your Japanese",
+      "note": "The modest, expected reply. Saying ありがとうございます (arigatō gozaimasu, \"thank you\") on its own can sound like you agree you are good."
+    },
+    {
+      "id": "i-only-speak-a-little-japanese",
+      "english": "I only speak a little Japanese.",
+      "category": "Travel & Tourism",
+      "target": "日本語は少しだけです",
+      "pronunciation": "nihongo wa sukoshi dake desu",
+      "note": "だけ (dake, 'only/just') attaches directly after the word it limits — here 少し (sukoshi, 'a little')."
+    },
+    {
+      "id": "more-slowly-please",
+      "english": "More slowly, please.",
+      "category": "Travel & Tourism",
+      "target": "ゆっくりお願いします",
+      "pronunciation": "yukkuri onegaishimasu"
+    },
+    {
+      "id": "certainly",
+      "english": "Certainly.",
+      "category": "Shopping",
+      "target": "かしこまりました",
+      "pronunciation": "kashikomarimashita",
+      "scene": "what staff say when they take your order or request",
+      "note": "A very polite \"understood\", used by staff to customers."
+    },
+    {
+      "id": "can-i-try-it-on",
+      "english": "Can I try it on?",
+      "category": "Clothing",
+      "target": "試着してもいいですか",
+      "pronunciation": "shichaku shite mo ii desu ka",
+      "scene": "in a clothes shop",
+      "note": "Same ~てもいいですか (te mo ii desu ka, 'may I ___?') pattern as 入ってもいいですか (haitte mo ii desu ka, 'may I come in?'), here attached to 試着する (shichaku suru, 'to try on')."
+    },
+    {
+      "id": "fib-genkin-wa-tsukaemasu-ka",
+      "english": "Can I use cash?",
+      "category": "Money",
+      "target": "現金は使えますか",
+      "pronunciation": "genkin wa tsukaemasu ka",
+      "note": "Same 使えますか (tsukaemasu ka), the potential form of 使う (tsukau, 'to use'), as カードは使えますか (kādo wa tsukaemasu ka, 'Can I use a card?') — just swap in 現金 (genkin, 'cash') for カード (kādo, 'card').",
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "Not on the owner-reviewed phrase list",
+      "reviewNote": "Invented by the fill-in-the-blank pass, which has no drills to mine on a hand-picked phrase list. Excluded because the owner chose every phrase in this deck on the review page; restore it here if you want it."
+    },
+    {
+      "id": "fib-yoyaku-wa-arimasu-ka",
+      "english": "Do you have a reservation?",
+      "category": "Travel & Tourism",
+      "target": "予約はありますか",
+      "pronunciation": "yoyaku wa arimasu ka",
+      "note": "This is the question that 予約していません (yoyaku shite imasen, 'I don't have a reservation.') answers; 予約をお願いします (yoyaku o onegaishimasu, 'A reservation, please.') is how you'd ask for one yourself.",
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "Not on the owner-reviewed phrase list",
+      "reviewNote": "Invented by the fill-in-the-blank pass, which has no drills to mine on a hand-picked phrase list. Excluded because the owner chose every phrase in this deck on the review page; restore it here if you want it."
+    },
+    {
+      "id": "fib-nigate-na-tabemono-wa-nai-desu",
+      "english": "There aren't any foods I don't like.",
+      "category": "Food",
+      "target": "苦手な食べ物はないです",
+      "pronunciation": "nigate na tabemono wa nai desu",
+      "note": "Answers 苦手な食べ物はありますか (nigate na tabemono wa arimasu ka, 'Are there any foods you don't like?'); ない (nai) is the plain negative of あります (arimasu).",
+      "scene": "answering whether there are foods you don't like",
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "Not on the owner-reviewed phrase list",
+      "reviewNote": "Invented by the fill-in-the-blank pass, which has no drills to mine on a hand-picked phrase list. Excluded because the owner chose every phrase in this deck on the review page; restore it here if you want it."
+    },
+    {
+      "id": "fib-yoyaku-o-onegaishimasu",
+      "english": "A reservation, please.",
+      "category": "Travel & Tourism",
+      "target": "予約をお願いします",
+      "pronunciation": "yoyaku o onegaishimasu",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human",
+      "excludedReason": "Not on the owner-reviewed phrase list",
+      "reviewNote": "Invented by the fill-in-the-blank pass, which has no drills to mine on a hand-picked phrase list. Excluded because the owner chose every phrase in this deck on the review page; restore it here if you want it."
+    },
+    {
+      "id": "fib-ohashi-o-onegaishimasu",
+      "english": "Chopsticks, please.",
+      "category": "Food",
+      "target": "お箸をお願いします",
+      "pronunciation": "ohashi o onegaishimasu",
+      "note": null,
+      "scene": null,
+      "fillInBlank": true,
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "semantic-dedup",
+      "excludedReason": "pattern: [noun]をお願いします — Third example of this frame (source already has 'your-passport-please', and fib-yoyaku-o-onegaishimasu covers the pattern a second time); お箸 is already carded via 'would-you-like-chopsticks'.",
+      "reviewNote": "Excluded by the semantic de-dup pass. Pattern: [noun]をお願いします. Third example of this frame (source already has 'your-passport-please', and fib-yoyaku-o-onegaishimasu covers the pattern a second time); お箸 is already carded via 'would-you-like-chopsticks'."
+    }
+  ]
+}

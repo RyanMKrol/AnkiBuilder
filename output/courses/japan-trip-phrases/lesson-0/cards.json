@@ -30,7 +30,8 @@
       }
     },
     "enriched": true,
-    "notesEnhanced": true
+    "notesEnhanced": true,
+    "done": true
   },
   "items": [
     {
@@ -494,11 +495,16 @@
       "category": "Travel & Tourism",
       "target": "ゆっくりお願いします",
       "pronunciation": "yukkuri onegaishimasu",
-      "audio": "80a72ac43cc806a5.mp3",
+      "audio": "more-slowly-please-manual-b77e5ef0.mp3",
       "audioOriginal": "80a72ac43cc806a5.orig.mp3",
       "audioAuto": "80a72ac43cc806a5.mp3",
       "audioMarked": true,
-      "audioTextHash": "80a72ac43cc806a5"
+      "audioTextHash": "80a72ac43cc806a5",
+      "audioManual": "more-slowly-please-manual-b77e5ef0.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.7531301369863013
+      }
     },
     {
       "id": "certainly",

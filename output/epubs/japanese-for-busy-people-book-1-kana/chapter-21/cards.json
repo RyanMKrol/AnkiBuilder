@@ -176,11 +176,12 @@
       "target": "あし",
       "pronunciation": "ashi",
       "sourceOrder": 304,
-      "audio": "4ba27b34ec70bd71.mp3",
-      "audioOriginal": "4ba27b34ec70bd71.orig.mp3",
-      "audioAuto": "4ba27b34ec70bd71.mp3",
+      "audioOriginal": "5b76d055140807c3-genkanji-81297b7e.orig.mp3",
+      "audioAuto": "5b76d055140807c3-genkanji-81297b7e.mp3",
       "audioMarked": true,
-      "audioTextHash": "4ba27b34ec70bd71"
+      "audioTextHash": "5b76d055140807c3",
+      "audioFilter": "standard",
+      "audio": "5b76d055140807c3-genkanji-81297b7e.mp3"
     },
     {
       "id": "itai-hurts",
@@ -380,11 +381,16 @@
       "pronunciation": "tsukatte",
       "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission.",
       "sourceOrder": 2182,
-      "audio": "509d63742fd9e465.mp3",
+      "audio": "tsukatte-use-te-form-manual-6700030f.mp3",
       "audioOriginal": "509d63742fd9e465.orig.mp3",
       "audioAuto": "509d63742fd9e465.mp3",
       "audioMarked": true,
-      "audioTextHash": "509d63742fd9e465"
+      "audioTextHash": "509d63742fd9e465",
+      "audioManual": "tsukatte-use-te-form-manual-6700030f.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.069693493150685
+      }
     },
     {
       "id": "hairimasu",
@@ -407,11 +413,12 @@
       "pronunciation": "haitte",
       "note": "Te-form, used before もいいですか (mo ii desu ka) to ask permission.",
       "sourceOrder": 2212,
-      "audio": "e5812ab3fae8cc09.mp3",
-      "audioOriginal": "e5812ab3fae8cc09.orig.mp3",
-      "audioAuto": "e5812ab3fae8cc09.mp3",
+      "audioOriginal": "d69ac6d3e868ff1f-genkanji-4b5b87e4.orig.mp3",
+      "audioAuto": "d69ac6d3e868ff1f-genkanji-4b5b87e4.mp3",
       "audioMarked": true,
-      "audioTextHash": "e5812ab3fae8cc09"
+      "audioTextHash": "d69ac6d3e868ff1f",
+      "audioFilter": "standard",
+      "audio": "d69ac6d3e868ff1f-genkanji-4b5b87e4.mp3"
     },
     {
       "id": "okimasu",

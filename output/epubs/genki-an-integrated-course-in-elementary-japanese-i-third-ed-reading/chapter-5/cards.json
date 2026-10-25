@@ -1136,11 +1136,12 @@
       "sourceOrder": 93,
       "pronunciation": "san-gatsu",
       "ttsKanji": "三月",
-      "audio": "fc51d10fbd186be7.mp3",
-      "audioOriginal": "fc51d10fbd186be7.orig.mp3",
-      "audioAuto": "fc51d10fbd186be7.mp3",
+      "audioOriginal": "3bfb0e935bb6add8-genkanji-1aba9797.orig.mp3",
+      "audioAuto": "3bfb0e935bb6add8-genkanji-1aba9797.mp3",
       "audioMarked": true,
-      "audioTextHash": "fc51d10fbd186be7"
+      "audioTextHash": "3bfb0e935bb6add8",
+      "audioFilter": "standard",
+      "audio": "3bfb0e935bb6add8-genkanji-1aba9797.mp3"
     },
     {
       "id": "r-2f65b7990cb3",

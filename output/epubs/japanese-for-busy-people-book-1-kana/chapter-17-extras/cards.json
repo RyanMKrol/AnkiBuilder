@@ -1252,11 +1252,12 @@
       "target": "つまらないえいがはみたくなかったです",
       "pronunciation": "tsumaranai eiga wa mitakunakatta desu",
       "aiSuggested": true,
-      "audio": "bd58789d1ca31247.mp3",
-      "audioOriginal": "bd58789d1ca31247.orig.mp3",
-      "audioAuto": "bd58789d1ca31247.mp3",
+      "audioOriginal": "beff3170c4edae36-genkanji-793d3fc6.orig.mp3",
+      "audioAuto": "beff3170c4edae36-genkanji-793d3fc6.mp3",
       "audioMarked": true,
-      "audioTextHash": "bd58789d1ca31247"
+      "audioTextHash": "beff3170c4edae36",
+      "audioFilter": "standard",
+      "audio": "beff3170c4edae36-genkanji-793d3fc6.mp3"
     },
     {
       "id": "aitakunai-1",
@@ -1280,11 +1281,12 @@
       "ttsText": "ごごいちじからかいぎがあります。かいぎのまえにしょくじをします",
       "uncertain": true,
       "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
-      "audio": "d88be4abb222f5cd.mp3",
-      "audioOriginal": "d88be4abb222f5cd.orig.mp3",
-      "audioAuto": "d88be4abb222f5cd.mp3",
+      "audioOriginal": "4b47adb82b2cf188-genkanji-f9c428fd.orig.mp3",
+      "audioAuto": "4b47adb82b2cf188-genkanji-f9c428fd.mp3",
       "audioMarked": true,
-      "audioTextHash": "d88be4abb222f5cd"
+      "audioTextHash": "4b47adb82b2cf188",
+      "audioFilter": "standard",
+      "audio": "4b47adb82b2cf188-genkanji-f9c428fd.mp3"
     },
     {
       "id": "mitakunai-2",

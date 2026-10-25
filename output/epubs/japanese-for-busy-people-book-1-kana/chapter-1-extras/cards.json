@@ -1053,18 +1053,18 @@
       "category": "Nationalities & Countries",
       "target": "タイ",
       "pronunciation": "tai",
-      "audio": "1e15760863dfd82d.mp3",
       "altAudio": "3f06a8571512861e.mp3",
-      "audioOriginal": "1e15760863dfd82d.orig.mp3",
-      "audioAuto": "1e15760863dfd82d.mp3",
+      "audioOriginal": "62865cc56a9e2b91-gen-d2b72423.orig.mp3",
+      "audioAuto": "62865cc56a9e2b91-gen-d2b72423.mp3",
       "audioFilter": "standard",
       "audioMarked": true,
-      "audioTextHash": "1e15760863dfd82d",
+      "audioTextHash": "62865cc56a9e2b91",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-0) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 1 teaches the country and nationality set",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
       "additionAudioInherited": true,
-      "additionDone": true
+      "additionDone": true,
+      "audio": "62865cc56a9e2b91-gen-d2b72423.mp3"
     },
     {
       "id": "fib-raja-o-onegaishimasu",

@@ -1003,17 +1003,17 @@
       "target": "じゅっかい",
       "pronunciation": "juk-kai",
       "note": "じゅう (jū) shortens to じゅっ (ju-).",
-      "audio": "af51375382e52588.mp3",
-      "audioOriginal": "af51375382e52588.orig.mp3",
-      "audioAuto": "af51375382e52588.mp3",
+      "audioOriginal": "15963a327225b56a-genkanji-76be182a.orig.mp3",
+      "audioAuto": "15963a327225b56a-genkanji-76be182a.mp3",
       "audioMarked": true,
       "audioFilter": "standard",
-      "audioTextHash": "af51375382e52588",
+      "audioTextHash": "15963a327225b56a",
       "reviewNote": "Moved from the Nihongo 101 course (lesson-3) by the 2026-08-24 absorption; see docs/designs/nihongo-absorption-2026-08.md. Placed here because: Lesson 5 teaches the floor counters and the basement/floor vocabulary",
       "addition": "nihongo-102-2026-08",
       "additionReviewed": true,
       "additionAudioInherited": true,
-      "additionDone": true
+      "additionDone": true,
+      "audio": "15963a327225b56a-genkanji-76be182a.mp3"
     },
     {
       "id": "chiizu-to-wain-furansu-no",

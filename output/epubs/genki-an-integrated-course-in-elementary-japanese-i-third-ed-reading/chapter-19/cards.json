@@ -375,11 +375,12 @@
       "sourceOrder": 23,
       "pronunciation": "jinkō",
       "ttsKanji": "人口",
-      "audio": "02da86b464208b83.mp3",
-      "audioOriginal": "02da86b464208b83.orig.mp3",
-      "audioAuto": "02da86b464208b83.mp3",
+      "audioOriginal": "6909fc6ad79b398d-genkanji-435a3672.orig.mp3",
+      "audioAuto": "6909fc6ad79b398d-genkanji-435a3672.mp3",
       "audioMarked": true,
-      "audioTextHash": "02da86b464208b83"
+      "audioTextHash": "6909fc6ad79b398d",
+      "audioFilter": "standard",
+      "audio": "6909fc6ad79b398d-genkanji-435a3672.mp3"
     },
     {
       "id": "r-45b4e8f59314",

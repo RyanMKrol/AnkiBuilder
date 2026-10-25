@@ -607,11 +607,12 @@
       "pronunciation": "Ginza de kaimono o shite, eiga o mimasu",
       "scene": "Answering: What are you going to do tomorrow?",
       "note": "して (shite) is the て-form of します (shimasu), an Irregular verb: かいものをして (kaimono o shite).",
-      "audio": "f57d0186a287c396.mp3",
-      "audioOriginal": "f57d0186a287c396.orig.mp3",
-      "audioAuto": "f57d0186a287c396.mp3",
+      "audioOriginal": "abbedf22cefda85c-genkanji-0890b364.orig.mp3",
+      "audioAuto": "abbedf22cefda85c-genkanji-0890b364.mp3",
       "audioMarked": true,
-      "audioTextHash": "f57d0186a287c396"
+      "audioTextHash": "abbedf22cefda85c",
+      "audioFilter": "standard",
+      "audio": "abbedf22cefda85c-genkanji-0890b364.mp3"
     },
     {
       "id": "ginza-then-meet-friend",

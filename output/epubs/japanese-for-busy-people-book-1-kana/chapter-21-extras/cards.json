@@ -41,11 +41,12 @@
       "target": "このいすにすわってもいいですか",
       "pronunciation": "kono isu ni suwatte mo ii desu ka",
       "aiSuggested": true,
-      "audio": "d5b739600bd6afdd.mp3",
-      "audioOriginal": "d5b739600bd6afdd.orig.mp3",
-      "audioAuto": "d5b739600bd6afdd.mp3",
+      "audioOriginal": "f62940f64ba2a331-genkanji-59782f91.orig.mp3",
+      "audioAuto": "f62940f64ba2a331-genkanji-59782f91.mp3",
       "audioMarked": true,
-      "audioTextHash": "d5b739600bd6afdd"
+      "audioTextHash": "f62940f64ba2a331",
+      "audioFilter": "standard",
+      "audio": "f62940f64ba2a331-genkanji-59782f91.mp3"
     },
     {
       "id": "ask-use-until-130",
@@ -53,11 +54,12 @@
       "category": "Time",
       "target": "いちじはんまでつかってもいいですか",
       "pronunciation": "ichi-ji han made tsukatte mo ii desu ka",
-      "audio": "1e1f9fac335ccc6f.mp3",
-      "audioOriginal": "1e1f9fac335ccc6f.orig.mp3",
-      "audioAuto": "1e1f9fac335ccc6f.mp3",
+      "audioOriginal": "8d44def359343471-genkanji-6b39c4aa.orig.mp3",
+      "audioAuto": "8d44def359343471-genkanji-6b39c4aa.mp3",
       "audioMarked": true,
-      "audioTextHash": "1e1f9fac335ccc6f"
+      "audioTextHash": "8d44def359343471",
+      "audioFilter": "standard",
+      "audio": "8d44def359343471-genkanji-6b39c4aa.mp3"
     },
     {
       "id": "ask-put-luggage-here",
@@ -65,11 +67,12 @@
       "category": "Grammar & Function Words",
       "target": "ここににもつをおいてもいいですか",
       "pronunciation": "koko ni nimotsu o oite mo ii desu ka",
-      "audio": "0cbafe7e950fc085.mp3",
-      "audioOriginal": "0cbafe7e950fc085.orig.mp3",
-      "audioAuto": "0cbafe7e950fc085.mp3",
+      "audioOriginal": "804a53b7ecbdf07e-genkanji-8f1958ea.orig.mp3",
+      "audioAuto": "804a53b7ecbdf07e-genkanji-8f1958ea.mp3",
       "audioMarked": true,
-      "audioTextHash": "0cbafe7e950fc085"
+      "audioTextHash": "804a53b7ecbdf07e",
+      "audioFilter": "standard",
+      "audio": "804a53b7ecbdf07e-genkanji-8f1958ea.mp3"
     },
     {
       "id": "lesson21-put-luggage-on-table",
@@ -247,11 +250,12 @@
       "target": "にわでしゃしんをとってもいいですか",
       "pronunciation": "niwa de shashin o totte mo ii desu ka",
       "aiSuggested": true,
-      "audio": "2bedf09502945a39.mp3",
-      "audioOriginal": "2bedf09502945a39.orig.mp3",
-      "audioAuto": "2bedf09502945a39.mp3",
+      "audioOriginal": "5191ae8b381825d6-genkanji-511994ad.orig.mp3",
+      "audioAuto": "5191ae8b381825d6-genkanji-511994ad.mp3",
       "audioMarked": true,
-      "audioTextHash": "2bedf09502945a39"
+      "audioTextHash": "5191ae8b381825d6",
+      "audioFilter": "standard",
+      "audio": "5191ae8b381825d6-genkanji-511994ad.mp3"
     },
     {
       "id": "travel-eat-this-here",
@@ -284,11 +288,12 @@
       "category": "Grammar & Function Words",
       "target": "このへやにはいってもいいですか",
       "pronunciation": "kono heya ni haitte mo ii desu ka",
-      "audio": "95a9382c05844bc8.mp3",
-      "audioOriginal": "95a9382c05844bc8.orig.mp3",
-      "audioAuto": "95a9382c05844bc8.mp3",
+      "audioOriginal": "cb73699d67f6541a-genkanji-b9c31421.orig.mp3",
+      "audioAuto": "cb73699d67f6541a-genkanji-b9c31421.mp3",
       "audioMarked": true,
-      "audioTextHash": "95a9382c05844bc8"
+      "audioTextHash": "cb73699d67f6541a",
+      "audioFilter": "standard",
+      "audio": "cb73699d67f6541a-genkanji-b9c31421.mp3"
     },
     {
       "id": "lesson21-copy-material-permission",
@@ -609,11 +614,12 @@
       "target": "すみません。えいごではなしてもいいですか",
       "pronunciation": "sumimasen. eigo de hanashite mo ii desu ka",
       "scene": "Said by a patient to a doctor",
-      "audio": "1ee2f249ecba6dc9.mp3",
-      "audioOriginal": "1ee2f249ecba6dc9.orig.mp3",
-      "audioAuto": "1ee2f249ecba6dc9.mp3",
+      "audioOriginal": "7dfafb5803ba3d1c-genkanji-dfe9f7a7.orig.mp3",
+      "audioAuto": "7dfafb5803ba3d1c-genkanji-dfe9f7a7.mp3",
       "audioMarked": true,
-      "audioTextHash": "1ee2f249ecba6dc9"
+      "audioTextHash": "7dfafb5803ba3d1c",
+      "audioFilter": "standard",
+      "audio": "7dfafb5803ba3d1c-genkanji-dfe9f7a7.mp3"
     },
     {
       "id": "lesson21-give-address-name-here",
@@ -659,11 +665,12 @@
       "category": "Food",
       "target": "ここでしょくじをしてもいいですか",
       "pronunciation": "koko de shokuji o shite mo ii desu ka",
-      "audio": "c57007f39856c342.mp3",
-      "audioOriginal": "c57007f39856c342.orig.mp3",
-      "audioAuto": "c57007f39856c342.mp3",
+      "audioOriginal": "cf9cd201b167ad95-genkanji-ce8c503d.orig.mp3",
+      "audioAuto": "cf9cd201b167ad95-genkanji-ce8c503d.mp3",
       "audioMarked": true,
-      "audioTextHash": "c57007f39856c342"
+      "audioTextHash": "cf9cd201b167ad95",
+      "audioFilter": "standard",
+      "audio": "cf9cd201b167ad95-genkanji-ce8c503d.mp3"
     },
     {
       "id": "use-the-telephone",

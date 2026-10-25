@@ -1194,11 +1194,12 @@
       "pronunciation": "shachō wa raishū sapporo shisha ni ikimasu",
       "aiSuggested": true,
       "reviewNote": "Constructed. Vocabulary coverage for しゃちょう and さっぽろししゃ, both sentence-less; reuses the Lesson 6 destination frame with a future time word.",
-      "audio": "abd61a9efaf70db1.mp3",
-      "audioOriginal": "abd61a9efaf70db1.orig.mp3",
-      "audioAuto": "abd61a9efaf70db1.mp3",
+      "audioOriginal": "9d34759e39574337-genkanji-1ec2a171.orig.mp3",
+      "audioAuto": "9d34759e39574337-genkanji-1ec2a171.mp3",
       "audioMarked": true,
-      "audioTextHash": "abd61a9efaf70db1"
+      "audioTextHash": "9d34759e39574337",
+      "audioFilter": "standard",
+      "audio": "9d34759e39574337-genkanji-1ec2a171.mp3"
     },
     {
       "id": "fib-senshu-okusan-ni-aimashita",
@@ -1818,12 +1819,17 @@
       "aiSuggested": true,
       "addition": "qa-fix-2026-10",
       "additionReviewed": true,
-      "audio": "0bbebd0347c63531.mp3",
+      "audio": "f9-aimasen-manual-29921aa3.mp3",
       "audioOriginal": "0bbebd0347c63531.orig.mp3",
       "audioAuto": "0bbebd0347c63531.mp3",
       "audioMarked": true,
       "audioTextHash": "0bbebd0347c63531",
-      "additionDone": true
+      "additionDone": true,
+      "audioManual": "f9-aimasen-manual-29921aa3.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.781530821917808
+      }
     },
     {
       "id": "f9-aimasendeshita",

@@ -2073,6 +2073,14 @@ the book has taught by that card's unit in book position (`loadEarlierTaughtItem
 card's note glosses is reported by the INFO check `untaught-words-glossed` instead, since that is
 ruling 5's default fix already applied.
 
+Containment has one blind spot that cost a real card: a piece "seen inside an earlier card" counts
+as met, and in kana that can be an unrelated word. Two class-notes sentences in Lesson 9 used おきます
+("get up") with no card anywhere, and passed, because おき is inside おおきい ("big"). So verbs are
+also found by their endings (`src/cards/uncardedVerbs.js`), walking ます, てください, ないで or まえに
+back to the ます entry and looking that up exactly. kuromoji was tried first and rejected: with no
+kanji it cannot find word boundaries, and over Busy People it reported 445 fragments. Nouns have no
+ending to walk back from, so they stay with containment.
+
 #### The inventive author (F5), the only capped role
 
 It writes practice the book does not supply, and it is the only phase-2 role with a ceiling:

@@ -115,3 +115,28 @@ test("untaught words: a word the note glosses moves to the INFO glossed check", 
     cleanup();
   }
 });
+
+test("untaught words: a verb with no card is named even when its kana sit inside an earlier word", () => {
+  // Busy People Lesson 9: two class-notes sentences used おきます ("get up") with no card for it,
+  // and containment passed them because おき is inside おおきい ("big"). Owner review, 2026-10-30.
+  const { root, cleanup } = makeOutputRoot();
+  try {
+    writeUnit(root, "epubs/book/chapter-1", {
+      meta: { chapterNumber: 10 },
+      items: [
+        card("ookii", { target: "おおきい" }),
+        card("watashi", { target: "わたし" }),
+        card("hachiji", { target: "はちじ" }),
+      ],
+    });
+    writeUnit(root, "epubs/book/chapter-1-extras", {
+      meta: { chapterNumber: 10 },
+      items: [card("okimasu", { target: "わたしは、はちじにおきます", addition: "class-notes" })],
+    });
+    const found = findingsOf(root, "untaught-words");
+    assert.equal(found.length, 1, found.join("\n"));
+    assert.match(found[0], /"おきます"/);
+  } finally {
+    cleanup();
+  }
+});

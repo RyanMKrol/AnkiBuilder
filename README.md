@@ -393,7 +393,10 @@ in the note, a swap for a word the learner has met, or a cut when the grammar is
 note does gloss is listed by the INFO check `untaught-words-glossed` instead. It is a containment
 test over kana, not a parser, so a finding can be a false match (an unmarked name, an inflection it
 cannot see), which is why it is ACK and not FAIL. Its first run on Busy People Book 1 found 8
-unglossed instances and 5 glossed ones.
+unglossed instances and 5 glossed ones. Verbs are also found a second way, by their endings
+(`src/cards/uncardedVerbs.js`): ます, てください, ないでください or まえに is walked back to the
+ます entry the deck would card, which catches a verb whose kana happen to sit inside an unrelated
+word (おきます inside おおきい, missed for weeks until 2026-10-30).
 
 Every run opens with a coverage line (collections by kind, units by shape, directories nobody could
 place, checks skipped for want of input), so "clean" can never mean "I did not look".

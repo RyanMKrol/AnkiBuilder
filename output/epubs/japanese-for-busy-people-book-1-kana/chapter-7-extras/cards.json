@@ -762,11 +762,12 @@
       "reviewNote": "Constructed. Particle job (は vs も): member 2 of the minimal pair. も has not been used since Lesson 4 and appears on no Lesson 7 card.",
       "hint": "the \"too\" version — the particle changes, nothing else does",
       "note": "も (mo) replaces は (wa) rather than joining it; はも is never said.",
-      "audio": "9331649f8c4d112e.mp3",
-      "audioOriginal": "9331649f8c4d112e.orig.mp3",
-      "audioAuto": "9331649f8c4d112e.mp3",
+      "audioOriginal": "eef144f3c30f3a03-genkanji-85707ce1.orig.mp3",
+      "audioAuto": "eef144f3c30f3a03-genkanji-85707ce1.mp3",
       "audioMarked": true,
-      "audioTextHash": "9331649f8c4d112e"
+      "audioTextHash": "eef144f3c30f3a03",
+      "audioFilter": "standard",
+      "audio": "eef144f3c30f3a03-genkanji-85707ce1.mp3"
     },
     {
       "id": "raja-itsu-nihon-ni-kimashita-ka",

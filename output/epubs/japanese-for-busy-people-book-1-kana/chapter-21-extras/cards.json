@@ -172,11 +172,12 @@
       "category": "Grammar & Function Words",
       "target": "このえのしゃしんをとってもいいですか",
       "pronunciation": "kono e no shashin o totte mo ii desu ka",
-      "audio": "0b1649c4b9095d24.mp3",
-      "audioOriginal": "0b1649c4b9095d24.orig.mp3",
-      "audioAuto": "0b1649c4b9095d24.mp3",
+      "audioOriginal": "455e1d113bfea4d8-gen-c10e9359.orig.mp3",
+      "audioAuto": "455e1d113bfea4d8-gen-c10e9359.mp3",
       "audioMarked": true,
-      "audioTextHash": "0b1649c4b9095d24"
+      "audioTextHash": "455e1d113bfea4d8",
+      "audioFilter": "standard",
+      "audio": "455e1d113bfea4d8-gen-c10e9359.mp3"
     },
     {
       "id": "tsukue-ni-hon-okimasu",
@@ -468,11 +469,12 @@
       "target": "はいってもいいですか",
       "pronunciation": "haitte mo ii desu ka",
       "aiSuggested": true,
-      "audio": "91d58e04ddbfe8cf.mp3",
-      "audioOriginal": "91d58e04ddbfe8cf.orig.mp3",
-      "audioAuto": "91d58e04ddbfe8cf.mp3",
+      "audioOriginal": "355616ce2981fe2f-genkanji-6149aa4f.orig.mp3",
+      "audioAuto": "355616ce2981fe2f-genkanji-6149aa4f.mp3",
       "audioMarked": true,
-      "audioTextHash": "91d58e04ddbfe8cf"
+      "audioTextHash": "355616ce2981fe2f",
+      "audioFilter": "standard",
+      "audio": "355616ce2981fe2f-genkanji-6149aa4f.mp3"
     },
     {
       "id": "kirei-na-kaaten",
@@ -890,11 +892,12 @@
       "target": "ふたりですが、はいってもいいですか",
       "pronunciation": "futari desu ga, haitte mo ii desu ka",
       "aiSuggested": true,
-      "audio": "58be1f0662e6e271.mp3",
-      "audioOriginal": "58be1f0662e6e271.orig.mp3",
-      "audioAuto": "58be1f0662e6e271.mp3",
+      "audioOriginal": "cb0e52650205bc27-genkanji-e8a76c49.orig.mp3",
+      "audioAuto": "cb0e52650205bc27-genkanji-e8a76c49.mp3",
       "audioMarked": true,
-      "audioTextHash": "58be1f0662e6e271"
+      "audioTextHash": "cb0e52650205bc27",
+      "audioFilter": "standard",
+      "audio": "cb0e52650205bc27-genkanji-e8a76c49.mp3"
     },
     {
       "id": "toshokan-de-pasokon-tsukaimasu",
@@ -1005,12 +1008,13 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using はいる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "74d84bb587676aab.mp3",
-      "audioOriginal": "74d84bb587676aab.orig.mp3",
-      "audioAuto": "74d84bb587676aab.mp3",
+      "audioOriginal": "f26f3c75d3c81387-genkanji-ba82bba6.orig.mp3",
+      "audioAuto": "f26f3c75d3c81387-genkanji-ba82bba6.mp3",
       "audioMarked": true,
-      "audioTextHash": "74d84bb587676aab",
-      "additionDone": true
+      "audioTextHash": "f26f3c75d3c81387",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "f26f3c75d3c81387-genkanji-ba82bba6.mp3"
     },
     {
       "id": "keeki-wo-oku-mae-ni-shashin",

@@ -621,11 +621,12 @@
       "sourceOrder": 52,
       "pronunciation": "kumori",
       "ttsKanji": "曇り",
-      "audio": "d771652c84db9d0b.mp3",
-      "audioOriginal": "d771652c84db9d0b.orig.mp3",
-      "audioAuto": "d771652c84db9d0b.mp3",
+      "audioOriginal": "985d4469cb79df86-gen-53737f9d.orig.mp3",
+      "audioAuto": "985d4469cb79df86-gen-53737f9d.mp3",
       "audioMarked": true,
-      "audioTextHash": "d771652c84db9d0b"
+      "audioTextHash": "985d4469cb79df86",
+      "audioFilter": "standard",
+      "audio": "985d4469cb79df86-gen-53737f9d.mp3"
     },
     {
       "id": "r-664daafc9401",

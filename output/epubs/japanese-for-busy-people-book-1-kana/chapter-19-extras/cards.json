@@ -170,12 +170,12 @@
       "target": "もうふをおねがいできますか",
       "pronunciation": "mōfu o onegai dekimasu ka",
       "scene": "You phone room service from your hotel room to ask for something extra to sleep with",
-      "audioOriginal": "9ede9da3ce018508-genkanji-0741f3de.orig.mp3",
-      "audioAuto": "9ede9da3ce018508-genkanji-0741f3de.mp3",
+      "audioOriginal": "50169bb04eb6cc6f-gen-4ffd5bca.orig.mp3",
+      "audioAuto": "50169bb04eb6cc6f-gen-4ffd5bca.mp3",
       "audioMarked": true,
-      "audioTextHash": "9ede9da3ce018508",
+      "audioTextHash": "50169bb04eb6cc6f",
       "audioFilter": "standard",
-      "audio": "9ede9da3ce018508-genkanji-0741f3de.mp3"
+      "audio": "50169bb04eb6cc6f-gen-4ffd5bca.mp3"
     },
     {
       "id": "stop-in-front-of-bank",
@@ -233,11 +233,12 @@
       "category": "Directions",
       "target": "がっこうのさきをまがってください",
       "pronunciation": "gakkō no saki o magatte kudasai",
-      "audio": "25d4c71acff59cae.mp3",
-      "audioOriginal": "25d4c71acff59cae.orig.mp3",
-      "audioAuto": "25d4c71acff59cae.mp3",
+      "audioOriginal": "3d66ac292b946406-genkanji-d67ed9fb.orig.mp3",
+      "audioAuto": "3d66ac292b946406-genkanji-d67ed9fb.mp3",
       "audioMarked": true,
-      "audioTextHash": "25d4c71acff59cae"
+      "audioTextHash": "3d66ac292b946406",
+      "audioFilter": "standard",
+      "audio": "3d66ac292b946406-genkanji-d67ed9fb.mp3"
     },
     {
       "id": "fair-how-was-it",
@@ -579,11 +580,12 @@
       "target": "つぎのこうさてんをまっすぐいってください",
       "pronunciation": "tsugi no kōsaten o massugu itte kudasai",
       "note": "The を (o) marks the place the movement goes through. With まっすぐいきます (massugu ikimasu, \"go straight\") it is the place you go straight through; with まがります (magarimasu, \"turn\") it is the place you turn at.",
-      "audio": "bcf9ed90f9fae5a1.mp3",
-      "audioOriginal": "bcf9ed90f9fae5a1.orig.mp3",
-      "audioAuto": "bcf9ed90f9fae5a1.mp3",
+      "audioOriginal": "9995360f0b20a5aa-genkanji-ef87e1f0.orig.mp3",
+      "audioAuto": "9995360f0b20a5aa-genkanji-ef87e1f0.mp3",
       "audioMarked": true,
-      "audioTextHash": "bcf9ed90f9fae5a1"
+      "audioTextHash": "9995360f0b20a5aa",
+      "audioFilter": "standard",
+      "audio": "9995360f0b20a5aa-genkanji-ef87e1f0.mp3"
     },
     {
       "id": "keep-bag-until-five",
@@ -742,11 +744,17 @@
       "target": "ふたつめのかどをみぎにまがって、まっすぐいってください",
       "pronunciation": "futatsume no kado o migi ni magatte, massugu itte kudasai",
       "aiSuggested": true,
-      "audio": "bac52943265558ab.mp3",
-      "audioOriginal": "bac52943265558ab.orig.mp3",
-      "audioAuto": "bac52943265558ab.mp3",
+      "audioOriginal": "071aacbf85a9a2c9-genkanji-d65e1ed7.orig.mp3",
+      "audioAuto": "071aacbf85a9a2c9-genkanji-d65e1ed7.mp3",
       "audioMarked": true,
-      "audioTextHash": "bac52943265558ab"
+      "audioTextHash": "071aacbf85a9a2c9",
+      "audioFilter": "standard",
+      "audio": "corner-then-straight-manual-2d5b2fef.mp3",
+      "audioManual": "corner-then-straight-manual-2d5b2fef.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.401772688356164
+      }
     },
     {
       "id": "yes-certainly-hotel",
@@ -1223,12 +1231,13 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using いう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "7c1e625d792d0925.mp3",
-      "audioOriginal": "7c1e625d792d0925.orig.mp3",
-      "audioAuto": "7c1e625d792d0925.mp3",
+      "audioOriginal": "8e775f6e40f50a82-genkanji-920b92e4.orig.mp3",
+      "audioAuto": "8e775f6e40f50a82-genkanji-920b92e4.mp3",
       "audioMarked": true,
-      "audioTextHash": "7c1e625d792d0925",
-      "additionDone": true
+      "audioTextHash": "8e775f6e40f50a82",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "8e775f6e40f50a82-genkanji-920b92e4.mp3"
     },
     {
       "id": "shingou-wo-magaru-mae-ni-tomete",
@@ -1241,17 +1250,13 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using まがる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "shingou-wo-magaru-mae-ni-tomete-manual-35476c74.mp3",
-      "audioOriginal": "8f56d509e6b10254.orig.mp3",
-      "audioAuto": "8f56d509e6b10254.mp3",
+      "audioOriginal": "d6bb60f1521201af-genkanji-54dc7d2e.orig.mp3",
+      "audioAuto": "d6bb60f1521201af-genkanji-54dc7d2e.mp3",
       "audioMarked": true,
-      "audioTextHash": "8f56d509e6b10254",
-      "audioManual": "shingou-wo-magaru-mae-ni-tomete-manual-35476c74.mp3",
-      "audioTrim": {
-        "start": 0,
-        "end": 3.9075616438356167
-      },
-      "additionDone": true
+      "audioTextHash": "d6bb60f1521201af",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "d6bb60f1521201af-genkanji-54dc7d2e.mp3"
     },
     {
       "id": "nimotsu-wo-todokeru-mae-ni-denwa",

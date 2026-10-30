@@ -1,7 +1,7 @@
 {
   "note": "This deck is delivered to Anki via AnkiConnect (scripts/deliver-to-anki.mjs). Do NOT re-import the .apkg into that collection — deliver updates instead; a re-import creates duplicate notes.",
   "ankiParent": "Japan Trip Phrases",
-  "lastDeliveredAt": "2026-10-30T18:43:08.401Z",
+  "lastDeliveredAt": "2026-10-30T18:44:01.299Z",
   "deliveredCardIds": [
     "are-there-any-foods-you-dont-like",
     "are-you-open",

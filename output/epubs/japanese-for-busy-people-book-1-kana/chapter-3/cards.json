@@ -1391,7 +1391,7 @@
     },
     {
       "id": "fib-c3-meeting-end-q",
-      "english": "What time does the meeting end?",
+      "english": "Until what time is the meeting?",
       "category": "Time",
       "target": "かいぎはなんじまでですか",
       "pronunciation": "kaigi wa nan-ji made desu ka.",
@@ -1408,7 +1408,7 @@
     },
     {
       "id": "fib-c3-meeting-end-a",
-      "english": "It ends at 4:30.",
+      "english": "It's until 4:30.",
       "category": "Time",
       "target": "よじはんまでです",
       "pronunciation": "yo-ji han made desu.",

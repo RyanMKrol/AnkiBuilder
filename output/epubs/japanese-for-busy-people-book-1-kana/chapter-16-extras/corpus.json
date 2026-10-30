@@ -260,7 +260,7 @@
     },
     {
       "id": "x16a-event-nanji-kara",
-      "english": "What time does the event start?",
+      "english": "From what time is the event?",
       "category": "Time",
       "note": "A DIFFERENT から from the one in おもしろいイベントですから (omoshiroi ibento desu kara, \"it's an interesting event, so\"): this is から \"from\", marking a starting time (Lesson 3). Same particle, and only the sentence tells you which.",
       "reviewNote": "Extras wave 1 (from the book: Target Dialogue; job: the から/から contrast, in the one chapter that uses both).",
@@ -292,7 +292,7 @@
     },
     {
       "id": "x16c-rokuji-han-higashiguchi",
-      "english": "It starts at 6:30. Let's meet at 5:30 at the east exit of Shibuya Station.",
+      "english": "It's from 6:30. Let's meet at 5:30 at the east exit of Shibuya Station.",
       "category": "Time",
       "scene": "answering what time the concert starts, and proposing where to meet",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 1; job: から for a starting time and で for a meeting place in one turn, on a named exit).",
@@ -375,7 +375,7 @@
     },
     {
       "id": "x16c-juuji-minamiguchi",
-      "english": "It starts at 10:00. Let's meet at 9:00 at the south exit of Shinjuku Station.",
+      "english": "It's from 10:00. Let's meet at 9:00 at the south exit of Shinjuku Station.",
       "category": "Time",
       "scene": "answering what time the festival starts, and proposing where to meet",
       "reviewNote": "Extras wave 1 (from the book: EXERCISES VII, substitution 2; job: the only sentence みなみぐち appears in — the chapter teaches four exits and only two were ever used).",
@@ -532,7 +532,7 @@
     },
     {
       "id": "ex7-nanji-kara",
-      "english": "What time does the fireworks festival start?",
+      "english": "From what time is the fireworks festival?",
       "category": "Time",
       "scene": "asking what time an event starts",
       "hint": null,
@@ -542,7 +542,7 @@
     },
     {
       "id": "ex7-shichiji-kara",
-      "english": "It starts at 7:00. Let's meet at 6:00 at the west exit of Yokohama Station.",
+      "english": "It's from 7:00. Let's meet at 6:00 at the west exit of Yokohama Station.",
       "category": "Time",
       "scene": "arranging where to meet before an event",
       "hint": null,

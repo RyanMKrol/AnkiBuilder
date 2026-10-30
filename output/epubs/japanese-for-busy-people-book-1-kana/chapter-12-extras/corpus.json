@@ -31,7 +31,8 @@
       "target": "おんせんもあります",
       "note": "も (mo) pushes が (ga) out: a noun cannot carry both, so おんせんが becomes おんせんも.",
       "aiSuggested": true,
-      "reviewNote": "Target Dialogue, second half of Nakamura's reply. The lesson's only も + あります example."
+      "reviewNote": "Target Dialogue, second half of Nakamura's reply. The lesson's only も + あります example.",
+      "scene": "after naming other things the town has"
     },
     {
       "id": "ex12-doyoubi-ni-ema-san-to-nikkou-ni-ikimasu",
@@ -336,7 +337,8 @@
       "target": "えきのちかくにゆうびんきょくもあります",
       "note": "も (mo) marks the post office as an addition to something already mentioned. With ゆうびんきょくが (yūbinkyoku ga) instead, it would be presented as the first piece of news.",
       "aiSuggested": true,
-      "reviewNote": "Particle job: the deck's only も + あります is the elliptical おんせんもあります, with no place phrase. This gives the full placeに + noun も + あります frame. Constructed."
+      "reviewNote": "Particle job: the deck's only も + あります is the elliptical おんせんもあります, with no place phrase. This gives the full placeに + noun も + あります frame. Constructed.",
+      "scene": "after saying there is a bank near the station"
     },
     {
       "id": "ex12-kamakura-ni-nani-ga-arimasu-ka",
@@ -399,7 +401,8 @@
       "target": "かいぎしつにスミスさんもいます",
       "note": "も (mo) pushes out が (ga) for animate subjects exactly as it does for inanimate ones, so もいます (mo imasu) and もあります (mo arimasu) behave the same way.",
       "aiSuggested": true,
-      "reviewNote": "Particle job: も + います was completely empty across the index and Wave 1, which only had も + あります. Constructed."
+      "reviewNote": "Particle job: も + います was completely empty across the index and Wave 1, which only had も + あります. Constructed.",
+      "scene": "after saying Tanaka-san is in the meeting room"
     },
     {
       "id": "ex12-teemapaaku-ya-onsen-ga-arimasu",

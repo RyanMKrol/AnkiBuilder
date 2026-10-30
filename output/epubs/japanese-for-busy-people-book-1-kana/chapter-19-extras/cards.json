@@ -127,7 +127,7 @@
     },
     {
       "id": "taxi-near-tokyo-tower",
-      "english": "To near Tokyo Tower, please.",
+      "english": "As far as the area near Tokyo Tower, please.",
       "category": "Transport",
       "target": "とうきょうタワーのちかくまでおねがいします",
       "pronunciation": "Tōkyō Tawā no chikaku made onegai shimasu",
@@ -318,7 +318,7 @@
     },
     {
       "id": "bus-to-station",
-      "english": "Please go to the station by bus.",
+      "english": "Please go as far as the station by bus.",
       "category": "Transport",
       "target": "バスでえきまでいってください",
       "pronunciation": "basu de eki made itte kudasai",
@@ -800,7 +800,7 @@
     },
     {
       "id": "taxi-to-ebisu-station",
-      "english": "To Ebisu Station, please.",
+      "english": "As far as Ebisu Station, please.",
       "category": "Transport",
       "target": "えびすえきまでおねがいします",
       "pronunciation": "Ebisu-eki made onegai shimasu",
@@ -903,7 +903,7 @@
     },
     {
       "id": "request-send-package-by-parcel",
-      "english": "Please send this package to Chan-san at the Osaka branch by parcel delivery service.",
+      "english": "Please send this package by parcel delivery to Chan-san of the Osaka branch.",
       "category": "Work & Occupations",
       "target": "おおさかししゃのチャンさんにたくはいびんでこのにもつをおくってください",
       "pronunciation": "Ōsaka shisha no Chan-san ni takuhaibin de kono nimotsu o okutte kudasai",
@@ -955,7 +955,7 @@
     },
     {
       "id": "heading-to-osaka-branch",
-      "english": "Are you now headed to the Osaka branch office?",
+      "english": "From now, is it the Osaka branch office?",
       "category": "Work & Occupations",
       "target": "いまからおおさかししゃですか",
       "pronunciation": "ima kara Ōsaka shisha desu ka",
@@ -1022,7 +1022,7 @@
     },
     {
       "id": "through-the-park",
-      "english": "Please go straight through the park.",
+      "english": "Please go straight through the inside of the park.",
       "category": "Directions",
       "target": "こうえんのなかをまっすぐいってください",
       "pronunciation": "kōen no naka o massugu itte kudasai",
@@ -1138,7 +1138,7 @@
     },
     {
       "id": "nimotsu-go-ji-made-azukatte",
-      "english": "Please keep my bag here until 5:00 p.m.",
+      "english": "Please keep the luggage until 5:00.",
       "category": "Travel & Tourism",
       "target": "にもつを5じまであずかってください",
       "pronunciation": "nimotsu o go-ji made azukatte kudasai",
@@ -1175,7 +1175,8 @@
       "audioOriginal": "bf8de8568c87df0f.orig.mp3",
       "audioAuto": "bf8de8568c87df0f.mp3",
       "audioMarked": true,
-      "audioTextHash": "bf8de8568c87df0f"
+      "audioTextHash": "bf8de8568c87df0f",
+      "note": "ぎんざどおり (Ginza-dōri) is the name of Ginza's main street. どおり (dōri) is とおり (tōri, \"street, avenue\"), which turns to どおり after a name, the same sound change as ほん (hon) → さんぼん (sanbon). を (o) marks the street you travel along, as in このみちをまっすぐいってください (kono michi o massugu itte kudasai)."
     },
     {
       "id": "iroiro-catalog",
@@ -1301,7 +1302,7 @@
     },
     {
       "id": "shachou-ni-tsutaeru-mae-ni-oshiete",
-      "english": "Please let me know before you pass it on to the president.",
+      "english": "Before you relay it to the president, please tell me.",
       "category": "Grammar & Function Words",
       "target": "しゃちょうにつたえるまえに、わたしにおしえてください",
       "pronunciation": "shachō ni tsutaeru mae ni, watashi ni oshiete kudasai",

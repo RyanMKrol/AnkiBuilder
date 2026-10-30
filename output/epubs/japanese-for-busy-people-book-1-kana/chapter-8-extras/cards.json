@@ -274,7 +274,7 @@
       "target": "エマさんもおちゃをのみます",
       "pronunciation": "ema-san mo ocha o nomimasu",
       "note": null,
-      "scene": null,
+      "scene": "after saying someone else drinks green tea",
       "fillInBlank": true,
       "aiSuggested": true,
       "addition": "nihongo-102-2026-08",
@@ -712,7 +712,8 @@
       "audioOriginal": "c0397d9fbeafd9c3.orig.mp3",
       "audioAuto": "c0397d9fbeafd9c3.mp3",
       "audioMarked": true,
-      "audioTextHash": "c0397d9fbeafd9c3"
+      "audioTextHash": "c0397d9fbeafd9c3",
+      "scene": "after saying someone else is going to see kabuki"
     },
     {
       "id": "td-doyoubi-tenpura-tabemasu",

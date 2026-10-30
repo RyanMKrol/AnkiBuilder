@@ -852,7 +852,7 @@
       "english": "There is also a ramen shop near here.",
       "category": "Food",
       "target": "このちかくにラーメンやもあります",
-      "scene": null,
+      "scene": "after saying there is a soba shop near here",
       "hint": "a \"there is\" sentence: \"near\" is the noun for \"the area near\", so it takes にあります (ni arimasu)",
       "note": "Minimal pair with この ちかくに ラーメンやが あります. も replaces が outright to add \"as well\", you never say ラーメンやもが.",
       "aiSuggested": true,

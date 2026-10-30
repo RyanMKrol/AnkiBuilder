@@ -767,7 +767,8 @@
       "audioMarked": true,
       "audioTextHash": "eef144f3c30f3a03",
       "audioFilter": "standard",
-      "audio": "eef144f3c30f3a03-genkanji-85707ce1.mp3"
+      "audio": "eef144f3c30f3a03-genkanji-85707ce1.mp3",
+      "scene": "after saying someone else is going by Shinkansen"
     },
     {
       "id": "raja-itsu-nihon-ni-kimashita-ka",
@@ -1073,7 +1074,7 @@
     },
     {
       "id": "w2-natsuyasumi-shichigatsu-kara",
-      "english": "The summer vacation starts in July.",
+      "english": "The summer vacation is from July.",
       "category": "Time",
       "target": "なつやすみは7がつからです",
       "pronunciation": "natsuyasumi wa shichi-gatsu kara desu",

@@ -121,7 +121,7 @@
     },
     {
       "id": "how-long-to-get-here",
-      "english": "How long will it take you to get here?",
+      "english": "How long does it take to come as far as here?",
       "category": "Transport",
       "target": "ここまでどのくらいかかりますか",
       "pronunciation": "koko made dono kurai kakarimasu ka",
@@ -603,7 +603,7 @@
     },
     {
       "id": "bus-to-airport-one-hour",
-      "english": "It takes one hour to the airport by bus.",
+      "english": "It takes one hour by bus as far as the airport.",
       "category": "Time",
       "target": "バスでくうこうまで1じかんかかります",
       "pronunciation": "basu de kūkō made ichi-jikan kakarimasu",

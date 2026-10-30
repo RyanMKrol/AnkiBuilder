@@ -68,7 +68,7 @@
       "target": "レストランにもみずがあります",
       "pronunciation": "resutoran ni mo mizu ga arimasu",
       "note": null,
-      "scene": null,
+      "scene": "after saying there is water at the hotel",
       "fillInBlank": true,
       "aiSuggested": true,
       "audioOriginal": "a277563445891c17-genkanji-ff3dd911.orig.mp3",
@@ -126,7 +126,8 @@
       "audioOriginal": "868fcf228d4482ed.orig.mp3",
       "audioAuto": "868fcf228d4482ed.mp3",
       "audioMarked": true,
-      "audioTextHash": "868fcf228d4482ed"
+      "audioTextHash": "868fcf228d4482ed",
+      "scene": "after naming other things the town has"
     },
     {
       "id": "ex12-doyoubi-ni-ema-san-to-nikkou-ni-ikimasu",
@@ -756,7 +757,8 @@
       "audioOriginal": "572a9bc49e78bc48.orig.mp3",
       "audioAuto": "572a9bc49e78bc48.mp3",
       "audioMarked": true,
-      "audioTextHash": "572a9bc49e78bc48"
+      "audioTextHash": "572a9bc49e78bc48",
+      "scene": "after saying there is a bank near the station"
     },
     {
       "id": "ex12-kamakura-ni-nani-ga-arimasu-ka",
@@ -874,7 +876,8 @@
       "audioOriginal": "41169ad211f816a8.orig.mp3",
       "audioAuto": "41169ad211f816a8.mp3",
       "audioMarked": true,
-      "audioTextHash": "41169ad211f816a8"
+      "audioTextHash": "41169ad211f816a8",
+      "scene": "after saying Tanaka-san is in the meeting room"
     },
     {
       "id": "ex12-teemapaaku-ya-onsen-ga-arimasu",

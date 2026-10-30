@@ -917,6 +917,16 @@
       "target": "スミスさんはすずきさんにレストランのばしょをおしえませんでした",
       "reviewNote": "QA fix pass 2026-10, answers chapter-9/-/book-gap/2: Exercise I's おしえます row, past negative cell, on the same sentence as the base unit's key sentence for the verb.",
       "aiSuggested": true
+    },
+    {
+      "id": "okimasu-get-up",
+      "english": "Get up, wake up",
+      "category": "Other",
+      "target": "おきます",
+      "scene": "getting out of bed in the morning",
+      "note": "Used with a clock time and に (ni): はちじにおきます (hachi-ji ni okimasu, \"I get up at eight\").",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: the verb in this unit’s two Nihongo 102 sentences (まいにち、なんじにおきますか and わたしは、はちじにおきます) had no word card of its own. The scene keeps it apart from おきます \"put, place\" (Lesson 21), which sounds the same."
     }
   ]
 }

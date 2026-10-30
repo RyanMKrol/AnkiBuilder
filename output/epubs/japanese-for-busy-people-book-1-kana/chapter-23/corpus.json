@@ -906,6 +906,82 @@
       "excluded": true,
       "excludedBy": "backward-dedup",
       "excludedReason": "Already taught: chapter-15/hanasu-dict-form (same target and sense)"
+    },
+    {
+      "id": "te-form-dekite",
+      "english": "Be done, be ready (て-form of できます)",
+      "category": "Grammar & Function Words",
+      "target": "できて",
+      "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught できます (Lesson 23)."
+    },
+    {
+      "id": "nai-dekinai",
+      "english": "Is not done, is not ready",
+      "category": "Grammar & Function Words",
+      "target": "できない",
+      "note": "Casual: for friends and family. The polite equivalent is できません. Regular 2: ます (masu) → ない (nai), the same change as たべます (tabemasu) → たべない (tabenai).",
+      "hint": "casual form",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught できます (Lesson 23)."
+    },
+    {
+      "id": "te-form-yoyakushite",
+      "english": "Make a reservation (て-form of よやくします)",
+      "category": "Grammar & Function Words",
+      "target": "よやくして",
+      "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught よやくします (Lesson 23)."
+    },
+    {
+      "id": "nai-yoyakushinai",
+      "english": "Does not make a reservation",
+      "category": "Grammar & Function Words",
+      "target": "よやくしない",
+      "note": "Casual: for friends and family. The polite equivalent is よやくしません. Irregular (a する verb): します (shimasu) → しない (shinai), the same change as します → しない on its own.",
+      "hint": "casual form",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught よやくします (Lesson 23)."
+    },
+    {
+      "id": "te-form-tsukutte",
+      "english": "Make (て-form of つくります)",
+      "category": "Grammar & Function Words",
+      "target": "つくって",
+      "note": "Regular 1: り (ri) → って (tte), the same change as かえります (kaerimasu) → かえって (kaette).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught つくります (Lesson 23)."
+    },
+    {
+      "id": "nai-tsukuranai",
+      "english": "Does not make",
+      "category": "Grammar & Function Words",
+      "target": "つくらない",
+      "note": "Casual: for friends and family. The polite equivalent is つくりません. Regular 1: り (ri) → ら (ra) before ない, the same change as かえります (kaerimasu) → かえらない (kaeranai).",
+      "hint": "casual form",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught つくります (Lesson 23)."
+    },
+    {
+      "id": "te-form-owatte",
+      "english": "Finish (て-form of おわります)",
+      "category": "Grammar & Function Words",
+      "target": "おわって",
+      "note": "Regular 1: り (ri) → って (tte), the same change as かえります (kaerimasu) → かえって (kaette).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught おわります (Lesson 23)."
+    },
+    {
+      "id": "nai-owaranai",
+      "english": "Does not finish",
+      "category": "Grammar & Function Words",
+      "target": "おわらない",
+      "note": "Casual: for friends and family. The polite equivalent is おわりません. Regular 1: り (ri) → ら (ra) before ない, the same change as かえります (kaerimasu) → かえらない (kaeranai).",
+      "hint": "casual form",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught おわります (Lesson 23)."
     }
   ]
 }

@@ -69,7 +69,7 @@
     {
       "id": "taxi-near-tokyo-tower",
       "target": "とうきょうタワーのちかくまでおねがいします",
-      "english": "To near Tokyo Tower, please.",
+      "english": "As far as the area near Tokyo Tower, please.",
       "category": "Transport",
       "note": "まで (made) here means \"as far as\" a place, not \"until\" a time. The place comes before まで, and おねがいします (onegai shimasu) from Lesson 2 asks the driver to take you there."
     },
@@ -169,7 +169,7 @@
     {
       "id": "bus-to-station",
       "target": "バスでえきまでいってください",
-      "english": "Please go to the station by bus.",
+      "english": "Please go as far as the station by bus.",
       "category": "Transport",
       "aiSuggested": true
     },
@@ -439,7 +439,7 @@
     {
       "id": "taxi-to-ebisu-station",
       "target": "えびすえきまで おねがいします",
-      "english": "To Ebisu Station, please.",
+      "english": "As far as Ebisu Station, please.",
       "category": "Transport",
       "scene": "Getting into a taxi",
       "fillInBlank": true
@@ -500,7 +500,7 @@
     {
       "id": "request-send-package-by-parcel",
       "target": "おおさかししゃの チャンさんに たくはいびんで この にもつを おくってください",
-      "english": "Please send this package to Chan-san at the Osaka branch by parcel delivery service.",
+      "english": "Please send this package by parcel delivery to Chan-san of the Osaka branch.",
       "category": "Work & Occupations",
       "fillInBlank": true
     },
@@ -529,7 +529,7 @@
     {
       "id": "heading-to-osaka-branch",
       "target": "いまからおおさかししゃですか",
-      "english": "Are you now headed to the Osaka branch office?",
+      "english": "From now, is it the Osaka branch office?",
       "category": "Work & Occupations",
       "note": "いまから (ima kara) means \"from now\". A place + ですか (desu ka) here asks whether that is where the person is going, with です (desu) standing in for いきます (ikimasu, \"go\")."
     },
@@ -565,7 +565,7 @@
     {
       "id": "through-the-park",
       "target": "こうえんのなかをまっすぐいってください",
-      "english": "Please go straight through the park.",
+      "english": "Please go straight through the inside of the park.",
       "category": "Directions",
       "aiSuggested": true
     },
@@ -630,7 +630,7 @@
     {
       "id": "nimotsu-go-ji-made-azukatte",
       "target": "にもつを5じまであずかってください",
-      "english": "Please keep my bag here until 5:00 p.m.",
+      "english": "Please keep the luggage until 5:00.",
       "category": "Travel & Tourism",
       "scene": "Checking out of a hotel, you ask the front desk to hold your luggage during the day"
     },
@@ -647,7 +647,8 @@
       "target": "ぎんざどおりを まっすぐ いってください",
       "english": "Please go straight along Ginza Street.",
       "category": "Directions",
-      "fillInBlank": true
+      "fillInBlank": true,
+      "note": "ぎんざどおり (Ginza-dōri) is the name of Ginza's main street. どおり (dōri) is とおり (tōri, \"street, avenue\"), which turns to どおり after a name, the same sound change as ほん (hon) → さんぼん (sanbon). を (o) marks the street you travel along, as in このみちをまっすぐいってください (kono michi o massugu itte kudasai)."
     },
     {
       "id": "iroiro-catalog",
@@ -719,7 +720,7 @@
     },
     {
       "id": "shachou-ni-tsutaeru-mae-ni-oshiete",
-      "english": "Please let me know before you pass it on to the president.",
+      "english": "Before you relay it to the president, please tell me.",
       "category": "Grammar & Function Words",
       "target": "しゃちょうにつたえるまえに、わたしにおしえてください",
       "note": "つたえる (relay a message). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then てください (please).",

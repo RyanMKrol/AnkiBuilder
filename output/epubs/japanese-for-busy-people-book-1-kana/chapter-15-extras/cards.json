@@ -1503,6 +1503,17 @@
       "excluded": true,
       "excludedBy": "qa-fix-2026-10",
       "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: the sentence rests on a verb clause modifying a noun (にあう ふく), which this book does not teach. にあう keeps its bare card."
+    },
+    {
+      "id": "okiru-no-ga-suki-ja-nai",
+      "english": "I don't like getting up.",
+      "category": "Grammar & Function Words",
+      "target": "おきるのがすきじゃありません",
+      "pronunciation": "okiru no ga suki ja arimasen",
+      "note": "A dictionary form before のがすき (no ga suki) turns the verb into something you can like: おきる (okiru, \"get up\") + の (no) + がすきじゃありません (ga suki ja arimasen, \"don't like\").",
+      "reviewNote": "Owner request 2026-10-30: a sentence for おきる, added to Lesson 15 in the same batch, on this lesson's のがすきです frame.",
+      "aiSuggested": true,
+      "addition": "verb-gaps-sweep-2026-10-30"
     }
   ]
 }

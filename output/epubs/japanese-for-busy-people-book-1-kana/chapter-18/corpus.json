@@ -772,6 +772,24 @@
       "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (チェックします is from Lesson 17)."
+    },
+    {
+      "id": "te-form-karite",
+      "english": "Borrow (て-form of かります)",
+      "category": "Grammar & Function Words",
+      "target": "かりて",
+      "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete). Not かって (katte), the て-form of かいます (kaimasu, \"buy\").",
+      "reviewNote": "Owner request 2026-10-30: found by the rewritten carried-forms check, which computes the exact form. The 2026-10 sweep missed it because the old candidate match took かって (katte, \"buy\") for it. Placed in Lesson 18, which introduces the て-form (かります is from Lesson 14).",
+      "aiSuggested": true
+    },
+    {
+      "id": "te-form-okite",
+      "english": "Get up, wake up (て-form of おきます)",
+      "category": "Grammar & Function Words",
+      "target": "おきて",
+      "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete). Not おいて (oite), the て-form of おきます (okimasu) \"put\".",
+      "reviewNote": "Owner request 2026-10-30: the て-form of おきます \"get up\", whose word card was added today. Placed in Lesson 18, which introduces the て-form.",
+      "aiSuggested": true
     }
   ]
 }

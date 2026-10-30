@@ -1125,6 +1125,17 @@
       "audioMarked": true,
       "audioTextHash": "3a367506a201a4f6",
       "additionDone": true
+    },
+    {
+      "id": "okiru-dict-form",
+      "english": "Get up, wake up (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "おきる",
+      "pronunciation": "okiru",
+      "note": "Dictionary form of おきます (okimasu, \"get up\", Lesson 9), which is also its casual form. Regular 2: ます becomes る. A different verb from おく (oku, \"put\"), which comes later.",
+      "reviewNote": "Owner request 2026-10-30: おきます \"get up\" got its word card today (Lesson 9 extras), so it is owed the dictionary form like every other verb. Placed in Lesson 15, which introduces the dictionary form.",
+      "aiSuggested": true,
+      "addition": "verb-gaps-sweep-2026-10-30"
     }
   ]
 }

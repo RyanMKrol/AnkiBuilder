@@ -734,6 +734,15 @@
       "note": "Dictionary form of にあいます (niaimasu, \"suit\", Lesson 14), which is also its casual form. Regular 1: the い before ます becomes う.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sweep giving every verb the deck teaches a dictionary-form card. The book never prints this one. Placed in the lesson that taught にあいます (Lesson 14), moved to Lesson 15 where the dictionary form itself is taught, since the verb came earlier."
+    },
+    {
+      "id": "okiru-dict-form",
+      "english": "Get up, wake up (dictionary form)",
+      "category": "Grammar & Function Words",
+      "target": "おきる",
+      "note": "Dictionary form of おきます (okimasu, \"get up\", Lesson 9), which is also its casual form. Regular 2: ます becomes る. A different verb from おく (oku, \"put\"), which comes later.",
+      "reviewNote": "Owner request 2026-10-30: おきます \"get up\" got its word card today (Lesson 9 extras), so it is owed the dictionary form like every other verb. Placed in Lesson 15, which introduces the dictionary form.",
+      "aiSuggested": true
     }
   ]
 }

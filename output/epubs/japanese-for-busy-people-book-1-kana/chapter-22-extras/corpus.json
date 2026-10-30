@@ -511,6 +511,15 @@
       "note": "きにする (worry about) + のは, \"worrying\" (the の turns the verb into a thing, as in のがすきです), then よくないです (isn't good). The second half is this lesson's きにしないでください.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using きにする, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "wasuremasu-forget",
+      "english": "Forget",
+      "category": "Other",
+      "target": "わすれます",
+      "note": "Regular 2. Used in わすれないでください (wasurenai de kudasai, \"please don't forget\").",
+      "reviewNote": "Owner request 2026-10-30: the sentence わすれないでください used this verb with no word card anywhere in the deck; the new verb scan in the untaught-words check found it.",
+      "aiSuggested": true
     }
   ]
 }

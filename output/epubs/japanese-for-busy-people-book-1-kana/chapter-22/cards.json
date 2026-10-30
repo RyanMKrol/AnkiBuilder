@@ -2199,6 +2199,18 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught きにします (Lesson 22).",
       "addition": "verb-forms-sweep-2026-10"
+    },
+    {
+      "id": "nai-okinai",
+      "english": "Does not get up",
+      "category": "Grammar & Function Words",
+      "target": "おきない",
+      "pronunciation": "okinai",
+      "hint": "casual form",
+      "note": "Casual: for friends and family. The polite equivalent is おきません. Regular 2: ます (masu) → ない (nai), the same change as たべます (tabemasu) → たべない (tabenai). Not おかない (okanai, \"does not put\").",
+      "reviewNote": "Owner request 2026-10-30: the ない-form of おきます \"get up\", whose word card was added today. Placed in Lesson 22, which introduces the ない-form.",
+      "aiSuggested": true,
+      "addition": "verb-gaps-sweep-2026-10-30"
     }
   ]
 }

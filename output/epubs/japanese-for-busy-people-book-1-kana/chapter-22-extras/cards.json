@@ -934,6 +934,17 @@
       "audioMarked": true,
       "audioTextHash": "1054059d40c1ce6d",
       "additionDone": true
+    },
+    {
+      "id": "wasuremasu-forget",
+      "english": "Forget",
+      "category": "Other",
+      "target": "わすれます",
+      "pronunciation": "wasuremasu",
+      "note": "Regular 2. Used in わすれないでください (wasurenai de kudasai, \"please don't forget\").",
+      "reviewNote": "Owner request 2026-10-30: the sentence わすれないでください used this verb with no word card anywhere in the deck; the new verb scan in the untaught-words check found it.",
+      "aiSuggested": true,
+      "addition": "verb-gaps-sweep-2026-10-30"
     }
   ]
 }

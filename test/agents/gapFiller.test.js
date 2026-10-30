@@ -128,3 +128,44 @@ test("the prompt tells the filler a carried form is owed, not declined", () => {
   assert.match(prompt, /A gap with `carriedForm` is not in the chapter, and is still owed/);
   assert.match(prompt, /\(dictionary form\)/);
 });
+
+test("a carried form with a computed target overrules a wrong one, keyed so forms stay apart", () => {
+  const gaps = [
+    { key: "のみます (て-form)", target: "のみます", carriedForm: "て-form", expected: "のんで" },
+    {
+      key: "のみます (ない-form)",
+      target: "のみます",
+      carriedForm: "ない-form",
+      expected: "のまない",
+    },
+  ];
+  const out = fillCoverageGaps({
+    gaps,
+    items: CORPUS,
+    chapterFilePath: "/tmp/ch.xhtml",
+    targetLanguage: "Japanese",
+    runClaude: reply({
+      items: [
+        {
+          id: "nonde",
+          target: "のみて",
+          english: "Drink (て-form of のみます)",
+          fillsGap: "のみます (て-form)",
+        },
+        {
+          id: "nomanai",
+          target: "のまない",
+          english: "Does not drink",
+          fillsGap: "のみます (ない-form)",
+        },
+      ],
+      declined: [],
+    }),
+  });
+  const [nonde, nomanai] = out.items;
+  assert.equal(nonde.target, "のんで");
+  assert.match(nonde.reviewNote, /wrote のみて/);
+  assert.equal(nomanai.target, "のまない");
+  assert.doesNotMatch(nomanai.reviewNote, /wrote/);
+  assert.deepEqual(out.unfilled, []);
+});

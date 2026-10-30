@@ -249,6 +249,18 @@ check reports any finished lesson still missing one. A phrase is covered by its 
 テニスをします needs no テニスをする once する has a card. This is the one exception to "hand-authored cards go in extras": a missing form of a word
 the base unit already teaches is still that unit's vocabulary.
 
+On 2026-10-30 the owner extended this to the て-form and the ない-form (batch
+`verb-forms-sweep-2026-10`, 80 cards), with two differences. Those forms get NO extras sentence each,
+because the extras already practise them in てください and てもいいですか sentences. And their target
+is computed, not written: the check derives it from the verb's dictionary form, so a て-form card can
+only be wrong if the dictionary form is. The casual past and the polite ません / ました forms were
+offered and declined as mechanical once these are known; add them only if review shows they are not.
+
+One case the check cannot see by itself: two verbs with the same ます form (おきます "put" and
+"get up"). Until the second verb has its own dictionary-form card, the first one's cards look like
+they cover it. When a homophone verb is added, card its dictionary form by hand, and from then on the
+check tells the two apart by gloss.
+
 **Every form the chapter DOES teach earns its own card, and that is the half most often missed.** A
 learner who meets あいます and never meets あいました, あいません or あいませんでした knows one form
 and cannot use the word. The paradigm worth carding is declared per language in

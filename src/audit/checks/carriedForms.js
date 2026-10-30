@@ -4,7 +4,8 @@ import { parseUnitDir } from "../../model/unitDir.js";
 import { missingCarriedForms } from "../../cards/carriedForms.js";
 
 /**
- * Verbs that never got a form the book had already taught (src/cards/carriedForms.js).
+ * Verbs that never got a form the book had already taught (src/cards/carriedForms.js): the
+ * dictionary form, and since 2026-10-30 the て-form and the ない-form.
  *
  * Phase 1 fills these as it builds, so on a new lesson this should find nothing. It exists for the
  * lessons built before that, and for a reviewer who excludes a carried card: the gap reopens, and
@@ -38,8 +39,14 @@ export const carriedFormsCheck = defineCheck({
       const priorItems = ordered
         .filter((u) => u.number < number)
         .flatMap((u) => u.unit.items ?? []);
+      // A form carded in a LATER lesson is still in the deck: the learner has it, just not where the
+      // rule would have put it, so it is not reported.
+      const laterItems = ordered
+        .filter((u) => u.number > number)
+        .flatMap((u) => u.unit.items ?? []);
       const gaps = missingCarriedForms(unit.items ?? [], {
         priorItems,
+        laterItems,
         languageCode: unit.meta?.targetLanguage,
       });
       if (gaps === null) {
@@ -51,8 +58,9 @@ export const carriedFormsCheck = defineCheck({
           key: `${unit.name}/${gap.sourceId ?? gap.target}/${gap.carriedForm}`,
           message:
             `${unit.name}: ${gap.target} (${gap.english || "no gloss"}) has no ${gap.carriedForm} ` +
-            `card, and the book taught that form by this lesson. Add it to ${unit.name} as an ` +
-            `AI-suggested card, with an extras sentence that uses it.`,
+            `card${gap.expected ? ` (${gap.expected})` : ""}, and the book taught that form by this ` +
+            `lesson. Add it to ${unit.name} as an AI-suggested card` +
+            (gap.wantsSentence ? ", with an extras sentence that uses it." : "."),
         });
       }
     }

@@ -1479,6 +1479,15 @@ them `aiSuggested`, because unlike the adversary's gaps they really are not in t
 `carried-forms` preflight check (ACK) runs the same function over finished lessons. Owner ruling
 2026-10-12.
 
+On 2026-10-30 the same machinery took on the て-form (Busy People Lesson 18) and the ない-form
+(Lesson 22). Those two are not left to the model: once a verb has its dictionary-form card its class
+is settled, so the gap carries `expected`, the exact form, and the filler's target is replaced with it
+if they disagree. Each carried gap also has a `key` (`のみます (て-form)`) for `fillsGap` to answer
+with, because a verb taught after Lesson 22 owes three forms in one run. The check passes later
+lessons in as well, so a form carded later than the rule would have placed it is not reported. The
+casual past and the polite forms were deliberately not added: they are mechanical once these two are
+known.
+
 ### The semantic deduplicator: the one agent that reconciles rather than produces
 
 Every other agent in the pipeline is a producer. Nine of them across the two phases, and each either

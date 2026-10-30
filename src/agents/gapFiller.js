@@ -82,7 +82,7 @@ export function unfilledGaps(gaps, { items = [], declined = [] } = {}) {
   const filled = new Set(items.map((i) => i.fillsGap).filter(Boolean));
   const refused = new Set(declined.map((d) => d.gap).filter(Boolean));
   return (gaps ?? [])
-    .map((g) => g.target)
+    .map((g) => g.key ?? g.target)
     .filter(Boolean)
     .filter((target) => !filled.has(target) && !refused.has(target));
 }
@@ -126,18 +126,29 @@ export function fillCoverageGaps({
   // The one exception is a CARRIED form (src/cards/carriedForms.js): a form an earlier lesson taught
   // that this chapter never prints. That card really is not from the source, so it is stamped, and
   // the reviewer sees why on the card rather than having to guess.
-  const carried = new Map(gaps.filter((g) => g.carriedForm).map((g) => [g.target, g]));
+  //
+  // A carried gap with `expected` has had its form computed (the て-form and ない-form follow from
+  // the dictionary form), and the computed form wins over whatever the model wrote. The card is
+  // still the model's, English and note included; only a wrong target is replaced, and the
+  // reviewNote says so.
+  const carried = new Map(gaps.filter((g) => g.carriedForm).map((g) => [g.key ?? g.target, g]));
   const filled = (Array.isArray(parsed.items) ? parsed.items : []).map((item) => {
     const gap = carried.get(item.fillsGap);
     if (!gap) return { ...item, producedBy: ROLE_ID };
+    const corrected = gap.expected && item.target !== gap.expected;
+    const why =
+      item.reviewNote ??
+      `The book taught the ${gap.carriedForm} in an earlier lesson and never prints it for ` +
+        `${gap.target}, so it was added here (owner rulings 2026-10-12 and 2026-10-30).`;
     return {
       ...item,
+      ...(corrected ? { target: gap.expected } : {}),
       producedBy: ROLE_ID,
       aiSuggested: true,
-      reviewNote:
-        item.reviewNote ??
-        `The book taught the ${gap.carriedForm} in an earlier lesson and never prints it for ` +
-          `${gap.target}, so it was added here (owner ruling 2026-10-12).`,
+      reviewNote: corrected
+        ? `${why} The filler wrote ${item.target}; the target was set to the computed ` +
+          `${gap.carriedForm}, ${gap.expected}.`
+        : why,
     };
   });
   const declined = Array.isArray(parsed.declined) ? parsed.declined : [];

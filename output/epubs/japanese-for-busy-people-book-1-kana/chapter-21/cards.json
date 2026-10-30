@@ -1266,6 +1266,17 @@
       "audioMarked": true,
       "audioTextHash": "7121484aa5864118",
       "additionDone": true
+    },
+    {
+      "id": "yasunde-day-off-te-form",
+      "english": "Take a day off (て-form)",
+      "category": "Work & Occupations",
+      "target": "やすんで",
+      "pronunciation": "yasunde",
+      "note": "Te-form of やすみます (yasumimasu, \"take a day off\"). Regular 1: the み before ます becomes んで, the same change as のみます (nomimasu) → のんで (nonde). Used before もいいですか (mo ii desu ka) to ask permission: あしたやすんでもいいですか (ashita yasunde mo ii desu ka, \"may I take tomorrow off?\").",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: the book prints やすんでもいいですか (Exercise II item 4) but never carded the bare て-form. Placed in the lesson that taught やすみます as \"take a day off\" (Lesson 21).",
+      "addition": "te-forms-2026-10"
     }
   ]
 }

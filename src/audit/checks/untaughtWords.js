@@ -4,6 +4,7 @@ import { loadEarlierTaughtItems } from "../../cards/earlierUnits.js";
 import { isPredicateShaped } from "../../cards/predicateShape.js";
 import { teachableVocabulary, findUnteachable } from "../../agents/extrasVocabulary.js";
 import { normalizeDisplayText } from "../../model/scriptSpacing.js";
+import { uncardedVerbs } from "../../cards/uncardedVerbs.js";
 
 // Does a sentence the DECK wrote use a word the book has not taught yet?
 //
@@ -31,6 +32,10 @@ import { normalizeDisplayText } from "../../model/scriptSpacing.js";
 //     cover too;
 //   - a piece followed by さん, ちゃん, くん or さま is a person's name, and names are not cards
 //     (ruling 4), so they are never a finding.
+//
+// VERBS are found a second way, by their endings (src/cards/uncardedVerbs.js), because containment
+// let おきます ("get up") through two Lesson 9 sentences: its おき sits inside おおきい ("big"), and
+// a piece seen inside any earlier card counts as met. Owner review, 2026-10-30.
 //
 // A word that IS glossed in the card's note is ruling 5's default fix, already applied. It is still
 // reported, by the separate INFO check below, so a reviewer can see what the note introduces.
@@ -162,15 +167,23 @@ export function findUntaughtWords(collectionDir, units) {
       checked++;
       const taught = taughtForms(taughtItems, card, languageCode);
       const [hit] = findUnteachable([card], taught, { languageCode, maxResidue: 1 });
-      if (!hit) continue;
       const sentence = normalizeDisplayText(card.target.trim(), languageCode);
       // A piece the learner has SEEN inside an earlier card is met, even though no card teaches it
       // on its own: the book teaches おねがいします inside よろしくおねがいします, and its names
       // inside its dialogue lines.
       const seen = [...taught];
-      const words = contentWords(hit.runs, sentence, languageCode).filter(
-        (word) => !seen.some((form) => form.includes(word)),
-      );
+      const words = hit
+        ? contentWords(hit.runs, sentence, languageCode).filter(
+            (word) => !seen.some((form) => form.includes(word)),
+          )
+        : [];
+      // Verbs are found by their endings instead, because the "seen inside an earlier card" rule
+      // above is what let おきます ("get up") through: its おき sits inside おおきい ("big").
+      // src/cards/uncardedVerbs.js.
+      const others = taughtItems.filter((item) => item.id !== card.id);
+      for (const verb of uncardedVerbs(sentence, others, languageCode) ?? []) {
+        if (!words.some((word) => verb.includes(word) || word.includes(verb))) words.push(verb);
+      }
       if (words.length === 0) continue;
       const note = normalizeDisplayText(card.note ?? card.cardNote ?? "", languageCode);
       rows.push({

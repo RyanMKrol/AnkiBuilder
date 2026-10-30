@@ -1601,6 +1601,17 @@
       "audioMarked": true,
       "audioTextHash": "124979e5629eb58e",
       "additionDone": true
+    },
+    {
+      "id": "te-form-nebshite",
+      "english": "Oversleep (て-form of ねぼうします)",
+      "category": "Grammar & Function Words",
+      "target": "ねぼうして",
+      "pronunciation": "nebō shite",
+      "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught ねぼうします (Lesson 20).",
+      "addition": "verb-forms-sweep-2026-10"
     }
   ]
 }

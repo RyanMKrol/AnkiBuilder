@@ -1717,6 +1717,39 @@
       "audioMarked": true,
       "audioTextHash": "ec10389b20531463",
       "additionDone": true
+    },
+    {
+      "id": "te-form-tsutaete",
+      "english": "Relay a message (て-form of つたえます)",
+      "category": "Grammar & Function Words",
+      "target": "つたえて",
+      "pronunciation": "tsutaete",
+      "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught つたえます (Lesson 19).",
+      "addition": "verb-forms-sweep-2026-10"
+    },
+    {
+      "id": "te-form-hkokushite",
+      "english": "Report (て-form of ほうこくします)",
+      "category": "Grammar & Function Words",
+      "target": "ほうこくして",
+      "pronunciation": "hōkoku shite",
+      "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught ほうこくします (Lesson 19).",
+      "addition": "verb-forms-sweep-2026-10"
+    },
+    {
+      "id": "te-form-azukatte",
+      "english": "Keep, take care of (て-form of あずかります)",
+      "category": "Grammar & Function Words",
+      "target": "あずかって",
+      "pronunciation": "azukatte",
+      "note": "Regular 1: り (ri) → って (tte), the same change as かえります (kaerimasu) → かえって (kaette).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught あずかります (Lesson 19).",
+      "addition": "verb-forms-sweep-2026-10"
     }
   ]
 }

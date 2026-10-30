@@ -619,6 +619,159 @@
       "excluded": true,
       "excludedBy": "backward-dedup",
       "excludedReason": "Already taught in Lesson 16 and Lesson 17 (same target ぜひ)"
+    },
+    {
+      "id": "te-form-wakatte",
+      "english": "Understand (て-form of わかります)",
+      "category": "Grammar & Function Words",
+      "target": "わかって",
+      "note": "Regular 1: り (ri) → って (tte), the same change as かえります (kaerimasu) → かえって (kaette).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (わかります is from Lesson 8)."
+    },
+    {
+      "id": "te-form-okutte",
+      "english": "Send (て-form of おくります)",
+      "category": "Grammar & Function Words",
+      "target": "おくって",
+      "note": "Regular 1: り (ri) → って (tte), the same change as かえります (kaerimasu) → かえって (kaette).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (おくります is from Lesson 9)."
+    },
+    {
+      "id": "te-form-nobotte",
+      "english": "Climb (て-form of のぼります)",
+      "category": "Grammar & Function Words",
+      "target": "のぼって",
+      "note": "Regular 1: り (ri) → って (tte), the same change as かえります (kaerimasu) → かえって (kaette).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (のぼります is from Lesson 11)."
+    },
+    {
+      "id": "te-form-moratte",
+      "english": "Receive (て-form of もらいます)",
+      "category": "Grammar & Function Words",
+      "target": "もらって",
+      "note": "Regular 1: い (i) → って (tte), the same change as かいます (kaimasu) → かって (katte).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (もらいます is from Lesson 14)."
+    },
+    {
+      "id": "te-form-agete",
+      "english": "Give (て-form of あげます)",
+      "category": "Grammar & Function Words",
+      "target": "あげて",
+      "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (あげます is from Lesson 14)."
+    },
+    {
+      "id": "te-form-kurete",
+      "english": "Give (to me) (て-form of くれます)",
+      "category": "Grammar & Function Words",
+      "target": "くれて",
+      "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (くれます is from Lesson 14)."
+    },
+    {
+      "id": "te-form-niatte",
+      "english": "Suit, look good on (て-form of にあいます)",
+      "category": "Grammar & Function Words",
+      "target": "にあって",
+      "note": "Regular 1: い (i) → って (tte), the same change as かいます (kaimasu) → かって (katte).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (にあいます is from Lesson 14)."
+    },
+    {
+      "id": "te-form-utatte",
+      "english": "Sing (て-form of うたいます)",
+      "category": "Grammar & Function Words",
+      "target": "うたって",
+      "note": "Regular 1: い (i) → って (tte), the same change as かいます (kaimasu) → かって (katte).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (うたいます is from Lesson 15)."
+    },
+    {
+      "id": "te-form-hashitte",
+      "english": "Run (て-form of はしります)",
+      "category": "Grammar & Function Words",
+      "target": "はしって",
+      "note": "Regular 1: り (ri) → って (tte), the same change as かえります (kaerimasu) → かえって (kaette).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (はしります is from Lesson 15)."
+    },
+    {
+      "id": "te-form-nete",
+      "english": "Sleep, go to bed (て-form of ねます)",
+      "category": "Grammar & Function Words",
+      "target": "ねて",
+      "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (ねます is from Lesson 17)."
+    },
+    {
+      "id": "te-form-naratte",
+      "english": "Learn (て-form of ならいます)",
+      "category": "Grammar & Function Words",
+      "target": "ならって",
+      "note": "Regular 1: い (i) → って (tte), the same change as かいます (kaimasu) → かって (katte).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (ならいます is from Lesson 17)."
+    },
+    {
+      "id": "te-form-aratte",
+      "english": "Wash (て-form of あらいます)",
+      "category": "Grammar & Function Words",
+      "target": "あらって",
+      "note": "Regular 1: い (i) → って (tte), the same change as かいます (kaimasu) → かって (katte).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (あらいます is from Lesson 17)."
+    },
+    {
+      "id": "te-form-abite",
+      "english": "Take (a shower) (て-form of シャワーをあびます)",
+      "category": "Grammar & Function Words",
+      "target": "あびて",
+      "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete). The object stays as it was: シャワーをあびて.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (シャワーをあびます is from Lesson 17)."
+    },
+    {
+      "id": "te-form-hajimete",
+      "english": "Start, begin (て-form of はじめます)",
+      "category": "Grammar & Function Words",
+      "target": "はじめて",
+      "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete). Not the same as はじめて (hajimete, \"for the first time\"), which sounds identical.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (はじめます is from Lesson 17)."
+    },
+    {
+      "id": "te-form-sunde",
+      "english": "Live (in a place) (て-form of すみます)",
+      "category": "Grammar & Function Words",
+      "target": "すんで",
+      "note": "Regular 1: み (mi) → んで (nde), the same change as のみます (nomimasu) → のんで (nonde).",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (すみます is from Lesson 17)."
+    },
+    {
+      "id": "te-form-daunrdoshite",
+      "english": "Download (て-form of ダウンロードします)",
+      "category": "Grammar & Function Words",
+      "target": "ダウンロードして",
+      "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (ダウンロードします is from Lesson 17)."
+    },
+    {
+      "id": "te-form-chekkushite",
+      "english": "Check (て-form of チェックします)",
+      "category": "Grammar & Function Words",
+      "target": "チェックして",
+      "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (チェックします is from Lesson 17)."
     }
   ]
 }

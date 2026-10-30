@@ -1881,6 +1881,18 @@
       "audioMarked": true,
       "audioTextHash": "ac402d90f0c9ac35",
       "additionDone": true
+    },
+    {
+      "id": "okimasu-get-up",
+      "english": "Get up, wake up",
+      "category": "Other",
+      "target": "おきます",
+      "pronunciation": "okimasu",
+      "scene": "getting out of bed in the morning",
+      "note": "Used with a clock time and に (ni): はちじにおきます (hachi-ji ni okimasu, \"I get up at eight\").",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: the verb in this unit’s two Nihongo 102 sentences (まいにち、なんじにおきますか and わたしは、はちじにおきます) had no word card of its own. The scene keeps it apart from おきます \"put, place\" (Lesson 21), which sounds the same.",
+      "addition": "owner-fixes-2026-10-30"
     }
   ]
 }

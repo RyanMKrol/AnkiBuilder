@@ -253,8 +253,9 @@
       "target": "おきます",
       "english": "Put, place",
       "category": "Other",
-      "note": "The place you put something takes に (ni): ここに おきます (koko ni okimasu, \"put it here\").",
-      "sourceOrder": 1291
+      "note": "The place you put something takes に (ni): ここに おきます (koko ni okimasu, \"put it here\"). A different verb from おきます (okimasu, \"get up\", Lesson 9): same sound, different meaning.",
+      "sourceOrder": 1291,
+      "scene": "putting a thing somewhere"
     },
     {
       "id": "oite-put-place-te-form",
@@ -958,6 +959,24 @@
       "note": "Te-form of やすみます (yasumimasu, \"take a day off\"). Regular 1: the み before ます becomes んで, the same change as のみます (nomimasu) → のんで (nonde). Used before もいいですか (mo ii desu ka) to ask permission: あしたやすんでもいいですか (ashita yasunde mo ii desu ka, \"may I take tomorrow off?\").",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: the book prints やすんでもいいですか (Exercise II item 4) but never carded the bare て-form. Placed in the lesson that taught やすみます as \"take a day off\" (Lesson 21)."
+    },
+    {
+      "id": "te-form-kopshite",
+      "english": "Make a copy (て-form of コピーします)",
+      "category": "Grammar & Function Words",
+      "target": "コピーして",
+      "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught コピーします (Lesson 21)."
+    },
+    {
+      "id": "te-form-jdenshite",
+      "english": "Recharge (て-form of じゅうでんします)",
+      "category": "Grammar & Function Words",
+      "target": "じゅうでんして",
+      "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught じゅうでんします (Lesson 21)."
     }
   ]
 }

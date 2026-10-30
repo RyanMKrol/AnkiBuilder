@@ -81,7 +81,7 @@
     },
     {
       "id": "bangohan-rokuji-kara",
-      "english": "Dinner starts at 6:00.",
+      "english": "Dinner is from 6:00.",
       "category": "Food",
       "target": "ばんごはんはろくじからです",
       "pronunciation": "bangohan wa roku-ji kara desu.",
@@ -95,7 +95,7 @@
     },
     {
       "id": "depaato-gogo-hachiji-a",
-      "english": "It closes at 8:00 P.M.",
+      "english": "It's open until 8:00 P.M.",
       "category": "Shopping",
       "target": "ごごはちじまでです",
       "pronunciation": "gogo hachi-ji made desu.",
@@ -132,7 +132,7 @@
     },
     {
       "id": "td-lunchtime-end-q",
-      "english": "What time does it end?",
+      "english": "Until what time is it?",
       "category": "Time",
       "target": "なんじまでですか",
       "pronunciation": "nan-ji made desu ka.",
@@ -178,7 +178,7 @@
     },
     {
       "id": "resutoran-gozen-juuichiji-a",
-      "english": "It opens at 11:00 A.M.",
+      "english": "It's open from 11:00 A.M.",
       "category": "Food",
       "target": "ごぜんじゅういちじからです",
       "pronunciation": "gozen jūichi-ji kara desu.",
@@ -227,7 +227,7 @@
     },
     {
       "id": "td-lunchtime-start-a",
-      "english": "It starts at 11:30.",
+      "english": "It's from 11:30.",
       "category": "Time",
       "target": "じゅういちじはんからです",
       "pronunciation": "jūichi-ji han kara desu.",
@@ -426,7 +426,7 @@
     },
     {
       "id": "puuru-nanji-kara-q",
-      "english": "Excuse me. What time does the pool open?",
+      "english": "Excuse me. From what time is the pool open?",
       "category": "Time",
       "target": "すみません。プールはなんじからですか",
       "pronunciation": "sumimasen. pūru wa nan-ji kara desu ka.",
@@ -492,7 +492,7 @@
     },
     {
       "id": "resutoran-nanji-made-q",
-      "english": "What time does the restaurant close?",
+      "english": "Until what time is the restaurant open?",
       "category": "Time",
       "target": "レストランはなんじまでですか",
       "pronunciation": "resutoran wa nan-ji made desu ka.",
@@ -506,7 +506,7 @@
     },
     {
       "id": "hotel-asagohan-a",
-      "english": "It starts at 7:00.",
+      "english": "It's from 7:00.",
       "category": "Time",
       "target": "しちじからです",
       "pronunciation": "shichi-ji kara desu.",
@@ -537,7 +537,7 @@
     },
     {
       "id": "hotel-asagohan-q",
-      "english": "Excuse me. What time does breakfast start?",
+      "english": "Excuse me. From what time is breakfast?",
       "category": "Time",
       "target": "すみません。あさごはんはなんじからですか",
       "pronunciation": "sumimasen. asagohan wa nan-ji kara desu ka.",
@@ -566,7 +566,7 @@
     },
     {
       "id": "ginkou-gozen-kuji-kara",
-      "english": "The bank opens at 9:00 A.M.",
+      "english": "The bank is open from 9:00 A.M.",
       "category": "Money",
       "target": "ぎんこうはごぜんくじからです",
       "pronunciation": "ginkō wa gozen ku-ji kara desu.",
@@ -674,7 +674,7 @@
     },
     {
       "id": "td-lunchtime-start-q",
-      "english": "Excuse me. What time does lunchtime start?",
+      "english": "Excuse me. From what time is lunchtime?",
       "category": "Time",
       "target": "すみません。ランチタイムはなんじからですか",
       "pronunciation": "sumimasen. ranchitaimu wa nan-ji kara desu ka.",
@@ -704,13 +704,13 @@
     },
     {
       "id": "shigoto-goji-made",
-      "english": "Work ends at 5:00.",
+      "english": "Work is until 5:00.",
       "category": "Work & Occupations",
       "target": "しごとはごじまでです",
       "pronunciation": "shigoto wa go-ji made desu.",
       "aiSuggested": true,
       "reviewNote": "Constructed. Particle job: the second half of the から/まで minimal pair. Every other から card and まで card in the deck uses a different topic, so the particle itself was never the variable.",
-      "note": "The end half of the working day: しごとはくじからです (shigoto wa ku-ji kara desu, \"Work starts at 9:00.\") gives the start with から (kara), and this one gives the end with まで (made).",
+      "note": "The end half of the working day: しごとはくじからです (shigoto wa ku-ji kara desu, \"Work is from 9:00.\") gives the start with から (kara), and this one gives the end with まで (made).",
       "audio": "b29042d31c737a8f.mp3",
       "audioOriginal": "b29042d31c737a8f.orig.mp3",
       "audioAuto": "b29042d31c737a8f.mp3",
@@ -719,7 +719,7 @@
     },
     {
       "id": "konsaato-kyou-rokuji",
-      "english": "The concert starts at 6:00 today.",
+      "english": "The concert is from 6:00 today.",
       "category": "Time",
       "target": "コンサートはきょうのろくじからです",
       "pronunciation": "konsāto wa kyō no roku-ji kara desu.",
@@ -817,7 +817,7 @@
     },
     {
       "id": "depaato-nanji-made-q",
-      "english": "What time does the department store close?",
+      "english": "Until what time is the department store open?",
       "category": "Shopping",
       "target": "デパートはなんじまでですか",
       "pronunciation": "depāto wa nan-ji made desu ka.",
@@ -845,7 +845,7 @@
     },
     {
       "id": "mise-kuji-kara-a",
-      "english": "It opens at 9:00.",
+      "english": "It's open from 9:00.",
       "category": "Time",
       "target": "くじからです",
       "pronunciation": "ku-ji kara desu.",
@@ -890,7 +890,7 @@
     },
     {
       "id": "kyou-no-kaigi-a",
-      "english": "It starts at 2:30.",
+      "english": "It's from 2:30.",
       "category": "Time",
       "target": "にじはんからです",
       "pronunciation": "ni-ji han kara desu.",
@@ -905,7 +905,7 @@
     },
     {
       "id": "resutoran-nanji-kara-q",
-      "english": "What time does the restaurant open?",
+      "english": "From what time is the restaurant open?",
       "category": "Food",
       "target": "レストランはなんじからですか",
       "pronunciation": "resutoran wa nan-ji kara desu ka.",
@@ -1087,7 +1087,7 @@
     },
     {
       "id": "suupaa-gogo-rokuji-made",
-      "english": "The supermarket closes at 6:00 P.M.",
+      "english": "The supermarket is open until 6:00 P.M.",
       "category": "Shopping",
       "target": "スーパーはごごろくじまでです",
       "pronunciation": "sūpā wa gogo roku-ji made desu.",
@@ -1146,7 +1146,7 @@
     },
     {
       "id": "mise-nanji-kara-q",
-      "english": "What time does the shop open?",
+      "english": "From what time is the shop open?",
       "category": "Time",
       "target": "みせはなんじからですか",
       "pronunciation": "mise wa nan-ji kara desu ka.",
@@ -1160,7 +1160,7 @@
     },
     {
       "id": "shigoto-kuji-kara",
-      "english": "Work starts at 9:00.",
+      "english": "Work is from 9:00.",
       "category": "Work & Occupations",
       "target": "しごとはくじからです",
       "pronunciation": "shigoto wa ku-ji kara desu.",
@@ -1247,7 +1247,7 @@
     },
     {
       "id": "puuru-gozen-hachiji-a",
-      "english": "It opens at 8:00 A.M.",
+      "english": "It's open from 8:00 A.M.",
       "category": "Time",
       "target": "ごぜんはちじからです",
       "pronunciation": "gozen hachi-ji kara desu.",
@@ -1282,7 +1282,7 @@
     },
     {
       "id": "jimu-gozen-kuji-kara",
-      "english": "The gym opens at 9:00 A.M.",
+      "english": "The gym is open from 9:00 A.M.",
       "category": "Time",
       "target": "ジムはごぜんくじからです",
       "pronunciation": "jimu wa gozen ku-ji kara desu.",
@@ -1297,7 +1297,7 @@
     },
     {
       "id": "asa-no-kaigi",
-      "english": "The morning meeting starts at 9:00.",
+      "english": "The morning meeting is from 9:00.",
       "category": "Work & Occupations",
       "target": "あさのかいぎはくじからです",
       "pronunciation": "asa no kaigi wa ku-ji kara desu.",

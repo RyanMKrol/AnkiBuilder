@@ -360,7 +360,8 @@
       "hint": "the \"too\" version — the particle changes, nothing else does",
       "note": "も (mo) replaces は (wa) rather than joining it; はも is never said.",
       "reviewNote": "Constructed. Particle job (は vs も): member 2 of the minimal pair. も has not been used since Lesson 4 and appears on no Lesson 7 card.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "scene": "after saying someone else is going by Shinkansen"
     },
     {
       "id": "raja-itsu-nihon-ni-kimashita-ka",
@@ -546,7 +547,7 @@
     },
     {
       "id": "w2-natsuyasumi-shichigatsu-kara",
-      "english": "The summer vacation starts in July.",
+      "english": "The summer vacation is from July.",
       "category": "Time",
       "target": "なつやすみは7がつからです",
       "ttsText": "なつやすみはしちがつからです",

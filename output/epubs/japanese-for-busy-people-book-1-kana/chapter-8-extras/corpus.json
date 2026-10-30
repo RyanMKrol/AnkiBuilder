@@ -359,7 +359,8 @@
       "hint": null,
       "note": "Here も (mo) replaces は (wa), so it is the person that is 'as well', not the activity. Contrast スミスさんはラーメンもたべました (sumisu san wa rāmen mo tabemashita), where も sits on the object instead.",
       "reviewNote": "Constructed. Coverage job 1 (particle): も had no example with a verb anywhere in the deck. This is the subject slot; p-raamen-mo-tabemashita is the object slot. Builds on the Target Dialogue's かぶきをみます.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "scene": "after saying someone else is going to see kabuki"
     },
     {
       "id": "td-doyoubi-tenpura-tabemasu",

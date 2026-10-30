@@ -100,7 +100,19 @@ the one wanted. _Three hobby answers in one lesson reached review with no scene 
 the same drill had one: the role that wrote the three had never been told this rule._
 
 **English reads as natural sentence-case English.** Not a lowercased clip, not a dictionary stub.
-Capitalize it as you would write it in a sentence.
+Capitalize it as you would write it in a sentence, within the rule below.
+
+**A sentence's English points at this sentence and no other.** The learner turns the English back
+into the target, so a free translation that a neighbouring construction fits equally well is a wrong
+prompt. Use the deck's own gloss for every word it already cards. Where the language marks a
+distinction English can say, say it: "until", "as far as" and "from" are three different particles,
+and a bare "to", "ends at" or "starts at" draws a fourth. Add nothing the target leaves out: no place
+word, time-of-day word, possessive or verb the sentence does not have. When "also" or "too" could
+attach to more than one word, a `scene` names what was said first. Exact beats natural: make the
+English as natural as it can be while it still maps. Owner ruling, 2026-10-30. _Thirty-seven
+time and place sentences glossed with a bare "to", "ends at" or "starts at" kept drawing the wrong
+particle in review, and a request glossed "let me know before you pass it on" used neither of the
+two verbs the deck had taught for it._
 
 **Display text is what the learner sees, and carries nothing editorial.** No spacing a textbook
 added to separate parts of a word, and no sentence-final punctuation the language does not print on

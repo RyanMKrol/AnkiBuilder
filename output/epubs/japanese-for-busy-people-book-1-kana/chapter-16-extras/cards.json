@@ -450,7 +450,7 @@
     },
     {
       "id": "x16a-event-nanji-kara",
-      "english": "What time does the event start?",
+      "english": "From what time is the event?",
       "category": "Time",
       "target": "イベントはなんじからですか",
       "pronunciation": "ibento wa nanji kara desu ka",
@@ -510,7 +510,7 @@
     },
     {
       "id": "x16c-rokuji-han-higashiguchi",
-      "english": "It starts at 6:30. Let's meet at 5:30 at the east exit of Shibuya Station.",
+      "english": "It's from 6:30. Let's meet at 5:30 at the east exit of Shibuya Station.",
       "category": "Time",
       "target": "6じはんからです。5じはんにしぶやえきのひがしぐちであいましょう",
       "ttsText": "ろくじはんからです。ごじはんにしぶやえきのひがしぐちであいましょう",
@@ -638,7 +638,7 @@
     },
     {
       "id": "x16c-juuji-minamiguchi",
-      "english": "It starts at 10:00. Let's meet at 9:00 at the south exit of Shinjuku Station.",
+      "english": "It's from 10:00. Let's meet at 9:00 at the south exit of Shinjuku Station.",
       "category": "Time",
       "target": "10じからです。9じにしんじゅくえきのみなみぐちであいましょう",
       "ttsText": "じゅうじからです。くじにしんじゅくえきのみなみぐちであいましょう",
@@ -926,7 +926,7 @@
     },
     {
       "id": "ex7-nanji-kara",
-      "english": "What time does the fireworks festival start?",
+      "english": "From what time is the fireworks festival?",
       "category": "Time",
       "target": "はなびたいかいはなんじからですか",
       "pronunciation": "hanabi taikai wa nanji kara desu ka",
@@ -943,7 +943,7 @@
     },
     {
       "id": "ex7-shichiji-kara",
-      "english": "It starts at 7:00. Let's meet at 6:00 at the west exit of Yokohama Station.",
+      "english": "It's from 7:00. Let's meet at 6:00 at the west exit of Yokohama Station.",
       "category": "Time",
       "target": "7じからです。6じによこはまえきのにしぐちであいましょう",
       "ttsText": "しちじからです。ろくじによこはまえきのにしぐちであいましょう",

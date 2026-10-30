@@ -37,25 +37,33 @@ Everything else gets a card.
 
 ## A gap with `carriedForm` is not in the chapter, and is still owed
 
-Some gaps carry a `carriedForm` field (`"dictionary form"`, say). Those did not come from the reader.
-A script found that an EARLIER lesson of this book taught that form, and that this chapter teaches the
-verb in the gap without it. The book will never print it, so "not taught by the chapter" is not a
-reason to decline one. The owner ruled on 2026-10-12 that every verb is owed it, in the lesson that
-teaches the verb.
+Some gaps carry a `carriedForm` field (`"dictionary form"`, `"て-form"` or `"ない-form"`). Those did
+not come from the reader. A script found that an EARLIER lesson of this book taught that form, and
+that this chapter teaches the verb in the gap without it. The book will never print it, so "not
+taught by the chapter" is not a reason to decline one. The owner ruled that every verb is owed these
+forms, in the lesson that teaches the verb: the dictionary form on 2026-10-12, the て-form and the
+ない-form on 2026-10-30.
 
 Card the form itself, not the verb you were given:
 
-- **`target`**: the form, written out (`ねます` gives `ねる`; `ダウンロードします` gives
-  `ダウンロードする`). For a phrase, card the verb alone when that is the part being conjugated
-  (`シャワーをあびます` gives `あびる`).
-- **`english`**: the verb's gloss followed by the form's label in parentheses, as in
-  `Sleep, go to bed (dictionary form)`. Every card of this form in the deck reads that way, and the
-  check that found the gap recognises a card by it.
-- **`category`**: `Grammar & Function Words`, so the extras pass gives it a sentence.
-- **`note`**: which form it is the dictionary form of, with its romaji, its gloss and its lesson, then
-  the verb class and the rule that derives it. For example:
+- **`target`**: the form, written out. When the gap has an `expected` field, that IS the target:
+  the script computed it from the verb's dictionary form, and a different target is replaced with it.
+  Otherwise write it yourself (`ねます` gives `ねる`; `ダウンロードします` gives `ダウンロードする`).
+  For a phrase, card the verb alone when that is the part being conjugated (`シャワーをあびます`
+  gives `あびる`, `あびて`, `あびない`).
+- **`english`**, in the shape every card of that form in the deck already has, because the check that
+  found the gap recognises a card by it:
+  - dictionary form: the verb's gloss and the label, `Sleep, go to bed (dictionary form)`;
+  - て-form: the gloss and the polite form, `Sleep, go to bed (て-form of ねます)`;
+  - ない-form: a plain negative, `Does not sleep`, with **`hint`** `casual form`.
+- **`category`**: `Grammar & Function Words`.
+- **`note`**: the verb class and the change that derives the form, naming a verb already in the deck
+  that makes the same change. For example:
   `Dictionary form of ねます (nemasu, "sleep", Lesson 17), which is also its casual form. Regular 2: ます becomes る.`
-- **`fillsGap`**: the gap's target verbatim, which is the ます form, not the form you wrote.
+  `Regular 1: み (mi) → んで (nde), the same change as のみます (nomimasu) → のんで (nonde).`
+  A ない-form note starts `Casual: for friends and family. The polite equivalent is ねません.`
+- **`fillsGap`**: the gap's `key` verbatim (`ねます (て-form)`), not the form you wrote. One verb can
+  owe all three forms in the same chapter, and the key is what tells the three cards apart.
 
 Decline one only if the verb's class genuinely cannot be determined, and say so.
 
@@ -118,13 +126,13 @@ Return ONLY this JSON object. Every gap must appear exactly once, in `items` or 
       "target": "the {{TARGET_LANGUAGE}} text, exactly as the chapter prints it",
       "english": "Natural sentence-case English.",
       "category": "one of the categories above",
-      "fillsGap": "the gap's target, verbatim",
+      "fillsGap": "the gap's key if it has one, otherwise its target, verbatim",
       "note": "optional",
       "scene": "optional",
       "hint": "optional",
       "uncertain": true
     }
   ],
-  "declined": [{ "gap": "the gap's target, verbatim", "reason": "one short line" }]
+  "declined": [{ "gap": "the gap's key or target, verbatim", "reason": "one short line" }]
 }
 ```

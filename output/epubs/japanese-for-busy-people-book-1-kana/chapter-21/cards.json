@@ -1277,7 +1277,13 @@
       "note": "Te-form of やすみます (yasumimasu, \"take a day off\"). Regular 1: the み before ます becomes んで, the same change as のみます (nomimasu) → のんで (nonde). Used before もいいですか (mo ii desu ka) to ask permission: あしたやすんでもいいですか (ashita yasunde mo ii desu ka, \"may I take tomorrow off?\").",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: the book prints やすんでもいいですか (Exercise II item 4) but never carded the bare て-form. Placed in the lesson that taught やすみます as \"take a day off\" (Lesson 21).",
-      "addition": "te-forms-2026-10"
+      "addition": "te-forms-2026-10",
+      "additionReviewed": true,
+      "audio": "6b86e84c29ba4947.mp3",
+      "audioOriginal": "6b86e84c29ba4947.orig.mp3",
+      "audioAuto": "6b86e84c29ba4947.mp3",
+      "audioMarked": true,
+      "audioTextHash": "6b86e84c29ba4947"
     },
     {
       "id": "te-form-kopshite",
@@ -1288,7 +1294,13 @@
       "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught コピーします (Lesson 21).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "7a783e8d930bb283.mp3",
+      "audioOriginal": "7a783e8d930bb283.orig.mp3",
+      "audioAuto": "7a783e8d930bb283.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7a783e8d930bb283"
     },
     {
       "id": "te-form-jdenshite",
@@ -1299,7 +1311,13 @@
       "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught じゅうでんします (Lesson 21).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "a183c8286ccdf01b.mp3",
+      "audioOriginal": "a183c8286ccdf01b.orig.mp3",
+      "audioAuto": "a183c8286ccdf01b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a183c8286ccdf01b"
     }
   ]
 }

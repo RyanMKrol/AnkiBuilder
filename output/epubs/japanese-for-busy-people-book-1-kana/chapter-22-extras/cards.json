@@ -944,7 +944,13 @@
       "note": "Regular 2. Used in わすれないでください (wasurenai de kudasai, \"please don't forget\").",
       "reviewNote": "Owner request 2026-10-30: the sentence わすれないでください used this verb with no word card anywhere in the deck; the new verb scan in the untaught-words check found it.",
       "aiSuggested": true,
-      "addition": "verb-gaps-sweep-2026-10-30"
+      "addition": "verb-gaps-sweep-2026-10-30",
+      "additionReviewed": true,
+      "audio": "1b8d79cf1c6f47ef.mp3",
+      "audioOriginal": "1b8d79cf1c6f47ef.orig.mp3",
+      "audioAuto": "1b8d79cf1c6f47ef.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1b8d79cf1c6f47ef"
     }
   ]
 }

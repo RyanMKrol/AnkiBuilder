@@ -1892,7 +1892,13 @@
       "note": "Used with a clock time and に (ni): はちじにおきます (hachi-ji ni okimasu, \"I get up at eight\").",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: the verb in this unit’s two Nihongo 102 sentences (まいにち、なんじにおきますか and わたしは、はちじにおきます) had no word card of its own. The scene keeps it apart from おきます \"put, place\" (Lesson 21), which sounds the same.",
-      "addition": "owner-fixes-2026-10-30"
+      "addition": "owner-fixes-2026-10-30",
+      "additionReviewed": true,
+      "audio": "2004e625a9926ecb.mp3",
+      "audioOriginal": "2004e625a9926ecb.orig.mp3",
+      "audioAuto": "2004e625a9926ecb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2004e625a9926ecb"
     }
   ]
 }

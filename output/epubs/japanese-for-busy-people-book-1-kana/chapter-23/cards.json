@@ -1172,7 +1172,8 @@
       "audioOriginal": "d4afc58a210c665f.orig.mp3",
       "audioAuto": "d4afc58a210c665f.mp3",
       "audioMarked": true,
-      "audioTextHash": "d4afc58a210c665f"
+      "audioTextHash": "d4afc58a210c665f",
+      "additionDone": true
     },
     {
       "id": "nai-dekinai",
@@ -1190,7 +1191,8 @@
       "audioOriginal": "9e64d1783ebd30b3.orig.mp3",
       "audioAuto": "9e64d1783ebd30b3.mp3",
       "audioMarked": true,
-      "audioTextHash": "9e64d1783ebd30b3"
+      "audioTextHash": "9e64d1783ebd30b3",
+      "additionDone": true
     },
     {
       "id": "te-form-yoyakushite",
@@ -1207,7 +1209,8 @@
       "audioOriginal": "4ae7f4a863a788cf.orig.mp3",
       "audioAuto": "4ae7f4a863a788cf.mp3",
       "audioMarked": true,
-      "audioTextHash": "4ae7f4a863a788cf"
+      "audioTextHash": "4ae7f4a863a788cf",
+      "additionDone": true
     },
     {
       "id": "nai-yoyakushinai",
@@ -1225,7 +1228,8 @@
       "audioOriginal": "b86e9f90319b9693.orig.mp3",
       "audioAuto": "b86e9f90319b9693.mp3",
       "audioMarked": true,
-      "audioTextHash": "b86e9f90319b9693"
+      "audioTextHash": "b86e9f90319b9693",
+      "additionDone": true
     },
     {
       "id": "te-form-tsukutte",
@@ -1242,7 +1246,8 @@
       "audioOriginal": "db0d401b4199cb75.orig.mp3",
       "audioAuto": "db0d401b4199cb75.mp3",
       "audioMarked": true,
-      "audioTextHash": "db0d401b4199cb75"
+      "audioTextHash": "db0d401b4199cb75",
+      "additionDone": true
     },
     {
       "id": "nai-tsukuranai",
@@ -1260,7 +1265,8 @@
       "audioOriginal": "bec66bce168cc81c.orig.mp3",
       "audioAuto": "bec66bce168cc81c.mp3",
       "audioMarked": true,
-      "audioTextHash": "bec66bce168cc81c"
+      "audioTextHash": "bec66bce168cc81c",
+      "additionDone": true
     },
     {
       "id": "te-form-owatte",
@@ -1277,7 +1283,8 @@
       "audioOriginal": "016abeb2893987b4.orig.mp3",
       "audioAuto": "016abeb2893987b4.mp3",
       "audioMarked": true,
-      "audioTextHash": "016abeb2893987b4"
+      "audioTextHash": "016abeb2893987b4",
+      "additionDone": true
     },
     {
       "id": "nai-owaranai",
@@ -1295,7 +1302,8 @@
       "audioOriginal": "9b1cc3f8cd8c19cc.orig.mp3",
       "audioAuto": "9b1cc3f8cd8c19cc.mp3",
       "audioMarked": true,
-      "audioTextHash": "9b1cc3f8cd8c19cc"
+      "audioTextHash": "9b1cc3f8cd8c19cc",
+      "additionDone": true
     }
   ]
 }

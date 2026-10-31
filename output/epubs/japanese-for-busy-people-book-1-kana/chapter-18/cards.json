@@ -808,7 +808,8 @@
       "audioOriginal": "49b1524fb5419564.orig.mp3",
       "audioAuto": "49b1524fb5419564.mp3",
       "audioMarked": true,
-      "audioTextHash": "49b1524fb5419564"
+      "audioTextHash": "49b1524fb5419564",
+      "additionDone": true
     },
     {
       "id": "te-form-okutte",
@@ -825,7 +826,8 @@
       "audioOriginal": "0ef0602dc95ce2d3.orig.mp3",
       "audioAuto": "0ef0602dc95ce2d3.mp3",
       "audioMarked": true,
-      "audioTextHash": "0ef0602dc95ce2d3"
+      "audioTextHash": "0ef0602dc95ce2d3",
+      "additionDone": true
     },
     {
       "id": "te-form-nobotte",
@@ -842,7 +844,8 @@
       "audioOriginal": "d817a58de9191b9a.orig.mp3",
       "audioAuto": "d817a58de9191b9a.mp3",
       "audioMarked": true,
-      "audioTextHash": "d817a58de9191b9a"
+      "audioTextHash": "d817a58de9191b9a",
+      "additionDone": true
     },
     {
       "id": "te-form-moratte",
@@ -859,7 +862,8 @@
       "audioOriginal": "24dfe923ad0d4904.orig.mp3",
       "audioAuto": "24dfe923ad0d4904.mp3",
       "audioMarked": true,
-      "audioTextHash": "24dfe923ad0d4904"
+      "audioTextHash": "24dfe923ad0d4904",
+      "additionDone": true
     },
     {
       "id": "te-form-agete",
@@ -876,7 +880,8 @@
       "audioOriginal": "ccd145019ef2407a.orig.mp3",
       "audioAuto": "ccd145019ef2407a.mp3",
       "audioMarked": true,
-      "audioTextHash": "ccd145019ef2407a"
+      "audioTextHash": "ccd145019ef2407a",
+      "additionDone": true
     },
     {
       "id": "te-form-kurete",
@@ -889,11 +894,17 @@
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (くれます is from Lesson 14).",
       "addition": "verb-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "56b6909737045d87.mp3",
+      "audio": "te-form-kurete-manual-6c807d3d.mp3",
       "audioOriginal": "56b6909737045d87.orig.mp3",
       "audioAuto": "56b6909737045d87.mp3",
       "audioMarked": true,
-      "audioTextHash": "56b6909737045d87"
+      "audioTextHash": "56b6909737045d87",
+      "audioManual": "te-form-kurete-manual-6c807d3d.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.759845890410959
+      },
+      "additionDone": true
     },
     {
       "id": "te-form-niatte",
@@ -910,7 +921,8 @@
       "audioOriginal": "1b32949c134194a7.orig.mp3",
       "audioAuto": "1b32949c134194a7.mp3",
       "audioMarked": true,
-      "audioTextHash": "1b32949c134194a7"
+      "audioTextHash": "1b32949c134194a7",
+      "additionDone": true
     },
     {
       "id": "te-form-utatte",
@@ -927,7 +939,8 @@
       "audioOriginal": "e52e55b5376938a5.orig.mp3",
       "audioAuto": "e52e55b5376938a5.mp3",
       "audioMarked": true,
-      "audioTextHash": "e52e55b5376938a5"
+      "audioTextHash": "e52e55b5376938a5",
+      "additionDone": true
     },
     {
       "id": "te-form-hashitte",
@@ -944,7 +957,8 @@
       "audioOriginal": "331a5774842b94e3.orig.mp3",
       "audioAuto": "331a5774842b94e3.mp3",
       "audioMarked": true,
-      "audioTextHash": "331a5774842b94e3"
+      "audioTextHash": "331a5774842b94e3",
+      "additionDone": true
     },
     {
       "id": "te-form-nete",
@@ -961,7 +975,8 @@
       "audioOriginal": "ed55db72c9931edd.orig.mp3",
       "audioAuto": "ed55db72c9931edd.mp3",
       "audioMarked": true,
-      "audioTextHash": "ed55db72c9931edd"
+      "audioTextHash": "ed55db72c9931edd",
+      "additionDone": true
     },
     {
       "id": "te-form-naratte",
@@ -974,11 +989,17 @@
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (ならいます is from Lesson 17).",
       "addition": "verb-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "f564f72ed30f9add.mp3",
+      "audio": "te-form-naratte-manual-62616e98.mp3",
       "audioOriginal": "f564f72ed30f9add.orig.mp3",
       "audioAuto": "f564f72ed30f9add.mp3",
       "audioMarked": true,
-      "audioTextHash": "f564f72ed30f9add"
+      "audioTextHash": "f564f72ed30f9add",
+      "audioManual": "te-form-naratte-manual-62616e98.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 1.2888861301369863
+      },
+      "additionDone": true
     },
     {
       "id": "te-form-aratte",
@@ -991,11 +1012,13 @@
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (あらいます is from Lesson 17).",
       "addition": "verb-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "d25db18cabce014e.mp3",
-      "audioOriginal": "d25db18cabce014e.orig.mp3",
-      "audioAuto": "d25db18cabce014e.mp3",
+      "audioOriginal": "fe01018df20234d5-genkanji-a62e2dfe.orig.mp3",
+      "audioAuto": "fe01018df20234d5-genkanji-a62e2dfe.mp3",
       "audioMarked": true,
-      "audioTextHash": "d25db18cabce014e"
+      "audioTextHash": "fe01018df20234d5",
+      "audioFilter": "standard",
+      "audio": "fe01018df20234d5-genkanji-a62e2dfe.mp3",
+      "additionDone": true
     },
     {
       "id": "te-form-abite",
@@ -1012,7 +1035,8 @@
       "audioOriginal": "69393df011171a74.orig.mp3",
       "audioAuto": "69393df011171a74.mp3",
       "audioMarked": true,
-      "audioTextHash": "69393df011171a74"
+      "audioTextHash": "69393df011171a74",
+      "additionDone": true
     },
     {
       "id": "te-form-hajimete",
@@ -1029,7 +1053,8 @@
       "audioOriginal": "0202b97782aed314.orig.mp3",
       "audioAuto": "0202b97782aed314.mp3",
       "audioMarked": true,
-      "audioTextHash": "0202b97782aed314"
+      "audioTextHash": "0202b97782aed314",
+      "additionDone": true
     },
     {
       "id": "te-form-sunde",
@@ -1046,7 +1071,8 @@
       "audioOriginal": "2de6928912f4a703.orig.mp3",
       "audioAuto": "2de6928912f4a703.mp3",
       "audioMarked": true,
-      "audioTextHash": "2de6928912f4a703"
+      "audioTextHash": "2de6928912f4a703",
+      "additionDone": true
     },
     {
       "id": "te-form-daunrdoshite",
@@ -1063,7 +1089,8 @@
       "audioOriginal": "196e58158d9a18f2.orig.mp3",
       "audioAuto": "196e58158d9a18f2.mp3",
       "audioMarked": true,
-      "audioTextHash": "196e58158d9a18f2"
+      "audioTextHash": "196e58158d9a18f2",
+      "additionDone": true
     },
     {
       "id": "te-form-chekkushite",
@@ -1080,7 +1107,8 @@
       "audioOriginal": "c547b4ee28e927b5.orig.mp3",
       "audioAuto": "c547b4ee28e927b5.mp3",
       "audioMarked": true,
-      "audioTextHash": "c547b4ee28e927b5"
+      "audioTextHash": "c547b4ee28e927b5",
+      "additionDone": true
     },
     {
       "id": "te-form-karite",
@@ -1097,7 +1125,8 @@
       "audioOriginal": "6d72a4026208fe9e.orig.mp3",
       "audioAuto": "6d72a4026208fe9e.mp3",
       "audioMarked": true,
-      "audioTextHash": "6d72a4026208fe9e"
+      "audioTextHash": "6d72a4026208fe9e",
+      "additionDone": true
     },
     {
       "id": "te-form-okite",
@@ -1114,7 +1143,8 @@
       "audioOriginal": "beaa54bf424029c5.orig.mp3",
       "audioAuto": "beaa54bf424029c5.mp3",
       "audioMarked": true,
-      "audioTextHash": "beaa54bf424029c5"
+      "audioTextHash": "beaa54bf424029c5",
+      "additionDone": true
     }
   ]
 }

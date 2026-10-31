@@ -1617,7 +1617,8 @@
       "audioOriginal": "80cfdbee47971401.orig.mp3",
       "audioAuto": "80cfdbee47971401.mp3",
       "audioMarked": true,
-      "audioTextHash": "80cfdbee47971401"
+      "audioTextHash": "80cfdbee47971401",
+      "additionDone": true
     }
   ]
 }

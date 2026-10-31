@@ -1283,7 +1283,8 @@
       "audioOriginal": "6b86e84c29ba4947.orig.mp3",
       "audioAuto": "6b86e84c29ba4947.mp3",
       "audioMarked": true,
-      "audioTextHash": "6b86e84c29ba4947"
+      "audioTextHash": "6b86e84c29ba4947",
+      "additionDone": true
     },
     {
       "id": "te-form-kopshite",
@@ -1300,7 +1301,8 @@
       "audioOriginal": "7a783e8d930bb283.orig.mp3",
       "audioAuto": "7a783e8d930bb283.mp3",
       "audioMarked": true,
-      "audioTextHash": "7a783e8d930bb283"
+      "audioTextHash": "7a783e8d930bb283",
+      "additionDone": true
     },
     {
       "id": "te-form-jdenshite",
@@ -1317,7 +1319,8 @@
       "audioOriginal": "a183c8286ccdf01b.orig.mp3",
       "audioAuto": "a183c8286ccdf01b.mp3",
       "audioMarked": true,
-      "audioTextHash": "a183c8286ccdf01b"
+      "audioTextHash": "a183c8286ccdf01b",
+      "additionDone": true
     }
   ]
 }

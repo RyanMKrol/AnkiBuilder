@@ -1898,7 +1898,8 @@
       "audioOriginal": "2004e625a9926ecb.orig.mp3",
       "audioAuto": "2004e625a9926ecb.mp3",
       "audioMarked": true,
-      "audioTextHash": "2004e625a9926ecb"
+      "audioTextHash": "2004e625a9926ecb",
+      "additionDone": true
     }
   ]
 }

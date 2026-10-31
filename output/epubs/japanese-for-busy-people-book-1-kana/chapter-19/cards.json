@@ -1718,7 +1718,8 @@
       "audioOriginal": "e3fc6fa629e7c03b.orig.mp3",
       "audioAuto": "e3fc6fa629e7c03b.mp3",
       "audioMarked": true,
-      "audioTextHash": "e3fc6fa629e7c03b"
+      "audioTextHash": "e3fc6fa629e7c03b",
+      "additionDone": true
     },
     {
       "id": "te-form-hkokushite",
@@ -1735,7 +1736,8 @@
       "audioOriginal": "7a417eb9f383a425.orig.mp3",
       "audioAuto": "7a417eb9f383a425.mp3",
       "audioMarked": true,
-      "audioTextHash": "7a417eb9f383a425"
+      "audioTextHash": "7a417eb9f383a425",
+      "additionDone": true
     },
     {
       "id": "te-form-azukatte",
@@ -1752,7 +1754,8 @@
       "audioOriginal": "e53843b498a53c01.orig.mp3",
       "audioAuto": "e53843b498a53c01.mp3",
       "audioMarked": true,
-      "audioTextHash": "e53843b498a53c01"
+      "audioTextHash": "e53843b498a53c01",
+      "additionDone": true
     }
   ]
 }

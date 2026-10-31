@@ -107,6 +107,22 @@ test("a dashboard write onto someone else's uncommitted edit is mixed, and block
   assert.match(gate.foreign[0].why, /dashboard AND by something else/);
 });
 
+test("a mixed file committed by hand is the dashboard's again on its next write", async () => {
+  const { work, git } = scratchRepo();
+  const dg = createDashboardGit({ repoRoot: work });
+  const file = join(work, "output", "cards.json");
+  writeFileSync(file, '{"v":"session"}\n');
+  await dashboardWrite(dg, () => writeFileSync(file, '{"v":"session+dashboard"}\n'));
+  // The session commits both edits, so the file is clean, and no dashboard write runs meanwhile.
+  git("commit", "--quiet", "-am", "session work");
+  git("push", "--quiet");
+  await dashboardWrite(dg, () => writeFileSync(file, '{"v":"dashboard"}\n'));
+
+  const gate = await dg.assess();
+  assert.equal(gate.ok, true, describeRefusal(gate));
+  assert.deepEqual(gate.commitPaths, ["output/cards.json"]);
+});
+
 test("the checkout must be on main with nothing unpushed", async () => {
   const { work, git } = scratchRepo();
   const dg = createDashboardGit({ repoRoot: work });

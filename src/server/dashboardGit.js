@@ -145,7 +145,12 @@ export function createDashboardGit({ repoRoot, branch = "main", git = runGit }) 
         const was = before.get(path);
         if (was && was.hash === now.hash) continue;
         const foreignBefore = Boolean(was) && !ownedBy(journal, path, was.hash);
-        journal[path] = { hash: now.hash, mixed: foreignBefore || Boolean(journal[path]?.mixed) };
+        // A path that was clean before this write starts fresh. Its old record can still say mixed
+        // when someone committed it by hand since and no dashboard write ran while it was clean to
+        // drop the record; carrying that flag forward blocked a delivery of nothing but dashboard
+        // edits (2026-10-31).
+        const mixedBefore = Boolean(was) && Boolean(journal[path]?.mixed);
+        journal[path] = { hash: now.hash, mixed: foreignBefore || mixedBefore };
       }
       for (const path of Object.keys(journal)) if (!after.has(path)) delete journal[path];
       await saveJournal(journal);

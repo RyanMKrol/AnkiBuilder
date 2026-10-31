@@ -1166,7 +1166,13 @@
       "note": "Regular 2: ます (masu) → て (te), the same change as たべます (tabemasu) → たべて (tabete).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught できます (Lesson 23).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "d4afc58a210c665f.mp3",
+      "audioOriginal": "d4afc58a210c665f.orig.mp3",
+      "audioAuto": "d4afc58a210c665f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d4afc58a210c665f"
     },
     {
       "id": "nai-dekinai",
@@ -1178,7 +1184,13 @@
       "hint": "casual form",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught できます (Lesson 23).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "9e64d1783ebd30b3.mp3",
+      "audioOriginal": "9e64d1783ebd30b3.orig.mp3",
+      "audioAuto": "9e64d1783ebd30b3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9e64d1783ebd30b3"
     },
     {
       "id": "te-form-yoyakushite",
@@ -1189,7 +1201,13 @@
       "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught よやくします (Lesson 23).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "4ae7f4a863a788cf.mp3",
+      "audioOriginal": "4ae7f4a863a788cf.orig.mp3",
+      "audioAuto": "4ae7f4a863a788cf.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4ae7f4a863a788cf"
     },
     {
       "id": "nai-yoyakushinai",
@@ -1201,7 +1219,13 @@
       "hint": "casual form",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught よやくします (Lesson 23).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "b86e9f90319b9693.mp3",
+      "audioOriginal": "b86e9f90319b9693.orig.mp3",
+      "audioAuto": "b86e9f90319b9693.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b86e9f90319b9693"
     },
     {
       "id": "te-form-tsukutte",
@@ -1212,7 +1236,13 @@
       "note": "Regular 1: り (ri) → って (tte), the same change as かえります (kaerimasu) → かえって (kaette).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught つくります (Lesson 23).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "db0d401b4199cb75.mp3",
+      "audioOriginal": "db0d401b4199cb75.orig.mp3",
+      "audioAuto": "db0d401b4199cb75.mp3",
+      "audioMarked": true,
+      "audioTextHash": "db0d401b4199cb75"
     },
     {
       "id": "nai-tsukuranai",
@@ -1224,7 +1254,13 @@
       "hint": "casual form",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught つくります (Lesson 23).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "bec66bce168cc81c.mp3",
+      "audioOriginal": "bec66bce168cc81c.orig.mp3",
+      "audioAuto": "bec66bce168cc81c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "bec66bce168cc81c"
     },
     {
       "id": "te-form-owatte",
@@ -1235,7 +1271,13 @@
       "note": "Regular 1: り (ri) → って (tte), the same change as かえります (kaerimasu) → かえって (kaette).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught おわります (Lesson 23).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "016abeb2893987b4.mp3",
+      "audioOriginal": "016abeb2893987b4.orig.mp3",
+      "audioAuto": "016abeb2893987b4.mp3",
+      "audioMarked": true,
+      "audioTextHash": "016abeb2893987b4"
     },
     {
       "id": "nai-owaranai",
@@ -1247,7 +1289,13 @@
       "hint": "casual form",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught おわります (Lesson 23).",
-      "addition": "verb-forms-sweep-2026-10"
+      "addition": "verb-forms-sweep-2026-10",
+      "additionReviewed": true,
+      "audio": "9b1cc3f8cd8c19cc.mp3",
+      "audioOriginal": "9b1cc3f8cd8c19cc.orig.mp3",
+      "audioAuto": "9b1cc3f8cd8c19cc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "9b1cc3f8cd8c19cc"
     }
   ]
 }

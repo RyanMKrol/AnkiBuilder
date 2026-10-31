@@ -386,12 +386,6 @@
       "additionReviewed": true,
       "additionAudioInherited": true,
       "additionDone": true,
-      "audio": "a1b3243842db1789.mp3",
-      "audioOriginal": "a1b3243842db1789.orig.mp3",
-      "audioAuto": "a1b3243842db1789.mp3",
-      "audioMarked": true,
-      "audioTextHash": "a1b3243842db1789",
-      "audioFilter": "standard",
       "excluded": true,
       "excludedBy": "qa-fix-2026-10",
       "excludedReason": "Duplicate of chapter-15/sugoi-great: the same すごい with a second English, not a separate sense."
@@ -1358,11 +1352,6 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using わかる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "9190d878f194ad3d.mp3",
-      "audioOriginal": "9190d878f194ad3d.orig.mp3",
-      "audioAuto": "9190d878f194ad3d.mp3",
-      "audioMarked": true,
-      "audioTextHash": "9190d878f194ad3d",
       "additionDone": true,
       "excluded": true,
       "excludedBy": "qa-fix-2026-10",
@@ -1453,13 +1442,7 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using くれる, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audioOriginal": "a4c3dc195c1f973c-genkanji-d56903b3.orig.mp3",
-      "audioAuto": "a4c3dc195c1f973c-genkanji-d56903b3.mp3",
-      "audioMarked": true,
-      "audioTextHash": "a4c3dc195c1f973c",
       "additionDone": true,
-      "audioFilter": "standard",
-      "audio": "a4c3dc195c1f973c-genkanji-d56903b3.mp3",
       "excluded": true,
       "excludedBy": "qa-fix-2026-10",
       "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: the sentence rests on a verb clause modifying a noun (ははがくれる おかし), which this book does not teach. くれる keeps its bare card."
@@ -1493,13 +1476,7 @@
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using にあう, the dictionary form added to the base unit in the same batch.",
       "addition": "dictionary-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audioOriginal": "f3f6070ad555fd32-genkanji-c94492cb.orig.mp3",
-      "audioAuto": "f3f6070ad555fd32-genkanji-c94492cb.mp3",
-      "audioMarked": true,
-      "audioTextHash": "f3f6070ad555fd32",
       "additionDone": true,
-      "audioFilter": "standard",
-      "audio": "f3f6070ad555fd32-genkanji-c94492cb.mp3",
       "excluded": true,
       "excludedBy": "qa-fix-2026-10",
       "excludedReason": "Ruling 5 (2026-10-18), cut where the grammar is untaught: the sentence rests on a verb clause modifying a noun (にあう ふく), which this book does not teach. にあう keeps its bare card."
@@ -1513,7 +1490,13 @@
       "note": "A dictionary form before のがすき (no ga suki) turns the verb into something you can like: おきる (okiru, \"get up\") + の (no) + がすきじゃありません (ga suki ja arimasen, \"don't like\").",
       "reviewNote": "Owner request 2026-10-30: a sentence for おきる, added to Lesson 15 in the same batch, on this lesson's のがすきです frame.",
       "aiSuggested": true,
-      "addition": "verb-gaps-sweep-2026-10-30"
+      "addition": "verb-gaps-sweep-2026-10-30",
+      "additionReviewed": true,
+      "audio": "937c4e7ba86e5115.mp3",
+      "audioOriginal": "937c4e7ba86e5115.orig.mp3",
+      "audioAuto": "937c4e7ba86e5115.mp3",
+      "audioMarked": true,
+      "audioTextHash": "937c4e7ba86e5115"
     }
   ]
 }

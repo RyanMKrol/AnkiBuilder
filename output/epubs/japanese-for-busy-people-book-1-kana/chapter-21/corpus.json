@@ -977,6 +977,24 @@
       "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught じゅうでんします (Lesson 21)."
+    },
+    {
+      "id": "hairitai-desu",
+      "english": "(I) want to enter",
+      "category": "Grammar & Function Words",
+      "target": "はいりたいです",
+      "note": "Also the word for getting into a bath or hot spring: おんせんにはいりたいです (onsen ni hairitai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for はいります, to go with the two trip sentences in this batch. Placed in Lesson 21, which teaches はいります.",
+      "aiSuggested": true
+    },
+    {
+      "id": "tsukaitai-desu",
+      "english": "(I) want to use",
+      "category": "Grammar & Function Words",
+      "target": "つかいたいです",
+      "note": "Drop ます (masu) from つかいます (tsukaimasu), add たいです (tai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for つかいます, to go with the two trip sentences in this batch. Placed in Lesson 21, which teaches つかいます.",
+      "aiSuggested": true
     }
   ]
 }

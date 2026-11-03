@@ -1321,6 +1321,28 @@
       "audioMarked": true,
       "audioTextHash": "a183c8286ccdf01b",
       "additionDone": true
+    },
+    {
+      "id": "hairitai-desu",
+      "english": "(I) want to enter",
+      "category": "Grammar & Function Words",
+      "target": "はいりたいです",
+      "pronunciation": "hairitai desu",
+      "note": "Also the word for getting into a bath or hot spring: おんせんにはいりたいです (onsen ni hairitai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for はいります, to go with the two trip sentences in this batch. Placed in Lesson 21, which teaches はいります.",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
+    },
+    {
+      "id": "tsukaitai-desu",
+      "english": "(I) want to use",
+      "category": "Grammar & Function Words",
+      "target": "つかいたいです",
+      "pronunciation": "tsukaitai desu",
+      "note": "Drop ます (masu) from つかいます (tsukaimasu), add たいです (tai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for つかいます, to go with the two trip sentences in this batch. Placed in Lesson 21, which teaches つかいます.",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
     }
   ]
 }

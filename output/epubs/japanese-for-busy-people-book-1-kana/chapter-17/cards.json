@@ -1288,6 +1288,17 @@
       "audioMarked": true,
       "audioTextHash": "36d4f38303e4dbc4",
       "additionDone": true
+    },
+    {
+      "id": "yasumitai-desu",
+      "english": "(I) want to rest",
+      "category": "Grammar & Function Words",
+      "target": "やすみたいです",
+      "pronunciation": "yasumitai desu",
+      "note": "Drop ます (masu) from やすみます (yasumimasu), add たいです (tai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for やすみます, to go with the two trip sentences in this batch. Placed in Lesson 17, which introduces たい (やすみます is from Lesson 16).",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
     }
   ]
 }

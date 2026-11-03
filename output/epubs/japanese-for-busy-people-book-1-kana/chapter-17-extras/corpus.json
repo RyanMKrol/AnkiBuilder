@@ -871,6 +871,60 @@
       "note": "チェックする (check). A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに from Lesson 17. Then たいです (want to).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using チェックする, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "nihonshu-o-nomitai",
+      "english": "I want to drink sake.",
+      "category": "Food",
+      "target": "にほんしゅをのみたいです",
+      "note": "のみたい (nomitai) is のみます (nomimasu, \"drink\") with ます (masu) swapped for たい (tai).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for のみます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ocha-o-nomitai",
+      "english": "I want to drink green tea.",
+      "category": "Food",
+      "target": "おちゃをのみたいです",
+      "note": "With たい (tai), the を (o) can also be が (ga): おちゃがのみたいです (ocha ga nomitai desu). Both are correct.",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for のみます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
+    },
+    {
+      "id": "raamen-o-tabetai",
+      "english": "I want to eat ramen.",
+      "category": "Food",
+      "target": "ラーメンをたべたいです",
+      "note": "たべたい (tabetai) is たべます (tabemasu, \"eat\") with ます (masu) swapped for たい (tai).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for たべます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
+    },
+    {
+      "id": "tenpura-o-tabetai",
+      "english": "I want to eat tempura.",
+      "category": "Food",
+      "target": "てんぷらをたべたいです",
+      "note": "Turn it into a question to ask a friend: てんぷらをたべたいですか (tenpura o tabetai desu ka, \"Do you want to eat tempura?\").",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for たべます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
+    },
+    {
+      "id": "tsukaremashita-kara-sukoshi-yasumitai",
+      "english": "I'm tired, so I want to rest a little.",
+      "category": "Travel & Tourism",
+      "target": "つかれましたから、すこしやすみたいです",
+      "note": "やすみたい (yasumitai) is やすみます (yasumimasu, \"rest\") with ます (masu) swapped for たい (tai). から (kara) after つかれました (tsukaremashita) gives the reason.",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for やすみます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hoteru-de-yasumitai",
+      "english": "I want to rest at the hotel.",
+      "category": "Travel & Tourism",
+      "target": "ホテルでやすみたいです",
+      "note": "で (de) marks where you rest, the same で as in ホテルでたべます (hoteru de tabemasu).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for やすみます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
     }
   ]
 }

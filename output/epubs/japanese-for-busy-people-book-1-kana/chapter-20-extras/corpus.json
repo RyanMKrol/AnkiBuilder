@@ -557,6 +557,42 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using ねぼうする, the dictionary form added to the base unit in the same batch.",
       "hint": "use the verb for oversleeping"
+    },
+    {
+      "id": "shinkansen-ni-noritai",
+      "english": "I want to take the Shinkansen.",
+      "category": "Transport",
+      "target": "しんかんせんにのりたいです",
+      "note": "のります (norimasu) marks what you get on with に (ni), and the に stays when it becomes のりたい (noritai).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for のります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
+    },
+    {
+      "id": "takushii-ni-noritai",
+      "english": "I want to take a taxi.",
+      "category": "Transport",
+      "target": "タクシーにのりたいです",
+      "note": "のりたい (noritai) is のります (norimasu, \"get on, take\") with ます (masu) swapped for たい (tai).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for のります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
+    },
+    {
+      "id": "tsugi-no-eki-de-oritai",
+      "english": "I want to get off at the next station.",
+      "category": "Transport",
+      "target": "つぎのえきでおりたいです",
+      "note": "で (de) marks the station where you get off. The train itself would take を (o): でんしゃをおります (densha o orimasu).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for おります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ginza-de-oritai",
+      "english": "I want to get off at Ginza.",
+      "category": "Transport",
+      "target": "ぎんざでおりたいです",
+      "note": "おりたい (oritai) is おります (orimasu, \"get off\") with ます (masu) swapped for たい (tai).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for おります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
     }
   ]
 }

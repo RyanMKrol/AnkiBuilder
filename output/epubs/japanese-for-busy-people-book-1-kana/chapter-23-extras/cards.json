@@ -1178,7 +1178,14 @@
       "note": "よやくしたい (yoyaku shitai) is よやくします (yoyaku shimasu, \"make a reservation\") with ます (masu) swapped for たい (tai).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for よやくします, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "09aa0cff18b59787.mp3",
+      "audioOriginal": "09aa0cff18b59787.orig.mp3",
+      "audioAuto": "09aa0cff18b59787.mp3",
+      "audioMarked": true,
+      "audioMarkerStuck": true,
+      "audioTextHash": "09aa0cff18b59787"
     },
     {
       "id": "futari-de-yoyaku-shitai",
@@ -1189,7 +1196,13 @@
       "note": "ふたりで (futari de) means \"as two people\", the same で (de) as ひとりで (hitori de, \"alone\") from Lesson 6.",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for よやくします, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "fe626675131436c7.mp3",
+      "audioOriginal": "fe626675131436c7.orig.mp3",
+      "audioAuto": "fe626675131436c7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fe626675131436c7"
     }
   ]
 }

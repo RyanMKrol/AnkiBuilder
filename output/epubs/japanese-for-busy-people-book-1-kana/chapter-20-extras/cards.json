@@ -973,7 +973,13 @@
       "note": "のります (norimasu) marks what you get on with に (ni), and the に stays when it becomes のりたい (noritai).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for のります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "be6555b88d08b4a6.mp3",
+      "audioOriginal": "be6555b88d08b4a6.orig.mp3",
+      "audioAuto": "be6555b88d08b4a6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "be6555b88d08b4a6"
     },
     {
       "id": "takushii-ni-noritai",
@@ -984,7 +990,13 @@
       "note": "のりたい (noritai) is のります (norimasu, \"get on, take\") with ます (masu) swapped for たい (tai).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for のります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "f796dda5a109d158.mp3",
+      "audioOriginal": "f796dda5a109d158.orig.mp3",
+      "audioAuto": "f796dda5a109d158.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f796dda5a109d158"
     },
     {
       "id": "tsugi-no-eki-de-oritai",
@@ -995,7 +1007,13 @@
       "note": "で (de) marks the station where you get off. The train itself would take を (o): でんしゃをおります (densha o orimasu).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for おります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "b6ef5e0897118af7.mp3",
+      "audioOriginal": "b6ef5e0897118af7.orig.mp3",
+      "audioAuto": "b6ef5e0897118af7.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b6ef5e0897118af7"
     },
     {
       "id": "ginza-de-oritai",
@@ -1006,7 +1024,13 @@
       "note": "おりたい (oritai) is おります (orimasu, \"get off\") with ます (masu) swapped for たい (tai).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for おります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "fab9551eb798d591.mp3",
+      "audioOriginal": "fab9551eb798d591.orig.mp3",
+      "audioAuto": "fab9551eb798d591.mp3",
+      "audioMarked": true,
+      "audioTextHash": "fab9551eb798d591"
     }
   ]
 }

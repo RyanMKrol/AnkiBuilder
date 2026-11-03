@@ -97,6 +97,11 @@
         "message": "chapter-21: \"はいります\" (Enter) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "L21 gate 1: all five are the book's own vocabulary entries (しゃしんを とっても いいですか, ねつが あります and あたまが いたいです are glossed as single units in VOCABULARY/WORD POWER); はいります and じゅうでんします are plain verbs the check misreads as sentences"
       },
+      "chapter-21/hairitai-desu": {
+        "at": "2026-11-03T00:47:47.143Z",
+        "message": "chapter-21: \"はいりたいです\" ((I) want to enter) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "はいりたいです is a word card (the たい form of はいります); its leading は is part of the verb, not the topic particle."
+      },
       "chapter-21/juuden-shimasu": {
         "at": "2026-10-11T11:49:21.688Z",
         "message": "chapter-21: \"じゅうでんします\" (Recharge) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",

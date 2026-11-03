@@ -1304,6 +1304,17 @@
       "audioMarked": true,
       "audioTextHash": "9b1cc3f8cd8c19cc",
       "additionDone": true
+    },
+    {
+      "id": "yoyaku-shitai-desu",
+      "english": "(I) want to make a reservation",
+      "category": "Grammar & Function Words",
+      "target": "よやくしたいです",
+      "pronunciation": "yoyaku shitai desu",
+      "note": "します (shimasu) becomes したい (shitai), so よやくします (yoyaku shimasu) becomes よやくしたいです (yoyaku shitai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for よやくします, to go with the two trip sentences in this batch. Placed in Lesson 23, which teaches よやくします.",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
     }
   ]
 }

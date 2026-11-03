@@ -1619,6 +1619,28 @@
       "audioMarked": true,
       "audioTextHash": "80cfdbee47971401",
       "additionDone": true
+    },
+    {
+      "id": "noritai-desu",
+      "english": "(I) want to get on, want to take (a train, bus, etc.)",
+      "category": "Grammar & Function Words",
+      "target": "のりたいです",
+      "pronunciation": "noritai desu",
+      "note": "What you get on keeps its に (ni): しんかんせんにのりたいです (shinkansen ni noritai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for のります, to go with the two trip sentences in this batch. Placed in Lesson 20, which teaches のります.",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
+    },
+    {
+      "id": "oritai-desu",
+      "english": "(I) want to get off",
+      "category": "Grammar & Function Words",
+      "target": "おりたいです",
+      "pronunciation": "oritai desu",
+      "note": "Drop ます (masu) from おります (orimasu), add たいです (tai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for おります, to go with the two trip sentences in this batch. Placed in Lesson 20, which teaches おります.",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
     }
   ]
 }

@@ -982,6 +982,15 @@
       "hint": "casual form",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its ない-form, which the book introduces in Lesson 22 but only prints for some verbs. Placed in the lesson that taught おわります (Lesson 23)."
+    },
+    {
+      "id": "yoyaku-shitai-desu",
+      "english": "(I) want to make a reservation",
+      "category": "Grammar & Function Words",
+      "target": "よやくしたいです",
+      "note": "します (shimasu) becomes したい (shitai), so よやくします (yoyaku shimasu) becomes よやくしたいです (yoyaku shitai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for よやくします, to go with the two trip sentences in this batch. Placed in Lesson 23, which teaches よやくします.",
+      "aiSuggested": true
     }
   ]
 }

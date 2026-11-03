@@ -1303,6 +1303,24 @@
       "note": "Irregular (a する verb): します (shimasu) → して (shite), the same change as します → して on its own.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in the lesson that taught ねぼうします (Lesson 20)."
+    },
+    {
+      "id": "noritai-desu",
+      "english": "(I) want to get on, want to take (a train, bus, etc.)",
+      "category": "Grammar & Function Words",
+      "target": "のりたいです",
+      "note": "What you get on keeps its に (ni): しんかんせんにのりたいです (shinkansen ni noritai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for のります, to go with the two trip sentences in this batch. Placed in Lesson 20, which teaches のります.",
+      "aiSuggested": true
+    },
+    {
+      "id": "oritai-desu",
+      "english": "(I) want to get off",
+      "category": "Grammar & Function Words",
+      "target": "おりたいです",
+      "note": "Drop ます (masu) from おります (orimasu), add たいです (tai desu).",
+      "reviewNote": "Owner request 2026-11-03: the たい word card for おります, to go with the two trip sentences in this batch. Placed in Lesson 20, which teaches おります.",
+      "aiSuggested": true
     }
   ]
 }

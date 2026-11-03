@@ -1180,12 +1180,17 @@
       "aiSuggested": true,
       "addition": "tai-trip-2026-11",
       "additionReviewed": true,
-      "audio": "09aa0cff18b59787.mp3",
+      "audio": "konban-resutoran-o-yoyaku-shitai-manual-8ea34d6d.mp3",
       "audioOriginal": "09aa0cff18b59787.orig.mp3",
       "audioAuto": "09aa0cff18b59787.mp3",
       "audioMarked": true,
-      "audioMarkerStuck": true,
-      "audioTextHash": "09aa0cff18b59787"
+      "audioTextHash": "09aa0cff18b59787",
+      "audioManual": "konban-resutoran-o-yoyaku-shitai-manual-8ea34d6d.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 3.3640860445205476
+      },
+      "additionDone": true
     },
     {
       "id": "futari-de-yoyaku-shitai",
@@ -1202,7 +1207,8 @@
       "audioOriginal": "fe626675131436c7.orig.mp3",
       "audioAuto": "fe626675131436c7.mp3",
       "audioMarked": true,
-      "audioTextHash": "fe626675131436c7"
+      "audioTextHash": "fe626675131436c7",
+      "additionDone": true
     }
   ]
 }

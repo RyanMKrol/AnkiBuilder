@@ -979,7 +979,8 @@
       "audioOriginal": "be6555b88d08b4a6.orig.mp3",
       "audioAuto": "be6555b88d08b4a6.mp3",
       "audioMarked": true,
-      "audioTextHash": "be6555b88d08b4a6"
+      "audioTextHash": "be6555b88d08b4a6",
+      "additionDone": true
     },
     {
       "id": "takushii-ni-noritai",
@@ -996,7 +997,8 @@
       "audioOriginal": "f796dda5a109d158.orig.mp3",
       "audioAuto": "f796dda5a109d158.mp3",
       "audioMarked": true,
-      "audioTextHash": "f796dda5a109d158"
+      "audioTextHash": "f796dda5a109d158",
+      "additionDone": true
     },
     {
       "id": "tsugi-no-eki-de-oritai",
@@ -1013,7 +1015,8 @@
       "audioOriginal": "b6ef5e0897118af7.orig.mp3",
       "audioAuto": "b6ef5e0897118af7.mp3",
       "audioMarked": true,
-      "audioTextHash": "b6ef5e0897118af7"
+      "audioTextHash": "b6ef5e0897118af7",
+      "additionDone": true
     },
     {
       "id": "ginza-de-oritai",
@@ -1030,7 +1033,8 @@
       "audioOriginal": "fab9551eb798d591.orig.mp3",
       "audioAuto": "fab9551eb798d591.mp3",
       "audioMarked": true,
-      "audioTextHash": "fab9551eb798d591"
+      "audioTextHash": "fab9551eb798d591",
+      "additionDone": true
     }
   ]
 }

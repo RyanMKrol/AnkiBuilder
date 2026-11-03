@@ -1144,7 +1144,8 @@
       "audioOriginal": "6209c2080592e3bf.orig.mp3",
       "audioAuto": "6209c2080592e3bf.mp3",
       "audioMarked": true,
-      "audioTextHash": "6209c2080592e3bf"
+      "audioTextHash": "6209c2080592e3bf",
+      "additionDone": true
     },
     {
       "id": "ano-mise-ni-hairitai",
@@ -1161,7 +1162,8 @@
       "audioOriginal": "b7e31cfcea0a90f6.orig.mp3",
       "audioAuto": "b7e31cfcea0a90f6.mp3",
       "audioMarked": true,
-      "audioTextHash": "b7e31cfcea0a90f6"
+      "audioTextHash": "b7e31cfcea0a90f6",
+      "additionDone": true
     },
     {
       "id": "otearai-o-tsukaitai",
@@ -1178,7 +1180,8 @@
       "audioOriginal": "9ca57cdbdd2d169d.orig.mp3",
       "audioAuto": "9ca57cdbdd2d169d.mp3",
       "audioMarked": true,
-      "audioTextHash": "9ca57cdbdd2d169d"
+      "audioTextHash": "9ca57cdbdd2d169d",
+      "additionDone": true
     },
     {
       "id": "kaado-o-tsukaitai",
@@ -1195,7 +1198,8 @@
       "audioOriginal": "c52cd715c6eefa6a.orig.mp3",
       "audioAuto": "c52cd715c6eefa6a.mp3",
       "audioMarked": true,
-      "audioTextHash": "c52cd715c6eefa6a"
+      "audioTextHash": "c52cd715c6eefa6a",
+      "additionDone": true
     }
   ]
 }

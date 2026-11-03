@@ -1635,7 +1635,8 @@
       "audioOriginal": "8d46d853c5712573.orig.mp3",
       "audioAuto": "8d46d853c5712573.mp3",
       "audioMarked": true,
-      "audioTextHash": "8d46d853c5712573"
+      "audioTextHash": "8d46d853c5712573",
+      "additionDone": true
     },
     {
       "id": "oritai-desu",
@@ -1652,7 +1653,8 @@
       "audioOriginal": "fb47072c64886e49.orig.mp3",
       "audioAuto": "fb47072c64886e49.mp3",
       "audioMarked": true,
-      "audioTextHash": "fb47072c64886e49"
+      "audioTextHash": "fb47072c64886e49",
+      "additionDone": true
     }
   ]
 }

@@ -1663,7 +1663,8 @@
       "audioOriginal": "019f47ac55d4585f.orig.mp3",
       "audioAuto": "019f47ac55d4585f.mp3",
       "audioMarked": true,
-      "audioTextHash": "019f47ac55d4585f"
+      "audioTextHash": "019f47ac55d4585f",
+      "additionDone": true
     },
     {
       "id": "ocha-o-nomitai",
@@ -1680,7 +1681,8 @@
       "audioOriginal": "15f31694b5c5f0f8.orig.mp3",
       "audioAuto": "15f31694b5c5f0f8.mp3",
       "audioMarked": true,
-      "audioTextHash": "15f31694b5c5f0f8"
+      "audioTextHash": "15f31694b5c5f0f8",
+      "additionDone": true
     },
     {
       "id": "raamen-o-tabetai",
@@ -1697,7 +1699,8 @@
       "audioOriginal": "e587cf489f257993.orig.mp3",
       "audioAuto": "e587cf489f257993.mp3",
       "audioMarked": true,
-      "audioTextHash": "e587cf489f257993"
+      "audioTextHash": "e587cf489f257993",
+      "additionDone": true
     },
     {
       "id": "tenpura-o-tabetai",
@@ -1714,7 +1717,8 @@
       "audioOriginal": "511c8860a0ba2976.orig.mp3",
       "audioAuto": "511c8860a0ba2976.mp3",
       "audioMarked": true,
-      "audioTextHash": "511c8860a0ba2976"
+      "audioTextHash": "511c8860a0ba2976",
+      "additionDone": true
     },
     {
       "id": "tsukaremashita-kara-sukoshi-yasumitai",
@@ -1731,7 +1735,8 @@
       "audioOriginal": "8168e51b7d3f186e.orig.mp3",
       "audioAuto": "8168e51b7d3f186e.mp3",
       "audioMarked": true,
-      "audioTextHash": "8168e51b7d3f186e"
+      "audioTextHash": "8168e51b7d3f186e",
+      "additionDone": true
     },
     {
       "id": "hoteru-de-yasumitai",
@@ -1748,7 +1753,8 @@
       "audioOriginal": "11e59e1a61c2203d.orig.mp3",
       "audioAuto": "11e59e1a61c2203d.mp3",
       "audioMarked": true,
-      "audioTextHash": "11e59e1a61c2203d"
+      "audioTextHash": "11e59e1a61c2203d",
+      "additionDone": true
     }
   ]
 }

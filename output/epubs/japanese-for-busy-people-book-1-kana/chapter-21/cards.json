@@ -1337,7 +1337,8 @@
       "audioOriginal": "76d3918241ee4556.orig.mp3",
       "audioAuto": "76d3918241ee4556.mp3",
       "audioMarked": true,
-      "audioTextHash": "76d3918241ee4556"
+      "audioTextHash": "76d3918241ee4556",
+      "additionDone": true
     },
     {
       "id": "tsukaitai-desu",
@@ -1354,7 +1355,8 @@
       "audioOriginal": "a17a4cf1db9454ef.orig.mp3",
       "audioAuto": "a17a4cf1db9454ef.mp3",
       "audioMarked": true,
-      "audioTextHash": "a17a4cf1db9454ef"
+      "audioTextHash": "a17a4cf1db9454ef",
+      "additionDone": true
     }
   ]
 }

@@ -1304,7 +1304,8 @@
       "audioOriginal": "aac30a26939a7c89.orig.mp3",
       "audioAuto": "aac30a26939a7c89.mp3",
       "audioMarked": true,
-      "audioTextHash": "aac30a26939a7c89"
+      "audioTextHash": "aac30a26939a7c89",
+      "additionDone": true
     }
   ]
 }

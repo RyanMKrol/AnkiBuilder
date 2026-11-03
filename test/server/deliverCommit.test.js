@@ -112,6 +112,45 @@ test("every dashboard write is recorded, so Deliver can tell it from anyone else
   assert.deepEqual(git.calls, ["snapshot", "record"]);
 });
 
+test("two dashboard writes sent together run one at a time, snapshot to record", async () => {
+  // Two Mark ready clicks on different cards in one file overlapped (2026-11-03): the second took its
+  // snapshot after the first had written but before the first was recorded, found a hash the journal
+  // did not know, and marked five Busy People files mixed. Holding the reply does not help when the
+  // page does not wait for it. No snapshot may start until the previous write is recorded.
+  const git = fakeGit();
+  git.record = async () => {
+    await new Promise((r) => setTimeout(r, 100));
+    git.calls.push("record");
+  };
+  await withServer({ git }, async (url) => {
+    await Promise.all([
+      post(url, "/api/deck/epub/nope/rebuild"),
+      post(url, "/api/deck/epub/nope/rebuild"),
+    ]);
+  });
+  assert.deepEqual(git.calls, ["snapshot", "record", "snapshot", "record"]);
+});
+
+test("a failed dashboard write does not stall the writes queued behind it", async () => {
+  const git = fakeGit();
+  let first = true;
+  git.snapshot = async () => {
+    if (first) {
+      first = false;
+      throw new Error("git status failed");
+    }
+    git.calls.push("snapshot");
+    return new Map();
+  };
+  await withServer({ git }, async (url) => {
+    const a = await post(url, "/api/deck/epub/nope/rebuild");
+    assert.equal(a.status, 500);
+    const b = await post(url, "/api/deck/epub/nope/rebuild");
+    assert.equal(b.status, 404, "the next write still runs");
+  });
+  assert.deepEqual(git.calls, ["snapshot", "record"]);
+});
+
 test("a dashboard write answers only after it is recorded, so a quick second edit cannot race it", async () => {
   // Two quick trims on one card blocked Deliver (2026-10-19): the first answered before its write
   // was recorded, the page sent the second at once, and the second found the file at a hash the

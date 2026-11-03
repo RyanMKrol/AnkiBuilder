@@ -80,9 +80,12 @@ commit your own work, as always (stage explicit paths).
 If the button refuses a file the owner alone edited in the dashboard, check it before overriding:
 diff it field by field against `HEAD` and confirm every change is an audio or dashboard field. The
 journal (`.git/anki-builder-dashboard-writes.json`) stores a plain SHA-1 of each file, not git's
-object hash, so compare with `shasum`, not `git hash-object`. Until 2026-10-19 a quick second edit to
-the same file could race the first one's record and be marked mixed; the server now holds each reply
-until its write is recorded.
+object hash, so compare with `shasum`, not `git hash-object`. If every change checks out, committing the
+files by hand clears the refusal. Two races used to cause this. Until 2026-10-19 a quick second edit to
+the same file could race the first one's record; the server then started holding each reply until its
+write was recorded. Until 2026-11-03 two clicks the page did not wait between (Mark ready on two cards
+in one file) could still overlap; the server now runs dashboard writes one at a time. The running
+dashboard only picks up that fix once it is restarted.
 
 The button passes no flags, so anything that needs consent — a template/CSS change, a first delivery
 of more than 200 cards, `--refile` — has to go through the CLI. That is deliberate: a consent flag

@@ -1657,7 +1657,13 @@
       "note": "のみたい (nomitai) is のみます (nomimasu, \"drink\") with ます (masu) swapped for たい (tai).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for のみます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "019f47ac55d4585f.mp3",
+      "audioOriginal": "019f47ac55d4585f.orig.mp3",
+      "audioAuto": "019f47ac55d4585f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "019f47ac55d4585f"
     },
     {
       "id": "ocha-o-nomitai",
@@ -1668,7 +1674,13 @@
       "note": "With たい (tai), the を (o) can also be が (ga): おちゃがのみたいです (ocha ga nomitai desu). Both are correct.",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for のみます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "15f31694b5c5f0f8.mp3",
+      "audioOriginal": "15f31694b5c5f0f8.orig.mp3",
+      "audioAuto": "15f31694b5c5f0f8.mp3",
+      "audioMarked": true,
+      "audioTextHash": "15f31694b5c5f0f8"
     },
     {
       "id": "raamen-o-tabetai",
@@ -1679,7 +1691,13 @@
       "note": "たべたい (tabetai) is たべます (tabemasu, \"eat\") with ます (masu) swapped for たい (tai).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for たべます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "e587cf489f257993.mp3",
+      "audioOriginal": "e587cf489f257993.orig.mp3",
+      "audioAuto": "e587cf489f257993.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e587cf489f257993"
     },
     {
       "id": "tenpura-o-tabetai",
@@ -1690,7 +1708,13 @@
       "note": "Turn it into a question to ask a friend: てんぷらをたべたいですか (tenpura o tabetai desu ka, \"Do you want to eat tempura?\").",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for たべます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "511c8860a0ba2976.mp3",
+      "audioOriginal": "511c8860a0ba2976.orig.mp3",
+      "audioAuto": "511c8860a0ba2976.mp3",
+      "audioMarked": true,
+      "audioTextHash": "511c8860a0ba2976"
     },
     {
       "id": "tsukaremashita-kara-sukoshi-yasumitai",
@@ -1701,7 +1725,13 @@
       "note": "やすみたい (yasumitai) is やすみます (yasumimasu, \"rest\") with ます (masu) swapped for たい (tai). から (kara) after つかれました (tsukaremashita) gives the reason.",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for やすみます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "8168e51b7d3f186e.mp3",
+      "audioOriginal": "8168e51b7d3f186e.orig.mp3",
+      "audioAuto": "8168e51b7d3f186e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8168e51b7d3f186e"
     },
     {
       "id": "hoteru-de-yasumitai",
@@ -1712,7 +1742,13 @@
       "note": "で (de) marks where you rest, the same で as in ホテルでたべます (hoteru de tabemasu).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for やすみます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "11e59e1a61c2203d.mp3",
+      "audioOriginal": "11e59e1a61c2203d.orig.mp3",
+      "audioAuto": "11e59e1a61c2203d.mp3",
+      "audioMarked": true,
+      "audioTextHash": "11e59e1a61c2203d"
     }
   ]
 }

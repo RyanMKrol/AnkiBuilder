@@ -1314,7 +1314,13 @@
       "note": "します (shimasu) becomes したい (shitai), so よやくします (yoyaku shimasu) becomes よやくしたいです (yoyaku shitai desu).",
       "reviewNote": "Owner request 2026-11-03: the たい word card for よやくします, to go with the two trip sentences in this batch. Placed in Lesson 23, which teaches よやくします.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "2ec916658236a545.mp3",
+      "audioOriginal": "2ec916658236a545.orig.mp3",
+      "audioAuto": "2ec916658236a545.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2ec916658236a545"
     }
   ]
 }

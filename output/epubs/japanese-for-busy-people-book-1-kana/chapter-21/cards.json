@@ -1331,7 +1331,13 @@
       "note": "Also the word for getting into a bath or hot spring: おんせんにはいりたいです (onsen ni hairitai desu).",
       "reviewNote": "Owner request 2026-11-03: the たい word card for はいります, to go with the two trip sentences in this batch. Placed in Lesson 21, which teaches はいります.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "76d3918241ee4556.mp3",
+      "audioOriginal": "76d3918241ee4556.orig.mp3",
+      "audioAuto": "76d3918241ee4556.mp3",
+      "audioMarked": true,
+      "audioTextHash": "76d3918241ee4556"
     },
     {
       "id": "tsukaitai-desu",
@@ -1342,7 +1348,13 @@
       "note": "Drop ます (masu) from つかいます (tsukaimasu), add たいです (tai desu).",
       "reviewNote": "Owner request 2026-11-03: the たい word card for つかいます, to go with the two trip sentences in this batch. Placed in Lesson 21, which teaches つかいます.",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "a17a4cf1db9454ef.mp3",
+      "audioOriginal": "a17a4cf1db9454ef.orig.mp3",
+      "audioAuto": "a17a4cf1db9454ef.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a17a4cf1db9454ef"
     }
   ]
 }

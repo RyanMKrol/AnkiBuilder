@@ -1298,7 +1298,13 @@
       "note": "Drop ます (masu) from やすみます (yasumimasu), add たいです (tai desu).",
       "reviewNote": "Owner request 2026-11-03: the たい word card for やすみます, to go with the two trip sentences in this batch. Placed in Lesson 17, which introduces たい (やすみます is from Lesson 16).",
       "aiSuggested": true,
-      "addition": "tai-trip-2026-11"
+      "addition": "tai-trip-2026-11",
+      "additionReviewed": true,
+      "audio": "aac30a26939a7c89.mp3",
+      "audioOriginal": "aac30a26939a7c89.orig.mp3",
+      "audioAuto": "aac30a26939a7c89.mp3",
+      "audioMarked": true,
+      "audioTextHash": "aac30a26939a7c89"
     }
   ]
 }

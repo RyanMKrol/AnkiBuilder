@@ -124,6 +124,14 @@ export function createDeckServer({
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
   let delivering = false;
+  // Dashboard writes, one at a time (see the POST handler). A failed write must not stall the ones
+  // queued behind it, so the chain carries on past a rejection.
+  let writeTail = Promise.resolve();
+  const writeQueue = (fn) => {
+    const run = writeTail.then(fn);
+    writeTail = run.catch(() => {});
+    return run;
+  };
 
   // Resolve a path (deck file / run dir) and return its realpath only if it stays inside outputRoot
   // (blocks traversal and symlink escapes); null otherwise or if it doesn't exist.
@@ -696,19 +704,28 @@ export function createDeckServer({
           }
           return notFound(res);
         }
-        const before = git ? await git.snapshot() : null;
-        // The reply is held until the write is recorded. The page sends its next edit the moment
-        // this one answers, and a second edit to the same file that starts before the first is
-        // recorded finds the file at a hash the journal does not know yet, so it is marked mixed
-        // and Deliver refuses the owner's own work. That happened on 2026-10-19: two quick trims
-        // on one Genki card blocked Deliver.
-        const release = before ? holdReply(res) : () => {};
-        try {
+        if (!git) {
           if (await routePost(req, res, seg)) return;
-        } finally {
-          if (before) await git.record(before);
-          release();
+          return notFound(res);
         }
+        // Writes run one at a time, snapshot to record. A second edit to the same file that starts
+        // before the first is recorded finds the file at a hash the journal does not know yet, so
+        // it is marked mixed and Deliver refuses the owner's own work. Holding the reply until the
+        // record (2026-10-19, two quick trims on one Genki card) only covered a page that waits for
+        // each answer; two Mark ready clicks on different cards in one file still overlapped, and
+        // blocked five Busy People files on 2026-11-03. The reply is still held, so the page never
+        // sees an answer for a write the journal has not caught up with.
+        const routed = await writeQueue(async () => {
+          const before = await git.snapshot();
+          const release = holdReply(res);
+          try {
+            return await routePost(req, res, seg);
+          } finally {
+            await git.record(before);
+            release();
+          }
+        });
+        if (routed) return;
         return notFound(res);
       }
       res.writeHead(405, { Allow: "GET, POST" });

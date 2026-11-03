@@ -1128,6 +1128,50 @@
       "audioMarked": true,
       "audioTextHash": "36ebdf47379a58b6",
       "additionDone": true
+    },
+    {
+      "id": "onsen-ni-hairitai",
+      "english": "I want to get into the hot spring.",
+      "category": "Travel & Tourism",
+      "target": "おんせんにはいりたいです",
+      "pronunciation": "onsen ni hairitai desu",
+      "note": "はいります (hairimasu, \"enter\") is also the verb for getting into a bath or a hot spring. The place you enter takes に (ni).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for はいります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
+    },
+    {
+      "id": "ano-mise-ni-hairitai",
+      "english": "I want to enter that shop over there.",
+      "category": "Shopping",
+      "target": "あのみせにはいりたいです",
+      "pronunciation": "ano mise ni hairitai desu",
+      "note": "はいりたい (hairitai) is はいります (hairimasu, \"enter\") with ます (masu) swapped for たい (tai).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for はいります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
+    },
+    {
+      "id": "otearai-o-tsukaitai",
+      "english": "I want to use the restroom.",
+      "category": "Travel & Tourism",
+      "target": "おてあらいをつかいたいです",
+      "pronunciation": "otearai o tsukaitai desu",
+      "note": "つかいたい (tsukaitai) is つかいます (tsukaimasu, \"use\") with ます (masu) swapped for たい (tai). Said to staff, it works as a polite request.",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for つかいます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
+    },
+    {
+      "id": "kaado-o-tsukaitai",
+      "english": "I want to use a credit card.",
+      "category": "Money",
+      "target": "カードをつかいたいです",
+      "pronunciation": "kādo o tsukaitai desu",
+      "note": "At the till, カードでおねがいします (kādo de onegaishimasu, \"By credit card, please\") from Lesson 4 says the same thing more briefly.",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for つかいます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true,
+      "addition": "tai-trip-2026-11"
     }
   ]
 }

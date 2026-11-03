@@ -646,6 +646,24 @@
       "note": "でんわします (denwa shimasu) is でんわをします with を (o) dropped, as the book writes it here.",
       "reviewNote": "QA fix pass 2026-10, answers chapter-23-extras/-/book-gap/2: Speaking Practice 2, じゃ、また あとで でんわします.",
       "aiSuggested": true
+    },
+    {
+      "id": "konban-resutoran-o-yoyaku-shitai",
+      "english": "I want to reserve a restaurant for this evening.",
+      "category": "Travel & Tourism",
+      "target": "こんばん、レストランをよやくしたいです",
+      "note": "よやくしたい (yoyaku shitai) is よやくします (yoyaku shimasu, \"make a reservation\") with ます (masu) swapped for たい (tai).",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for よやくします, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
+    },
+    {
+      "id": "futari-de-yoyaku-shitai",
+      "english": "I want to make a reservation for two people.",
+      "category": "Travel & Tourism",
+      "target": "ふたりでよやくしたいです",
+      "note": "ふたりで (futari de) means \"as two people\", the same で (de) as ひとりで (hitori de, \"alone\") from Lesson 6.",
+      "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for よやくします, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
+      "aiSuggested": true
     }
   ]
 }

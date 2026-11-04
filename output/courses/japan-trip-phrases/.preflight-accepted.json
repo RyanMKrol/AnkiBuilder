@@ -51,6 +51,11 @@
         "at": "2026-11-04T00:37:04.475Z",
         "message": "lesson-0: \"何が食べたいですか\" (What do you want to eat?, addition trip-wanting-2026-11) uses \"何が食べ\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
         "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/where-can-i-buy-it": {
+        "at": "2026-11-04T00:47:02.595Z",
+        "message": "lesson-0: \"どこで買えますか\" (Where can I buy it?, addition trip-wanting-2026-11) uses \"どこで買え\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch: どこで買えますか. 買えます and で are glossed in its note; どこ (where) is carried by the English."
       }
     }
   }

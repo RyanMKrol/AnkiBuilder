@@ -453,6 +453,27 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: a second how-to-buy sentence, which also drills the 方 (kata) form.",
       "ttsText": "きっぷのかいかたをおしえてください"
+    },
+    {
+      "id": "where-can-i-buy-it",
+      "english": "Where can I buy it?",
+      "category": "Shopping",
+      "target": "どこで買えますか",
+      "note": "買えます (kaemasu, 'can buy') is the potential form of 買います (kaimasu, 'buy'). で (de) marks the place where the buying happens.",
+      "ttsText": "どこでかえますか",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-11-04: two shop phrases added alongside the wanting batch."
+    },
+    {
+      "id": "im-just-looking",
+      "english": "I'm just looking.",
+      "category": "Shopping",
+      "target": "見ているだけです",
+      "scene": "replying when shop staff ask if you need help",
+      "note": "見ている (mite iru, 'am looking') is from 見ます (mimasu, 'look'), and だけ (dake) is 'just, only'. A polite answer to 何かお探しですか (nanika osagashi desu ka, 'Are you looking for something?').",
+      "ttsText": "みているだけです",
+      "aiSuggested": true,
+      "reviewNote": "Owner request 2026-11-04: two shop phrases added alongside the wanting batch."
     }
   ]
 }

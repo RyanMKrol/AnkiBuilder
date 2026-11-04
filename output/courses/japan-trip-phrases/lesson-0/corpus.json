@@ -303,7 +303,9 @@
       "target": "たい",
       "note": "Attaches to a verb's ます-stem: 買います (kaimasu, 'buy') becomes 買いたいです (kaitai desu, 'I want to buy'), and 行きます (ikimasu, 'go') becomes 行きたいです (ikitai desu, 'I want to go'). It changes like an い-adjective, so 'don't want to' is たくないです (takunai desu).",
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "i-want-this",
@@ -336,7 +338,9 @@
       "note": "の (no) stands in for the thing, like 'one' in 'a cheaper one'. もっと (motto) is 'more' and 安い (yasui) is 'cheap'.",
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
       "ttsText": "もっとやすいのがほしいです",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "i-want-to-buy-this",

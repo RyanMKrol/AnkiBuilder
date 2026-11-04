@@ -285,6 +285,163 @@
       "target": "試着してもいいですか",
       "scene": "in a clothes shop",
       "note": "Same ~てもいいですか (te mo ii desu ka, 'may I ___?') pattern as 入ってもいいですか (haitte mo ii desu ka, 'may I come in?'), here attached to 試着する (shichaku suru, 'to try on')."
+    },
+    {
+      "id": "hoshii-want",
+      "english": "Want (a thing)",
+      "category": "Shopping",
+      "target": "欲しい",
+      "note": "An adjective, not a verb, so the thing you want takes が (ga), not を (o): これが欲しいです (kore ga hoshii desu, 'I want this'). Often written in kana, ほしい. For wanting to DO something, use たい (tai).",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "ほしい",
+      "aiSuggested": true
+    },
+    {
+      "id": "tai-want-to",
+      "english": "Want to (do something)",
+      "category": "Grammar & Function Words",
+      "target": "たい",
+      "note": "Attaches to a verb's ます-stem: 買います (kaimasu, 'buy') becomes 買いたいです (kaitai desu, 'I want to buy'), and 行きます (ikimasu, 'go') becomes 行きたいです (ikitai desu, 'I want to go'). It changes like an い-adjective, so 'don't want to' is たくないです (takunai desu).",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "aiSuggested": true
+    },
+    {
+      "id": "i-want-this",
+      "english": "I want this.",
+      "category": "Shopping",
+      "target": "これが欲しいです",
+      "scene": "pointing at something in a shop",
+      "note": "This says you want it. To ask staff to give it to you, これをください (kore o kudasai, 'this, please') is the request.",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "これがほしいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "what-do-you-want",
+      "english": "What do you want?",
+      "category": "Shopping",
+      "target": "何が欲しいですか",
+      "scene": "a friend asking, say about a present",
+      "note": "Fine with friends. Asking a stranger outright what they want sounds blunt, so shop staff say 何かお探しですか (nanika osagashi desu ka, 'Are you looking for something?') instead.",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "なにがほしいですか",
+      "aiSuggested": true
+    },
+    {
+      "id": "i-want-a-cheaper-one",
+      "english": "I want a cheaper one.",
+      "category": "Shopping",
+      "target": "もっと安いのが欲しいです",
+      "scene": "in a shop, after hearing the price",
+      "note": "の (no) stands in for the thing, like 'one' in 'a cheaper one'. もっと (motto) is 'more' and 安い (yasui) is 'cheap'.",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "もっとやすいのがほしいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "i-want-to-buy-this",
+      "english": "I want to buy this.",
+      "category": "Shopping",
+      "target": "これを買いたいです",
+      "note": "買いたい (kaitai, 'want to buy') is 買います (kaimasu, 'buy') plus たい (tai). With たい the thing can take を (o) or が (ga); を is more common in speech. With 欲しい (hoshii) it is always が.",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "これをかいたいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "i-want-to-buy-a-ticket",
+      "english": "I want to buy a ticket.",
+      "category": "Transport",
+      "target": "切符を買いたいです",
+      "scene": "at a train station",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "きっぷをかいたいです",
+      "aiSuggested": true,
+      "note": "切符 (kippu) is 'ticket', and 買いたい (kaitai) is 'want to buy', from 買います (kaimasu, 'buy')."
+    },
+    {
+      "id": "how-do-i-buy-this",
+      "english": "How do I buy this?",
+      "category": "Shopping",
+      "target": "これはどうやって買いますか",
+      "scene": "at a ticket machine or vending machine",
+      "note": "どうやって (dō yatte) asks how to do something, and 買います (kaimasu) is 'buy'. Swap the verb for other questions: どうやって使いますか (dō yatte tsukaimasu ka, 'How do I use it?').",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "これはどうやってかいますか",
+      "aiSuggested": true
+    },
+    {
+      "id": "i-want-this-how-do-i-buy-it",
+      "english": "I want this, but how do I buy it?",
+      "category": "Shopping",
+      "target": "これが欲しいんですが、どうやって買いますか",
+      "scene": "asking a passer-by or staff for help at a machine",
+      "note": "んですが (n desu ga) softens what you just said and leads into the question, the usual polite way to ask for help. どうやって買いますか (dō yatte kaimasu ka) is 'how do I buy it?'.",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "これがほしいんですが、どうやってかいますか",
+      "aiSuggested": true
+    },
+    {
+      "id": "i-dont-understand-how-to-use-this-machine",
+      "english": "I don't understand how to use this machine.",
+      "category": "Technology & Communication",
+      "target": "この機械の使い方がわかりません",
+      "note": "使い方 (tsukaikata, 'how to use') is the stem of 使います (tsukaimasu, 'use') plus 方 (kata, 'way'). 機械 (kikai) is 'machine', and わかりません (wakarimasen) is 'I don't understand'.",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "このきかいのつかいかたがわかりません",
+      "aiSuggested": true
+    },
+    {
+      "id": "please-show-me-how-to-use-it",
+      "english": "Please show me how to use it.",
+      "category": "Technology & Communication",
+      "target": "使い方を教えてください",
+      "note": "使い方 (tsukaikata) is 'how to use'. 教えて (oshiete) is the て-form of 教えます (oshiemasu, 'teach, tell'), and て-form plus ください (kudasai) is 'please do'.",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "つかいかたをおしえてください",
+      "aiSuggested": true
+    },
+    {
+      "id": "i-want-to-go-here-how-do-i-get-there",
+      "english": "I want to go here, but how do I get there?",
+      "category": "Directions",
+      "target": "ここに行きたいんですが、どうやって行きますか",
+      "scene": "showing someone a map on your phone",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "ここにいきたいんですが、どうやっていきますか",
+      "aiSuggested": true,
+      "note": "行きたい (ikitai, 'want to go') is 行きます (ikimasu, 'go') plus たい (tai). どうやって行きますか (dō yatte ikimasu ka) is 'how do I get there?'."
+    },
+    {
+      "id": "what-do-you-want-to-eat",
+      "english": "What do you want to eat?",
+      "category": "Food",
+      "target": "何が食べたいですか",
+      "scene": "a friend asking",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "なにがたべたいですか",
+      "aiSuggested": true,
+      "note": "食べたい (tabetai, 'want to eat') is 食べます (tabemasu, 'eat') plus たい (tai)."
+    },
+    {
+      "id": "im-looking-for-this",
+      "english": "I'm looking for this.",
+      "category": "Shopping",
+      "target": "これを探しています",
+      "scene": "showing a shop assistant a photo on your phone",
+      "note": "探しています (sagashite imasu) is 'am looking for'. Staff will often ask first: 何かお探しですか (nanika osagashi desu ka, 'Are you looking for something?').",
+      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
+      "ttsText": "これをさがしています",
+      "aiSuggested": true
+    },
+    {
+      "id": "cash",
+      "english": "Cash",
+      "category": "Money",
+      "target": "現金",
+      "reviewNote": "Owner request 2026-11-04: the deck used 現金 in three cards but had no card for the word itself.",
+      "ttsText": "げんきん",
+      "aiSuggested": true
     }
   ]
 }

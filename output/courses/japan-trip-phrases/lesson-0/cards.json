@@ -544,7 +544,14 @@
       "scene": null,
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: restored from the build-time exclusion so the deck asks about cash as well as card.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "e4048a9fef6f4ad0.mp3",
+      "audioOriginal": "e4048a9fef6f4ad0.orig.mp3",
+      "audioAuto": "e4048a9fef6f4ad0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e4048a9fef6f4ad0",
+      "additionDone": true
     },
     {
       "id": "fib-yoyaku-wa-arimasu-ka",
@@ -616,7 +623,14 @@
       "note": "An adjective, not a verb, so the thing you want takes が (ga), not を (o): これが欲しいです (kore ga hoshii desu, 'I want this'). Often written in kana, ほしい. For wanting to DO something, use たい (tai).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "40ebb79d57bf988b.mp3",
+      "audioOriginal": "40ebb79d57bf988b.orig.mp3",
+      "audioAuto": "40ebb79d57bf988b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "40ebb79d57bf988b",
+      "additionDone": true
     },
     {
       "id": "tai-want-to",
@@ -627,7 +641,9 @@
       "note": "Attaches to a verb's ます-stem: 買います (kaimasu, 'buy') becomes 買いたいです (kaitai desu, 'I want to buy'), and 行きます (ikimasu, 'go') becomes 行きたいです (ikitai desu, 'I want to go'). It changes like an い-adjective, so 'don't want to' is たくないです (takunai desu).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "i-want-this",
@@ -640,7 +656,14 @@
       "note": "This says you want it. To ask staff to give it to you, これをください (kore o kudasai, 'this, please') is the request.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "38e63ade01ef97d6.mp3",
+      "audioOriginal": "38e63ade01ef97d6.orig.mp3",
+      "audioAuto": "38e63ade01ef97d6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "38e63ade01ef97d6",
+      "additionDone": true
     },
     {
       "id": "what-do-you-want",
@@ -653,7 +676,14 @@
       "note": "Fine with friends. Asking a stranger outright what they want sounds blunt, so shop staff say 何かお探しですか (nanika osagashi desu ka, 'Are you looking for something?') instead.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "904eb98280ed1294.mp3",
+      "audioOriginal": "904eb98280ed1294.orig.mp3",
+      "audioAuto": "904eb98280ed1294.mp3",
+      "audioMarked": true,
+      "audioTextHash": "904eb98280ed1294",
+      "additionDone": true
     },
     {
       "id": "i-want-a-cheaper-one",
@@ -666,7 +696,9 @@
       "note": "の (no) stands in for the thing, like 'one' in 'a cheaper one'. もっと (motto) is 'more' and 安い (yasui) is 'cheap'.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "excluded": true,
+      "excludedBy": "human"
     },
     {
       "id": "i-want-to-buy-this",
@@ -678,7 +710,14 @@
       "note": "買いたい (kaitai, 'want to buy') is 買います (kaimasu, 'buy') plus たい (tai). With たい the thing can take を (o) or が (ga); を is more common in speech. With 欲しい (hoshii) it is always が.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "f9175e731a04eb6c.mp3",
+      "audioOriginal": "f9175e731a04eb6c.orig.mp3",
+      "audioAuto": "f9175e731a04eb6c.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f9175e731a04eb6c",
+      "additionDone": true
     },
     {
       "id": "i-want-to-buy-a-ticket",
@@ -691,7 +730,14 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
       "addition": "trip-wanting-2026-11",
-      "note": "切符 (kippu) is 'ticket', and 買いたい (kaitai) is 'want to buy', from 買います (kaimasu, 'buy')."
+      "note": "切符 (kippu) is 'ticket', and 買いたい (kaitai) is 'want to buy', from 買います (kaimasu, 'buy').",
+      "additionReviewed": true,
+      "audio": "26b5fb746f542017.mp3",
+      "audioOriginal": "26b5fb746f542017.orig.mp3",
+      "audioAuto": "26b5fb746f542017.mp3",
+      "audioMarked": true,
+      "audioTextHash": "26b5fb746f542017",
+      "additionDone": true
     },
     {
       "id": "how-do-i-buy-this",
@@ -704,7 +750,14 @@
       "note": "どうやって (dō yatte) asks how to do something, and 買います (kaimasu) is 'buy'. Swap the verb for other questions: どうやって使いますか (dō yatte tsukaimasu ka, 'How do I use it?').",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "7aa53298e0375f7a.mp3",
+      "audioOriginal": "7aa53298e0375f7a.orig.mp3",
+      "audioAuto": "7aa53298e0375f7a.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7aa53298e0375f7a",
+      "additionDone": true
     },
     {
       "id": "i-want-this-how-do-i-buy-it",
@@ -717,7 +770,14 @@
       "note": "んですが (n desu ga) softens what you just said and leads into the question, the usual polite way to ask for help. どうやって買いますか (dō yatte kaimasu ka) is 'how do I buy it?'.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "07c358e43b1096be.mp3",
+      "audioOriginal": "07c358e43b1096be.orig.mp3",
+      "audioAuto": "07c358e43b1096be.mp3",
+      "audioMarked": true,
+      "audioTextHash": "07c358e43b1096be",
+      "additionDone": true
     },
     {
       "id": "i-dont-understand-how-to-use-this-machine",
@@ -729,7 +789,19 @@
       "note": "使い方 (tsukaikata, 'how to use') is the stem of 使います (tsukaimasu, 'use') plus 方 (kata, 'way'). 機械 (kikai) is 'machine', and わかりません (wakarimasen) is 'I don't understand'.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "i-dont-understand-how-to-use-this-machine-manual-1a6bb5df.mp3",
+      "audioOriginal": "dc87ec8ec26f6bad.orig.mp3",
+      "audioAuto": "dc87ec8ec26f6bad.mp3",
+      "audioMarked": true,
+      "audioTextHash": "dc87ec8ec26f6bad",
+      "audioManual": "i-dont-understand-how-to-use-this-machine-manual-1a6bb5df.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 2.8725770547945206
+      },
+      "additionDone": true
     },
     {
       "id": "please-show-me-how-to-use-it",
@@ -741,7 +813,14 @@
       "note": "使い方 (tsukaikata) is 'how to use'. 教えて (oshiete) is the て-form of 教えます (oshiemasu, 'teach, tell'), and て-form plus ください (kudasai) is 'please do'.",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "f92ea5e64571fec9.mp3",
+      "audioOriginal": "f92ea5e64571fec9.orig.mp3",
+      "audioAuto": "f92ea5e64571fec9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f92ea5e64571fec9",
+      "additionDone": true
     },
     {
       "id": "i-want-to-go-here-how-do-i-get-there",
@@ -754,7 +833,14 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
       "addition": "trip-wanting-2026-11",
-      "note": "行きたい (ikitai, 'want to go') is 行きます (ikimasu, 'go') plus たい (tai). どうやって行きますか (dō yatte ikimasu ka) is 'how do I get there?'."
+      "note": "行きたい (ikitai, 'want to go') is 行きます (ikimasu, 'go') plus たい (tai). どうやって行きますか (dō yatte ikimasu ka) is 'how do I get there?'.",
+      "additionReviewed": true,
+      "audio": "e52da34c286c02d0.mp3",
+      "audioOriginal": "e52da34c286c02d0.orig.mp3",
+      "audioAuto": "e52da34c286c02d0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e52da34c286c02d0",
+      "additionDone": true
     },
     {
       "id": "what-do-you-want-to-eat",
@@ -767,7 +853,14 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
       "addition": "trip-wanting-2026-11",
-      "note": "食べたい (tabetai, 'want to eat') is 食べます (tabemasu, 'eat') plus たい (tai)."
+      "note": "食べたい (tabetai, 'want to eat') is 食べます (tabemasu, 'eat') plus たい (tai).",
+      "additionReviewed": true,
+      "audio": "cde2ee96f7c3be28.mp3",
+      "audioOriginal": "cde2ee96f7c3be28.orig.mp3",
+      "audioAuto": "cde2ee96f7c3be28.mp3",
+      "audioMarked": true,
+      "audioTextHash": "cde2ee96f7c3be28",
+      "additionDone": true
     },
     {
       "id": "im-looking-for-this",
@@ -780,7 +873,14 @@
       "note": "探しています (sagashite imasu) is 'am looking for'. Staff will often ask first: 何かお探しですか (nanika osagashi desu ka, 'Are you looking for something?').",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "78dadf8386eb2818.mp3",
+      "audioOriginal": "78dadf8386eb2818.orig.mp3",
+      "audioAuto": "78dadf8386eb2818.mp3",
+      "audioMarked": true,
+      "audioTextHash": "78dadf8386eb2818",
+      "additionDone": true
     },
     {
       "id": "cash",
@@ -791,7 +891,14 @@
       "pronunciation": "genkin",
       "reviewNote": "Owner request 2026-11-04: the deck used 現金 in three cards but had no card for the word itself.",
       "aiSuggested": true,
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "aabbb8a37ff039ae.mp3",
+      "audioOriginal": "aabbb8a37ff039ae.orig.mp3",
+      "audioAuto": "aabbb8a37ff039ae.mp3",
+      "audioMarked": true,
+      "audioTextHash": "aabbb8a37ff039ae",
+      "additionDone": true
     },
     {
       "id": "please-show-me-how-to-buy-a-ticket",
@@ -804,7 +911,14 @@
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: a second how-to-buy sentence, which also drills the 方 (kata) form.",
       "ttsText": "きっぷのかいかたをおしえてください",
-      "addition": "trip-wanting-2026-11"
+      "addition": "trip-wanting-2026-11",
+      "additionReviewed": true,
+      "audio": "8bb6339c37065978.mp3",
+      "audioOriginal": "8bb6339c37065978.orig.mp3",
+      "audioAuto": "8bb6339c37065978.mp3",
+      "audioMarked": true,
+      "audioTextHash": "8bb6339c37065978",
+      "additionDone": true
     },
     {
       "id": "where-can-i-buy-it",
@@ -816,7 +930,14 @@
       "ttsText": "どこでかえますか",
       "aiSuggested": true,
       "addition": "trip-wanting-2026-11",
-      "reviewNote": "Owner request 2026-11-04: two shop phrases added alongside the wanting batch."
+      "reviewNote": "Owner request 2026-11-04: two shop phrases added alongside the wanting batch.",
+      "additionReviewed": true,
+      "audio": "1450d6fdad902a44.mp3",
+      "audioOriginal": "1450d6fdad902a44.orig.mp3",
+      "audioAuto": "1450d6fdad902a44.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1450d6fdad902a44",
+      "additionDone": true
     },
     {
       "id": "im-just-looking",
@@ -829,7 +950,14 @@
       "ttsText": "みているだけです",
       "aiSuggested": true,
       "addition": "trip-wanting-2026-11",
-      "reviewNote": "Owner request 2026-11-04: two shop phrases added alongside the wanting batch."
+      "reviewNote": "Owner request 2026-11-04: two shop phrases added alongside the wanting batch.",
+      "additionReviewed": true,
+      "audio": "eb9ae677ae4cf776.mp3",
+      "audioOriginal": "eb9ae677ae4cf776.orig.mp3",
+      "audioAuto": "eb9ae677ae4cf776.mp3",
+      "audioMarked": true,
+      "audioTextHash": "eb9ae677ae4cf776",
+      "additionDone": true
     }
   ]
 }

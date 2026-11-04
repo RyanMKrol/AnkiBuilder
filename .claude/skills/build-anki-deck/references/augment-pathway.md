@@ -169,10 +169,19 @@ holding. `scripts/absorption-crosscheck.mjs` is the shape to copy.
 
 ## Deliver
 
-Unchanged, with one addition specific to this work: if cards are moving between COLLECTIONS, their
-Anki notes have to be moved into the destination deck tree BEFORE delivering, or the deliver cannot
-see them and adds them fresh with no review history. That is a migration, not a flag, and
-[deliver.md](deliver.md) describes its shape.
+Unchanged, with two additions specific to this work. First, if cards are moving between
+COLLECTIONS, their Anki notes have to be moved into the destination deck tree BEFORE delivering, or
+the deliver cannot see them and adds them fresh with no review history. That is a migration, not a
+flag, and [deliver.md](deliver.md) describes its shape.
+
+Second, **commit the destination unit's `cards.json` and `corpus.json` yourself once the audio gate
+is signed off, before you point the owner at Deliver to Anki.** The dashboard's Deliver commits only
+files the dashboard alone changed (`src/server/dashboardGit.js`). An additions batch never fits that:
+the batch was appended from outside the dashboard, and `anki-builder audio` wrote the clip fields
+from the CLI. So the button refuses with "edited by the dashboard AND by something else" and
+delivers nothing. By then the owner's approvals and Mark ready clicks are the last edits in the
+file, so committing it whole is safe. On 2026-11-04 the owner hit that refusal because the handover
+said the button would commit everything.
 
 ## Retrofitting a v1 lesson to the v2 split
 

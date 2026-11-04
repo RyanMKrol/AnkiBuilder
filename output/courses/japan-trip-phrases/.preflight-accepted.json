@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "accepted": {
+    "untaught-words": {
+      "lesson-0/how-do-i-buy-this": {
+        "at": "2026-11-04T00:37:04.475Z",
+        "message": "lesson-0: \"これはどうやって買いますか\" (How do I buy this?, addition trip-wanting-2026-11) uses \"これはどうやって買い\", \"って買います\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/i-dont-understand-how-to-use-this-machine": {
+        "at": "2026-11-04T00:37:04.475Z",
+        "message": "lesson-0: \"この機械の使い方がわかりません\" (I don't understand how to use this machine., addition trip-wanting-2026-11) uses \"この機械の使い方がわかり\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/i-want-a-cheaper-one": {
+        "at": "2026-11-04T00:37:04.475Z",
+        "message": "lesson-0: \"もっと安いのが欲しいです\" (I want a cheaper one., addition trip-wanting-2026-11) uses \"っと安いの\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/i-want-to-buy-a-ticket": {
+        "at": "2026-11-04T00:37:04.475Z",
+        "message": "lesson-0: \"切符を買いたいです\" (I want to buy a ticket., addition trip-wanting-2026-11) uses \"切符を買い\", \"買いたいです\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/i-want-to-buy-this": {
+        "at": "2026-11-04T00:37:04.475Z",
+        "message": "lesson-0: \"これを買いたいです\" (I want to buy this., addition trip-wanting-2026-11) uses \"これを買い\", \"買いたいです\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/i-want-to-go-here-how-do-i-get-there": {
+        "at": "2026-11-04T00:37:04.475Z",
+        "message": "lesson-0: \"ここに行きたいんですが、どうやって行きますか\" (I want to go here, but how do I get there?, addition trip-wanting-2026-11) uses \"ここに行き\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/im-looking-for-this": {
+        "at": "2026-11-04T00:37:04.475Z",
+        "message": "lesson-0: \"これを探しています\" (I'm looking for this., addition trip-wanting-2026-11) uses \"これを探してい\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/please-show-me-how-to-use-it": {
+        "at": "2026-11-04T00:37:04.475Z",
+        "message": "lesson-0: \"使い方を教えてください\" (Please show me how to use it., addition trip-wanting-2026-11) uses \"使い方を教えて\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/what-do-you-want-to-eat": {
+        "at": "2026-11-04T00:37:04.475Z",
+        "message": "lesson-0: \"何が食べたいですか\" (What do you want to eat?, addition trip-wanting-2026-11) uses \"何が食べ\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      }
+    }
+  }
+}

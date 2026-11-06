@@ -19,6 +19,7 @@ import {
   MARK_DONE_SCRIPT,
   STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,
+  QUEUE_NEW_SCRIPT,
   CLEAR_CLAIM_SCRIPT,
   AUDIO_TRIM_SCRIPT,
   MINI_WAVEFORM,
@@ -197,6 +198,7 @@ export function createPageRenderers({
         const u = units[0];
         return `<a class="dblock single" href="${unitUrl(deck, u)}">${head}${buildBadge(u)}</a>`;
       }
+      const queueable = editable && mode === "built" && deck.managed && !deck.retired;
       const rows = units
         .map((u) => {
           const url = unitUrl(deck, u);
@@ -216,10 +218,18 @@ export function createPageRenderers({
               : u.stage === "corpus" && !u.ready
                 ? "prepare unfinished"
                 : escapeHtml(u.stage);
+          // A delivered deck's finished lesson gets the "+5 new" button (QUEUE_NEW_SCRIPT fills in
+          // its status from Anki and reveals it). The row becomes a <div> with the label as the link.
+          if (queueable) {
+            return `<div class="urow qrow" data-seq="${escapeHtml(String(u.seq))}"><a class="ulabel" href="${url}">${label}</a><span class="qstat"></span><button type="button" class="qnew" hidden title="Sync, back up, then move this lesson's next new cards into today's learning queue">+5 new</button><span class="ustage done">${badge}</span></div>`;
+          }
           return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage${mode === "built" ? " done" : ""}">${badge}</span></a>`;
         })
         .join("");
-      return `<div class="dblock">${head}${rows}</div>`;
+      const queueAttr = queueable
+        ? ` data-queue="/api/deck/${enc(deck.type)}/${enc(deck.id)}"`
+        : "";
+      return `<div class="dblock"${queueAttr}>${head}${rows}</div>`;
     };
 
     // Three buckets, and the first one is not a review. A lesson whose build stopped before cards.json
@@ -316,7 +326,9 @@ ${section("grp-additions", "Additions waiting", "Cards retrofitted into finished
 ${section("grp-review", "In review", "Lessons awaiting one of the two review gates — corpus, then audio. Continue each lesson's review.", reviewBlocks, reviewCount)}
 ${section("grp-built", "Built · ready to study", "Finished (marked done) lessons — folded into the deck's single .apkg. Open one to play or edit its cards; edits rebuild the deck automatically.", builtBlocks, builtCount)}
 ${section("grp-retired", "Retired", "Decks whose Anki deck was deliberately removed, because the material was absorbed elsewhere or the deck was abandoned. Kept on disk as the record of what they held. They are never delivered, never offered as a build target, and preflight skips them.", retiredBlocks, retiredCount)}`,
-      [STICKY_HEADER_SCRIPT, editable ? DELIVER_SCRIPT : null].filter(Boolean).join("\n"),
+      [STICKY_HEADER_SCRIPT, editable ? DELIVER_SCRIPT : null, editable ? QUEUE_NEW_SCRIPT : null]
+        .filter(Boolean)
+        .join("\n"),
     );
   }
 

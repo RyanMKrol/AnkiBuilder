@@ -12,6 +12,7 @@ import {
   AUDIO_FIELDS,
 } from "../../audio/index.js";
 import { TTS_MODEL } from "../../audio/ttsModel.js";
+import { staleHandPickedClips, describeStaleHandPickedClips } from "../../audio/textHash.js";
 import { findUnreadableNumbers, describeUnreadableNumbers } from "../../cards/spokenNumbers.js";
 import { readJson, writeJson } from "./shared.js";
 import { collectionDeckKind } from "../../model/deckKind.js";
@@ -101,6 +102,12 @@ async function runAudioInner(flags, ctx) {
       `audio: ${stale.length} card(s) have a clip that no longer matches their text — regenerating those`,
     );
   }
+  // The cards `clipIsCurrent` waves through because a person chose their clip. Kept, never
+  // regenerated, but said out loud: a silent skip here once shipped a clip of the old sentence.
+  const keptStale = describeStaleHandPickedClips(
+    staleHandPickedClips(active, audioLanguageCode, { kanjiTts }),
+  );
+  if (keptStale) ctx.log(keptStale);
 
   if (alreadyDone) {
     ctx.log(`audio already generated in ${paths.audio} — reusing`);

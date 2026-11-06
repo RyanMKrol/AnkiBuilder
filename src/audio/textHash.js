@@ -1,4 +1,4 @@
-import { hashTerm, defaultClipText, clipSourceText } from "./index.js";
+import { hashTerm, defaultClipText, clipSourceText, isStageOwnedCard } from "./index.js";
 import { cardAudioVariants } from "./variants.js";
 import { normalizeTtsText } from "./ttsText.js";
 import { withEndMarker, usesEndMarker } from "./ttsMarker.js";
@@ -184,4 +184,35 @@ export function audioTextState(item, languageCode, { kanjiTts = false } = {}) {
 /** The hash to stamp when a human accepts a clip for the card's text as it stands now. */
 export function currentAudioTextHash(item, languageCode, { kanjiTts = false } = {}) {
   return hashTerm(defaultClipText(item, languageCode, { kanjiTts }));
+}
+
+/**
+ * The clips the audio stage keeps although they say words the card no longer has.
+ *
+ * The stage never regenerates over a clip a person chose (a picked variant, a Replace upload, a
+ * manual trim), which is right. But it used to keep one silently: on 2026-11-06 a reworded card with
+ * a hand-trimmed clip was skipped while the run reported "9 card(s) ... regenerating those" for the
+ * other nine, and only preflight's text-hash check showed the tenth still said the old sentence.
+ * The stage still keeps these clips; it now names them, so the run's own output is the whole story.
+ */
+export function staleHandPickedClips(items, languageCode, { kanjiTts = false } = {}) {
+  return (items || []).filter(
+    (item) =>
+      !item.excluded &&
+      item.audio &&
+      !isStageOwnedCard(item) &&
+      audioTextState(item, languageCode, { kanjiTts }).state === "stale",
+  );
+}
+
+/** The audio stage's warning for `staleHandPickedClips`, or null when there is nothing to say. */
+export function describeStaleHandPickedClips(items) {
+  if (!items || items.length === 0) return null;
+  return (
+    `audio: ${items.length} card(s) keep a clip a person chose (a picked take, an upload or a hand ` +
+    `trim), but their text has changed since, so the clip still says the old words. This stage ` +
+    `never overwrites a chosen clip. Pick a new take for each in the dashboard's audio review, or ` +
+    `clear its audio fields and re-run audio:\n` +
+    items.map((item) => `  - ${item.id}: ${item.target}`).join("\n")
+  );
 }

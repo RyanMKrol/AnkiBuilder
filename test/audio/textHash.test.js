@@ -6,6 +6,8 @@ import {
   expectedAudioTextHashes,
   audioTextState,
   currentAudioTextHash,
+  staleHandPickedClips,
+  describeStaleHandPickedClips,
 } from "../../src/audio/textHash.js";
 import { hashTerm, defaultClipText } from "../../src/audio/index.js";
 
@@ -175,4 +177,39 @@ test("accepting a clip re-stamps it from the card's text as it stands now", () =
   const state = audioTextState(accepted, "ja");
   assert.equal(state.state, "current");
   assert.equal(state.acceptedBy, "human");
+});
+
+// A card whose clip a person trimmed, recorded against the text it had at the time.
+const trimmed = (over = {}) => {
+  const base = card();
+  return {
+    ...base,
+    audio: "a-manual-1a6bb5df.mp3",
+    audioManual: "a-manual-1a6bb5df.mp3",
+    audioOriginal: `${stageHash(base)}.orig.mp3`,
+    audioTextHash: stageHash(base),
+    ...over,
+  };
+};
+
+test("a hand-trimmed clip whose card was reworded is named, not skipped silently", () => {
+  const reworded = trimmed({ target: "こんばんは", pronunciation: "konbanwa" });
+  const kept = staleHandPickedClips([reworded, trimmed({ id: "b" })], "ja");
+  assert.deepEqual(
+    kept.map((item) => item.id),
+    ["a"],
+  );
+  const message = describeStaleHandPickedClips(kept);
+  assert.match(message, /1 card\(s\) keep a clip a person chose/);
+  assert.match(message, /- a: こんばんは/);
+});
+
+test("a stage-owned clip and an excluded card are not reported as kept", () => {
+  // The stage regenerates its own stale clips, so naming them here would double-report them.
+  const own = card({ target: "こんばんは" });
+  own.audio = `${stageHash(card())}.mp3`;
+  own.audioTextHash = stageHash(card());
+  const excluded = trimmed({ target: "こんばんは", excluded: true });
+  assert.deepEqual(staleHandPickedClips([own, excluded], "ja"), []);
+  assert.equal(describeStaleHandPickedClips([]), null);
 });

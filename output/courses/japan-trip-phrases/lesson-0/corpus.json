@@ -19,15 +19,17 @@
       "category": "Travel & Tourism",
       "target": "入ってもいいですか",
       "scene": "at the door of a small restaurant or shop",
-      "note": "てもいいですか (te mo ii desu ka) asks permission — literally 'even if I do this, is it OK?' → 'may I ___?'. It attaches to a verb's て-form, here 入って (haitte, from 入る, 'to enter')."
+      "note": "入って (haitte) is the て-form of 入ります (hairimasu, 'enter'). Add もいいですか (mo ii desu ka) to any て-form to ask 'may I ___?'."
     },
     {
       "id": "i-dont-have-a-reservation",
       "english": "I don't have a reservation.",
       "category": "Travel & Tourism",
-      "target": "予約していません",
+      "target": "予約はないです",
       "scene": "at a restaurant entrance",
-      "note": "していません (shite imasen) means you haven't done it, so this is literally \"I haven't reserved\"."
+      "note": "予約 (yoyaku) is 'reservation'. ない (nai) is the plain 'there isn't' from あります (arimasu), so ないです (nai desu) is the polite 'I don't have'. Same shape as アレルギーはないです (arerugī wa nai desu, 'I don't have any allergies').",
+      "ttsText": "よやくはないです",
+      "reviewNote": "Owner request 2026-11-06: reworded to vocabulary and patterns the owner has already studied, so the card is easier to learn."
     },
     {
       "id": "your-passport-please",
@@ -41,7 +43,8 @@
       "english": "Is this your first time in Japan?",
       "category": "Travel & Tourism",
       "target": "日本は初めてですか",
-      "scene": "small talk with a stranger"
+      "scene": "small talk with a stranger",
+      "note": "初めて (hajimete) is 'for the first time'. It is the same はじめ (hajime) as in はじめまして (hajimemashite, 'nice to meet you'), which literally means 'meeting for the first time'. Answer はい、初めてです (hai, hajimete desu, 'yes, it's my first time')."
     },
     {
       "id": "are-you-ready-to-order",
@@ -49,14 +52,15 @@
       "category": "Food",
       "target": "ご注文はお決まりですか",
       "scene": "what a restaurant server asks",
-      "note": "お決まり (okimari) is the polite noun form of 決まる (kimaru, 'to be decided') — literally asks whether your order is decided."
+      "note": "注文 (chūmon) is 'order', with ご (go) added for politeness. 決まり (kimari) comes from 決まります (kimarimasu, 'be decided'), with お (o) added. So it asks 'is your order decided?'. If you need longer: ちょっと待ってください (chotto matte kudasai, 'wait a moment, please')."
     },
     {
       "id": "do-you-have-any-allergies",
       "english": "Do you have any allergies?",
       "category": "Food",
       "target": "アレルギーはありますか",
-      "scene": "what a restaurant server asks"
+      "scene": "what a restaurant server asks",
+      "note": "アレルギー (arerugī) is 'allergy', borrowed from German. ありますか (arimasu ka) is 'is there?' or 'do you have?'."
     },
     {
       "id": "i-dont-have-any-allergies",
@@ -71,7 +75,7 @@
       "category": "Food",
       "target": "苦手な食べ物はありますか",
       "scene": "what a restaurant server asks",
-      "note": "苦手 (nigate) means something you don't get on with, so this asks about dislikes, not allergies."
+      "note": "食べ物 (tabemono, 'food') is 食べます (tabemasu, 'eat') without ます (masu), plus 物 (mono, 'thing'): an 'eat-thing'. お飲み物 (onomimono, 'drink') is built the same way. 苦手 (nigate) is something you don't get on with, softer than 'dislike', so this asks about dislikes, not allergies."
     },
     {
       "id": "is-there-anything-you-cant-eat",
@@ -79,21 +83,22 @@
       "category": "Food",
       "target": "食べられないものはありますか",
       "scene": "what a restaurant server asks",
-      "note": "食べられない (taberarenai) is the potential negative of 食べる (taberu, 'to eat') — broader than allergies or dislikes, covering anything you're unable to eat for any reason. Common before a set menu or a ryokan dinner."
+      "note": "食べられない (taberarenai, 'can't eat') is 食べ (tabe, from 食べます, tabemasu) plus られ (rare, 'can') plus ない (nai, 'not'). もの (mono) is 'thing'. It covers anything you can't eat for any reason, and is common before a set menu or a ryokan dinner."
     },
     {
       "id": "i-can-eat-anything",
       "english": "I can eat anything.",
       "category": "Food",
       "target": "何でも食べられます",
-      "note": "A good answer to both アレルギーはありますか (arerugī wa arimasu ka, 'Do you have any allergies?') and 食べられないものはありますか (taberarenai mono wa arimasu ka, 'Is there anything you can't eat?')."
+      "note": "何でも (nandemo, 'anything') is 何 (nan, 'what') plus でも (demo, 'even'). 食べられます (taberaremasu, 'can eat') is 食べます (tabemasu, 'eat') with られ (rare, 'can') added. A good answer to アレルギーはありますか (arerugī wa arimasu ka, 'Do you have any allergies?') and to 食べられないものはありますか (taberarenai mono wa arimasu ka, 'Is there anything you can't eat?')."
     },
     {
       "id": "would-you-like-something-to-drink",
       "english": "Would you like something to drink?",
       "category": "Food",
       "target": "お飲み物はいかがですか",
-      "scene": "what a restaurant server asks"
+      "scene": "what a restaurant server asks",
+      "note": "お飲み物 (onomimono, 'drink') is 飲み (nomi, from 飲みます, nomimasu, 'drink') plus 物 (mono, 'thing'), with a polite お (o) in front. いかがですか (ikaga desu ka) is 'how about?'."
     },
     {
       "id": "what-would-you-like-to-drink",
@@ -101,7 +106,7 @@
       "category": "Food",
       "target": "お飲み物は何になさいますか",
       "scene": "what a restaurant server asks",
-      "note": "なさいます (nasaimasu) is the polite form of します (shimasu, \"do\"), used by staff to customers."
+      "note": "なさいます (nasaimasu) is the polite form of します (shimasu, 'do'), used by staff to customers. 何に (nani ni) is 'as what', so it literally asks 'what will you make your drink?'."
     },
     {
       "id": "will-you-be-eating-in",
@@ -109,35 +114,41 @@
       "category": "Food",
       "target": "店内でお召し上がりですか",
       "scene": "what a café or fast-food cashier asks",
-      "note": "お召し上がり (omeshiagari) is the polite way staff say \"eat\". Answer with 店内でお願いします (tennai de onegaishimasu, \"to eat here, please\") or 持ち帰りでお願いします (mochikaeri de onegaishimasu, \"to take away, please\")."
+      "note": "店内 (tennai) is 'inside the shop': 店 (ten) is the kanji of 店 (mise, 'shop') and 内 (nai) is 'inside'. お召し上がり (omeshiagari) is the very polite way staff say 'eat'. Answer ここで食べます (koko de tabemasu, 'I'll eat here') or 持ち帰りでお願いします (mochikaeri de onegaishimasu, 'To take away, please')."
     },
     {
       "id": "to-eat-here-please",
-      "english": "To eat here, please.",
+      "english": "I'll eat here.",
       "category": "Food",
-      "target": "店内でお願いします",
-      "scene": "answering whether you're eating in or taking away"
+      "target": "ここで食べます",
+      "scene": "answering whether you're eating in or taking away",
+      "ttsText": "ここでたべます",
+      "note": "The answer to 店内でお召し上がりですか (tennai de omeshiagari desu ka, 'Will you be eating in?'). で (de) marks where you do something.",
+      "reviewNote": "Owner request 2026-11-06: reworded to vocabulary and patterns the owner has already studied, so the card is easier to learn."
     },
     {
       "id": "to-take-away-please",
       "english": "To take away, please.",
       "category": "Food",
       "target": "持ち帰りでお願いします",
-      "scene": "answering whether you're eating in or taking away"
+      "scene": "answering whether you're eating in or taking away",
+      "note": "持ち帰り (mochikaeri, 'takeaway') is 持ち (mochi, 'holding', as in 持ってきます, motte kimasu, 'bring') plus 帰り (kaeri, 'going home', from 帰ります, kaerimasu). Literally 'carrying it home'."
     },
     {
       "id": "were-full-right-now",
       "english": "We're full right now.",
       "category": "Food",
       "target": "ただいま満席です",
-      "scene": "what staff say at a restaurant entrance"
+      "scene": "what staff say at a restaurant entrance",
+      "note": "満席 (manseki, 'full') is 満 (man, 'full') plus 席 (seki, 'seat'): every seat is taken. ただいま (tadaima) here is a polite 'right now'."
     },
     {
       "id": "please-sit-wherever-you-like",
       "english": "Please sit wherever you like.",
       "category": "Food",
       "target": "お好きな席へどうぞ",
-      "scene": "what staff say as you walk in"
+      "scene": "what staff say as you walk in",
+      "note": "好き (suki, 'like') with a polite お (o), plus 席 (seki, 'seat'). Literally 'please go to a seat you like'. へ (e) is 'to', like に (ni) for a direction."
     },
     {
       "id": "heres-your-cover-charge-starter",
@@ -153,21 +164,22 @@
       "category": "Food",
       "target": "お箸はおつけしますか",
       "scene": "what a konbini cashier asks",
-      "note": "The cashier puts them in the bag for you if you say はい (hai, \"yes\")."
+      "note": "箸 (hashi) is 'chopsticks', with a polite お (o). おつけします (otsuke shimasu) is a humble 'I'll include them', from つけます (tsukemasu, 'attach'). The cashier puts them in the bag if you say はい (hai, 'yes')."
     },
     {
       "id": "shall-i-heat-it-up",
       "english": "Shall I heat it up?",
       "category": "Food",
       "target": "温めますか",
-      "scene": "what a konbini cashier asks about a bento or other ready meal"
+      "scene": "what a konbini cashier asks about a bento or other ready meal",
+      "note": "温めます (atatamemasu) is 'heat up, warm'. Answer はい、お願いします (hai, onegaishimasu, 'yes, please') or いいえ、大丈夫です (iie, daijōbu desu, 'no, I'm fine')."
     },
     {
       "id": "one-more-of-this-please",
       "english": "One more of this, please.",
       "category": "Food",
       "target": "これ、もう一つお願いします",
-      "note": "もう一つ (mō hitotsu) is もう ('more') plus 一つ (hitotsu), the generic counter for one item of any kind."
+      "note": "もう一つ (mō hitotsu) is もう (mō, 'more') plus 一つ (hitotsu), the general counter for one item. It is the same もう as in もう一度 (mō ichido, 'one more time')."
     },
     {
       "id": "how-are-you-paying",
@@ -175,49 +187,57 @@
       "category": "Money",
       "target": "お支払いは",
       "scene": "what a cashier asks",
-      "note": "Short for お支払いはどうなさいますか (oshiharai wa dō nasaimasu ka, \"how would you like to pay?\"), which you will also hear."
+      "note": "お支払い (oshiharai, 'payment') comes from 支払います (shiharaimasu, 'pay'), with a polite お (o). The full question is お支払いはどうなさいますか (oshiharai wa dō nasaimasu ka, 'how would you like to pay?'). Answer カードでお願いします (kādo de onegaishimasu, 'By card, please')."
     },
     {
       "id": "can-i-use-a-card",
-      "english": "Can I use a card?",
+      "english": "May I use a card?",
       "category": "Money",
-      "target": "カードは使えますか",
-      "scene": "asking at the till before you order or buy"
+      "target": "カードを使ってもいいですか",
+      "scene": "asking at the till before you order or buy",
+      "ttsText": "カードをつかってもいいですか",
+      "note": "使って (tsukatte) is the て-form of 使います (tsukaimasu, 'use'). Add もいいですか (mo ii desu ka) to a て-form to ask 'may I ___?'.",
+      "reviewNote": "Owner request 2026-11-06: reworded to vocabulary and patterns the owner has already studied, so the card is easier to learn."
     },
     {
       "id": "by-card-please",
       "english": "By card, please.",
       "category": "Money",
       "target": "カードでお願いします",
-      "scene": "answering how you'll pay"
+      "scene": "answering how you'll pay",
+      "note": "で (de) marks how you pay. It is the same で as in 電車で行きます (densha de ikimasu, 'go by train')."
     },
     {
       "id": "in-cash-please",
       "english": "In cash, please.",
       "category": "Money",
       "target": "現金でお願いします",
-      "scene": "answering how you'll pay"
+      "scene": "answering how you'll pay",
+      "note": "現金 (genkin) is 'cash'. で (de) marks how you pay, as in カードでお願いします (kādo de onegaishimasu, 'By card, please')."
     },
     {
       "id": "cash-only",
       "english": "Cash only",
       "category": "Money",
       "target": "現金のみ",
-      "scene": "a sign by a till or on a door"
+      "scene": "a sign by a till or on a door",
+      "note": "現金 (genkin) is 'cash'. のみ (nomi) is a written word for 'only', used on signs."
     },
     {
       "id": "are-you-open",
       "english": "Are you open?",
       "category": "Shopping",
       "target": "やっていますか",
-      "scene": "at the door of a shop or restaurant"
+      "scene": "at the door of a shop or restaurant",
+      "note": "やって (yatte) is the て-form of やります (yarimasu, 'do'), and います (imasu) makes it 'is doing'. So it asks 'are you doing business?'. It is the same やって as in どうやって (dō yatte, 'how')."
     },
     {
       "id": "open",
       "english": "Open",
       "category": "Shopping",
       "target": "営業中",
-      "scene": "a sign on a shop or restaurant door"
+      "scene": "a sign on a shop or restaurant door",
+      "note": "営業 (eigyō) is 'doing business', and 中 (chū) is 'in the middle of'. So the sign says 'in business'."
     },
     {
       "id": "not-open-yet",
@@ -225,14 +245,15 @@
       "category": "Shopping",
       "target": "準備中",
       "scene": "a sign on a shop or restaurant door",
-      "note": "Literally \"preparing\". Many restaurants hang it between lunch and dinner."
+      "note": "準備 (junbi) is 'preparation', and 中 (chū) is 'in the middle of', the same 中 as on 営業中 (eigyōchū, 'Open'). Many restaurants hang it between lunch and dinner."
     },
     {
       "id": "will-that-be-everything",
       "english": "Will that be everything?",
       "category": "Shopping",
       "target": "以上でよろしいですか",
-      "scene": "what a server or cashier asks after you order"
+      "scene": "what a server or cashier asks after you order",
+      "note": "以上 (ijō) is 'that is all', said after a list. よろしい (yoroshii) is a polite いい (ii, 'good'). Answer はい (hai, 'yes')."
     },
     {
       "id": "would-you-like-a-bag",
@@ -240,14 +261,17 @@
       "category": "Shopping",
       "target": "袋はご利用ですか",
       "scene": "what a cashier asks",
-      "note": "Bags cost a few yen in Japan, so you are always asked."
+      "note": "袋 (fukuro) is 'bag'. 利用 (riyō) is a formal 'use', with a polite ご (go), so it asks 'will you use a bag?'. Bags cost a few yen, so you are always asked. Answer はい、お願いします (hai, onegaishimasu, 'yes, please') or いいえ、大丈夫です (iie, daijōbu desu, 'no, I'm fine')."
     },
     {
       "id": "your-japanese-is-good",
       "english": "Your Japanese is good!",
       "category": "Travel & Tourism",
-      "target": "日本語上手ですね",
-      "scene": "what someone says after you speak a little Japanese"
+      "target": "日本語が上手ですね",
+      "scene": "what someone says after you speak a little Japanese",
+      "ttsText": "にほんごがじょうずですね",
+      "note": "X が上手です (X ga jōzu desu) is 'is good at X', and ね (ne) makes it a friendly remark. In quick speech people often drop the が (ga).",
+      "reviewNote": "Owner request 2026-11-06: reworded to vocabulary and patterns the owner has already studied, so the card is easier to learn."
     },
     {
       "id": "no-no-ive-still-got-a-long-way-to-go",
@@ -255,20 +279,23 @@
       "category": "Travel & Tourism",
       "target": "いえいえ、まだまだです",
       "scene": "replying when someone praises your Japanese",
-      "note": "The modest, expected reply. Saying ありがとうございます (arigatō gozaimasu, \"thank you\") on its own can sound like you agree you are good."
+      "note": "The modest, expected reply. まだ (mada) is 'still, not yet', and doubled, まだまだ (mada mada) is 'still a long way off'. Saying ありがとうございます (arigatō gozaimasu, 'thank you') on its own can sound like you agree you are good."
     },
     {
       "id": "i-only-speak-a-little-japanese",
-      "english": "I only speak a little Japanese.",
+      "english": "I understand a little Japanese.",
       "category": "Travel & Tourism",
-      "target": "日本語は少しだけです",
-      "note": "だけ (dake, 'only/just') attaches directly after the word it limits — here 少し (sukoshi, 'a little')."
+      "target": "日本語は少しわかります",
+      "note": "A good opener before you ask something, so people know to keep it simple.",
+      "ttsText": "にほんごはすこしわかります",
+      "reviewNote": "Owner request 2026-11-06: reworded to vocabulary and patterns the owner has already studied, so the card is easier to learn."
     },
     {
       "id": "more-slowly-please",
       "english": "More slowly, please.",
       "category": "Travel & Tourism",
-      "target": "ゆっくりお願いします"
+      "target": "ゆっくりお願いします",
+      "note": "ゆっくり (yukkuri) is 'slowly, at ease'. You will also hear ごゆっくりどうぞ (goyukkuri dōzo, 'take your time')."
     },
     {
       "id": "certainly",
@@ -276,7 +303,7 @@
       "category": "Shopping",
       "target": "かしこまりました",
       "scene": "what staff say when they take your order or request",
-      "note": "A very polite \"understood\", used by staff to customers."
+      "note": "A very polite 'understood', used by staff to customers. It means the same as わかりました (wakarimashita, 'understood'), but humbler."
     },
     {
       "id": "can-i-try-it-on",
@@ -284,7 +311,7 @@
       "category": "Clothing",
       "target": "試着してもいいですか",
       "scene": "in a clothes shop",
-      "note": "Same ~てもいいですか (te mo ii desu ka, 'may I ___?') pattern as 入ってもいいですか (haitte mo ii desu ka, 'may I come in?'), here attached to 試着する (shichaku suru, 'to try on')."
+      "note": "試着 (shichaku) is 試 (shi, 'try') plus 着 (chaku, 'wear'): 'try-wear'. 試着します (shichaku shimasu) is 'try on', and して (shite) is the て-form of します (shimasu). Then もいいですか (mo ii desu ka, 'may I?'), as in 入ってもいいですか (haitte mo ii desu ka, 'May I come in?')."
     },
     {
       "id": "hoshii-want",
@@ -356,12 +383,12 @@
       "id": "i-want-to-buy-a-ticket",
       "english": "I want to buy a ticket.",
       "category": "Transport",
-      "target": "切符を買いたいです",
+      "target": "チケットを買いたいです",
       "scene": "at a train station",
-      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "ttsText": "きっぷをかいたいです",
+      "reviewNote": "Owner request 2026-11-06: reworded to vocabulary and patterns the owner has already studied, so the card is easier to learn.",
+      "ttsText": "チケットをかいたいです",
       "aiSuggested": true,
-      "note": "切符 (kippu) is 'ticket', and 買いたい (kaitai) is 'want to buy', from 買います (kaimasu, 'buy')."
+      "note": "買いたい (kaitai, 'want to buy') is 買います (kaimasu, 'buy') with ます (masu) swapped for たい (tai). Station machines and signs say 切符 (kippu) for a train ticket, and staff understand either word."
     },
     {
       "id": "how-do-i-buy-this",
@@ -369,7 +396,7 @@
       "category": "Shopping",
       "target": "これはどうやって買いますか",
       "scene": "at a ticket machine or vending machine",
-      "note": "どうやって (dō yatte) asks how to do something, and 買います (kaimasu) is 'buy'. Swap the verb for other questions: どうやって使いますか (dō yatte tsukaimasu ka, 'How do I use it?').",
+      "note": "どうやって (dō yatte) asks how to do something, and 買います (kaimasu) is 'buy'. The same question works with any verb: これはどうやって使いますか (kore wa dō yatte tsukaimasu ka, 'How do I use this?').",
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
       "ttsText": "これはどうやってかいますか",
       "aiSuggested": true
@@ -387,13 +414,14 @@
     },
     {
       "id": "i-dont-understand-how-to-use-this-machine",
-      "english": "I don't understand how to use this machine.",
+      "english": "How do I use this?",
       "category": "Technology & Communication",
-      "target": "この機械の使い方がわかりません",
-      "note": "使い方 (tsukaikata, 'how to use') is the stem of 使います (tsukaimasu, 'use') plus 方 (kata, 'way'). 機械 (kikai) is 'machine', and わかりません (wakarimasen) is 'I don't understand'.",
-      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "ttsText": "このきかいのつかいかたがわかりません",
-      "aiSuggested": true
+      "target": "これはどうやって使いますか",
+      "note": "Same shape as これはどうやって買いますか (kore wa dō yatte kaimasu ka, 'How do I buy this?'), with 使います (tsukaimasu, 'use') in place of 買います (kaimasu, 'buy').",
+      "reviewNote": "Owner request 2026-11-06: reworded to vocabulary and patterns the owner has already studied, so the card is easier to learn.",
+      "ttsText": "これはどうやってつかいますか",
+      "aiSuggested": true,
+      "scene": "stuck at a ticket machine or a vending machine"
     },
     {
       "id": "please-show-me-how-to-use-it",
@@ -420,12 +448,12 @@
       "id": "what-do-you-want-to-eat",
       "english": "What do you want to eat?",
       "category": "Food",
-      "target": "何が食べたいですか",
+      "target": "何を食べたいですか",
       "scene": "a friend asking",
-      "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
-      "ttsText": "なにがたべたいですか",
+      "reviewNote": "Owner request 2026-11-06: reworded to vocabulary and patterns the owner has already studied, so the card is easier to learn.",
+      "ttsText": "なにをたべたいですか",
       "aiSuggested": true,
-      "note": "食べたい (tabetai, 'want to eat') is 食べます (tabemasu, 'eat') plus たい (tai)."
+      "note": "食べたい (tabetai, 'want to eat') is 食べます (tabemasu, 'eat') with ます (masu) swapped for たい (tai)."
     },
     {
       "id": "im-looking-for-this",
@@ -433,7 +461,7 @@
       "category": "Shopping",
       "target": "これを探しています",
       "scene": "showing a shop assistant a photo on your phone",
-      "note": "探しています (sagashite imasu) is 'am looking for'. Staff will often ask first: 何かお探しですか (nanika osagashi desu ka, 'Are you looking for something?').",
+      "note": "探しています (sagashite imasu, 'am looking for') is 探して (sagashite), the て-form of 探します (sagashimasu, 'look for'), plus います (imasu), which makes it '-ing'. Staff will often ask first: 何かお探しですか (nanika osagashi desu ka, 'Are you looking for something?').",
       "reviewNote": "Owner request 2026-11-04: cover wanting a thing (ほしい) and wanting to do (たい), plus asking how to buy or use something.",
       "ttsText": "これをさがしています",
       "aiSuggested": true
@@ -445,25 +473,26 @@
       "target": "現金",
       "reviewNote": "Owner request 2026-11-04: the deck used 現金 in three cards but had no card for the word itself.",
       "ttsText": "げんきん",
-      "aiSuggested": true
+      "aiSuggested": true,
+      "note": "現 (gen) is 'present, actual', and 金 (kin) is the kanji in お金 (okane, 'money')."
     },
     {
       "id": "please-show-me-how-to-buy-a-ticket",
       "english": "Please show me how to buy a ticket.",
       "category": "Transport",
-      "target": "切符の買い方を教えてください",
+      "target": "チケットの買い方を教えてください",
       "scene": "at a station ticket machine or window",
-      "note": "買い方 (kaikata, 'how to buy') is 買います (kaimasu, 'buy') without ます, plus 方 (kata, 'way'), the same shape as 使い方 (tsukaikata, 'how to use'). 切符 (kippu) is 'ticket'.",
+      "note": "買い方 (kaikata, 'how to buy') is 買います (kaimasu, 'buy') without ます (masu), plus 方 (kata, 'way'). The same shape gives 使い方 (tsukaikata, 'how to use').",
       "aiSuggested": true,
-      "reviewNote": "Owner request 2026-11-04: a second how-to-buy sentence, which also drills the 方 (kata) form.",
-      "ttsText": "きっぷのかいかたをおしえてください"
+      "reviewNote": "Owner request 2026-11-06: reworded to vocabulary and patterns the owner has already studied, so the card is easier to learn.",
+      "ttsText": "チケットのかいかたをおしえてください"
     },
     {
       "id": "where-can-i-buy-it",
       "english": "Where can I buy it?",
       "category": "Shopping",
       "target": "どこで買えますか",
-      "note": "買えます (kaemasu, 'can buy') is the potential form of 買います (kaimasu, 'buy'). で (de) marks the place where the buying happens.",
+      "note": "買えます (kaemasu, 'can buy') is 買います (kaimasu, 'buy') with the い (i) before ます (masu) changed to え (e). That works for many verbs: 使います (tsukaimasu, 'use') becomes 使えます (tsukaemasu, 'can use'). で (de) marks the place where the buying happens.",
       "ttsText": "どこでかえますか",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: two shop phrases added alongside the wanting batch."
@@ -474,7 +503,7 @@
       "category": "Shopping",
       "target": "見ているだけです",
       "scene": "replying when shop staff ask if you need help",
-      "note": "見ている (mite iru, 'am looking') is from 見ます (mimasu, 'look'), and だけ (dake) is 'just, only'. A polite answer to 何かお探しですか (nanika osagashi desu ka, 'Are you looking for something?').",
+      "note": "見て (mite) is the て-form of 見ます (mimasu, 'look'), and adding いる (iru) makes it '-ing'. だけ (dake) is 'just, only'. A polite answer to 何かお探しですか (nanika osagashi desu ka, 'Are you looking for something?').",
       "ttsText": "みているだけです",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: two shop phrases added alongside the wanting batch."

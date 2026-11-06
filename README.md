@@ -204,6 +204,16 @@ because the note key is `abid:<card.id>` deck-wide: two such cards would resolve
 the later one would quietly overwrite the earlier. See the
 [skill](./.claude/skills/build-anki-deck/SKILL.md) for details.
 
+To study new cards from a few chosen chapters each day, set the top-level deck's new cards/day to 0
+in Anki and run `node scripts/queue-new-cards.mjs --chapters 0,6,8,12` (`--per` sets how many per
+chapter, default 5; `--deck` picks the top-level deck, default `Genki I (Reading)`; `--dry-run`
+previews). Anki fills a parent deck's new cards in deck order under one shared limit, so it cannot do
+this on its own. The script turns the next new cards in each chapter into learning cards due now, and
+studying the top-level deck then shows them. A second run the same day only tops each chapter up to
+the target. Those cards never pass through "new", so the chapter decks keep showing their full blue
+count afterwards: that number is only the day's allowance, not cards waiting. Each run appends the
+cards it moved, with their original positions, to `anki-backups/queue-new-cards.jsonl`.
+
 Four guards run on every delivery, because the same routine command against a collection something
 has happened to is how a whole book gets re-inserted with no scheduling: it **aborts if the marker
 says this collection was delivered but the lookup finds zero notes** (the deck was renamed — the

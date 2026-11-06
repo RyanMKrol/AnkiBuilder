@@ -248,6 +248,13 @@ adding a card, editing a `ttsText`, or re-running after a cache drop never clobb
 takes. The deck embeds whatever is in each card's `audio`; that field is the source of truth for its
 final take.
 
+Kept is not the same as current, though. When a card's text changes under a clip a person chose, the
+stage keeps the clip and says so: it prints the card ids under "keep a clip a person chose ... but
+their text has changed since". Each one still says the old words. Pick a new take in the audio review
+(or clear the card's audio fields and re-run `audio`) before the deck ships. Before 2026-11-06 the run
+printed nothing for these, and a reworded card kept its old hand-trimmed clip until preflight's
+text-hash check caught it.
+
 A re-run also will not talk you out of a fault it cannot re-examine: a cached clip's
 `audioMarkerStuck` flag survives, because that run produced no evidence about it (see the end-marker
 section above). Only a fetch-and-trim, which does produce evidence, may set or clear it.

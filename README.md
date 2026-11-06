@@ -619,7 +619,8 @@ What is built, newest last:
       card's text left it shipping a recording of the old words with nothing to say so. The audio
       review now badges those cards **Text changed** and offers **Keep this clip**, which records that
       a human vouched for the take (with a timestamp) rather than regenerating over their work.
-      Preflight counts the same three outcomes; nothing blocks
+      Preflight counts the same three outcomes; nothing blocks. The `audio` stage names the same
+      cards when it runs, since it keeps their clips rather than regenerating them
 - [x] Manual trim editor in the audio review — the table shows **Original** (with Replace / Generate)
       beside **In use** (the auto-trimmed take, or your hand cut), and **Trim…** opens a waveform with
       draggable start/end handles, snap-to-speech, and selection playback. Every cut is made from the

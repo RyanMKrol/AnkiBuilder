@@ -82,6 +82,7 @@ const STANDING = [
   "anki-behaviour-probe.mjs",
   "absorption-crosscheck.mjs",
   "reading-vocab-scan.mjs",
+  "queue-new-cards.mjs",
 ];
 
 const read = (name) => readFileSync(join(SCRIPTS, name), "utf-8");

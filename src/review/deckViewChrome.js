@@ -154,6 +154,16 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .urow .ustage.done{color:#5c7a52;font-weight:700}
 .urow .ustage.building{color:#8a6d1f;font-weight:700}
 .urow .ustage.interrupted{color:#9a4f2a;font-weight:700}
+/* A built row with the "+5 new" button: a <div>, not an <a>, because a button cannot sit inside a
+   link. The label carries the link instead, so the row still opens the lesson. */
+.qrow{cursor:default}
+.dbhead + .qrow{margin-top:6px}
+.qrow a.ulabel{color:inherit;text-decoration:none}
+.qrow .qstat{font-size:11.5px;color:var(--faint);white-space:nowrap}
+.qrow .qstat.full{color:#5c7a52}
+.qrow .qnew{font:inherit;font-size:11px;font-weight:600;color:var(--accent);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:2px 10px;cursor:pointer;white-space:nowrap}
+.qrow .qnew:hover{border-color:var(--accent)}
+.qrow .qnew:disabled{opacity:.5;cursor:default}
 .build-banner{margin:12px 0;padding:10px 12px;border-radius:6px;background:#fdf6e3;border:1px solid #e8d9a8;font-size:13px;line-height:1.5}
 .build-banner.interrupted{background:#fdf0ea;border-color:#e8c3ae}
 .build-banner .clear-claim{margin-left:8px;font-size:12px;padding:2px 8px;cursor:pointer}
@@ -280,6 +290,7 @@ export {
   MARK_DONE_SCRIPT,
   STICKY_HEADER_SCRIPT,
   DELIVER_SCRIPT,
+  QUEUE_NEW_SCRIPT,
   CLEAR_CLAIM_SCRIPT,
   REVIEW_FILTER_SCRIPT,
 } from "./clientScripts.js";

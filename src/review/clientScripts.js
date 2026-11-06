@@ -961,6 +961,62 @@ export const DELIVER_SCRIPT = `(function () {
   });
 })();`;
 
+// The "+5 new" buttons on a delivered deck's finished lessons (src/anki/queueNewCards.js). Each
+// deck block asks Anki where its lessons stand today and only then shows the buttons, so a button
+// never appears when Anki is closed. A click syncs, backs up, queues, and syncs again on the server;
+// the row then shows the new count. Topping up, so a second click the same day adds nothing.
+export const QUEUE_NEW_SCRIPT = `(function () {
+  var blocks = Array.prototype.slice.call(document.querySelectorAll(".dblock[data-queue]"));
+  function row(block, seq) { return block.querySelector('.qrow[data-seq="' + seq + '"]'); }
+  function show(r, s, per) {
+    var today = s.introducedToday + s.queuedNotStudied;
+    var stat = r.querySelector(".qstat");
+    var btn = r.querySelector(".qnew");
+    stat.classList.toggle("full", today >= per);
+    if (s.newLeft === 0 && today === 0) { stat.textContent = "no new cards left"; btn.hidden = true; return; }
+    stat.textContent = today + "/" + per + " today \u00b7 " + s.newLeft + " new left";
+    btn.hidden = s.newLeft === 0;
+    btn.disabled = today >= per;
+  }
+  blocks.forEach(async function (block) {
+    var url = block.getAttribute("data-queue");
+    var j;
+    try {
+      var r = await fetch(url + "/queue-new");
+      j = await r.json().catch(function () { return {}; });
+      if (!r.ok) throw new Error(j.error || ("HTTP " + r.status));
+    } catch (e) {
+      var first = block.querySelector(".qrow .qstat");
+      if (first) first.textContent = "Open Anki to queue new cards";
+      return;
+    }
+    j.units.forEach(function (s) {
+      var r = row(block, s.seq);
+      if (!r) return;
+      show(r, s, j.perDeck);
+      var btn = r.querySelector(".qnew");
+      btn.addEventListener("click", async function () {
+        var stat = r.querySelector(".qstat");
+        btn.disabled = true;
+        stat.textContent = "Syncing and backing up\u2026";
+        try {
+          var res = await fetch(url + "/unit/" + encodeURIComponent(s.seq) + "/queue-new", { method: "POST" });
+          var out = await res.json().catch(function () { return {}; });
+          if (!res.ok) throw new Error(out.error || ("HTTP " + res.status));
+          var now = { introducedToday: out.introducedToday, queuedNotStudied: out.queuedNotStudied + out.queued.length, newLeft: out.newLeft };
+          show(r, now, out.perDeck);
+          stat.textContent = (out.queued.length ? "Queued " + out.queued.length + " \u00b7 " : "Nothing to add \u00b7 ") + stat.textContent;
+          if (out.syncedAfter === false) window.alert("Queued, but the sync afterwards failed (" + out.syncError + "). Sync in Anki.");
+        } catch (e) {
+          stat.textContent = "Failed";
+          btn.disabled = false;
+          window.alert("Nothing was queued: " + e.message);
+        }
+      });
+    });
+  });
+})();`;
+
 // Clears a STALE build claim (the server refuses if the build is actually still live), so a
 // crashed build never leaves a lesson wedged.
 export const CLEAR_CLAIM_SCRIPT = `

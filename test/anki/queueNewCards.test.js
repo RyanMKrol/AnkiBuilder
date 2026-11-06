@@ -1,6 +1,19 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { deckSearch, queueNewCards, resolveChapterDecks } from "../../src/anki/queueNewCards.js";
+import { mkdtempSync, readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+import { tmpdir } from "node:os";
+import {
+  QUEUE_BACKUP_DIR,
+  QUEUE_LOG,
+  deckSearch,
+  queueIntoDecks,
+  queueNewCards,
+  resolveChapterDecks,
+  unqueueCards,
+  withSafetyNet,
+} from "../../src/anki/queueNewCards.js";
+import { fakeQueueAnki, newCard } from "../support/fakeQueueAnki.js";
 
 /**
  * scripts/queue-new-cards.mjs, driven against an in-memory fake of the handful of AnkiConnect
@@ -13,55 +26,12 @@ const CH6 = `${PARENT}::Chapter 06: Lesson 4: The First Date`;
 const CH20 = `${PARENT}::Chapter 20: Reading and Writing 6: My Favorite Restaurant`;
 const NOW = 1_793_971_610;
 
-// Cards are { cardId, deckName, type, queue, due, ord, reps, introducedToday?, suspended? }.
-function fakeAnki(cards, { steps = 1 } = {}) {
-  const decks = { [PARENT]: 1, [CH0]: 2, [CH6]: 3, [CH20]: 4, "Other::Chapter 00: Kana": 5 };
-  const writes = [];
-  const byId = new Map(cards.map((c) => [c.cardId, { ord: 0, reps: 0, ...c }]));
-  const inDeck = (query) => {
-    const m = /^deck:"((?:[^"\\]|\\.)*)"/.exec(query);
-    const name = m[1].replace(/\\(.)/g, "$1");
-    return [...byId.values()].filter(
-      (c) => c.deckName === name || c.deckName.startsWith(`${name}::`),
-    );
-  };
-  const client = {
-    async invoke(action, params) {
-      if (action === "deckNamesAndIds") return decks;
-      if (action === "getDeckConfig") return { new: { delays: Array(steps).fill(15) } };
-      if (action === "setSpecificValueOfCard") {
-        writes.push(params);
-        const card = byId.get(params.card);
-        params.keys.forEach((k, i) => (card[k] = params.newValues[i]));
-        return [true];
-      }
-      throw new Error(`unexpected action ${action}`);
-    },
-    async findCards(query) {
-      let hits = inDeck(query);
-      if (query.includes("introduced:1")) hits = hits.filter((c) => c.introducedToday);
-      if (query.includes("is:learn")) hits = hits.filter((c) => c.queue === 1 || c.queue === 3);
-      if (query.includes("is:new")) hits = hits.filter((c) => c.type === 0 && !c.suspended);
-      return hits.map((c) => c.cardId);
-    },
-    async cardsInfo(ids) {
-      return ids.map((id) => {
-        const c = byId.get(id);
-        return { ...c, fields: { Front: { value: `front-${id}`, order: 0 } } };
-      });
-    },
-  };
-  return { client, writes, byId };
-}
-
-const newCard = (cardId, deckName, due) => ({ cardId, deckName, type: 0, queue: 0, due });
+const DECKS = { [PARENT]: 1, [CH0]: 2, [CH6]: 3, [CH20]: 4, "Other::Chapter 00: Kana": 5 };
+const fakeAnki = (cards, opts = {}) => fakeQueueAnki(cards, { decks: DECKS, ...opts });
 
 test("resolveChapterDecks matches the numbered prefix directly under the parent", () => {
   const decks = { [PARENT]: 1, [CH0]: 2, [CH6]: 3, "Other::Chapter 06: Elsewhere": 9 };
-  assert.deepEqual(
-    resolveChapterDecks(decks, PARENT, [6, 0]).map((d) => d.name),
-    [CH6, CH0],
-  );
+  assert.deepEqual(resolveChapterDecks(decks, PARENT, [6, 0]), [CH6, CH0]);
   assert.throws(() => resolveChapterDecks(decks, PARENT, [7]), /no chapter 7 deck/);
   assert.throws(() => resolveChapterDecks(decks, "Missing", [0]), /no deck named "Missing"/);
 });
@@ -69,10 +39,7 @@ test("resolveChapterDecks matches the numbered prefix directly under the parent"
 test("resolveChapterDecks reads a speaking deck's bare Lesson grouping deck", () => {
   const p = "Busy People";
   const decks = { [p]: 1, [`${p}::Lesson 20`]: 2, [`${p}::Lesson 20::Going Places`]: 3 };
-  assert.deepEqual(
-    resolveChapterDecks(decks, p, [20]).map((d) => d.name),
-    [`${p}::Lesson 20`],
-  );
+  assert.deepEqual(resolveChapterDecks(decks, p, [20]), [`${p}::Lesson 20`]);
 });
 
 test("deckSearch escapes the characters Anki treats specially inside quotes", () => {
@@ -171,4 +138,129 @@ test("a write AnkiConnect accepts but does not apply is caught on read-back", as
     queueNewCards({ client, parent: PARENT, chapters: [0] }),
     /did not end up in learning/,
   );
+});
+
+test("unqueueCards puts unanswered cards back at their old positions and leaves studied ones", async () => {
+  const { client, byId } = fakeAnki([
+    newCard(1, CH0, 40),
+    newCard(2, CH0, 41),
+    newCard(3, CH0, 42),
+  ]);
+  const [r] = await queueIntoDecks({ client, decks: [CH0], perDeck: 3, now: NOW });
+  byId.get(2).reps = 1; // studied since: its review is real history now
+
+  const { restored, kept } = await unqueueCards({ client, cards: r.queued });
+  assert.deepEqual(
+    restored.map((c) => c.cardId),
+    [1, 3],
+  );
+  assert.deepEqual(
+    kept.map((c) => [c.cardId, c.reason]),
+    [[2, "already studied"]],
+  );
+  assert.deepEqual([byId.get(1).type, byId.get(1).queue, byId.get(1).due], [0, 0, 40]);
+  assert.equal(byId.get(3).due, 42);
+  assert.equal(byId.get(2).queue, 1);
+});
+
+const scratchRoot = () => mkdtempSync(join(tmpdir(), "queue-new-backups-"));
+
+test("withSafetyNet syncs, backs up, changes, then syncs again, and logs the run", async () => {
+  const { client, calls } = fakeAnki([newCard(1, CH0, 1)]);
+  const backupRoot = scratchRoot();
+  const run = await withSafetyNet({
+    client,
+    parent: PARENT,
+    action: "queue",
+    backupRoot,
+    change: () => queueIntoDecks({ client, decks: [CH0], now: NOW }),
+  });
+
+  const steps = ["getActiveProfile", "sync", "exportPackage", "setSpecificValueOfCard"];
+  assert.deepEqual(
+    calls.filter((c) => steps.includes(c)),
+    ["getActiveProfile", "sync", "exportPackage", "setSpecificValueOfCard", "sync"],
+  );
+  assert.equal(run.syncedAfter, true);
+  assert.ok(run.backupDir.startsWith(join(backupRoot, QUEUE_BACKUP_DIR)));
+  assert.equal(readdirSync(join(backupRoot, QUEUE_BACKUP_DIR)).length, 1);
+
+  const [entry] = readFileSync(join(backupRoot, QUEUE_LOG), "utf-8")
+    .trim()
+    .split("\n")
+    .map(JSON.parse);
+  assert.equal(entry.action, "queue");
+  assert.equal(entry.backupDir, run.backupDir);
+  assert.equal(entry.result[0].queued[0].originalPosition, 1);
+});
+
+test("a failed first sync or backup stops before any card moves", async () => {
+  for (const opts of [{ syncFails: [1] }, { exportResult: false }]) {
+    const { client, writes } = fakeAnki([newCard(1, CH0, 1)], opts);
+    let changed = false;
+    await assert.rejects(
+      withSafetyNet({
+        client,
+        parent: PARENT,
+        action: "queue",
+        backupRoot: scratchRoot(),
+        change: async () => (changed = true),
+      }),
+      opts.syncFails ? /sync before the change failed.*Nothing was changed/ : /backup failed/,
+    );
+    assert.equal(changed, false);
+    assert.equal(writes.length, 0);
+  }
+});
+
+test("a failed second sync keeps the change and says so", async () => {
+  const { client } = fakeAnki([newCard(1, CH0, 1)], { syncFails: [2] });
+  const run = await withSafetyNet({
+    client,
+    parent: PARENT,
+    action: "queue",
+    backupRoot: scratchRoot(),
+    change: () => queueIntoDecks({ client, decks: [CH0], now: NOW }),
+  });
+  assert.equal(run.syncedAfter, false);
+  assert.match(run.syncError, /AnkiWeb unreachable/);
+  assert.equal(run.result[0].queued.length, 1);
+});
+
+test("a change that fails after the backup names the backup, and the log records it", async () => {
+  const { client } = fakeAnki([]);
+  const backupRoot = scratchRoot();
+  await assert.rejects(
+    withSafetyNet({
+      client,
+      parent: PARENT,
+      action: "queue",
+      backupRoot,
+      change: async () => {
+        throw new Error("boom");
+      },
+    }),
+    /boom \(backup taken before the change: .+\)/,
+  );
+  const [entry] = readFileSync(join(backupRoot, QUEUE_LOG), "utf-8")
+    .trim()
+    .split("\n")
+    .map(JSON.parse);
+  assert.equal(entry.error, "boom");
+  assert.ok(entry.backupDir);
+});
+
+test("withSafetyNet refuses the probe profiles", async () => {
+  const { client, calls } = fakeAnki([], { profile: "Claude Test Profile" });
+  await assert.rejects(
+    withSafetyNet({
+      client,
+      parent: PARENT,
+      action: "queue",
+      backupRoot: scratchRoot(),
+      change: async () => {},
+    }),
+    /probe profile/,
+  );
+  assert.ok(!calls.includes("sync"));
 });

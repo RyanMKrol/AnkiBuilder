@@ -205,14 +205,23 @@ the later one would quietly overwrite the earlier. See the
 [skill](./.claude/skills/build-anki-deck/SKILL.md) for details.
 
 To study new cards from a few chosen chapters each day, set the top-level deck's new cards/day to 0
-in Anki and run `node scripts/queue-new-cards.mjs --chapters 0,6,8,12` (`--per` sets how many per
-chapter, default 5; `--deck` picks the top-level deck, default `Genki I (Reading)`; `--dry-run`
-previews). Anki fills a parent deck's new cards in deck order under one shared limit, so it cannot do
-this on its own. The script turns the next new cards in each chapter into learning cards due now, and
-studying the top-level deck then shows them. A second run the same day only tops each chapter up to
-the target. Those cards never pass through "new", so the chapter decks keep showing their full blue
-count afterwards: that number is only the day's allowance, not cards waiting. Each run appends the
-cards it moved, with their original positions, to `anki-backups/queue-new-cards.jsonl`.
+in Anki and use the **+5 new** button on each finished lesson of a delivered deck on the dashboard,
+or run `node scripts/queue-new-cards.mjs --chapters 0,6,8,12` (`--per` sets how many per chapter,
+default 5; `--deck` picks the top-level deck, default `Genki I (Reading)`; `--dry-run` previews).
+Anki fills a parent deck's new cards in deck order under one shared limit, so it cannot do this on
+its own. Both turn the next new cards in a chapter into learning cards due now, and studying the
+top-level deck then shows them. Each row shows how many of the day's 5 that chapter has had, and a
+second click or run the same day only tops a chapter up to the target. Those cards never pass
+through "new", so the chapter decks in Anki keep showing their full blue count afterwards: that
+number is only the day's allowance, not cards waiting.
+
+Every queue is guarded the same way, from the button or the script: sync with AnkiWeb, back up the
+deck with its scheduling to `anki-backups/queue-new/` (rotated on its own, so it never pushes out a
+delivery's snapshots), make the change, sync again. If the first sync or the backup fails, nothing
+is changed. Each run is logged with the cards it moved and their original positions to
+`anki-backups/queue-new-cards.jsonl`, and `node scripts/queue-new-cards.mjs --undo-last` puts the
+last batch back as new cards. A card already studied is left alone, because its review is real
+history.
 
 Four guards run on every delivery, because the same routine command against a collection something
 has happened to is how a whole book gets re-inserted with no scheduling: it **aborts if the marker

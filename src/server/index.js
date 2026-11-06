@@ -3,7 +3,8 @@ import { Buffer } from "buffer";
 import { realpathSync } from "fs";
 import { dirname, resolve, sep } from "path";
 import { createAnkiConnect } from "../anki/ankiConnect.js";
-import { deliverToAnki } from "../anki/deliver.js";
+import { deliverToAnki, resolveDecks } from "../anki/deliver.js";
+import { queueIntoDecks, queueStatus, withSafetyNet } from "../anki/queueNewCards.js";
 import { ADAPTERS } from "./adapters/index.js";
 import { unitBuildState } from "./adapters/stage.js";
 import { chapterUnits, chapterAudioReadiness } from "../review/chapterGate.js";
@@ -121,9 +122,15 @@ export function createDeckServer({
   // without an Anki.
   deliver = deliverToAnki,
   createClient = createAnkiConnect,
+  // Where the "+5 new" button's backups and log go (src/anki/queueNewCards.js). A test passes a
+  // tmpdir: the real one holds the owner's snapshots.
+  backupRoot = resolve(process.env.ANKI_BUILDER_BACKUP_ROOT || "anki-backups"),
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
   let delivering = false;
+  // One "+5 new" at a time, and never during a delivery: both write to the live collection and both
+  // sync, and two syncs racing is how a change gets lost.
+  let queueing = false;
   // Dashboard writes, one at a time (see the POST handler). A failed write must not stall the ones
   // queued behind it, so the chain carries on past a rejection.
   let writeTail = Promise.resolve();
@@ -521,6 +528,69 @@ export function createDeckServer({
     sendJson(res, report);
   }
 
+  // The "+5 new" button: a finished unit's Anki deck, named by the same resolver Deliver uses, so the
+  // button can only reach a deck Deliver created. Only units in that deck's delivered set appear.
+  function queueTargets(type, id) {
+    const adapter = adapterFor(type);
+    if (!adapter) throw httpError(404, `no deck type "${type}"`);
+    const [deck] = resolveDecks(outputRoot, [{ type, id }], adapters);
+    if (!deck || deck.skipped || !deck.units) {
+      throw httpError(
+        404,
+        `${type}:${id} has no deliverable deck (${deck?.skipped ?? "not found"})`,
+      );
+    }
+    if (!deck.marker)
+      throw httpError(409, `"${deck.ankiParent}" has not been delivered to Anki yet`);
+    const byLabel = new Map(deck.units.map((u) => [u.label, u.ankiDeck]));
+    const units = (adapter.loadDeck(outputRoot, id, { includeCards: false })?.units || [])
+      .filter((u) => byLabel.has(u.label))
+      .map((u) => ({ seq: String(u.seq), ankiDeck: byLabel.get(u.label) }));
+    return { parent: deck.ankiParent, units };
+  }
+
+  // Where each finished unit stands in Anki today. Read-only; the page fills its buttons from this.
+  async function handleQueueStatus(res, type, id) {
+    const { units } = queueTargets(type, id);
+    let status;
+    try {
+      status = await queueStatus({ client: createClient(), decks: units.map((u) => u.ankiDeck) });
+    } catch (e) {
+      throw httpError(502, e.message);
+    }
+    sendJson(res, {
+      perDeck: QUEUE_PER_DECK,
+      units: units.map((u, i) => ({ seq: u.seq, ...status[i] })),
+    });
+  }
+
+  // Sync, back up, queue up to QUEUE_PER_DECK new cards in one unit's deck, sync again.
+  async function handleQueueNew(res, type, id, seq) {
+    const { parent, units } = queueTargets(type, id);
+    const unit = units.find((u) => u.seq === String(seq));
+    if (!unit) throw httpError(404, `unit ${seq} is not a finished, delivered lesson`);
+    const client = createClient();
+    let run;
+    try {
+      run = await withSafetyNet({
+        client,
+        parent,
+        action: "queue",
+        backupRoot,
+        change: () => queueIntoDecks({ client, decks: [unit.ankiDeck], perDeck: QUEUE_PER_DECK }),
+      });
+    } catch (e) {
+      throw httpError(502, e.message);
+    }
+    sendJson(res, {
+      perDeck: QUEUE_PER_DECK,
+      ...run.result[0],
+      backupDir: run.backupDir,
+      syncedAfter: run.syncedAfter,
+      syncError: run.syncError,
+    });
+  }
+
   async function commitDelivery() {
     const gate = await git.assess();
     if (!gate.ok) {
@@ -677,6 +747,9 @@ export function createDeckServer({
         }
         if (seg[0] === "media" && seg.length === 5)
           return serveMedia(req, res, seg[1], seg[2], seg[3], seg[4]);
+        // Asks the live Anki, so only on a server that can also act on the answer.
+        if (editable && isQueueStatusRoute(seg))
+          return await handleQueueStatus(res, seg[2], seg[3]);
         return notFound(res);
       }
       if (req.method === "POST") {
@@ -694,6 +767,20 @@ export function createDeckServer({
         // trips the pre-push hook's guard on output/.
         if (delivering) {
           throw httpError(409, "a delivery is running (committing and pushing); try again shortly");
+        }
+        // A delivery or a second queue waits; an edit to a card file does not, it never touches Anki.
+        if (queueing && (isDeliver || isQueueNewRoute(seg))) {
+          throw httpError(409, "new cards are being queued in Anki; try again shortly");
+        }
+        // Not through the write journal below: it writes nothing tracked, only Anki and the
+        // gitignored backup folder.
+        if (isQueueNewRoute(seg)) {
+          queueing = true;
+          try {
+            return await handleQueueNew(res, seg[2], seg[3], seg[5]);
+          } finally {
+            queueing = false;
+          }
         }
         if (isDeliver) {
           delivering = true;
@@ -736,6 +823,17 @@ export function createDeckServer({
     }
   };
 }
+
+// How many new cards the dashboard's button tops a unit up to each day.
+const QUEUE_PER_DECK = 5;
+const isQueueStatusRoute = (seg) =>
+  seg[0] === "api" && seg[1] === "deck" && seg[4] === "queue-new" && seg.length === 5;
+const isQueueNewRoute = (seg) =>
+  seg[0] === "api" &&
+  seg[1] === "deck" &&
+  seg[4] === "unit" &&
+  seg[6] === "queue-new" &&
+  seg.length === 7;
 
 /**
  * Defers `res.end` until the returned release is called, so a handler can finish its reply while the

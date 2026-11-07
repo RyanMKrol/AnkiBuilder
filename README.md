@@ -205,13 +205,16 @@ the later one would quietly overwrite the earlier. See the
 [skill](./.claude/skills/build-anki-deck/SKILL.md) for details.
 
 To study new cards from a few chosen chapters each day, set the top-level deck's new cards/day to 0
-in Anki and use the **+5 new** button on each finished lesson of a delivered deck on the dashboard,
+in Anki and use the **+N new** button on each finished lesson of a delivered deck on the dashboard,
 or run `node scripts/queue-new-cards.mjs --chapters 0,6,8,12` (`--per` sets how many per chapter,
 default 5; `--deck` picks the top-level deck, default `Genki I (Reading)`; `--dry-run` previews).
 Anki fills a parent deck's new cards in deck order under one shared limit, so it cannot do this on
 its own. Both turn the next new cards in a chapter into learning cards due now, and studying the
-top-level deck then shows them. Each row shows how many of the day's 5 that chapter has had, and a
-second click or run the same day only tops a chapter up to the target. Those cards never pass
+top-level deck then shows them. Each row shows how many of the day's number that chapter has had,
+and a second click or run the same day only tops a chapter up to the target. The number is 5 unless
+the collection's `book.json` (or `course.json`) sets `newCardsPerLesson`. Both Busy People books set
+it to 60, so one click there queues up to 60 of a lesson's new cards, or all of them if fewer are
+left. Rebuilding a chapter keeps the setting. Those cards never pass
 through "new", so the chapter decks in Anki keep showing their full blue count afterwards: that
 number is only the day's allowance, not cards waiting.
 

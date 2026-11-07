@@ -17,13 +17,19 @@ const PARENT = "AnkiBuilder Book Deck";
 const MEETING = `${PARENT}::Lesson 01::Meeting`;
 const EXTRAS = `${PARENT}::Lesson 01::Meeting (Extras)`;
 
-function book({ delivered = true } = {}) {
+function book({ delivered = true, newCardsPerLesson } = {}) {
   const root = mkdtempSync(join(tmpdir(), "queue-new-out-"));
   const bookDir = join(root, "epubs", "bk");
   mkdirSync(bookDir, { recursive: true });
   writeFileSync(
     join(bookDir, "book.json"),
-    JSON.stringify({ title: "Bk", slug: "bk", epubHash: null, targetLanguage: "ja" }),
+    JSON.stringify({
+      title: "Bk",
+      slug: "bk",
+      epubHash: null,
+      targetLanguage: "ja",
+      ...(newCardsPerLesson === undefined ? {} : { newCardsPerLesson }),
+    }),
   );
   const unit = (name, meta, id) => {
     mkdirSync(join(bookDir, name), { recursive: true });
@@ -132,6 +138,26 @@ test("the button syncs, backs up, queues that lesson only, syncs again, and logs
     ["sync", "exportPackage", "setSpecificValueOfCard", "setSpecificValueOfCard", "sync"],
   );
   assert.equal(anki.byId.get(4).queue, 0, "the other lesson is untouched");
+});
+
+test("a collection's own newCardsPerLesson sets how many a click tops a lesson up to", async () => {
+  const anki = fakeQueueAnki(cards());
+  await withServer(
+    { book: { newCardsPerLesson: 1 }, server: { createClient: () => anki.client } },
+    async (url) => {
+      const status = (await call(url, "/api/deck/book/bk/queue-new")).body;
+      assert.equal(status.perDeck, 1);
+      const seq = status.units[0].seq;
+      const { body } = await call(url, `/api/deck/book/bk/unit/${seq}/queue-new`, "POST");
+      assert.equal(body.perDeck, 1);
+      // The earliest new card only, where the default of 5 would have taken both.
+      assert.deepEqual(
+        body.queued.map((c) => c.cardId),
+        [2],
+      );
+    },
+  );
+  assert.equal(anki.byId.get(1).queue, 0);
 });
 
 test("a failed sync before the change queues nothing and says so", async () => {

@@ -154,7 +154,7 @@ footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--rule);font-si
 .urow .ustage.done{color:#5c7a52;font-weight:700}
 .urow .ustage.building{color:#8a6d1f;font-weight:700}
 .urow .ustage.interrupted{color:#9a4f2a;font-weight:700}
-/* A built row with the "+5 new" button: a <div>, not an <a>, because a button cannot sit inside a
+/* A built row with the "+N new" button: a <div>, not an <a>, because a button cannot sit inside a
    link. The label carries the link instead, so the row still opens the lesson. */
 .qrow{cursor:default}
 .dbhead + .qrow{margin-top:6px}

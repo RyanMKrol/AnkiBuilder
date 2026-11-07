@@ -961,7 +961,8 @@ export const DELIVER_SCRIPT = `(function () {
   });
 })();`;
 
-// The "+5 new" buttons on a delivered deck's finished lessons (src/anki/queueNewCards.js). Each
+// The "+N new" buttons on a delivered deck's finished lessons (src/anki/queueNewCards.js). N is the
+// collection's per-lesson number, which the status reply carries as perDeck. Each
 // deck block asks Anki where its lessons stand today and only then shows the buttons, so a button
 // never appears when Anki is closed. A click syncs, backs up, queues, and syncs again on the server;
 // the row then shows the new count. Topping up, so a second click the same day adds nothing.
@@ -975,6 +976,9 @@ export const QUEUE_NEW_SCRIPT = `(function () {
     stat.classList.toggle("full", today >= per);
     if (s.newLeft === 0 && today === 0) { stat.textContent = "no new cards left"; btn.hidden = true; return; }
     stat.textContent = today + "/" + per + " today \u00b7 " + s.newLeft + " new left";
+    // What a click would add: the rest of today's number, or fewer when the lesson runs out.
+    var room = Math.max(0, per - today);
+    btn.textContent = "+" + (room ? Math.min(room, s.newLeft) : per) + " new";
     btn.hidden = s.newLeft === 0;
     btn.disabled = today >= per;
   }

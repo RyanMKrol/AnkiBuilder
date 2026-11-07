@@ -190,6 +190,9 @@ export function materializeBookInOutput(
   // An owner-chosen deck name (setCollectionDeckName) is a human-set field, and this function
   // rewrites the marker whole, so it is carried forward like `retired`.
   let deckName;
+  // How many new cards the dashboard's queue button tops a lesson up to each day
+  // (collectionNewPerLesson). Set by hand, so carried forward like `deckName`.
+  let newCardsPerLesson;
   // The title too. It starts as the EPUB's own <dc:title>, which for a converted book runs to
   // "GENKI: An Integrated Course … [Third Edition] 初級日本語げんき[第3版] (everything)", and the
   // owner shortens it by hand in book.json. Re-read from the EPUB on every run, that edit lasted
@@ -203,6 +206,7 @@ export function materializeBookInOutput(
       guidNamespace = existing.guidNamespace ?? null;
       if (existing.retired === true) retired = true;
       if (typeof existing.deckName === "string") deckName = existing.deckName;
+      if (existing.newCardsPerLesson !== undefined) newCardsPerLesson = existing.newCardsPerLesson;
       if (typeof existing.title === "string" && existing.title.trim()) title = existing.title;
     } catch {
       guidNamespace = null;
@@ -225,6 +229,7 @@ export function materializeBookInOutput(
         guidNamespace,
         ...(requestedKind !== SPEAKING_LISTENING ? { deckKind: requestedKind } : {}),
         ...(deckName ? { deckName } : {}),
+        ...(newCardsPerLesson !== undefined ? { newCardsPerLesson } : {}),
         ...(retired ? { retired: true } : {}),
       },
       null,
@@ -481,6 +486,26 @@ export function isRetiredCollection(collectionDir) {
     }
   }
   return false;
+}
+
+/**
+ * How many new cards the dashboard's queue button tops each lesson up to per day, from the
+ * collection's own manifest (`newCardsPerLesson` in `book.json` / `course.json`). Set by hand per
+ * collection; anything other than a whole number of 1 or more, or no manifest at all, means
+ * `fallback`. Takes the collection DIRECTORY, like isRetiredCollection.
+ */
+export function collectionNewPerLesson(collectionDir, fallback = 5) {
+  for (const name of ["book.json", "course.json"]) {
+    const path = join(collectionDir, name);
+    if (!existsSync(path)) continue;
+    try {
+      const n = JSON.parse(readFileSync(path, "utf-8")).newCardsPerLesson;
+      if (Number.isInteger(n) && n >= 1) return n;
+    } catch {
+      // An unreadable manifest falls back like a missing field; the stages that need it fail on it.
+    }
+  }
+  return fallback;
 }
 
 /**

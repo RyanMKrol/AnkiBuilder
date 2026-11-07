@@ -9,6 +9,7 @@ import { ADAPTERS } from "./adapters/index.js";
 import { unitBuildState } from "./adapters/stage.js";
 import { chapterUnits, chapterAudioReadiness } from "../review/chapterGate.js";
 import { clearClaim, describeClaim } from "../cli/runClaim.js";
+import { collectionNewPerLesson } from "../cli/outputPaths.js";
 import {
   getLanguageFont as defaultGetLanguageFont,
   readFontBytes as defaultReadFontBytes,
@@ -122,13 +123,13 @@ export function createDeckServer({
   // without an Anki.
   deliver = deliverToAnki,
   createClient = createAnkiConnect,
-  // Where the "+5 new" button's backups and log go (src/anki/queueNewCards.js). A test passes a
+  // Where the "+N new" button's backups and log go (src/anki/queueNewCards.js). A test passes a
   // tmpdir: the real one holds the owner's snapshots.
   backupRoot = resolve(process.env.ANKI_BUILDER_BACKUP_ROOT || "anki-backups"),
 } = {}) {
   const adapterFor = (type) => adapters.find((a) => a.type === type) || null;
   let delivering = false;
-  // One "+5 new" at a time, and never during a delivery: both write to the live collection and both
+  // One "+N new" at a time, and never during a delivery: both write to the live collection and both
   // sync, and two syncs racing is how a change gets lost.
   let queueing = false;
   // Dashboard writes, one at a time (see the POST handler). A failed write must not stall the ones
@@ -528,7 +529,7 @@ export function createDeckServer({
     sendJson(res, report);
   }
 
-  // The "+5 new" button: a finished unit's Anki deck, named by the same resolver Deliver uses, so the
+  // The "+N new" button: a finished unit's Anki deck, named by the same resolver Deliver uses, so the
   // button can only reach a deck Deliver created. Only units in that deck's delivered set appear.
   function queueTargets(type, id) {
     const adapter = adapterFor(type);
@@ -546,12 +547,17 @@ export function createDeckServer({
     const units = (adapter.loadDeck(outputRoot, id, { includeCards: false })?.units || [])
       .filter((u) => byLabel.has(u.label))
       .map((u) => ({ seq: String(u.seq), ankiDeck: byLabel.get(u.label) }));
-    return { parent: deck.ankiParent, units };
+    // How many a click tops each lesson up to: the collection's own setting, else the default.
+    const perDeck = collectionNewPerLesson(
+      dirname(adapter.deckFile(outputRoot, id)),
+      QUEUE_PER_DECK,
+    );
+    return { parent: deck.ankiParent, units, perDeck };
   }
 
   // Where each finished unit stands in Anki today. Read-only; the page fills its buttons from this.
   async function handleQueueStatus(res, type, id) {
-    const { units } = queueTargets(type, id);
+    const { units, perDeck } = queueTargets(type, id);
     let status;
     try {
       status = await queueStatus({ client: createClient(), decks: units.map((u) => u.ankiDeck) });
@@ -559,14 +565,15 @@ export function createDeckServer({
       throw httpError(502, e.message);
     }
     sendJson(res, {
-      perDeck: QUEUE_PER_DECK,
+      perDeck,
       units: units.map((u, i) => ({ seq: u.seq, ...status[i] })),
     });
   }
 
-  // Sync, back up, queue up to QUEUE_PER_DECK new cards in one unit's deck, sync again.
+  // Sync, back up, queue up to the collection's per-lesson number of new cards in one unit's deck,
+  // sync again.
   async function handleQueueNew(res, type, id, seq) {
-    const { parent, units } = queueTargets(type, id);
+    const { parent, units, perDeck } = queueTargets(type, id);
     const unit = units.find((u) => u.seq === String(seq));
     if (!unit) throw httpError(404, `unit ${seq} is not a finished, delivered lesson`);
     const client = createClient();
@@ -577,13 +584,13 @@ export function createDeckServer({
         parent,
         action: "queue",
         backupRoot,
-        change: () => queueIntoDecks({ client, decks: [unit.ankiDeck], perDeck: QUEUE_PER_DECK }),
+        change: () => queueIntoDecks({ client, decks: [unit.ankiDeck], perDeck }),
       });
     } catch (e) {
       throw httpError(502, e.message);
     }
     sendJson(res, {
-      perDeck: QUEUE_PER_DECK,
+      perDeck,
       ...run.result[0],
       backupDir: run.backupDir,
       syncedAfter: run.syncedAfter,
@@ -824,7 +831,8 @@ export function createDeckServer({
   };
 }
 
-// How many new cards the dashboard's button tops a unit up to each day.
+// How many new cards the dashboard's button tops a unit up to each day, unless the collection's
+// manifest sets its own `newCardsPerLesson` (collectionNewPerLesson in src/cli/outputPaths.js).
 const QUEUE_PER_DECK = 5;
 const isQueueStatusRoute = (seg) =>
   seg[0] === "api" && seg[1] === "deck" && seg[4] === "queue-new" && seg.length === 5;

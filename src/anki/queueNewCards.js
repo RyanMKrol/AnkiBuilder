@@ -1,6 +1,6 @@
 // Pull the next few NEW cards from chosen chapters straight into today's learning queue, so studying
 // the top-level deck shows them without opening each chapter deck in turn. Used by
-// scripts/queue-new-cards.mjs and by the "+5 new" button on the dashboard.
+// scripts/queue-new-cards.mjs and by the "+N new" button on the dashboard.
 //
 // Why this exists: Anki fills a parent deck's new cards in deck order and caps them with the parent's
 // own daily limit, so "five new cards from each of Chapters 0, 6, 8 and 12" cannot be had from the

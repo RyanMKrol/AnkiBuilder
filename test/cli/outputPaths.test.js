@@ -19,6 +19,7 @@ import {
   listBooks,
   resolveBookEpubPath,
   isRetiredCollection,
+  collectionNewPerLesson,
 } from "../../src/cli/outputPaths.js";
 import { withClaim, readClaim } from "../../src/cli/runClaim.js";
 import { buildFixtureEpub } from "../support/epubFixtures.js";
@@ -843,5 +844,59 @@ test("materializeBookInOutput does not INVENT a retired flag on a live book", ()
     const dir = join(outputRoot, "epubs", slug);
     assert.ok(!("retired" in loadBookMarker(dir)), "a live book's marker stays clean");
     assert.strictEqual(isRetiredCollection(dir), false);
+  });
+});
+
+test("collectionNewPerLesson reads either manifest, and falls back on anything but a whole number", () => {
+  const root = mkdtempSync(join(tmpdir(), "new-per-lesson-"));
+  try {
+    const mk = (name, manifest) => {
+      const dir = join(root, name);
+      mkdirSync(dir, { recursive: true });
+      if (manifest !== null) writeFileSync(join(dir, name.split("-")[0] + ".json"), manifest);
+      return dir;
+    };
+    assert.strictEqual(
+      collectionNewPerLesson(mk("book-60", JSON.stringify({ newCardsPerLesson: 60 }))),
+      60,
+    );
+    assert.strictEqual(
+      collectionNewPerLesson(mk("course-12", JSON.stringify({ newCardsPerLesson: 12 }))),
+      12,
+    );
+    assert.strictEqual(collectionNewPerLesson(mk("book-unset", JSON.stringify({}))), 5);
+    assert.strictEqual(collectionNewPerLesson(mk("book-none", null), 7), 7);
+    for (const v of [0, -3, 2.5, "60", null, true]) {
+      assert.strictEqual(
+        collectionNewPerLesson(
+          mk(`book-v${JSON.stringify(v)}`, JSON.stringify({ newCardsPerLesson: v })),
+        ),
+        5,
+        `newCardsPerLesson: ${JSON.stringify(v)} must fall back`,
+      );
+    }
+    assert.strictEqual(collectionNewPerLesson(mk("book-broken", "{ not json")), 5);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("materializeBookInOutput preserves a hand-set newCardsPerLesson when it refreshes the marker", () => {
+  // It REPLACES the marker wholesale; a field it does not carry forward is silently dropped, and
+  // the dashboard's button would quietly go back to the default.
+  withTempDirs(({ outputRoot, libraryHomeDir, sourceDir }) => {
+    const { epubPath, epubHash } = registerFixtureEpub(sourceDir, libraryHomeDir, "My Book");
+    const slug = resolveBookSlug(outputRoot, epubPath, epubHash, { libraryHomeDir });
+    const dir = join(outputRoot, "epubs", slug);
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+    assert.ok(!("newCardsPerLesson" in loadBookMarker(dir)), "never invented");
+
+    writeFileSync(
+      join(dir, "book.json"),
+      JSON.stringify({ ...loadBookMarker(dir), newCardsPerLesson: 60 }, null, 2),
+    );
+    materializeBookInOutput(outputRoot, slug, epubPath, epubHash, "ja");
+    assert.strictEqual(loadBookMarker(dir).newCardsPerLesson, 60);
+    assert.strictEqual(collectionNewPerLesson(dir), 60);
   });
 });

@@ -218,10 +218,10 @@ export function createPageRenderers({
               : u.stage === "corpus" && !u.ready
                 ? "prepare unfinished"
                 : escapeHtml(u.stage);
-          // A delivered deck's finished lesson gets the "+5 new" button (QUEUE_NEW_SCRIPT fills in
-          // its status from Anki and reveals it). The row becomes a <div> with the label as the link.
+          // A delivered deck's finished lesson gets the "+N new" button (QUEUE_NEW_SCRIPT fills in
+          // its status and its number from Anki and the collection's setting, then reveals it). The row becomes a <div> with the label as the link.
           if (queueable) {
-            return `<div class="urow qrow" data-seq="${escapeHtml(String(u.seq))}"><a class="ulabel" href="${url}">${label}</a><span class="qstat"></span><button type="button" class="qnew" hidden title="Sync, back up, then move this lesson's next new cards into today's learning queue">+5 new</button><span class="ustage done">${badge}</span></div>`;
+            return `<div class="urow qrow" data-seq="${escapeHtml(String(u.seq))}"><a class="ulabel" href="${url}">${label}</a><span class="qstat"></span><button type="button" class="qnew" hidden title="Sync, back up, then move this lesson's next new cards into today's learning queue">+ new</button><span class="ustage done">${badge}</span></div>`;
           }
           return `<a class="urow" href="${url}"><span class="ulabel">${label}</span><span class="ustage${mode === "built" ? " done" : ""}">${badge}</span></a>`;
         })

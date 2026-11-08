@@ -10,7 +10,9 @@
 // (Lesson 22), after a sweep found 32 and 48 verbs missing them. The casual past and the polite
 // forms were deliberately left out: they are mechanical once these are known. So is たい (Lesson
 // 17), which is the ます stem plus たい for every verb: on 2026-11-03 the owner chose word cards and
-// two sentences each for eight travel verbs (batch tai-trip-2026-11) over a card per verb.
+// two sentences each for eight travel verbs (batch tai-trip-2026-11) over a card per verb, and on
+// 2026-11-08 added 19 more trip verbs the same way (batch tai-trip-more-2026-11). Still not every
+// verb, so this check does not owe a たい form.
 //
 // WHAT IS DETERMINISTIC HERE AND WHAT IS NOT. Whether a form is owed, and whether it is present, is
 // arithmetic over the cards. The DICTIONARY form is not: あいます → あう and たべます → たべる differ

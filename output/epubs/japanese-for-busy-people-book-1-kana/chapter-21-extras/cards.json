@@ -1200,6 +1200,39 @@
       "audioMarked": true,
       "audioTextHash": "c52cd715c6eefa6a",
       "additionDone": true
+    },
+    {
+      "id": "tsukaremashita-kara-suwaritai",
+      "english": "I'm tired, so I want to sit down.",
+      "category": "Body & Health",
+      "target": "つかれましたから、すわりたいです",
+      "pronunciation": "tsukaremashita kara, suwaritai desu",
+      "note": "から (kara) after a reason means \"so\": つかれましたから (tsukaremashita kara) is \"I'm tired, so\".",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for すわります."
+    },
+    {
+      "id": "sumaho-o-juuden-shitai",
+      "english": "I want to charge my phone.",
+      "category": "Technology & Communication",
+      "target": "スマホをじゅうでんしたいです",
+      "pronunciation": "sumaho o jūden shitai desu",
+      "note": "スマホ (sumaho) is \"smartphone\", short for スマートフォン (sumātofon).",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for じゅうでんします."
+    },
+    {
+      "id": "pasupooto-o-kopii-shitai",
+      "english": "I want to make a copy of my passport.",
+      "category": "Travel & Tourism",
+      "target": "パスポートをコピーしたいです",
+      "pronunciation": "pasupōto o kopī shitai desu",
+      "note": "パスポート (pasupōto) is \"passport\". Convenience store printers make copies.",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for コピーします."
     }
   ]
 }

@@ -1035,6 +1035,29 @@
       "audioMarked": true,
       "audioTextHash": "fab9551eb798d591",
       "additionDone": true
+    },
+    {
+      "id": "hachiji-ni-hoteru-o-detai",
+      "english": "Tomorrow I want to leave the hotel at 8.",
+      "category": "Travel & Tourism",
+      "target": "あしたは8じにホテルをでたいです",
+      "ttsText": "あしたははちじにホテルをでたいです",
+      "pronunciation": "ashita wa hachiji ni hoteru o detai desu",
+      "note": "8じ (hachiji) is eight o'clock. This is how you tell the front desk when you plan to check out.",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for でます."
+    },
+    {
+      "id": "chotto-kikitai-n-desu-ga",
+      "english": "Excuse me, I'd like to ask something.",
+      "category": "Travel & Tourism",
+      "target": "すみません、ちょっとききたいんですが",
+      "pronunciation": "sumimasen, chotto kikitai n desu ga",
+      "note": "んですが (n desu ga) softens it and leaves room for the other person to answer, like いきたいんですが (ikitai n desu ga, \"I'd like to go\"). It is the usual way to start a question to a stranger.",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for ききます."
     }
   ]
 }

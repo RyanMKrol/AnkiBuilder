@@ -925,6 +925,124 @@
       "note": "で (de) marks where you rest, the same で as in ホテルでたべます (hoteru de tabemasu).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for やすみます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true
+    },
+    {
+      "id": "karaoke-de-utaitai",
+      "english": "I want to sing at karaoke.",
+      "category": "Sports & Hobbies",
+      "target": "カラオケでうたいたいです",
+      "note": "カラオケ (karaoke) is a Japanese word English borrowed, so you already know it. で (de) marks the place where you do something.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for うたいます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nihon-no-uta-o-utaitai",
+      "english": "I want to sing a Japanese song.",
+      "category": "Sports & Hobbies",
+      "target": "にほんのうたをうたいたいです",
+      "note": "うた (uta) is \"song\" and うたいます (utaimasu) is \"sing\", so a song is something you うたいます.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for うたいます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "nihongo-de-hanashitai",
+      "english": "I want to speak in Japanese.",
+      "category": "School & Education",
+      "target": "にほんごではなしたいです",
+      "note": "で (de) marks the language you speak in: えいごで (eigo de) is \"in English\".",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for はなします.",
+      "aiSuggested": true
+    },
+    {
+      "id": "fujisan-ni-noboritai",
+      "english": "I want to climb Mt. Fuji.",
+      "category": "Travel & Tourism",
+      "target": "ふじさんにのぼりたいです",
+      "note": "What you climb takes に (ni), not を (o).",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for のぼります.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kyou-wa-takusan-arukitai",
+      "english": "I want to walk a lot today.",
+      "category": "Travel & Tourism",
+      "target": "きょうはたくさんあるきたいです",
+      "note": "あるきたい (arukitai) is あるきます (arukimasu, \"walk\") with ます (masu) swapped for たい (tai).",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for あるきます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "umi-de-oyogitai",
+      "english": "I want to swim in the sea.",
+      "category": "Sports & Hobbies",
+      "target": "うみでおよぎたいです",
+      "note": "Swap in プール (pūru, \"pool\") for a hotel pool: プールでおよぎたいです (pūru de oyogitai desu).",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for およぎます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kyou-wa-juuji-ni-netai",
+      "english": "Today I want to go to bed at 10.",
+      "category": "Time",
+      "target": "きょうは10じにねたいです",
+      "note": "10じ (jūji) is ten o'clock. ねます (nemasu) covers both \"sleep\" and \"go to bed\".",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for ねます.",
+      "ttsText": "きょうはじゅうじにねたいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "jitensha-o-karitai",
+      "english": "I want to rent a bicycle.",
+      "category": "Transport",
+      "target": "じてんしゃをかりたいです",
+      "note": "かります (karimasu, \"borrow\") also covers renting, when you pay for it.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for かります.",
+      "aiSuggested": true
+    },
+    {
+      "id": "koko-de-shashin-o-toritai",
+      "english": "I want to take a photo here.",
+      "category": "Travel & Tourism",
+      "target": "ここでしゃしんをとりたいです",
+      "note": "しゃしんをとります (shashin o torimasu) is \"take a photo\". ここで (koko de) is \"here\", as the place you do it.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for とります.",
+      "aiSuggested": true
+    },
+    {
+      "id": "ginza-de-kaimono-o-shitai",
+      "english": "I want to go shopping in Ginza.",
+      "category": "Shopping",
+      "target": "ぎんざでかいものをしたいです",
+      "note": "ぎんざ (Ginza) is Tokyo's best-known shopping district.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for かいものをします.",
+      "aiSuggested": true
+    },
+    {
+      "id": "hoteru-de-shawa-o-abitai",
+      "english": "I want to take a shower at the hotel.",
+      "category": "Travel & Tourism",
+      "target": "ホテルでシャワーをあびたいです",
+      "note": "あびたい (abitai) is あびます (abimasu, \"take (a shower)\") with ます (masu) swapped for たい (tai).",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for シャワーをあびます.",
+      "aiSuggested": true
+    },
+    {
+      "id": "kouen-de-sanpo-o-shitai",
+      "english": "I want to take a walk in the park.",
+      "category": "Sports & Hobbies",
+      "target": "こうえんでさんぽをしたいです",
+      "note": "こうえん (kōen) is \"park\". で (de) marks where you walk.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for さんぽをします.",
+      "aiSuggested": true
+    },
+    {
+      "id": "koko-de-machitai",
+      "english": "I'd like to wait here.",
+      "category": "Travel & Tourism",
+      "target": "ここでまちたいです",
+      "note": "まちたい (machitai) is まちます (machimasu, \"wait\") with ます (masu) swapped for たい (tai).",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for まちます.",
+      "aiSuggested": true
     }
   ]
 }

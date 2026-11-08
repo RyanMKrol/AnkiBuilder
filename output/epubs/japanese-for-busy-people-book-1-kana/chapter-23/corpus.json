@@ -991,6 +991,15 @@
       "note": "します (shimasu) becomes したい (shitai), so よやくします (yoyaku shimasu) becomes よやくしたいです (yoyaku shitai desu).",
       "reviewNote": "Owner request 2026-11-03: the たい word card for よやくします, to go with the two trip sentences in this batch. Placed in Lesson 23, which teaches よやくします.",
       "aiSuggested": true
+    },
+    {
+      "id": "tsukuritai-desu",
+      "english": "(I) want to make",
+      "category": "Grammar & Function Words",
+      "target": "つくりたいです",
+      "note": "Drop ます (masu) from つくります (tsukurimasu, \"make\"), add たいです (tai desu).",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for つくります. Placed in Lesson 23, which teaches つくります.",
+      "aiSuggested": true
     }
   ]
 }

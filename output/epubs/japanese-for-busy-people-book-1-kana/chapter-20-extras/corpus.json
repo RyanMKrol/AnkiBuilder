@@ -593,6 +593,25 @@
       "note": "おりたい (oritai) is おります (orimasu, \"get off\") with ます (masu) swapped for たい (tai).",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for おります, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true
+    },
+    {
+      "id": "hachiji-ni-hoteru-o-detai",
+      "english": "Tomorrow I want to leave the hotel at 8.",
+      "category": "Travel & Tourism",
+      "target": "あしたは8じにホテルをでたいです",
+      "note": "8じ (hachiji) is eight o'clock. This is how you tell the front desk when you plan to check out.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for でます.",
+      "ttsText": "あしたははちじにホテルをでたいです",
+      "aiSuggested": true
+    },
+    {
+      "id": "chotto-kikitai-n-desu-ga",
+      "english": "Excuse me, I'd like to ask something.",
+      "category": "Travel & Tourism",
+      "target": "すみません、ちょっとききたいんですが",
+      "note": "んですが (n desu ga) softens it and leaves room for the other person to answer, like いきたいんですが (ikitai n desu ga, \"I'd like to go\"). It is the usual way to start a question to a stranger.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for ききます.",
+      "aiSuggested": true
     }
   ]
 }

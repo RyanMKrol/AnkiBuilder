@@ -12,6 +12,16 @@
         "message": "chapter-17: \"はなみをします\" (View cherry blossoms) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
       },
+      "chapter-17/hanashitai-desu": {
+        "at": "2026-11-08T21:46:22.475Z",
+        "message": "chapter-17: \"はなしたいです\" ((I) want to talk, want to speak) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "tai-trip-more-2026-11: たい word cards shaped like Lesson 17's own '(I) want to ...' cards (かいたいです etc.), lexical entries for a verb form, not sentences. Same ruling as tai-trip-2026-11."
+      },
+      "chapter-17/kaimono-o-shitai-desu": {
+        "at": "2026-11-08T21:46:22.475Z",
+        "message": "chapter-17: \"かいものをしたいです\" ((I) want to go shopping) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "tai-trip-more-2026-11: たい word cards shaped like Lesson 17's own '(I) want to ...' cards (かいたいです etc.), lexical entries for a verb form, not sentences. Same ruling as tai-trip-2026-11."
+      },
       "chapter-17/ohanami-o-shimasu": {
         "at": "2026-09-20T19:38:39.242Z",
         "message": "chapter-17: \"(お)はなみをします\" (To view cherry blossoms) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
@@ -21,6 +31,16 @@
         "at": "2026-09-20T19:38:39.242Z",
         "message": "chapter-17: \"りょうりをします\" (Cook) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "WORD POWER II lists these as vocabulary entries, not sentences: noun+を+します compounds and plain ます-form verbs the book glosses as single headwords. Read against the chapter text on 2026-09-20."
+      },
+      "chapter-17/sanpo-o-shitai-desu": {
+        "at": "2026-11-08T21:46:22.475Z",
+        "message": "chapter-17: \"さんぽをしたいです\" ((I) want to take a walk) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "tai-trip-more-2026-11: たい word cards shaped like Lesson 17's own '(I) want to ...' cards (かいたいです etc.), lexical entries for a verb form, not sentences. Same ruling as tai-trip-2026-11."
+      },
+      "chapter-17/shawa-o-abitai-desu": {
+        "at": "2026-11-08T21:46:22.475Z",
+        "message": "chapter-17: \"シャワーをあびたいです\" ((I) want to take a shower) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "tai-trip-more-2026-11: たい word cards shaped like Lesson 17's own '(I) want to ...' cards (かいたいです etc.), lexical entries for a verb form, not sentences. Same ruling as tai-trip-2026-11."
       },
       "chapter-17/shawaa-o-abimasu": {
         "at": "2026-09-20T19:38:39.242Z",
@@ -87,6 +107,11 @@
         "message": "chapter-20: \"でます\" (To leave) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "でます is a verb headword from the vocabulary box, and ダイビングをします is glossed there as one unit (scuba dive). Both are lexical entries, not sentences."
       },
+      "chapter-20/detai-desu": {
+        "at": "2026-11-08T21:46:22.475Z",
+        "message": "chapter-20: \"でたいです\" ((I) want to leave) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "tai-trip-more-2026-11: たい word cards shaped like Lesson 17's own '(I) want to ...' cards (かいたいです etc.), lexical entries for a verb form, not sentences. Same ruling as tai-trip-2026-11."
+      },
       "chapter-21/atama-ga-itaidesu": {
         "at": "2026-10-11T11:49:21.688Z",
         "message": "chapter-21: \"あたまがいたいです\" (I have a headache.) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
@@ -106,6 +131,11 @@
         "at": "2026-10-11T11:49:21.688Z",
         "message": "chapter-21: \"じゅうでんします\" (Recharge) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
         "note": "L21 gate 1: all five are the book's own vocabulary entries (しゃしんを とっても いいですか, ねつが あります and あたまが いたいです are glossed as single units in VOCABULARY/WORD POWER); はいります and じゅうでんします are plain verbs the check misreads as sentences"
+      },
+      "chapter-21/juuden-shitai-desu": {
+        "at": "2026-11-08T21:46:22.475Z",
+        "message": "chapter-21: \"じゅうでんしたいです\" ((I) want to recharge) reads as a sentence, and a base unit holds lexical entries. If it is one, it belongs in this chapter's extras unit; if it is a fixed expression the book glosses as a single unit, it belongs exactly where it is and this finding is a false positive.",
+        "note": "tai-trip-more-2026-11: たい word cards shaped like Lesson 17's own '(I) want to ...' cards (かいたいです etc.), lexical entries for a verb form, not sentences. Same ruling as tai-trip-2026-11."
       },
       "chapter-21/netsu-ga-arimasu": {
         "at": "2026-10-11T11:49:21.688Z",

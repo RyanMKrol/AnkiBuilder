@@ -644,6 +644,33 @@
       "note": "At the till, カードでおねがいします (kādo de onegaishimasu, \"By credit card, please\") from Lesson 4 says the same thing more briefly.",
       "reviewNote": "Owner request 2026-11-03: two trip-useful たい sentences for つかいます, ahead of a trip to Japan. The book teaches たい in Lesson 17 but uses it with only a handful of verbs.",
       "aiSuggested": true
+    },
+    {
+      "id": "tsukaremashita-kara-suwaritai",
+      "english": "I'm tired, so I want to sit down.",
+      "category": "Body & Health",
+      "target": "つかれましたから、すわりたいです",
+      "note": "から (kara) after a reason means \"so\": つかれましたから (tsukaremashita kara) is \"I'm tired, so\".",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for すわります.",
+      "aiSuggested": true
+    },
+    {
+      "id": "sumaho-o-juuden-shitai",
+      "english": "I want to charge my phone.",
+      "category": "Technology & Communication",
+      "target": "スマホをじゅうでんしたいです",
+      "note": "スマホ (sumaho) is \"smartphone\", short for スマートフォン (sumātofon).",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for じゅうでんします.",
+      "aiSuggested": true
+    },
+    {
+      "id": "pasupooto-o-kopii-shitai",
+      "english": "I want to make a copy of my passport.",
+      "category": "Travel & Tourism",
+      "target": "パスポートをコピーしたいです",
+      "note": "パスポート (pasupōto) is \"passport\". Convenience store printers make copies.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for コピーします.",
+      "aiSuggested": true
     }
   ]
 }

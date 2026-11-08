@@ -744,6 +744,15 @@
       "note": "あずかる (keep, take care of), said by staff at a cloakroom. A verb before まえに (mae ni, \"before\") is in its dictionary form, as in ねるまえに (neru mae ni) from Lesson 17. Then てください (please).",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-10-12: a sentence in this lesson's theme using あずかる, the dictionary form added to the base unit in the same batch."
+    },
+    {
+      "id": "nimotsu-o-hoteru-ni-okuritai",
+      "english": "I want to send my luggage to the hotel.",
+      "category": "Travel & Tourism",
+      "target": "にもつをホテルにおくりたいです",
+      "note": "Hotels and convenience stores in Japan will ship luggage ahead for you, so this is a common request at a front desk.",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for おくります.",
+      "aiSuggested": true
     }
   ]
 }

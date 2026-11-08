@@ -1357,6 +1357,39 @@
       "audioMarked": true,
       "audioTextHash": "a17a4cf1db9454ef",
       "additionDone": true
+    },
+    {
+      "category": "Grammar & Function Words",
+      "id": "suwaritai-desu",
+      "english": "(I) want to sit down",
+      "target": "すわりたいです",
+      "pronunciation": "suwaritai desu",
+      "note": "Drop ます (masu) from すわります (suwarimasu, \"sit down\"), add たいです (tai desu).",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for すわります. Placed in Lesson 21, which teaches すわります."
+    },
+    {
+      "category": "Grammar & Function Words",
+      "id": "juuden-shitai-desu",
+      "english": "(I) want to recharge",
+      "target": "じゅうでんしたいです",
+      "pronunciation": "jūden shitai desu",
+      "note": "じゅうでんします (jūden shimasu, \"recharge\") works like any します (shimasu) verb: します becomes したいです (shitai desu).",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for じゅうでんします. Placed in Lesson 21, which teaches じゅうでんします."
+    },
+    {
+      "category": "Grammar & Function Words",
+      "id": "kopii-shitai-desu",
+      "english": "(I) want to make a copy",
+      "target": "コピーしたいです",
+      "pronunciation": "kopī shitai desu",
+      "note": "コピーします (kopī shimasu, \"make a copy\") works like any します (shimasu) verb: します becomes したいです (shitai desu).",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for コピーします. Placed in Lesson 21, which teaches コピーします."
     }
   ]
 }

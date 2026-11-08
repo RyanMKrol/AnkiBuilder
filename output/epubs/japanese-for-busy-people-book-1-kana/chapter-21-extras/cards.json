@@ -1216,7 +1216,8 @@
       "audioOriginal": "b54f697c65bb8b75.orig.mp3",
       "audioAuto": "b54f697c65bb8b75.mp3",
       "audioMarked": true,
-      "audioTextHash": "b54f697c65bb8b75"
+      "audioTextHash": "b54f697c65bb8b75",
+      "additionDone": true
     },
     {
       "id": "sumaho-o-juuden-shitai",
@@ -1233,7 +1234,8 @@
       "audioOriginal": "7e6ef291c6361160.orig.mp3",
       "audioAuto": "7e6ef291c6361160.mp3",
       "audioMarked": true,
-      "audioTextHash": "7e6ef291c6361160"
+      "audioTextHash": "7e6ef291c6361160",
+      "additionDone": true
     },
     {
       "id": "pasupooto-o-kopii-shitai",
@@ -1250,7 +1252,8 @@
       "audioOriginal": "15ad412febca9abb.orig.mp3",
       "audioAuto": "15ad412febca9abb.mp3",
       "audioMarked": true,
-      "audioTextHash": "15ad412febca9abb"
+      "audioTextHash": "15ad412febca9abb",
+      "additionDone": true
     }
   ]
 }

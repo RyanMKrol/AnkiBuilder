@@ -1369,7 +1369,8 @@
       "audioOriginal": "33e0ba7208685ed6.orig.mp3",
       "audioAuto": "33e0ba7208685ed6.mp3",
       "audioMarked": true,
-      "audioTextHash": "33e0ba7208685ed6"
+      "audioTextHash": "33e0ba7208685ed6",
+      "additionDone": true
     }
   ]
 }

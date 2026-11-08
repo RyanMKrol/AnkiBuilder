@@ -1052,7 +1052,8 @@
       "audioOriginal": "750190932e810131.orig.mp3",
       "audioAuto": "750190932e810131.mp3",
       "audioMarked": true,
-      "audioTextHash": "750190932e810131"
+      "audioTextHash": "750190932e810131",
+      "additionDone": true
     },
     {
       "id": "chotto-kikitai-n-desu-ga",
@@ -1069,7 +1070,8 @@
       "audioOriginal": "e009e805523be005.orig.mp3",
       "audioAuto": "e009e805523be005.mp3",
       "audioMarked": true,
-      "audioTextHash": "e009e805523be005"
+      "audioTextHash": "e009e805523be005",
+      "additionDone": true
     }
   ]
 }

@@ -1373,7 +1373,8 @@
       "audioOriginal": "ebd495e2ddd1be76.orig.mp3",
       "audioAuto": "ebd495e2ddd1be76.mp3",
       "audioMarked": true,
-      "audioTextHash": "ebd495e2ddd1be76"
+      "audioTextHash": "ebd495e2ddd1be76",
+      "additionDone": true
     },
     {
       "category": "Grammar & Function Words",
@@ -1390,7 +1391,8 @@
       "audioOriginal": "089f8527e2594f92.orig.mp3",
       "audioAuto": "089f8527e2594f92.mp3",
       "audioMarked": true,
-      "audioTextHash": "089f8527e2594f92"
+      "audioTextHash": "089f8527e2594f92",
+      "additionDone": true
     },
     {
       "category": "Grammar & Function Words",
@@ -1407,7 +1409,8 @@
       "audioOriginal": "e22930d4b8949437.orig.mp3",
       "audioAuto": "e22930d4b8949437.mp3",
       "audioMarked": true,
-      "audioTextHash": "e22930d4b8949437"
+      "audioTextHash": "e22930d4b8949437",
+      "additionDone": true
     }
   ]
 }

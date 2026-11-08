@@ -1771,7 +1771,8 @@
       "audioOriginal": "b4ef16b9b240bacc.orig.mp3",
       "audioAuto": "b4ef16b9b240bacc.mp3",
       "audioMarked": true,
-      "audioTextHash": "b4ef16b9b240bacc"
+      "audioTextHash": "b4ef16b9b240bacc",
+      "additionDone": true
     },
     {
       "id": "nihon-no-uta-o-utaitai",
@@ -1788,7 +1789,8 @@
       "audioOriginal": "3989b665f80ba3e3.orig.mp3",
       "audioAuto": "3989b665f80ba3e3.mp3",
       "audioMarked": true,
-      "audioTextHash": "3989b665f80ba3e3"
+      "audioTextHash": "3989b665f80ba3e3",
+      "additionDone": true
     },
     {
       "id": "nihongo-de-hanashitai",
@@ -1805,7 +1807,8 @@
       "audioOriginal": "2f3884cae07d957f.orig.mp3",
       "audioAuto": "2f3884cae07d957f.mp3",
       "audioMarked": true,
-      "audioTextHash": "2f3884cae07d957f"
+      "audioTextHash": "2f3884cae07d957f",
+      "additionDone": true
     },
     {
       "id": "fujisan-ni-noboritai",
@@ -1822,7 +1825,8 @@
       "audioOriginal": "77bc197142cf712e.orig.mp3",
       "audioAuto": "77bc197142cf712e.mp3",
       "audioMarked": true,
-      "audioTextHash": "77bc197142cf712e"
+      "audioTextHash": "77bc197142cf712e",
+      "additionDone": true
     },
     {
       "id": "kyou-wa-takusan-arukitai",
@@ -1839,7 +1843,8 @@
       "audioOriginal": "b8c4408ef50c4cfe.orig.mp3",
       "audioAuto": "b8c4408ef50c4cfe.mp3",
       "audioMarked": true,
-      "audioTextHash": "b8c4408ef50c4cfe"
+      "audioTextHash": "b8c4408ef50c4cfe",
+      "additionDone": true
     },
     {
       "id": "umi-de-oyogitai",
@@ -1856,7 +1861,8 @@
       "audioOriginal": "2d5e95046ae1b3af.orig.mp3",
       "audioAuto": "2d5e95046ae1b3af.mp3",
       "audioMarked": true,
-      "audioTextHash": "2d5e95046ae1b3af"
+      "audioTextHash": "2d5e95046ae1b3af",
+      "additionDone": true
     },
     {
       "id": "kyou-wa-juuji-ni-netai",
@@ -1874,7 +1880,8 @@
       "audioOriginal": "26e4165a2429fbd1.orig.mp3",
       "audioAuto": "26e4165a2429fbd1.mp3",
       "audioMarked": true,
-      "audioTextHash": "26e4165a2429fbd1"
+      "audioTextHash": "26e4165a2429fbd1",
+      "additionDone": true
     },
     {
       "id": "jitensha-o-karitai",
@@ -1891,7 +1898,8 @@
       "audioOriginal": "f854bae718e88470.orig.mp3",
       "audioAuto": "f854bae718e88470.mp3",
       "audioMarked": true,
-      "audioTextHash": "f854bae718e88470"
+      "audioTextHash": "f854bae718e88470",
+      "additionDone": true
     },
     {
       "id": "koko-de-shashin-o-toritai",
@@ -1908,7 +1916,8 @@
       "audioOriginal": "1a26caade3eaba97.orig.mp3",
       "audioAuto": "1a26caade3eaba97.mp3",
       "audioMarked": true,
-      "audioTextHash": "1a26caade3eaba97"
+      "audioTextHash": "1a26caade3eaba97",
+      "additionDone": true
     },
     {
       "id": "ginza-de-kaimono-o-shitai",
@@ -1925,7 +1934,8 @@
       "audioOriginal": "4dd58807378766e9.orig.mp3",
       "audioAuto": "4dd58807378766e9.mp3",
       "audioMarked": true,
-      "audioTextHash": "4dd58807378766e9"
+      "audioTextHash": "4dd58807378766e9",
+      "additionDone": true
     },
     {
       "id": "hoteru-de-shawa-o-abitai",
@@ -1942,7 +1952,8 @@
       "audioOriginal": "a08dac1b4249eee6.orig.mp3",
       "audioAuto": "a08dac1b4249eee6.mp3",
       "audioMarked": true,
-      "audioTextHash": "a08dac1b4249eee6"
+      "audioTextHash": "a08dac1b4249eee6",
+      "additionDone": true
     },
     {
       "id": "kouen-de-sanpo-o-shitai",
@@ -1959,7 +1970,8 @@
       "audioOriginal": "75b24980a02de718.orig.mp3",
       "audioAuto": "75b24980a02de718.mp3",
       "audioMarked": true,
-      "audioTextHash": "75b24980a02de718"
+      "audioTextHash": "75b24980a02de718",
+      "additionDone": true
     },
     {
       "id": "koko-de-machitai",
@@ -1976,7 +1988,8 @@
       "audioOriginal": "5b092916f6697b41.orig.mp3",
       "audioAuto": "5b092916f6697b41.mp3",
       "audioMarked": true,
-      "audioTextHash": "5b092916f6697b41"
+      "audioTextHash": "5b092916f6697b41",
+      "additionDone": true
     }
   ]
 }

@@ -1321,6 +1321,15 @@
       "note": "Drop ます (masu) from おります (orimasu), add たいです (tai desu).",
       "reviewNote": "Owner request 2026-11-03: the たい word card for おります, to go with the two trip sentences in this batch. Placed in Lesson 20, which teaches おります.",
       "aiSuggested": true
+    },
+    {
+      "id": "detai-desu",
+      "english": "(I) want to leave",
+      "category": "Grammar & Function Words",
+      "target": "でたいです",
+      "note": "The place you leave takes を (o): ホテルをでます (hoteru o demasu, \"leave the hotel\").",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for でます. Placed in Lesson 20, which teaches でます.",
+      "aiSuggested": true
     }
   ]
 }

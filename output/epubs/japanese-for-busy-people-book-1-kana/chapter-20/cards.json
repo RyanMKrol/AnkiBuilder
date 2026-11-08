@@ -1655,6 +1655,17 @@
       "audioMarked": true,
       "audioTextHash": "fb47072c64886e49",
       "additionDone": true
+    },
+    {
+      "category": "Grammar & Function Words",
+      "id": "detai-desu",
+      "english": "(I) want to leave",
+      "target": "でたいです",
+      "pronunciation": "detai desu",
+      "note": "The place you leave takes を (o): ホテルをでます (hoteru o demasu, \"leave the hotel\").",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for でます. Placed in Lesson 20, which teaches でます."
     }
   ]
 }

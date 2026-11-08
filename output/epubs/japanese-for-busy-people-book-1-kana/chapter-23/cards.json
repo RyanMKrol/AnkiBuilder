@@ -1322,6 +1322,17 @@
       "audioMarked": true,
       "audioTextHash": "2ec916658236a545",
       "additionDone": true
+    },
+    {
+      "category": "Grammar & Function Words",
+      "id": "tsukuritai-desu",
+      "english": "(I) want to make",
+      "target": "つくりたいです",
+      "pronunciation": "tsukuritai desu",
+      "note": "Drop ます (masu) from つくります (tsukurimasu, \"make\"), add たいです (tai desu).",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for つくります. Placed in Lesson 23, which teaches つくります."
     }
   ]
 }

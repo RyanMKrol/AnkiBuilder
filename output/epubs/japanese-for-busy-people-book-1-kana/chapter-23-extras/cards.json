@@ -1209,6 +1209,17 @@
       "audioMarked": true,
       "audioTextHash": "fe626675131436c7",
       "additionDone": true
+    },
+    {
+      "id": "nihon-ryouri-o-tsukuritai",
+      "english": "I want to cook Japanese food.",
+      "category": "Food",
+      "target": "にほんりょうりをつくりたいです",
+      "pronunciation": "nihon ryōri o tsukuritai desu",
+      "note": "With food, つくります (tsukurimasu, \"make\") means \"cook\". りょうり (ryōri) is \"cooking, cuisine\".",
+      "aiSuggested": true,
+      "addition": "tai-trip-more-2026-11",
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for つくります."
     }
   ]
 }

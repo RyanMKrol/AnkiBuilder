@@ -1765,7 +1765,13 @@
       "note": "カラオケ (karaoke) is a Japanese word English borrowed, so you already know it. で (de) marks the place where you do something.",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for うたいます."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for うたいます.",
+      "additionReviewed": true,
+      "audio": "b4ef16b9b240bacc.mp3",
+      "audioOriginal": "b4ef16b9b240bacc.orig.mp3",
+      "audioAuto": "b4ef16b9b240bacc.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b4ef16b9b240bacc"
     },
     {
       "id": "nihon-no-uta-o-utaitai",
@@ -1776,7 +1782,13 @@
       "note": "うた (uta) is \"song\" and うたいます (utaimasu) is \"sing\", so a song is something you うたいます.",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for うたいます."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for うたいます.",
+      "additionReviewed": true,
+      "audio": "3989b665f80ba3e3.mp3",
+      "audioOriginal": "3989b665f80ba3e3.orig.mp3",
+      "audioAuto": "3989b665f80ba3e3.mp3",
+      "audioMarked": true,
+      "audioTextHash": "3989b665f80ba3e3"
     },
     {
       "id": "nihongo-de-hanashitai",
@@ -1787,7 +1799,13 @@
       "note": "で (de) marks the language you speak in: えいごで (eigo de) is \"in English\".",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for はなします."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for はなします.",
+      "additionReviewed": true,
+      "audio": "2f3884cae07d957f.mp3",
+      "audioOriginal": "2f3884cae07d957f.orig.mp3",
+      "audioAuto": "2f3884cae07d957f.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2f3884cae07d957f"
     },
     {
       "id": "fujisan-ni-noboritai",
@@ -1798,7 +1816,13 @@
       "note": "What you climb takes に (ni), not を (o).",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for のぼります."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for のぼります.",
+      "additionReviewed": true,
+      "audio": "77bc197142cf712e.mp3",
+      "audioOriginal": "77bc197142cf712e.orig.mp3",
+      "audioAuto": "77bc197142cf712e.mp3",
+      "audioMarked": true,
+      "audioTextHash": "77bc197142cf712e"
     },
     {
       "id": "kyou-wa-takusan-arukitai",
@@ -1809,7 +1833,13 @@
       "note": "あるきたい (arukitai) is あるきます (arukimasu, \"walk\") with ます (masu) swapped for たい (tai).",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for あるきます."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for あるきます.",
+      "additionReviewed": true,
+      "audio": "b8c4408ef50c4cfe.mp3",
+      "audioOriginal": "b8c4408ef50c4cfe.orig.mp3",
+      "audioAuto": "b8c4408ef50c4cfe.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b8c4408ef50c4cfe"
     },
     {
       "id": "umi-de-oyogitai",
@@ -1820,7 +1850,13 @@
       "note": "Swap in プール (pūru, \"pool\") for a hotel pool: プールでおよぎたいです (pūru de oyogitai desu).",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for およぎます."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for およぎます.",
+      "additionReviewed": true,
+      "audio": "2d5e95046ae1b3af.mp3",
+      "audioOriginal": "2d5e95046ae1b3af.orig.mp3",
+      "audioAuto": "2d5e95046ae1b3af.mp3",
+      "audioMarked": true,
+      "audioTextHash": "2d5e95046ae1b3af"
     },
     {
       "id": "kyou-wa-juuji-ni-netai",
@@ -1832,7 +1868,13 @@
       "note": "10じ (jūji) is ten o'clock. ねます (nemasu) covers both \"sleep\" and \"go to bed\".",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for ねます."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for ねます.",
+      "additionReviewed": true,
+      "audio": "26e4165a2429fbd1.mp3",
+      "audioOriginal": "26e4165a2429fbd1.orig.mp3",
+      "audioAuto": "26e4165a2429fbd1.mp3",
+      "audioMarked": true,
+      "audioTextHash": "26e4165a2429fbd1"
     },
     {
       "id": "jitensha-o-karitai",
@@ -1843,7 +1885,13 @@
       "note": "かります (karimasu, \"borrow\") also covers renting, when you pay for it.",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for かります."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for かります.",
+      "additionReviewed": true,
+      "audio": "f854bae718e88470.mp3",
+      "audioOriginal": "f854bae718e88470.orig.mp3",
+      "audioAuto": "f854bae718e88470.mp3",
+      "audioMarked": true,
+      "audioTextHash": "f854bae718e88470"
     },
     {
       "id": "koko-de-shashin-o-toritai",
@@ -1854,7 +1902,13 @@
       "note": "しゃしんをとります (shashin o torimasu) is \"take a photo\". ここで (koko de) is \"here\", as the place you do it.",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for とります."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for とります.",
+      "additionReviewed": true,
+      "audio": "1a26caade3eaba97.mp3",
+      "audioOriginal": "1a26caade3eaba97.orig.mp3",
+      "audioAuto": "1a26caade3eaba97.mp3",
+      "audioMarked": true,
+      "audioTextHash": "1a26caade3eaba97"
     },
     {
       "id": "ginza-de-kaimono-o-shitai",
@@ -1865,7 +1919,13 @@
       "note": "ぎんざ (Ginza) is Tokyo's best-known shopping district.",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for かいものをします."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for かいものをします.",
+      "additionReviewed": true,
+      "audio": "4dd58807378766e9.mp3",
+      "audioOriginal": "4dd58807378766e9.orig.mp3",
+      "audioAuto": "4dd58807378766e9.mp3",
+      "audioMarked": true,
+      "audioTextHash": "4dd58807378766e9"
     },
     {
       "id": "hoteru-de-shawa-o-abitai",
@@ -1876,7 +1936,13 @@
       "note": "あびたい (abitai) is あびます (abimasu, \"take (a shower)\") with ます (masu) swapped for たい (tai).",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for シャワーをあびます."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for シャワーをあびます.",
+      "additionReviewed": true,
+      "audio": "a08dac1b4249eee6.mp3",
+      "audioOriginal": "a08dac1b4249eee6.orig.mp3",
+      "audioAuto": "a08dac1b4249eee6.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a08dac1b4249eee6"
     },
     {
       "id": "kouen-de-sanpo-o-shitai",
@@ -1887,7 +1953,13 @@
       "note": "こうえん (kōen) is \"park\". で (de) marks where you walk.",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for さんぽをします."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for さんぽをします.",
+      "additionReviewed": true,
+      "audio": "75b24980a02de718.mp3",
+      "audioOriginal": "75b24980a02de718.orig.mp3",
+      "audioAuto": "75b24980a02de718.mp3",
+      "audioMarked": true,
+      "audioTextHash": "75b24980a02de718"
     },
     {
       "id": "koko-de-machitai",
@@ -1898,7 +1970,13 @@
       "note": "まちたい (machitai) is まちます (machimasu, \"wait\") with ます (masu) swapped for たい (tai).",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for まちます."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for まちます.",
+      "additionReviewed": true,
+      "audio": "5b092916f6697b41.mp3",
+      "audioOriginal": "5b092916f6697b41.orig.mp3",
+      "audioAuto": "5b092916f6697b41.mp3",
+      "audioMarked": true,
+      "audioTextHash": "5b092916f6697b41"
     }
   ]
 }

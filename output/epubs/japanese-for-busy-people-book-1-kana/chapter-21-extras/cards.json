@@ -1210,7 +1210,13 @@
       "note": "から (kara) after a reason means \"so\": つかれましたから (tsukaremashita kara) is \"I'm tired, so\".",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for すわります."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for すわります.",
+      "additionReviewed": true,
+      "audio": "b54f697c65bb8b75.mp3",
+      "audioOriginal": "b54f697c65bb8b75.orig.mp3",
+      "audioAuto": "b54f697c65bb8b75.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b54f697c65bb8b75"
     },
     {
       "id": "sumaho-o-juuden-shitai",
@@ -1221,7 +1227,13 @@
       "note": "スマホ (sumaho) is \"smartphone\", short for スマートフォン (sumātofon).",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for じゅうでんします."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for じゅうでんします.",
+      "additionReviewed": true,
+      "audio": "7e6ef291c6361160.mp3",
+      "audioOriginal": "7e6ef291c6361160.orig.mp3",
+      "audioAuto": "7e6ef291c6361160.mp3",
+      "audioMarked": true,
+      "audioTextHash": "7e6ef291c6361160"
     },
     {
       "id": "pasupooto-o-kopii-shitai",
@@ -1232,7 +1244,13 @@
       "note": "パスポート (pasupōto) is \"passport\". Convenience store printers make copies.",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for コピーします."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for コピーします.",
+      "additionReviewed": true,
+      "audio": "15ad412febca9abb.mp3",
+      "audioOriginal": "15ad412febca9abb.orig.mp3",
+      "audioAuto": "15ad412febca9abb.mp3",
+      "audioMarked": true,
+      "audioTextHash": "15ad412febca9abb"
     }
   ]
 }

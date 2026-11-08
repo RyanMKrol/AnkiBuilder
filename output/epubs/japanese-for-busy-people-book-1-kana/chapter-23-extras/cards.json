@@ -1219,7 +1219,13 @@
       "note": "With food, つくります (tsukurimasu, \"make\") means \"cook\". りょうり (ryōri) is \"cooking, cuisine\".",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for つくります."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for つくります.",
+      "additionReviewed": true,
+      "audio": "53ca8a6b0b1d024b.mp3",
+      "audioOriginal": "53ca8a6b0b1d024b.orig.mp3",
+      "audioAuto": "53ca8a6b0b1d024b.mp3",
+      "audioMarked": true,
+      "audioTextHash": "53ca8a6b0b1d024b"
     }
   ]
 }

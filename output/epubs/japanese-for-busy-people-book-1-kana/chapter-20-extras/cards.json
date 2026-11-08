@@ -1046,7 +1046,13 @@
       "note": "8じ (hachiji) is eight o'clock. This is how you tell the front desk when you plan to check out.",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for でます."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for でます.",
+      "additionReviewed": true,
+      "audio": "750190932e810131.mp3",
+      "audioOriginal": "750190932e810131.orig.mp3",
+      "audioAuto": "750190932e810131.mp3",
+      "audioMarked": true,
+      "audioTextHash": "750190932e810131"
     },
     {
       "id": "chotto-kikitai-n-desu-ga",
@@ -1057,7 +1063,13 @@
       "note": "んですが (n desu ga) softens it and leaves room for the other person to answer, like いきたいんですが (ikitai n desu ga, \"I'd like to go\"). It is the usual way to start a question to a stranger.",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for ききます."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for ききます.",
+      "additionReviewed": true,
+      "audio": "e009e805523be005.mp3",
+      "audioOriginal": "e009e805523be005.orig.mp3",
+      "audioAuto": "e009e805523be005.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e009e805523be005"
     }
   ]
 }

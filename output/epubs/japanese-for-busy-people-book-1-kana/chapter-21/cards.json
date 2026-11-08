@@ -1367,7 +1367,13 @@
       "note": "Drop ます (masu) from すわります (suwarimasu, \"sit down\"), add たいです (tai desu).",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for すわります. Placed in Lesson 21, which teaches すわります."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for すわります. Placed in Lesson 21, which teaches すわります.",
+      "additionReviewed": true,
+      "audio": "ebd495e2ddd1be76.mp3",
+      "audioOriginal": "ebd495e2ddd1be76.orig.mp3",
+      "audioAuto": "ebd495e2ddd1be76.mp3",
+      "audioMarked": true,
+      "audioTextHash": "ebd495e2ddd1be76"
     },
     {
       "category": "Grammar & Function Words",
@@ -1378,7 +1384,13 @@
       "note": "じゅうでんします (jūden shimasu, \"recharge\") works like any します (shimasu) verb: します becomes したいです (shitai desu).",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for じゅうでんします. Placed in Lesson 21, which teaches じゅうでんします."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for じゅうでんします. Placed in Lesson 21, which teaches じゅうでんします.",
+      "additionReviewed": true,
+      "audio": "089f8527e2594f92.mp3",
+      "audioOriginal": "089f8527e2594f92.orig.mp3",
+      "audioAuto": "089f8527e2594f92.mp3",
+      "audioMarked": true,
+      "audioTextHash": "089f8527e2594f92"
     },
     {
       "category": "Grammar & Function Words",
@@ -1389,7 +1401,13 @@
       "note": "コピーします (kopī shimasu, \"make a copy\") works like any します (shimasu) verb: します becomes したいです (shitai desu).",
       "aiSuggested": true,
       "addition": "tai-trip-more-2026-11",
-      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for コピーします. Placed in Lesson 21, which teaches コピーします."
+      "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. The たい word card for コピーします. Placed in Lesson 21, which teaches コピーします.",
+      "additionReviewed": true,
+      "audio": "e22930d4b8949437.mp3",
+      "audioOriginal": "e22930d4b8949437.orig.mp3",
+      "audioAuto": "e22930d4b8949437.mp3",
+      "audioMarked": true,
+      "audioTextHash": "e22930d4b8949437"
     }
   ]
 }

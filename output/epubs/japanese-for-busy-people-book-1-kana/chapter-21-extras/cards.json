@@ -186,11 +186,17 @@
       "target": "つくえのうえにほんをおきます",
       "pronunciation": "tsukue no ue ni hon o okimasu",
       "aiSuggested": true,
-      "audio": "86423200ca1f4f58.mp3",
-      "audioOriginal": "86423200ca1f4f58.orig.mp3",
-      "audioAuto": "86423200ca1f4f58.mp3",
+      "audioOriginal": "467ebc250ba446cc-genkanji-00cbda10.orig.mp3",
+      "audioAuto": "467ebc250ba446cc-genkanji-00cbda10.mp3",
       "audioMarked": true,
-      "audioTextHash": "86423200ca1f4f58"
+      "audioTextHash": "467ebc250ba446cc",
+      "audioFilter": "standard",
+      "audio": "tsukue-ni-hon-okimasu-manual-a12b2913.mp3",
+      "audioManual": "tsukue-ni-hon-okimasu-manual-a12b2913.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 2.4849208047945206
+      }
     },
     {
       "id": "denki-tsukete-kudasai",
@@ -1140,12 +1146,13 @@
       "aiSuggested": true,
       "addition": "tai-trip-2026-11",
       "additionReviewed": true,
-      "audio": "6209c2080592e3bf.mp3",
-      "audioOriginal": "6209c2080592e3bf.orig.mp3",
-      "audioAuto": "6209c2080592e3bf.mp3",
+      "audioOriginal": "04aa1bfc282dbf0f-genkanji-915a8eec.orig.mp3",
+      "audioAuto": "04aa1bfc282dbf0f-genkanji-915a8eec.mp3",
       "audioMarked": true,
-      "audioTextHash": "6209c2080592e3bf",
-      "additionDone": true
+      "audioTextHash": "04aa1bfc282dbf0f",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "04aa1bfc282dbf0f-genkanji-915a8eec.mp3"
     },
     {
       "id": "ano-mise-ni-hairitai",

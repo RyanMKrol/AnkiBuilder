@@ -582,11 +582,12 @@
       "ttsText": "かとうさんはあさとうきょうをでました。いちじごろきょうとにつきました",
       "uncertain": true,
       "reviewNote": "Number spelled out automatically because the card had a numeral in its ttsText or romaji — check the counter is right (4がつ is しがつ, not よんがつ).",
-      "audio": "080c1560f7081191.mp3",
-      "audioOriginal": "080c1560f7081191.orig.mp3",
-      "audioAuto": "080c1560f7081191.mp3",
+      "audioOriginal": "b8c37c046f34e569-genkanji-fc4a35e9.orig.mp3",
+      "audioAuto": "b8c37c046f34e569-genkanji-fc4a35e9.mp3",
       "audioMarked": true,
-      "audioTextHash": "080c1560f7081191"
+      "audioTextHash": "b8c37c046f34e569",
+      "audioFilter": "standard",
+      "audio": "b8c37c046f34e569-genkanji-fc4a35e9.mp3"
     },
     {
       "id": "stayed-four-days",

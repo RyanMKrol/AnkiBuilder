@@ -935,12 +935,18 @@
       "reviewNote": "Owner request 2026-10-30: a sweep giving every verb the deck teaches its て-form, which the book introduces in Lesson 18 but only prints for some verbs. Placed in Lesson 18, which introduces the て-form (うたいます is from Lesson 15).",
       "addition": "verb-forms-sweep-2026-10",
       "additionReviewed": true,
-      "audio": "e52e55b5376938a5.mp3",
-      "audioOriginal": "e52e55b5376938a5.orig.mp3",
-      "audioAuto": "e52e55b5376938a5.mp3",
+      "audioOriginal": "ddf0cd24090ed7a5-genkanji-0c762c71.orig.mp3",
+      "audioAuto": "ddf0cd24090ed7a5-genkanji-0c762c71.mp3",
       "audioMarked": true,
-      "audioTextHash": "e52e55b5376938a5",
-      "additionDone": true
+      "audioTextHash": "ddf0cd24090ed7a5",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "te-form-utatte-manual-02f7d880.mp3",
+      "audioManual": "te-form-utatte-manual-02f7d880.mp3",
+      "audioTrim": {
+        "start": 0,
+        "end": 0.7796832191780821
+      }
     },
     {
       "id": "te-form-hashitte",

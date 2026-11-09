@@ -338,11 +338,12 @@
       "sourceOrder": 22,
       "pronunciation": "ip-pun",
       "ttsKanji": "一分",
-      "audio": "8fca4c98c88cf31c.mp3",
-      "audioOriginal": "8fca4c98c88cf31c.orig.mp3",
-      "audioAuto": "8fca4c98c88cf31c.mp3",
+      "audioOriginal": "deaea6e562177e5f-gen-58dd3c9b.orig.mp3",
+      "audioAuto": "deaea6e562177e5f-gen-58dd3c9b.mp3",
       "audioMarked": true,
-      "audioTextHash": "8fca4c98c88cf31c"
+      "audioTextHash": "deaea6e562177e5f",
+      "audioFilter": "standard",
+      "audio": "deaea6e562177e5f-gen-58dd3c9b.mp3"
     },
     {
       "id": "r-13c822131f65",
@@ -548,11 +549,12 @@
       "sourceOrder": 36,
       "pronunciation": "rop-pun",
       "ttsKanji": "六分",
-      "audio": "5ee287f3efddc939.mp3",
-      "audioOriginal": "5ee287f3efddc939.orig.mp3",
-      "audioAuto": "5ee287f3efddc939.mp3",
+      "audioOriginal": "0c4ab2ff4245b21d-gen-0e8ed29e.orig.mp3",
+      "audioAuto": "0c4ab2ff4245b21d-gen-0e8ed29e.mp3",
       "audioMarked": true,
-      "audioTextHash": "5ee287f3efddc939"
+      "audioTextHash": "0c4ab2ff4245b21d",
+      "audioFilter": "standard",
+      "audio": "0c4ab2ff4245b21d-gen-0e8ed29e.mp3"
     },
     {
       "id": "r-f0c2d9cc8578",

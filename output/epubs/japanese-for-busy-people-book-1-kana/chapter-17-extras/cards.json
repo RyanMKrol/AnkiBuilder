@@ -1767,12 +1767,13 @@
       "addition": "tai-trip-more-2026-11",
       "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for うたいます.",
       "additionReviewed": true,
-      "audio": "b4ef16b9b240bacc.mp3",
-      "audioOriginal": "b4ef16b9b240bacc.orig.mp3",
-      "audioAuto": "b4ef16b9b240bacc.mp3",
+      "audioOriginal": "a59f6a3edffb726f-genkanji-5bece137.orig.mp3",
+      "audioAuto": "a59f6a3edffb726f-genkanji-5bece137.mp3",
       "audioMarked": true,
-      "audioTextHash": "b4ef16b9b240bacc",
-      "additionDone": true
+      "audioTextHash": "a59f6a3edffb726f",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "a59f6a3edffb726f-genkanji-5bece137.mp3"
     },
     {
       "id": "nihon-no-uta-o-utaitai",
@@ -1785,12 +1786,13 @@
       "addition": "tai-trip-more-2026-11",
       "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for うたいます.",
       "additionReviewed": true,
-      "audio": "3989b665f80ba3e3.mp3",
-      "audioOriginal": "3989b665f80ba3e3.orig.mp3",
-      "audioAuto": "3989b665f80ba3e3.mp3",
+      "audioOriginal": "936216548d66d72e-genkanji-61826867.orig.mp3",
+      "audioAuto": "936216548d66d72e-genkanji-61826867.mp3",
       "audioMarked": true,
-      "audioTextHash": "3989b665f80ba3e3",
-      "additionDone": true
+      "audioTextHash": "936216548d66d72e",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "936216548d66d72e-genkanji-61826867.mp3"
     },
     {
       "id": "nihongo-de-hanashitai",
@@ -1803,12 +1805,13 @@
       "addition": "tai-trip-more-2026-11",
       "reviewNote": "Owner request 2026-11-08: more たい coverage ahead of a trip to Japan, after noticing うたいます had no たい form. A trip-useful sentence for はなします.",
       "additionReviewed": true,
-      "audio": "2f3884cae07d957f.mp3",
-      "audioOriginal": "2f3884cae07d957f.orig.mp3",
-      "audioAuto": "2f3884cae07d957f.mp3",
+      "audioOriginal": "d475902a5e80f1f8-genkanji-9a61af73.orig.mp3",
+      "audioAuto": "d475902a5e80f1f8-genkanji-9a61af73.mp3",
       "audioMarked": true,
-      "audioTextHash": "2f3884cae07d957f",
-      "additionDone": true
+      "audioTextHash": "d475902a5e80f1f8",
+      "additionDone": true,
+      "audioFilter": "standard",
+      "audio": "d475902a5e80f1f8-genkanji-9a61af73.mp3"
     },
     {
       "id": "fujisan-ni-noboritai",

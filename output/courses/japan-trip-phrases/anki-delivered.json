@@ -1,7 +1,7 @@
 {
   "note": "This deck is delivered to Anki via AnkiConnect (scripts/deliver-to-anki.mjs). Do NOT re-import the .apkg into that collection — deliver updates instead; a re-import creates duplicate notes.",
   "ankiParent": "Japan Trip Phrases",
-  "lastDeliveredAt": "2026-11-09T20:14:34.969Z",
+  "lastDeliveredAt": "2026-11-18T18:53:32.133Z",
   "deliveredCardIds": [
     "are-there-any-foods-you-dont-like",
     "are-you-open",
@@ -18,6 +18,7 @@
     "hoshii-want",
     "how-are-you-paying",
     "how-do-i-buy-this",
+    "i-can-drink-anything",
     "i-can-eat-anything",
     "i-dont-have-a-reservation",
     "i-dont-have-any-allergies",
@@ -37,6 +38,7 @@
     "more-slowly-please",
     "no-no-ive-still-got-a-long-way-to-go",
     "not-open-yet",
+    "omakase-please",
     "one-more-of-this-please",
     "open",
     "please-show-me-how-to-buy-a-ticket",

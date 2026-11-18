@@ -1001,7 +1001,8 @@
       "audioOriginal": "b2020db06b076b04.orig.mp3",
       "audioAuto": "b2020db06b076b04.mp3",
       "audioMarked": true,
-      "audioTextHash": "b2020db06b076b04"
+      "audioTextHash": "b2020db06b076b04",
+      "additionDone": true
     },
     {
       "id": "i-can-drink-anything",
@@ -1020,7 +1021,8 @@
       "audioOriginal": "870e540217064185.orig.mp3",
       "audioAuto": "870e540217064185.mp3",
       "audioMarked": true,
-      "audioTextHash": "870e540217064185"
+      "audioTextHash": "870e540217064185",
+      "additionDone": true
     }
   ]
 }

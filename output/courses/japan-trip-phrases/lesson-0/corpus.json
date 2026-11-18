@@ -507,6 +507,17 @@
       "ttsText": "みているだけです",
       "aiSuggested": true,
       "reviewNote": "Owner request 2026-11-04: two shop phrases added alongside the wanting batch."
+    },
+    {
+      "id": "omakase-please",
+      "english": "I'll leave it up to you, please.",
+      "category": "Food",
+      "target": "おまかせでお願いします",
+      "ttsText": "おまかせでおねがいします",
+      "scene": "at a sushi counter or restaurant, letting the chef choose",
+      "note": "おまかせ (omakase) is 'leaving it to someone', from 任せます (makasemasu, 'entrust'). At a sushi counter it means the chef's choice, and menus usually write it in kana. で (de) works as in カードでお願いします (kādo de onegaishimasu, 'By card, please'). おまかせします (omakase shimasu, 'I'll leave it to you') says the same thing anywhere, not just when ordering.",
+      "reviewNote": "Owner request 2026-11-18: a way to say 'I trust you, leave it up to you', suggested as omakase onegaishimasu.",
+      "aiSuggested": true
     }
   ]
 }

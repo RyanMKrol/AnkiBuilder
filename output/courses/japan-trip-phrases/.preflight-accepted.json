@@ -7,6 +7,11 @@
         "message": "lesson-0: \"これはどうやって買いますか\" (How do I buy this?, addition trip-wanting-2026-11) uses \"これはどうやって買い\", \"って買います\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
         "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
       },
+      "lesson-0/i-can-drink-anything": {
+        "at": "2026-11-18T18:49:50.063Z",
+        "message": "lesson-0: \"何でも飲めます\" (I can drink anything., addition trip-omakase-2026-11) uses \"何でも飲め\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "trip-omakase-2026-11: 飲めます (nomemasu) is the 'can' form of 飲みます; the note glosses it and points back to 買えます and 何でも食べられます."
+      },
       "lesson-0/i-dont-understand-how-to-use-this-machine": {
         "at": "2026-11-04T00:37:04.475Z",
         "message": "lesson-0: \"この機械の使い方がわかりません\" (I don't understand how to use this machine., addition trip-wanting-2026-11) uses \"この機械の使い方がわかり\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",

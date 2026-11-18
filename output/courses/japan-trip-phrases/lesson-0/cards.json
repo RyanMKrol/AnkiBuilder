@@ -995,7 +995,13 @@
       "note": "おまかせ (omakase) is 'leaving it to someone', from 任せます (makasemasu, 'entrust'). It works for food and drinks alike: at a sushi counter it means the chef's choice, at a bar the bartender's. Menus usually write it in kana. で (de) works as in カードでお願いします (kādo de onegaishimasu, 'By card, please'). おまかせします (omakase shimasu, 'I'll leave it to you') says the same thing anywhere, not just when ordering.",
       "reviewNote": "Owner request 2026-11-18: a way to say 'I trust you, leave it up to you', suggested as omakase onegaishimasu.",
       "aiSuggested": true,
-      "addition": "trip-omakase-2026-11"
+      "addition": "trip-omakase-2026-11",
+      "additionReviewed": true,
+      "audio": "b2020db06b076b04.mp3",
+      "audioOriginal": "b2020db06b076b04.orig.mp3",
+      "audioAuto": "b2020db06b076b04.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b2020db06b076b04"
     },
     {
       "id": "i-can-drink-anything",
@@ -1008,7 +1014,13 @@
       "note": "The drinks twin of 何でも食べられます (nandemo taberaremasu, 'I can eat anything'). 飲めます (nomemasu, 'can drink') is 飲みます (nomimasu, 'drink') with the み (mi) before ます (masu) changed to め (me), the same change as 買います (kaimasu) to 買えます (kaemasu, 'can buy').",
       "reviewNote": "Owner request 2026-11-18: 'I can drink anything', suggested as nandemo nomimaremasu (the 'can' form is 飲めます).",
       "aiSuggested": true,
-      "addition": "trip-omakase-2026-11"
+      "addition": "trip-omakase-2026-11",
+      "additionReviewed": true,
+      "audio": "870e540217064185.mp3",
+      "audioOriginal": "870e540217064185.orig.mp3",
+      "audioAuto": "870e540217064185.mp3",
+      "audioMarked": true,
+      "audioTextHash": "870e540217064185"
     }
   ]
 }

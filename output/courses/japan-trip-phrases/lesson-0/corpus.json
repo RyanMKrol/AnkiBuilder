@@ -514,9 +514,20 @@
       "category": "Food",
       "target": "おまかせでお願いします",
       "ttsText": "おまかせでおねがいします",
-      "scene": "at a sushi counter or restaurant, letting the chef choose",
-      "note": "おまかせ (omakase) is 'leaving it to someone', from 任せます (makasemasu, 'entrust'). At a sushi counter it means the chef's choice, and menus usually write it in kana. で (de) works as in カードでお願いします (kādo de onegaishimasu, 'By card, please'). おまかせします (omakase shimasu, 'I'll leave it to you') says the same thing anywhere, not just when ordering.",
+      "scene": "at a restaurant or a bar, letting the chef or bartender choose",
+      "note": "おまかせ (omakase) is 'leaving it to someone', from 任せます (makasemasu, 'entrust'). It works for food and drinks alike: at a sushi counter it means the chef's choice, at a bar the bartender's. Menus usually write it in kana. で (de) works as in カードでお願いします (kādo de onegaishimasu, 'By card, please'). おまかせします (omakase shimasu, 'I'll leave it to you') says the same thing anywhere, not just when ordering.",
       "reviewNote": "Owner request 2026-11-18: a way to say 'I trust you, leave it up to you', suggested as omakase onegaishimasu.",
+      "aiSuggested": true
+    },
+    {
+      "id": "i-can-drink-anything",
+      "english": "I can drink anything.",
+      "category": "Food",
+      "target": "何でも飲めます",
+      "ttsText": "なんでものめます",
+      "scene": "at a bar, when asked what you like to drink",
+      "note": "The drinks twin of 何でも食べられます (nandemo taberaremasu, 'I can eat anything'). 飲めます (nomemasu, 'can drink') is 飲みます (nomimasu, 'drink') with the み (mi) before ます (masu) changed to め (me), the same change as 買います (kaimasu) to 買えます (kaemasu, 'can buy').",
+      "reviewNote": "Owner request 2026-11-18: 'I can drink anything', suggested as nandemo nomimaremasu (the 'can' form is 飲めます).",
       "aiSuggested": true
     }
   ]

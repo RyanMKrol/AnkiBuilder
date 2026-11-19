@@ -1035,7 +1035,13 @@
       "note": "お腹が空いています (onaka ga suite imasu) is 'I'm hungry', literally 'my stomach is empty'. どのくらい (dono kurai) is 'how much'. Easy answers: お腹がぺこぺこです (onaka ga pekopeko desu, 'I'm starving') or 少し (sukoshi, 'a little'). Here 空いて is read すいて (suite); in 席は空いていますか (seki wa aite imasu ka, 'Are there any seats free?') the same kanji is read あいて (aite).",
       "reviewNote": "Owner request 2026-11-19: the question 'how hungry are you?'.",
       "aiSuggested": true,
-      "addition": "trip-hungry-size-2026-11"
+      "addition": "trip-hungry-size-2026-11",
+      "additionReviewed": true,
+      "audio": "a308a5b917d3d483.mp3",
+      "audioOriginal": "a308a5b917d3d483.orig.mp3",
+      "audioAuto": "a308a5b917d3d483.mp3",
+      "audioMarked": true,
+      "audioTextHash": "a308a5b917d3d483"
     },
     {
       "id": "regular-size-please",
@@ -1048,7 +1054,13 @@
       "note": "普通 (futsū) is 'normal, regular', the middle size between small and large. It covers drinks and portions of rice or noodles. Menus often print sizes as 小 (shō, 'small'), 中 (chū, 'medium') and 大 (dai, 'large'), or as S, M and L (esu, emu, eru); 中でお願いします (chū de onegaishimasu) and Mでお願いします (emu de onegaishimasu) work the same way. で (de) works as in カードでお願いします (kādo de onegaishimasu, 'By card, please').",
       "reviewNote": "Owner request 2026-11-19: a way to say medium or regular size.",
       "aiSuggested": true,
-      "addition": "trip-hungry-size-2026-11"
+      "addition": "trip-hungry-size-2026-11",
+      "additionReviewed": true,
+      "audio": "d8b4d12bc4083ae0.mp3",
+      "audioOriginal": "d8b4d12bc4083ae0.orig.mp3",
+      "audioAuto": "d8b4d12bc4083ae0.mp3",
+      "audioMarked": true,
+      "audioTextHash": "d8b4d12bc4083ae0"
     },
     {
       "id": "do-you-have-seats-free",
@@ -1061,7 +1073,13 @@
       "note": "席 (seki) is 'seat' and 空いています (aite imasu) is 'is free, is empty'. Hold up fingers or say 二人です (futari desu, 'Two people') first. Expect ただいま満席です (tadaima manseki desu, 'We're full right now') or お好きな席へどうぞ (osuki na seki e dōzo, 'Please sit wherever you like'). Here 空いて is read あいて (aite); in お腹が空いています (onaka ga suite imasu, 'I'm hungry') the same kanji is read すいて (suite).",
       "reviewNote": "Owner request 2026-11-19: asking a restaurant whether they have space, beside やっていますか (yatte imasu ka).",
       "aiSuggested": true,
-      "addition": "trip-hungry-size-2026-11"
+      "addition": "trip-hungry-size-2026-11",
+      "additionReviewed": true,
+      "audio": "b4feb3b19d5cfa79.mp3",
+      "audioOriginal": "b4feb3b19d5cfa79.orig.mp3",
+      "audioAuto": "b4feb3b19d5cfa79.mp3",
+      "audioMarked": true,
+      "audioTextHash": "b4feb3b19d5cfa79"
     }
   ]
 }

@@ -1041,7 +1041,8 @@
       "audioOriginal": "a308a5b917d3d483.orig.mp3",
       "audioAuto": "a308a5b917d3d483.mp3",
       "audioMarked": true,
-      "audioTextHash": "a308a5b917d3d483"
+      "audioTextHash": "a308a5b917d3d483",
+      "additionDone": true
     },
     {
       "id": "regular-size-please",
@@ -1060,7 +1061,8 @@
       "audioOriginal": "d8b4d12bc4083ae0.orig.mp3",
       "audioAuto": "d8b4d12bc4083ae0.mp3",
       "audioMarked": true,
-      "audioTextHash": "d8b4d12bc4083ae0"
+      "audioTextHash": "d8b4d12bc4083ae0",
+      "additionDone": true
     },
     {
       "id": "do-you-have-seats-free",
@@ -1079,7 +1081,8 @@
       "audioOriginal": "b4feb3b19d5cfa79.orig.mp3",
       "audioAuto": "b4feb3b19d5cfa79.mp3",
       "audioMarked": true,
-      "audioTextHash": "b4feb3b19d5cfa79"
+      "audioTextHash": "b4feb3b19d5cfa79",
+      "additionDone": true
     }
   ]
 }

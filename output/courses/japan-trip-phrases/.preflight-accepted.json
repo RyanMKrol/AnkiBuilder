@@ -2,10 +2,20 @@
   "version": 1,
   "accepted": {
     "untaught-words": {
+      "lesson-0/do-you-have-seats-free": {
+        "at": "2026-11-19T00:09:49.722Z",
+        "message": "lesson-0: \"席は空いていますか\" (Are there any seats free?, addition trip-hungry-size-2026-11) uses \"席は空いてい\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Owner-requested trip phrases (2026-11-19); every new word is glossed in the card's note. Ad hoc course with no teaching order."
+      },
       "lesson-0/how-do-i-buy-this": {
         "at": "2026-11-04T00:37:04.475Z",
         "message": "lesson-0: \"これはどうやって買いますか\" (How do I buy this?, addition trip-wanting-2026-11) uses \"これはどうやって買い\", \"って買います\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
         "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/how-hungry-are-you": {
+        "at": "2026-11-19T00:09:49.722Z",
+        "message": "lesson-0: \"どのくらいお腹が空いていますか\" (How hungry are you?, addition trip-hungry-size-2026-11) uses \"どのくらいお腹が空いてい\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Owner-requested trip phrases (2026-11-19); every new word is glossed in the card's note. Ad hoc course with no teaching order."
       },
       "lesson-0/i-can-drink-anything": {
         "at": "2026-11-18T18:49:50.063Z",
@@ -56,6 +66,11 @@
         "at": "2026-11-04T00:37:04.475Z",
         "message": "lesson-0: \"使い方を教えてください\" (Please show me how to use it., addition trip-wanting-2026-11) uses \"使い方を教えて\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
         "note": "Trip-wanting batch 2026-11-04: the flagged strings are segmentation fragments (これを買い, っと安いの); every content word (買います, 安い, 行きます, 食べます, 探しています, わかりません, 使い方, 教えて) is glossed in the card's note. Phrase deck, each card stands alone."
+      },
+      "lesson-0/regular-size-please": {
+        "at": "2026-11-19T00:09:49.722Z",
+        "message": "lesson-0: \"普通でお願いします\" (Regular size, please., addition trip-hungry-size-2026-11) uses \"普通でお願いし\", which no card the book has taught by this unit carries. Gloss it in the note, swap it for a word the learner has met, or cut the card if the grammar is untaught (ruling 5). It can also be a false match: a name, or a form the containment test could not see.",
+        "note": "Owner-requested trip phrases (2026-11-19); every new word is glossed in the card's note. Ad hoc course with no teaching order."
       },
       "lesson-0/what-do-you-want-to-eat": {
         "at": "2026-11-04T00:37:04.475Z",
